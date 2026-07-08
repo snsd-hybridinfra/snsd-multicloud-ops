@@ -4,6 +4,7 @@ Track scenario and repository changes that affect implementation readiness or va
 
 | Date | Change | Scope | Related Scenario | Result | Notes |
 |---|---|---|---|---|---|
+| 2026-07-08 | Implemented S015 scenario documentation and evidence skeleton | L2 Security Baseline documentation and evidence placeholders | S015-azure-nsg-least-privilege-validation | Planned | Added Azure NSG least privilege validation plan with TODO evidence placeholders; no Azure credentials, subscription IDs, tenant IDs, tfstate, or rule output collected |
 | 2026-07-08 | Implemented S014 scenario documentation and evidence skeleton | L2 Security Baseline documentation and evidence placeholders | S014-aws-security-group-least-privilege-validation | Planned | Added AWS Security Group least privilege validation plan with TODO evidence placeholders; no AWS credentials, account IDs, tfstate, or rule output collected |
 | 2026-07-08 | Implemented S013 scenario documentation and evidence skeleton | L2 Security Baseline documentation and evidence placeholders | S013-root-login-denial-validation | Planned | Added root login denial validation plan with TODO evidence placeholders; no credentials or denial output collected |
 | 2026-07-08 | Implemented S012 scenario documentation and evidence skeleton | L2 Security Baseline documentation and evidence placeholders | S012-password-login-denial-validation | Planned | Added password login denial validation plan with TODO evidence placeholders; no passwords or denial output collected |
