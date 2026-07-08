@@ -1,5 +1,23 @@
 # Architecture
 
-This scenario concerns only the components directly related to Grafana Anonymous Access Denial Validation.
+## Relevant Components
 
-Document the logical actors, systems, or control points that must be considered during validation. Keep this description implementation-neutral and omit provider blocks, live resource identifiers, private addressing, credentials, and account-specific details.
+- Control Plane: records validation commands and evidence.
+- Grafana endpoint: placeholder web endpoint for observability access.
+- Grafana configuration: planned source for anonymous access setting review.
+- Monitoring Zone: placeholder network boundary for observability access.
+- Grafana access logs: source for unauthenticated access denial evidence.
+- Login page: expected unauthenticated access response.
+
+## Access Model
+
+- `<grafana-endpoint>` must require authentication before dashboard access.
+- Anonymous access must be disabled in Grafana configuration.
+- Anonymous API access must be denied or redirected to authentication.
+- `<grafana-admin-user>` must be a placeholder only; no password or credential value may be stored.
+- `<monitoring-zone-cidr>` represents the intended access boundary placeholder.
+- TLS behavior is not validated in this scenario.
+
+## Boundary Notes
+
+This scenario validates anonymous access denial only. Dashboard content validation, Prometheus target validation, and broader observability validation are separate scenario responsibilities.

@@ -23,7 +23,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S017 | mariadb-access-control-validation | L2 | Security Baseline | PLANNED | 2026-07-08 | MariaDB access control validation documentation completed; database output not collected yet |
 | S018 | kubernetes-rbac-validation | L2 | Security Baseline | PLANNED | 2026-07-08 | Kubernetes RBAC least privilege validation documentation completed; kubectl output not collected yet |
 | S019 | nginx-security-header-validation | L2 | Security Baseline | PLANNED | 2026-07-08 | Nginx security header validation documentation completed; response output not collected yet |
-| S020 | grafana-anonymous-access-denial-validation | L2 | Security Baseline | NOT_STARTED | TBD | Initial tracking state |
+| S020 | grafana-anonymous-access-denial-validation | L2 | Security Baseline | PLANNED | 2026-07-08 | Grafana anonymous access denial validation documentation completed; Grafana output not collected yet |
 | S021 | kubernetes-node-readiness-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |
 | S022 | kubernetes-workload-deployment-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |
 | S023 | ingress-routing-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |

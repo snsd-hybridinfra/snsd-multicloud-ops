@@ -1,23 +1,29 @@
 # S020-grafana-anonymous-access-denial-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S020 |
+| Scenario Name | Grafana Anonymous Access Denial Validation |
+| Level | L2 Security Baseline Validation |
+| Category | Security Baseline |
+| Primary Domain | Observability access security |
+| Related Components | Grafana, Monitoring Zone, dashboard endpoint, access logs, Grafana configuration |
+| Validation Type | Security Validation |
+| Evidence Directory | evidence/L2-security-baseline/S020-grafana-anonymous-access-denial-validation/ |
+| Status | PLANNED |
 
-Grafana Anonymous Access Denial Validation validates one operational capability in the L2 Security Baseline scenario set.
+## Objective Summary
 
-## Objective
+Define and validate that Grafana anonymous access is disabled for the SNSD Multi-Cloud Ops observability layer.
 
-Define how Grafana Anonymous Access Denial Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates Grafana anonymous access denial only. It covers anonymous access configuration review, login requirement validation, unauthenticated dashboard denial, anonymous API denial, admin credential handling rules, Monitoring Zone access boundary placeholders, configuration evidence, and access log evidence.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that anonymous access is disabled, unauthenticated users are required to log in, dashboards and APIs are not publicly accessible, admin passwords are not stored in the repository, and unexplained access success is treated as a failure.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L2-security-baseline/S020-grafana-anonymous-access-denial-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
