@@ -1,23 +1,40 @@
 # S005-openstack-network-provisioning-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S005 |
+| Scenario Name | OpenStack Network Provisioning Validation |
+| Level | L1 Foundation Validation |
+| Category | Foundation |
+| Primary Domain | OpenStack baseline network readiness |
+| Related Components | Provider Network placeholder, Tenant Network, Tenant Subnet, Router, Router Interface, Security Group baseline, Floating IP placeholder, Keypair placeholder, Terraform or OpenStack CLI outputs |
+| Validation Type | Infrastructure Validation |
+| Evidence Directory | evidence/L1-foundation/S005-openstack-network-provisioning-validation/ |
+| Status | PLANNED |
 
-Openstack Network Provisioning Validation validates one operational capability in the L1 Foundation scenario set.
+## Objective Summary
 
-## Objective
+Define and validate the OpenStack baseline network provisioning scenario for the SNSD Multi-Cloud Ops project.
 
-Define how Openstack Network Provisioning Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario defines how OpenStack network provisioning will be validated later. It does not create real OpenStack resources, configure provider credentials, store `openrc` files, store `clouds.yaml`, or generate Terraform state.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Related Components
 
-## Validation Criteria
+- `<openstack-provider-network-name>` placeholder
+- `<openstack-tenant-network-name>` placeholder
+- `<openstack-tenant-subnet-name>` placeholder
+- `<openstack-router-name>` placeholder
+- `<openstack-router-interface-id>` placeholder
+- `<openstack-security-group-name>` placeholder
+- `<openstack-floating-ip>` placeholder
+- `<openstack-keypair-name>` placeholder
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Validation Summary
 
-## Evidence Output
+Validation checks cover OpenStack CLI authentication planning, network listing, provider network existence, tenant network and subnet validation, router and router interface validation, security group baseline validation, floating IP availability, output capture, failure conditions, and rollback using Terraform destroy or OpenStack CLI cleanup checklists.
 
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+## Evidence Output Summary
+
+Evidence must be recorded under `evidence/L1-foundation/S005-openstack-network-provisioning-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
