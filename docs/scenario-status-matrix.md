@@ -4,8 +4,8 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 
 | ID | Scenario | Level | Category | Status | Last Updated | Notes |
 |---|---|---|---|---|---|---|
-| S001 | control-plane-toolchain-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
-| S002 | eve-ng-onprem-routing-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
+| S001 | control-plane-toolchain-validation | L1 | Foundation | PLANNED | 2026-07-08 | Control plane toolchain validation documentation completed; command output not collected yet |
+| S002 | eve-ng-onprem-routing-validation | L1 | Foundation | PLANNED | 2026-07-08 | EVE-NG on-prem routing validation documentation completed; routing output not collected yet |
 | S003 | aws-network-provisioning-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
 | S004 | azure-network-provisioning-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
 | S005 | openstack-network-provisioning-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |

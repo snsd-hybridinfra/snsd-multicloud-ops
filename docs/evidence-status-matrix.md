@@ -4,8 +4,8 @@ Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 
 | ID | Scenario | commands.md | validation.md | logs | screenshots | configs | Evidence Status |
 |---|---|---|---|---|---|---|---|
-| S001 | control-plane-toolchain-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
-| S002 | eve-ng-onprem-routing-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
+| S001 | control-plane-toolchain-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
+| S002 | eve-ng-onprem-routing-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S003 | aws-network-provisioning-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
 | S004 | azure-network-provisioning-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
 | S005 | openstack-network-provisioning-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |

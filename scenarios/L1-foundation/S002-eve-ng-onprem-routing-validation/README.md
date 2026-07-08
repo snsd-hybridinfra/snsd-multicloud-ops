@@ -1,23 +1,37 @@
 # S002-eve-ng-onprem-routing-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S002 |
+| Scenario Name | EVE-NG On-Prem Routing Validation |
+| Level | L1 Foundation Validation |
+| Category | Foundation |
+| Primary Domain | On-prem network routing readiness |
+| Related Components | EVE-NG topology, routers, Management Zone, Bastion Zone, Transit Zone, Internal Server Zone, Monitoring Zone |
+| Validation Type | Infrastructure Validation |
+| Evidence Directory | evidence/L1-foundation/S002-eve-ng-onprem-routing-validation/ |
+| Status | PLANNED |
 
-Eve Ng Onprem Routing Validation validates one operational capability in the L1 Foundation scenario set.
+## Objective Summary
 
-## Objective
+Define and validate the baseline EVE-NG on-prem routing structure used by the SNSD Multi-Cloud Ops project.
 
-Define how Eve Ng Onprem Routing Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates planned routing evidence for the Management, Bastion, Transit, Internal Server, and Monitoring zones. It checks topology and routing readiness only.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Related Components
 
-## Validation Criteria
+- EVE-NG topology definition
+- Router configuration snapshots
+- Zone gateways
+- Route tables
+- Firewall boundaries as awareness points only
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Validation Summary
 
-## Evidence Output
+Validation confirms that topology files, router configuration snapshots, gateway reachability checks, inter-zone ping plans, route capture plans, and missing-route failure conditions are documented and mapped to evidence.
 
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+## Evidence Output Summary
+
+Evidence must be recorded under `evidence/L1-foundation/S002-eve-ng-onprem-routing-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
