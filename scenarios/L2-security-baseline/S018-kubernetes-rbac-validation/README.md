@@ -1,23 +1,29 @@
 # S018-kubernetes-rbac-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S018 |
+| Scenario Name | Kubernetes RBAC Validation |
+| Level | L2 Security Baseline Validation |
+| Category | Security Baseline |
+| Primary Domain | Kubernetes access security |
+| Related Components | Kubernetes/k3s runtime, namespaces, ServiceAccounts, Roles, RoleBindings, Secrets, workload namespaces |
+| Validation Type | Security Validation |
+| Evidence Directory | evidence/L2-security-baseline/S018-kubernetes-rbac-validation/ |
+| Status | PLANNED |
 
-Kubernetes Rbac Validation validates one operational capability in the L2 Security Baseline scenario set.
+## Objective Summary
 
-## Objective
+Define and validate the Kubernetes RBAC least privilege model for the SNSD Multi-Cloud Ops Kubernetes/k3s service runtime.
 
-Define how Kubernetes Rbac Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates Kubernetes RBAC design only. It covers namespace separation, ServiceAccount separation, Role and RoleBinding review, least privilege workload access, read-only validation account placeholders, denial of unnecessary cluster-admin access, `kubectl auth can-i` checks, Secret access restrictions, workload namespace boundaries, and RBAC evidence collection.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that RBAC objects are defined with placeholder names, that allowed and denied actions can be tested, that Secret access is restricted, and that excessive permissions or cluster-admin misuse are treated as failures.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L2-security-baseline/S018-kubernetes-rbac-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
