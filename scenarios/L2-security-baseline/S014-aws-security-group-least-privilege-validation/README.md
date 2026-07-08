@@ -1,23 +1,29 @@
 # S014-aws-security-group-least-privilege-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S014 |
+| Scenario Name | AWS Security Group Least Privilege Validation |
+| Level | L2 Security Baseline Validation |
+| Category | Security Baseline |
+| Primary Domain | AWS network security |
+| Related Components | AWS Service Zone, AWS service node, Security Group, Bastion, On-Prem DB, monitoring targets |
+| Validation Type | Security Validation |
+| Evidence Directory | evidence/L2-security-baseline/S014-aws-security-group-least-privilege-validation/ |
+| Status | PLANNED |
 
-Aws Security Group Least Privilege Validation validates one operational capability in the L2 Security Baseline scenario set.
+## Objective Summary
 
-## Objective
+Define and validate the AWS Security Group least privilege model for the SNSD Multi-Cloud Ops AWS Service Zone.
 
-Define how Aws Security Group Least Privilege Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates AWS Security Group rule design only. It covers ingress, egress, bastion SSH access, service exposure placeholders, app-to-database access placeholders, monitoring scrape placeholders, and denial of unrestricted SSH or DB access.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that AWS Security Group rules are intentionally scoped, that SSH and DB access are not exposed broadly, and that rule evidence can be captured through Terraform plan output or AWS CLI review without adding credentials or account-specific values.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L2-security-baseline/S014-aws-security-group-least-privilege-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
