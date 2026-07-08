@@ -1,0 +1,55 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Secrets
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.kubeconfig
+.env
+.env.*
+secrets.yml
+vault.yml
+credentials.*
+id_rsa
+id_rsa.pub
+
+# Cloud credentials
+.aws/
+.azure/
+openrc.sh
+admin-openrc.sh
+clouds.yaml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Ansible
+*.retry
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Evidence binaries - allow screenshots only when intentionally added
+*.zip
+*.tar
+*.tar.gz
