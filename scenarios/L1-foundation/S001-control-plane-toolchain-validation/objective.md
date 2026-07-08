@@ -1,5 +1,18 @@
 # Objective
 
-Validate the operational capability represented by Control Plane Toolchain Validation.
+Validate the local control plane toolchain required to operate this repository.
 
-This scenario defines the intended behavior, review approach, and evidence expectations so later execution can be assessed consistently without adding implementation code during the skeleton phase.
+The scenario confirms that the following tools are installed and can return version information:
+
+- Git
+- PowerShell
+- Terraform CLI
+- Ansible
+- Python
+- kubectl
+- Helm
+- AWS CLI
+- Azure CLI
+- OpenStack CLI
+
+Success means each tool can be invoked locally with a non-secret version check, and the command to collect that evidence is documented for later execution.

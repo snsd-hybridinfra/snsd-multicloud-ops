@@ -1,9 +1,17 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+## Failure Conditions
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- One or more required tools cannot be invoked.
+- A version command requires authentication or access to sensitive files.
+- Command output cannot be captured in a reviewable form.
+- Evidence is missing for any validation check.
+- Real credentials, private keys, tfstate, kubeconfig content, account IDs, subscription IDs, tenant IDs, project IDs, or unsanitized environment details are captured.
+
+## Evidence of Failure
+
+Record the failed or blocked check in `validation.md` with the related check ID and sanitized details.
+
+## Follow-Up Requirement
+
+Create a follow-up task to install, repair, or document the missing tool before dependent scenarios proceed.

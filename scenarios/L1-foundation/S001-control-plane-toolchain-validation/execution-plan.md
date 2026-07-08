@@ -1,9 +1,28 @@
 # Execution Plan
 
-1. Review the objective and scope for S001-control-plane-toolchain-validation.
-2. Confirm prerequisites and previous scenario dependency status.
-3. Identify the planned validation inputs without creating implementation artifacts.
-4. Perform approved manual or dry-run validation steps when execution is later authorized.
-5. Record commands or actions in $evidencePath/commands.md.
-6. Record observations and the final result in $evidencePath/validation.md.
-7. Attach only approved text evidence or placeholder references under logs/, screenshots/, and configs/.
+## Preparation
+
+1. Open PowerShell on `<target-node>`.
+2. Change to the repository root.
+3. Confirm the S001 evidence directory exists.
+4. Confirm no credential files, kubeconfig files, private keys, or tfstate files are required.
+
+## Execution Steps
+
+1. Run the Git version check.
+2. Run the PowerShell version check.
+3. Run the Terraform CLI version check.
+4. Run the Ansible version check.
+5. Run the Python version check.
+6. Run the kubectl version check.
+7. Run the Helm version check.
+8. Run the AWS CLI version check.
+9. Run the Azure CLI version check.
+10. Run the OpenStack CLI version check.
+
+## Evidence Capture
+
+1. Record each command and its purpose in `commands.md`.
+2. Paste sanitized command output into the matching TODO section after execution.
+3. Record pass, fail, partial, blocked, or not-run status in `validation.md`.
+4. Do not capture secrets, credentials, account identifiers, kubeconfig content, tfstate, or private keys.

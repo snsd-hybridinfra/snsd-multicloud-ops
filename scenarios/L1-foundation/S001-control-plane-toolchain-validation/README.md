@@ -1,23 +1,38 @@
 # S001-control-plane-toolchain-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S001 |
+| Scenario Name | Control Plane Toolchain Validation |
+| Level | L1 Foundation Validation |
+| Category | Foundation |
+| Primary Domain | Local control plane readiness |
+| Related Components | Git, PowerShell, Terraform CLI, Ansible, Python, kubectl, Helm, AWS CLI, Azure CLI, OpenStack CLI |
+| Validation Type | Infrastructure Validation |
+| Evidence Directory | evidence/L1-foundation/S001-control-plane-toolchain-validation/ |
+| Status | PLANNED |
 
-Control Plane Toolchain Validation validates one operational capability in the L1 Foundation scenario set.
+## Objective Summary
 
-## Objective
+Validate that the local control plane has the required command-line toolchain available for later scenario work.
 
-Define how Control Plane Toolchain Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario checks tool availability and version reporting only. It does not authenticate to cloud platforms, read credentials, create resources, or execute infrastructure changes.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Related Components
 
-## Validation Criteria
+- Local operator workstation or approved control-plane host
+- Repository workspace
+- Required CLI tools listed in this scenario
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Validation Summary
 
-## Evidence Output
+Each required tool must respond to a version check command and produce reviewable output that can be recorded in evidence.
 
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+## Evidence Output Summary
+
+Evidence must be recorded in:
+
+- `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md`
+- `evidence/L1-foundation/S001-control-plane-toolchain-validation/validation.md`
