@@ -1,9 +1,18 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+## Failure Conditions
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- AWS, AzureRM, and OpenStack provider roles are not clearly separated.
+- Provider version constraints are missing, invalid, or inconsistent with the repository strategy.
+- Terraform fmt, init, or validate checks cannot be planned safely.
+- Provider blocks include hardcoded credentials, keys, tokens, account IDs, subscription IDs, tenant IDs, passwords, or endpoints tied to a real account.
+- Terraform state files, `.terraform/` directories, backend state files, or account-specific files are created or committed.
+- Evidence requires real credentials, private keys, tfstate, or account-specific values.
+
+## Evidence of Failure
+
+Record failed or blocked checks in `validation.md`, with supporting TODO references to `commands.md`, `configs/terraform-provider-structure-summary.md`, `logs/terraform-provider-validation.log`, or `configs/gitignore-tfstate-check.md`.
+
+## Follow-Up Requirement
+
+Create a follow-up task to correct provider separation, version pinning, credential handling, or tfstate policy before Terraform implementation proceeds.

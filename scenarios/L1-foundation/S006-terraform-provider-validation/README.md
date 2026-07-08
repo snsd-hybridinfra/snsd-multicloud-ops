@@ -1,23 +1,38 @@
 # S006-terraform-provider-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S006 |
+| Scenario Name | Terraform Provider Validation |
+| Level | L1 Foundation Validation |
+| Category | Foundation |
+| Primary Domain | Terraform provider structure readiness |
+| Related Components | AWS provider, AzureRM provider, OpenStack provider, provider version pinning, environment separation, Terraform init, Terraform validate, Terraform fmt, credential exclusion, tfstate exclusion |
+| Validation Type | Infrastructure Validation |
+| Evidence Directory | evidence/L1-foundation/S006-terraform-provider-validation/ |
+| Status | PLANNED |
 
-Terraform Provider Validation validates one operational capability in the L1 Foundation scenario set.
+## Objective Summary
 
-## Objective
+Define and validate the Terraform provider structure required for AWS, Azure, and OpenStack provisioning in the SNSD Multi-Cloud Ops project.
 
-Define how Terraform Provider Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates provider structure and safety policy only. It does not create provider credentials, execute real cloud authentication, create tfstate, or implement real Terraform provider resources.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Related Components
 
-## Validation Criteria
+- AWS provider placeholder
+- AzureRM provider placeholder
+- OpenStack provider placeholder
+- Provider version pinning strategy
+- Environment-specific provider separation
+- `.gitignore` tfstate exclusion policy
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Validation Summary
 
-## Evidence Output
+Validation checks cover Terraform CLI availability, `terraform fmt`, provider initialization planning for AWS, AzureRM, and OpenStack, provider-specific validation planning, provider version pinning, hardcoded credential detection, tfstate exclusion, and failure conditions.
 
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+## Evidence Output Summary
+
+Evidence must be recorded under `evidence/L1-foundation/S006-terraform-provider-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
