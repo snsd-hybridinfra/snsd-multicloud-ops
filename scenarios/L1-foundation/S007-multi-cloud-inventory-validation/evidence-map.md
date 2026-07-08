@@ -1,9 +1,18 @@
 # Evidence Map
 
-| Validation Check | Evidence File or Directory | Notes |
-| --- | --- | --- |
-| Commands and actions | $evidencePath/commands.md | Record only approved, redacted commands or manual actions. |
-| Validation result | $evidencePath/validation.md | Record pass, partial, fail, reviewer, and date. |
-| Logs | $evidencePath/logs/ | Store approved text logs or keep .gitkeep when not applicable. |
-| Screenshots | $evidencePath/screenshots/ | Store approved screenshot references only when binary evidence is later allowed. |
-| Config references | $evidencePath/configs/ | Store redacted text configuration references only when approved. |
+| Validation Item | Evidence File | Evidence Type | Required |
+|---|---|---|---|
+| Inventory file existence validation plan | `commands.md`; `configs/inventory-structure-summary.md`; `validation.md` | command plan, inventory summary, validation record | yes |
+| Required inventory group validation plan | `configs/inventory-structure-summary.md`; `validation.md` | inventory summary, validation record | yes |
+| Placeholder-only value validation plan | `configs/inventory-sanitization-check.md`; `validation.md` | sanitization check, validation record | yes |
+| No secret or private key validation plan | `configs/inventory-sanitization-check.md`; `validation.md` | sanitization check, validation record | yes |
+| Provider grouping validation plan | `configs/inventory-structure-summary.md`; `validation.md` | inventory summary, validation record | yes |
+| Role grouping validation plan | `configs/inventory-structure-summary.md`; `validation.md` | inventory summary, validation record | yes |
+| On-Prem DB grouping validation plan | `configs/inventory-structure-summary.md`; `validation.md` | inventory summary, validation record | yes |
+| Observability target grouping validation plan | `configs/inventory-structure-summary.md`; `logs/inventory-validation.log`; `validation.md` | inventory summary, validation log, validation record | yes |
+| Evidence collection target grouping validation plan | `configs/inventory-structure-summary.md`; `logs/inventory-validation.log`; `validation.md` | inventory summary, validation log, validation record | yes |
+| Missing group, real credential, or inconsistent hostname failure condition | `validation.md` | failure criteria and status record | yes |
+
+## Evidence Notes
+
+No real inventory command output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.

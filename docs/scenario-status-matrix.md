@@ -10,7 +10,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S004 | azure-network-provisioning-validation | L1 | Foundation | PLANNED | 2026-07-08 | Azure network provisioning validation documentation completed; Terraform and Azure output not collected yet |
 | S005 | openstack-network-provisioning-validation | L1 | Foundation | PLANNED | 2026-07-08 | OpenStack network provisioning validation documentation completed; Terraform and OpenStack output not collected yet |
 | S006 | terraform-provider-validation | L1 | Foundation | PLANNED | 2026-07-08 | Terraform provider validation documentation completed; provider command output not collected yet |
-| S007 | multi-cloud-inventory-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
+| S007 | multi-cloud-inventory-validation | L1 | Foundation | PLANNED | 2026-07-08 | Multi-cloud inventory validation documentation completed; inventory output not collected yet |
 | S008 | bastion-reachability-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
 | S009 | dns-hostname-resolution-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
 | S010 | evidence-directory-structure-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
