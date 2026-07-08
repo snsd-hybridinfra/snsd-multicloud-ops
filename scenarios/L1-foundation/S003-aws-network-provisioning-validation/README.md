@@ -1,23 +1,39 @@
 # S003-aws-network-provisioning-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S003 |
+| Scenario Name | AWS Network Provisioning Validation |
+| Level | L1 Foundation Validation |
+| Category | Foundation |
+| Primary Domain | AWS baseline network readiness |
+| Related Components | VPC, public subnet, private subnet, route table, internet gateway, security group baseline, optional bastion entry point, Terraform outputs |
+| Validation Type | Infrastructure Validation |
+| Evidence Directory | evidence/L1-foundation/S003-aws-network-provisioning-validation/ |
+| Status | PLANNED |
 
-Aws Network Provisioning Validation validates one operational capability in the L1 Foundation scenario set.
+## Objective Summary
 
-## Objective
+Define and validate the AWS baseline network provisioning scenario for the SNSD Multi-Cloud Ops project.
 
-Define how Aws Network Provisioning Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario defines how AWS network provisioning will be validated later. It does not create real AWS resources, configure provider credentials, store account IDs, or generate Terraform state.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Related Components
 
-## Validation Criteria
+- `<aws-vpc-id>` placeholder
+- `<aws-public-subnet-id>` placeholder
+- `<aws-private-subnet-id>` placeholder
+- `<aws-route-table-id>` placeholder
+- `<aws-internet-gateway-id>` placeholder
+- `<aws-security-group-id>` placeholder
+- `<aws-bastion-entry-point>` placeholder
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Validation Summary
 
-## Evidence Output
+Validation checks cover Terraform initialization planning, Terraform validation planning, AWS resource existence validation planning, Terraform output capture planning, AWS CLI listing planning, failure conditions, and rollback through a `terraform destroy` checklist.
 
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+## Evidence Output Summary
+
+Evidence must be recorded under `evidence/L1-foundation/S003-aws-network-provisioning-validation/`, with command plans in `commands.md` and validation results in `validation.md`.

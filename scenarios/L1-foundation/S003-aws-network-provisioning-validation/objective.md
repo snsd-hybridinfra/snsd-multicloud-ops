@@ -1,5 +1,16 @@
 # Objective
 
-Validate the operational capability represented by Aws Network Provisioning Validation.
+Validate the planned AWS baseline network provisioning model required for later multi-cloud operations scenarios.
 
-This scenario defines the intended behavior, review approach, and evidence expectations so later execution can be assessed consistently without adding implementation code during the skeleton phase.
+The scenario defines validation for these AWS network components:
+
+- VPC
+- Public Subnet
+- Private Subnet
+- Route Table
+- Internet Gateway
+- Security Group baseline
+- Optional Bastion entry point placeholder
+- Terraform output validation plan
+
+Success means the repository has a clear, evidence-mapped plan for validating AWS network provisioning without creating real resources or storing AWS credentials, account IDs, access keys, tfstate, private keys, or account-specific files.
