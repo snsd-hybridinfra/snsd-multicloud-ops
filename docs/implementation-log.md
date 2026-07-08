@@ -4,6 +4,7 @@ Track scenario and repository changes that affect implementation readiness or va
 
 | Date | Change | Scope | Related Scenario | Result | Notes |
 |---|---|---|---|---|---|
+| 2026-07-08 | Implemented S011 scenario documentation and evidence skeleton | L2 Security Baseline documentation and evidence placeholders | S011-ssh-key-authentication-validation | Planned | Added SSH key authentication validation plan with TODO evidence placeholders; no real SSH keys or authentication output collected |
 | 2026-07-08 | Implemented S010 scenario documentation and evidence skeleton | L1 Foundation documentation and evidence placeholders | S010-evidence-directory-structure-validation | Planned | Added evidence directory structure validation plan with TODO evidence placeholders; no live evidence output collected |
 | 2026-07-08 | Implemented S009 scenario documentation and evidence skeleton | L1 Foundation documentation and evidence placeholders | S009-dns-hostname-resolution-validation | Planned | Added hostname resolution validation plan with TODO evidence placeholders; no real DNS implementation or lookup output collected |
 | 2026-07-08 | Implemented S008 scenario documentation and evidence skeleton | L1 Foundation documentation and evidence placeholders | S008-bastion-reachability-validation | Planned | Added bastion reachability validation plan with TODO evidence placeholders; no Ansible automation, SSH hardening, or real reachability output collected |

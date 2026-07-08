@@ -14,7 +14,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S008 | bastion-reachability-validation | L1 | Foundation | PLANNED | 2026-07-08 | Bastion reachability validation documentation completed; reachability output not collected yet |
 | S009 | dns-hostname-resolution-validation | L1 | Foundation | PLANNED | 2026-07-08 | Hostname resolution validation documentation completed; DNS lookup output not collected yet |
 | S010 | evidence-directory-structure-validation | L1 | Foundation | PLANNED | 2026-07-08 | Evidence directory structure validation documentation completed; structure command output not collected yet |
-| S011 | ssh-key-authentication-validation | L2 | Security Baseline | NOT_STARTED | TBD | Initial tracking state |
+| S011 | ssh-key-authentication-validation | L2 | Security Baseline | PLANNED | 2026-07-08 | SSH key authentication validation documentation completed; SSH output not collected yet |
 | S012 | password-login-denial-validation | L2 | Security Baseline | NOT_STARTED | TBD | Initial tracking state |
 | S013 | root-login-denial-validation | L2 | Security Baseline | NOT_STARTED | TBD | Initial tracking state |
 | S014 | aws-security-group-least-privilege-validation | L2 | Security Baseline | NOT_STARTED | TBD | Initial tracking state |

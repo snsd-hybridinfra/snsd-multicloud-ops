@@ -1,23 +1,29 @@
 # S011-ssh-key-authentication-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S011 |
+| Scenario Name | SSH Key Authentication Validation |
+| Level | L2 Security Baseline Validation |
+| Category | Security Baseline |
+| Primary Domain | SSH access security |
+| Related Components | Control Plane, Bastion, On-Prem DB nodes, On-Prem Monitoring nodes, AWS service nodes, Azure service nodes, OpenStack service nodes, SSH ProxyJump |
+| Validation Type | Security Validation |
+| Evidence Directory | evidence/L2-security-baseline/S011-ssh-key-authentication-validation/ |
+| Status | PLANNED |
 
-Ssh Key Authentication Validation validates one operational capability in the L2 Security Baseline scenario set.
+## Objective Summary
 
-## Objective
+Define and validate SSH key-based authentication for the SNSD Multi-Cloud Ops management and operations access model.
 
-Define how Ssh Key Authentication Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates SSH key authentication design only. It does not create real SSH private keys, store credentials, test password denial, or test root login denial.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks cover SSH private key permission planning, public key placement planning, Control Plane-to-Bastion authentication, Bastion-to-target authentication for on-prem and cloud service nodes, SSH ProxyJump pattern validation, and key-authentication failure conditions.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L2-security-baseline/S011-ssh-key-authentication-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
