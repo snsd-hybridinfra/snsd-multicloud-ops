@@ -1,5 +1,17 @@
 # Objective
 
-Validate the operational capability represented by Password Login Denial Validation.
+Validate the planned password-based SSH login denial model across management and service nodes.
 
-This scenario defines the intended behavior, review approach, and evidence expectations so later execution can be assessed consistently without adding implementation code during the skeleton phase.
+The scenario defines validation for:
+
+- Bastion SSH password login denial
+- On-Prem DB node SSH password login denial
+- On-Prem Monitoring node SSH password login denial
+- AWS service node SSH password login denial
+- Azure service node SSH password login denial
+- OpenStack service node SSH password login denial
+- `sshd_config` `PasswordAuthentication` validation plan
+- `sshd -T` effective configuration validation plan
+- Authentication failure evidence collection plan
+
+Success means password authentication denial is clearly documented and mapped to evidence, without reimplementing S011 SSH key authentication or S013 root login denial.
