@@ -1,5 +1,17 @@
 # Objective
 
-Validate the operational capability represented by Root Login Denial Validation.
+Validate the planned direct root SSH login denial model across management and service nodes.
 
-This scenario defines the intended behavior, review approach, and evidence expectations so later execution can be assessed consistently without adding implementation code during the skeleton phase.
+The scenario defines validation for:
+
+- Bastion root SSH login denial
+- On-Prem DB node root SSH login denial
+- On-Prem Monitoring node root SSH login denial
+- AWS service node root SSH login denial
+- Azure service node root SSH login denial
+- OpenStack service node root SSH login denial
+- `sshd_config` `PermitRootLogin` validation plan
+- `sshd -T` effective configuration validation plan
+- Root login failure evidence collection plan
+
+Success means direct root SSH login denial is clearly documented and mapped to evidence, without reimplementing S011 SSH key authentication or S012 password login denial.

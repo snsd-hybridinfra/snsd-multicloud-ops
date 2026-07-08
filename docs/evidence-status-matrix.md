@@ -16,7 +16,7 @@ Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S010 | evidence-directory-structure-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S011 | ssh-key-authentication-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S012 | password-login-denial-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
-| S013 | root-login-denial-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
+| S013 | root-login-denial-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S014 | aws-security-group-least-privilege-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
 | S015 | azure-nsg-least-privilege-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
 | S016 | openstack-security-group-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |

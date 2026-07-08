@@ -1,23 +1,29 @@
 # S013-root-login-denial-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S013 |
+| Scenario Name | Root Login Denial Validation |
+| Level | L2 Security Baseline Validation |
+| Category | Security Baseline |
+| Primary Domain | SSH access security |
+| Related Components | Bastion, On-Prem DB nodes, On-Prem Monitoring nodes, AWS service nodes, Azure service nodes, OpenStack service nodes, sshd_config, sshd effective configuration |
+| Validation Type | Security Validation |
+| Evidence Directory | evidence/L2-security-baseline/S013-root-login-denial-validation/ |
+| Status | PLANNED |
 
-Root Login Denial Validation validates one operational capability in the L2 Security Baseline scenario set.
+## Objective Summary
 
-## Objective
+Define and validate that direct root SSH login is disabled across the SNSD Multi-Cloud Ops management and service node access model.
 
-Define how Root Login Denial Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates direct root login denial only. SSH key authentication success is handled in S011, password login denial is handled in S012, and sudo policy validation is excluded.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks cover `PermitRootLogin` configuration, `sshd -T` effective configuration, root login denial plans for bastion and service nodes, authentication failure evidence, and failure conditions.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L2-security-baseline/S013-root-login-denial-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
