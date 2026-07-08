@@ -12,12 +12,12 @@ Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 
 | Level | Category | Scenarios | Implemented | Validated | Notes |
 |---|---|---:|---:|---:|---|
-| L1 | Foundation | 3/10 | 0/10 | 0/10 | S001, S002, and S003 planned |
+| L1 | Foundation | 4/10 | 0/10 | 0/10 | S001, S002, S003, and S004 planned |
 | L2 | Security Baseline | 0/10 | 0/10 | 0/10 | Initial tracking state |
 | L3 | Service Operations | 0/10 | 0/10 | 0/10 | Initial tracking state |
 | L4 | Failure Recovery | 0/10 | 0/10 | 0/10 | Initial tracking state |
 | L5 | Governance Intelligent Ops | 0/10 | 0/10 | 0/10 | Initial tracking state |
-| Total | All Levels | 3/50 | 0/50 | 0/50 | S001, S002, and S003 planned |
+| Total | All Levels | 4/50 | 0/50 | 0/50 | S001, S002, S003, and S004 planned |
 
 ## Update Rule
 

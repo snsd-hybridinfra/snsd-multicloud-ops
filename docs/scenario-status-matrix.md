@@ -7,7 +7,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S001 | control-plane-toolchain-validation | L1 | Foundation | PLANNED | 2026-07-08 | Control plane toolchain validation documentation completed; command output not collected yet |
 | S002 | eve-ng-onprem-routing-validation | L1 | Foundation | PLANNED | 2026-07-08 | EVE-NG on-prem routing validation documentation completed; routing output not collected yet |
 | S003 | aws-network-provisioning-validation | L1 | Foundation | PLANNED | 2026-07-08 | AWS network provisioning validation documentation completed; Terraform and AWS output not collected yet |
-| S004 | azure-network-provisioning-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
+| S004 | azure-network-provisioning-validation | L1 | Foundation | PLANNED | 2026-07-08 | Azure network provisioning validation documentation completed; Terraform and Azure output not collected yet |
 | S005 | openstack-network-provisioning-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
 | S006 | terraform-provider-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
 | S007 | multi-cloud-inventory-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
