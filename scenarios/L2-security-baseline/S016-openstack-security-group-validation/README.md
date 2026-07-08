@@ -1,23 +1,29 @@
 # S016-openstack-security-group-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S016 |
+| Scenario Name | OpenStack Security Group Validation |
+| Level | L2 Security Baseline Validation |
+| Category | Security Baseline |
+| Primary Domain | OpenStack network security |
+| Related Components | OpenStack Private Cloud Service Zone, OpenStack App VM, Security Group, Bastion, On-Prem DB, monitoring targets |
+| Validation Type | Security Validation |
+| Evidence Directory | evidence/L2-security-baseline/S016-openstack-security-group-validation/ |
+| Status | PLANNED |
 
-Openstack Security Group Validation validates one operational capability in the L2 Security Baseline scenario set.
+## Objective Summary
 
-## Objective
+Define and validate the OpenStack Security Group least privilege model for the SNSD Multi-Cloud Ops OpenStack Private Cloud Service Zone.
 
-Define how Openstack Security Group Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates OpenStack Security Group rule design only. It covers service VM ingress, service VM egress, bastion SSH access, HTTP/HTTPS service exposure placeholders, App VM to On-Prem DB placeholders, monitoring scrape placeholders, and denial of unrestricted SSH or DB access.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that OpenStack Security Group rules are intentionally scoped, that SSH and DB access are not exposed broadly, and that rule evidence can be captured through Terraform plan output or OpenStack CLI review without adding credentials or account-specific values.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L2-security-baseline/S016-openstack-security-group-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
