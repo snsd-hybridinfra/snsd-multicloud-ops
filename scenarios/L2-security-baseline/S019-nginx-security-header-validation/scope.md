@@ -2,14 +2,26 @@
 
 ## Included
 
-- Scenario documentation for S019-nginx-security-header-validation.
-- Operational assumptions and boundaries relevant to Nginx Security Header Validation.
-- Validation checks and evidence mapping.
-- Text-only evidence placeholders under $evidencePath.
+- Reverse Proxy security header baseline.
+- Ingress response header validation plan.
+- Server version exposure reduction.
+- HTTP method restriction placeholder.
+- Security header validation using `curl -I`.
+- Nginx configuration syntax validation plan.
+- Access log evidence collection plan.
+- Error log evidence collection plan.
+- Required headers: `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, and `Content-Security-Policy` placeholder.
+- `Strict-Transport-Security` placeholder if TLS is enabled later.
 
 ## Excluded
 
-- Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup implementation code.
-- Real resource provisioning or configuration changes.
-- Secrets, credentials, private keys, tfstate, kubeconfig files, or account-specific values.
-- Binary artifacts or generated reports.
+- Real Nginx configuration implementation.
+- Real TLS implementation.
+- TLS private keys, certificates, credentials, tfstate, kubeconfig, or account-specific files.
+- Real public IP addresses or production endpoints.
+- Ingress routing validation, which is handled in S023.
+- Load balancing validation, which is handled in S025.
+
+## Placeholder Rules
+
+Use placeholders such as `<service-endpoint>`, `<reverse-proxy-host>`, and `<ingress-host>`.
