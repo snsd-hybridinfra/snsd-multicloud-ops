@@ -1,55 +1,82 @@
-# Terraform
-*.tfstate
-*.tfstate.*
-.terraform/
-.terraform.lock.hcl
-crash.log
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
-
-# Secrets
+# Secrets and credentials
+.env
+.env.*
+!.env.example
 *.pem
 *.key
 *.p12
 *.pfx
 *.crt
-*.kubeconfig
-.env
-.env.*
-secrets.yml
-vault.yml
-credentials.*
+*.cer
+*.jks
 id_rsa
-id_rsa.pub
+id_ed25519
+*.kubeconfig
+kubeconfig
+config
+credentials
+credentials.*
+secrets.*
+secret.*
 
-# Cloud credentials
+# Terraform state and local files
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+*.auto.tfvars
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Cloud and account-specific local config
 .aws/
 .azure/
-openrc.sh
-admin-openrc.sh
-clouds.yaml
+.gcloud/
+*.boto
+*.account
+*.subscription
 
-# Python
-__pycache__/
-*.pyc
-.venv/
-venv/
+# Kubernetes local artifacts
+.kube/
+*.context
 
-# Ansible
+# Ansible local artifacts
 *.retry
+ansible.log
+vault-password*
 
-# OS / Editor
+# Runtime, cache, and local tooling
 .DS_Store
 Thumbs.db
+desktop.ini
 .vscode/
 .idea/
-
-# Logs
+*.swp
+*.swo
+*.tmp
+*.temp
 *.log
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
 
-# Evidence binaries - allow screenshots only when intentionally added
+# Generated archives and reports
 *.zip
 *.tar
 *.tar.gz
+*.7z
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.xlsx
+*.docx
+*.pptx

@@ -1,0 +1,24 @@
+# Progress Tracker
+
+This file tracks scenario-based progress across the five validation levels.
+
+## Status Values
+
+Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, `VALIDATED`, `PARTIAL`, `BLOCKED`, `DEPRECATED`
+
+Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
+
+## Level Summary
+
+| Level | Category | Scenarios | Implemented | Validated | Notes |
+|---|---|---:|---:|---:|---|
+| L1 | Foundation | 0/10 | 0/10 | 0/10 | Initial tracking state |
+| L2 | Security Baseline | 0/10 | 0/10 | 0/10 | Initial tracking state |
+| L3 | Service Operations | 0/10 | 0/10 | 0/10 | Initial tracking state |
+| L4 | Failure Recovery | 0/10 | 0/10 | 0/10 | Initial tracking state |
+| L5 | Governance Intelligent Ops | 0/10 | 0/10 | 0/10 | Initial tracking state |
+| Total | All Levels | 0/50 | 0/50 | 0/50 | Initial tracking state |
+
+## Update Rule
+
+Update this file whenever a scenario moves to `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, `VALIDATED`, `PARTIAL`, `BLOCKED`, or `DEPRECATED`.
