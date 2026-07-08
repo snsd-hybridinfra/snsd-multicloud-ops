@@ -1,9 +1,18 @@
 # Execution Plan
 
-1. Review the objective and scope for S021-kubernetes-node-readiness-validation.
-2. Confirm prerequisites and previous scenario dependency status.
-3. Identify the planned validation inputs without creating implementation artifacts.
-4. Perform approved manual or dry-run validation steps when execution is later authorized.
-5. Record commands or actions in $evidencePath/commands.md.
-6. Record observations and the final result in $evidencePath/validation.md.
-7. Attach only approved text evidence or placeholder references under logs/, screenshots/, and configs/.
+1. Confirm the scenario evidence directory exists for S021.
+2. Identify placeholder cluster context as `<cluster-context>`.
+3. Record the planned `kubectl` client availability check.
+4. Record the planned context availability check without storing kubeconfig content.
+5. Record the planned `kubectl get nodes` check.
+6. Review expected Ready status for `<aws-k8s-node>`, `<azure-k8s-node>`, and `<openstack-k8s-node>`.
+7. Review node roles and labels for consistency with service runtime expectations.
+8. Review node conditions for pressure, availability, and scheduling issues.
+9. Review node resource capacity for CPU, memory, and allocatable summary.
+10. Review node version consistency across the expected node set.
+11. Review node reachability from the Control Plane or Bastion using placeholders.
+12. Record TODO placeholders in evidence files until approved execution produces sanitized output.
+
+## Execution Boundaries
+
+This plan does not create Kubernetes manifests, write kubeconfig files, modify nodes, deploy workloads, or alter cluster state. It only defines the review flow and evidence requirements for later approved validation.
