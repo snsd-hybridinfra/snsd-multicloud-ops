@@ -2,14 +2,30 @@
 
 ## Included
 
-- Scenario documentation for S009-dns-hostname-resolution-validation.
-- Operational assumptions and boundaries relevant to Dns Hostname Resolution Validation.
-- Validation checks and evidence mapping.
-- Text-only evidence placeholders under $evidencePath.
+- Hostname naming convention validation plan.
+- Hostname-to-inventory consistency validation plan.
+- Control Plane hostname resolution plan.
+- Bastion hostname resolution plan.
+- On-Prem DB hostname resolution plan.
+- On-Prem Monitoring hostname resolution plan.
+- AWS service node hostname resolution plan.
+- Azure service node hostname resolution plan.
+- OpenStack service node hostname resolution plan.
+- Kubernetes service hostname placeholder model.
+- Prometheus target hostname consistency plan.
+- Evidence target hostname consistency plan.
+- Failure condition for unresolved hostname, duplicate hostname, inconsistent inventory mapping, or real public IP exposure.
 
 ## Excluded
 
-- Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup implementation code.
-- Real resource provisioning or configuration changes.
-- Secrets, credentials, private keys, tfstate, kubeconfig files, or account-specific values.
-- Binary artifacts or generated reports.
+- Real DNS infrastructure implementation.
+- `/etc/hosts` implementation.
+- Internal DNS or lab DNS implementation.
+- Real public IP addresses, credentials, SSH private keys, public cloud account IDs, subscription IDs, tenant IDs, provider-specific secrets, tfstate, kubeconfig files, or account-specific files.
+- Terraform, Ansible, Kubernetes, monitoring, ML, backup, or cloud provisioning logic.
+
+## Assumptions
+
+- Hostname mappings use placeholders such as `<control-plane-ip>`, `<bastion-ip>`, `<db-primary-ip>`, `<aws-app-node-ip>`, `<azure-app-node-ip>`, and `<openstack-app-node-ip>`.
+- DNS implementation may be handled later using `/etc/hosts`, internal DNS, or lab DNS, but must not be implemented here.
+- Future resolution tests require explicit approval before using live systems.

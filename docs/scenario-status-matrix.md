@@ -12,7 +12,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S006 | terraform-provider-validation | L1 | Foundation | PLANNED | 2026-07-08 | Terraform provider validation documentation completed; provider command output not collected yet |
 | S007 | multi-cloud-inventory-validation | L1 | Foundation | PLANNED | 2026-07-08 | Multi-cloud inventory validation documentation completed; inventory output not collected yet |
 | S008 | bastion-reachability-validation | L1 | Foundation | PLANNED | 2026-07-08 | Bastion reachability validation documentation completed; reachability output not collected yet |
-| S009 | dns-hostname-resolution-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
+| S009 | dns-hostname-resolution-validation | L1 | Foundation | PLANNED | 2026-07-08 | Hostname resolution validation documentation completed; DNS lookup output not collected yet |
 | S010 | evidence-directory-structure-validation | L1 | Foundation | NOT_STARTED | TBD | Initial tracking state |
 | S011 | ssh-key-authentication-validation | L2 | Security Baseline | NOT_STARTED | TBD | Initial tracking state |
 | S012 | password-login-denial-validation | L2 | Security Baseline | NOT_STARTED | TBD | Initial tracking state |
