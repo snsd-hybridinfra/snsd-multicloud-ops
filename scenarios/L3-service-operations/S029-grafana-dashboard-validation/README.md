@@ -1,23 +1,29 @@
 # S029-grafana-dashboard-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S029 |
+| Scenario Name | Grafana Dashboard Validation |
+| Level | L3 Service Operations Validation |
+| Category | Service Operations |
+| Primary Domain | Observability dashboard visibility |
+| Related Components | Grafana, Prometheus datasource, infrastructure dashboards, Kubernetes dashboards, MariaDB dashboards, Blackbox dashboard placeholders |
+| Validation Type | Service Operation Validation |
+| Evidence Directory | evidence/L3-service-operations/S029-grafana-dashboard-validation/ |
+| Status | PLANNED |
 
-Grafana Dashboard Validation validates one operational capability in the L3 Service Operations scenario set.
+## Objective Summary
 
-## Objective
+Define and validate Grafana dashboard visibility for the SNSD Multi-Cloud Ops observability layer.
 
-Define how Grafana Dashboard Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates dashboard visibility and datasource rendering only. It covers Grafana service access, Prometheus datasource existence and connection, dashboard category placeholders, panel data rendering, dashboard time range review, and screenshot evidence collection.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that Grafana access is planned, authentication expectations are referenced, the Prometheus datasource can be reviewed, dashboard category placeholders are mapped, panels are expected to render data, and failures such as missing datasource, query failure, empty dashboard, broken panel, no time-series data, missing screenshot, or anonymous dashboard exposure are explicitly captured.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L3-service-operations/S029-grafana-dashboard-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
