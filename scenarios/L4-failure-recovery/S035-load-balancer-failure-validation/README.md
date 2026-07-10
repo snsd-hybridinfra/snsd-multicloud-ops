@@ -1,23 +1,29 @@
 # S035-load-balancer-failure-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S035 |
+| Scenario Name | Load Balancer Failure Validation |
+| Level | L4 Failure and Recovery Validation |
+| Category | Failure Recovery |
+| Primary Domain | Traffic entrypoint failure detection and manual recovery |
+| Related Components | Kubernetes Ingress, Nginx Reverse Proxy, backend service health, Web endpoint, API endpoint, health endpoint, Blackbox probe target |
+| Validation Type | Failure Recovery Validation |
+| Evidence Directory | evidence/L4-failure-recovery/S035-load-balancer-failure-validation/ |
+| Status | PLANNED |
 
-Load Balancer Failure Validation validates one operational capability in the L4 Failure Recovery scenario set.
+## Objective Summary
 
-## Objective
+Define and validate load balancer failure detection and manual recovery behavior for the SNSD Multi-Cloud Ops traffic management layer.
 
-Define how Load Balancer Failure Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates load balancer or reverse proxy entrypoint failure behavior only. It covers pre-failure endpoint and backend health, placeholder failure injection, endpoint impact detection, health check failure detection, Blackbox probe failure reference, backend health isolation, manual recovery decision points, restoration validation, and post-recovery service health.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that frontend entrypoint failure is detectable, backend health is reviewed separately, manual decision points are explicit, traffic restoration is validated, and failures such as missed detection, wrong backend diagnosis, all endpoints unavailable, unknown backend health, unclear recovery procedure, threshold breach, or missing evidence are captured.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L4-failure-recovery/S035-load-balancer-failure-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
