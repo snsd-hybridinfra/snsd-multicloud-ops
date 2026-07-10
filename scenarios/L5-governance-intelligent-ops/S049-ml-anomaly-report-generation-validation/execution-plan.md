@@ -1,9 +1,18 @@
 # Execution Plan
 
-1. Review the objective and scope for S049-ml-anomaly-report-generation-validation.
-2. Confirm prerequisites and previous scenario dependency status.
-3. Identify the planned validation inputs without creating implementation artifacts.
-4. Perform approved manual or dry-run validation steps when execution is later authorized.
-5. Record commands or actions in $evidencePath/commands.md.
-6. Record observations and the final result in $evidencePath/validation.md.
-7. Attach only approved text evidence or placeholder references under logs/, screenshots/, and configs/.
+1. Confirm that anomaly report generation validation is placeholder-only.
+2. Identify `<dataset-file>`, `<report-file>`, `<metric-name>`, `<target-job>`, `<target-instance>`, `<anomaly-score>`, `<anomaly-threshold>`, `<review-priority>`, and `<evidence-reference>`.
+3. Reference anomaly detection result from S048.
+4. Reference dataset input from S047.
+5. Define required report fields.
+6. Review report summary section.
+7. Review affected component section.
+8. Review metric anomaly detail section.
+9. Review priority and recommended investigation placeholders.
+10. Map evidence references.
+11. Document human review note placeholder.
+12. Document report output file placeholder.
+13. Classify result as `REPORT_READY`, `REPORT_PARTIAL`, `REPORT_INVALID`, `REPORT_INCONCLUSIVE`, or `REPORT_OUT_OF_SCOPE`.
+14. Capture TODO evidence references in `commands.md`, `validation.md`, `configs/`, `logs/`, and `screenshots/`.
+
+No real ML output, report generation output, automatic response, automatic blocking, or incident resolution is performed in this skeleton.
