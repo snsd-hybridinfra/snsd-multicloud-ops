@@ -1,5 +1,16 @@
 # Objective
 
-Validate the operational capability represented by Ml Metric Dataset Collection Validation.
+S047 validates the documentation model for collecting operational metric datasets that may later support anomaly analysis.
 
-This scenario defines the intended behavior, review approach, and evidence expectations so later execution can be assessed consistently without adding implementation code during the skeleton phase.
+The operational capability is the ability to define metric sources, query placeholders, dataset schema, required labels, timestamps, export placeholders, and evidence requirements without collecting real Prometheus output or training an ML model.
+
+This scenario focuses on:
+
+- Prometheus metric query placeholders.
+- Node, Kubernetes, MariaDB, Blackbox, and HTTP endpoint metric categories.
+- Dataset schema and required fields.
+- Dataset timestamp and label consistency.
+- Dataset file existence placeholder.
+- Dataset quality judgment and evidence capture.
+
+No anomaly detection, model training, malware detection, packet payload analysis, SIEM, EDR, SOAR, threat hunting, or deep learning capability is implemented here.

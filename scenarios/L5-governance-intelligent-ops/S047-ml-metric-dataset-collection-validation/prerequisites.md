@@ -1,6 +1,16 @@
 # Prerequisites
 
-- Previous scenario dependency: S046-resource-cleanup-validation
-- Repository scope lock and excluded-scope rules have been reviewed.
-- Matching evidence directory exists at $evidencePath.
-- Required tools or lab access are documented without secrets, credentials, or account-specific values.
+- `docs/scope-lock.md` and `docs/excluded-scope.md` have been reviewed.
+- S047 scenario and evidence directories exist.
+- Metric names, queries, paths, filenames, target jobs, target instances, dataset windows, and collection scripts use placeholders only.
+- S028, S029, S030, S048, S049, and S050 boundaries are understood.
+- No real Prometheus output, dataset records, credentials, tokens, API keys, secrets, public IPs, cloud account values, private keys, tfstate, kubeconfig, subscription IDs, tenant IDs, billing account IDs, or account-specific values are present.
+
+## Related Scenario Boundaries
+
+- S028 handles Prometheus target discovery.
+- S029 handles Grafana dashboard validation.
+- S030 handles Blackbox endpoint probe validation.
+- S048 handles ML anomaly detection validation.
+- S049 handles ML anomaly report generation.
+- S050 handles final evidence report generation.

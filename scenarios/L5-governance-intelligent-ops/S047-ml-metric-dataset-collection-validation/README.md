@@ -1,23 +1,29 @@
 # S047-ml-metric-dataset-collection-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S047 |
+| Scenario Name | ML Metric Dataset Collection Validation |
+| Level | L5 Governance and Intelligent Operations Validation |
+| Category | Governance Intelligent Ops |
+| Primary Domain | Operational metric dataset collection |
+| Related Components | Prometheus metric placeholders, node metrics, Kubernetes metrics, MariaDB metrics, Blackbox metrics, Nginx/service endpoint metrics, dataset schema |
+| Validation Type | ML Anomaly Detection Validation |
+| Evidence Directory | evidence/L5-governance-intelligent-ops/S047-ml-metric-dataset-collection-validation/ |
+| Status | PLANNED |
 
-Ml Metric Dataset Collection Validation validates one operational capability in the L5 Governance Intelligent Ops scenario set.
+## Objective Summary
 
-## Objective
+Define and validate metric dataset collection for ML-based security anomaly analysis in the SNSD Multi-Cloud Ops platform.
 
-Define how Ml Metric Dataset Collection Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates operational metric dataset collection only. It covers Prometheus query placeholders, target metric categories, dataset schema, timestamps, label consistency, dataset export placeholders, and evidence collection for later anomaly analysis.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that metric sources are referenced, query inputs are documented, metric category placeholders are mapped, required dataset fields are defined, timestamp and label rules are reviewed, dataset quality states are applied, and unsupported AI security claims are avoided.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S047-ml-metric-dataset-collection-validation/`, with review plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
