@@ -1,23 +1,29 @@
 # S039-restore-execution-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S039 |
+| Scenario Name | Restore Execution Validation |
+| Level | L4 Failure and Recovery Validation |
+| Category | Failure Recovery |
+| Primary Domain | Controlled restore execution evidence |
+| Related Components | MariaDB restore placeholder, Kubernetes manifest restore placeholder, Nginx config restore placeholder, observability config restore placeholder, backup artifact selection, checksum verification, restore logs |
+| Validation Type | Failure Recovery Validation |
+| Evidence Directory | evidence/L4-failure-recovery/S039-restore-execution-validation/ |
+| Status | PLANNED |
 
-Restore Execution Validation validates one operational capability in the L4 Failure Recovery scenario set.
+## Objective Summary
 
-## Objective
+Define and validate restore execution behavior for the SNSD Multi-Cloud Ops service and database recovery model.
 
-Define how Restore Execution Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates restore execution only. It covers backup artifact selection, checksum verification before restore, restore target confirmation, placeholder restore invocation, restore log capture, restore result sanity checks, abort conditions, rollback placeholders, and evidence mapping.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that the selected backup artifact is identified, checksum is verified, restore target is confirmed, restore placeholders are documented for database, Kubernetes, Nginx, and observability categories, logs are mapped, sanity checks are planned, and failures such as missing artifact, checksum mismatch, wrong target, command failure, incomplete restore, sensitive data exposure, missing log, or missing evidence are captured.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L4-failure-recovery/S039-restore-execution-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
