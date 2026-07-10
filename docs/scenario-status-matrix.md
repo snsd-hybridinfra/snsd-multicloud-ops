@@ -41,7 +41,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S035 | load-balancer-failure-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Load balancer failure validation documentation completed; failure and recovery output not collected yet |
 | S036 | prometheus-target-down-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Prometheus target DOWN detection validation documentation completed; target state output not collected yet |
 | S037 | security-rule-misconfiguration-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Security rule misconfiguration validation documentation completed; rule output not collected yet |
-| S038 | backup-creation-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
+| S038 | backup-creation-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Backup creation validation documentation completed; backup output not collected yet |
 | S039 | restore-execution-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
 | S040 | service-health-after-recovery-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
 | S041 | terraform-drift-detection-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |

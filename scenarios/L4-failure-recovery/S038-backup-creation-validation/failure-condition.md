@@ -1,9 +1,13 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+This scenario is considered failed or blocked if:
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- Backup destination structure is missing or unclear.
+- Required backup file is missing after approved execution.
+- Backup file is zero-size or fails size sanity expectations.
+- Backup checksum is missing.
+- Backup metadata is missing or incomplete.
+- Backup command or runbook invocation fails.
+- Backup evidence is missing, unexplained, or not mapped to validation criteria.
+- Sensitive backup content, database passwords, credentials, secrets, private keys, tfstate, kubeconfig, cloud account values, or account-specific values are introduced.
+- Documentation claims production-grade PITR, enterprise backup software integration, or immutable offsite backup without later scope approval.

@@ -1,9 +1,17 @@
 # Execution Plan
 
-1. Review the objective and scope for S038-backup-creation-validation.
-2. Confirm prerequisites and previous scenario dependency status.
-3. Identify the planned validation inputs without creating implementation artifacts.
-4. Perform approved manual or dry-run validation steps when execution is later authorized.
-5. Record commands or actions in $evidencePath/commands.md.
-6. Record observations and the final result in $evidencePath/validation.md.
-7. Attach only approved text evidence or placeholder references under logs/, screenshots/, and configs/.
+1. Confirm that only placeholder backup paths, filenames, and metadata values are used.
+2. Review the backup destination structure under `<backup-root>`.
+3. Plan the MariaDB logical backup placeholder.
+4. Plan the Kubernetes manifest backup placeholder.
+5. Plan the Nginx configuration backup placeholder.
+6. Plan the observability configuration backup placeholder.
+7. Review backup file naming policy.
+8. Validate backup file existence expectations.
+9. Validate backup file size sanity expectations.
+10. Validate checksum generation expectations.
+11. Validate backup metadata capture.
+12. Validate backup log capture.
+13. Validate backup retention placeholder documentation.
+14. Record future command output placeholders in `commands.md`.
+15. Record future validation results in `validation.md`.

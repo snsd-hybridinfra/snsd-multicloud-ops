@@ -1,23 +1,29 @@
 # S038-backup-creation-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S038 |
+| Scenario Name | Backup Creation Validation |
+| Level | L4 Failure and Recovery Validation |
+| Category | Failure Recovery |
+| Primary Domain | Backup creation evidence and recoverability preparation |
+| Related Components | MariaDB logical backup placeholder, Kubernetes manifest backup placeholder, Nginx config backup placeholder, observability config backup placeholder, security baseline summary placeholder, scenario evidence backup placeholder |
+| Validation Type | Failure Recovery Validation |
+| Evidence Directory | evidence/L4-failure-recovery/S038-backup-creation-validation/ |
+| Status | PLANNED |
 
-Backup Creation Validation validates one operational capability in the L4 Failure Recovery scenario set.
+## Objective Summary
 
-## Objective
+Define and validate backup creation behavior for the SNSD Multi-Cloud Ops service and database recovery model.
 
-Define how Backup Creation Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates backup creation only. It covers placeholder backup command invocation, backup destination structure, file naming, file existence, size sanity, checksum generation, metadata capture, backup logs, retention placeholders, and evidence mapping.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that backup categories are planned, output files can be identified, metadata and checksums are captured, logs are mapped, and failures such as missing backup file, zero-size backup, missing checksum, missing metadata, failed command, sensitive data exposure, or missing evidence are captured.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L4-failure-recovery/S038-backup-creation-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
