@@ -49,7 +49,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S043 | policy-as-code-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Policy as Code validation documentation completed; policy engine output not collected yet |
 | S044 | kubernetes-manifest-policy-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Kubernetes manifest policy validation documentation completed; manifest validation output not collected yet |
 | S045 | cost-guardrail-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Cost guardrail validation documentation completed; billing output not collected yet |
-| S046 | resource-cleanup-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
+| S046 | resource-cleanup-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Resource cleanup validation documentation completed; cleanup output not collected yet |
 | S047 | ml-metric-dataset-collection-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
 | S048 | ml-anomaly-detection-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
 | S049 | ml-anomaly-report-generation-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
