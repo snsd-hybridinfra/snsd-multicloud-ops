@@ -1,23 +1,29 @@
 # S048-ml-anomaly-detection-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S048 |
+| Scenario Name | ML Anomaly Detection Validation |
+| Level | L5 Governance and Intelligent Operations Validation |
+| Category | Governance Intelligent Ops |
+| Primary Domain | Operational metric anomaly detection |
+| Related Components | S047 metric dataset placeholder, baseline window, detection window, anomaly score, threshold placeholders, node/Kubernetes/MariaDB/Blackbox/endpoint metrics |
+| Validation Type | ML Anomaly Detection Validation |
+| Evidence Directory | evidence/L5-governance-intelligent-ops/S048-ml-anomaly-detection-validation/ |
+| Status | PLANNED |
 
-Ml Anomaly Detection Validation validates one operational capability in the L5 Governance Intelligent Ops scenario set.
+## Objective Summary
 
-## Objective
+Define and validate ML-based anomaly detection logic for operational metrics collected in SNSD Multi-Cloud Ops.
 
-Define how Ml Anomaly Detection Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates anomaly detection logic and evidence modeling only. It covers dataset input references, baseline and detection windows, statistical and threshold placeholders, target anomaly categories, anomaly judgment states, human review notes, and evidence capture.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that dataset inputs are referenced, required detection inputs are documented, baseline and detection windows are defined, anomaly thresholds or scores are represented, target metric anomalies are mapped, and unsupported AI security claims are avoided.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S048-ml-anomaly-detection-validation/`, with review plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.

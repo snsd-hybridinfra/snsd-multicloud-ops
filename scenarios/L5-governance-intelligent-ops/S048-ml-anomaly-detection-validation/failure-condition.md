@@ -1,9 +1,16 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+S048 fails or is blocked if any of the following occur:
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- Dataset input reference is missing.
+- Dataset schema is invalid or not ready.
+- Baseline window is missing.
+- Detection window is missing.
+- Threshold or anomaly score placeholder is missing.
+- Inconclusive result is not documented.
+- Human review note is missing.
+- Evidence is missing or cannot be mapped to validation checks.
+- The scenario claims AI-based intrusion detection, malware detection, packet payload analysis, EDR, SIEM, SOAR, threat hunting, deep-learning-based detection, automatic response, automatic blocking, or production-grade ML security operations.
+- Real ML output, real dataset records, credentials, tokens, API keys, secrets, public IPs, cloud account values, private keys, tfstate, kubeconfig, subscription IDs, tenant IDs, billing account IDs, or account-specific values are present.
+
+If a failure is found, stop validation, preserve sanitized notes, and classify the anomaly result as `ANOMALY_INCONCLUSIVE` or `ANOMALY_OUT_OF_SCOPE` as appropriate.

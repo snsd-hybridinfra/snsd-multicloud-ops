@@ -51,6 +51,6 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S045 | cost-guardrail-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Cost guardrail validation documentation completed; billing output not collected yet |
 | S046 | resource-cleanup-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Resource cleanup validation documentation completed; cleanup output not collected yet |
 | S047 | ml-metric-dataset-collection-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | ML metric dataset collection validation documentation completed; Prometheus output and dataset records not collected yet |
-| S048 | ml-anomaly-detection-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
+| S048 | ml-anomaly-detection-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | ML anomaly detection validation documentation completed; ML output and dataset records not collected yet |
 | S049 | ml-anomaly-report-generation-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
 | S050 | final-evidence-report-generation-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
