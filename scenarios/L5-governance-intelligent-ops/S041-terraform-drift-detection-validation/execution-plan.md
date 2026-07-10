@@ -1,9 +1,14 @@
 # Execution Plan
 
-1. Review the objective and scope for S041-terraform-drift-detection-validation.
-2. Confirm prerequisites and previous scenario dependency status.
-3. Identify the planned validation inputs without creating implementation artifacts.
-4. Perform approved manual or dry-run validation steps when execution is later authorized.
-5. Record commands or actions in $evidencePath/commands.md.
-6. Record observations and the final result in $evidencePath/validation.md.
-7. Attach only approved text evidence or placeholder references under logs/, screenshots/, and configs/.
+1. Confirm that only placeholder Terraform environments, providers, resource names, and states are used.
+2. Validate the Terraform working directory placeholder for `<terraform-env>`.
+3. Review Terraform backend placeholder expectations without real backend values.
+4. Review Terraform provider placeholder expectations without credentials.
+5. Plan `terraform init` placeholder validation.
+6. Plan `terraform validate` placeholder validation.
+7. Plan `terraform plan` output review for drift detection.
+8. Map AWS, Azure, and OpenStack drift placeholders.
+9. Map security rule drift and tag or label drift placeholders.
+10. Classify drift using `NO_DRIFT`, `DRIFT_DETECTED`, `INCONCLUSIVE`, or `OUT_OF_SCOPE`.
+11. Capture future command, log, screenshot, and config summary evidence.
+12. Record future validation results in `validation.md`.

@@ -1,9 +1,13 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+This scenario is considered failed or blocked if:
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- Terraform baseline or expected state is missing.
+- Terraform plan output is missing.
+- Manual change is not detected when expected.
+- Drift result is ambiguous or cannot be classified.
+- Required provider or backend placeholder evidence is missing.
+- Real credentials, secrets, cloud account values, subscription IDs, tenant IDs, private keys, kubeconfig, or account-specific values are introduced.
+- Generated `tfstate` or Terraform state-like output is committed to the repository.
+- Evidence is missing, unexplained, or not mapped to validation criteria.
+- Documentation claims automated remediation, production-grade IaC governance, Terraform Cloud, Spacelift, Atlantis, or GitOps integration.
