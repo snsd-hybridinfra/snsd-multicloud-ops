@@ -1,23 +1,29 @@
 # S026-mariadb-primary-replica-replication-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S026 |
+| Scenario Name | MariaDB Primary-Replica Replication Validation |
+| Level | L3 Service Operations Validation |
+| Category | Service Operations |
+| Primary Domain | Database replication |
+| Related Components | db-primary-01, db-replica-01, db-replica-02, replication user placeholder, binary logs, replica status |
+| Validation Type | Service Operation Validation |
+| Evidence Directory | evidence/L3-service-operations/S026-mariadb-primary-replica-replication-validation/ |
+| Status | PLANNED |
 
-Mariadb Primary Replica Replication Validation validates one operational capability in the L3 Service Operations scenario set.
+## Objective Summary
 
-## Objective
+Define and validate MariaDB Primary-Replica replication for the On-Prem Internal Server Zone in the SNSD Multi-Cloud Ops project.
 
-Define how Mariadb Primary Replica Replication Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates MariaDB Primary-Replica replication only. It covers primary and replica role validation, replication user placeholders, binary log configuration, replica source configuration, primary write and replica read checks, replication status, replication error detection, and replication topology evidence collection.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that primary and replica roles are documented, replication configuration can be reviewed, write/read consistency is planned, `SHOW REPLICA STATUS` or `SHOW SLAVE STATUS` output is captured later, and failures such as stopped replication, errors, inconsistent data, missing binary logs, or missing replication user are explicitly captured.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L3-service-operations/S026-mariadb-primary-replica-replication-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
