@@ -37,7 +37,7 @@ Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S031 | web-pod-failure-recovery-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S032 | api-service-failure-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S033 | db-replica-failure-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
-| S034 | db-primary-stop-runbook-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
+| S034 | db-primary-stop-runbook-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S035 | load-balancer-failure-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
 | S036 | prometheus-target-down-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
 | S037 | security-rule-misconfiguration-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |

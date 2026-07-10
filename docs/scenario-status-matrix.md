@@ -37,7 +37,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S031 | web-pod-failure-recovery-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Web Pod failure recovery validation documentation completed; recovery output not collected yet |
 | S032 | api-service-failure-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | API service failure validation documentation completed; failure and recovery output not collected yet |
 | S033 | db-replica-failure-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | DB Replica failure validation documentation completed; failure and recovery output not collected yet |
-| S034 | db-primary-stop-runbook-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
+| S034 | db-primary-stop-runbook-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | DB Primary stop runbook validation documentation completed; manual outage response output not collected yet |
 | S035 | load-balancer-failure-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
 | S036 | prometheus-target-down-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
 | S037 | security-rule-misconfiguration-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
