@@ -1,9 +1,15 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+S042 fails or is blocked if any of the following occur:
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- Prior drift detection evidence is missing.
+- Remediation proceeds without reviewed Terraform plan evidence.
+- Remediation decision is unsafe, ambiguous, or undocumented.
+- Terraform apply is claimed without approved and sanitized evidence.
+- Drift remains after remediation and is not classified.
+- Generated tfstate or backend metadata is committed to the repository.
+- Real credentials, secrets, access keys, private keys, kubeconfig content, subscription IDs, tenant IDs, account IDs, backend bucket names, public IPs, or account-specific values are present.
+- Evidence is missing or cannot be mapped to validation checks.
+- The scenario claims automated remediation, production-grade IaC governance, Terraform Cloud, Spacelift, Atlantis, GitOps, or any unapproved tool integration.
+
+If a failure is found, stop the scenario, preserve sanitized notes, and mark the result as `REMEDIATION_BLOCKED` or `REMEDIATION_FAILED`.

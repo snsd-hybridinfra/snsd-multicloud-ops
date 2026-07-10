@@ -45,7 +45,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S039 | restore-execution-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Restore execution validation documentation completed; restore output not collected yet |
 | S040 | service-health-after-recovery-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Service health after recovery validation documentation completed; post-recovery output not collected yet |
 | S041 | terraform-drift-detection-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Terraform drift detection validation documentation completed; Terraform output not collected yet |
-| S042 | terraform-drift-remediation-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
+| S042 | terraform-drift-remediation-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Terraform drift remediation validation documentation completed; Terraform output not collected yet |
 | S043 | policy-as-code-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
 | S044 | kubernetes-manifest-policy-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
 | S045 | cost-guardrail-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |

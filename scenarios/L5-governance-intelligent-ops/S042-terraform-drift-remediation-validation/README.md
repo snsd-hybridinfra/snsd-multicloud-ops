@@ -1,23 +1,29 @@
 # S042-terraform-drift-remediation-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S042 |
+| Scenario Name | Terraform Drift Remediation Validation |
+| Level | L5 Governance and Intelligent Operations Validation |
+| Category | Governance Intelligent Ops |
+| Primary Domain | Terraform drift remediation |
+| Related Components | Terraform plan review, remediation decision placeholder, AWS/Azure/OpenStack resource placeholders, security rule drift, tag/label drift |
+| Validation Type | Governance Validation |
+| Evidence Directory | evidence/L5-governance-intelligent-ops/S042-terraform-drift-remediation-validation/ |
+| Status | PLANNED |
 
-Terraform Drift Remediation Validation validates one operational capability in the L5 Governance Intelligent Ops scenario set.
+## Objective Summary
 
-## Objective
+Define and validate Terraform drift remediation behavior for the SNSD Multi-Cloud Ops infrastructure governance layer.
 
-Define how Terraform Drift Remediation Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates controlled remediation planning only. It covers prior drift evidence review, Terraform plan review, manual approval placeholder, apply placeholder validation, provider-specific remediation placeholders, post-remediation drift validation, and remediation evidence collection.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that drift evidence is reviewed before remediation, a remediation decision is documented, Terraform plan output is reviewed, apply activity remains placeholder-based, provider-specific remediation targets are mapped, post-remediation validation is planned, and remediation judgment states are recorded.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S042-terraform-drift-remediation-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
