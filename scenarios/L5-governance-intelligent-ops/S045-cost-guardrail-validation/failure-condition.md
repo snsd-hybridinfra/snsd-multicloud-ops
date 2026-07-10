@@ -1,9 +1,20 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+S045 fails or is blocked if any of the following occur:
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- Cost input artifact is missing.
+- Required cost owner tag or label is missing.
+- Required environment tag or label is missing.
+- Resource count exceeds placeholder threshold without classification.
+- Compute size exceeds placeholder threshold without classification.
+- Public IP usage is unjustified.
+- Unattached volume is identified but not recorded.
+- Load balancer or reverse proxy usage is unjustified.
+- Resource type is unapproved.
+- Cleanup candidate is not documented.
+- Cost judgment state is ambiguous or missing.
+- Evidence is missing or cannot be mapped to validation checks.
+- The scenario claims real billing integration, automated budget enforcement, production-grade FinOps, AWS Budgets, Azure Cost Management, third-party FinOps tooling, or automated remediation.
+- Real credentials, secrets, access keys, private keys, kubeconfig content, billing account IDs, subscription IDs, tenant IDs, account IDs, public IPs, tfstate, or account-specific values are present.
+
+If a failure is found, stop validation, preserve sanitized notes, and classify the cost result as `COST_RISK`, `COST_UNKNOWN`, or `COST_OUT_OF_SCOPE` as appropriate.

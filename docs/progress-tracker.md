@@ -16,8 +16,8 @@ Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | L2 | Security Baseline | 10/10 | 0/10 | 0/10 | S011 through S020 planned |
 | L3 | Service Operations | 10/10 | 0/10 | 0/10 | S021 through S030 planned |
 | L4 | Failure Recovery | 10/10 | 0/10 | 0/10 | S031 through S040 planned |
-| L5 | Governance Intelligent Ops | 4/10 | 0/10 | 0/10 | S041 through S044 planned |
-| Total | All Levels | 44/50 | 0/50 | 0/50 | S001 through S044 planned |
+| L5 | Governance Intelligent Ops | 5/10 | 0/10 | 0/10 | S041 through S045 planned |
+| Total | All Levels | 45/50 | 0/50 | 0/50 | S001 through S045 planned |
 
 ## Update Rule
 
