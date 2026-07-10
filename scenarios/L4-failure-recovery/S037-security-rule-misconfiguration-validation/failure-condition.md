@@ -1,9 +1,14 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+This scenario is considered failed or blocked if:
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- Pre-change rule baseline cannot be established.
+- Misconfiguration is not detected within the provisional detection threshold.
+- Public SSH, public DB, or overly broad inbound exposure remains after rollback.
+- Required service access is not restored after rollback.
+- Unauthorized source behavior cannot be reviewed or explained.
+- Manual rollback decision points are unclear or missing.
+- Rollback exceeds the CRITICAL threshold.
+- Evidence is missing, unexplained, or not mapped to validation criteria.
+- Documentation claims real-time blocking, WAF, IDS/IPS, EDR, SOAR, or CSPM capability.
+- Real credentials, secrets, public IPs, private keys, tfstate, kubeconfig, cloud account values, subscription IDs, tenant IDs, or account-specific values are introduced.

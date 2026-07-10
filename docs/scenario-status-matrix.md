@@ -40,7 +40,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S034 | db-primary-stop-runbook-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | DB Primary stop runbook validation documentation completed; manual outage response output not collected yet |
 | S035 | load-balancer-failure-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Load balancer failure validation documentation completed; failure and recovery output not collected yet |
 | S036 | prometheus-target-down-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Prometheus target DOWN detection validation documentation completed; target state output not collected yet |
-| S037 | security-rule-misconfiguration-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
+| S037 | security-rule-misconfiguration-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Security rule misconfiguration validation documentation completed; rule output not collected yet |
 | S038 | backup-creation-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
 | S039 | restore-execution-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
 | S040 | service-health-after-recovery-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
