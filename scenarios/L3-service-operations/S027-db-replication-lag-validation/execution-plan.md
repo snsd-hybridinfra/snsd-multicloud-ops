@@ -1,9 +1,18 @@
 # Execution Plan
 
-1. Review the objective and scope for S027-db-replication-lag-validation.
-2. Confirm prerequisites and previous scenario dependency status.
-3. Identify the planned validation inputs without creating implementation artifacts.
-4. Perform approved manual or dry-run validation steps when execution is later authorized.
-5. Record commands or actions in $evidencePath/commands.md.
-6. Record observations and the final result in $evidencePath/validation.md.
-7. Attach only approved text evidence or placeholder references under logs/, screenshots/, and configs/.
+1. Confirm the scenario evidence directory exists for S027.
+2. Identify placeholder primary host as `<db-primary-host>`.
+3. Identify placeholder replica hosts as `<db-replica-host>`.
+4. Record planned replica status command capture.
+5. Record planned `Seconds_Behind_Source` or `Seconds_Behind_Master` field review.
+6. Record planned primary timestamp write to `<test-database>.<test-table>`.
+7. Record planned replica timestamp read delay checks.
+8. Record planned threshold comparison using provisional NORMAL, WARNING, and CRITICAL values.
+9. Record planned lag validation for `db-replica-01` and `db-replica-02`.
+10. Record planned DB exporter and Prometheus metric mapping placeholders.
+11. Record planned lag evidence capture.
+12. Record TODO placeholders in evidence files until approved execution produces sanitized output.
+
+## Execution Boundaries
+
+This plan does not configure MariaDB, create users, set passwords, install exporters, configure Prometheus, or modify replication state. It only defines the review flow and evidence requirements for later approved validation.

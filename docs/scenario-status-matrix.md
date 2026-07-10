@@ -30,7 +30,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S024 | nginx-reverse-proxy-validation | L3 | Service Operations | PLANNED | 2026-07-10 | Nginx Reverse Proxy validation documentation completed; proxy output not collected yet |
 | S025 | load-balancing-health-check-validation | L3 | Service Operations | PLANNED | 2026-07-10 | Load balancing health check validation documentation completed; health output not collected yet |
 | S026 | mariadb-primary-replica-replication-validation | L3 | Service Operations | PLANNED | 2026-07-10 | MariaDB Primary-Replica replication validation documentation completed; replication output not collected yet |
-| S027 | db-replication-lag-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |
+| S027 | db-replication-lag-validation | L3 | Service Operations | PLANNED | 2026-07-10 | MariaDB replication lag validation documentation completed; lag output not collected yet |
 | S028 | prometheus-target-discovery-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |
 | S029 | grafana-dashboard-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |
 | S030 | blackbox-endpoint-probe-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |
