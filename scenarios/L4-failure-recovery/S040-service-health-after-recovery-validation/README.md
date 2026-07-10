@@ -1,23 +1,29 @@
 # S040-service-health-after-recovery-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S040 |
+| Scenario Name | Service Health After Recovery Validation |
+| Level | L4 Failure and Recovery Validation |
+| Category | Failure Recovery |
+| Primary Domain | End-to-end post-recovery service health judgment |
+| Related Components | Web workload, API workload, Kubernetes Service, Ingress, Nginx Reverse Proxy, load balancing health endpoint, MariaDB Primary/Replica, Prometheus, Grafana, Blackbox probes |
+| Validation Type | Failure Recovery Validation |
+| Evidence Directory | evidence/L4-failure-recovery/S040-service-health-after-recovery-validation/ |
+| Status | PLANNED |
 
-Service Health After Recovery Validation validates one operational capability in the L4 Failure Recovery scenario set.
+## Objective Summary
 
-## Objective
+Define and validate end-to-end service health after recovery for the SNSD Multi-Cloud Ops platform.
 
-Define how Service Health After Recovery Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates post-recovery service health only. It covers Web/API responses, Ingress routing, Nginx Reverse Proxy response, load balancing health endpoint, MariaDB Primary/Replica references, Prometheus target UP state, Grafana dashboard visibility, Blackbox probe success, and evidence-based final recovery judgment.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that core service endpoints, database dependency references, observability visibility, and external probes are reviewable after recovery. Final judgment is recorded as `RECOVERED`, `DEGRADED`, `FAILED`, or `INCONCLUSIVE`.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L4-failure-recovery/S040-service-health-after-recovery-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.

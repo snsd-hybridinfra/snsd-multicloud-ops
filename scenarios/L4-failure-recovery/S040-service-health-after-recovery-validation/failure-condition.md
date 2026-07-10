@@ -1,9 +1,18 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+This scenario is considered failed, degraded, or inconclusive if:
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- Web service remains unavailable after recovery.
+- API service remains unavailable after recovery.
+- Ingress or Nginx Reverse Proxy response is unavailable or inconsistent.
+- Load balancing health endpoint remains unhealthy.
+- DB Primary dependency is unavailable.
+- DB Replica state cannot be reviewed when required.
+- Prometheus target visibility is missing.
+- Grafana dashboard visibility is missing.
+- Blackbox probe fails after recovery.
+- Recovery evidence is inconsistent or cannot be reconciled.
+- Degraded state is not documented.
+- Final judgment is missing.
+- Documentation claims automatic DR, production-grade HA, automatic cross-cloud failover, or enterprise recovery orchestration.
+- Credentials, secrets, public IPs, database dumps, private keys, tfstate, kubeconfig, or account-specific values are introduced.

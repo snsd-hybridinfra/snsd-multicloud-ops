@@ -1,9 +1,15 @@
 # Execution Plan
 
-1. Review the objective and scope for S040-service-health-after-recovery-validation.
-2. Confirm prerequisites and previous scenario dependency status.
-3. Identify the planned validation inputs without creating implementation artifacts.
-4. Perform approved manual or dry-run validation steps when execution is later authorized.
-5. Record commands or actions in $evidencePath/commands.md.
-6. Record observations and the final result in $evidencePath/validation.md.
-7. Attach only approved text evidence or placeholder references under logs/, screenshots/, and configs/.
+1. Confirm that only placeholder endpoints, paths, hosts, and component names are used.
+2. Plan Web service HTTP response validation for `<web-endpoint>`.
+3. Plan API service HTTP response validation for `<api-endpoint>`.
+4. Plan Ingress route validation for `<ingress-host>`.
+5. Plan Nginx Reverse Proxy validation for `<reverse-proxy-host>`.
+6. Plan load balancing health endpoint validation for `<health-endpoint>`.
+7. Reference MariaDB Primary availability and Replica state evidence.
+8. Plan Prometheus target UP validation for `<prometheus-endpoint>`.
+9. Plan Grafana dashboard visibility validation for `<grafana-endpoint>`.
+10. Plan Blackbox `probe_success` validation for recovered endpoints.
+11. Compare evidence against the final judgment model.
+12. Record future command output placeholders in `commands.md`.
+13. Record future validation results and final judgment in `validation.md`.
