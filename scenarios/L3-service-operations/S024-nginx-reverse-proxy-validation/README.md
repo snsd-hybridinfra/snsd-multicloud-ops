@@ -1,23 +1,29 @@
 # S024-nginx-reverse-proxy-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S024 |
+| Scenario Name | Nginx Reverse Proxy Validation |
+| Level | L3 Service Operations Validation |
+| Category | Service Operations |
+| Primary Domain | Provider-level service entry |
+| Related Components | AWS reverse proxy, Azure reverse proxy, OpenStack reverse proxy, Kubernetes Ingress endpoint, upstream service, Nginx logs |
+| Validation Type | Service Operation Validation |
+| Evidence Directory | evidence/L3-service-operations/S024-nginx-reverse-proxy-validation/ |
+| Status | PLANNED |
 
-Nginx Reverse Proxy Validation validates one operational capability in the L3 Service Operations scenario set.
+## Objective Summary
 
-## Objective
+Define and validate the Nginx Reverse Proxy model used as the provider-level service entry point for AWS, Azure, and OpenStack service zones.
 
-Define how Nginx Reverse Proxy Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates Nginx reverse proxy forwarding only. It covers provider-level reverse proxy endpoints, forwarding to Kubernetes Ingress, upstream mapping, HTTP response validation, health check placeholders, Nginx syntax validation, and access/error log evidence collection.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that Nginx service status and syntax can be reviewed, AWS/Azure/OpenStack reverse proxy endpoints are planned, upstream mappings point to the intended Ingress endpoint, successful HTTP responses are defined, and failures such as Nginx down, invalid config, wrong upstream, route timeout, HTTP 5xx, or missing logs are explicitly captured.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L3-service-operations/S024-nginx-reverse-proxy-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.

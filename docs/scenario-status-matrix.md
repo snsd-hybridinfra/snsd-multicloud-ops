@@ -27,7 +27,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S021 | kubernetes-node-readiness-validation | L3 | Service Operations | PLANNED | 2026-07-08 | Kubernetes node readiness validation documentation completed; kubectl output not collected yet |
 | S022 | kubernetes-workload-deployment-validation | L3 | Service Operations | PLANNED | 2026-07-08 | Kubernetes workload deployment validation documentation completed; kubectl output not collected yet |
 | S023 | ingress-routing-validation | L3 | Service Operations | PLANNED | 2026-07-08 | Ingress routing validation documentation completed; routing output not collected yet |
-| S024 | nginx-reverse-proxy-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |
+| S024 | nginx-reverse-proxy-validation | L3 | Service Operations | PLANNED | 2026-07-10 | Nginx Reverse Proxy validation documentation completed; proxy output not collected yet |
 | S025 | load-balancing-health-check-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |
 | S026 | mariadb-primary-replica-replication-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |
 | S027 | db-replication-lag-validation | L3 | Service Operations | NOT_STARTED | TBD | Initial tracking state |
