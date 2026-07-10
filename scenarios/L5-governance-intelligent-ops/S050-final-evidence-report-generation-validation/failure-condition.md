@@ -1,9 +1,13 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+The scenario fails if:
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- A required status matrix, checklist, implementation log, or risk register is missing.
+- Scenario or evidence coverage is incomplete without being reported.
+- Progress totals conflict with scenario or evidence records.
+- Failed, blocked, partial, or missing-evidence items are omitted.
+- A required final report section or final judgment is missing.
+- More than one final judgment is presented as authoritative.
+- An unsupported compliance, certification, production audit readiness, automated enforcement, or GRC integration claim is made.
+- Evidence references cannot be traced to a scenario validation item.
+- Credentials, secrets, private keys, tfstate, kubeconfig, account identifiers, billing identifiers, or account-specific values are exposed.

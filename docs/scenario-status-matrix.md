@@ -53,4 +53,4 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S047 | ml-metric-dataset-collection-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | ML metric dataset collection validation documentation completed; Prometheus output and dataset records not collected yet |
 | S048 | ml-anomaly-detection-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | ML anomaly detection validation documentation completed; ML output and dataset records not collected yet |
 | S049 | ml-anomaly-report-generation-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | ML anomaly report generation validation documentation completed; report output not collected yet |
-| S050 | final-evidence-report-generation-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
+| S050 | final-evidence-report-generation-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Final evidence report generation validation documentation completed; final report output not generated yet |
