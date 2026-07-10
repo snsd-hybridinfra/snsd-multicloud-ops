@@ -1,9 +1,16 @@
 # Execution Plan
 
-1. Review the objective and scope for S031-web-pod-failure-recovery-validation.
-2. Confirm prerequisites and previous scenario dependency status.
-3. Identify the planned validation inputs without creating implementation artifacts.
-4. Perform approved manual or dry-run validation steps when execution is later authorized.
-5. Record commands or actions in $evidencePath/commands.md.
-6. Record observations and the final result in $evidencePath/validation.md.
-7. Attach only approved text evidence or placeholder references under logs/, screenshots/, and configs/.
+1. Confirm that only placeholder workload names, namespaces, and endpoints are used.
+2. Capture the pre-failure Web Deployment status for `<web-deployment>`.
+3. Capture the pre-failure Web Pod Ready status for `<web-pod>`.
+4. Capture the pre-failure Web Service endpoint status for `<web-service>`.
+5. Capture a pre-failure HTTP health check plan for `<health-endpoint>`.
+6. Plan the failure injection command: `kubectl delete pod <web-pod> -n <namespace>`.
+7. Observe Deployment/ReplicaSet replacement behavior.
+8. Validate replacement Pod creation and Ready state recovery.
+9. Validate Web Service endpoint recovery.
+10. Validate HTTP health endpoint recovery.
+11. Measure recovery time and compare it to provisional NORMAL, WARNING, and CRITICAL thresholds.
+12. Capture post-recovery workload status.
+13. Record future command output placeholders in `commands.md`.
+14. Record future validation results in `validation.md`.

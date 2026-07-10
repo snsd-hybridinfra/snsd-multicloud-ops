@@ -34,7 +34,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S028 | prometheus-target-discovery-validation | L3 | Service Operations | PLANNED | 2026-07-10 | Prometheus target discovery validation documentation completed; target output not collected yet |
 | S029 | grafana-dashboard-validation | L3 | Service Operations | PLANNED | 2026-07-10 | Grafana dashboard validation documentation completed; dashboard output not collected yet |
 | S030 | blackbox-endpoint-probe-validation | L3 | Service Operations | PLANNED | 2026-07-10 | Blackbox endpoint probe validation documentation completed; probe output not collected yet |
-| S031 | web-pod-failure-recovery-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
+| S031 | web-pod-failure-recovery-validation | L4 | Failure Recovery | PLANNED | 2026-07-10 | Web Pod failure recovery validation documentation completed; recovery output not collected yet |
 | S032 | api-service-failure-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
 | S033 | db-replica-failure-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
 | S034 | db-primary-stop-runbook-validation | L4 | Failure Recovery | NOT_STARTED | TBD | Initial tracking state |
