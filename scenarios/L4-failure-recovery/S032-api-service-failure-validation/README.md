@@ -1,23 +1,29 @@
 # S032-api-service-failure-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S032 |
+| Scenario Name | API Service Failure Validation |
+| Level | L4 Failure and Recovery Validation |
+| Category | Failure Recovery |
+| Primary Domain | Kubernetes/k3s API service failure detection and recovery |
+| Related Components | Kubernetes/k3s, API Deployment, API Pod, API Service, Ingress API path, Nginx reverse proxy reference, Blackbox probe reference, Prometheus metric reference |
+| Validation Type | Failure Recovery Validation |
+| Evidence Directory | evidence/L4-failure-recovery/S032-api-service-failure-validation/ |
+| Status | PLANNED |
 
-Api Service Failure Validation validates one operational capability in the L4 Failure Recovery scenario set.
+## Objective Summary
 
-## Objective
+Define and validate API service failure detection and recovery evidence for the SNSD Multi-Cloud Ops Kubernetes/k3s service runtime.
 
-Define how Api Service Failure Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates API service failure behavior only. It covers pre-failure API workload state, placeholder failure injection, API route failure detection, degraded health response, Ingress API path failure behavior, Blackbox and Prometheus references, workload restoration, API health recovery, and recovery time measurement.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that API Deployment, Pod, and Service endpoint state are captured before failure; failure injection is planned with placeholders; route and health failure behavior is detected; restoration is planned; recovery is measured; and failures such as missed detection, unexpected success during failure, `CrashLoopBackOff`, missing Service endpoint, persistent HTTP 5xx, or threshold breach are captured.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L4-failure-recovery/S032-api-service-failure-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
