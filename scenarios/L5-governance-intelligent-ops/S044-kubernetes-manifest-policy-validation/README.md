@@ -1,23 +1,29 @@
 # S044-kubernetes-manifest-policy-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S044 |
+| Scenario Name | Kubernetes Manifest Policy Validation |
+| Level | L5 Governance and Intelligent Operations Validation |
+| Category | Governance Intelligent Ops |
+| Primary Domain | Kubernetes manifest policy review |
+| Related Components | Namespace, Deployment, Service, Ingress, ConfigMap placeholder, Secret reference placeholder, RBAC reference placeholder |
+| Validation Type | Governance Validation |
+| Evidence Directory | evidence/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/ |
+| Status | PLANNED |
 
-Kubernetes Manifest Policy Validation validates one operational capability in the L5 Governance Intelligent Ops scenario set.
+## Objective Summary
 
-## Objective
+Define and validate Kubernetes manifest policy checks for the SNSD Multi-Cloud Ops Kubernetes/k3s service runtime.
 
-Define how Kubernetes Manifest Policy Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates Kubernetes manifest policy through static review, placeholder checks, and evidence capture only. It covers namespace, Deployment, Service, Ingress, ConfigMap, Secret reference, RBAC reference, image tag, resource request and limit, privileged container, host access, HostPath, and embedded secret checks.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that manifest inputs are identified, baseline controls are reviewed, manifest judgment states are applied, unsupported enforcement claims are avoided, and every manifest policy item maps to evidence.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/`, with review plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.

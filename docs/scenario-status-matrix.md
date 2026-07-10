@@ -47,7 +47,7 @@ Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, 
 | S041 | terraform-drift-detection-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Terraform drift detection validation documentation completed; Terraform output not collected yet |
 | S042 | terraform-drift-remediation-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Terraform drift remediation validation documentation completed; Terraform output not collected yet |
 | S043 | policy-as-code-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Policy as Code validation documentation completed; policy engine output not collected yet |
-| S044 | kubernetes-manifest-policy-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
+| S044 | kubernetes-manifest-policy-validation | L5 | Governance Intelligent Ops | PLANNED | 2026-07-10 | Kubernetes manifest policy validation documentation completed; manifest validation output not collected yet |
 | S045 | cost-guardrail-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
 | S046 | resource-cleanup-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |
 | S047 | ml-metric-dataset-collection-validation | L5 | Governance Intelligent Ops | NOT_STARTED | TBD | Initial tracking state |

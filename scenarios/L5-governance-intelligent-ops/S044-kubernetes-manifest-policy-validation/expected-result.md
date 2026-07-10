@@ -1,5 +1,20 @@
 # Expected Result
 
-The scenario is successful when Kubernetes Manifest Policy Validation is validated against documented criteria and all required evidence locations are complete or explicitly marked not applicable.
+S044 is successful when:
 
-Success also requires that no implementation code, secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are created.
+- Manifest input artifacts are documented as placeholders.
+- Namespace is explicitly defined.
+- Image tag policy prevents `latest`.
+- Resource requests and limits are represented.
+- Privileged container mode is prohibited.
+- `hostNetwork`, `hostPID`, and `hostIPC` are disabled or justified.
+- HostPath usage is absent or justified.
+- Secret values are not embedded directly in manifests.
+- ConfigMap and Secret references are documented as placeholders.
+- Ingress host and path mapping is documented.
+- RBAC dependency is referenced without revalidating S018.
+- Manifest judgment state is recorded.
+- Evidence files use TODO placeholders until sanitized output is collected.
+- No kubeconfig, secrets, credentials, private keys, tfstate, cloud account values, subscription IDs, tenant IDs, or account-specific values are introduced.
+
+The scenario must not claim admission controller enforcement, OPA Gatekeeper, Kyverno, Conftest, Argo CD, GitOps, real-time blocking, or automated remediation.
