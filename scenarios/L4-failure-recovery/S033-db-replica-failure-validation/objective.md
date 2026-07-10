@@ -1,5 +1,7 @@
 # Objective
 
-Validate the operational capability represented by Db Replica Failure Validation.
+S033 validates the planned detection and recovery evidence model for a MariaDB Replica failure in the On-Prem Internal Server Zone database layer.
 
-This scenario defines the intended behavior, review approach, and evidence expectations so later execution can be assessed consistently without adding implementation code during the skeleton phase.
+The scenario defines how to document pre-failure Primary and Replica state, simulate one Replica outage using placeholder commands, confirm the Primary remains writable, detect replication interruption, restore the Replica, resume replication, and verify post-recovery consistency.
+
+This scenario remains documentation-only until execution is explicitly approved. It does not create MariaDB configuration, database passwords, credentials, or live database failure evidence.
