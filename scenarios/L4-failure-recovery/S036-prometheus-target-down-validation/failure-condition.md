@@ -1,9 +1,14 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+This scenario is considered failed or blocked if:
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+- Pre-failure Prometheus service or target UP state cannot be established.
+- Target DOWN state is not detected within the provisional detection threshold.
+- Prometheus scrape configuration is invalid or cannot be reviewed.
+- Required target label, job, or instance mapping is missing.
+- `up{job="<target-job>"}` query evidence does not reflect target state.
+- Target remains DOWN after restoration.
+- Recovery time exceeds the CRITICAL threshold.
+- Evidence is missing, unexplained, or not mapped to validation criteria.
+- Documentation claims Alertmanager integration, automated notification, or SOAR-style response.
+- Real credentials, secrets, public IPs, private keys, tfstate, kubeconfig, cloud account values, or account-specific values are introduced.
