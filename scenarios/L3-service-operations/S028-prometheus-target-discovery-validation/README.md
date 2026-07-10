@@ -1,23 +1,29 @@
 # S028-prometheus-target-discovery-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S028 |
+| Scenario Name | Prometheus Target Discovery Validation |
+| Level | L3 Service Operations Validation |
+| Category | Service Operations |
+| Primary Domain | Observability target discovery |
+| Related Components | Prometheus, Node Exporter, DB Exporter placeholder, Blackbox Exporter placeholder, kube-state-metrics placeholder, service zone targets |
+| Validation Type | Service Operation Validation |
+| Evidence Directory | evidence/L3-service-operations/S028-prometheus-target-discovery-validation/ |
+| Status | PLANNED |
 
-Prometheus Target Discovery Validation validates one operational capability in the L3 Service Operations scenario set.
+## Objective Summary
 
-## Objective
+Define and validate Prometheus target discovery for the SNSD Multi-Cloud Ops observability layer.
 
-Define how Prometheus Target Discovery Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates target discovery only. It covers Prometheus service and configuration validation, `/targets` evidence collection, Node Exporter discovery, Kubernetes and kube-state-metrics placeholders, DB Exporter placeholders, Blackbox Exporter placeholders, AWS/Azure/OpenStack service zone target placeholders, On-Prem target placeholders, and target label consistency.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that Prometheus target discovery can be reviewed, expected target categories are represented with placeholders, target labels and job names are consistent, and failures such as missing targets, DOWN targets, invalid scrape configuration, duplicate labels, wrong job names, or missing evidence are explicitly captured.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L3-service-operations/S028-prometheus-target-discovery-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.

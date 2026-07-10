@@ -1,9 +1,24 @@
 # Failure Condition
 
-This scenario fails if any of the following occur:
+S028 fails if Prometheus target discovery cannot be validated or expected targets are missing, unhealthy, or ambiguously labeled.
 
-- The operational capability cannot be validated against the objective.
-- Required evidence is missing or not traceable.
-- Excluded implementation code or real environment changes are introduced.
-- Secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are captured.
-- Rollback or recovery steps are undefined for future execution.
+## Failure Conditions
+
+- Prometheus service status cannot be reviewed.
+- Prometheus configuration syntax validation fails or is unavailable.
+- `/targets` page cannot be accessed or captured.
+- Required target category is missing.
+- A required target is DOWN.
+- Scrape configuration is invalid.
+- Target labels are duplicated or ambiguous.
+- Target job name is wrong or inconsistent.
+- AWS, Azure, OpenStack, or On-Prem placeholder target mapping is missing.
+- Node Exporter, DB Exporter, Blackbox Exporter, or kube-state-metrics placeholder mapping is missing.
+- Evidence cannot be captured or reviewed.
+- Evidence contains credentials, secrets, real public IPs, private keys, tfstate, kubeconfig content, cloud account values, subscription IDs, tenant IDs, or account-specific values.
+
+## Blocked Conditions
+
+- Validation cannot proceed because no approved placeholder target model exists.
+- Future Prometheus service, config, `/targets`, or target mapping output is unavailable.
+- Required evidence files are missing.
