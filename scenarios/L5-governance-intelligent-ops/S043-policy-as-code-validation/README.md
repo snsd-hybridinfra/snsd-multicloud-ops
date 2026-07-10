@@ -1,23 +1,29 @@
 # S043-policy-as-code-validation
 
-## Summary
+| Field | Value |
+|---|---|
+| Scenario ID | S043 |
+| Scenario Name | Policy as Code Validation |
+| Level | L5 Governance and Intelligent Operations Validation |
+| Category | Governance Intelligent Ops |
+| Primary Domain | Policy as Code governance validation |
+| Related Components | Terraform configuration placeholders, security rule policy placeholders, tag/label policy placeholders, naming rules, cost guardrail reference |
+| Validation Type | Governance Validation |
+| Evidence Directory | evidence/L5-governance-intelligent-ops/S043-policy-as-code-validation/ |
+| Status | PLANNED |
 
-Policy As Code Validation validates one operational capability in the L5 Governance Intelligent Ops scenario set.
+## Objective Summary
 
-## Objective
+Define and validate the Policy as Code governance model for SNSD Multi-Cloud Ops infrastructure changes.
 
-Define how Policy As Code Validation will be validated before any implementation code or real environment changes are introduced.
+## Scope Summary
 
-## Scope
+This scenario validates Policy as Code as a v1 governance validation model only. It covers policy input review, public exposure rules, DB and SSH exposure prohibition, least privilege security rule expectations, tag/label requirements, naming convention checks, approved region or zone placeholders, Terraform configuration policy placeholders, cost guardrail references, and policy evidence collection.
 
-This skeleton covers scenario planning, validation criteria, rollback thinking, and evidence mapping only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup code.
+## Validation Summary
 
-## Validation Criteria
+Validation checks confirm that policy inputs are defined, target policy categories are mapped, policy judgment states are applied, unsupported policy engine claims are avoided, and every policy validation item maps to evidence.
 
-- Objective, scope, prerequisites, execution flow, validation checks, expected results, failure conditions, rollback, and evidence mapping are documented.
-- Evidence output locations are defined under $evidencePath.
-- No secrets, credentials, tfstate, kubeconfig files, private keys, or account-specific values are introduced.
+## Evidence Output Summary
 
-## Evidence Output
-
-Evidence is collected in $evidencePath using commands.md, alidation.md, logs/, screenshots/, and configs/.
+Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S043-policy-as-code-validation/`, with command or review plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
