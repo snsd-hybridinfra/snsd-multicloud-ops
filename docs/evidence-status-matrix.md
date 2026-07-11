@@ -1,6 +1,6 @@
 # Evidence Status Matrix
 
-Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
+Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 
 | ID | Scenario | commands.md | validation.md | logs | screenshots | configs | Evidence Status |
 |---|---|---|---|---|---|---|---|

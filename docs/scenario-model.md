@@ -16,73 +16,83 @@ Each scenario should include:
 - `evidence`: required artifacts
 - `pass_criteria`: measurable pass conditions
 
-## Core Scenario Set
+## Canonical Scenario Set
 
-### L1 Foundation
+The following IDs and titles are the canonical v1 set. Directory names append the
+kebab-case title to the ID as defined in `docs/naming-rules.md`.
 
-- `L1-S01`: Repository structure validation
-- `L1-S02`: Scope lock review
-- `L1-S03`: Excluded scope review
-- `L1-S04`: Naming convention validation
-- `L1-S05`: Evidence model validation
-- `L1-S06`: ADR workflow readiness
-- `L1-S07`: Scenario template readiness
-- `L1-S08`: Directory ownership mapping
-- `L1-S09`: Git ignore safety validation
-- `L1-S10`: Codex workflow validation
+### L1 Foundation Validation
 
-### L2 Security Baseline
+- `S001` Control Plane Toolchain Validation
+- `S002` EVE-NG On-Prem Routing Validation
+- `S003` AWS Network Provisioning Validation
+- `S004` Azure Network Provisioning Validation
+- `S005` OpenStack Network Provisioning Validation
+- `S006` Terraform Provider Validation
+- `S007` Multi-Cloud Inventory Validation
+- `S008` Bastion Reachability Validation
+- `S009` DNS / Hostname Resolution Validation
+- `S010` Evidence Directory Structure Validation
 
-- `L2-S01`: Identity baseline review
-- `L2-S02`: Access policy baseline review
-- `L2-S03`: Network segmentation baseline review
-- `L2-S04`: Firewall policy baseline review
-- `L2-S05`: Kubernetes security baseline review
-- `L2-S06`: Secret-handling control review
-- `L2-S07`: Host hardening baseline review
-- `L2-S08`: Logging baseline review
-- `L2-S09`: Vulnerability management baseline review
-- `L2-S10`: Compliance control mapping review
+### L2 Security Baseline Validation
 
-### L3 Service Operations
+- `S011` SSH Key Authentication Validation
+- `S012` Password Login Denial Validation
+- `S013` Root Login Denial Validation
+- `S014` AWS Security Group Least Privilege Validation
+- `S015` Azure NSG Least Privilege Validation
+- `S016` OpenStack Security Group Validation
+- `S017` MariaDB Access Control Validation
+- `S018` Kubernetes RBAC Validation
+- `S019` Nginx Security Header Validation
+- `S020` Grafana Anonymous Access Denial Validation
 
-- `L3-S01`: Service deployment procedure validation
-- `L3-S02`: Namespace operation validation
-- `L3-S03`: Workload operation validation
-- `L3-S04`: Ingress operation validation
-- `L3-S05`: Traffic routing validation
-- `L3-S06`: Observability dashboard validation
-- `L3-S07`: Metrics exporter validation
-- `L3-S08`: Configuration change validation
-- `L3-S09`: Runbook execution validation
-- `L3-S10`: Operational handoff validation
+### L3 Service Operations Validation
 
-### L4 Failure Recovery
+- `S021` Kubernetes Node Readiness Validation
+- `S022` Kubernetes Workload Deployment Validation
+- `S023` Ingress Routing Validation
+- `S024` Nginx Reverse Proxy Validation
+- `S025` Load Balancing Health Check Validation
+- `S026` MariaDB Primary-Replica Replication Validation
+- `S027` DB Replication Lag Validation
+- `S028` Prometheus Target Discovery Validation
+- `S029` Grafana Dashboard Validation
+- `S030` Blackbox Endpoint Probe Validation
 
-- `L4-S01`: Failure injection procedure validation
-- `L4-S02`: Service restart recovery validation
-- `L4-S03`: Network path failure validation
-- `L4-S04`: Firewall policy rollback validation
-- `L4-S05`: Kubernetes workload recovery validation
-- `L4-S06`: Configuration restore validation
-- `L4-S07`: Backup evidence validation
-- `L4-S08`: Recovery time objective review
-- `L4-S09`: Recovery point objective review
-- `L4-S10`: Incident runbook validation
+### L4 Failure & Recovery Validation
 
-### L5 Governance Intelligent Ops
+- `S031` Web Pod Failure Recovery Validation
+- `S032` API Service Failure Validation
+- `S033` DB Replica Failure Validation
+- `S034` DB Primary Stop Runbook Validation
+- `S035` Load Balancer Failure Validation
+- `S036` Prometheus Target Down Validation
+- `S037` Security Rule Misconfiguration Validation
+- `S038` Backup Creation Validation
+- `S039` Restore Execution Validation
+- `S040` Service Health After Recovery Validation
 
-- `L5-S01`: Cost tagging policy validation
-- `L5-S02`: Cost anomaly review
-- `L5-S03`: Governance policy validation
-- `L5-S04`: Compliance reporting validation
-- `L5-S05`: Security dataset readiness
-- `L5-S06`: ML security script review
-- `L5-S07`: Model artifact governance review
-- `L5-S08`: Intelligent alert triage validation
-- `L5-S09`: Executive report evidence validation
-- `L5-S10`: Continuous improvement review
+### L5 Governance & Intelligent Operations Validation
 
-## Status Values
+- `S041` Terraform Drift Detection Validation
+- `S042` Terraform Drift Remediation Validation
+- `S043` Policy as Code Validation
+- `S044` Kubernetes Manifest Policy Validation
+- `S045` Cost Guardrail Validation
+- `S046` Resource Cleanup Validation
+- `S047` ML Metric Dataset Collection Validation
+- `S048` ML Anomaly Detection Validation
+- `S049` ML Anomaly Report Generation Validation
+- `S050` Final Evidence Report Generation Validation
 
-Use `planned`, `ready`, `running`, `passed`, `partial`, `failed`, or `retired`.
+## Scenario Lifecycle Status Model
+
+- `NOT_STARTED`: no planning or implementation work has begun.
+- `PLANNED`: documentation and intended validation are defined.
+- `IN_PROGRESS`: implementation or evidence collection is active.
+- `IMPLEMENTED`: the required implementation exists but validation is incomplete.
+- `VALIDATED`: every required check has supporting evidence.
+- `PARTIAL`: only part of the scenario is implemented or validated.
+- `BLOCKED`: an explicit dependency prevents progress.
+- `DEPRECATED`: the scenario is retained for history but is no longer active.

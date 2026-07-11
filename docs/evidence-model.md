@@ -39,7 +39,7 @@ Every evidence directory must include:
 - validation criteria
 - expected result
 - actual result
-- `PASS`, `FAIL`, `PARTIAL`, `BLOCKED`, or `NOT_RUN` status
+- a Validation Result Status
 - evidence reference
 
 `logs/` stores applicable text logs, including:
@@ -73,13 +73,29 @@ Examples:
 - `db-replication-status.md`
 - `security-policy-validation.md`
 
-## Evidence Status Model
+## Evidence Readiness Status
 
-- `PASS`: validation criteria were met.
-- `FAIL`: validation criteria were not met.
-- `PARTIAL`: some criteria were met, but gaps remain.
-- `BLOCKED`: validation could not proceed due to a dependency or access issue.
-- `NOT_RUN`: validation has not been executed.
+`docs/evidence-status-matrix.md` tracks whether the required evidence set is
+complete enough for review:
+
+- `NOT_READY`: required evidence has not been collected.
+- `PARTIAL`: some required evidence exists, but gaps remain.
+- `READY`: all required evidence exists and is ready for review.
+- `REVIEWED`: a reviewer has checked the complete evidence set.
+
+## Validation Result Status
+
+Individual `validation.md` checks record the outcome of execution:
+
+- `NOT_RUN`: the validation has not been executed.
+- `PASS`: the expected result was observed.
+- `FAIL`: the expected result was not observed.
+- `BLOCKED`: a dependency or access issue prevented execution.
+- `INCONCLUSIVE`: execution occurred, but the evidence cannot support a result.
+
+Evidence Readiness Status and Validation Result Status are related but distinct:
+readiness describes the completeness of the evidence package, while result
+status describes the outcome of a validation check.
 
 ## Validation Table Template
 

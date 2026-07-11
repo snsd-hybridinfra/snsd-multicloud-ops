@@ -39,6 +39,7 @@ Every scenario must define:
 - `NOT_STARTED`
 - `PLANNED`
 - `IN_PROGRESS`
+- `IMPLEMENTED`
 - `VALIDATED`
 - `PARTIAL`
 - `BLOCKED`

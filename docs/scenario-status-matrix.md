@@ -1,6 +1,6 @@
 # Scenario Status Matrix
 
-Scenario status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, `VALIDATED`, `PARTIAL`, `BLOCKED`, `DEPRECATED`
+Scenario Lifecycle Status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, `VALIDATED`, `PARTIAL`, `BLOCKED`, `DEPRECATED`
 
 | ID | Scenario | Level | Category | Status | Last Updated | Notes |
 |---|---|---|---|---|---|---|

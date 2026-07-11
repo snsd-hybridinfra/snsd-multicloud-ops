@@ -4,17 +4,25 @@ Consistent naming keeps scenarios, evidence, and automation traceable.
 
 ## Scenario IDs
 
-Use:
+Scenario ID format:
 
 ```text
-<level>-S<two-digit-number>
+S###
+```
+
+`###` is a zero-padded number from `001` through `050`.
+
+Scenario directory format:
+
+```text
+S###-kebab-case-scenario-name
 ```
 
 Examples:
 
-- `L1-S01`
-- `L3-S07`
-- `L5-S10`
+- `S001-control-plane-toolchain-validation`
+- `S014-aws-security-group-least-privilege-validation`
+- `S050-final-evidence-report-generation-validation`
 
 ## Directory Names
 
@@ -31,16 +39,18 @@ Examples:
 
 ## Scenario Evidence Names
 
-Use:
+The evidence directory must mirror the scenario directory path exactly.
 
 ```text
-evidence/<level>/<scenario-id>/<artifact-name>.md
+scenarios/<level>/S###-kebab-case-scenario-name/
+evidence/<level>/S###-kebab-case-scenario-name/
 ```
 
 Example:
 
 ```text
-evidence/L2-security-baseline/L2-S04/result.md
+scenarios/L1-foundation/S001-control-plane-toolchain-validation/
+evidence/L1-foundation/S001-control-plane-toolchain-validation/
 ```
 
 ## ADR Names
