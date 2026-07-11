@@ -2,16 +2,15 @@
 
 ## Stop Condition
 
-Stop immediately if a command prompts for credentials, attempts to authenticate to a live service, or exposes sensitive local configuration.
+Stop if any command attempts authentication, remote connection, registry access, credential or kubeconfig access, tfstate access, or an infrastructure-changing action.
 
 ## Rollback Steps
 
-1. Stop the validation command.
-2. Remove any unsafe output from evidence files.
-3. Replace unsafe details with a sanitized placeholder such as `<redacted>`.
-4. Mark the affected validation item as `BLOCKED` or `FAIL` in `validation.md`.
-5. Record the reason in the implementation log if scenario progress is blocked.
+1. Terminate the command.
+2. Remove unsafe generated output from the two S001 evidence files.
+3. Restore the last reviewed evidence version from Git if necessary.
+4. Record the affected validation check as `FAIL` or `BLOCKED`.
 
 ## Recovery Validation
 
-Confirm the evidence files contain only command names, purposes, sanitized TODO placeholders, and non-sensitive validation notes.
+Confirm the script again contains only `Get-Command` and version-only invocations, then rerun it and review both generated evidence files.

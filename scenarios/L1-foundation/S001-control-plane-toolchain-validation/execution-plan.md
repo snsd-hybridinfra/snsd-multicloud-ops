@@ -2,27 +2,22 @@
 
 ## Preparation
 
-1. Open PowerShell on `<target-node>`.
-2. Change to the repository root.
-3. Confirm the S001 evidence directory exists.
-4. Confirm no credential files, kubeconfig files, private keys, or tfstate files are required.
+1. Open PowerShell at the repository root.
+2. Confirm `tools/validate-control-plane-toolchain.ps1` exists.
+3. Confirm the S001 evidence directory is writable.
 
 ## Execution Steps
 
-1. Run the Git version check.
-2. Run the PowerShell version check.
-3. Run the Terraform CLI version check.
-4. Run the Ansible version check.
-5. Run the Python version check.
-6. Run the kubectl version check.
-7. Run the Helm version check.
-8. Run the AWS CLI version check.
-9. Run the Azure CLI version check.
-10. Run the OpenStack CLI version check.
+1. Run `powershell -ExecutionPolicy Bypass -File tools\validate-control-plane-toolchain.ps1`.
+2. Review the console `PASS`, `WARN`, and `FAIL` lines.
+3. Confirm the process exit code is zero when all core tools pass.
+4. Treat later-stage warnings as readiness follow-ups, not S001 core failures.
 
 ## Evidence Capture
 
-1. Record each command and its purpose in `commands.md`.
-2. Paste sanitized command output into the matching TODO section after execution.
-3. Record pass, fail, partial, blocked, or not-run status in `validation.md`.
-4. Do not capture secrets, credentials, account identifiers, kubeconfig content, tfstate, or private keys.
+The script writes:
+
+- `logs/control-plane-toolchain-validation.log`
+- `configs/control-plane-toolchain-summary.md`
+
+The operator then records the generated results in `validation.md`. No screenshot is required for this command-line scenario.

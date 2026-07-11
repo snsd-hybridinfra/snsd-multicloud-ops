@@ -2,19 +2,20 @@
 
 ## Relevant Components
 
-- `<target-node>`: local workstation or approved control-plane host.
-- Repository workspace: local clone of `snsd-multicloud-ops`.
-- CLI toolchain: Git, PowerShell, Terraform CLI, Ansible, Python, kubectl, Helm, AWS CLI, Azure CLI, and OpenStack CLI.
-- Evidence directory: `evidence/L1-foundation/S001-control-plane-toolchain-validation/`.
+- Local control plane workstation
+- Repository-local validation script: `tools/validate-control-plane-toolchain.ps1`
+- Core CLI tier: Git, PowerShell, SSH, Python
+- Later-stage CLI tier: Terraform, Ansible, kubectl, Docker
+- S001 evidence log and summary
 
 ## Logical Flow
 
-1. The operator opens a shell on `<target-node>`.
-2. The operator changes to the repository root.
-3. Each required tool is invoked with a version-only command.
-4. Command intent and TODO output placeholders are recorded in evidence.
-5. Validation status is determined from whether every tool can be checked.
+1. The operator invokes the repository-local PowerShell script.
+2. The script uses `Get-Command` to inspect local command availability.
+3. Available commands receive a version-only invocation.
+4. The script prints `PASS`, `WARN`, or `FAIL` and writes sanitized evidence.
+5. The process exits non-zero only when a core tool fails readiness validation.
 
 ## Out-of-Scope Components
 
-Cloud accounts, Kubernetes clusters, Terraform backends, Ansible inventories, monitoring services, and ML pipelines are not accessed by this scenario.
+Cloud APIs, provider credentials, Terraform providers, Ansible inventories, Kubernetes clusters, Docker registries and daemons, Prometheus, and Grafana are not accessed.

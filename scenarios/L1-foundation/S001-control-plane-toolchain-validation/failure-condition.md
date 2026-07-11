@@ -2,16 +2,18 @@
 
 ## Failure Conditions
 
-- One or more required tools cannot be invoked.
-- A version command requires authentication or access to sensitive files.
-- Command output cannot be captured in a reviewable form.
-- Evidence is missing for any validation check.
-- Real credentials, private keys, tfstate, kubeconfig content, account IDs, subscription IDs, tenant IDs, project IDs, or unsanitized environment details are captured.
+- Git, PowerShell, SSH, or Python is not discoverable.
+- A core version command exits non-zero or returns no version output.
+- The log or summary cannot be generated.
+- A check attempts cloud authentication, cluster access, registry access, credential reads, kubeconfig reads, tfstate access, or infrastructure changes.
+- Generated evidence exposes sensitive or account-specific data.
+
+Later-stage tool warnings do not fail S001 core readiness.
 
 ## Evidence of Failure
 
-Record the failed or blocked check in `validation.md` with the related check ID and sanitized details.
+The console, log, summary, and `validation.md` identify the failed core check without including unsafe local details.
 
 ## Follow-Up Requirement
 
-Create a follow-up task to install, repair, or document the missing tool before dependent scenarios proceed.
+Install or repair the failed core tool, rerun S001, and replace the generated evidence before dependent implementation proceeds.

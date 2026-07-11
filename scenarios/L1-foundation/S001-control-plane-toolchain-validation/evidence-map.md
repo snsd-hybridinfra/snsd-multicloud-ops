@@ -2,17 +2,17 @@
 
 | Validation Item | Evidence File | Evidence Type | Required |
 |---|---|---|---|
-| Git version check | `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md` and `validation.md` | command record and validation result | yes |
-| PowerShell version check | `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md` and `validation.md` | command record and validation result | yes |
-| Terraform version check | `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md` and `validation.md` | command record and validation result | yes |
-| Ansible version check | `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md` and `validation.md` | command record and validation result | yes |
-| Python version check | `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md` and `validation.md` | command record and validation result | yes |
-| kubectl version check | `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md` and `validation.md` | command record and validation result | yes |
-| Helm version check | `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md` and `validation.md` | command record and validation result | yes |
-| AWS CLI version check | `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md` and `validation.md` | command record and validation result | yes |
-| Azure CLI version check | `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md` and `validation.md` | command record and validation result | yes |
-| OpenStack CLI version check | `evidence/L1-foundation/S001-control-plane-toolchain-validation/commands.md` and `validation.md` | command record and validation result | yes |
+| V001 Git core readiness | `logs/control-plane-toolchain-validation.log`; `configs/control-plane-toolchain-summary.md` | command log and summary | yes |
+| V002 PowerShell core readiness | `logs/control-plane-toolchain-validation.log`; `configs/control-plane-toolchain-summary.md` | command log and summary | yes |
+| V003 SSH core readiness | `logs/control-plane-toolchain-validation.log`; `configs/control-plane-toolchain-summary.md` | command log and summary | yes |
+| V004 Python core readiness | `logs/control-plane-toolchain-validation.log`; `configs/control-plane-toolchain-summary.md` | command log and summary | yes |
+| V005 Terraform later-stage readiness | `logs/control-plane-toolchain-validation.log`; `configs/control-plane-toolchain-summary.md` | command log and summary | yes |
+| V006 Ansible later-stage readiness | `logs/control-plane-toolchain-validation.log`; `configs/control-plane-toolchain-summary.md` | command log and summary | yes |
+| V007 kubectl later-stage readiness | `logs/control-plane-toolchain-validation.log`; `configs/control-plane-toolchain-summary.md` | command log and summary | yes |
+| V008 Docker later-stage readiness | `logs/control-plane-toolchain-validation.log`; `configs/control-plane-toolchain-summary.md` | command log and summary | yes |
+| Script invocation and evidence inspection | `commands.md` | operator command record | yes |
+| Final validation judgment | `validation.md` | validation result | yes |
 
 ## Evidence Notes
 
-No real command output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+Screenshots are not required. Generated evidence records only timestamps, classifications, tool names, and safe version details.

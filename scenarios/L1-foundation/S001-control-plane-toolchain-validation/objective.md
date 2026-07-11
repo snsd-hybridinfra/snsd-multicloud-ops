@@ -1,18 +1,14 @@
 # Objective
 
-Validate the local control plane toolchain required to operate this repository.
+## Operational Capability
 
-The scenario confirms that the following tools are installed and can return version information:
+Validate local control plane readiness through safe command discovery and version-only invocation for:
 
-- Git
-- PowerShell
-- Terraform CLI
-- Ansible
-- Python
-- kubectl
-- Helm
-- AWS CLI
-- Azure CLI
-- OpenStack CLI
+- Core tools: Git, PowerShell, SSH, Python
+- Later-stage tools: Terraform, Ansible, kubectl, Docker
 
-Success means each tool can be invoked locally with a non-secret version check, and the command to collect that evidence is documented for later execution.
+## Success Definition
+
+The scenario succeeds when every core tool is discoverable and returns version output. Later-stage tools are also inspected, but their absence is recorded as a warning rather than a core readiness failure.
+
+No cloud, cluster, registry, credential, kubeconfig, tfstate, or infrastructure access is required.

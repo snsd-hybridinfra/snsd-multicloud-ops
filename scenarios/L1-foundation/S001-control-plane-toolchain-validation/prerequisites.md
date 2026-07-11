@@ -2,25 +2,16 @@
 
 ## Required Previous Scenarios
 
-- None. This is the first foundation validation scenario.
+- None. S001 is the first real validation scenario.
 
 ## Required Tools
 
-The following tools are expected to be installed before execution:
+- PowerShell capable of running repository scripts
+- Repository clone with write access to the S001 evidence directory
 
-- Git
-- PowerShell
-- Terraform CLI
-- Ansible
-- Python
-- kubectl
-- Helm
-- AWS CLI
-- Azure CLI
-- OpenStack CLI
+The script itself determines whether the remaining core and later-stage commands are available.
 
 ## Required Access Assumptions
 
-- Access to `<target-node>` is available through approved local procedures.
-- The operator can run version checks without elevated privileges unless the local environment explicitly requires them.
-- No cloud login, kubeconfig, credentials, tfstate, or private key material is needed.
+- Local execution requires no cloud login or cluster access.
+- No credential, kubeconfig, private key, tfstate, environment-variable, registry, or account-specific input is required.

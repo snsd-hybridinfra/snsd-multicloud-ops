@@ -2,22 +2,26 @@
 
 ## Included
 
-- Validate local command availability for the required control plane tools.
-- Record planned version check commands.
-- Define the evidence required to confirm toolchain readiness.
-- Use TODO placeholders until actual command output is collected.
+- Discover Git, PowerShell, SSH, Python, Terraform, Ansible, kubectl, and Docker with `Get-Command`.
+- Run local version-only commands.
+- Classify core results as `PASS` or `FAIL`.
+- Classify unavailable later-stage tools as `WARN`.
+- Generate a sanitized text log and Markdown summary under the S001 evidence directory.
 
 ## Excluded
 
-- Authenticating to AWS, Azure, OpenStack, Kubernetes, or any other platform.
-- Creating or modifying cloud resources.
-- Running Terraform plans or applies.
-- Running Ansible playbooks.
-- Creating kubeconfig files, credentials, private keys, tfstate, or account-specific files.
-- Capturing real account IDs, subscription IDs, tenant IDs, project IDs, IP addresses, or secrets.
+- Cloud resource provisioning or modification.
+- Authentication to AWS, Azure, OpenStack, Kubernetes, or Docker registries.
+- Provider credential validation; Terraform provider validation belongs to S006.
+- Terraform initialization, planning, or application.
+- Ansible inventory access or playbook execution.
+- Kubernetes cluster access or kubeconfig reads; node readiness belongs to S021.
+- Docker daemon, registry, or image operations.
+- Prometheus or Grafana validation, which occurs in later scenarios.
+- Reading credentials, environment variables, private keys, tfstate, kubeconfig, or account-specific data.
 
 ## Assumptions
 
-- Validation is performed from the repository root on an approved local control-plane host such as `<target-node>`.
-- Tool version output is safe to capture after review.
-- Missing tools are reported as validation failures or blockers, not remediated automatically by this scenario.
+- The script runs from a local PowerShell process with repository write access for evidence generation.
+- Version output is safe to retain after reducing multi-line results to the first non-empty line.
+- Missing later-stage tools will be installed only when their dependent scenario requires them.
