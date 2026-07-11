@@ -5,7 +5,7 @@ Scenario Lifecycle Status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPL
 | ID | Scenario | Level | Category | Status | Last Updated | Notes |
 |---|---|---|---|---|---|---|
 | S001 | control-plane-toolchain-validation | L1 | Foundation | IMPLEMENTED | 2026-07-11 | Validation script executed and evidence generated; Python core readiness failed, so the scenario is not yet VALIDATED |
-| S002 | eve-ng-onprem-routing-validation | L1 | Foundation | PLANNED | 2026-07-08 | EVE-NG on-prem routing validation documentation completed; routing output not collected yet |
+| S002 | eve-ng-on-prem-routing-validation | L1 | Foundation | VALIDATED | 2026-07-11 | Repository topology and four non-production router examples passed all eight local baseline checks; no live lab access performed |
 | S003 | aws-network-provisioning-validation | L1 | Foundation | PLANNED | 2026-07-08 | AWS network provisioning validation documentation completed; Terraform and AWS output not collected yet |
 | S004 | azure-network-provisioning-validation | L1 | Foundation | PLANNED | 2026-07-08 | Azure network provisioning validation documentation completed; Terraform and Azure output not collected yet |
 | S005 | openstack-network-provisioning-validation | L1 | Foundation | PLANNED | 2026-07-08 | OpenStack network provisioning validation documentation completed; Terraform and OpenStack output not collected yet |
