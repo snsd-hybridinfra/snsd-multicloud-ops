@@ -1,23 +1,14 @@
 # Failure Condition
 
-S025 fails if backend health cannot be validated or the service traffic layer cannot provide reviewable health evidence.
+S025 fails if:
 
-## Failure Conditions
+- A required artifact or sample is missing.
+- The pool, either backend, health path, expected status, timeout, retry, or unhealthy threshold is missing.
+- Load-balancer evidence lacks 200 OK or contains 5xx, refusal, timeout, unhealthy, or no-healthy-upstream indicators.
+- Either backend-specific sample is absent or unhealthy.
+- TLS material, credentials, tokens, cookies, authorization values, real domains, concrete URLs, or numeric addresses are detected.
+- The example claims unsupported active health checking or automatic failover.
+- LiveHttp lacks required targets, cannot connect, times out, or returns an unaccepted status.
+- Nginx/curl is invoked by default or routing state is changed.
 
-- All backend endpoints are unhealthy.
-- `<health-endpoint>` is missing.
-- Health endpoint returns HTTP 5xx.
-- Health route times out.
-- Kubernetes Service endpoint list is stale or does not match expected backends.
-- Ingress backend health cannot be reviewed.
-- Nginx upstream health cannot be reviewed.
-- Provider service entrypoint health placeholder is missing.
-- Traffic continuity with one backend unavailable is claimed without evidence.
-- Health check logs or evidence cannot be captured.
-- Evidence contains TLS private keys, certificates, credentials, secrets, real public IPs, tfstate, kubeconfig content, cloud account values, subscription IDs, tenant IDs, or account-specific values.
-
-## Blocked Conditions
-
-- Validation cannot proceed because no approved placeholder health check model exists.
-- Future endpoint, response, or health log output is unavailable.
-- Required evidence files are missing.
+Live 401/403 is a warning requiring operator review, not proof of backend failure.

@@ -2,30 +2,19 @@
 
 ## Included
 
-- Kubernetes Service endpoint health validation plan.
-- Ingress backend health validation plan.
-- Nginx Reverse Proxy upstream health validation plan.
-- AWS service entrypoint health check placeholder.
-- Azure service entrypoint health check placeholder.
-- OpenStack service entrypoint health check placeholder.
-- HTTP 200 health endpoint validation plan.
-- Failed backend detection plan.
-- Traffic continuity validation plan when one backend is unavailable.
-- Blackbox Exporter health probe mapping placeholder.
-- Health check log evidence collection plan.
+- Static baseline, matrix, Nginx upstream example, command reference, and sample review.
+- Two symbolic backend members and a `/health` endpoint.
+- Expected status, interval, timeout, retry/unhealthy threshold, and manual recovery model.
+- Passive `proxy_next_upstream` routing evidence.
+- Optional explicit load-balancer/backend HEAD checks.
+- Sanitized generated log and summary.
 
 ## Excluded
 
-- Real load balancer configuration implementation.
-- TLS implementation.
-- TLS private keys, certificates, credentials, secrets, private keys, tfstate, kubeconfig, cloud account values, subscription IDs, tenant IDs, or account-specific files.
-- Real public IPs or production hostnames.
-- Ingress routing validation, which is handled in S023.
-- Nginx Reverse Proxy forwarding validation, which is handled in S024.
-- Blackbox Endpoint Probe validation, which is handled in S030.
-- Load balancer failure response, which is handled in S035.
-- Global Load Balancing and automatic cross-cloud failover, which are excluded from v1 scope.
+- Nginx or load-balancer installation, start, stop, restart, reload, or modification.
+- Automatic failover, automatic backend removal, Nginx Plus active health checks, and production HA claims.
+- Default-mode Nginx, curl, or network execution.
+- Real targets, domains, addresses, DNS, TLS material, credentials, tokens, cookies, authorization headers, and response bodies.
+- S023, S024, S030, S031, and S035 responsibilities.
 
-## Placeholder Rules
-
-Use placeholders such as `<load-balancer-endpoint>`, `<backend-service>`, `<web-pod>`, `<api-pod>`, `<health-endpoint>`, and `<reverse-proxy-host>`.
+Only documented placeholders or their clearly marked example variants are permitted.

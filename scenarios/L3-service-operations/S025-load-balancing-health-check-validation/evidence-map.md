@@ -1,19 +1,23 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Kubernetes Service endpoint health validation plan | `commands.md`; `configs/backend-endpoint-health-summary.md`; `validation.md` | command plan, backend health summary, validation record | yes |
-| Ingress backend endpoint health validation plan | `commands.md`; `configs/load-balancing-health-check-summary.md`; `validation.md` | command plan, health check summary, validation record | yes |
-| Nginx upstream health validation plan | `commands.md`; `configs/load-balancing-health-check-summary.md`; `validation.md` | command plan, health check summary, validation record | yes |
-| AWS service entrypoint health check plan | `commands.md`; `configs/load-balancing-health-check-summary.md`; `validation.md` | command plan, health check summary, validation record | yes |
-| Azure service entrypoint health check plan | `commands.md`; `configs/load-balancing-health-check-summary.md`; `validation.md` | command plan, health check summary, validation record | yes |
-| OpenStack service entrypoint health check plan | `commands.md`; `configs/load-balancing-health-check-summary.md`; `validation.md` | command plan, health check summary, validation record | yes |
-| HTTP /health endpoint response validation plan | `commands.md`; `logs/load-balancing-health-check-validation.log`; `screenshots/load-balancing-health-check-test.png`; `validation.md` | command plan, validation log, screenshot reference, validation record | yes |
-| Backend unavailable detection plan | `commands.md`; `logs/load-balancing-health-check-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Traffic continuity validation plan with one backend unavailable | `commands.md`; `logs/load-balancing-health-check-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Health check log capture plan | `commands.md`; `logs/load-balancing-health-check-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Failure condition for all backends unhealthy, health endpoint missing, HTTP 5xx, route timeout, stale endpoint, or no health evidence | `validation.md` | failure criteria and status record | yes |
+| Check ID | Validation Item | Evidence File |
+|---|---|---|
+| V001 | Required baseline files | `commands.md`; summary |
+| V002 | Sample evidence files | three `logs/*.sample.txt`; summary |
+| V003 | Health-check baseline | baseline; summary |
+| V004 | Backend pool definition | Nginx example; summary |
+| V005 | Health endpoint and expected status | config/baseline; summary |
+| V006 | Timeout retry and unhealthy handling | config/baseline; summary |
+| V007 | Health-check rule matrix | matrix; summary |
+| V008 | Safe command reference | command example; summary |
+| V009 | Load-balancer health evidence | load-balancer sample; summary |
+| V010 | Backend health evidence | backend sample; summary |
+| V011 | Access-log health evidence | access sample; summary |
+| V012 | TLS material safety | generated log; summary |
+| V013 | Credential and header safety | generated log; summary |
+| V014 | Address and domain safety | generated log; summary |
+| V015 | Active-health and failover boundary | baseline/config; summary |
+| V016 | Execution safety boundary | validator script; summary |
+| V017 | Validation mode and live health result | generated log; summary |
 
-## Evidence Notes
-
-No real load balancing health check output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+`validation.md` records all outcomes. The generated `.log` is ignored; the committed summary and sanitized samples provide durable evidence without targets or response content.

@@ -6,24 +6,24 @@
 | Scenario Name | Load Balancing Health Check Validation |
 | Level | L3 Service Operations Validation |
 | Category | Service Operations |
-| Primary Domain | Service traffic availability |
-| Related Components | Kubernetes Service endpoints, Ingress backends, Nginx upstreams, provider service entrypoints, health endpoint, Blackbox Exporter placeholder |
-| Validation Type | Service Operation Validation |
+| Primary Domain | Backend health and passive upstream routing |
+| Related Components | Load-balancing layer, backend pool, health endpoint, sanitized HTTP evidence |
+| Validation Type | Static local validation with optional explicit LiveHttp |
 | Evidence Directory | evidence/L3-service-operations/S025-load-balancing-health-check-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the load balancing health check model used by the SNSD Multi-Cloud Ops service traffic layer.
+Validate the repository's backend pool, health endpoint, timeout/retry, unhealthy-threshold, passive routing, and sanitized health-evidence model.
 
 ## Scope Summary
 
-This scenario validates health check and availability behavior only. It covers Kubernetes Service endpoint health, Ingress backend health, Nginx upstream health, provider entrypoint health placeholders for AWS, Azure, and OpenStack, HTTP `/health` response validation, failed backend detection, traffic continuity with one backend unavailable, and Blackbox Exporter probe mapping placeholders.
+Static mode invokes neither Nginx nor curl and makes no network request. Optional LiveHttp requires explicit load-balancer and backend health URLs, sends cookie-free HEAD requests, and stores indexed statuses only.
 
 ## Validation Summary
 
-Validation checks confirm that backend health can be reviewed at service, ingress, reverse proxy, and provider-entrypoint layers, that a valid health endpoint returns HTTP 200, and that failures such as all backends unhealthy, stale endpoints, HTTP 5xx, route timeout, missing health endpoint, or missing evidence are explicitly captured.
+Seventeen checks cover required artifacts, pool members, health route and status, passive retry/timeouts, rule coverage, sample parsing, sensitive-content safety, active-health boundaries, and guarded execution.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L3-service-operations/S025-load-balancing-health-check-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+S025 does not modify Nginx or a load balancer, perform automatic failover, claim Nginx Plus active checks, or store targets, bodies, headers, credentials, cookies, tokens, TLS material, domains, or numeric addresses.

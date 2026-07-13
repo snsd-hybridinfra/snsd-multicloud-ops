@@ -2,18 +2,20 @@
 
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
-| V001 | Kubernetes Service endpoint health validation plan | Plan endpoint health review for `<backend-service>`. | Kubernetes Service has healthy backend endpoints. | `commands.md`, `configs/backend-endpoint-health-summary.md`, `validation.md` |
-| V002 | Ingress backend endpoint health validation plan | Plan backend health review from ingress perspective. | Ingress backend endpoint health is reviewable. | `commands.md`, `configs/load-balancing-health-check-summary.md`, `validation.md` |
-| V003 | Nginx upstream health validation plan | Plan upstream health review from `<reverse-proxy-host>`. | Nginx upstream target health is reviewable. | `commands.md`, `configs/load-balancing-health-check-summary.md`, `validation.md` |
-| V004 | AWS service entrypoint health check plan | Document placeholder health check for AWS service entrypoint. | AWS entrypoint health check model is defined. | `commands.md`, `configs/load-balancing-health-check-summary.md`, `validation.md` |
-| V005 | Azure service entrypoint health check plan | Document placeholder health check for Azure service entrypoint. | Azure entrypoint health check model is defined. | `commands.md`, `configs/load-balancing-health-check-summary.md`, `validation.md` |
-| V006 | OpenStack service entrypoint health check plan | Document placeholder health check for OpenStack service entrypoint. | OpenStack entrypoint health check model is defined. | `commands.md`, `configs/load-balancing-health-check-summary.md`, `validation.md` |
-| V007 | HTTP /health endpoint response validation plan | Plan HTTP response check for `<health-endpoint>`. | Health endpoint returns expected HTTP 200 response. | `commands.md`, `logs/load-balancing-health-check-validation.log`, `screenshots/load-balancing-health-check-test.png`, `validation.md` |
-| V008 | Backend unavailable detection plan | Plan detection check for one unavailable backend. | Unavailable backend is detected and documented. | `commands.md`, `logs/load-balancing-health-check-validation.log`, `validation.md` |
-| V009 | Traffic continuity validation plan with one backend unavailable | Plan limited continuity check when one backend is unavailable. | Traffic continuity behavior is documented without claiming global failover. | `commands.md`, `logs/load-balancing-health-check-validation.log`, `validation.md` |
-| V010 | Health check log capture plan | Plan sanitized health check log capture. | Health check logs are available without sensitive values. | `commands.md`, `logs/load-balancing-health-check-validation.log`, `validation.md` |
-| V011 | Failure condition for all backends unhealthy, health endpoint missing, HTTP 5xx, route timeout, stale endpoint, or no health evidence | Evaluate findings against explicit failure conditions. | Health check failures produce `FAIL` or `BLOCKED` status. | `validation.md` |
-
-## Review Notes
-
-Every validation item must map to evidence. This scenario validates health checks only; ingress routing is handled in S023, reverse proxy forwarding in S024, blackbox probes in S030, and load balancer failure response in S035.
+| V001 | Required baseline files | Test four paths. | All exist. | commands; summary |
+| V002 | Sample evidence files | Test three paths. | All exist. | sample logs; summary |
+| V003 | Health-check baseline | Match path, settings, evidence, recovery, and modes. | Complete. | baseline; summary |
+| V004 | Backend pool definition | Parse upstream and two members. | Pool complete. | config; summary |
+| V005 | Health endpoint and expected status | Parse `/health`, proxy target, status placeholder. | Complete. | config/baseline; summary |
+| V006 | Timeout retry and unhealthy handling | Parse retry, tries, timeouts, threshold. | Complete. | config/baseline; summary |
+| V007 | Health-check rule matrix | Match ten controls and columns. | Complete. | matrix; summary |
+| V008 | Safe command reference | Match five symbolic commands. | Complete. | commands example; summary |
+| V009 | Load-balancer health evidence | Parse marked 200 and reject failure indicators. | Healthy. | LB sample; summary |
+| V010 | Backend health evidence | Require both backends at 200 and reject failures. | Both healthy. | backend sample; summary |
+| V011 | Access-log health evidence | Parse symbolic `/health` 200. | Sanitized. | access sample; summary |
+| V012 | TLS material safety | Scan for key/certificate material/paths. | None. | log; summary |
+| V013 | Credential and header safety | Scan for secrets and sensitive headers. | None. | log; summary |
+| V014 | Address and domain safety | Scan for numeric/concrete targets. | None. | log; summary |
+| V015 | Active-health and failover boundary | Verify passive-only statements and no active directive. | Boundary explicit. | baseline/config; summary |
+| V016 | Execution safety boundary | Inspect guarded request implementation. | No Nginx/curl; HEAD only. | script; summary |
+| V017 | Validation mode and live health result | Evaluate Static or explicit live checks. | Safe/pass or documented warning. | log; summary |

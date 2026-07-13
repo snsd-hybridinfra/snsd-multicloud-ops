@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+HTTP/1.1 200 OK
+Content-Type: text/plain
+
+<load-balancer-health-response-placeholder>

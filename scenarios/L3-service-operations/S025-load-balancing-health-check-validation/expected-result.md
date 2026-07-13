@@ -1,22 +1,7 @@
 # Expected Result
 
-S025 is successful when the load balancing health check validation plan is complete and ready for future approved execution.
+S025 passes when the backend pool and two symbolic members exist, `/health` and expected status are defined, passive retry/timeouts/unhealthy threshold are complete, both backend samples and the load-balancer sample show 200 OK, and safety checks find no concrete or sensitive content.
 
-## Success Conditions
+Static mode performs no process or network execution. LiveHttp accepts 200/204, warns for 401/403, and fails for invalid/missing targets, connection/timeout errors, 5xx, or another unaccepted status.
 
-- Kubernetes Service endpoint health validation is planned.
-- Ingress backend endpoint health validation is planned.
-- Nginx upstream health validation is planned.
-- AWS, Azure, and OpenStack service entrypoint health placeholders are documented.
-- HTTP `/health` response validation is planned.
-- Backend unavailable detection is planned.
-- Traffic continuity with one backend unavailable is planned without claiming global failover.
-- Health check log capture is planned.
-- Blackbox Exporter health probe mapping remains a placeholder for S030.
-- All validation checks map to required evidence files.
-
-## Evidence Conditions
-
-- `commands.md` lists planned command or review actions with TODO output placeholders.
-- `validation.md` lists each check with `NOT_RUN` status until execution.
-- Future supporting evidence is expected in `configs/load-balancing-health-check-summary.md`, `configs/backend-endpoint-health-summary.md`, `logs/load-balancing-health-check-validation.log`, and `screenshots/load-balancing-health-check-test.png`.
+Only aggregate results, indexed live statuses, and timestamps may be retained. No automatic failover or production active-health capability is inferred.
