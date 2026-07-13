@@ -1,19 +1,16 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Required Repository State
 
-- `S001-control-plane-toolchain-validation` is planned and identifies shell and SSH tooling readiness.
-- `S002-eve-ng-onprem-routing-validation` is planned and defines on-prem routing zones.
-- `S007-multi-cloud-inventory-validation` is planned and defines bastion and target inventory placeholders.
+- PowerShell can run the local validator.
+- The S008 scenario and evidence directories exist.
+- The inventory documentation directory is readable.
 
-## Required Tools
+## Not Required
 
-- Repository access for reviewing bastion reachability documentation.
-- Text editor for evidence documentation.
-- Future SSH client availability as part of local control plane readiness.
+- Ansible or SSH execution.
+- A real bastion, internal host, route, DNS record, firewall, or cloud instance.
+- Private keys, usernames, passwords, credentials, kubeconfig, `clouds.yaml`, or openrc.
+- AWS, Azure, OpenStack, Kubernetes, or EVE-NG access.
 
-## Required Access Assumptions
-
-- No real host login is required for this skeleton.
-- No SSH private keys, credentials, real IP addresses, kubeconfig files, tfstate, or account-specific values are required.
-- Future reachability execution requires explicit approval before any real connection attempt.
+S007 supplies the preceding repository-side inventory model.

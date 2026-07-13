@@ -2,29 +2,25 @@
 
 ## Included
 
-- Bastion inventory entry validation plan.
-- Management Zone to Bastion Zone reachability plan.
-- Bastion SSH reachability plan using placeholder command patterns.
-- Bastion to On-Prem DB node reachability plan.
-- Bastion to On-Prem Monitoring node reachability plan.
-- Bastion to AWS service node reachability plan.
-- Bastion to Azure service node reachability plan.
-- Bastion to OpenStack service node reachability plan.
-- SSH ProxyJump command pattern validation plan.
-- Evidence collection through Bastion path validation plan.
-- Failure condition for unreachable Bastion, missing route, blocked SSH, or invalid inventory entry.
+- Placeholder control-plane-to-bastion and bastion-to-zone paths.
+- Required target aliases and symbolic address tokens.
+- Bastion-only administrative access policy.
+- Direct public SSH denial, key authentication requirement, password-login denial, and root-login denial statements.
+- Local checks for numeric IPs, key paths, credential assignments, account identifiers, and active external commands.
+- Generated local log and Markdown summary evidence.
 
 ## Excluded
 
-- Real Ansible automation implementation.
-- SSH hardening implementation.
-- SSH key generation or storage.
-- Real public IPs, private IPs, credentials, SSH private keys, public cloud account IDs, subscription IDs, tenant IDs, provider-specific secrets, tfstate, kubeconfig files, or account-specific files.
-- Live host connectivity checks.
-- Terraform, Kubernetes, monitoring, ML, backup, or cloud provisioning logic.
+- Real host existence, connectivity, routing, port, or SSH validation.
+- Ansible execution, ping, facts, inventory connection, or playbooks.
+- Private keys, authorized-key content, usernames, passwords, credentials, or real addresses.
+- Cloud provider, Kubernetes, OpenStack, EVE-NG, or network queries.
+- Multi-cloud inventory validation, which belongs to S007.
+- DNS and hostname resolution, which belongs to S009.
+- SSH key, password-denial, and root-denial enforcement, which belong to S011-S013.
+- Security-group least-privilege validation, which belongs to S014-S016.
 
 ## Assumptions
 
-- All addresses and hostnames use placeholders such as `<bastion-ip>`, `<db-primary-ip>`, `<aws-app-node-ip>`, `<azure-app-node-ip>`, and `<openstack-app-node-ip>`.
-- SSH hardening belongs to L2 scenarios and is not implemented here.
-- Future reachability execution requires explicit approval before connecting to any real host.
+- Paths describe intended administrative trust boundaries only.
+- Placeholder targets do not assert that instances, routes, or policies exist.

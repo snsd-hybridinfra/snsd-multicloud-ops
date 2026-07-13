@@ -1,17 +1,13 @@
 # Rollback Plan
 
-## Stop Condition
+S008 performs no remote action and requires no infrastructure rollback.
 
-Stop immediately if reachability validation exposes real IP addresses, credentials, SSH private keys, provider account values, kubeconfig content, tfstate, or attempts SSH hardening implementation.
+If unsafe content is discovered:
 
-## Rollback Steps
+1. Stop validation.
+2. Remove only the unsafe artifact after confirming it belongs to this scenario change.
+3. Restore symbolic access paths and angle-bracket placeholders.
+4. Re-run the local validator and both repository QA scripts.
+5. Record unresolved issues as `BLOCKED` or `FAIL` without reproducing sensitive content.
 
-1. Stop validation activity.
-2. Remove unsafe evidence content.
-3. Replace sensitive values with placeholders such as `<bastion-ip>`, `<db-primary-ip>`, `<aws-app-node-ip>`, `<azure-app-node-ip>`, or `<openstack-app-node-ip>`.
-4. Mark affected checks as `BLOCKED` or `FAIL` in `validation.md`.
-5. Record the blocked condition in the implementation log if scenario progress is affected.
-
-## Recovery Validation
-
-Confirm S008 remains reachability design documentation only, with placeholder-only bastion paths and no real Ansible automation, SSH hardening, credentials, private keys, public IPs, or account-specific values added.
+Generated S008 log and summary files may be regenerated safely.

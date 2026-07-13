@@ -6,34 +6,33 @@
 | Scenario Name | Bastion Reachability Validation |
 | Level | L1 Foundation Validation |
 | Category | Foundation |
-| Primary Domain | Bastion access path readiness |
-| Related Components | Management Zone, Bastion Zone, On-Prem Internal Server Zone, On-Prem Monitoring Zone, AWS Service Zone, Azure Service Zone, OpenStack Service Zone |
+| Primary Domain | Repository-side bastion reachability and SSH policy model |
+| Related Components | Control plane, bastion, internal zones, cloud service nodes |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S008-bastion-reachability-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the bastion reachability model used to access on-prem and multi-cloud service nodes in the SNSD Multi-Cloud Ops project.
+Validate that bastion-mediated administrative paths and baseline SSH access-policy statements are documented safely with placeholders only.
 
 ## Scope Summary
 
-This scenario validates reachability design only. It does not implement real Ansible automation, create SSH keys, configure SSH hardening, or connect to real hosts.
+S008 checks required model files, access paths, target aliases, address tokens, access-policy statements, numeric-address safety, sensitive content, and absence of active connection commands.
 
-## Target Zones
+## Related Components
 
-- Management Zone
-- Bastion Zone
-- On-Prem Internal Server Zone
-- On-Prem Monitoring Zone
-- AWS Service Zone
-- Azure Service Zone
-- OpenStack Service Zone
+- `ansible/inventories/bastion-reachability-map.example.md`
+- `ansible/inventories/bastion-ssh-access-policy.example.md`
+- `tools/validate-bastion-reachability-model.ps1`
 
 ## Validation Summary
 
-Validation checks cover bastion inventory entry planning, Management-to-Bastion reachability, bastion SSH reachability, bastion-to-zone reachability for on-prem and cloud service nodes, SSH ProxyJump pattern validation, evidence collection through bastion, and failure conditions.
+All checks inspect repository text only. The validator does not execute SSH or Ansible, connect to hosts, read keys or credentials, test ports, or query cloud, Kubernetes, OpenStack, or EVE-NG systems.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L1-foundation/S008-bastion-reachability-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
+- `logs/bastion-reachability-validation.log`
+- `configs/bastion-reachability-summary.md`
+- `commands.md`
+- `validation.md`

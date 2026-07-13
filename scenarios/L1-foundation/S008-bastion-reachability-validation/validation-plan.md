@@ -2,18 +2,20 @@
 
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
-| V001 | Bastion inventory entry validation plan | Review bastion inventory placeholder entry. | Bastion entry is documented with placeholder hostname and IP only. | `commands.md`, `configs/bastion-reachability-path-summary.md`, `validation.md` |
-| V002 | Management to Bastion ping or TCP reachability plan | Document planned ping or TCP check from Management Zone to `<bastion-ip>`. | Management-to-Bastion reachability method is defined. | `commands.md`, `logs/bastion-reachability-validation.log`, `validation.md` |
-| V003 | Bastion SSH reachability plan using placeholder command | Document placeholder SSH check to `<bastion-host>`. | Bastion SSH reachability command pattern is defined without credentials or keys. | `commands.md`, `configs/ssh-jump-pattern-summary.md`, `validation.md` |
-| V004 | Bastion to On-Prem DB node reachability plan | Document reachability from `<bastion-host>` to `<db-primary-ip>`. | Bastion-to-DB reachability method is defined. | `commands.md`, `logs/bastion-reachability-validation.log`, `validation.md` |
-| V005 | Bastion to Monitoring node reachability plan | Document reachability from `<bastion-host>` to `<monitoring-node-ip>`. | Bastion-to-monitoring reachability method is defined. | `commands.md`, `logs/bastion-reachability-validation.log`, `validation.md` |
-| V006 | Bastion to AWS service node reachability plan | Document reachability from `<bastion-host>` to `<aws-app-node-ip>`. | Bastion-to-AWS reachability method is defined. | `commands.md`, `logs/bastion-reachability-validation.log`, `validation.md` |
-| V007 | Bastion to Azure service node reachability plan | Document reachability from `<bastion-host>` to `<azure-app-node-ip>`. | Bastion-to-Azure reachability method is defined. | `commands.md`, `logs/bastion-reachability-validation.log`, `validation.md` |
-| V008 | Bastion to OpenStack service node reachability plan | Document reachability from `<bastion-host>` to `<openstack-app-node-ip>`. | Bastion-to-OpenStack reachability method is defined. | `commands.md`, `logs/bastion-reachability-validation.log`, `validation.md` |
-| V009 | SSH ProxyJump command pattern validation plan | Review `ssh -J <bastion-user>@<bastion-host> <target-user>@<target-host>` pattern. | ProxyJump pattern is documented without real users, hosts, or keys. | `commands.md`, `configs/ssh-jump-pattern-summary.md`, `validation.md` |
-| V010 | Evidence collection through Bastion path validation plan | Document how evidence would be collected through bastion path. | Evidence path is defined without real host access. | `configs/bastion-reachability-path-summary.md`, `screenshots/bastion-path-diagram.png`, `validation.md` |
-| V011 | Unreachable Bastion, missing route, blocked SSH, or invalid inventory entry failure condition | Define explicit failure criteria. | Reachability failures produce `FAIL` or `BLOCKED` status. | `validation.md` |
+| V001 | Reachability map file | Test the map path. | Map exists. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V002 | SSH access policy file | Test the policy path. | Policy exists. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V003 | Required access paths | Search for seven exact symbolic paths. | Every path exists. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V004 | Required targets | Search for eight target aliases. | Every target exists. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V005 | Required address placeholders | Search for eight address tokens. | Every token exists. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V006 | Bastion-only administration | Check access-policy wording. | Bastion-only model is documented. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V007 | Direct public SSH denial | Check access-policy wording. | Direct public SSH is denied. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V008 | SSH key authentication policy | Check access-policy wording. | Key authentication is required. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V009 | Password login denial policy | Check access-policy wording. | Password login is denied. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V010 | Root login denial policy | Check access-policy wording. | Root login is denied. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V011 | Numeric IP safety | Scan both model files. | No numeric IP exists. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V012 | Sensitive and account content | Scan for assignments, key paths, access keys, account IDs, UUIDs, and tokens. | No forbidden content exists. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
+| V013 | Execution safety boundary | Scan validator source for active connection commands. | No prohibited command exists. | `logs/bastion-reachability-validation.log`, `configs/bastion-reachability-summary.md` |
 
 ## Review Notes
 
-Every validation item must map to evidence. SSH hardening is explicitly excluded from S008 and belongs to L2 scenarios.
+All checks are required and any failure produces a non-zero exit.

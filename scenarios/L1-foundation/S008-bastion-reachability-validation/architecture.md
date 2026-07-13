@@ -1,25 +1,16 @@
 # Architecture
 
-## Relevant Components
+## Repository Components
 
-- Management Zone: administrative source represented by `<management-node>`.
-- Bastion Zone: controlled entry point represented by `<bastion-host>` and `<bastion-ip>`.
-- On-Prem Internal Server Zone: internal service nodes represented by `<db-primary-ip>` and related placeholders.
-- On-Prem Monitoring Zone: monitoring nodes represented by `<monitoring-node-ip>`.
-- AWS Service Zone: AWS service nodes represented by `<aws-app-node-ip>`.
-- Azure Service Zone: Azure service nodes represented by `<azure-app-node-ip>`.
-- OpenStack Service Zone: OpenStack service nodes represented by `<openstack-app-node-ip>`.
-- Evidence collection path: controlled route from operator to target through the bastion placeholder.
+- `bastion-reachability-map.example.md`: symbolic source, bastion, zone, target, and address relationships.
+- `bastion-ssh-access-policy.example.md`: expected administrative access controls.
+- `validate-bastion-reachability-model.ps1`: text-only completeness and safety validation.
+- S008 evidence directory: generated validation log and summary.
 
-## Logical Flow
+## Reachability Model
 
-1. Management Zone reaches the Bastion Zone.
-2. Bastion reaches on-prem internal DB nodes.
-3. Bastion reaches on-prem monitoring nodes.
-4. Bastion reaches AWS, Azure, and OpenStack service node placeholders.
-5. SSH ProxyJump pattern describes future access without exposing credentials or keys.
-6. Evidence collection paths follow the same bastion access model.
+The control plane reaches administrative targets only through `bastion-host-01`. The model separates internal servers, monitoring, databases, Kubernetes nodes, on-premises network devices, and cloud service nodes while retaining placeholder-only addresses.
 
-## Out-of-Scope Components
+## Validation Flow
 
-SSH hardening, firewall rule implementation, real host login, private key management, Ansible playbooks, and provider-specific secrets are not part of S008.
+The validator reads two Markdown artifacts, checks required paths and policy statements, scans for unsafe values, checks its own source for prohibited connection commands, and writes evidence. No route, DNS, security rule, SSH session, or host is inspected.

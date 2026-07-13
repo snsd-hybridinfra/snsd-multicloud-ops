@@ -1,17 +1,7 @@
 # Objective
 
-Validate the planned bastion reachability model for accessing on-prem and multi-cloud service nodes.
+Validate a repository-side bastion reachability model covering control-plane entry, internal-server, monitoring, database, Kubernetes, on-premises network-device, and cloud service-node access paths.
 
-The scenario defines validation for:
+Success means all required placeholder paths and SSH-policy controls are documented and all safety checks pass without asserting that a host exists or attempting a connection.
 
-- Management Zone to Bastion Zone reachability
-- Bastion to On-Prem Internal Server Zone reachability
-- Bastion to On-Prem Monitoring Zone reachability
-- Bastion to AWS service node reachability
-- Bastion to Azure service node reachability
-- Bastion to OpenStack service node reachability
-- SSH jump path validation plan
-- Reachability failure condition definition
-- Evidence collection path validation
-
-Success means all bastion access paths are documented with placeholders, separated by zone and provider, and mapped to evidence without implementing SSH hardening or adding real credentials, private keys, public IPs, or account-specific values.
+The inventory model is handled in S007, DNS in S009, SSH controls in S011-S013, and cloud security-group controls in S014-S016.
