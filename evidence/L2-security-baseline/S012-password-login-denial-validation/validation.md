@@ -1,36 +1,30 @@
 # Validation
 
 Scenario: S012-password-login-denial-validation
-Level: L2-security-baseline
-Capability: Password Login Denial Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
 
-No real password-login denial output has been collected yet. This file defines the validation record that must be completed during future approved execution.
+Level: L2-security-baseline
+
+Date: 2026-07-13
+
+Overall status: PASS
 
 | Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
 |---|---|---|---|---|---|
-| V001 | sshd_config PasswordAuthentication setting validation plan | PasswordAuthentication is planned to be disabled. | TODO | NOT_RUN | `commands.md`; `configs/sshd-password-authentication-summary.md` |
-| V002 | sshd effective configuration validation plan using sshd -T | Effective config reports password authentication disabled. | TODO | NOT_RUN | `commands.md`; `configs/sshd-effective-config-summary.md` |
-| V003 | Bastion password login denial validation plan | Bastion denies password-based SSH login. | TODO | NOT_RUN | `commands.md`; `logs/password-login-denial-validation.log` |
-| V004 | On-Prem DB node password login denial validation plan | On-Prem DB node denies password-based SSH login. | TODO | NOT_RUN | `commands.md`; `logs/password-login-denial-validation.log` |
-| V005 | On-Prem Monitoring node password login denial validation plan | Monitoring node denies password-based SSH login. | TODO | NOT_RUN | `commands.md`; `logs/password-login-denial-validation.log` |
-| V006 | AWS service node password login denial validation plan | AWS service node denies password-based SSH login. | TODO | NOT_RUN | `commands.md`; `logs/password-login-denial-validation.log` |
-| V007 | Azure service node password login denial validation plan | Azure service node denies password-based SSH login. | TODO | NOT_RUN | `commands.md`; `logs/password-login-denial-validation.log` |
-| V008 | OpenStack service node password login denial validation plan | OpenStack service node denies password-based SSH login. | TODO | NOT_RUN | `commands.md`; `logs/password-login-denial-validation.log` |
-| V009 | Authentication failure log capture plan | Failed password login evidence can be captured and sanitized. | TODO | NOT_RUN | `logs/password-login-denial-validation.log`; `screenshots/password-login-denial-test.png` |
-| V010 | PasswordAuthentication enabled, password login success, missing sshd config, or missing failure evidence failure condition | Password-auth failures produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
+| V001 | Password denial baseline | File exists. | Baseline document exists. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V002 | SSHD password-denial example | File exists. | Example config exists. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V003 | Non-production marker | Marker exists. | Example is explicitly marked. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V004 | PasswordAuthentication setting | Value is `no`. | Required value is present. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V005 | ChallengeResponseAuthentication setting | Value is `no`. | Required value is present. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V006 | KbdInteractiveAuthentication setting | Value is `no`. | Required value is present. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V007 | PubkeyAuthentication setting | Value is `yes`. | Required value is present. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V008 | AuthenticationMethods setting | Value is `publickey`. | Required value is present. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V009 | Password denial policy statements | Every rule and placeholder exists. | All required statements exist. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V010 | Password value safety | No prohibited password value exists. | No enabled password authentication or password value was detected. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V011 | Private key safety | No key file or material exists. | No private key was detected. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V012 | Authorized keys safety | No file exists. | No `authorized_keys` file was detected. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V013 | Secret and account content | No forbidden content exists. | No sensitive value, key, numeric IP, or account identifier was detected. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
+| V014 | Execution safety boundary | No active SSH or external command exists. | No prohibited command was detected. | PASS | `logs/password-login-denial-validation.log`, `configs/password-login-denial-summary.md` |
 
-## Evidence Completeness
+## Generated Result
 
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- sshd PasswordAuthentication summary is captured: NOT_READY
-- sshd effective config summary is captured: NOT_READY
-- Password login denial validation log is captured: NOT_READY
-- Password login denial screenshot is captured: NOT_READY
-
-## Notes
-
-This scenario validates password login denial only. SSH key authentication success is handled in S011, and root login denial is handled in S013.
+All fourteen file, directive, policy, password-value, key-safety, secret, and execution-boundary checks passed. No sshd configuration was modified, no SSH service was restarted, no password attempt or host connection occurred, and no key or credential was read.

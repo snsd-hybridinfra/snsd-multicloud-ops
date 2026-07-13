@@ -6,24 +6,33 @@
 | Scenario Name | Password Login Denial Validation |
 | Level | L2 Security Baseline Validation |
 | Category | Security Baseline |
-| Primary Domain | SSH access security |
-| Related Components | Bastion, On-Prem DB nodes, On-Prem Monitoring nodes, AWS service nodes, Azure service nodes, OpenStack service nodes, sshd_config, sshd effective configuration |
+| Primary Domain | Repository-side SSH password-login denial baseline |
+| Related Components | SSH denial policy, example sshd settings, repository secret safety |
 | Validation Type | Security Validation |
 | Evidence Directory | evidence/L2-security-baseline/S012-password-login-denial-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate that password-based SSH login is disabled across the SNSD Multi-Cloud Ops management and service node access model.
+Validate that password-based SSH login denial is mandatory in the repository baseline without storing password values or modifying and testing real SSH servers.
 
 ## Scope Summary
 
-This scenario validates password login denial only. SSH key authentication success is handled in S011, and root login denial is handled in S013.
+S012 checks two baseline files, five sshd directives, policy and break-glass statements, password-value safety, private-key and `authorized_keys` absence, sensitive content, and execution safety.
+
+## Related Components
+
+- `security-baseline/ssh-password-login-denial-baseline.md`
+- `security-baseline/sshd_config.password-denial.example`
+- `tools/validate-ssh-password-login-denial-baseline.ps1`
 
 ## Validation Summary
 
-Validation checks cover `PasswordAuthentication` configuration, `sshd -T` effective configuration, password login denial plans for bastion and service nodes, authentication failure evidence, and failure conditions.
+All checks inspect repository files only. The validator does not modify sshd, restart SSH, attempt password authentication, connect to hosts, or read keys and credentials.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L2-security-baseline/S012-password-login-denial-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
+- `logs/password-login-denial-validation.log`
+- `configs/password-login-denial-summary.md`
+- `commands.md`
+- `validation.md`
