@@ -1,17 +1,20 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
+| Check ID | Validation Item | Evidence File | Required |
 |---|---|---|---|
-| grafana.ini anonymous access setting validation plan | `commands.md`; `configs/grafana-anonymous-access-summary.md`; `validation.md` | command plan, access summary, validation record | yes |
-| Grafana effective configuration validation plan | `commands.md`; `configs/grafana-security-policy.md`; `validation.md` | command plan, security policy, validation record | yes |
-| Unauthenticated dashboard access denial validation plan | `commands.md`; `logs/grafana-access-validation.log`; `screenshots/grafana-anonymous-access-denied.png`; `validation.md` | command plan, validation log, screenshot reference, validation record | yes |
-| Login page requirement validation plan | `commands.md`; `screenshots/grafana-login-required.png`; `validation.md` | command plan, screenshot reference, validation record | yes |
-| Anonymous API access denial validation plan | `commands.md`; `logs/grafana-access-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Grafana admin password not stored in repository validation plan | `commands.md`; `configs/grafana-security-policy.md`; `validation.md` | command plan, security policy, validation record | yes |
-| Monitoring Zone access boundary validation plan | `commands.md`; `configs/grafana-anonymous-access-summary.md`; `validation.md` | command plan, access summary, validation record | yes |
-| Grafana access log capture plan | `commands.md`; `logs/grafana-access-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Failure condition for anonymous access enabled, dashboard public exposure, stored admin password, or unexplained access success | `validation.md` | failure criteria and status record | yes |
+| V001 | Anonymous access denial baseline | `logs/grafana-anonymous-access-denial-validation.log`; `configs/grafana-anonymous-access-denial-summary.md` | yes |
+| V002 | Access-control rule matrix | same generated evidence | yes |
+| V003 | Grafana config example | same generated evidence | yes |
+| V004 | Anonymous configuration section | same generated evidence | yes |
+| V005 | Anonymous access disabled | same generated evidence | yes |
+| V006 | Anonymous enablement denial | same generated evidence | yes |
+| V007 | Baseline denial documentation | same generated evidence | yes |
+| V008 | Access-control matrix completeness | same generated evidence | yes |
+| V009 | Admin password storage safety | same generated evidence | yes |
+| V010 | Grafana API token safety | same generated evidence | yes |
+| V011 | Datasource credential safety | same generated evidence | yes |
+| V012 | URL, address, and account safety | same generated evidence | yes |
+| V013 | Generic secret safety | same generated evidence | yes |
+| V014 | Execution safety boundary | same generated evidence | yes |
 
-## Evidence Notes
-
-No real Grafana output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+`commands.md` documents execution and `validation.md` records final results. The generated log is ignored; the sanitized summary is tracked.

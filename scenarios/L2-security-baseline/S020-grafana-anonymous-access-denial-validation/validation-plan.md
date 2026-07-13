@@ -1,17 +1,20 @@
 # Validation Plan
 
-| Check ID | Validation Item | Method | Expected Result | Evidence |
-|---|---|---|---|---|
-| V001 | grafana.ini anonymous access setting validation plan | Document planned review of the anonymous access setting. | Anonymous access is planned as disabled. | `commands.md`, `configs/grafana-anonymous-access-summary.md`, `validation.md` |
-| V002 | Grafana effective configuration validation plan | Document planned effective configuration review. | Effective Grafana behavior requires authentication. | `commands.md`, `configs/grafana-security-policy.md`, `validation.md` |
-| V003 | Unauthenticated dashboard access denial validation plan | Plan unauthenticated request to `<grafana-endpoint>` dashboard path. | Dashboard access is denied or redirected to login. | `commands.md`, `logs/grafana-access-validation.log`, `screenshots/grafana-anonymous-access-denied.png`, `validation.md` |
-| V004 | Login page requirement validation plan | Plan unauthenticated access check for login requirement. | Grafana login page or authentication challenge is required. | `commands.md`, `screenshots/grafana-login-required.png`, `validation.md` |
-| V005 | Anonymous API access denial validation plan | Plan unauthenticated API request to Grafana API placeholder. | Anonymous API access is denied. | `commands.md`, `logs/grafana-access-validation.log`, `validation.md` |
-| V006 | Grafana admin password not stored in repository validation plan | Review repository for stored Grafana admin password patterns. | No Grafana admin password is stored in repository files. | `commands.md`, `configs/grafana-security-policy.md`, `validation.md` |
-| V007 | Monitoring Zone access boundary validation plan | Review placeholder boundary using `<monitoring-zone-cidr>`. | Grafana access boundary is documented without real public IPs. | `commands.md`, `configs/grafana-anonymous-access-summary.md`, `validation.md` |
-| V008 | Grafana access log capture plan | Plan sanitized access log capture for anonymous access attempts. | Access logs can support denial evidence without sensitive values. | `commands.md`, `logs/grafana-access-validation.log`, `validation.md` |
-| V009 | Failure condition for anonymous access enabled, dashboard public exposure, stored admin password, or unexplained access success | Evaluate findings against explicit failure conditions. | Unsafe access patterns produce `FAIL` or `BLOCKED` status. | `validation.md` |
+| Check ID | Validation Item | Expected Result | Evidence |
+|---|---|---|---|
+| V001 | Anonymous access denial baseline | Baseline exists. | generated log and summary |
+| V002 | Access-control rule matrix | Matrix exists. | generated log and summary |
+| V003 | Grafana config example | Marked example exists. | generated log and summary |
+| V004 | Anonymous configuration section | Section exists. | generated log and summary |
+| V005 | Anonymous access disabled | `enabled = false` in section. | generated log and summary |
+| V006 | Anonymous enablement denial | No true setting or environment override. | generated log and summary |
+| V007 | Baseline denial documentation | Required denial and credential rules exist. | generated log and summary |
+| V008 | Access-control matrix completeness | Eight controls exist. | generated log and summary |
+| V009 | Admin password storage safety | External placeholder only. | generated log and summary |
+| V010 | Grafana API token safety | No token-like value. | generated log and summary |
+| V011 | Datasource credential safety | No credential-like value. | generated log and summary |
+| V012 | URL, address, and account safety | No real location or identifier. | generated log and summary |
+| V013 | Generic secret safety | No private material or secret assignment. | generated log and summary |
+| V014 | Execution safety boundary | No Grafana, container, curl, host, or network command. | generated log and summary |
 
-## Review Notes
-
-Every validation item must map to evidence. This scenario validates anonymous access denial only; Grafana dashboard validation is handled in S029 and Prometheus target discovery is handled in S028.
+Every check maps by ID to `logs/grafana-anonymous-access-denial-validation.log` and `configs/grafana-anonymous-access-denial-summary.md`.

@@ -1,20 +1,12 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Required Repository Inputs
 
-- S001-control-plane-toolchain-validation: confirms local command and evidence planning.
-- S008-bastion-reachability-validation: defines management access assumptions.
-- S018-kubernetes-rbac-validation: defines access separation assumptions where Grafana is deployed in Kubernetes later.
-
-## Required Tools or References
-
-- Grafana configuration review capability, when future execution is approved.
-- HTTP request planning capability for unauthenticated endpoint checks.
-- Evidence model from `docs/evidence-model.md`.
-- Placeholder naming rules from `docs/naming-rules.md`.
+- PowerShell capable of running repository validators.
+- `security-baseline/grafana-anonymous-access-denial-baseline.md` and its matrix.
+- `observability/grafana/grafana.ini.anonymous-denial.example`.
+- Writable S020 evidence `logs/` and `configs/` directories.
 
 ## Safety Preconditions
 
-- Do not add Grafana admin passwords, credentials, secrets, private keys, tfstate, kubeconfig content, or account-specific values.
-- Do not record real public IPs.
-- Do not implement Grafana or TLS configuration as part of this scenario skeleton.
+No real Grafana passwords, API tokens, dashboard or datasource credentials, URLs, public addresses, private keys, secrets, state, real tfvars, kubeconfig, clouds.yaml, openrc, cloud identity values, or account-specific content may be introduced.

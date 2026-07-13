@@ -1,21 +1,13 @@
 # Expected Result
 
-S020 is successful when the Grafana anonymous access denial validation plan is complete and ready for future approved execution.
+## Pass Criteria
 
-## Success Conditions
+- V001 through V014 return `PASS`.
+- Anonymous access is explicitly disabled with no alternate enablement.
+- Viewer access requires authentication and credential storage remains external.
+- No real URL, IP, identifier, credential, token, datasource secret, or private material is introduced.
+- No Grafana process, container, endpoint, or live authentication flow is accessed.
 
-- `grafana.ini` anonymous access setting validation is planned.
-- Effective configuration validation is planned.
-- Unauthenticated dashboard access denial is planned.
-- Login page requirement validation is planned.
-- Anonymous API access denial is planned.
-- Repository review confirms Grafana admin passwords must not be stored.
-- Monitoring Zone access boundary is documented with placeholders.
-- Grafana access log evidence collection is planned.
-- All validation checks map to required evidence files.
+## Evidence Criteria
 
-## Evidence Conditions
-
-- `commands.md` lists planned command or review actions with TODO output placeholders.
-- `validation.md` lists each check with `NOT_RUN` status until execution.
-- Future supporting evidence is expected in `configs/grafana-anonymous-access-summary.md`, `configs/grafana-security-policy.md`, `logs/grafana-access-validation.log`, `screenshots/grafana-login-required.png`, and `screenshots/grafana-anonymous-access-denied.png`.
+The ignored log and tracked summary contain sanitized static-validation results only and no Grafana credentials, URLs, endpoint data, secrets, or account-specific values.

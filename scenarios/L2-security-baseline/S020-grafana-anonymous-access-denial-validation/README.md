@@ -6,24 +6,23 @@
 | Scenario Name | Grafana Anonymous Access Denial Validation |
 | Level | L2 Security Baseline Validation |
 | Category | Security Baseline |
-| Primary Domain | Observability access security |
-| Related Components | Grafana, Monitoring Zone, dashboard endpoint, access logs, Grafana configuration |
-| Validation Type | Security Validation |
-| Evidence Directory | evidence/L2-security-baseline/S020-grafana-anonymous-access-denial-validation/ |
-| Status | PLANNED |
+| Related Components | Grafana access policy, control matrix, non-production INI example, local validator |
+| Validation Type | Safe local repository validation |
+| Evidence Directory | `evidence/L2-security-baseline/S020-grafana-anonymous-access-denial-validation/` |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate that Grafana anonymous access is disabled for the SNSD Multi-Cloud Ops observability layer.
+Validate mandatory Grafana anonymous-access denial without connecting to Grafana, starting services, validating live login, or storing credentials.
 
 ## Scope Summary
 
-This scenario validates Grafana anonymous access denial only. It covers anonymous access configuration review, login requirement validation, unauthenticated dashboard denial, anonymous API denial, admin credential handling rules, Monitoring Zone access boundary placeholders, configuration evidence, and access log evidence.
+S020 inspects a local policy, matrix, and non-production INI example only. It verifies the anonymous section, disabled value, credential prohibitions, and safety boundaries.
 
 ## Validation Summary
 
-Validation checks confirm that anonymous access is disabled, unauthenticated users are required to log in, dashboards and APIs are not publicly accessible, admin passwords are not stored in the repository, and unexplained access success is treated as a failure.
+Fourteen checks validate required artifacts, anonymous denial, environment override absence, Viewer policy, matrix controls, password/token/datasource safety, URLs/addresses/identifiers, secrets, and execution boundaries.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L2-security-baseline/S020-grafana-anonymous-access-denial-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+The validator writes an ignored execution log and a tracked sanitized Markdown summary under the S020 evidence directory.
