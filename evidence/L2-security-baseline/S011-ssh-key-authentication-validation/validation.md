@@ -1,36 +1,30 @@
 # Validation
 
 Scenario: S011-ssh-key-authentication-validation
-Level: L2-security-baseline
-Capability: SSH Key Authentication Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
 
-No real SSH authentication output has been collected yet. This file defines the validation record that must be completed during future approved execution.
+Level: L2-security-baseline
+
+Date: 2026-07-13
+
+Overall status: PASS
 
 | Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
 |---|---|---|---|---|---|
-| V001 | SSH private key permission validation plan | Private key permission expectations are defined without storing the key. | TODO | NOT_RUN | `commands.md`; `configs/ssh-key-authentication-plan.md` |
-| V002 | SSH public key placement validation plan | Public key placement validation method is defined without real key content. | TODO | NOT_RUN | `configs/ssh-key-authentication-plan.md` |
-| V003 | Control Plane to Bastion key authentication plan | Control Plane-to-Bastion key authentication method is defined. | TODO | NOT_RUN | `commands.md`; `logs/ssh-key-authentication-validation.log` |
-| V004 | Bastion to On-Prem DB node key authentication plan | Bastion-to-DB key authentication method is defined. | TODO | NOT_RUN | `commands.md`; `logs/ssh-key-authentication-validation.log` |
-| V005 | Bastion to Monitoring node key authentication plan | Bastion-to-monitoring key authentication method is defined. | TODO | NOT_RUN | `commands.md`; `logs/ssh-key-authentication-validation.log` |
-| V006 | Bastion to AWS service node key authentication plan | Bastion-to-AWS key authentication method is defined. | TODO | NOT_RUN | `commands.md`; `logs/ssh-key-authentication-validation.log` |
-| V007 | Bastion to Azure service node key authentication plan | Bastion-to-Azure key authentication method is defined. | TODO | NOT_RUN | `commands.md`; `logs/ssh-key-authentication-validation.log` |
-| V008 | Bastion to OpenStack service node key authentication plan | Bastion-to-OpenStack key authentication method is defined. | TODO | NOT_RUN | `commands.md`; `logs/ssh-key-authentication-validation.log` |
-| V009 | SSH ProxyJump command pattern validation plan | ProxyJump pattern is documented without real users, hosts, or keys. | TODO | NOT_RUN | `commands.md`; `configs/ssh-proxyjump-pattern-summary.md` |
-| V010 | Missing key, wrong key permission, missing authorized_keys entry, or unreachable target failure condition | Key-authentication failures produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
+| V001 | SSH baseline document | File exists. | Baseline document exists. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V002 | SSHD example config | File exists. | Example config exists. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V003 | Non-production marker | Marker exists. | Example is explicitly marked. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V004 | PubkeyAuthentication setting | Value is `yes`. | Required value is present. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V005 | PasswordAuthentication setting | Value is `no`. | Required value is present. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V006 | PermitRootLogin setting | Value is `no`. | Required value is present. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V007 | ChallengeResponseAuthentication setting | Value is `no`. | Required value is present. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V008 | KbdInteractiveAuthentication setting | Value is `no`. | Required value is present. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V009 | AuthorizedKeysFile setting | Placeholder path exists. | Required directive is present. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V010 | Baseline policy statements | Every rule and placeholder exists. | All required statements exist. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V011 | Private key safety | No key file or material exists. | No private key was detected. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V012 | Authorized keys safety | No file exists. | No `authorized_keys` file was detected. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V013 | Secret and account content | No forbidden content exists. | No sensitive value, key, numeric IP, or account identifier was detected. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
+| V014 | Execution safety boundary | No active SSH or external command exists. | No prohibited command was detected. | PASS | `logs/ssh-key-authentication-validation.log`, `configs/ssh-key-authentication-summary.md` |
 
-## Evidence Completeness
+## Generated Result
 
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- SSH key authentication plan is captured: NOT_READY
-- SSH ProxyJump pattern summary is captured: NOT_READY
-- SSH key authentication validation log is captured: NOT_READY
-- SSH key authentication screenshot is captured: NOT_READY
-
-## Notes
-
-This scenario validates SSH key authentication only. Password login denial is handled in S012, and root login denial is handled in S013.
+All fourteen file, directive, policy, key-safety, secret, and execution-boundary checks passed. No sshd configuration was modified, no SSH service was restarted, no host connection occurred, and no key or credential was read.

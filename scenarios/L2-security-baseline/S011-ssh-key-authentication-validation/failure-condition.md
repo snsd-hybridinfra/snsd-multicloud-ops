@@ -1,19 +1,11 @@
 # Failure Condition
 
-## Failure Conditions
+## Critical Failure Conditions
 
-- SSH private key permission expectations are undefined.
-- SSH public key placement validation is undefined.
-- Control Plane to Bastion key authentication path is undefined.
-- Bastion to on-prem or cloud target key authentication path is undefined.
-- ProxyJump command pattern includes real users, hosts, private keys, credentials, or public IPs.
-- A real private key, credential, tfstate file, kubeconfig file, cloud account value, subscription ID, tenant ID, or account-specific value is added.
-- Password login denial or root login denial is implemented in this scenario.
+- A required baseline file, setting, policy statement, or placeholder is missing.
+- A private-key filename, private-key material, or `authorized_keys` file is present.
+- A password value, key material, credential assignment, numeric IP, account ID, subscription ID, tenant ID, UUID, or token value is detected.
+- The validator contains or executes SSH configuration changes, restart, connection, network, Ansible, cloud, or Kubernetes commands.
+- Documentation implies the example proves live sshd enforcement.
 
-## Evidence of Failure
-
-Record failed or blocked checks in `validation.md`, with supporting TODO references to `configs/ssh-key-authentication-plan.md`, `configs/ssh-proxyjump-pattern-summary.md`, or `logs/ssh-key-authentication-validation.log`.
-
-## Follow-Up Requirement
-
-Create a follow-up task to correct SSH key path planning, public key placement documentation, ProxyJump syntax, or target reachability assumptions before future execution proceeds.
+Any critical failure produces a non-zero exit and must be documented without exposing unsafe content.

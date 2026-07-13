@@ -6,24 +6,33 @@
 | Scenario Name | SSH Key Authentication Validation |
 | Level | L2 Security Baseline Validation |
 | Category | Security Baseline |
-| Primary Domain | SSH access security |
-| Related Components | Control Plane, Bastion, On-Prem DB nodes, On-Prem Monitoring nodes, AWS service nodes, Azure service nodes, OpenStack service nodes, SSH ProxyJump |
+| Primary Domain | Repository-side SSH key-authentication baseline |
+| Related Components | SSH policy, example sshd settings, repository key safety |
 | Validation Type | Security Validation |
 | Evidence Directory | evidence/L2-security-baseline/S011-ssh-key-authentication-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate SSH key-based authentication for the SNSD Multi-Cloud Ops management and operations access model.
+Validate that SSH key authentication is the documented administrative baseline and that required example settings exist without storing keys, passwords, users, or host credentials.
 
 ## Scope Summary
 
-This scenario validates SSH key authentication design only. It does not create real SSH private keys, store credentials, test password denial, or test root login denial.
+S011 checks baseline files, six sshd settings, policy statements and placeholders, repository private-key and `authorized_keys` absence, sensitive content, and execution safety.
+
+## Related Components
+
+- `security-baseline/ssh-key-authentication-baseline.md`
+- `security-baseline/sshd_config.key-auth.example`
+- `tools/validate-ssh-key-authentication-baseline.ps1`
 
 ## Validation Summary
 
-Validation checks cover SSH private key permission planning, public key placement planning, Control Plane-to-Bastion authentication, Bastion-to-target authentication for on-prem and cloud service nodes, SSH ProxyJump pattern validation, and key-authentication failure conditions.
+All checks inspect repository files only. The validator does not modify sshd configuration, restart SSH, connect to hosts, or read private keys and credentials.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L2-security-baseline/S011-ssh-key-authentication-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
+- `logs/ssh-key-authentication-validation.log`
+- `configs/ssh-key-authentication-summary.md`
+- `commands.md`
+- `validation.md`

@@ -1,26 +1,16 @@
 # Architecture
 
-## Relevant Components
+## Repository Components
 
-- Control Plane: source host for management access.
-- Bastion: controlled SSH entry point represented by `<bastion-host>`.
-- On-Prem DB node: target represented by `<db-primary-node>`.
-- On-Prem Monitoring node: target represented by `<monitoring-node>`.
-- AWS service node: target represented by `<aws-service-node>`.
-- Azure service node: target represented by `<azure-service-node>`.
-- OpenStack service node: target represented by `<openstack-service-node>`.
-- SSH private key placeholder: `<ssh-private-key-path>`.
-- SSH public key placement: target `authorized_keys` planning only.
-- ProxyJump pattern: `ssh -J <bastion-user>@<bastion-host> <target-user>@<target-node>`.
+- `ssh-key-authentication-baseline.md`: administrative access and key-management rules.
+- `sshd_config.key-auth.example`: non-production example directives.
+- `validate-ssh-key-authentication-baseline.ps1`: local completeness, key-safety, secret, and execution-boundary checks.
+- S011 evidence directory: generated log and summary.
 
-## Logical Flow
+## Baseline Model
 
-1. Control Plane authenticates to Bastion using placeholder SSH key material.
-2. Bastion authenticates to on-prem DB and monitoring targets using placeholder SSH key paths.
-3. Bastion authenticates to AWS, Azure, and OpenStack service targets using placeholder SSH key paths.
-4. ProxyJump pattern defines future indirect access from Control Plane through Bastion.
-5. Evidence records commands and expected results without real key material.
+Administrative access uses public-key authentication through the bastion model. Password, root, challenge-response, and keyboard-interactive authentication are disabled in the example. Key contents, real users, and real paths remain outside the repository.
 
-## Out-of-Scope Components
+## Validation Flow
 
-Password authentication denial, root login denial, SSH hardening implementation beyond key-auth design, real private keys, real public IPs, and account-specific users are not part of S011.
+The validator reads the baseline files, verifies required settings and policy text, scans repository filenames and selected text for key material, checks for `authorized_keys`, and prevents active SSH-related commands. It does not inspect or change a running SSH service.

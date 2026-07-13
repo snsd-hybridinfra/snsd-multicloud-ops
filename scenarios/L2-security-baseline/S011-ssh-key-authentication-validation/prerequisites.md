@@ -1,20 +1,16 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Required Repository State
 
-- `S001-control-plane-toolchain-validation` is planned and identifies SSH-capable control plane readiness.
-- `S007-multi-cloud-inventory-validation` is planned and defines placeholder inventory groups.
-- `S008-bastion-reachability-validation` is planned and defines bastion reachability paths.
-- `S009-dns-hostname-resolution-validation` is planned and defines placeholder hostname mappings.
+- PowerShell can run the local validator.
+- The S011 scenario and evidence directories exist.
+- The security-baseline directory is readable.
 
-## Required Tools
+## Not Required
 
-- SSH client availability on the Control Plane.
-- Repository access for documenting evidence.
-- Future shell access to approved lab targets after explicit authorization.
+- SSH client/server access or a running sshd service.
+- Local administrator privileges.
+- A real host, username, password, public key, private key, or authorized-keys file.
+- Network, cloud, or bastion connectivity.
 
-## Required Access Assumptions
-
-- No real SSH private key is required for this skeleton.
-- No credentials, public IPs, tfstate, kubeconfig files, or account-specific values are required.
-- Future execution must use approved lab key material outside this repository.
+S008 supplies the preceding repository-side bastion access model.

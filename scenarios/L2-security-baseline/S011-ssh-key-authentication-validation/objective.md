@@ -1,17 +1,7 @@
 # Objective
 
-Validate the planned SSH key-based authentication model for management and operations access.
+Validate a safe SSH key-authentication baseline containing required public-key settings, prohibited password and root access references, bastion-only administration, key-storage prohibition, rotation, authorized-user placeholders, and evidence rules.
 
-The scenario defines validation for:
+Success means the local baseline and repository safety checks pass without installing configuration, authenticating, or storing key material.
 
-- Control Plane to Bastion SSH key authentication
-- Bastion to On-Prem DB node SSH key authentication
-- Bastion to On-Prem Monitoring node SSH key authentication
-- Bastion to AWS service node SSH key authentication
-- Bastion to Azure service node SSH key authentication
-- Bastion to OpenStack service node SSH key authentication
-- SSH ProxyJump pattern validation
-- SSH key permission validation plan
-- SSH public key placement validation plan
-
-Success means SSH key authentication is clearly documented with placeholder key paths, hosts, and users, while password-login denial remains in S012 and root-login denial remains in S013.
+Bastion reachability is handled in S008, live password and root denial validation in S012-S013, and cloud access controls in S014-S016.
