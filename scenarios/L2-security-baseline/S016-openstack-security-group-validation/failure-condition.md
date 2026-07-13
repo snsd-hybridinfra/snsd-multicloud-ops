@@ -1,22 +1,11 @@
 # Failure Condition
 
-S016 fails if the OpenStack Security Group model allows unsafe or undocumented access patterns.
+S016 fails if a required baseline, matrix, group placeholder, policy statement, or Terraform resource is absent; a dangerous port is public; the public-web exception is overbroad; or unsafe configuration, identity, secret, state, variable, backend, address, or active cloud command content is detected.
 
-## Failure Conditions
+## Critical Failure Behavior
 
-- OpenStack Security Group target cannot be identified by placeholder name or ID.
-- SSH ingress allows `0.0.0.0/0` or another unrestricted source.
-- DB port `3306` is exposed to public internet, provider network, or unrestricted sources.
-- Bastion-to-OpenStack SSH rule is missing when SSH administration is required.
-- Required HTTP or HTTPS service rule is missing or undocumented.
-- OpenStack App-to-On-Prem DB access is missing, overly broad, or not mapped to `<onprem-db-cidr>`.
-- Monitoring scrape access is missing, overly broad, or not mapped to `<monitoring-cidr>`.
-- Any all-protocol or all-ports ingress rule is accepted without an explicit failure.
-- Rule evidence cannot be captured or reviewed.
-- Evidence contains OpenStack credentials, openrc content, clouds.yaml content, private keys, tfstate, real public IPs, or account-specific values.
+Any failed check produces a non-zero exit. Missing or ambiguous evidence is not treated as successful validation.
 
-## Blocked Conditions
+## Safety Failure
 
-- Validation cannot proceed because no approved placeholder rule model exists.
-- Future read-only OpenStack CLI or Terraform plan output is unavailable.
-- Required evidence files are missing.
+Detection of OpenStack credentials, configuration files, identity values, private material, state, real tfvars, public addresses, or account-specific content requires removal and rerunning the scenario.

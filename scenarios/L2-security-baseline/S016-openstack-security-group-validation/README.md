@@ -6,24 +6,23 @@
 | Scenario Name | OpenStack Security Group Validation |
 | Level | L2 Security Baseline Validation |
 | Category | Security Baseline |
-| Primary Domain | OpenStack network security |
-| Related Components | OpenStack Private Cloud Service Zone, OpenStack App VM, Security Group, Bastion, On-Prem DB, monitoring targets |
-| Validation Type | Security Validation |
-| Evidence Directory | evidence/L2-security-baseline/S016-openstack-security-group-validation/ |
-| Status | PLANNED |
+| Related Components | OpenStack Security Group policy, rule matrix, Terraform placeholders, local validator |
+| Validation Type | Safe local repository validation |
+| Evidence Directory | `evidence/L2-security-baseline/S016-openstack-security-group-validation/` |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the OpenStack Security Group least privilege model for the SNSD Multi-Cloud Ops OpenStack Private Cloud Service Zone.
+Validate the OpenStack Security Group least-privilege baseline, rule matrix, Terraform placeholders, and repository safety without authenticating to OpenStack or modifying resources.
 
 ## Scope Summary
 
-This scenario validates OpenStack Security Group rule design only. It covers service VM ingress, service VM egress, bastion SSH access, HTTP/HTTPS service exposure placeholders, App VM to On-Prem DB placeholders, monitoring scrape placeholders, and denial of unrestricted SSH or DB access.
+S016 reads local files only. It does not query live Security Groups, run OpenStack CLI, run Terraform init/plan/apply, provision resources, validate provider credentials, or authenticate to any external service.
 
 ## Validation Summary
 
-Validation checks confirm that OpenStack Security Group rules are intentionally scoped, that SSH and DB access are not exposed broadly, and that rule evidence can be captured through Terraform plan output or OpenStack CLI review without adding credentials or account-specific values.
+Fourteen checks validate required policy artifacts, logical groups, Terraform resources, dangerous public ingress, public-web exceptions, egress justification, forbidden configuration files, sensitive content, backend absence, and execution safety.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L2-security-baseline/S016-openstack-security-group-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+The validator writes an ignored execution log and a tracked sanitized Markdown summary under the S016 evidence directory.
