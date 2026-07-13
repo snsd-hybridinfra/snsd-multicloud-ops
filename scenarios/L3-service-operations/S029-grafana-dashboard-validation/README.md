@@ -6,24 +6,24 @@
 | Scenario Name | Grafana Dashboard Validation |
 | Level | L3 Service Operations Validation |
 | Category | Service Operations |
-| Primary Domain | Observability dashboard visibility |
-| Related Components | Grafana, Prometheus datasource, infrastructure dashboards, Kubernetes dashboards, MariaDB dashboards, Blackbox dashboard placeholders |
-| Validation Type | Service Operation Validation |
+| Primary Domain | Dashboard and datasource artifact validation |
+| Related Components | Grafana dashboard JSON, Prometheus datasource, API evidence |
+| Validation Type | Static with optional explicit LiveGrafana |
 | Evidence Directory | evidence/L3-service-operations/S029-grafana-dashboard-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate Grafana dashboard visibility for the SNSD Multi-Cloud Ops observability layer.
+Validate a placeholder Prometheus datasource, ten-panel SNSD operations dashboard, dashboard rule matrix, and sanitized Grafana evidence.
 
 ## Scope Summary
 
-This scenario validates dashboard visibility and datasource rendering only. It covers Grafana service access, Prometheus datasource existence and connection, dashboard category placeholders, panel data rendering, dashboard time range review, and screenshot evidence collection.
+Static mode parses files only. LiveGrafana requires an explicit URL and sends unauthenticated, cookie-free search/datasource requests; 401/403 is WARN because S020 denies anonymous access.
 
 ## Validation Summary
 
-Validation checks confirm that Grafana access is planned, authentication expectations are referenced, the Prometheus datasource can be reviewed, dashboard category placeholders are mapped, panels are expected to render data, and failures such as missing datasource, query failure, empty dashboard, broken panel, no time-series data, missing screenshot, or anonymous dashboard exposure are explicitly captured.
+Sixteen checks cover files, datasource fields, dashboard JSON, panel/query coverage, matrix, commands, sample JSON, credentials/TLS/endpoints/UIDs, and execution boundaries.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L3-service-operations/S029-grafana-dashboard-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+S029 never starts/modifies Grafana, imports/creates/deletes dashboards, or stores URLs, raw responses, credentials, tokens, cookies, authorization values, datasource secrets, real UIDs/IDs, domains, or addresses.

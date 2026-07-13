@@ -1,0 +1,19 @@
+{
+  "sample_notice": "SAMPLE / NON-PRODUCTION",
+  "dashboard": {
+    "title": "SNSD Ops Overview Placeholder",
+    "uid": "<dashboard-uid-placeholder>",
+    "panels": [
+      { "title": "Prometheus Target Status" },
+      { "title": "Kubernetes Node Readiness" },
+      { "title": "Kubernetes Pod Readiness" },
+      { "title": "Nginx Reverse Proxy Health" },
+      { "title": "Load Balancer Health" },
+      { "title": "MariaDB Replication IO Thread" },
+      { "title": "MariaDB Replication SQL Thread" },
+      { "title": "MariaDB Replication Lag" },
+      { "title": "Blackbox Probe Success" },
+      { "title": "Service Availability Summary" }
+    ]
+  }
+}

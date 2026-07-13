@@ -1,23 +1,12 @@
 # Architecture
 
-## Relevant Components
+```text
+Prometheus Placeholder datasource
+  -> SNSD Ops Overview Placeholder
+  -> 10 infrastructure/service panels
+  -> static dashboard and sanitized API evidence
+```
 
-- Grafana endpoint: represented by `<grafana-endpoint>`.
-- Prometheus datasource: represented by `<prometheus-datasource>`.
-- Dashboard placeholders: represented by `<dashboard-name>` and `<service-health-dashboard>`.
-- Panel placeholders: represented by `<panel-name>`.
-- Prometheus target discovery: prerequisite evidence source from S028.
-- Screenshot evidence: planned proof of dashboard visibility and datasource rendering.
+Static validation checks the provisioning YAML and dashboard JSON. LiveGrafana queries only search and datasource endpoints after explicit request. It stores only placeholder-title match, panel-count-not-queried, and known datasource match judgments.
 
-## Dashboard Model
-
-- Grafana must be reachable through the approved access path.
-- Login requirement is referenced from S020 and not reimplemented here.
-- Prometheus datasource must exist and connect successfully.
-- Dashboard categories must map to expected infrastructure, cloud, Kubernetes, database, blackbox, and service health views.
-- Panels must render non-empty data for the selected placeholder time range.
-- Screenshots must show dashboard visibility without exposing secrets or real public endpoints.
-
-## Boundary Notes
-
-This scenario validates dashboard visibility and datasource rendering only. Anonymous access denial, target discovery, blackbox probing, and alerting are separate or excluded responsibilities.
+Authentication-required responses are WARN under S020. No API token or raw live response is used.

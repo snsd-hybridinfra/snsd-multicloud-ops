@@ -1,0 +1,6 @@
+{
+  "sample_notice": "SAMPLE / NON-PRODUCTION",
+  "datasources": [
+    { "name": "Prometheus Placeholder", "type": "prometheus", "uid": "<prometheus-datasource-placeholder>" }
+  ]
+}

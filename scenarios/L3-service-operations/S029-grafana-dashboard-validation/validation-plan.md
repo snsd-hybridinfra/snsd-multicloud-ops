@@ -2,19 +2,19 @@
 
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
-| V001 | Grafana service access validation plan | Plan access check for `<grafana-endpoint>`. | Grafana service access can be reviewed through an approved path. | `commands.md`, `logs/grafana-dashboard-validation.log`, `validation.md` |
-| V002 | Grafana login requirement reference validation plan | Reference S020 login requirement evidence. | Dashboard validation assumes authenticated access only. | `commands.md`, `configs/grafana-dashboard-summary.md`, `validation.md` |
-| V003 | Prometheus datasource existence validation plan | Review datasource placeholder `<prometheus-datasource>`. | Prometheus datasource is identifiable by placeholder name. | `commands.md`, `configs/grafana-datasource-mapping.md`, `validation.md` |
-| V004 | Prometheus datasource connection validation plan | Plan datasource connection status review. | Prometheus datasource connection is successful. | `commands.md`, `configs/grafana-datasource-mapping.md`, `screenshots/grafana-datasource-status.png`, `validation.md` |
-| V005 | Infrastructure dashboard placeholder validation plan | Map On-Prem and infrastructure dashboard placeholders. | Infrastructure dashboard placeholder is documented. | `commands.md`, `configs/grafana-dashboard-summary.md`, `validation.md` |
-| V006 | Kubernetes dashboard placeholder validation plan | Map Kubernetes/k3s node and workload dashboard placeholders. | Kubernetes dashboard placeholder is documented. | `commands.md`, `configs/grafana-dashboard-summary.md`, `validation.md` |
-| V007 | MariaDB dashboard placeholder validation plan | Map MariaDB replication and availability dashboard placeholders. | MariaDB dashboard placeholder is documented. | `commands.md`, `configs/grafana-dashboard-summary.md`, `validation.md` |
-| V008 | Blackbox endpoint dashboard placeholder validation plan | Map Blackbox HTTP endpoint dashboard placeholders. | Blackbox endpoint dashboard placeholder is documented. | `commands.md`, `configs/grafana-dashboard-summary.md`, `validation.md` |
-| V009 | Multi-cloud service status dashboard placeholder validation plan | Map AWS, Azure, OpenStack, and service health summary placeholders. | Multi-cloud service status dashboard placeholder is documented. | `commands.md`, `configs/grafana-dashboard-summary.md`, `validation.md` |
-| V010 | Dashboard panel data rendering validation plan | Review `<panel-name>` data rendering for selected time range. | Panels render non-empty time-series or status data. | `commands.md`, `configs/grafana-panel-mapping.md`, `logs/grafana-dashboard-validation.log`, `validation.md` |
-| V011 | Dashboard screenshot capture plan | Capture sanitized dashboard overview evidence. | Dashboard screenshot evidence is available and sanitized. | `commands.md`, `screenshots/grafana-dashboard-overview.png`, `validation.md` |
-| V012 | Failure condition for missing datasource, datasource query failure, empty dashboard, broken panel, no time-series data, missing dashboard screenshot, or anonymous dashboard exposure | Evaluate findings against explicit failure conditions. | Dashboard validation failures produce `FAIL` or `BLOCKED` status. | `validation.md` |
-
-## Review Notes
-
-Every validation item must map to evidence. This scenario validates dashboard visibility and datasource rendering only; anonymous access denial is handled in S020, target discovery in S028, and blackbox endpoint probes in S030.
+| V001 | Required dashboard baseline files | Test five paths. | All exist. | commands; summary |
+| V002 | Prometheus datasource definition | Match required YAML fields. | Complete. | datasource; summary |
+| V003 | Dashboard JSON structure | Parse marker/title/UID. | Valid. | dashboard; summary |
+| V004 | Required dashboard panels | Require ten exact titles. | Complete. | dashboard; summary |
+| V005 | Panel datasource and query coverage | Check UID/metrics/alert placeholder. | Complete. | dashboard; summary |
+| V006 | Dashboard rule matrix | Require nine areas/columns. | Complete. | matrix; summary |
+| V007 | Dashboard command reference | Require three APIs/manual workflow. | Complete. | commands example; summary |
+| V008 | Required sample evidence | Test three paths. | All exist. | samples; summary |
+| V009 | Dashboard search evidence | Parse required title. | Present. | search sample; summary |
+| V010 | Dashboard detail evidence | Parse ten titles. | Complete. | detail sample; summary |
+| V011 | Datasource list evidence | Parse placeholder datasource/type. | Present. | datasource sample; summary |
+| V012 | Credential token datasource and TLS safety | Scan sensitive content. | None. | log; summary |
+| V013 | Monitoring URL address and domain safety | Scan concrete endpoints. | None. | log; summary |
+| V014 | Dashboard UID and identity safety | Require placeholder UIDs/no IDs. | Safe. | artifacts; summary |
+| V015 | Execution safety boundary | Reject client/import/mutation. | Safe. | script; summary |
+| V016 | Validation mode and live Grafana result | Evaluate Static/live result. | Safe/pass or auth-required warn. | log; summary |

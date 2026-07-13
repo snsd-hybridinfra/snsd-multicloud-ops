@@ -1,17 +1,13 @@
 # Execution Plan
 
-1. Confirm the scenario evidence directory exists for S029.
-2. Identify placeholder Grafana endpoint as `<grafana-endpoint>`.
-3. Identify placeholder Prometheus datasource as `<prometheus-datasource>`.
-4. Record planned Grafana service access validation.
-5. Record planned login requirement reference validation from S020.
-6. Record planned Prometheus datasource existence and connection checks.
-7. Record planned dashboard placeholder mapping for all dashboard categories.
-8. Record planned panel data rendering and time range checks.
-9. Record planned screenshot captures for dashboard overview and datasource status.
-10. Record planned failure checks for missing datasource, empty dashboards, broken panels, no time-series data, missing screenshots, and anonymous exposure.
-11. Record TODO placeholders in evidence files until approved execution produces sanitized output.
+1. Run `powershell -ExecutionPolicy Bypass -File tools/validate-grafana-dashboard.ps1`.
+2. Verify five baseline artifacts and three samples.
+3. Validate datasource fields and placeholder URL.
+4. Parse dashboard JSON and require ten panels, datasource references, metrics, and alert placeholder.
+5. Validate matrix and command workflow.
+6. Parse search/detail/datasource evidence.
+7. Reject credentials, tokens, cookies, authorization, datasource secrets, TLS material, concrete endpoints/domains/addresses, real UIDs/IDs, and mutation/import execution.
+8. Review generated log and summary.
+9. Optionally run LiveGrafana after explicit approval.
 
-## Execution Boundaries
-
-This plan does not create Grafana dashboards, configure datasources, store credentials, configure Prometheus, or integrate Alertmanager. It only defines the review flow and evidence requirements for later approved validation.
+LiveGrafana is `NOT_RUN` in committed Static evidence.

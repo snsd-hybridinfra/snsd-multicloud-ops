@@ -1,21 +1,15 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Static
 
-- S020-grafana-anonymous-access-denial-validation: defines login requirement and anonymous access denial assumptions.
-- S028-prometheus-target-discovery-validation: defines Prometheus target discovery assumptions.
-- S027-db-replication-lag-validation: defines DB metric mapping assumptions for future MariaDB panels.
-- S025-load-balancing-health-check-validation: defines service health check assumptions for dashboard summary views.
+- PowerShell and `tools/validate-grafana-dashboard.ps1`.
+- Five dashboard artifacts and three sanitized JSON samples.
+- No Grafana process, credentials, API token, curl, endpoint, or network.
 
-## Required Tools or References
+## Optional LiveGrafana
 
-- Grafana service access capability, when future execution is approved.
-- Prometheus datasource placeholder such as `<prometheus-datasource>`.
-- Evidence model from `docs/evidence-model.md`.
-- Placeholder naming rules from `docs/naming-rules.md`.
+- Explicit approval with `-LiveGrafana -GrafanaUrl`.
+- Absolute HTTP(S) URL without user information.
+- Optional placeholder `-DashboardTitle`.
 
-## Safety Preconditions
-
-- Do not add Grafana passwords, credentials, secrets, private keys, tfstate, kubeconfig content, cloud account values, subscription IDs, tenant IDs, or account-specific values.
-- Do not record real public IPs.
-- Do not implement Grafana dashboards, datasource credentials, Alertmanager, or Prometheus configuration as part of this scenario skeleton.
+No credentials/cookies/authorization are sent or requested, and URL/raw responses are not stored.
