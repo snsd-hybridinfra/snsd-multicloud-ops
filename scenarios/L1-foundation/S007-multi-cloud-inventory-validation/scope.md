@@ -2,27 +2,26 @@
 
 ## Included
 
-- Inventory file existence validation plan.
-- Required inventory group validation plan.
-- Placeholder-only value validation plan.
-- No secret or private key validation plan.
-- Provider grouping validation plan.
-- Role grouping validation plan.
-- On-prem DB grouping validation plan.
-- Observability target grouping validation plan.
-- Evidence collection target grouping validation plan.
-- Failure condition for missing group, real credential, or inconsistent hostname.
+- Non-production example YAML inventory.
+- Required groups and placeholder host aliases.
+- Placeholder `ansible_host` values only.
+- Inventory schema fields and allowed classification values.
+- Local checks for real-looking addresses, sensitive assignments, account identifiers, unsafe inventory filenames, and active execution commands.
+- Generated local log and Markdown summary evidence.
 
 ## Excluded
 
-- Real Ansible automation implementation.
-- Live host connectivity checks.
-- Real public IPs, private IPs, credentials, SSH private keys, tfstate, kubeconfig files, or account-specific files.
-- Generated dynamic inventory scripts.
-- Terraform, Kubernetes, monitoring, ML, backup, or cloud provisioning logic.
+- Host connection, reachability, login, or existence validation.
+- Ansible inventory execution, ping, facts, playbooks, or dynamic inventory.
+- Private-key, credential, vault, environment, or account-file access.
+- AWS, Azure, OpenStack, Kubernetes, EVE-NG, or network queries.
+- Real hostnames, IP addresses, cloud instance IDs, account IDs, subscription IDs, or tenant IDs.
+- Provisioning validation, which belongs to S003-S005.
+- Terraform provider validation, which belongs to S006.
+- Bastion reachability, which belongs to S008.
+- DNS and hostname resolution, which belongs to S009.
 
 ## Assumptions
 
-- Inventory values use placeholders such as `<aws-app-node-ip>`, `<azure-app-node-ip>`, `<openstack-app-node-ip>`, and `<db-primary-ip>`.
-- Inventory entries distinguish provider, zone, role, and validation target.
-- Future Ansible tasks can consume the inventory after separate approval and validation.
+- The inventory is a documentation and validation model, not a deployable live inventory.
+- Host aliases are stable portfolio placeholders and do not assert that instances exist.

@@ -2,17 +2,19 @@
 
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
-| V001 | Inventory file existence validation plan | Document planned inventory path check. | Inventory file path is defined for future validation. | `commands.md`, `configs/inventory-structure-summary.md`, `validation.md` |
-| V002 | Required inventory group validation plan | Confirm all required groups are listed. | All 11 required inventory groups are documented. | `configs/inventory-structure-summary.md`, `validation.md` |
-| V003 | Placeholder-only value validation plan | Review host values for placeholder format. | Host values use placeholders only. | `configs/inventory-sanitization-check.md`, `validation.md` |
-| V004 | No secret or private key validation plan | Review inventory for credentials, keys, and tokens. | No secrets, credentials, or private keys are present. | `configs/inventory-sanitization-check.md`, `validation.md` |
-| V005 | Provider grouping validation plan | Review AWS, Azure, OpenStack, EVE-NG, and on-prem grouping. | Provider groups are clearly separated. | `configs/inventory-structure-summary.md`, `validation.md` |
-| V006 | Role grouping validation plan | Review role-based groups for service, bastion, DB, monitoring, Kubernetes, observability, and evidence targets. | Role groups are clearly separated. | `configs/inventory-structure-summary.md`, `validation.md` |
-| V007 | On-Prem DB grouping validation plan | Review `onprem_db_primary` and `onprem_db_replicas`. | DB primary and replica roles are distinct. | `configs/inventory-structure-summary.md`, `validation.md` |
-| V008 | Observability target grouping validation plan | Review `observability_targets`. | Exporter and monitoring targets are grouped without real endpoint data. | `configs/inventory-structure-summary.md`, `logs/inventory-validation.log`, `validation.md` |
-| V009 | Evidence collection target grouping validation plan | Review `evidence_targets`. | Evidence collection targets are identified with placeholders. | `configs/inventory-structure-summary.md`, `logs/inventory-validation.log`, `validation.md` |
-| V010 | Missing group, real credential, or inconsistent hostname failure condition | Define explicit failure criteria. | Missing groups, sensitive values, or inconsistent hostnames produce `FAIL` or `BLOCKED` status. | `validation.md` |
+| V001 | Example inventory file | Test the expected YAML path. | Example inventory exists. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V002 | Inventory schema file | Test the schema path. | Schema document exists. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V003 | Non-production marker | Search the inventory header. | Explicit marker exists. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V004 | Required groups | Search for all ten group keys. | Every group exists. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V005 | Required placeholder hosts | Search for all ten aliases. | Every host alias exists. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V006 | Required schema fields | Search the schema for eight fields. | Every field is documented. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V007 | Provider or zone values | Search for all approved placement values. | Every allowed value is documented. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V008 | Component type values | Search for all approved component values. | Every allowed value is documented. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V009 | Host address placeholders | Validate `ansible_host` formats and scan for numeric IPs. | Only angle-bracket placeholders exist. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V010 | Sensitive inventory content | Scan for credentials, key paths, usernames, IDs, UUIDs, and tokens. | No forbidden content exists. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V011 | Live inventory artifacts | Inspect inventory filenames. | No production, live, hosts.ini, or vault file exists. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
+| V012 | Execution safety boundary | Scan validator source for active external commands. | No live execution command exists. | `logs/multicloud-inventory-validation.log`, `configs/multicloud-inventory-summary.md` |
 
 ## Review Notes
 
-Every validation item must map to evidence. Inventory content must remain suitable for future Ansible validation tasks without becoming executable automation in this scenario.
+All checks are required and any failure produces a non-zero exit.

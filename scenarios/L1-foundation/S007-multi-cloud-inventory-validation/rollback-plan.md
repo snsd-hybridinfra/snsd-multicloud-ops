@@ -1,17 +1,13 @@
 # Rollback Plan
 
-## Stop Condition
+S007 performs no remote action and requires no infrastructure rollback.
 
-Stop immediately if inventory validation exposes real IP addresses, credentials, SSH private keys, kubeconfig content, tfstate, or account-specific values.
+If unsafe inventory content is discovered:
 
-## Rollback Steps
+1. Stop validation.
+2. Remove only the unsafe artifact after confirming it belongs to this scenario change.
+3. Restore angle-bracket host placeholders and approved schema values.
+4. Re-run the local validator and both repository QA scripts.
+5. Record unresolved issues as `BLOCKED` or `FAIL` without reproducing sensitive content.
 
-1. Stop validation activity.
-2. Remove unsafe evidence content.
-3. Replace sensitive values with placeholders such as `<aws-app-node-ip>`, `<azure-app-node-ip>`, `<openstack-app-node-ip>`, or `<db-primary-ip>`.
-4. Mark affected checks as `BLOCKED` or `FAIL` in `validation.md`.
-5. Record the blocked condition in the implementation log if scenario progress is affected.
-
-## Recovery Validation
-
-Confirm S007 remains documentation and evidence planning only, with placeholder-only inventory values and no real Ansible automation or sensitive files added.
+Generated S007 log and summary files may be regenerated safely.

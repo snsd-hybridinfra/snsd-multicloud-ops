@@ -1,18 +1,7 @@
 # Objective
 
-Validate the planned multi-cloud inventory model for managing AWS, Azure, OpenStack, EVE-NG, and on-prem nodes.
+Validate a repository-side inventory model containing the required platform groups and placeholder hosts for On-Prem, AWS, Azure, OpenStack, Kubernetes, database, monitoring, bastion, internal-server, and control-plane roles.
 
-The inventory model must support:
+Success means every host address remains an angle-bracket placeholder, the schema defines approved classifications, and all safety checks pass without proving host existence or accessing any external system.
 
-- AWS service nodes
-- Azure service nodes
-- OpenStack service nodes
-- EVE-NG network devices
-- On-Prem bastion node
-- On-Prem internal DB nodes
-- On-Prem monitoring nodes
-- Kubernetes service nodes
-- Exporter targets
-- Evidence collection targets
-
-Success means all required groups are documented, provider and role boundaries are clear, placeholders are used consistently, and the inventory is suitable for future Ansible validation tasks without adding real credentials, private keys, public IPs, or account-specific values.
+Provisioning definitions are handled in S003-S005, Terraform providers in S006, bastion reachability in S008, and DNS resolution in S009.

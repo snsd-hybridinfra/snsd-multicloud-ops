@@ -6,38 +6,33 @@
 | Scenario Name | Multi-Cloud Inventory Validation |
 | Level | L1 Foundation Validation |
 | Category | Foundation |
-| Primary Domain | Multi-cloud inventory model readiness |
-| Related Components | AWS nodes, Azure nodes, OpenStack nodes, EVE-NG network devices, on-prem bastion, on-prem DB nodes, monitoring nodes, Kubernetes nodes, observability targets, evidence targets |
+| Primary Domain | Repository-side multi-cloud inventory model |
+| Related Components | On-Prem, AWS, Azure, OpenStack, control plane, service groups |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S007-multi-cloud-inventory-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the multi-cloud inventory model used to manage AWS, Azure, OpenStack, EVE-NG, and on-prem nodes in the SNSD Multi-Cloud Ops project.
+Validate a safe example inventory and schema covering On-Prem, AWS, Azure, OpenStack, and the local control plane without connecting to hosts or querying cloud accounts.
 
 ## Scope Summary
 
-This scenario defines the inventory structure for future Ansible validation tasks. It does not implement Ansible automation, connect to real hosts, or include real public IPs, private keys, credentials, tfstate, kubeconfig files, or account-specific values.
+S007 checks required files, groups, hosts, schema fields, classification values, address placeholders, sensitive content, live-inventory filenames, and execution safety boundaries.
 
-## Required Inventory Groups
+## Related Components
 
-- `aws_nodes`
-- `azure_nodes`
-- `openstack_nodes`
-- `eve_ng_network`
-- `onprem_bastion`
-- `onprem_db_primary`
-- `onprem_db_replicas`
-- `onprem_monitoring`
-- `kubernetes_nodes`
-- `observability_targets`
-- `evidence_targets`
+- `ansible/inventories/multicloud-inventory.example.yml`
+- `ansible/inventories/multicloud-inventory-schema.md`
+- `tools/validate-multicloud-inventory.ps1`
 
 ## Validation Summary
 
-Validation checks cover inventory existence planning, required group coverage, placeholder-only values, secret and private key exclusion, provider grouping, role grouping, on-prem DB grouping, observability target grouping, evidence target grouping, and failure conditions.
+All checks inspect repository text only. The validator does not execute Ansible, connect to hosts, read keys or credentials, resolve names, or query cloud, Kubernetes, OpenStack, or EVE-NG systems.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L1-foundation/S007-multi-cloud-inventory-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
+- `logs/multicloud-inventory-validation.log`
+- `configs/multicloud-inventory-summary.md`
+- `commands.md`
+- `validation.md`

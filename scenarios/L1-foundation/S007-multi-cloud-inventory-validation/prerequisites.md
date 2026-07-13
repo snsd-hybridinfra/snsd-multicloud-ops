@@ -1,19 +1,16 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Required Repository State
 
-- `S001-control-plane-toolchain-validation` is planned and identifies Ansible and Python readiness.
-- `S002-eve-ng-onprem-routing-validation` is planned and identifies on-prem network zones.
-- `S003-aws-network-provisioning-validation`, `S004-azure-network-provisioning-validation`, and `S005-openstack-network-provisioning-validation` are planned as provider network baselines.
+- PowerShell can run the local validator.
+- The S007 scenario and evidence directories exist.
+- The inventory directory is readable.
 
-## Required Tools
+## Not Required
 
-- Repository access for reviewing inventory paths.
-- Text editor for evidence documentation.
-- Future Ansible tooling readiness as planned in S001.
+- Ansible installation or inventory execution.
+- SSH access, private keys, credentials, DNS, or live network access.
+- AWS, Azure, OpenStack, Kubernetes, or EVE-NG access.
+- Real hosts, cloud resources, or instance identifiers.
 
-## Required Access Assumptions
-
-- No host login is required for this skeleton.
-- No SSH keys, credentials, real IP addresses, kubeconfig files, or account-specific values are required.
-- Future inventory execution requires explicit approval before any real connectivity test.
+S003-S006 provide the preceding repository-side provisioning and provider baselines.

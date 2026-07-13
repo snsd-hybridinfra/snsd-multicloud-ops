@@ -1,19 +1,12 @@
 # Failure Condition
 
-## Failure Conditions
+## Critical Failure Conditions
 
-- Any required inventory group is missing.
-- Provider, zone, role, or validation target is unclear.
-- Real public IPs, private IPs, credentials, SSH private keys, tokens, tfstate, kubeconfig files, or account-specific values are present.
-- Hostnames are inconsistent, ambiguous, or tied to real environments.
-- On-prem DB primary and replica roles are not separated.
-- Observability targets or evidence targets are missing or not clearly scoped.
-- Inventory content becomes executable automation instead of a validation model.
+- A required inventory or schema file is missing.
+- A required group, host alias, schema field, provider-or-zone value, or component-type value is missing.
+- An `ansible_host` value is not an approved placeholder or a numeric IP is present.
+- A username, password, token, private-key path, access key, account identifier, UUID, subscription ID, tenant ID, or secret-like value is detected.
+- A production, live inventory, hosts.ini, or vault file exists.
+- The validator contains or executes an Ansible, host, cloud, network, Kubernetes, OpenStack, or EVE-NG command.
 
-## Evidence of Failure
-
-Record failed or blocked checks in `validation.md`, with supporting TODO references to `configs/inventory-structure-summary.md`, `configs/inventory-sanitization-check.md`, or `logs/inventory-validation.log`.
-
-## Follow-Up Requirement
-
-Create a follow-up task to correct inventory grouping, sanitize values, or clarify host role metadata before future Ansible validation proceeds.
+Any critical failure produces a non-zero exit and must be documented without exposing the unsafe value.

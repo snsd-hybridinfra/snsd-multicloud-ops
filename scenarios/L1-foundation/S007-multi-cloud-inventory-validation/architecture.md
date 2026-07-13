@@ -1,27 +1,16 @@
 # Architecture
 
-## Relevant Components
+## Repository Components
 
-- `aws_nodes`: AWS service node placeholders such as `<aws-app-node-ip>`.
-- `azure_nodes`: Azure service node placeholders such as `<azure-app-node-ip>`.
-- `openstack_nodes`: OpenStack service node placeholders such as `<openstack-app-node-ip>`.
-- `eve_ng_network`: EVE-NG router, firewall, and switch placeholders.
-- `onprem_bastion`: on-prem bastion placeholder such as `<bastion-node-ip>`.
-- `onprem_db_primary`: primary database placeholder such as `<db-primary-ip>`.
-- `onprem_db_replicas`: database replica placeholders such as `<db-replica-01-ip>`.
-- `onprem_monitoring`: monitoring node placeholders such as `<monitoring-node-ip>`.
-- `kubernetes_nodes`: Kubernetes service node placeholders such as `<k8s-node-01-ip>`.
-- `observability_targets`: exporter and metrics endpoint placeholders.
-- `evidence_targets`: systems from which validation evidence may be collected.
+- `multicloud-inventory.example.yml`: placeholder groups, hosts, and metadata.
+- `multicloud-inventory-schema.md`: required fields and allowed classifications.
+- `validate-multicloud-inventory.ps1`: text-only safety and completeness checks.
+- S007 evidence directory: generated validation log and summary.
 
-## Logical Flow
+## Inventory Model
 
-1. Inventory groups separate provider domains.
-2. Host variables identify zone, role, and validation target using sanitized values.
-3. On-prem DB groups distinguish primary and replica roles.
-4. Observability targets identify scrape or probe targets without real endpoint data.
-5. Evidence targets identify approved collection points for future scenario outputs.
+The inventory groups control-plane, On-Prem, AWS, Azure, OpenStack, bastion, internal servers, monitoring, Kubernetes nodes, and database nodes. Each host records a placeholder address, placement, component classification, non-production environment, symbolic management path, repository-only scope, and evidence reference.
 
-## Out-of-Scope Components
+## Validation Flow
 
-No real Ansible playbooks, SSH keys, host credentials, kubeconfig files, public IPs, private IPs, tfstate files, or account-specific values are used by this scenario.
+The validator reads the two inventory artifacts, verifies required text and safe placeholders, scans for forbidden content and filenames, then writes evidence. It contains no live Ansible, host, cloud, network, Kubernetes, OpenStack, or EVE-NG command.
