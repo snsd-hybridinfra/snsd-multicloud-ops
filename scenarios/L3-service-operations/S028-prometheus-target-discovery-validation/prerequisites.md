@@ -1,21 +1,15 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Static Mode
 
-- S007-multi-cloud-inventory-validation: defines placeholder service and evidence targets.
-- S021-kubernetes-node-readiness-validation: defines Kubernetes/k3s node target assumptions.
-- S026-mariadb-primary-replica-replication-validation: defines DB topology assumptions.
-- S027-db-replication-lag-validation: defines DB lag metric mapping assumptions.
+- PowerShell and `tools/validate-prometheus-target-discovery.ps1`.
+- Four baseline artifacts and three sanitized sample artifacts.
+- No Prometheus process, endpoint, credentials, curl, kubeconfig, or network access.
 
-## Required Tools or References
+## Optional LivePrometheus Mode
 
-- Prometheus service and configuration validation capability, when future execution is approved.
-- HTTP access to placeholder `<prometheus-endpoint>`, when future execution is approved.
-- Evidence model from `docs/evidence-model.md`.
-- Placeholder naming rules from `docs/naming-rules.md`.
+- Explicit approval and `-LivePrometheus -PrometheusUrl`.
+- Absolute HTTP(S) URL without embedded user information.
+- An API that can safely receive unauthenticated GET requests.
 
-## Safety Preconditions
-
-- Do not add credentials, secrets, private keys, tfstate, kubeconfig content, cloud account values, subscription IDs, tenant IDs, or account-specific values.
-- Do not record real public IPs.
-- Do not implement Prometheus configuration, exporters, alerting, or Alertmanager as part of this scenario skeleton.
+The validator sends no credentials/cookies/authorization and does not save the URL or raw API data.

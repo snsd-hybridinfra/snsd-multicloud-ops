@@ -1,17 +1,13 @@
 # Execution Plan
 
-1. Confirm the scenario evidence directory exists for S028.
-2. Identify placeholder Prometheus endpoint as `<prometheus-endpoint>`.
-3. Record planned Prometheus service status validation.
-4. Record planned Prometheus configuration syntax validation.
-5. Record planned `/targets` page access and screenshot capture.
-6. Record planned Node Exporter target discovery validation.
-7. Record planned kube-state-metrics, DB Exporter, and Blackbox Exporter target placeholders.
-8. Record planned AWS, Azure, OpenStack, and On-Prem target placeholders.
-9. Record planned target label and job name consistency checks.
-10. Record planned failure checks for missing, DOWN, duplicate, or misnamed targets.
-11. Record TODO placeholders in evidence files until approved execution produces sanitized output.
+1. Run `powershell -ExecutionPolicy Bypass -File tools/validate-prometheus-target-discovery.ps1`.
+2. Verify four baseline files and three samples.
+3. Validate six job definitions, symbolic targets, and Kubernetes endpoint discovery.
+4. Validate matrix and command references.
+5. Reject auth/TLS config, concrete endpoints/domains/addresses, credentials/tokens/cookies, IDs, and reload/client paths.
+6. Parse targets and up JSON plus job-label text.
+7. Require all six jobs at `health: up` and `up=1`.
+8. Review generated log and summary.
+9. Optionally run LivePrometheus after explicit approval.
 
-## Execution Boundaries
-
-This plan does not create or modify Prometheus configuration, exporters, scrape jobs, credentials, kubeconfig files, alerting, or Alertmanager. It only defines the review flow and evidence requirements for later approved validation.
+LivePrometheus is `NOT_RUN` in committed Static evidence. It never writes the URL or raw response.

@@ -1,0 +1,15 @@
+{
+  "sample_notice": "SAMPLE / NON-PRODUCTION",
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      { "metric": { "job": "prometheus-self-placeholder" }, "value": [0, "1"] },
+      { "metric": { "job": "node-exporter-placeholder" }, "value": [0, "1"] },
+      { "metric": { "job": "mariadb-exporter-placeholder" }, "value": [0, "1"] },
+      { "metric": { "job": "nginx-exporter-placeholder" }, "value": [0, "1"] },
+      { "metric": { "job": "blackbox-exporter-placeholder" }, "value": [0, "1"] },
+      { "metric": { "job": "kubernetes-service-discovery-placeholder" }, "value": [0, "1"] }
+    ]
+  }
+}

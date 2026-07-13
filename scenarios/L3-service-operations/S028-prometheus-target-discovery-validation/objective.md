@@ -1,16 +1,7 @@
 # Objective
 
-S028 defines the Prometheus target discovery validation model for the SNSD Multi-Cloud Ops observability layer.
+Validate that SNSD Multi-Cloud Ops defines Prometheus scrape discovery for self-monitoring, node, MariaDB, Nginx, Blackbox, and Kubernetes service discovery and can evaluate sanitized target evidence.
 
-The scenario validates that Prometheus can discover planned placeholder targets across On-Prem infrastructure, cloud service zones, Kubernetes/k3s nodes, MariaDB DB nodes, blackbox probe targets, and kube-state-metrics targets. It also defines how `/targets` page evidence and scrape target mappings must be captured later.
+S028 validates repository config, rule matrix, API references, valid JSON samples, required job presence, `health: up`, `up=1`, labels, and secret/endpoint safety. Live API access is optional and explicit.
 
-This scenario does not implement Prometheus configuration, exporters, credentials, or alerting. It defines how future target discovery evidence must be captured and reviewed.
-
-## Operational Capability
-
-- Confirm Prometheus service and configuration validation is planned.
-- Confirm `/targets` access evidence collection is planned.
-- Confirm Node Exporter target discovery is planned.
-- Confirm Kubernetes, kube-state-metrics, DB Exporter, and Blackbox Exporter target placeholders are documented.
-- Confirm AWS, Azure, OpenStack, and On-Prem target placeholders are mapped.
-- Confirm target label consistency validation is planned.
+S027 owns DB lag threshold semantics, S029 owns Grafana dashboards, S030 owns Blackbox probe behavior, S022 owns workloads, and S025 owns load-balancing health checks.

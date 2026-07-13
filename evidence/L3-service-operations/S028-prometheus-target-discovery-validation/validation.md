@@ -2,38 +2,35 @@
 
 Scenario: S028-prometheus-target-discovery-validation
 Level: L3-service-operations
-Capability: Prometheus Target Discovery Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
+Mode: Static
+Date: 2026-07-13
+Overall status: PASS
 
-No real Prometheus target discovery output has been collected yet. This file defines the validation record that must be completed during future approved execution.
-
-| Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
+| Check ID | Check Description | Expected Condition | Actual Result | Status | Evidence File |
 |---|---|---|---|---|---|
-| V001 | Prometheus service status validation plan | Prometheus service status can be reviewed. | TODO | NOT_RUN | `commands.md`; `logs/prometheus-target-discovery-validation.log` |
-| V002 | Prometheus configuration syntax validation plan | Prometheus configuration can be validated before target checks. | TODO | NOT_RUN | `commands.md`; `configs/prometheus-target-discovery-summary.md` |
-| V003 | Prometheus /targets access validation plan | `/targets` page can be reviewed and captured. | TODO | NOT_RUN | `commands.md`; `logs/prometheus-target-discovery-validation.log`; `screenshots/prometheus-targets-page.png` |
-| V004 | Node Exporter target UP validation plan | Node Exporter targets are discoverable and planned as UP. | TODO | NOT_RUN | `commands.md`; `configs/prometheus-scrape-target-mapping.md` |
-| V005 | kube-state-metrics target UP validation plan | kube-state-metrics target is discoverable and planned as UP. | TODO | NOT_RUN | `commands.md`; `configs/prometheus-scrape-target-mapping.md` |
-| V006 | DB Exporter target UP validation plan | DB Exporter target is discoverable and planned as UP. | TODO | NOT_RUN | `commands.md`; `configs/prometheus-scrape-target-mapping.md` |
-| V007 | Blackbox Exporter target discovery validation plan | Blackbox target mapping is discoverable as a placeholder. | TODO | NOT_RUN | `commands.md`; `configs/prometheus-scrape-target-mapping.md` |
-| V008 | AWS target placeholder validation plan | AWS service targets are mapped with placeholder labels. | TODO | NOT_RUN | `commands.md`; `configs/prometheus-target-discovery-summary.md` |
-| V009 | Azure target placeholder validation plan | Azure service targets are mapped with placeholder labels. | TODO | NOT_RUN | `commands.md`; `configs/prometheus-target-discovery-summary.md` |
-| V010 | OpenStack target placeholder validation plan | OpenStack service targets are mapped with placeholder labels. | TODO | NOT_RUN | `commands.md`; `configs/prometheus-target-discovery-summary.md` |
-| V011 | On-Prem target placeholder validation plan | On-Prem targets are mapped with placeholder labels. | TODO | NOT_RUN | `commands.md`; `configs/prometheus-target-discovery-summary.md` |
-| V012 | Target label consistency validation plan | Target labels and job names are consistent and non-duplicative. | TODO | NOT_RUN | `commands.md`; `configs/prometheus-scrape-target-mapping.md` |
-| V013 | Failure condition for missing target, DOWN target, invalid scrape config, duplicate target label, wrong job name, or missing evidence | Target discovery failures produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
+| V001 | Required baseline files | Four artifacts. | All exist. | PASS | summary |
+| V002 | Scrape job definitions | Six jobs. | Complete. | PASS | config; summary |
+| V003 | Target and Kubernetes discovery model | Targets and endpoint role. | Complete. | PASS | config; summary |
+| V004 | Target discovery rule matrix | Jobs/rules/labels/auth boundary. | Complete. | PASS | matrix; summary |
+| V005 | Prometheus API command reference | Three symbolic commands. | Complete. | PASS | command reference; summary |
+| V006 | Authentication and TLS config safety | None. | None detected. | PASS | config/log; summary |
+| V007 | Endpoint address and domain safety | None concrete. | None detected. | PASS | log; summary |
+| V008 | Required sample evidence | Three samples. | All exist. | PASS | samples; summary |
+| V009 | Targets JSON syntax | Marked success JSON. | Valid. | PASS | targets sample; summary |
+| V010 | Target discovery and health evidence | Six required jobs up. | All up. | PASS | targets sample; summary |
+| V011 | UP query JSON syntax | Marked success JSON. | Valid. | PASS | up sample; summary |
+| V012 | UP query required job values | Six values equal 1. | All 1. | PASS | up sample; summary |
+| V013 | Job label evidence | Six values. | Complete. | PASS | labels sample; summary |
+| V014 | Credential token and account safety | None. | None detected. | PASS | log; summary |
+| V015 | Execution safety boundary | No client/reload; guarded live. | Confirmed. | PASS | script; summary |
+| V016 | Validation mode and live API result | Static no network. | Completed safely. | PASS | log; summary |
 
-## Evidence Completeness
+## Generated Result
 
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- Prometheus target discovery summary is captured: NOT_READY
-- Prometheus scrape target mapping is captured: NOT_READY
-- Prometheus target discovery validation log is captured: NOT_READY
-- Prometheus targets page screenshot is captured: NOT_READY
-
-## Notes
-
-This scenario validates Prometheus target discovery only. Grafana dashboard validation is handled in S029, Blackbox endpoint probe validation in S030, and DB replication lag validation in S027. Prometheus alerting and Alertmanager integration are excluded unless later documented separately.
+- Critical failures: 0
+- Warnings: 0
+- Missing targets: none
+- Down targets: none
+- LivePrometheus: NOT_RUN
+- Final judgment: PASS
+- No Prometheus/Grafana/Kubernetes endpoint, raw API query, credential, token, cookie, authorization value, TLS material, domain, address, or network operation was used or stored.

@@ -1,24 +1,18 @@
 # Architecture
 
-## Relevant Components
-
-- Prometheus: target discovery and scrape status source.
-- Node Exporter targets: placeholder host metrics targets.
-- kube-state-metrics target: placeholder Kubernetes state target.
-- DB Exporter target: placeholder MariaDB metrics target.
-- Blackbox Exporter target: placeholder probe target mapping source.
-- AWS, Azure, and OpenStack service zone targets: placeholder cloud service targets.
-- On-Prem Internal Server Zone targets: placeholder database and internal service targets.
-
 ## Discovery Model
 
-- Prometheus service status must be reviewable before target discovery checks.
-- Prometheus configuration syntax must be validated before `/targets` evidence is accepted.
-- `/targets` page evidence must show placeholder target states and labels.
-- Target categories must be mapped to expected job names and labels.
-- Target labels must be unique enough to avoid duplicate or ambiguous evidence.
-- Exporter installation and probe execution are outside this scenario unless covered by later scenarios.
+```text
+<prometheus-server>
+  -> symbolic static targets: self/node/MariaDB/Nginx/Blackbox
+  -> symbolic Kubernetes endpoints service discovery
+  -> targets health = up
+  -> up query value = 1
+  -> sanitized evidence
+```
 
-## Boundary Notes
+## Validation Modes
 
-This scenario validates Prometheus target discovery only. Grafana dashboards, blackbox endpoint probe behavior, replication lag measurement, alerting, and Alertmanager integration are separate or excluded responsibilities.
+Static mode reads config and samples. LivePrometheus requires `-PrometheusUrl`, validates an HTTP(S) URI without user information, queries two API paths with a cookie-free client, and retains only the six known job names plus health/up judgments.
+
+No live URL, raw endpoint, arbitrary job/label, response body, authentication material, or configuration is persisted.

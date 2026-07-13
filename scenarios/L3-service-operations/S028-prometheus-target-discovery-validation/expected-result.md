@@ -1,22 +1,7 @@
 # Expected Result
 
-S028 is successful when the Prometheus target discovery validation plan is complete and ready for future approved execution.
+S028 passes when all artifacts exist, six jobs and discovery targets are defined, JSON samples parse, every required target is `up`, every required query series equals `1`, labels are complete, and safety checks find no concrete/sensitive content.
 
-## Success Conditions
+Static mode makes no query. LivePrometheus passes when all known required jobs are present/healthy, warns when APIs are reachable but the lab lacks placeholder jobs, and fails on API/parse errors or known required jobs that are down/zero.
 
-- Prometheus service status validation is planned.
-- Prometheus configuration syntax validation is planned.
-- Prometheus `/targets` access and evidence collection are planned.
-- Node Exporter target discovery validation is planned.
-- kube-state-metrics target discovery placeholder is documented.
-- DB Exporter target discovery placeholder is documented.
-- Blackbox Exporter target discovery placeholder is documented.
-- AWS, Azure, OpenStack, and On-Prem target placeholders are documented.
-- Target label and job name consistency validation is planned.
-- All validation checks map to required evidence files.
-
-## Evidence Conditions
-
-- `commands.md` lists planned command or review actions with TODO output placeholders.
-- `validation.md` lists each check with `NOT_RUN` status until execution.
-- Future supporting evidence is expected in `configs/prometheus-target-discovery-summary.md`, `configs/prometheus-scrape-target-mapping.md`, `logs/prometheus-target-discovery-validation.log`, and `screenshots/prometheus-targets-page.png`.
+Only sanitized known-job judgments and timestamps may be generated; URLs, raw endpoints, labels, and responses are never evidence.
