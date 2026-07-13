@@ -1,25 +1,16 @@
 # Architecture
 
-## Relevant Components
+## Repository Components
 
-- Bastion host: root login denial target represented by `<bastion-host>`.
-- On-Prem DB node: root login denial target represented by `<db-primary-node>`.
-- On-Prem Monitoring node: root login denial target represented by `<monitoring-node>`.
-- AWS service node: root login denial target represented by `<aws-service-node>`.
-- Azure service node: root login denial target represented by `<azure-service-node>`.
-- OpenStack service node: root login denial target represented by `<openstack-service-node>`.
-- `sshd_config`: planned source configuration review.
-- `sshd -T`: planned effective configuration review.
-- Authentication failure logs: planned evidence for denied direct root login.
+- `ssh-root-login-denial-baseline.md`: root denial, non-root administration, sudo, storage, placeholder, and evidence rules.
+- `sshd_config.root-login-denial.example`: non-production denial directives.
+- `validate-ssh-root-login-denial-baseline.ps1`: directive, root-password, key-safety, secret, and execution-boundary checks.
+- S013 evidence directory: generated log and summary.
 
-## Logical Flow
+## Baseline Model
 
-1. Static SSH daemon configuration is reviewed for `PermitRootLogin`.
-2. Effective SSH daemon configuration is reviewed using `sshd -T`.
-3. Direct root login denial is planned for Bastion, on-prem, and cloud service nodes.
-4. Failure logs are planned as supporting evidence.
-5. Results are recorded without passwords, credentials, private keys, or real hosts.
+Direct root login is denied. Administrators use an approved non-root placeholder and controlled privilege escalation. Public-key authentication remains required while password and interactive methods remain disabled.
 
-## Out-of-Scope Components
+## Validation Flow
 
-SSH key authentication success, password login denial, sudo policy validation, key generation, private key handling, and account-specific usernames are not part of S013.
+The validator reads the two baseline files, verifies directives and policy statements, scans for enabled root login and root-password values, checks repository key safety, and prevents active SSH or sudo commands. It does not inspect or change a running SSH service.

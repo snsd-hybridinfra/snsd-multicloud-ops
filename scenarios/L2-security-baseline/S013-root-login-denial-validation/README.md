@@ -6,24 +6,33 @@
 | Scenario Name | Root Login Denial Validation |
 | Level | L2 Security Baseline Validation |
 | Category | Security Baseline |
-| Primary Domain | SSH access security |
-| Related Components | Bastion, On-Prem DB nodes, On-Prem Monitoring nodes, AWS service nodes, Azure service nodes, OpenStack service nodes, sshd_config, sshd effective configuration |
+| Primary Domain | Repository-side SSH root-login denial baseline |
+| Related Components | Root denial policy, example sshd settings, non-root and sudo placeholders |
 | Validation Type | Security Validation |
 | Evidence Directory | evidence/L2-security-baseline/S013-root-login-denial-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate that direct root SSH login is disabled across the SNSD Multi-Cloud Ops management and service node access model.
+Validate that direct root SSH login denial is mandatory and administrative access uses placeholder non-root and controlled sudo processes without storing credentials or changing SSH servers.
 
 ## Scope Summary
 
-This scenario validates direct root login denial only. SSH key authentication success is handled in S011, password login denial is handled in S012, and sudo policy validation is excluded.
+S013 checks baseline files, six sshd directives, root-denial and privilege policy statements, root-password safety, private-key and `authorized_keys` absence, sensitive content, and execution safety.
+
+## Related Components
+
+- `security-baseline/ssh-root-login-denial-baseline.md`
+- `security-baseline/sshd_config.root-login-denial.example`
+- `tools/validate-ssh-root-login-denial-baseline.ps1`
 
 ## Validation Summary
 
-Validation checks cover `PermitRootLogin` configuration, `sshd -T` effective configuration, root login denial plans for bastion and service nodes, authentication failure evidence, and failure conditions.
+All checks inspect repository files only. The validator does not modify sshd, restart SSH, attempt root login or privilege escalation, connect to hosts, or read keys and credentials.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L2-security-baseline/S013-root-login-denial-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
+- `logs/root-login-denial-validation.log`
+- `configs/root-login-denial-summary.md`
+- `commands.md`
+- `validation.md`

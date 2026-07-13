@@ -1,17 +1,13 @@
 # Rollback Plan
 
-## Stop Condition
+S013 performs no SSH service, authentication, privilege, or host mutation and requires no infrastructure rollback.
 
-Stop immediately if validation activity exposes passwords, credentials, private keys, public IPs, account-specific values, tfstate, kubeconfig content, or attempts to implement S011 or S012 controls.
+If unsafe content is discovered:
 
-## Rollback Steps
+1. Stop validation.
+2. Remove only the unsafe artifact after confirming ownership and following repository safety procedures.
+3. Restore placeholder-only root-denial policy and non-production directives.
+4. Re-run the local validator and both repository QA scripts.
+5. Record unresolved issues as `BLOCKED` or `FAIL` without reproducing password, key, or secret material.
 
-1. Stop validation activity.
-2. Remove unsafe evidence content.
-3. Replace sensitive values with placeholders such as `<bastion-host>`, `<target-node>`, and `<target-user>`.
-4. Mark affected checks as `BLOCKED` or `FAIL` in `validation.md`.
-5. Record the blocked condition in the implementation log if scenario progress is affected.
-
-## Recovery Validation
-
-Confirm S013 remains direct root login denial planning only, with no passwords, credentials, private keys, public IPs, account-specific values, SSH key authentication implementation, password login denial implementation, or sudo policy validation added.
+Generated S013 log and summary files may be regenerated safely.

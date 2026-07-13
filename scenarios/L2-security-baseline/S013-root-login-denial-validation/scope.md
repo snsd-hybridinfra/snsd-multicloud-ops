@@ -2,29 +2,26 @@
 
 ## Included
 
-- `sshd_config` `PermitRootLogin` setting validation plan.
-- `sshd -T` effective configuration validation plan.
-- Bastion root login denial validation plan.
-- On-Prem DB node root login denial validation plan.
-- On-Prem Monitoring node root login denial validation plan.
-- AWS service node root login denial validation plan.
-- Azure service node root login denial validation plan.
-- OpenStack service node root login denial validation plan.
-- Authentication failure log capture plan.
-- Failure condition for `PermitRootLogin` enabled, root login success, missing sshd config, or missing failure evidence.
+- SSH root-login denial policy documentation.
+- Non-production sshd root-denial example.
+- Root denial, public-key authentication, password and interactive denial, and public-key-only method directives.
+- Non-root administrator and controlled sudo process placeholders.
+- Root-password storage prohibition and evidence model.
+- Local root-password, private-key, `authorized_keys`, sensitive-content, and execution-command checks.
+- Generated log and summary evidence.
 
 ## Excluded
 
-- SSH key authentication success validation, which is handled in S011.
-- Password login denial validation, which is handled in S012.
-- Sudo policy validation.
-- Creating real SSH private keys.
-- Storing passwords, credentials, private keys, public IPs, cloud account values, subscription IDs, tenant IDs, tfstate, kubeconfig files, or account-specific files.
-- Real Ansible automation implementation.
-- Terraform, Kubernetes, monitoring, ML, backup, or cloud provisioning logic.
+- Modification of local or remote sshd configuration.
+- SSH service restart or reload.
+- Live root-login, SSH, sudo, or privilege-escalation attempts.
+- Real users, root/SSH passwords, public/private keys, `authorized_keys`, hosts, sudo policy, and credentials.
+- SSH key-authentication validation, which belongs to S011.
+- Password-login denial validation, which belongs to S012.
+- Bastion reachability, which belongs to S008.
+- Cloud security-group access control, which belongs to S014-S016.
 
 ## Assumptions
 
-- Use placeholders such as `<bastion-host>`, `<target-node>`, and `<target-user>`.
-- Privileged administration must use a non-root account with sudo, but sudo policy validation is outside this scenario.
-- Future execution requires explicit approval before any real SSH authentication test.
+- The example represents a repository baseline and is not directly deployable.
+- Privilege escalation is governed by an approved process outside this repository.

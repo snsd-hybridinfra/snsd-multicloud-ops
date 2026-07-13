@@ -1,20 +1,16 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Required Repository State
 
-- `S011-ssh-key-authentication-validation` is planned and defines SSH key authentication separately.
-- `S012-password-login-denial-validation` is planned and defines password login denial separately.
-- `S008-bastion-reachability-validation` is planned and defines reachability paths.
-- `S007-multi-cloud-inventory-validation` is planned and defines placeholder inventory targets.
+- PowerShell can run the local validator.
+- The S013 scenario and evidence directories exist.
+- The security-baseline directory is readable.
 
-## Required Tools
+## Not Required
 
-- SSH client availability on the Control Plane.
-- Shell access planning for future approved lab targets.
-- Repository access for documenting evidence.
+- SSH client/server access or a running sshd service.
+- Local administrator or root privileges.
+- A real host, username, root password, SSH password, public/private key, authorized-keys file, or sudo policy.
+- Cloud, bastion, or network connectivity.
 
-## Required Access Assumptions
-
-- No root credentials are required for this skeleton.
-- No real private keys, credentials, public IPs, tfstate, kubeconfig files, or account-specific values are required.
-- Future execution must use approved lab targets and sanitized output only.
+S011-S012 supply the preceding key and password-denial baselines.

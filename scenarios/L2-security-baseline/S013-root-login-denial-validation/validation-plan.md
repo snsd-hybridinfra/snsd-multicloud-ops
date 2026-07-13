@@ -2,17 +2,22 @@
 
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
-| V001 | sshd_config PermitRootLogin setting validation plan | Document planned review of `PermitRootLogin` in sshd config. | PermitRootLogin is planned to be disabled. | `commands.md`, `configs/sshd-root-login-summary.md`, `validation.md` |
-| V002 | sshd effective configuration validation plan using sshd -T | Document planned `sshd -T` effective config check. | Effective config reports direct root login disabled. | `commands.md`, `configs/sshd-effective-config-summary.md`, `validation.md` |
-| V003 | Bastion root login denial validation plan | Document direct root login denial test to `<bastion-host>`. | Bastion denies direct root SSH login. | `commands.md`, `logs/root-login-denial-validation.log`, `validation.md` |
-| V004 | On-Prem DB node root login denial validation plan | Document direct root login denial test to `<db-primary-node>`. | On-Prem DB node denies direct root SSH login. | `commands.md`, `logs/root-login-denial-validation.log`, `validation.md` |
-| V005 | On-Prem Monitoring node root login denial validation plan | Document direct root login denial test to `<monitoring-node>`. | Monitoring node denies direct root SSH login. | `commands.md`, `logs/root-login-denial-validation.log`, `validation.md` |
-| V006 | AWS service node root login denial validation plan | Document direct root login denial test to `<aws-service-node>`. | AWS service node denies direct root SSH login. | `commands.md`, `logs/root-login-denial-validation.log`, `validation.md` |
-| V007 | Azure service node root login denial validation plan | Document direct root login denial test to `<azure-service-node>`. | Azure service node denies direct root SSH login. | `commands.md`, `logs/root-login-denial-validation.log`, `validation.md` |
-| V008 | OpenStack service node root login denial validation plan | Document direct root login denial test to `<openstack-service-node>`. | OpenStack service node denies direct root SSH login. | `commands.md`, `logs/root-login-denial-validation.log`, `validation.md` |
-| V009 | Authentication failure log capture plan | Document capture of failed direct root login events. | Failed root login evidence can be captured and sanitized. | `logs/root-login-denial-validation.log`, `screenshots/root-login-denial-test.png`, `validation.md` |
-| V010 | PermitRootLogin enabled, root login success, missing sshd config, or missing failure evidence failure condition | Define explicit failure criteria. | Root-login failures produce `FAIL` or `BLOCKED` status. | `validation.md` |
+| V001 | Root denial baseline | Test the baseline path. | Document exists. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V002 | SSHD root-denial example | Test the example path. | Config exists. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V003 | Non-production marker | Search the example header. | Explicit marker exists. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V004 | PermitRootLogin setting | Match the exact directive. | Value is `no`. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V005 | PubkeyAuthentication setting | Match the exact directive. | Value is `yes`. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V006 | PasswordAuthentication setting | Match the exact directive. | Value is `no`. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V007 | ChallengeResponseAuthentication setting | Match the exact directive. | Value is `no`. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V008 | KbdInteractiveAuthentication setting | Match the exact directive. | Value is `no`. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V009 | AuthenticationMethods setting | Match the exact directive. | Value is `publickey`. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V010 | Root denial policy statements | Search for required rules and placeholders. | Every statement exists. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V011 | Root password safety | Scan for enabled root login and root-password values. | No prohibited value exists. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V012 | Private key safety | Scan repository filenames and selected text. | No key file or material exists. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V013 | Authorized keys safety | Scan repository filenames. | No `authorized_keys` file exists. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V014 | Secret and account content | Scan baseline text for sensitive values and identifiers. | No forbidden content exists. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
+| V015 | Execution safety boundary | Scan validator source for SSH, sudo, mutation, and external commands. | No prohibited command exists. | `logs/root-login-denial-validation.log`, `configs/root-login-denial-summary.md` |
 
 ## Review Notes
 
-Every validation item must map to evidence. SSH key authentication success is handled in S011, password login denial is handled in S012, and sudo policy validation is excluded.
+All checks are required and any failure produces a non-zero exit.
