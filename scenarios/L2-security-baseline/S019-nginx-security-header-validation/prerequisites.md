@@ -1,20 +1,12 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Required Repository Inputs
 
-- S001-control-plane-toolchain-validation: confirms local toolchain planning.
-- S008-bastion-reachability-validation: defines management access assumptions.
-- S018-kubernetes-rbac-validation: defines RBAC assumptions for future Kubernetes runtime access where applicable.
-
-## Required Tools or References
-
-- Nginx syntax validation command planning capability, when future execution is approved.
-- `curl` or equivalent HTTP header capture capability, when future execution is approved.
-- Evidence model from `docs/evidence-model.md`.
-- Placeholder naming rules from `docs/naming-rules.md`.
+- PowerShell capable of running repository validators.
+- `security-baseline/nginx-security-header-baseline.md` and its rule matrix.
+- `traffic-management/nginx-security-headers.example.conf`.
+- Writable S019 evidence `logs/` and `configs/` directories.
 
 ## Safety Preconditions
 
-- Do not add TLS private keys, certificates, credentials, tfstate, kubeconfig content, or account-specific values.
-- Do not record real public IPs.
-- Do not implement Nginx or TLS configuration as part of this scenario skeleton.
+No real domains, backend addresses, public addresses, TLS keys, certificate paths, private material, credentials, secrets, state, real tfvars, kubeconfig, clouds.yaml, openrc, cloud identity values, or account-specific content may be introduced.

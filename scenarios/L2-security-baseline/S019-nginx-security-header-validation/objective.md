@@ -1,15 +1,13 @@
 # Objective
 
-S019 defines the Nginx security header validation model for the SNSD Multi-Cloud Ops traffic management and service exposure model.
+## Objective Statement
 
-The scenario validates that exposed HTTP services are planned with a baseline set of defensive response headers, reduced server version disclosure, and reviewable response evidence. It prevents missing security headers, exposed Nginx version details, invalid configuration, and unexplained response behavior from being accepted as a baseline security state.
+Validate that repository-side Nginx reverse-proxy examples define the required security header baseline and reduce server token exposure.
 
-This scenario does not implement Nginx configuration or TLS. It defines how future Nginx syntax, response header, and log evidence must be reviewed and validated.
+## Success Measures
 
-## Operational Capability
-
-- Confirm Nginx configuration syntax validation is planned.
-- Confirm `server_tokens off` or equivalent version reduction is planned.
-- Confirm required security headers are present in response validation.
-- Confirm `curl -I` response capture can verify headers.
-- Confirm access and error logs are available as evidence sources.
+- Required policy, matrix, and marked non-production config exist.
+- `server_tokens off` and all six required security headers are present.
+- Header values and placeholders are exact and every security header uses `always`.
+- Legacy header guidance, evidence handling, and static-validation limits are documented.
+- No TLS key/certificate path, private material, real domain, numeric address, credential, or account-specific content is present.

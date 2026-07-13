@@ -6,24 +6,23 @@
 | Scenario Name | Nginx Security Header Validation |
 | Level | L2 Security Baseline Validation |
 | Category | Security Baseline |
-| Primary Domain | Web traffic security |
-| Related Components | Nginx reverse proxy, ingress endpoint, service endpoint, access logs, error logs |
-| Validation Type | Security Validation |
-| Evidence Directory | evidence/L2-security-baseline/S019-nginx-security-header-validation/ |
-| Status | PLANNED |
+| Related Components | Nginx header policy, rule matrix, non-production config example, local validator |
+| Validation Type | Safe local repository validation |
+| Evidence Directory | `evidence/L2-security-baseline/S019-nginx-security-header-validation/` |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the Nginx security header baseline for the SNSD Multi-Cloud Ops traffic management and service exposure model.
+Validate a baseline set of Nginx reverse-proxy security headers without connecting to services, running or reloading Nginx, or modifying server configuration.
 
 ## Scope Summary
 
-This scenario validates Nginx security header design only. It covers reverse proxy security headers, ingress response header capture, server version exposure reduction, HTTP method restriction placeholders, `curl -I` response validation, Nginx syntax validation planning, and access/error log evidence collection.
+S019 inspects a local policy, matrix, and non-production config snippet only. It checks required directives, exact values, `always`, and sensitive-content safety.
 
 ## Validation Summary
 
-Validation checks confirm that required headers are planned, server version exposure is reduced, response headers can be captured, logs can be reviewed, and missing headers or unexplained response behavior are treated as failures.
+Twelve checks validate required artifacts, `server_tokens off`, six headers, exact values, `always`, documentation completeness, TLS material safety, domain/address safety, credentials, and execution boundaries.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L2-security-baseline/S019-nginx-security-header-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+The validator writes an ignored execution log and a tracked sanitized Markdown summary under the S019 evidence directory.

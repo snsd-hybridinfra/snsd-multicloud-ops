@@ -2,26 +2,13 @@
 
 ## Included
 
-- Reverse Proxy security header baseline.
-- Ingress response header validation plan.
-- Server version exposure reduction.
-- HTTP method restriction placeholder.
-- Security header validation using `curl -I`.
-- Nginx configuration syntax validation plan.
-- Access log evidence collection plan.
-- Error log evidence collection plan.
-- Required headers: `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, and `Content-Security-Policy` placeholder.
-- `Strict-Transport-Security` placeholder if TLS is enabled later.
+- Nginx security header policy, rule matrix, and config snippet validation.
+- `server_tokens off`, required header presence, exact value, placeholder, and `always` checks.
+- Legacy X-XSS-Protection guidance and static-validation limitation documentation.
+- TLS path/material, real domain/address, credential, identifier, and active-command safety checks.
 
 ## Excluded
 
-- Real Nginx configuration implementation.
-- Real TLS implementation.
-- TLS private keys, certificates, credentials, tfstate, kubeconfig, or account-specific files.
-- Real public IP addresses or production endpoints.
-- Ingress routing validation, which is handled in S023.
-- Load balancing validation, which is handled in S025.
-
-## Placeholder Rules
-
-Use placeholders such as `<service-endpoint>`, `<reverse-proxy-host>`, and `<ingress-host>`.
+- Running or reloading Nginx, modifying configuration, connecting to hosts, or curling endpoints.
+- Live response, TLS, inheritance, upstream, or production behavior validation.
+- Reverse proxy operation (S024), ingress routing (S023), load-balancer health (S025), manifest policy (S044), and public exposure controls (S014-S016).

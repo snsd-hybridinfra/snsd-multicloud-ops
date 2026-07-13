@@ -1,16 +1,11 @@
 # Rollback Plan
 
-This scenario is documentation-only, so rollback means reverting unsafe documentation or evidence changes rather than changing Nginx configuration.
+S019 changes repository policy, example config, validator, evidence, and tracking only. It modifies no Nginx server and therefore has no service rollback.
 
-## Rollback Steps
+## Repository Rollback
 
-1. Stop validation if evidence includes TLS private keys, certificates, credentials, real public IPs, tfstate, kubeconfig content, or account-specific values.
-2. Remove sensitive values from evidence and replace them with placeholders.
-3. Mark affected validation checks as `BLOCKED` until sanitized evidence is available.
-4. If future review identifies missing security headers, exposed server version, invalid Nginx syntax, or unexplained response behavior, record the finding as `FAIL`.
-5. Do not modify Nginx, TLS, ingress, or load balancing configuration from this scenario. Any future corrective change must be handled by an explicitly approved implementation task.
-6. Update tracking files if the scenario status changes.
-
-## Recovery Notes
-
-Corrective action should tighten the proposed Nginx security header and response validation model, then repeat evidence collection with sanitized outputs.
+1. Stop if sensitive or account-specific content is found.
+2. Remove unsafe content and restore approved placeholders.
+3. Correct a missing or unsafe header directive.
+4. Rerun the validator and retain only sanitized evidence.
+5. Mark scenario and evidence status appropriately if validation cannot pass.

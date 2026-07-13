@@ -1,18 +1,18 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
+| Check ID | Validation Item | Evidence File | Required |
 |---|---|---|---|
-| Nginx configuration syntax validation plan | `commands.md`; `configs/nginx-security-header-summary.md`; `validation.md` | command plan, header summary, validation record | yes |
-| server_tokens off validation plan | `commands.md`; `configs/nginx-security-policy.md`; `validation.md` | command plan, security policy, validation record | yes |
-| X-Content-Type-Options header validation plan | `commands.md`; `configs/nginx-security-policy.md`; `validation.md` | command plan, security policy, validation record | yes |
-| X-Frame-Options header validation plan | `commands.md`; `configs/nginx-security-policy.md`; `validation.md` | command plan, security policy, validation record | yes |
-| Referrer-Policy header validation plan | `commands.md`; `configs/nginx-security-policy.md`; `validation.md` | command plan, security policy, validation record | yes |
-| Content-Security-Policy placeholder validation plan | `commands.md`; `configs/nginx-security-policy.md`; `validation.md` | command plan, security policy, validation record | yes |
-| HTTP response header capture using curl -I plan | `commands.md`; `logs/nginx-security-header-validation.log`; `screenshots/nginx-security-header-test.png`; `validation.md` | command plan, validation log, screenshot reference, validation record | yes |
-| Access log capture plan | `commands.md`; `logs/nginx-security-header-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Error log capture plan | `commands.md`; `logs/nginx-security-header-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Failure condition for missing security header, exposed server version, invalid Nginx configuration, or unexplained response behavior | `validation.md` | failure criteria and status record | yes |
+| V001 | Security header baseline | `logs/nginx-security-header-validation.log`; `configs/nginx-security-header-summary.md` | yes |
+| V002 | Security header rule matrix | same generated evidence | yes |
+| V003 | Nginx example config | same generated evidence | yes |
+| V004 | Server token reduction | same generated evidence | yes |
+| V005 | Required security headers | same generated evidence | yes |
+| V006 | Required header values | same generated evidence | yes |
+| V007 | Always directive | same generated evidence | yes |
+| V008 | Baseline and matrix completeness | same generated evidence | yes |
+| V009 | TLS material safety | same generated evidence | yes |
+| V010 | Address and domain safety | same generated evidence | yes |
+| V011 | Credential and account safety | same generated evidence | yes |
+| V012 | Execution safety boundary | same generated evidence | yes |
 
-## Evidence Notes
-
-No real Nginx output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+`commands.md` documents execution and `validation.md` records final results. The generated log is ignored; the sanitized summary is tracked.
