@@ -1,0 +1,10 @@
+SAMPLE / NON-PRODUCTION
+Replica_IO_Running: Yes
+Replica_SQL_Running: Yes
+Seconds_Behind_Source: 0
+Last_IO_Error:
+Last_SQL_Error:
+Channel_Name: <replication-channel>
+Source_Log_File: <binlog-file-placeholder>
+Read_Source_Log_Pos: <binlog-position-placeholder>
+Executed_Gtid_Set: <gtid-placeholder>

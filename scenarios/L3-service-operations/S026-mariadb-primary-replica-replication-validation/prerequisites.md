@@ -1,20 +1,11 @@
 # Prerequisites
 
-## Required Previous Scenarios
+- PowerShell and `tools/validate-mariadb-primary-replica-replication.ps1`.
+- The replication runbook and command reference.
+- The marked non-production Ansible placeholder.
+- Three sanitized samples containing no environment-specific values.
+- Understanding that S027 owns detailed lag validation.
 
-- S007-multi-cloud-inventory-validation: defines placeholder DB node inventory.
-- S008-bastion-reachability-validation: defines management reachability assumptions.
-- S017-mariadb-access-control-validation: defines database access control assumptions.
+No MariaDB/MySQL client, server, connection, database credential, dump, inventory execution, or network access is required or permitted.
 
-## Required Tools or References
-
-- MariaDB command planning capability, when future execution is approved.
-- Placeholder replication topology for `db-primary-01`, `db-replica-01`, and `db-replica-02`.
-- Evidence model from `docs/evidence-model.md`.
-- Placeholder naming rules from `docs/naming-rules.md`.
-
-## Safety Preconditions
-
-- Do not add database passwords, credentials, private keys, tfstate, kubeconfig content, cloud account values, or account-specific values.
-- Do not record real public IPs.
-- Do not execute live MariaDB configuration changes as part of this scenario skeleton.
+Real-lab collection, if separately approved, must be manual and fully sanitized before any artifact is considered for commit.

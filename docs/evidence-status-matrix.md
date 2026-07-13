@@ -29,7 +29,7 @@ Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S023 | ingress-routing-validation | READY | READY | READY | READY | READY | READY |
 | S024 | nginx-reverse-proxy-validation | READY | READY | READY | READY | READY | READY |
 | S025 | load-balancing-health-check-validation | READY | READY | READY | READY | READY | READY |
-| S026 | mariadb-primary-replica-replication-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
+| S026 | mariadb-primary-replica-replication-validation | READY | READY | READY | READY | READY | READY |
 | S027 | db-replication-lag-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S028 | prometheus-target-discovery-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S029 | grafana-dashboard-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
