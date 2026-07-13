@@ -1,15 +1,7 @@
 # Objective
 
-S024 defines the Nginx Reverse Proxy validation model for provider-level service entry points across AWS, Azure, and OpenStack service zones.
+Validate that SNSD Multi-Cloud Ops defines a non-production Nginx reverse proxy configuration that safely routes `Client -> Nginx Reverse Proxy -> Backend Service`.
 
-The scenario validates that planned Nginx reverse proxies can receive provider-zone traffic and forward it to the intended Kubernetes Ingress endpoint using documented upstream mappings. It ensures service status, syntax validation, endpoint responses, access logs, and error logs are reviewable without introducing real public IPs, TLS keys, certificates, credentials, kubeconfig files, or account-specific values.
+S024 validates the example configuration, routing directives, forwarded headers, timeout baseline, rule matrix, and sanitized sample response evidence. Static validation does not run Nginx, curl, or network requests. Live HTTP validation is optional and only runs with explicit `-LiveHttp -TargetUrl` input.
 
-This scenario does not implement Nginx configuration or TLS. It defines how future reverse proxy forwarding evidence must be captured and reviewed.
-
-## Operational Capability
-
-- Confirm Nginx service status validation is planned.
-- Confirm `nginx -t` syntax validation is planned.
-- Confirm AWS, Azure, and OpenStack reverse proxy endpoint response checks are planned.
-- Confirm reverse proxy upstream mapping to `<ingress-endpoint>` is planned.
-- Confirm access and error logs can support forwarding evidence.
+S024 does not provision infrastructure, authenticate to providers, modify Nginx, inspect real DNS, store a live target, or manage TLS. S019 owns Nginx response security headers, S023 owns Ingress routing, and S025 owns load-balancing health checks.

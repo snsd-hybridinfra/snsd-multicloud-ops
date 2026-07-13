@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION
+nginx: the configuration file <nginx-config-placeholder> syntax is ok
+nginx: configuration file <nginx-config-placeholder> test is successful
+

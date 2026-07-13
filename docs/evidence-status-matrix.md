@@ -27,7 +27,7 @@ Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S021 | kubernetes-node-readiness-validation | READY | READY | READY | READY | READY | READY |
 | S022 | kubernetes-workload-deployment-validation | READY | READY | READY | READY | READY | READY |
 | S023 | ingress-routing-validation | READY | READY | READY | READY | READY | READY |
-| S024 | nginx-reverse-proxy-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
+| S024 | nginx-reverse-proxy-validation | READY | READY | READY | READY | READY | READY |
 | S025 | load-balancing-health-check-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S026 | mariadb-primary-replica-replication-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S027 | db-replication-lag-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |

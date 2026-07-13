@@ -1,22 +1,7 @@
 # Expected Result
 
-S024 is successful when the Nginx Reverse Proxy validation plan is complete and ready for future approved execution.
+S024 is validated when all required artifacts exist, the example contains the approved proxy and timeout directives, all four forwarding headers use approved variables, samples parse successfully, and safety scans find no concrete endpoint or sensitive content.
 
-## Success Conditions
+Static mode must finish without running Nginx, curl, or a network request. An explicitly requested LiveHttp run passes for 200, 204, 301, or 302; warns for 401 or 403; and fails for connection/timeout errors, 5xx, or another unaccepted status.
 
-- Nginx service status validation is planned.
-- Nginx syntax validation using `nginx -t` is planned.
-- AWS reverse proxy endpoint response validation is planned.
-- Azure reverse proxy endpoint response validation is planned.
-- OpenStack reverse proxy endpoint response validation is planned.
-- Reverse proxy upstream mapping validation is planned.
-- Reverse proxy to Ingress forwarding validation is planned.
-- HTTP 200 response validation is planned.
-- Access and error log evidence collection is planned.
-- All validation checks map to required evidence files.
-
-## Evidence Conditions
-
-- `commands.md` lists planned command or review actions with TODO output placeholders.
-- `validation.md` lists each check with `NOT_RUN` status until execution.
-- Future supporting evidence is expected in `configs/nginx-reverse-proxy-summary.md`, `configs/nginx-upstream-mapping.md`, `logs/nginx-reverse-proxy-validation.log`, and `screenshots/nginx-reverse-proxy-test.png`.
+The generated log and summary record aggregate judgments only. They never contain the live target, response body, response headers, credentials, cookies, tokens, TLS material, domains, or numeric addresses.

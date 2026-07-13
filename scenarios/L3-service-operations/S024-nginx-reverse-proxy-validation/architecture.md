@@ -1,24 +1,27 @@
 # Architecture
 
-## Relevant Components
+## Request Path
 
-- Control Plane: planned origin for reverse proxy validation commands.
-- AWS reverse proxy: represented by `<aws-reverse-proxy>`.
-- Azure reverse proxy: represented by `<azure-reverse-proxy>`.
-- OpenStack reverse proxy: represented by `<openstack-reverse-proxy>`.
-- Kubernetes Ingress endpoint: represented by `<ingress-endpoint>`.
-- Upstream service: represented by `<upstream-service>`.
-- Nginx access and error logs: planned evidence sources for request forwarding and failure analysis.
+`Client -> Nginx Reverse Proxy -> Backend Service`
 
-## Forwarding Model
+The example `server` and `location /` blocks route to a symbolic named `upstream`. Forwarding headers preserve Host, source-address context, proxy-chain context, and original scheme. Explicit connection, send, and read timeouts bound proxy operations.
 
-- Each provider-level reverse proxy must forward traffic to the intended `<ingress-endpoint>`.
-- Upstream mappings must identify `<upstream-service>` without real public IPs.
-- Nginx syntax validation must occur before response validation.
-- HTTP response validation must confirm expected forwarding behavior.
-- Health checks are placeholders only and are fully validated in S025.
-- Access and error logs must support request and failure evidence.
+## Validation Flow
 
-## Boundary Notes
+```text
+Static (default)
+  -> read repository artifacts
+  -> validate directives and safety
+  -> parse sanitized samples
+  -> write aggregate log and summary
 
-This scenario validates Nginx reverse proxy forwarding only. Security headers, ingress routing, load balancing health checks, and TLS implementation are separate scenario responsibilities.
+LiveHttp (explicit)
+  -> require operator-supplied TargetUrl
+  -> validate HTTP(S) URI without user information
+  -> send one cookie-free HEAD request
+  -> retain status code and timestamp only
+```
+
+## Boundaries
+
+No Nginx process or configuration is changed. No response body, response header, target URL, credential, cookie, key, certificate, domain, or numeric address is committed. S019, S023, and S025 retain ownership of security headers, Ingress, and load-balancer health respectively.

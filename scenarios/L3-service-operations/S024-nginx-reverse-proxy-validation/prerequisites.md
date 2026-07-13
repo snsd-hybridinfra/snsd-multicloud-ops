@@ -1,21 +1,18 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Static Mode
 
-- S001-control-plane-toolchain-validation: confirms local command planning.
-- S008-bastion-reachability-validation: defines management path assumptions.
-- S019-nginx-security-header-validation: defines security header validation separately.
-- S023-ingress-routing-validation: defines Kubernetes Ingress routing assumptions.
+- PowerShell capable of running `tools/validate-nginx-reverse-proxy.ps1`.
+- The four `traffic-management/` baseline artifacts.
+- The three marked, sanitized sample evidence files.
+- Existing S019 security-header and S023 Ingress boundaries understood.
 
-## Required Tools or References
+Static mode requires no Nginx binary, curl, DNS record, live service, credential, network access, or TLS material.
 
-- Nginx service status and syntax validation command planning, when future execution is approved.
-- HTTP response capture capability, when future execution is approved.
-- Evidence model from `docs/evidence-model.md`.
-- Placeholder naming rules from `docs/naming-rules.md`.
+## Optional LiveHttp Mode
 
-## Safety Preconditions
+- Deliberate operator approval to contact a safe target.
+- Both `-LiveHttp` and a non-credentialed absolute HTTP(S) `-TargetUrl`.
+- A target where a HEAD request is safe.
 
-- Do not add TLS private keys, certificates, credentials, secrets, private keys, tfstate, kubeconfig content, cloud account values, subscription IDs, tenant IDs, or account-specific values.
-- Do not record real public IPs.
-- Do not implement Nginx, TLS, ingress, or load balancing configuration as part of this scenario skeleton.
+The target must not contain embedded user information. The validator sends no authorization or cookie header and stores no target or response content.

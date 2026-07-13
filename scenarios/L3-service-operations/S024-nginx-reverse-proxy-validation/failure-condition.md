@@ -1,23 +1,15 @@
 # Failure Condition
 
-S024 fails if the Nginx reverse proxy forwarding path cannot be validated or provider-level entrypoints do not forward to the intended upstream.
+S024 fails when any of these conditions occurs:
 
-## Failure Conditions
+- A required baseline or sample file is missing.
+- Upstream, server, listener, symbolic server name, location, or `proxy_pass` is missing.
+- A required forwarded header or timeout is absent or incorrect.
+- The config-test sample lacks either success indicator or the HTTP sample lacks 200 OK.
+- A sample is not marked and sanitized as non-production.
+- A real domain, numeric address, concrete URL, key/certificate path or material, credential, token, cookie, authorization value, or secret-like assignment is detected.
+- Broad dynamic proxying, a resolver, or an out-of-scope TLS listener appears in the example.
+- LiveHttp is requested without a valid TargetUrl, cannot connect, times out, returns 5xx, or returns another unaccepted status.
+- The validator runs Nginx/curl, modifies Nginx, or persists a live target or response content.
 
-- Nginx service is down or service status cannot be reviewed.
-- Nginx configuration syntax validation fails.
-- AWS reverse proxy endpoint does not respond as expected.
-- Azure reverse proxy endpoint does not respond as expected.
-- OpenStack reverse proxy endpoint does not respond as expected.
-- Upstream mapping points to the wrong `<upstream-service>`.
-- Reverse proxy does not forward to `<ingress-endpoint>`.
-- Valid reverse proxy route times out.
-- Valid reverse proxy route returns HTTP 5xx.
-- Access logs or error logs are missing when required for evidence.
-- Evidence contains TLS private keys, certificates, credentials, secrets, real public IPs, tfstate, kubeconfig content, cloud account values, subscription IDs, tenant IDs, or account-specific values.
-
-## Blocked Conditions
-
-- Validation cannot proceed because no approved placeholder reverse proxy model exists.
-- Future service status, syntax, response, or log output is unavailable.
-- Required evidence files are missing.
+HTTP 401 or 403 in LiveHttp is a warning because authentication may be expected; it does not prove routing failure.

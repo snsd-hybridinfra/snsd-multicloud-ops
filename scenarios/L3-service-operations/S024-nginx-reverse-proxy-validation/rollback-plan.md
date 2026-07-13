@@ -1,16 +1,12 @@
 # Rollback Plan
 
-This scenario is documentation-only, so rollback means reverting unsafe documentation or evidence changes rather than changing Nginx or cloud routing state.
+Static S024 validation changes only generated repository evidence, so no infrastructure rollback is required.
 
-## Rollback Steps
+1. Stop immediately if sensitive or concrete environment content is found.
+2. Remove the unsafe artifact and replace values with approved placeholders.
+3. Correct the example or documentation without touching a real Nginx installation.
+4. Rerun Static validation and review the aggregate evidence.
+5. If an optional live request fails, retain only the sanitized judgment and investigate outside this scenario under separate authorization.
+6. Revert repository changes through normal version control if the baseline itself is invalid.
 
-1. Stop validation if evidence includes TLS private keys, certificates, credentials, secrets, real public IPs, tfstate, kubeconfig content, cloud account values, subscription IDs, tenant IDs, or account-specific values.
-2. Remove sensitive values from evidence and replace them with placeholders.
-3. Mark affected validation checks as `BLOCKED` until sanitized evidence is available.
-4. If future review identifies Nginx down, invalid config, wrong upstream, route timeout, HTTP 5xx, or missing access/error logs, record the finding as `FAIL`.
-5. Do not create or modify Nginx configuration, TLS assets, Ingress resources, load balancers, DNS records, or cloud resources from this scenario.
-6. Update tracking files if the scenario status changes.
-
-## Recovery Notes
-
-Corrective action should restore Nginx service status, syntax validity, upstream mapping, forwarding behavior, or logging through a separately approved implementation task, then repeat evidence collection with sanitized outputs.
+Never restart, reload, modify, or roll back Nginx from this validator.

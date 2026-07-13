@@ -6,24 +6,24 @@
 | Scenario Name | Nginx Reverse Proxy Validation |
 | Level | L3 Service Operations Validation |
 | Category | Service Operations |
-| Primary Domain | Provider-level service entry |
-| Related Components | AWS reverse proxy, Azure reverse proxy, OpenStack reverse proxy, Kubernetes Ingress endpoint, upstream service, Nginx logs |
-| Validation Type | Service Operation Validation |
+| Primary Domain | Reverse proxy routing baseline |
+| Related Components | Nginx example, upstream, backend service, HTTP evidence |
+| Validation Type | Static local validation with optional explicit LiveHttp |
 | Evidence Directory | evidence/L3-service-operations/S024-nginx-reverse-proxy-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the Nginx Reverse Proxy model used as the provider-level service entry point for AWS, Azure, and OpenStack service zones.
+Validate a safe non-production Nginx reverse proxy model, required routing directives, forwarded headers, timeout baseline, and sanitized response evidence.
 
 ## Scope Summary
 
-This scenario validates Nginx reverse proxy forwarding only. It covers provider-level reverse proxy endpoints, forwarding to Kubernetes Ingress, upstream mapping, HTTP response validation, health check placeholders, Nginx syntax validation, and access/error log evidence collection.
+Static mode is authoritative for repository readiness and invokes neither Nginx nor curl. Optional live HTTP validation requires both `-LiveHttp` and `-TargetUrl`, sends one credential-free HEAD request, and stores only a sanitized status and timestamp.
 
 ## Validation Summary
 
-Validation checks confirm that Nginx service status and syntax can be reviewed, AWS/Azure/OpenStack reverse proxy endpoints are planned, upstream mappings point to the intended Ingress endpoint, successful HTTP responses are defined, and failures such as Nginx down, invalid config, wrong upstream, route timeout, HTTP 5xx, or missing logs are explicitly captured.
+Seventeen checks validate required files, upstream/server/location routing, `proxy_pass`, forwarded headers, timeout directives, rule coverage, sample evidence, address/domain/TLS/credential safety, and execution boundaries.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L3-service-operations/S024-nginx-reverse-proxy-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Generated evidence is stored under the scenario evidence directory. S024 never reloads, restarts, or modifies Nginx and never stores credentials, cookies, tokens, TLS keys, certificates, target URLs, or response bodies.

@@ -1,19 +1,23 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Nginx service status validation plan | `commands.md`; `logs/nginx-reverse-proxy-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Nginx configuration syntax validation plan using nginx -t | `commands.md`; `configs/nginx-reverse-proxy-summary.md`; `validation.md` | command plan, proxy summary, validation record | yes |
-| AWS reverse proxy endpoint response validation plan | `commands.md`; `logs/nginx-reverse-proxy-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Azure reverse proxy endpoint response validation plan | `commands.md`; `logs/nginx-reverse-proxy-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| OpenStack reverse proxy endpoint response validation plan | `commands.md`; `logs/nginx-reverse-proxy-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Reverse proxy upstream mapping validation plan | `commands.md`; `configs/nginx-upstream-mapping.md`; `validation.md` | command plan, upstream mapping, validation record | yes |
-| Reverse proxy to Ingress forwarding validation plan | `commands.md`; `configs/nginx-upstream-mapping.md`; `validation.md` | command plan, upstream mapping, validation record | yes |
-| HTTP 200 response validation plan | `commands.md`; `logs/nginx-reverse-proxy-validation.log`; `screenshots/nginx-reverse-proxy-test.png`; `validation.md` | command plan, validation log, screenshot reference, validation record | yes |
-| Access log capture plan | `commands.md`; `logs/nginx-reverse-proxy-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Error log capture plan | `commands.md`; `logs/nginx-reverse-proxy-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Failure condition for Nginx down, invalid config, wrong upstream, route timeout, HTTP 5xx, or missing access/error logs | `validation.md` | failure criteria and status record | yes |
+| Check ID | Validation Item | Evidence File |
+|---|---|---|
+| V001 | Required baseline files | `commands.md`; `configs/nginx-reverse-proxy-summary.md` |
+| V002 | Sample evidence files | three `logs/*.sample.txt`; summary |
+| V003 | Reverse proxy baseline | `traffic-management/nginx-reverse-proxy-validation.md`; summary |
+| V004 | Reverse proxy directives | `traffic-management/nginx-reverse-proxy.example.conf`; summary |
+| V005 | Forwarded headers | config example; summary |
+| V006 | Proxy timeout baseline | config example; summary |
+| V007 | Reverse proxy rule matrix | `traffic-management/nginx-reverse-proxy-rule-matrix.example.md`; summary |
+| V008 | Safe command reference | `traffic-management/nginx-reverse-proxy-commands.example.md`; summary |
+| V009 | Config-test sample parsing | `logs/nginx-config-test.sample.txt`; summary |
+| V010 | HTTP response sample parsing | `logs/reverse-proxy-http-response.sample.txt`; summary |
+| V011 | Access-log sample parsing | `logs/nginx-access-log.sample.txt`; summary |
+| V012 | TLS material safety | generated validation log; summary |
+| V013 | Credential and header safety | generated validation log; summary |
+| V014 | Address and domain safety | generated validation log; summary |
+| V015 | Proxy example safety | config example; summary |
+| V016 | Execution safety boundary | `tools/validate-nginx-reverse-proxy.ps1`; summary |
+| V017 | Validation mode and live result | generated validation log; summary |
 
-## Evidence Notes
-
-No real Nginx reverse proxy output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+`validation.md` records every check. The generated `.log` is local/ignored; the committed summary and sanitized samples provide durable evidence. No live target or response content is evidence.

@@ -2,36 +2,34 @@
 
 Scenario: S024-nginx-reverse-proxy-validation
 Level: L3-service-operations
-Capability: Nginx Reverse Proxy Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
+Mode: Static
+Date: 2026-07-13
+Overall status: PASS
 
-No real Nginx reverse proxy output has been collected yet. This file defines the validation record that must be completed during future approved execution.
-
-| Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
+| Check ID | Check Description | Expected Condition | Actual Result | Status | Evidence File |
 |---|---|---|---|---|---|
-| V001 | Nginx service status validation plan | Nginx service status can be reviewed for each provider entrypoint. | TODO | NOT_RUN | `commands.md`; `logs/nginx-reverse-proxy-validation.log` |
-| V002 | Nginx configuration syntax validation plan using nginx -t | Nginx configuration syntax is valid before forwarding checks. | TODO | NOT_RUN | `commands.md`; `configs/nginx-reverse-proxy-summary.md` |
-| V003 | AWS reverse proxy endpoint response validation plan | AWS reverse proxy endpoint responds as expected. | TODO | NOT_RUN | `commands.md`; `logs/nginx-reverse-proxy-validation.log` |
-| V004 | Azure reverse proxy endpoint response validation plan | Azure reverse proxy endpoint responds as expected. | TODO | NOT_RUN | `commands.md`; `logs/nginx-reverse-proxy-validation.log` |
-| V005 | OpenStack reverse proxy endpoint response validation plan | OpenStack reverse proxy endpoint responds as expected. | TODO | NOT_RUN | `commands.md`; `logs/nginx-reverse-proxy-validation.log` |
-| V006 | Reverse proxy upstream mapping validation plan | Upstream mapping points to the intended service target. | TODO | NOT_RUN | `commands.md`; `configs/nginx-upstream-mapping.md` |
-| V007 | Reverse proxy to Ingress forwarding validation plan | Reverse proxy forwards to the intended Kubernetes Ingress endpoint. | TODO | NOT_RUN | `commands.md`; `configs/nginx-upstream-mapping.md` |
-| V008 | HTTP 200 response validation plan | Valid reverse proxy route returns expected HTTP 200 response. | TODO | NOT_RUN | `commands.md`; `logs/nginx-reverse-proxy-validation.log`; `screenshots/nginx-reverse-proxy-test.png` |
-| V009 | Access log capture plan | Access logs can support forwarding evidence without sensitive values. | TODO | NOT_RUN | `commands.md`; `logs/nginx-reverse-proxy-validation.log` |
-| V010 | Error log capture plan | Error logs can support failure analysis without sensitive values. | TODO | NOT_RUN | `commands.md`; `logs/nginx-reverse-proxy-validation.log` |
-| V011 | Failure condition for Nginx down, invalid config, wrong upstream, route timeout, HTTP 5xx, or missing access/error logs | Reverse proxy failures produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
+| V001 | Required baseline files | Four baseline artifacts exist. | All exist. | PASS | summary |
+| V002 | Sample evidence files | Three sanitized samples exist. | All exist. | PASS | sample logs |
+| V003 | Reverse proxy baseline | Path, placeholders, modes, and evidence are defined. | Complete. | PASS | baseline; summary |
+| V004 | Reverse proxy directives | Required routing directives exist. | Complete. | PASS | config; summary |
+| V005 | Forwarded headers | Four exact header directives exist. | Complete. | PASS | config; summary |
+| V006 | Proxy timeout baseline | Three explicit timeouts exist. | Complete. | PASS | config; summary |
+| V007 | Reverse proxy rule matrix | Thirteen controls and required columns exist. | Complete. | PASS | matrix; summary |
+| V008 | Safe command reference | Five example commands exist. | Complete. | PASS | command example; summary |
+| V009 | Config-test sample parsing | Marked sample has two success indicators. | Parsed successfully. | PASS | config-test sample; summary |
+| V010 | HTTP response sample parsing | Marked sample contains HTTP 200 OK. | Parsed successfully. | PASS | HTTP sample; summary |
+| V011 | Access-log sample parsing | Symbolic request has 200 status. | Parsed successfully. | PASS | access sample; summary |
+| V012 | TLS material safety | No key/certificate material or path. | None detected. | PASS | log; summary |
+| V013 | Credential and header safety | No sensitive assignment/header/auth directive. | None detected. | PASS | log; summary |
+| V014 | Address and domain safety | No numeric address, domain, or concrete URL. | None detected. | PASS | log; summary |
+| V015 | Proxy example safety | No broad proxy, resolver, or TLS listener. | None detected. | PASS | config; summary |
+| V016 | Execution safety boundary | No Nginx/curl invocation; live HEAD is guarded. | Boundary confirmed. | PASS | script; summary |
+| V017 | Validation mode and live result | Static performs no network request. | Static completed safely. | PASS | log; summary |
 
-## Evidence Completeness
+## Generated Result
 
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- Nginx reverse proxy summary is captured: NOT_READY
-- Nginx upstream mapping is captured: NOT_READY
-- Nginx reverse proxy validation log is captured: NOT_READY
-- Nginx reverse proxy screenshot is captured: NOT_READY
-
-## Notes
-
-This scenario validates Nginx Reverse Proxy forwarding only. Nginx security header validation is handled in S019, Ingress routing validation in S023, load balancing health check validation in S025, and TLS implementation is excluded.
+- Critical failures: 0
+- Warnings: 0
+- Optional LiveHttp: NOT_RUN
+- Final judgment: PASS
+- No Nginx process, curl command, network request, target URL, response content, credential, cookie, token, TLS material, domain, or numeric address was used or stored.
