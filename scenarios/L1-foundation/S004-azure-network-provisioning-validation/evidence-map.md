@@ -2,18 +2,20 @@
 
 | Validation Item | Evidence File | Evidence Type | Required |
 |---|---|---|---|
-| Terraform AzureRM provider initialization plan | `commands.md`; `configs/azure-network-plan-summary.md`; `validation.md` | command plan, plan summary, validation record | yes |
-| Terraform validate plan | `commands.md`; `logs/terraform-azure-network-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Azure Resource Group validation plan | `configs/azure-network-plan-summary.md`; `validation.md`; `screenshots/azure-vnet-resource-view.png` | plan summary, validation record, screenshot reference | yes |
-| Azure VNet creation validation plan | `configs/azure-network-plan-summary.md`; `validation.md`; `screenshots/azure-vnet-resource-view.png` | plan summary, validation record, screenshot reference | yes |
-| Azure subnet creation validation plan | `configs/azure-network-plan-summary.md`; `validation.md`; `screenshots/azure-vnet-resource-view.png` | plan summary, validation record, screenshot reference | yes |
-| Azure NSG baseline validation plan | `configs/azure-network-plan-summary.md`; `validation.md` | plan summary, validation record | yes |
-| Azure route table validation plan | `commands.md`; `logs/terraform-azure-network-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Terraform output capture plan | `commands.md`; `logs/terraform-azure-network-validation.log`; `validation.md` | command plan, output capture log, validation record | yes |
-| Azure CLI resource listing plan | `commands.md`; `logs/terraform-azure-network-validation.log`; `validation.md` | command plan, Azure CLI listing log, validation record | yes |
-| Missing Resource Group, VNet, subnet, NSG, or route table failure condition | `validation.md` | failure criteria and status record | yes |
-| Rollback plan using terraform destroy checklist | `commands.md`; `validation.md` | rollback checklist and validation record | yes |
+| V001 Module files | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| V002 Environment files | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| V003 Example variable file | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| V004 State and real variable files | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| V005 Azure network resources | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| V006 Remote backend | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| V007 Credential-like content | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| V008 Azure identity assignments | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| V009 Example values | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| V010 Terraform formatting | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| V011 Terraform validate boundary | `logs/azure-network-provisioning-validation.log`; `configs/azure-network-provisioning-summary.md` | generated log and summary | yes |
+| Script invocation and evidence inspection | `commands.md` | operator command record | yes |
+| Final validation judgment | `validation.md` | validation result | yes |
 
 ## Evidence Notes
 
-No real Terraform or Azure output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+The log is reproducible. Screenshots, Azure CLI output, plans, state, and real identity values are neither required nor permitted.

@@ -1,36 +1,27 @@
 # Validation
 
 Scenario: S004-azure-network-provisioning-validation
-Level: L1-foundation
-Capability: Azure Network Provisioning Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
 
-No real Terraform or Azure command output has been collected yet. This file defines the validation record that must be completed during future approved execution.
+Level: L1-foundation
+
+Date: 2026-07-13
+
+Overall status: PASS
 
 | Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
 |---|---|---|---|---|---|
-| V001 | Terraform AzureRM provider initialization plan | Initialization approach is defined without credentials or backend state. | TODO | NOT_RUN | `commands.md`; `configs/azure-network-plan-summary.md` |
-| V002 | Terraform validate plan | Terraform validation approach is defined for future Azure network code. | TODO | NOT_RUN | `commands.md`; `logs/terraform-azure-network-validation.log` |
-| V003 | Azure Resource Group validation plan | Resource Group validation method is documented with `<azure-resource-group-name>` placeholder. | TODO | NOT_RUN | `configs/azure-network-plan-summary.md`; `screenshots/azure-vnet-resource-view.png` |
-| V004 | Azure VNet creation validation plan | VNet validation method is documented with `<azure-vnet-name>` placeholder. | TODO | NOT_RUN | `configs/azure-network-plan-summary.md`; `screenshots/azure-vnet-resource-view.png` |
-| V005 | Azure subnet creation validation plan | Public and private subnet validation method is documented. | TODO | NOT_RUN | `configs/azure-network-plan-summary.md`; `screenshots/azure-vnet-resource-view.png` |
-| V006 | Azure NSG baseline validation plan | NSG baseline validation method is documented. | TODO | NOT_RUN | `configs/azure-network-plan-summary.md` |
-| V007 | Azure route table validation plan | Route table validation method is documented. | TODO | NOT_RUN | `commands.md`; `logs/terraform-azure-network-validation.log` |
-| V008 | Terraform output capture plan | Terraform output capture is planned without tfstate content. | TODO | NOT_RUN | `commands.md`; `logs/terraform-azure-network-validation.log` |
-| V009 | Azure CLI resource listing plan | Azure CLI resource listing is planned with sanitized placeholders. | TODO | NOT_RUN | `commands.md`; `logs/terraform-azure-network-validation.log` |
-| V010 | Missing Resource Group, VNet, subnet, NSG, or route table failure condition | Missing required Azure network resources produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
-| V011 | Rollback plan using terraform destroy checklist | Future approved teardown checklist is documented without execution. | TODO | NOT_RUN | `commands.md`; `validation.md` |
+| V001 | Module files | All required module files exist. | All required module files exist. | PASS | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
+| V002 | Environment files | All required environment files exist. | All required environment files exist. | PASS | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
+| V003 | Example variable file | `terraform.tfvars.example` exists. | Safe example variable file exists. | PASS | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
+| V004 | State and real variable files | No tfstate or real tfvars exists. | No tfstate or real tfvars file exists. | PASS | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
+| V005 | Azure network resources | All required resource block types exist. | Required Azure network definitions are present. | PASS | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
+| V006 | Remote backend | No backend block exists. | No backend block was detected. | PASS | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
+| V007 | Credential-like content | No forbidden pattern is detected. | No credential, private-key, identity-ID, or account-specific pattern was detected. | PASS | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
+| V008 | Azure identity assignments | No Azure identity assignment exists. | No Azure identity or credential assignment was detected. | PASS | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
+| V009 | Example values | Only approved non-production values exist. | Approved CIDRs, location, and marker are present. | PASS | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
+| V010 | Terraform formatting | Formatting is checked when Terraform exists. | WARN: Terraform is unavailable, so fmt check was skipped. | BLOCKED | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
+| V011 | Terraform validate boundary | Validate is skipped because init is prohibited. | WARN: skipped because init and provider download are prohibited. | BLOCKED | `logs/azure-network-provisioning-validation.log`, `configs/azure-network-provisioning-summary.md` |
 
-## Evidence Completeness
+## Generated Result
 
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- Azure network plan summary is captured: NOT_READY
-- Terraform and Azure CLI validation log is captured: NOT_READY
-- Azure VNet resource screenshot is captured: NOT_READY
-
-## Notes
-
-This scenario does not include real Azure resource creation, Terraform provider credentials, subscription IDs, tenant IDs, tfstate, private keys, or account-specific files.
+Nine required repository and safety checks passed. Two informational Terraform checks were recorded as warnings. No Azure authentication, credential read, cloud request, provider initialization, state creation, plan, apply, or destroy occurred.

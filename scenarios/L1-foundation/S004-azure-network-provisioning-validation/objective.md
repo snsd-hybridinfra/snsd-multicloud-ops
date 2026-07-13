@@ -1,17 +1,7 @@
 # Objective
 
-Validate the planned Azure baseline network provisioning model required for later multi-cloud operations scenarios.
+Validate the local Terraform definition for an Azure baseline network consisting of a resource group, virtual network, public-tier subnet, private-tier subnet, baseline network security group, route table, and subnet associations.
 
-The scenario defines validation for these Azure network components:
+Success means the repository contains the expected reviewable resources and safe non-production examples, and the local validator completes all required checks without Azure authentication, provider initialization, cloud API calls, state creation, or resource provisioning.
 
-- Resource Group
-- Virtual Network
-- Public Subnet
-- Private Subnet
-- Network Security Group baseline
-- Route Table placeholder
-- Public IP placeholder
-- Optional Bastion or management entry point placeholder
-- Terraform output validation plan
-
-Success means the repository has a clear, evidence-mapped plan for validating Azure network provisioning without creating real resources or storing Azure credentials, subscription IDs, tenant IDs, tfstate, private keys, or account-specific files.
+Terraform provider validation is handled in S006. Azure NSG least-privilege rule validation is handled in S015.

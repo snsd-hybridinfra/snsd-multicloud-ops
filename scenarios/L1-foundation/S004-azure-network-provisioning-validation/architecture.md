@@ -1,25 +1,20 @@
 # Architecture
 
-## Relevant Components
+## Repository Components
 
-- Resource Group: Azure container represented by `<azure-resource-group-name>`.
-- Virtual Network: baseline Azure network boundary represented by `<azure-vnet-name>`.
-- Public Subnet: public-facing network segment represented by `<azure-public-subnet-name>`.
-- Private Subnet: internal network segment represented by `<azure-private-subnet-name>`.
-- Network Security Group baseline: traffic boundary represented by `<azure-nsg-name>`.
-- Route Table: route association placeholder represented by `<azure-route-table-name>`.
-- Public IP placeholder: optional externally reachable reference represented by `<azure-public-ip-name>`.
-- Optional Bastion or management entry point: placeholder represented by `<azure-management-entry-point>`.
-- Terraform outputs: sanitized output values for resource references.
+- `terraform/modules/azure-network/`: reusable Azure resource definitions.
+- `terraform/envs/azure-network-validation/`: local composition and non-production example values.
+- `tools/validate-azure-network-provisioning.ps1`: repository-only safety and completeness checks.
+- `evidence/L1-foundation/S004-azure-network-provisioning-validation/`: generated evidence.
 
-## Logical Flow
+## Defined Network Model
 
-1. Terraform initialization is planned for the Azure network module context.
-2. Terraform validation is planned before any provisioning.
-3. Baseline Azure network resources are expected to be described by Terraform configuration in a future implementation phase.
-4. Terraform outputs are expected to expose sanitized references for Resource Group, VNet, subnets, NSG, route table, public IP placeholder, and management entry point placeholder.
-5. Azure CLI listing is planned as a cross-check after approved execution.
+1. A resource group contains the validation resources.
+2. One virtual network uses the example `10.20.0.0/16` address space.
+3. Public-tier and private-tier subnets use `10.20.1.0/24` and `10.20.11.0/24`.
+4. A baseline NSG is associated with both subnets; detailed rule validation remains in S015.
+5. A route table is associated with both subnets; no production routes are declared.
 
-## Out-of-Scope Components
+## Validation Flow
 
-No real Azure subscription, credentials, provider configuration, remote backend, tfstate, public IPs, private keys, tenant IDs, or production resources are used by this scenario.
+The PowerShell validator reads repository files, checks expected Terraform resource types and safety boundaries, optionally runs formatting checks, and writes a log and summary. It does not initialize providers, authenticate, read credentials, create state, or contact Azure.
