@@ -1,0 +1,17 @@
+---
+sample: NON-PRODUCTION
+backup_id: <backup-id-placeholder>
+backup_source: <backup-source-placeholder>
+backup_target: <backup-target-placeholder>
+backup_method: <backup-method-placeholder>
+backup_file: <backup-file-placeholder>
+created_at: <created-at-placeholder>
+size_bytes: 1024
+checksum_algorithm: SHA256
+checksum: <sha256-placeholder>
+retention_class: <retention-class-placeholder>
+encryption_placeholder: <encryption-placeholder>
+access_control_placeholder: <access-control-placeholder>
+restore_validation_scenario: S039
+health_validation_scenario: S040
+evidence_reference: <evidence-path>

@@ -4,26 +4,25 @@
 |---|---|
 | Scenario ID | S037 |
 | Scenario Name | Security Rule Misconfiguration Validation |
-| Level | L4 Failure and Recovery Validation |
+| Level | L4 Failure Recovery Validation |
 | Category | Failure Recovery |
-| Primary Domain | Access control misconfiguration detection and manual rollback |
-| Related Components | AWS Security Group placeholder, Azure NSG placeholder, OpenStack Security Group placeholder, On-Prem firewall placeholder, Bastion access rule, Web/API service access rule, DB access rule, Monitoring access rule |
-| Validation Type | Failure Recovery Validation |
+| Related Components | AWS SG, Azure NSG, OpenStack SG, firewall, NetworkPolicy placeholders, rollback policy |
+| Validation Type | StaticEvidence only |
 | Evidence Directory | evidence/L4-failure-recovery/S037-security-rule-misconfiguration-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate security rule misconfiguration detection and recovery behavior across AWS, Azure, OpenStack, and On-Prem access control layers.
+Validate controlled security-rule misconfiguration detection, exposure classification, policy requirements, manual rollback evidence, and safe post-rollback state without changing real infrastructure.
 
 ## Scope Summary
 
-This scenario validates controlled security rule misconfiguration behavior only. It covers pre-change rule baseline review, placeholder misconfiguration injection, excessive inbound detection, required service access breakage detection, unauthorized and authorized access path tests, manual rollback decision points, post-rollback rule validation, and before/misconfigured/after evidence capture.
+Local artifacts only. No cloud CLI, Kubernetes, firewall, Terraform, routing, security-rule mutation, automatic blocking, or SOAR response is performed.
 
 ## Validation Summary
 
-Validation checks confirm that broad exposure and broken required access can be detected, unauthorized and authorized source behavior can be reviewed, rollback decisions are explicit, and failures such as missed detection, remaining exposure, missing required access, unclear rollback, threshold breach, or missing evidence are captured.
+Sixteen checks cover artifacts, runbook exclusions, criteria/decision matrices, policy metadata, command boundaries, pre/misconfiguration/detection/impact/rollback/post evidence, expiry maturity, identifier safety, and no execution.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L4-failure-recovery/S037-security-rule-misconfiguration-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Committed samples are non-production. Unsafe placeholders are confined to labeled misconfiguration/detection examples; generated evidence contains judgments only.

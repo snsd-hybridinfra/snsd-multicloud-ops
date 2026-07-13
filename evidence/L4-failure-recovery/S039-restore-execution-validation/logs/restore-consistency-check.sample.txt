@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION
+Consistency_Check: passed-placeholder
+Object_Table_File_Count: <count-placeholder>
+Real_Rows_Or_Data_Stored: false

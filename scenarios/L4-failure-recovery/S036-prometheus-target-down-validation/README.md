@@ -3,27 +3,26 @@
 | Field | Value |
 |---|---|
 | Scenario ID | S036 |
-| Scenario Name | Prometheus Target DOWN Validation |
-| Level | L4 Failure and Recovery Validation |
+| Scenario Name | Prometheus Target Down Validation |
+| Level | L4 Failure Recovery Validation |
 | Category | Failure Recovery |
-| Primary Domain | Prometheus target state detection |
-| Related Components | Prometheus, `/targets` page, `up` query, Node Exporter, DB Exporter, Blackbox Exporter, kube-state-metrics, cloud and on-prem target placeholders |
-| Validation Type | Failure Recovery Validation |
+| Related Components | Prometheus targets API, up metric, exporter, alert rule, recovery state |
+| Validation Type | Static with optional explicit read-only LivePrometheus |
 | Evidence Directory | evidence/L4-failure-recovery/S036-prometheus-target-down-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate Prometheus target DOWN detection behavior for the SNSD Multi-Cloud Ops observability layer.
+Validate target DOWN/up=0 detection, alert firing, manual recovery, target UP/up=1, and alert clearing without modifying Prometheus or exporters.
 
 ## Scope Summary
 
-This scenario validates Prometheus target DOWN detection only. It covers pre-failure Prometheus service and target UP state, placeholder exporter or endpoint outage injection, `/targets` DOWN evidence, query-based `up{job="<target-job>"}` evidence, target failure timestamp capture, exporter restoration, post-recovery target UP state, and detection/recovery timing.
+Static mode parses local samples. LivePrometheus requires an explicit URL and performs read-only API queries; committed output stores no URL or raw response.
 
 ## Validation Summary
 
-Validation checks confirm that a target starts UP, a single target failure is planned, Prometheus detects the target as DOWN through target state and query evidence, the target returns to UP after restoration, timing is measured, and failures such as missing detection, invalid scrape config, missing labels, persistent DOWN state, recovery threshold breach, or missing evidence are captured.
+Eighteen checks cover artifacts, workflow, alert/criteria/response definitions, pre/down/alert/recovery/post evidence, timing, sensitive content, execution safety, and optional live state.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L4-failure-recovery/S036-prometheus-target-down-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Committed JSON is non-production and symbolic; generated evidence contains judgments only.

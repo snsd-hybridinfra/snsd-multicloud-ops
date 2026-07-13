@@ -1,21 +1,20 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Pre-change security rule baseline validation plan | `commands.md`; `screenshots/security-rule-before-change.png`; `validation.md` | command plan, screenshot reference, validation record | yes |
-| Misconfiguration injection plan | `commands.md`; `logs/security-rule-misconfiguration-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Public SSH exposure detection validation plan | `commands.md`; `configs/security-rule-misconfiguration-summary.md`; `validation.md` | command plan, misconfiguration summary, validation record | yes |
-| Public DB exposure detection validation plan | `commands.md`; `configs/security-rule-misconfiguration-summary.md`; `validation.md` | command plan, misconfiguration summary, validation record | yes |
-| Overly broad CIDR detection validation plan | `commands.md`; `screenshots/security-rule-during-misconfiguration.png`; `validation.md` | command plan, screenshot reference, validation record | yes |
-| Required service access breakage detection validation plan | `commands.md`; `logs/security-rule-misconfiguration-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Unauthorized source access test validation plan | `commands.md`; `configs/security-rule-misconfiguration-summary.md`; `validation.md` | command plan, misconfiguration summary, validation record | yes |
-| Authorized source access test validation plan | `commands.md`; `configs/security-rule-misconfiguration-summary.md`; `validation.md` | command plan, misconfiguration summary, validation record | yes |
-| Manual rollback decision point validation plan | `commands.md`; `configs/security-rule-rollback-decision-points.md`; `validation.md` | command plan, rollback decision summary, validation record | yes |
-| Post-rollback security rule validation plan | `commands.md`; `screenshots/security-rule-after-rollback.png`; `validation.md` | command plan, screenshot reference, validation record | yes |
-| Post-rollback service reachability validation plan | `commands.md`; `logs/security-rule-misconfiguration-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Detection and recovery time measurement plan | `commands.md`; `configs/security-rule-recovery-threshold.md`; `validation.md` | command plan, threshold summary, validation record | yes |
-| Failure condition for misconfiguration not detected, unauthorized exposure remaining, required access not restored, rollback unclear, recovery threshold exceeded, or missing evidence | `validation.md` | failure criteria and status record | yes |
-
-## Evidence Notes
-
-No real cloud firewall, security group, NSG, OpenStack security group, or On-Prem firewall output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+| Check ID | Validation Item | Evidence File |
+|---|---|---|
+| V001 | Required artifacts | files/summary |
+| V002 | Runbook placeholders and exclusions | runbook/summary |
+| V003 | Misconfiguration criteria matrix | criteria/summary |
+| V004 | Rollback decision matrix | decision matrix/summary |
+| V005 | Policy requirements | policy/summary |
+| V006 | Command reference scope boundary | commands/summary |
+| V007 | Pre-change least privilege evidence | pre sample/summary |
+| V008 | Manual misconfiguration evidence | event sample/summary |
+| V009 | Misconfiguration detection evidence | detection/summary |
+| V010 | Exposure impact assessment | impact/summary |
+| V011 | Manual rollback evidence | rollback/summary |
+| V012 | Post-rollback safe state | post sample/summary |
+| V013 | Final validation summary evidence | validation sample/summary |
+| V014 | Temporary exception expiry maturity | event sample/summary |
+| V015 | Identifier network and secret safety | log/summary |
+| V016 | Execution safety boundary | validator/summary |

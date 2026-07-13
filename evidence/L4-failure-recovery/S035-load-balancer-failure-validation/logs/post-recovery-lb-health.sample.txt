@@ -1,0 +1,3 @@
+SAMPLE / NON-PRODUCTION
+HTTP/1.1 200 OK
+Load_Balancer_Health: restored-placeholder

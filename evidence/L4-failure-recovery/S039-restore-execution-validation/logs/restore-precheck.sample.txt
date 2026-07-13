@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION
+Backup_Manifest: <backup-manifest-placeholder>
+Restore_Target: <restore-target-placeholder>
+Target_Prepared: true-placeholder
+Disposable_Lab_Target: true
+Production_Target: false

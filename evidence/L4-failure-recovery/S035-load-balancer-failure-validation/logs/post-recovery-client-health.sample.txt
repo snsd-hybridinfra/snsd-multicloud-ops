@@ -1,0 +1,3 @@
+SAMPLE / NON-PRODUCTION
+HTTP/1.1 200 OK
+Client_Service: restored-placeholder

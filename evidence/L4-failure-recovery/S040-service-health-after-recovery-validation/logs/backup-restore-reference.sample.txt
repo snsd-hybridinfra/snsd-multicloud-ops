@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION
+Backup_Creation_Scenario: S038
+Restore_Execution_Scenario: S039
+Backup_ID: <backup-id-placeholder>
+Restore_Job_ID: <restore-job-id-placeholder>
+Checksum_Verified: true-placeholder
+Consistency_Check: passed-placeholder

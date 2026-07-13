@@ -1,0 +1,2 @@
+SAMPLE / NON-PRODUCTION
+service-endpoint-placeholder   <pod-ip-placeholder>:<service-port-placeholder>

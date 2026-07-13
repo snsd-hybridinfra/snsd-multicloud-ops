@@ -1,0 +1,3 @@
+SAMPLE / NON-PRODUCTION / FAILURE EVIDENCE SAMPLE
+HTTP/1.1 503 Service Unavailable
+Load_Balancer_Service: inactive-placeholder

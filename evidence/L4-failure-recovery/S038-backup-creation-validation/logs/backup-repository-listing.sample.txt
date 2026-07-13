@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+Backup_Target: <backup-target-placeholder>
+Backup_File: <backup-file-placeholder>
+Manifest: <backup-manifest-placeholder>
+Real_Path_Or_Bucket_Stored: false

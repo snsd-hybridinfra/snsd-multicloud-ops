@@ -4,26 +4,25 @@
 |---|---|
 | Scenario ID | S035 |
 | Scenario Name | Load Balancer Failure Validation |
-| Level | L4 Failure and Recovery Validation |
+| Level | L4 Failure Recovery Validation |
 | Category | Failure Recovery |
-| Primary Domain | Traffic entrypoint failure detection and manual recovery |
-| Related Components | Kubernetes Ingress, Nginx Reverse Proxy, backend service health, Web endpoint, API endpoint, health endpoint, Blackbox probe target |
-| Validation Type | Failure Recovery Validation |
+| Related Components | Load balancer, reverse proxy, two backends, client path, bypass/rollback |
+| Validation Type | Static with optional explicit read-only LiveHttp |
 | Evidence Directory | evidence/L4-failure-recovery/S035-load-balancer-failure-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate load balancer failure detection and manual recovery behavior for the SNSD Multi-Cloud Ops traffic management layer.
+Validate LB failure isolation, healthy direct backends, manual recovery, and sanitized client-path evidence without changing services or traffic.
 
 ## Scope Summary
 
-This scenario validates load balancer or reverse proxy entrypoint failure behavior only. It covers pre-failure endpoint and backend health, placeholder failure injection, endpoint impact detection, health check failure detection, Blackbox probe failure reference, backend health isolation, manual recovery decision points, restoration validation, and post-recovery service health.
+Static mode parses local samples. LiveHttp requires three explicit URLs and uses unauthenticated HEAD requests only; no response body is retained.
 
 ## Validation Summary
 
-Validation checks confirm that frontend entrypoint failure is detectable, backend health is reviewed separately, manual decision points are explicit, traffic restoration is validated, and failures such as missed detection, wrong backend diagnosis, all endpoints unavailable, unknown backend health, unclear recovery procedure, threshold breach, or missing evidence are captured.
+Seventeen checks cover artifacts, workflow, criteria, manual boundaries, metrics/response mapping, pre/failure/isolation/recovery/bypass evidence, timing, sensitive content, and execution safety.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L4-failure-recovery/S035-load-balancer-failure-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Committed samples are non-production and generated output stores judgments only.

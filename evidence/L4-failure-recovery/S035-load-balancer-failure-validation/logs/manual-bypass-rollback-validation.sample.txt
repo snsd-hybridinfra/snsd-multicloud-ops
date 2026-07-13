@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION
+Manual_Bypass: documented-placeholder
+Rollback_To_Normal_LB_Path: documented-placeholder
+DNS_Or_Routing_Value_Stored: false

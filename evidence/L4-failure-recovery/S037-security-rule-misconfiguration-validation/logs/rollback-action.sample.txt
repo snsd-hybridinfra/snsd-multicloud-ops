@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION
+MANUAL ROLLBACK SAMPLE
+Unsafe_Source_Replaced_With: <approved-source-cidr-placeholder>
+Temporary_Exception: removed-placeholder
+Rollback_Change: <rollback-change-id-placeholder>
+Execution_By_Validator: false

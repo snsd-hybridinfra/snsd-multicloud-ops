@@ -1,0 +1,1 @@
+{"sample":"NON-PRODUCTION","status":"success","data":{"alerts":[{"labels":{"alertname":"SNSDTargetDownPlaceholder","scenario":"S036"},"state":"resolved-placeholder"}]}}

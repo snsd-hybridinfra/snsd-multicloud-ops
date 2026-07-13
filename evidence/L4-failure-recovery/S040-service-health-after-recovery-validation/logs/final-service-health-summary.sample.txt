@@ -1,0 +1,12 @@
+SAMPLE / NON-PRODUCTION
+web: PASS
+api: PASS
+load_balancer: PASS
+kubernetes: PASS
+database: PASS
+replication: PASS
+prometheus: PASS
+blackbox: PASS
+backup_restore_reference: PASS
+final_judgment: RECOVERED
+recovery_duration_seconds: <not-measured>

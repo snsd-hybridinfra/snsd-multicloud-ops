@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+Misconfiguration_Detected: true
+Rollback_Evidence_Present: true
+Post_Rollback_State: safe
+Real_Cloud_Changes_Performed: false

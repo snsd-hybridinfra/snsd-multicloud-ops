@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION
+Restore_Completed: true
+Checksum_Verified: true
+Consistency_Check_Passed: true
+Restore_Target_Validated: true
+Final_Health_Validation: S040
+Real_Restore_Artifact_Committed: false
