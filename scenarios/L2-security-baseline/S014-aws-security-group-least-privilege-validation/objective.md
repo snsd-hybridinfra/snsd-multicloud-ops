@@ -1,16 +1,7 @@
 # Objective
 
-S014 defines the AWS Security Group least privilege validation model for the SNSD Multi-Cloud Ops AWS Service Zone.
+Validate a repository-side AWS Security Group baseline that uses default-deny inbound, explicit required-service rules, restricted management and internal access, controlled public-web exceptions, and justified egress.
 
-The scenario validates that AWS service node access is planned around explicit source, destination, protocol, and port requirements. It prevents broad ingress patterns such as unrestricted SSH, unrestricted database exposure, or all-ports access from being treated as acceptable baseline security.
+Success means the policy, matrix, and existing Terraform placeholder pass all safety checks without AWS authentication, Security Group queries, state, plans, or resource changes.
 
-This scenario does not provision AWS resources. It defines how the future AWS Security Group rule set must be reviewed, captured, and validated before it can be considered ready for operational use.
-
-## Operational Capability
-
-- Confirm AWS Security Group existence using placeholder identifiers.
-- Confirm SSH ingress is restricted to the Bastion source boundary.
-- Confirm HTTP and HTTPS service exposure is intentional and documented.
-- Confirm DB port `3306` is not exposed to the public internet.
-- Confirm app-to-On-Prem DB and monitoring scrape paths are explicitly scoped.
-- Confirm unrestricted ingress rules are treated as validation failures.
+AWS network provisioning is handled in S003, provider declarations in S006, SSH controls in S011-S013, Azure NSG in S015, and OpenStack Security Groups in S016.

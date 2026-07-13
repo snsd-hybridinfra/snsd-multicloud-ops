@@ -1,23 +1,16 @@
 # Architecture
 
-## Relevant Components
+## Repository Components
 
-- Control Plane: records validation commands and evidence.
-- AWS Service Zone: contains the planned AWS service node protected by Security Group rules.
-- AWS Security Group: represents ingress and egress controls for the AWS service node.
-- Bastion: approved management entry source for SSH access.
-- On-Prem DB Zone: placeholder destination for application database access.
-- Monitoring Zone: placeholder source for scrape or probe access.
+- Least-privilege baseline: inbound, internal, public-web, egress, and evidence principles.
+- Rule matrix: reviewable rule expectations and judgments.
+- AWS network module: existing empty `aws_security_group` placeholder.
+- Local validator: file, policy, matrix-row, Terraform, sensitive-content, and execution checks.
 
-## Access Model
+## Rule Model
 
-- SSH access to `<aws-app-node>` must be allowed only from `<bastion-cidr>`.
-- HTTP and HTTPS ingress may be planned only when the service exposure requirement is documented.
-- DB port `3306` must not be exposed to `0.0.0.0/0` or other unrestricted sources.
-- App-to-On-Prem DB access must use explicit placeholders such as `<onprem-db-cidr>`.
-- Monitoring scrape access must use an explicit placeholder such as `<monitoring-cidr>`.
-- Egress must be reviewed and justified for the AWS service node role.
+Public HTTP/HTTPS terminates only at `aws-public-web-sg`. Bastion, private services, databases, and monitoring use management CIDR or Security Group-reference placeholders. The rule matrix contains no dangerous public inbound row.
 
-## Boundary Notes
+## Validation Flow
 
-This scenario validates AWS Security Group design only. Azure NSG and OpenStack Security Group behavior are separate scenario responsibilities.
+The validator parses matrix rows, checks public-source and port combinations, validates the Terraform placeholder and repository safety, then generates evidence. It does not authenticate, query AWS, initialize Terraform, or create resources.

@@ -1,22 +1,20 @@
 # Expected Result
 
-S014 is successful when the AWS Security Group least privilege validation plan is complete and ready for future approved execution.
-
 ## Success Conditions
 
-- AWS Security Group existence can be validated using placeholder identifiers.
-- SSH ingress is planned only from `<bastion-cidr>`.
-- HTTP and HTTPS exposure is explicitly documented where applicable.
-- DB port `3306` is not exposed to public internet sources.
-- App-to-On-Prem DB access is scoped to `<onprem-db-cidr>`.
-- Monitoring scrape access is scoped to `<monitoring-cidr>`.
-- No `0.0.0.0/0` SSH rule is accepted.
-- No unrestricted all-ports ingress rule is accepted.
-- Egress policy is reviewed and broad egress is clearly flagged.
-- All validation checks map to required evidence files.
+- Both baseline files, all placeholder groups, and required policy statements exist.
+- The AWS Terraform module contains a safe Security Group placeholder.
+- No dangerous public inbound row exists.
+- Only public web HTTP/HTTPS rows use public inbound exposure.
+- Egress is justified and marked for review.
+- No state, real variables, backend, credential, account value, secret, or real public IP exists.
+- The validator exits zero and generates evidence.
 
-## Evidence Conditions
+## Required Evidence
 
-- `commands.md` lists planned command or review actions with TODO output placeholders.
-- `validation.md` lists each check with `NOT_RUN` status until execution.
-- Future supporting evidence is expected in `configs/aws-security-group-rule-summary.md`, `configs/aws-sg-least-privilege-policy.md`, `logs/aws-security-group-validation.log`, and `screenshots/aws-security-group-rules.png`.
+- `logs/aws-security-group-least-privilege-validation.log`
+- `configs/aws-security-group-least-privilege-summary.md`
+- `commands.md`
+- `validation.md`
+
+The result proves repository policy and placeholder safety only; it does not prove live AWS Security Group state.

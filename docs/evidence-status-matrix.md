@@ -17,7 +17,7 @@ Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S011 | ssh-key-authentication-validation | READY | READY | READY | READY | READY | READY |
 | S012 | password-login-denial-validation | READY | READY | READY | READY | READY | READY |
 | S013 | root-login-denial-validation | READY | READY | READY | READY | READY | READY |
-| S014 | aws-security-group-least-privilege-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
+| S014 | aws-security-group-least-privilege-validation | READY | READY | READY | READY | READY | READY |
 | S015 | azure-nsg-least-privilege-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S016 | openstack-security-group-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S017 | mariadb-access-control-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |

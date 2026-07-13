@@ -1,22 +1,13 @@
 # Failure Condition
 
-S014 fails if the AWS Security Group model allows unsafe or undocumented access patterns.
+## Critical Failure Conditions
 
-## Failure Conditions
+- A required baseline, matrix, placeholder group, policy statement, or Terraform Security Group placeholder is missing.
+- Inbound `0.0.0.0/0` is paired with SSH, RDP, database, admin, or monitoring ports.
+- A public inbound row is not HTTP/HTTPS on the public web placeholder.
+- Egress lacks documentation or justification.
+- A real tfvars, state, backend, credential, key, account ID, secret, or real public IP is detected.
+- The validator contains or executes AWS CLI, Terraform mutation, or network access.
+- Documentation implies that the matrix proves deployed cloud state.
 
-- AWS Security Group target cannot be identified by placeholder name or ID.
-- SSH ingress allows `0.0.0.0/0` or another unrestricted source.
-- DB port `3306` is exposed to the public internet.
-- Bastion-to-AWS SSH rule is missing when SSH administration is required.
-- Required HTTP or HTTPS service rule is missing or undocumented.
-- App-to-On-Prem DB access is missing, overly broad, or not mapped to `<onprem-db-cidr>`.
-- Monitoring scrape access is missing, overly broad, or not mapped to `<monitoring-cidr>`.
-- Any all-protocol or all-ports ingress rule is accepted without an explicit failure.
-- Rule evidence cannot be captured or reviewed.
-- Evidence contains AWS credentials, account IDs, access keys, private keys, tfstate, real public IPs, or account-specific values.
-
-## Blocked Conditions
-
-- Validation cannot proceed because no approved placeholder rule model exists.
-- Future read-only AWS CLI or Terraform plan output is unavailable.
-- Required evidence files are missing.
+Any critical failure produces a non-zero exit and must be documented without exposing unsafe content.

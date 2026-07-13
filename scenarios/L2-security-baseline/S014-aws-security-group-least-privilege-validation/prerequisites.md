@@ -1,21 +1,15 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Required Repository State
 
-- S001-control-plane-toolchain-validation: confirms local toolchain planning.
-- S003-aws-network-provisioning-validation: defines the AWS baseline network model.
-- S007-multi-cloud-inventory-validation: defines placeholder node and target inventory.
-- S008-bastion-reachability-validation: defines the bastion reachability model.
+- PowerShell can run the local validator.
+- The S014 scenario, evidence, security-baseline, and AWS Terraform module directories are readable.
+- The S003 AWS network placeholder exists.
 
-## Required Tools or References
+## Not Required
 
-- Terraform CLI plan review capability, when future implementation exists.
-- AWS CLI rule review capability, when future credentials are approved outside this repository.
-- AWS Security Group naming and placeholder conventions from repository naming rules.
-- Evidence model from `docs/evidence-model.md`.
+- AWS CLI, credentials, account access, or a deployed Security Group.
+- Terraform initialization, provider download, plan, apply, backend, or state.
+- Real public or corporate addresses.
 
-## Safety Preconditions
-
-- Do not add AWS credentials, account IDs, access keys, tfstate, private keys, or account-specific values.
-- Do not record real public IPs.
-- Do not execute live AWS changes as part of this scenario skeleton.
+S003 and S006 provide the preceding network and provider definition context.

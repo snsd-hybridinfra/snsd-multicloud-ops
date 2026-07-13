@@ -2,27 +2,26 @@
 
 ## Included
 
-- AWS service node ingress policy validation plan.
-- AWS service node egress policy review plan.
-- Bastion-to-AWS SSH access rule validation plan.
-- HTTP and HTTPS service exposure rule placeholder validation.
-- AWS App Node to On-Prem DB access rule placeholder validation.
-- Monitoring scrape access rule placeholder validation.
-- Denial of unrestricted SSH access.
-- Denial of unrestricted DB access.
-- Security Group rule evidence collection plan.
-- Terraform plan or AWS CLI rule capture plan using placeholders.
+- AWS least-privilege Security Group policy and example rule matrix.
+- Public web, bastion, private-service, database, and monitoring placeholders.
+- Dangerous public inbound checks for SSH, RDP, database, administration, and monitoring ports.
+- Public HTTP/HTTPS exception checks limited to the public web placeholder.
+- Egress justification checks.
+- Existing `aws_security_group` Terraform placeholder validation.
+- State, real tfvars, backend, credential, account-ID, secret, and public-IP safety checks.
+- Generated log and summary evidence.
 
 ## Excluded
 
-- Real AWS Terraform resource implementation.
-- Real AWS Security Group creation or modification.
-- AWS credentials, account IDs, access keys, tfstate, private keys, or account-specific values.
-- Real public IP addresses or production CIDR values.
-- Azure NSG validation, which is handled in S015.
-- OpenStack Security Group validation, which is handled in S016.
-- Runtime firewall enforcement outside AWS Security Group rule review.
+- AWS authentication, AWS CLI, live Security Group queries, or cloud API access.
+- Terraform init, plan, apply, destroy, state, backend, or real variables.
+- Real account IDs, credentials, addresses, corporate ranges, or deployed rule IDs.
+- AWS network provisioning, which belongs to S003.
+- Terraform provider validation, which belongs to S006.
+- SSH key, password, and root-login controls, which belong to S011-S013.
+- Azure NSG and OpenStack Security Group validation, which belong to S015-S016.
 
-## Placeholder Rules
+## Assumptions
 
-Use placeholders such as `<aws-security-group-id>`, `<aws-app-node>`, `<bastion-cidr>`, `<monitoring-cidr>`, and `<onprem-db-cidr>`.
+- Matrix rows are non-production policy examples, not deployable rules.
+- The existing empty AWS Security Group resource remains a safe Terraform placeholder.
