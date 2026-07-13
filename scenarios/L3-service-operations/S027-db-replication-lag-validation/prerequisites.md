@@ -1,20 +1,10 @@
 # Prerequisites
 
-## Required Previous Scenarios
+- PowerShell and `tools/validate-db-replication-lag.ps1`.
+- The lag runbook, threshold matrix, and marked metric reference.
+- Four sanitized, non-production fixtures.
+- S026 replication-health boundary understood.
 
-- S007-multi-cloud-inventory-validation: defines placeholder DB node inventory.
-- S017-mariadb-access-control-validation: defines database access control assumptions.
-- S026-mariadb-primary-replica-replication-validation: defines primary-replica replication assumptions.
+No MariaDB/MySQL client or server, SQL execution, database credential, dump, Prometheus/Grafana endpoint, observability credential, or network access is required or allowed.
 
-## Required Tools or References
-
-- MariaDB command planning capability, when future execution is approved.
-- Placeholder replication topology for `db-primary-01`, `db-replica-01`, and `db-replica-02`.
-- Evidence model from `docs/evidence-model.md`.
-- Placeholder naming rules from `docs/naming-rules.md`.
-
-## Safety Preconditions
-
-- Do not add database passwords, credentials, private keys, tfstate, kubeconfig content, cloud account values, or account-specific values.
-- Do not record real public IPs.
-- Do not execute live MariaDB configuration changes as part of this scenario skeleton.
+Any real-lab evidence collection is separate, manual, explicitly authorized, and fully sanitized before repository review.

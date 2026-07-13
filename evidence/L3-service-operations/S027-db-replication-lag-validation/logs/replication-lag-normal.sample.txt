@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION
+Replica_IO_Running: Yes
+Replica_SQL_Running: Yes
+Seconds_Behind_Master: 0
+Last_IO_Error:
+Last_SQL_Error:

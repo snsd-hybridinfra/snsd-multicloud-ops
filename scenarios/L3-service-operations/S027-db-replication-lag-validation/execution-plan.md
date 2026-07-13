@@ -1,18 +1,12 @@
 # Execution Plan
 
-1. Confirm the scenario evidence directory exists for S027.
-2. Identify placeholder primary host as `<db-primary-host>`.
-3. Identify placeholder replica hosts as `<db-replica-host>`.
-4. Record planned replica status command capture.
-5. Record planned `Seconds_Behind_Source` or `Seconds_Behind_Master` field review.
-6. Record planned primary timestamp write to `<test-database>.<test-table>`.
-7. Record planned replica timestamp read delay checks.
-8. Record planned threshold comparison using provisional NORMAL, WARNING, and CRITICAL values.
-9. Record planned lag validation for `db-replica-01` and `db-replica-02`.
-10. Record planned DB exporter and Prometheus metric mapping placeholders.
-11. Record planned lag evidence capture.
-12. Record TODO placeholders in evidence files until approved execution produces sanitized output.
+1. Run `powershell -ExecutionPolicy Bypass -File tools/validate-db-replication-lag.ps1`.
+2. Verify three baseline files and four fixtures.
+3. Validate normal/warning/critical/NULL thresholds and the nine-row matrix.
+4. Validate four metric names and S028/S029 ownership boundaries.
+5. Parse each fixture's lag, IO/SQL threads, and IO/SQL errors.
+6. Require normal classification, expected warning classification, and detection of critical/NULL negative fixtures.
+7. Reject credentials, connection strings, dumps, observability credentials, addresses, IDs, URLs, and external execution paths.
+8. Review the generated log and summary.
 
-## Execution Boundaries
-
-This plan does not configure MariaDB, create users, set passwords, install exporters, configure Prometheus, or modify replication state. It only defines the review flow and evidence requirements for later approved validation.
+Real lab collection and all external queries are `NOT_RUN` in this scenario.

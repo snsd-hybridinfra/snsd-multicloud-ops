@@ -2,43 +2,34 @@
 
 Scenario: S027-db-replication-lag-validation
 Level: L3-service-operations
-Capability: MariaDB Replication Lag Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
+Mode: StaticEvidence
+Date: 2026-07-13
+Overall status: PASS
 
-No real MariaDB replication lag output has been collected yet. This file defines the validation record that must be completed during future approved execution.
-
-| Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
+| Check ID | Check Description | Expected Condition | Actual Result | Status | Evidence File |
 |---|---|---|---|---|---|
-| V001 | Replica status command validation plan | Replica status output can be reviewed. | TODO | NOT_RUN | `commands.md`; `logs/db-replication-lag-validation.log` |
-| V002 | Seconds_Behind_Source / Seconds_Behind_Master field validation plan | Lag field is present and not `NULL`. | TODO | NOT_RUN | `commands.md`; `logs/db-replication-lag-validation.log` |
-| V003 | Primary timestamp write validation plan | Primary timestamp write can be performed during approved validation. | TODO | NOT_RUN | `commands.md`; `logs/db-replication-lag-validation.log` |
-| V004 | Replica timestamp read validation plan | Replica timestamp read can be compared to primary timestamp. | TODO | NOT_RUN | `commands.md`; `logs/db-replication-lag-validation.log` |
-| V005 | Replica lag threshold comparison plan | Lag can be categorized as NORMAL, WARNING, or CRITICAL. | TODO | NOT_RUN | `commands.md`; `configs/db-replication-lag-threshold.md` |
-| V006 | db-replica-01 lag validation plan | `db-replica-01` lag is measurable and within documented status. | TODO | NOT_RUN | `commands.md`; `logs/db-replication-lag-validation.log` |
-| V007 | db-replica-02 lag validation plan | `db-replica-02` lag is measurable and within documented status. | TODO | NOT_RUN | `commands.md`; `logs/db-replication-lag-validation.log` |
-| V008 | Replication lag metric mapping placeholder | Metric mapping is documented without installing exporters. | TODO | NOT_RUN | `commands.md`; `configs/db-replication-lag-metric-mapping.md` |
-| V009 | Lag evidence capture plan | Lag evidence can be reviewed without secrets or real IPs. | TODO | NOT_RUN | `commands.md`; `logs/db-replication-lag-validation.log`; `screenshots/db-replication-lag-status.png` |
-| V010 | Failure condition for NULL lag value, replication stopped, lag above threshold, missing replica, inconsistent timestamp, or missing evidence | Lag validation failures produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
+| V001 | Required baseline and sample files | Seven artifacts exist. | All exist. | PASS | summary |
+| V002 | Replication lag threshold model | Ranges/threads/errors/matrix complete. | Complete. | PASS | runbook/matrix; summary |
+| V003 | Prometheus metric placeholders | Four names and boundaries exist. | Complete. | PASS | metric reference; summary |
+| V004 | Normal lag evidence | Healthy and 0-5. | NORMAL at 0. | PASS | normal sample; summary |
+| V005 | Warning lag evidence | Healthy and 6-30. | WARNING at 12. | WARN | warning sample; summary |
+| V006 | Critical lag negative fixture | Detect above 30. | CRITICAL at 45 detected. | PASS | critical sample; summary |
+| V007 | NULL lag negative fixture | Detect NULL/thread/error failure. | Expected failure detected. | PASS | NULL sample; summary |
+| V008 | Thread health parsing | Distinguish healthy/stopped. | Correct. | PASS | samples; summary |
+| V009 | Replication error parsing | Empty positives, placeholder negative. | Correct. | PASS | samples; summary |
+| V010 | Replication terminology | Modern or legacy. | Modern. | PASS | samples; summary |
+| V011 | Database credential and connection safety | None. | None detected. | PASS | log; summary |
+| V012 | Database dump file safety | None. | None detected. | PASS | log; summary |
+| V013 | Observability credential safety | None. | None detected. | PASS | log; summary |
+| V014 | Address and account-specific safety | None. | None detected. | PASS | log; summary |
+| V015 | Static execution boundary | No external query/destructive path. | Confirmed. | PASS | script; summary |
+| V016 | Validation mode | Four marked fixtures. | StaticEvidence complete. | PASS | samples; summary |
 
-## Provisional Thresholds
+## Generated Result
 
-| Status | Threshold | Status |
-|---|---|---|
-| NORMAL | `< 5 seconds` | NOT_RUN |
-| WARNING | `5-30 seconds` | NOT_RUN |
-| CRITICAL | `> 30 seconds` | NOT_RUN |
-
-## Evidence Completeness
-
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- DB replication lag threshold summary is captured: NOT_READY
-- DB replication lag metric mapping is captured: NOT_READY
-- DB replication lag validation log is captured: NOT_READY
-- DB replication lag screenshot is captured: NOT_READY
-
-## Notes
-
-This scenario validates MariaDB replication lag only. Access control is handled in S017, primary-replica replication setup in S026, exporter installation and Prometheus target discovery in S028, failure response in S033 and S034, and backup/restore in S038 and S039. Galera Cluster, ProxySQL, DB automatic failover, and split-brain automation are excluded from v1 scope.
+- Critical failures: 0
+- Warnings: 1 (expected warning-range fixture)
+- Critical fixture: EXPECTED_CRITICAL_DETECTED
+- NULL fixture: EXPECTED_NULL_FAILURE_DETECTED
+- Final judgment: PASS
+- No MariaDB, Prometheus, or Grafana access; SQL/API query; credential read; replication change; dump; or network action occurred.

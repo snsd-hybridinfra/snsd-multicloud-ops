@@ -1,16 +1,7 @@
 # Objective
 
-S027 defines the MariaDB replication lag measurement validation model for the On-Prem Internal Server Zone Primary-Replica database layer.
+Validate that SNSD Multi-Cloud Ops defines normal, warning, critical, and NULL replication-lag judgments and can evaluate sanitized MariaDB evidence safely.
 
-The scenario validates that replication lag can be measured from MariaDB replica status fields and from a placeholder primary timestamp write plus replica read delay model. It also defines provisional threshold bands for operational review and placeholders for future DB exporter and Prometheus metric mapping.
+S027 confirms lag range classification, modern/legacy thread parsing, error-field handling, symbolic topology, and non-production Prometheus metric references. Critical/NULL samples prove rejection logic; they are negative test fixtures.
 
-This scenario does not configure MariaDB replication, install exporters, or configure Prometheus. It defines how future lag evidence must be captured and reviewed.
-
-## Operational Capability
-
-- Confirm replica lag status fields are reviewable.
-- Confirm `Seconds_Behind_Source` or `Seconds_Behind_Master` can be interpreted.
-- Confirm primary timestamp write and replica read delay checks are planned.
-- Confirm `db-replica-01` and `db-replica-02` lag checks are planned.
-- Confirm provisional NORMAL, WARNING, and CRITICAL thresholds are documented.
-- Confirm future metric mapping is defined as a placeholder only.
+S017 owns access control, S026 owns primary-replica health, S028 owns Prometheus target discovery, S029 owns Grafana dashboards, S033 owns replica failure, and S034 owns primary-stop procedures.

@@ -2,25 +2,19 @@
 
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
-| V001 | Replica status command validation plan | Plan sanitized `SHOW REPLICA STATUS` or `SHOW SLAVE STATUS` capture. | Replica status output can be reviewed. | `commands.md`, `logs/db-replication-lag-validation.log`, `validation.md` |
-| V002 | Seconds_Behind_Source / Seconds_Behind_Master field validation plan | Review lag field from replica status output. | Lag field is present and not `NULL`. | `commands.md`, `logs/db-replication-lag-validation.log`, `validation.md` |
-| V003 | Primary timestamp write validation plan | Plan placeholder timestamp write to `<test-database>.<test-table>`. | Primary timestamp write can be performed during approved validation. | `commands.md`, `logs/db-replication-lag-validation.log`, `validation.md` |
-| V004 | Replica timestamp read validation plan | Plan timestamp read from each replica. | Replica timestamp read can be compared to primary timestamp. | `commands.md`, `logs/db-replication-lag-validation.log`, `validation.md` |
-| V005 | Replica lag threshold comparison plan | Compare lag value to provisional thresholds. | Lag can be categorized as NORMAL, WARNING, or CRITICAL. | `commands.md`, `configs/db-replication-lag-threshold.md`, `validation.md` |
-| V006 | db-replica-01 lag validation plan | Review lag for `db-replica-01`. | `db-replica-01` lag is measurable and within documented status. | `commands.md`, `logs/db-replication-lag-validation.log`, `validation.md` |
-| V007 | db-replica-02 lag validation plan | Review lag for `db-replica-02`. | `db-replica-02` lag is measurable and within documented status. | `commands.md`, `logs/db-replication-lag-validation.log`, `validation.md` |
-| V008 | Replication lag metric mapping placeholder | Document DB exporter and Prometheus metric mapping placeholder. | Metric mapping is documented without installing exporters. | `commands.md`, `configs/db-replication-lag-metric-mapping.md`, `validation.md` |
-| V009 | Lag evidence capture plan | Capture lag status, threshold, and metric mapping evidence. | Lag evidence can be reviewed without secrets or real IPs. | `commands.md`, `logs/db-replication-lag-validation.log`, `screenshots/db-replication-lag-status.png`, `validation.md` |
-| V010 | Failure condition for NULL lag value, replication stopped, lag above threshold, missing replica, inconsistent timestamp, or missing evidence | Evaluate findings against explicit failure conditions. | Lag validation failures produce `FAIL` or `BLOCKED` status. | `validation.md` |
-
-## Provisional Threshold Table
-
-| Status | Threshold | Use |
-|---|---|---|
-| NORMAL | `< 5 seconds` | Expected healthy lag during validation. |
-| WARNING | `5-30 seconds` | Review required; not automatically failed unless policy says so later. |
-| CRITICAL | `> 30 seconds` | Treat as failed validation unless explicitly justified. |
-
-## Review Notes
-
-Every validation item must map to evidence. This scenario validates replication lag only; replication setup is handled in S026, access control in S017, exporter discovery in S028, and failure response in S033 and S034.
+| V001 | Required baseline and sample files | Test seven paths. | All exist. | commands; summary |
+| V002 | Replication lag threshold model | Match ranges, fields, threads, errors, matrix. | Complete. | runbook/matrix; summary |
+| V003 | Prometheus metric placeholders | Match four names and S028/S029 boundaries. | Complete. | metric reference; summary |
+| V004 | Normal lag evidence | Parse healthy threads/errors and lag 0-5. | PASS. | normal sample; summary |
+| V005 | Warning lag evidence | Parse healthy threads/errors and lag 6-30. | Expected WARN. | warning sample; summary |
+| V006 | Critical lag negative fixture | Detect healthy threads with lag above 30. | Expected critical detected. | critical sample; summary |
+| V007 | NULL lag negative fixture | Detect NULL, stopped thread, placeholder error. | Expected failure detected. | NULL sample; summary |
+| V008 | Thread health parsing | Distinguish positive and negative thread states. | Correct. | samples; summary |
+| V009 | Replication error parsing | Distinguish empty and placeholder error. | Correct. | samples; summary |
+| V010 | Replication terminology | Detect modern or accepted legacy fields. | Modern pass/legacy warn. | samples; summary |
+| V011 | Database credential and connection safety | Scan assignments/URLs/client flags. | None. | log; summary |
+| V012 | Database dump file safety | Scan dump/export names. | None. | log; summary |
+| V013 | Observability credential safety | Scan credential assignments/URLs. | None. | log; summary |
+| V014 | Address and account-specific safety | Scan addresses, IDs, UUIDs, URLs. | None. | log; summary |
+| V015 | Static execution boundary | Reject DB/web clients and destructive commands. | Safe. | script; summary |
+| V016 | Validation mode | Require four sample markers. | StaticEvidence. | samples; summary |

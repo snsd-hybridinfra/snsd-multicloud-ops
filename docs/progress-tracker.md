@@ -14,10 +14,10 @@ Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 |---|---|---:|---:|---:|---|
 | L1 | Foundation | 10/10 | 10/10 | 9/10 | S001 implemented with a Python readiness failure; S002 through S010 validated |
 | L2 | Security Baseline | 10/10 | 10/10 | 10/10 | S011 through S020 validated; L2 implementation complete |
-| L3 | Service Operations | 10/10 | 6/10 | 6/10 | S021 through S025 validated in Static mode and S026 in StaticEvidence mode; S027 through S030 planned |
+| L3 | Service Operations | 10/10 | 7/10 | 7/10 | S021 through S025 validated in Static mode and S026-S027 in StaticEvidence mode; S028 through S030 planned |
 | L4 | Failure Recovery | 10/10 | 0/10 | 0/10 | S031 through S040 planned |
 | L5 | Governance Intelligent Ops | 10/10 | 0/10 | 0/10 | S041 through S050 planned |
-| Total | All Levels | 50/50 | 26/50 | 25/50 | L1 and L2 implementation complete; S021-S026 repository-side service validation complete; S001 remains implemented |
+| Total | All Levels | 50/50 | 27/50 | 26/50 | L1 and L2 implementation complete; S021-S027 repository-side service validation complete; S001 remains implemented |
 
 ## Update Rule
 

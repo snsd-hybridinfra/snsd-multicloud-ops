@@ -1,23 +1,20 @@
 # Architecture
 
-## Relevant Components
+## Evidence Classification
 
-- `db-primary-01`: planned source for timestamp write validation.
-- `db-replica-01`: planned replica lag validation target.
-- `db-replica-02`: planned replica lag validation target.
-- Replication status output: planned source for lag fields.
-- `<test-database>` and `<test-table>`: placeholders for timestamp validation.
-- DB exporter metric mapping: placeholder for future observability integration.
-- Prometheus metric integration: placeholder for future S028 work.
+```text
+sanitized replica status
+  -> lag field + IO/SQL threads + error fields
+  -> NORMAL (0-5)
+  -> WARNING (6-30)
+  -> CRITICAL (>30 or NULL/thread/error failure)
+  -> aggregate evidence
+```
 
-## Lag Measurement Model
+The primary, replica, and channel remain symbolic. Metric names document a future observation interface but are never queried by S027.
 
-- Replica status fields provide direct lag indicators through `Seconds_Behind_Source` or `Seconds_Behind_Master`.
-- Primary timestamp write uses a placeholder row or event in `<test-database>.<test-table>`.
-- Replica read delay compares the primary timestamp with the time observed on replicas.
-- Lag values are compared against provisional NORMAL, WARNING, and CRITICAL thresholds.
-- Metric mapping is documented only; exporter installation and Prometheus discovery are outside this scenario.
+## Fixture Semantics
 
-## Boundary Notes
+Normal and warning samples are positive range fixtures. Critical and NULL samples are negative fixtures. A validator PASS for a negative fixture means the unsafe operational state was correctly identified, not that the state is acceptable.
 
-This scenario validates replication lag only. Replication setup, access control, backup, restore, replica failure, primary stop runbooks, automatic failover, and split-brain automation are separate or excluded responsibilities.
+No database or observability endpoint, credential, process, SQL engine, or network is accessed.

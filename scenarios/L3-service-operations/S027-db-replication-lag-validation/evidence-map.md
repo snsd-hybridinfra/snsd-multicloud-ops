@@ -1,18 +1,22 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Replica status command validation plan | `commands.md`; `logs/db-replication-lag-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Seconds_Behind_Source / Seconds_Behind_Master field validation plan | `commands.md`; `logs/db-replication-lag-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Primary timestamp write validation plan | `commands.md`; `logs/db-replication-lag-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Replica timestamp read validation plan | `commands.md`; `logs/db-replication-lag-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Replica lag threshold comparison plan | `commands.md`; `configs/db-replication-lag-threshold.md`; `validation.md` | command plan, threshold summary, validation record | yes |
-| db-replica-01 lag validation plan | `commands.md`; `logs/db-replication-lag-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| db-replica-02 lag validation plan | `commands.md`; `logs/db-replication-lag-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Replication lag metric mapping placeholder | `commands.md`; `configs/db-replication-lag-metric-mapping.md`; `validation.md` | command plan, metric mapping, validation record | yes |
-| Lag evidence capture plan | `commands.md`; `logs/db-replication-lag-validation.log`; `screenshots/db-replication-lag-status.png`; `validation.md` | command plan, validation log, screenshot reference, validation record | yes |
-| Failure condition for NULL lag value, replication stopped, lag above threshold, missing replica, inconsistent timestamp, or missing evidence | `validation.md` | failure criteria and status record | yes |
+| Check ID | Validation Item | Evidence File |
+|---|---|---|
+| V001 | Required baseline and sample files | `commands.md`; summary |
+| V002 | Replication lag threshold model | runbook/matrix; summary |
+| V003 | Prometheus metric placeholders | metric reference; summary |
+| V004 | Normal lag evidence | normal sample; summary |
+| V005 | Warning lag evidence | warning sample; summary |
+| V006 | Critical lag negative fixture | critical sample; summary |
+| V007 | NULL lag negative fixture | NULL sample; summary |
+| V008 | Thread health parsing | four samples; summary |
+| V009 | Replication error parsing | four samples; summary |
+| V010 | Replication terminology | four samples; summary |
+| V011 | Database credential and connection safety | generated log; summary |
+| V012 | Database dump file safety | generated log; summary |
+| V013 | Observability credential safety | generated log; summary |
+| V014 | Address and account-specific safety | generated log; summary |
+| V015 | Static execution boundary | validator; summary |
+| V016 | Validation mode | four samples; summary |
 
-## Evidence Notes
-
-No real MariaDB replication lag output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+The generated `.log` is ignored. The committed summary and four sanitized fixtures are durable evidence; critical/NULL files are explicitly negative fixtures.
