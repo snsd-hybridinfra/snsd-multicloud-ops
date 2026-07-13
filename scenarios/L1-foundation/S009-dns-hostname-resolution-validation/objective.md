@@ -1,18 +1,7 @@
 # Objective
 
-Validate the planned hostname resolution model for on-prem, cloud, Kubernetes, observability, and evidence collection targets.
+Validate a repository-side hostname and DNS model for control-plane, bastion, On-Prem, AWS, Azure, OpenStack, Kubernetes, database, Prometheus, Grafana, and monitoring components.
 
-The scenario defines validation for:
+Success means required aliases and placeholders are documented, internal/public DNS boundaries are explicit, and safety checks pass without proving that any DNS record or host exists.
 
-- Control Plane hostname resolution
-- Bastion hostname resolution
-- On-Prem DB node hostname resolution
-- On-Prem Monitoring node hostname resolution
-- AWS service node hostname resolution
-- Azure service node hostname resolution
-- OpenStack service node hostname resolution
-- Kubernetes service hostname placeholder model
-- Prometheus target hostname model
-- Evidence target hostname consistency
-
-Success means hostname rules are consistent across target domains and inventory mappings, with placeholders only and no real public IPs, credentials, private keys, provider account IDs, subscription IDs, tenant IDs, or provider-specific secrets.
+Inventory is handled in S007, bastion reachability in S008, Kubernetes service and ingress routing in S022-S023, and Prometheus/Grafana validation in S028-S029.

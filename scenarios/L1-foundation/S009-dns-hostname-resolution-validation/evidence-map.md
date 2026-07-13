@@ -2,19 +2,23 @@
 
 | Validation Item | Evidence File | Evidence Type | Required |
 |---|---|---|---|
-| Hostname naming convention validation plan | `commands.md`; `configs/hostname-resolution-plan.md`; `validation.md` | command plan, hostname plan, validation record | yes |
-| Hostname-to-inventory consistency validation plan | `configs/hostname-inventory-mapping.md`; `validation.md` | inventory mapping, validation record | yes |
-| Control Plane hostname resolution plan | `commands.md`; `logs/hostname-resolution-validation.log`; `validation.md` | command plan, lookup log, validation record | yes |
-| Bastion hostname resolution plan | `commands.md`; `logs/hostname-resolution-validation.log`; `validation.md` | command plan, lookup log, validation record | yes |
-| On-Prem DB hostname resolution plan | `commands.md`; `configs/hostname-inventory-mapping.md`; `validation.md` | command plan, inventory mapping, validation record | yes |
-| On-Prem Monitoring hostname resolution plan | `commands.md`; `configs/hostname-inventory-mapping.md`; `validation.md` | command plan, inventory mapping, validation record | yes |
-| AWS service node hostname resolution plan | `commands.md`; `logs/hostname-resolution-validation.log`; `validation.md` | command plan, lookup log, validation record | yes |
-| Azure service node hostname resolution plan | `commands.md`; `logs/hostname-resolution-validation.log`; `validation.md` | command plan, lookup log, validation record | yes |
-| OpenStack service node hostname resolution plan | `commands.md`; `logs/hostname-resolution-validation.log`; `validation.md` | command plan, lookup log, validation record | yes |
-| Prometheus target hostname consistency plan | `configs/hostname-resolution-plan.md`; `screenshots/hostname-resolution-test.png`; `validation.md` | hostname plan, screenshot reference, validation record | yes |
-| Evidence target hostname consistency plan | `configs/hostname-inventory-mapping.md`; `validation.md` | inventory mapping, validation record | yes |
-| Unresolved hostname, duplicate hostname, inconsistent inventory mapping, or real public IP exposure failure condition | `validation.md` | failure criteria and status record | yes |
+| V001 Hostname map file | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V002 DNS policy file | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V003 Non-production marker | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V004 Required host aliases | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V005 Required domain placeholders | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V006 Required address placeholders | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V007 Hostname naming convention | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V008 Zone separation model | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V009 Internal DNS boundary | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V010 Resolution policy rules | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V011 Numeric IP safety | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V012 Sensitive and account content | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V013 DNS zone export artifacts | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| V014 Execution safety boundary | `logs/dns-hostname-resolution-validation.log`; `configs/dns-hostname-resolution-summary.md` | generated log and summary | yes |
+| Script invocation and evidence inspection | `commands.md` | operator command record | yes |
+| Final validation judgment | `validation.md` | validation result | yes |
 
 ## Evidence Notes
 
-No real hostname resolution output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+The log is reproducible. Resolver output, live DNS records, zones, credentials, host data, cloud output, and screenshots are neither required nor permitted.

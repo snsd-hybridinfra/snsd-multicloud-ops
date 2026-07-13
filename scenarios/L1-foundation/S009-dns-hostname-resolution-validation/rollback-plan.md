@@ -1,17 +1,13 @@
 # Rollback Plan
 
-## Stop Condition
+S009 performs no DNS, resolver, network, host, or cloud mutation and requires no infrastructure rollback.
 
-Stop immediately if hostname validation exposes real public IPs, credentials, SSH private keys, provider account values, kubeconfig content, tfstate, or attempts real DNS implementation.
+If unsafe content is discovered:
 
-## Rollback Steps
+1. Stop validation.
+2. Remove only the unsafe artifact after confirming it belongs to this scenario change.
+3. Restore symbolic aliases, domains, and address placeholders.
+4. Re-run the local validator and both repository QA scripts.
+5. Record unresolved issues as `BLOCKED` or `FAIL` without reproducing sensitive content.
 
-1. Stop validation activity.
-2. Remove unsafe evidence content.
-3. Replace sensitive values with placeholders such as `<control-plane-ip>`, `<bastion-ip>`, `<db-primary-ip>`, `<aws-app-node-ip>`, `<azure-app-node-ip>`, or `<openstack-app-node-ip>`.
-4. Mark affected checks as `BLOCKED` or `FAIL` in `validation.md`.
-5. Record the blocked condition in the implementation log if scenario progress is affected.
-
-## Recovery Validation
-
-Confirm S009 remains hostname resolution design documentation only, with placeholder-only mappings and no real DNS server configuration, credentials, private keys, public IPs, or account-specific values added.
+Generated S009 log and summary files may be regenerated safely.

@@ -1,26 +1,16 @@
 # Architecture
 
-## Relevant Components
+## Repository Components
 
-- Control Plane: `control.snsd.local` mapped to `<control-plane-ip>`.
-- Bastion: `bastion.snsd.local` mapped to `<bastion-ip>`.
-- On-Prem DB primary: `db-primary.snsd.local` mapped to `<db-primary-ip>`.
-- On-Prem DB replicas: `db-replica-01.snsd.local` and `db-replica-02.snsd.local` mapped to placeholder replica IPs.
-- Monitoring: `prometheus.snsd.local` and `grafana.snsd.local` mapped to monitoring placeholders.
-- AWS service node: `aws-app-01.snsd.local` mapped to `<aws-app-node-ip>`.
-- Azure service node: `azure-app-01.snsd.local` mapped to `<azure-app-node-ip>`.
-- OpenStack service node: `openstack-app-01.snsd.local` mapped to `<openstack-app-node-ip>`.
-- Kubernetes service hostname placeholders: future service names mapped without kubeconfig or live cluster data.
-- Evidence target hostnames: named targets used to organize validation collection paths.
+- `hostname-resolution-map.example.md`: placeholder aliases, FQDN patterns, addresses, and zone classifications.
+- `dns-resolution-policy.example.md`: naming, separation, resolution, failure, and evidence rules.
+- `validate-dns-hostname-resolution-model.ps1`: text-only completeness and safety validation.
+- S009 evidence directory: generated validation log and summary.
 
-## Logical Flow
+## Naming Model
 
-1. Hostnames follow the `*.snsd.local` convention.
-2. Hostnames map to inventory placeholders, not real IP addresses.
-3. Provider-specific hostnames are separated by AWS, Azure, and OpenStack prefixes.
-4. Monitoring hostnames support Prometheus and Grafana target planning.
-5. Evidence hostnames align with future collection targets.
+Shared internal, on-premises, AWS, Azure, OpenStack, and Kubernetes components use separate symbolic domain suffixes. Internal-only components explicitly avoid dependency on public DNS.
 
-## Out-of-Scope Components
+## Validation Flow
 
-Real DNS servers, `/etc/hosts` edits, lab DNS zones, kubeconfig files, public DNS records, provider DNS services, and live resolver changes are not part of S009.
+The validator checks the two model files, required placeholders and policies, unsafe values, prohibited export filenames, and its own execution boundary. It performs no DNS query, resolver change, host connection, cloud authentication, or external request.

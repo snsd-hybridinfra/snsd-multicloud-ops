@@ -2,19 +2,21 @@
 
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
-| V001 | Hostname naming convention validation plan | Review `*.snsd.local` names and approved prefixes. | Hostnames follow the documented naming convention. | `commands.md`, `configs/hostname-resolution-plan.md`, `validation.md` |
-| V002 | Hostname-to-inventory consistency validation plan | Compare hostname plan with inventory placeholder groups. | Hostnames map consistently to inventory placeholders. | `configs/hostname-inventory-mapping.md`, `validation.md` |
-| V003 | Control Plane hostname resolution plan | Document lookup plan for `control.snsd.local`. | Control Plane hostname maps to `<control-plane-ip>`. | `commands.md`, `logs/hostname-resolution-validation.log`, `validation.md` |
-| V004 | Bastion hostname resolution plan | Document lookup plan for `bastion.snsd.local`. | Bastion hostname maps to `<bastion-ip>`. | `commands.md`, `logs/hostname-resolution-validation.log`, `validation.md` |
-| V005 | On-Prem DB hostname resolution plan | Document lookup plan for DB primary and replicas. | DB hostnames map to DB placeholders. | `commands.md`, `configs/hostname-inventory-mapping.md`, `validation.md` |
-| V006 | On-Prem Monitoring hostname resolution plan | Document lookup plan for Prometheus and Grafana hostnames. | Monitoring hostnames map to monitoring placeholders. | `commands.md`, `configs/hostname-inventory-mapping.md`, `validation.md` |
-| V007 | AWS service node hostname resolution plan | Document lookup plan for `aws-app-01.snsd.local`. | AWS service hostname maps to `<aws-app-node-ip>`. | `commands.md`, `logs/hostname-resolution-validation.log`, `validation.md` |
-| V008 | Azure service node hostname resolution plan | Document lookup plan for `azure-app-01.snsd.local`. | Azure service hostname maps to `<azure-app-node-ip>`. | `commands.md`, `logs/hostname-resolution-validation.log`, `validation.md` |
-| V009 | OpenStack service node hostname resolution plan | Document lookup plan for `openstack-app-01.snsd.local`. | OpenStack service hostname maps to `<openstack-app-node-ip>`. | `commands.md`, `logs/hostname-resolution-validation.log`, `validation.md` |
-| V010 | Prometheus target hostname consistency plan | Review Prometheus target naming model. | Prometheus targets use consistent hostname placeholders. | `configs/hostname-resolution-plan.md`, `screenshots/hostname-resolution-test.png`, `validation.md` |
-| V011 | Evidence target hostname consistency plan | Review evidence target hostnames and inventory mapping. | Evidence target hostnames are consistent and sanitized. | `configs/hostname-inventory-mapping.md`, `validation.md` |
-| V012 | Unresolved hostname, duplicate hostname, inconsistent inventory mapping, or real public IP exposure failure condition | Define explicit failure criteria. | Unsafe or inconsistent hostname data produces `FAIL` or `BLOCKED` status. | `validation.md` |
+| V001 | Hostname map file | Test the map path. | Map exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V002 | DNS policy file | Test the policy path. | Policy exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V003 | Non-production marker | Search the map header. | Explicit marker exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V004 | Required host aliases | Search for twelve aliases. | Every alias exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V005 | Required domain placeholders | Search for six domain tokens. | Every domain exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V006 | Required address placeholders | Search for eight address tokens. | Every address token exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V007 | Hostname naming convention | Check policy wording. | Naming convention is documented. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V008 | Zone separation model | Check policy wording. | Zone/domain separation is documented. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V009 | Internal DNS boundary | Check policy wording. | Internal-only public-DNS independence is explicit. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V010 | Resolution policy rules | Search for seven operational statements. | Every statement exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V011 | Numeric IP safety | Scan both model files. | No numeric IP exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V012 | Sensitive and account content | Scan for assignments, keys, access keys, IDs, UUIDs, and tokens. | No forbidden content exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V013 | DNS zone export artifacts | Inspect inventory and topology filenames. | No zone or resolver export exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
+| V014 | Execution safety boundary | Scan validator source for DNS and external commands. | No prohibited command exists. | `logs/dns-hostname-resolution-validation.log`, `configs/dns-hostname-resolution-summary.md` |
 
 ## Review Notes
 
-Every validation item must map to evidence. Real DNS implementation is explicitly excluded from S009.
+All checks are required and any failure produces a non-zero exit.

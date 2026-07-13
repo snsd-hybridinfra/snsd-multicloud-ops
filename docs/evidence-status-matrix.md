@@ -12,7 +12,7 @@ Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S006 | terraform-provider-validation | READY | READY | READY | READY | READY | READY |
 | S007 | multi-cloud-inventory-validation | READY | READY | READY | READY | READY | READY |
 | S008 | bastion-reachability-validation | READY | READY | READY | READY | READY | READY |
-| S009 | dns-hostname-resolution-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
+| S009 | dns-hostname-resolution-validation | READY | READY | READY | READY | READY | READY |
 | S010 | evidence-directory-structure-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S011 | ssh-key-authentication-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S012 | password-login-denial-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
