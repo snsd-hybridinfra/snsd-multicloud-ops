@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+MANUAL FAULT INJECTION SAMPLE
+Command_Reference: systemctl stop <primary-service-name-placeholder>
+Execution_By_Validator: false
+Recovery_Elapsed_Seconds: <not-measured>

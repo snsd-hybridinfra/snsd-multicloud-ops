@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION
+Replica_Promotion: not-promoted-placeholder
+Read_Only: enabled-placeholder
+Replica_IO_Running: No
+Seconds_Behind_Master: NULL
+Last_IO_Error: <primary-unavailable-placeholder>

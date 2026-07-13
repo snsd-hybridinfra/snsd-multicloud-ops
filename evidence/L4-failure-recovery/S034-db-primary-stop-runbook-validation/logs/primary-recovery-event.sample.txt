@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION
+MANUAL RECOVERY ACTION SAMPLE
+Command_Reference: systemctl start <primary-service-name-placeholder>
+Execution_By_Validator: false

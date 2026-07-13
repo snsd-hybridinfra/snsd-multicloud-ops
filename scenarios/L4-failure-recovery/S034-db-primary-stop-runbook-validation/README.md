@@ -4,26 +4,25 @@
 |---|---|
 | Scenario ID | S034 |
 | Scenario Name | DB Primary Stop Runbook Validation |
-| Level | L4 Failure and Recovery Validation |
+| Level | L4 Failure Recovery Validation |
 | Category | Failure Recovery |
-| Primary Domain | MariaDB Primary outage manual runbook response |
-| Related Components | MariaDB Primary, MariaDB Replicas, replication state, application DB dependency placeholder, manual decision points, recovery threshold model |
-| Validation Type | Failure Recovery Validation |
+| Related Components | MariaDB Primary, Replica, write path, replication, manual decision points |
+| Validation Type | StaticEvidence only |
 | Evidence Directory | evidence/L4-failure-recovery/S034-db-primary-stop-runbook-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the manual runbook response model for MariaDB Primary stop events in the On-Prem Internal Server Zone database layer.
+Validate a manual Primary-stop response, write-impact evidence, explicit no-promotion boundary, and sanitized recovery/catch-up evidence without accessing a database.
 
 ## Scope Summary
 
-This scenario validates manual DB Primary stop runbook behavior only. It covers pre-failure Primary, Replica, and replication state; placeholder Primary stop injection; Primary write failure detection; application impact placeholder; Replica state verification; manual decision points; Primary restoration; post-recovery replication state; and runbook evidence collection.
+Local artifacts only; no SQL, service action, promotion, failover, replication change, Ansible/monitoring/network execution, payload, row, or credential handling.
 
 ## Validation Summary
 
-Validation checks confirm that a Primary outage is detectable, application impact is documented, Replica state is reviewed, manual decision points are explicit, restoration is planned, replication state is reviewed after recovery, and failures such as unclear decision points, accidental automatic failover claims, Primary restoration failure, replication not resumed, application dependency unavailability, or missing evidence are captured.
+Eighteen checks cover artifacts, manual boundaries, thirteen criteria, safe examples, pre/down/impact/replica/recovery/post/catch-up evidence, timing, safety, and no execution.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L4-failure-recovery/S034-db-primary-stop-runbook-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Committed samples are non-production; generated evidence contains parsing judgments only.

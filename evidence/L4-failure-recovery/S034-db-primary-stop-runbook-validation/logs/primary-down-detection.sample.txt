@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION / FAILURE EVIDENCE SAMPLE
+Primary_Service: inactive-placeholder
+Connection_State: connection-refused-placeholder
+Primary_Exporter: down-placeholder

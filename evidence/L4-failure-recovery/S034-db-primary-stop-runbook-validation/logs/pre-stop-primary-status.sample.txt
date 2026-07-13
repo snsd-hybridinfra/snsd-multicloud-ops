@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION
+Primary_Service: active-placeholder
+Primary_Role: available-placeholder
+SHOW_MASTER_STATUS: placeholder-only
+File: <binlog-file-placeholder>
+Position: <binlog-position-placeholder>
