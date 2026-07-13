@@ -1,18 +1,18 @@
 # Failure Condition
 
-## Failure Conditions
+## Critical Failure Conditions
 
-- AWS, AzureRM, and OpenStack provider roles are not clearly separated.
-- Provider version constraints are missing, invalid, or inconsistent with the repository strategy.
-- Terraform fmt, init, or validate checks cannot be planned safely.
-- Provider blocks include hardcoded credentials, keys, tokens, account IDs, subscription IDs, tenant IDs, passwords, or endpoints tied to a real account.
-- Terraform state files, `.terraform/` directories, backend state files, or account-specific files are created or committed.
-- Evidence requires real credentials, private keys, tfstate, or account-specific values.
+- The provider directory or a required file is missing.
+- `required_version`, `required_providers`, an expected provider source, version constraint, or provider block is missing.
+- A real tfvars, auto tfvars, tfstate, or `.terraform` artifact is present.
+- A backend block is configured.
+- A credential, private key, access key, UUID-like identifier, account-specific assignment, or secret is detected.
+- Required safety-boundary documentation is missing.
+- The validator attempts provider initialization, download, authentication, runtime validation, planning, or apply.
 
-## Evidence of Failure
+## Non-Critical Warnings
 
-Record failed or blocked checks in `validation.md`, with supporting TODO references to `commands.md`, `configs/terraform-provider-structure-summary.md`, `logs/terraform-provider-validation.log`, or `configs/gitignore-tfstate-check.md`.
+- Terraform is unavailable for formatting checks.
+- Runtime provider validation is skipped because initialization, download, and authentication are prohibited.
 
-## Follow-Up Requirement
-
-Create a follow-up task to correct provider separation, version pinning, credential handling, or tfstate policy before Terraform implementation proceeds.
+Critical failures produce a non-zero exit. Warnings remain documented without weakening the safety boundary.

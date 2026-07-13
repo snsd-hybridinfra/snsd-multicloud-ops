@@ -9,7 +9,7 @@ Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S003 | aws-network-provisioning-validation | READY | READY | READY | READY | READY | READY |
 | S004 | azure-network-provisioning-validation | READY | READY | READY | READY | READY | READY |
 | S005 | openstack-network-provisioning-validation | READY | READY | READY | READY | READY | READY |
-| S006 | terraform-provider-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
+| S006 | terraform-provider-validation | READY | READY | READY | READY | READY | READY |
 | S007 | multi-cloud-inventory-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S008 | bastion-reachability-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S009 | dns-hostname-resolution-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |

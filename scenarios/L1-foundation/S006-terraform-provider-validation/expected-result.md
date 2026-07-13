@@ -2,22 +2,19 @@
 
 ## Success Conditions
 
-- AWS, AzureRM, and OpenStack provider validation roles are clearly separated.
-- Terraform fmt, init, and validate plans are defined without credentials.
-- Provider version pinning strategy is documented.
-- Provider separation by environment is documented.
-- Hardcoded credential checks are planned.
-- tfstate exclusion policy is mapped to evidence.
-- Failure conditions cover missing providers, invalid provider versions, and credential exposure.
+- All required provider files and blocks exist.
+- Terraform and all provider version constraints are explicit.
+- AWS, AzureRM, and OpenStack provider sources match the baseline.
+- No state, real tfvars, `.terraform`, backend, credential-like content, or account assignment is present.
+- Safety boundaries are documented.
+- The validator exits zero when all required checks pass.
+- Optional formatting or runtime provider-validation limitations are recorded as warnings.
 
 ## Required Evidence
 
+- `logs/terraform-provider-validation.log`
+- `configs/terraform-provider-baseline-summary.md`
 - `commands.md`
 - `validation.md`
-- `configs/terraform-provider-structure-summary.md`
-- `logs/terraform-provider-validation.log`
-- `configs/gitignore-tfstate-check.md`
 
-## Completion Criteria
-
-The scenario can move from `PLANNED` to `VALIDATED` only after approved, sanitized evidence confirms the Terraform provider structure checks. Real provider credentials and tfstate are not part of this scenario.
+The result proves declaration safety only; it does not prove provider authentication or cloud connectivity.

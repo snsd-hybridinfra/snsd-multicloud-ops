@@ -2,17 +2,24 @@
 
 | Validation Item | Evidence File | Evidence Type | Required |
 |---|---|---|---|
-| Terraform CLI availability validation plan | `commands.md`; `logs/terraform-provider-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Terraform fmt validation plan | `commands.md`; `logs/terraform-provider-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Terraform init plan for AWS provider | `commands.md`; `configs/terraform-provider-structure-summary.md`; `validation.md` | command plan, provider summary, validation record | yes |
-| Terraform init plan for AzureRM provider | `commands.md`; `configs/terraform-provider-structure-summary.md`; `validation.md` | command plan, provider summary, validation record | yes |
-| Terraform init plan for OpenStack provider | `commands.md`; `configs/terraform-provider-structure-summary.md`; `validation.md` | command plan, provider summary, validation record | yes |
-| Terraform validate plan for each provider environment | `commands.md`; `logs/terraform-provider-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Provider version pinning check | `configs/terraform-provider-structure-summary.md`; `validation.md` | provider summary, validation record | yes |
-| Provider credential hardcoding check | `configs/terraform-provider-structure-summary.md`; `validation.md` | provider summary, validation record | yes |
-| tfstate exclusion check | `configs/gitignore-tfstate-check.md`; `validation.md` | gitignore policy evidence, validation record | yes |
-| Missing provider, invalid provider version, or credential exposure failure condition | `validation.md` | failure criteria and status record | yes |
+| V001 Provider directory | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V002 Required files | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V003 Terraform version constraint | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V004 Required providers block | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V005 AWS provider source | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V006 AzureRM provider source | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V007 OpenStack provider source | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V008 Provider version constraints | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V009 Provider blocks | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V010 Generated Terraform artifacts | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V011 Remote backend | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V012 Credential and account content | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V013 Safety boundary documentation | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V014 Terraform formatting | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| V015 Terraform provider validation boundary | `logs/terraform-provider-validation.log`; `configs/terraform-provider-baseline-summary.md` | generated log and summary | yes |
+| Script invocation and evidence inspection | `commands.md` | operator command record | yes |
+| Final validation judgment | `validation.md` | validation result | yes |
 
 ## Evidence Notes
 
-No real Terraform provider output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+The log is reproducible. Provider downloads, lock files, credentials, plans, state, cloud output, and screenshots are neither required nor permitted.

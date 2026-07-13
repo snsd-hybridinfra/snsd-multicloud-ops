@@ -6,33 +6,32 @@
 | Scenario Name | Terraform Provider Validation |
 | Level | L1 Foundation Validation |
 | Category | Foundation |
-| Primary Domain | Terraform provider structure readiness |
-| Related Components | AWS provider, AzureRM provider, OpenStack provider, provider version pinning, environment separation, Terraform init, Terraform validate, Terraform fmt, credential exclusion, tfstate exclusion |
+| Primary Domain | Repository-side Terraform provider declarations |
+| Related Components | AWS, AzureRM, and OpenStack provider baselines; local safety validator |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S006-terraform-provider-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the Terraform provider structure required for AWS, Azure, and OpenStack provisioning in the SNSD Multi-Cloud Ops project.
+Validate that AWS, AzureRM, and OpenStack Terraform providers are declared with explicit sources and version constraints without credentials, backend state, initialization, or cloud authentication.
 
 ## Scope Summary
 
-This scenario validates provider structure and safety policy only. It does not create provider credentials, execute real cloud authentication, create tfstate, or implement real Terraform provider resources.
+S006 checks required provider files, Terraform and provider constraints, provider blocks, unsafe generated artifacts, backend configuration, credential-like content, account assignments, and documented safety boundaries.
 
 ## Related Components
 
-- AWS provider placeholder
-- AzureRM provider placeholder
-- OpenStack provider placeholder
-- Provider version pinning strategy
-- Environment-specific provider separation
-- `.gitignore` tfstate exclusion policy
+- `terraform/envs/provider-validation/`
+- `tools/validate-terraform-provider-baseline.ps1`
 
 ## Validation Summary
 
-Validation checks cover Terraform CLI availability, `terraform fmt`, provider initialization planning for AWS, AzureRM, and OpenStack, provider-specific validation planning, provider version pinning, hardcoded credential detection, tfstate exclusion, and failure conditions.
+Required repository checks determine success. Terraform formatting is optional when the CLI exists. Runtime provider validation is skipped because S006 prohibits initialization, provider download, credential access, and external authentication.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L1-foundation/S006-terraform-provider-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
+- `logs/terraform-provider-validation.log`
+- `configs/terraform-provider-baseline-summary.md`
+- `commands.md`
+- `validation.md`

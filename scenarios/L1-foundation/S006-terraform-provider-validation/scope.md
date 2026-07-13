@@ -2,28 +2,28 @@
 
 ## Included
 
-- Terraform CLI availability validation plan.
-- Terraform fmt validation plan.
-- Terraform init plan for AWS provider.
-- Terraform init plan for AzureRM provider.
-- Terraform init plan for OpenStack provider.
-- Terraform validate plan for each provider environment.
-- Provider version pinning check.
-- Provider separation by environment.
-- Provider credential hardcoding check.
-- tfstate exclusion check.
-- Failure condition for missing provider, invalid provider version, or credential exposure.
+- Terraform `required_version` constraint.
+- AWS, AzureRM, and OpenStack entries in `required_providers`.
+- Explicit source and version constraints for all three providers.
+- Empty or non-authenticating provider blocks.
+- Local checks for required files, unsafe Terraform artifacts, backend blocks, credential-like content, account assignments, and boundary documentation.
+- Optional `terraform fmt -check` when Terraform is locally available.
+- Generated local log and Markdown summary evidence.
 
 ## Excluded
 
-- Real Terraform provider credentials.
-- AWS credentials, Azure credentials, OpenStack credentials, private keys, tfstate files, or account-specific files.
-- Real cloud provider authentication.
-- Terraform plan, apply, destroy, or state operations against a real environment.
-- New technologies outside the locked repository scope.
+- Authentication to AWS, Azure, OpenStack, or any external system.
+- Real provider credential validation.
+- Access keys, client credentials, tenant or subscription IDs, authentication URLs, usernames, passwords, project IDs, tokens, `clouds.yaml`, and openrc.
+- Backend creation or remote backend validation.
+- `terraform init`, `validate`, `plan`, `apply`, or `destroy` execution.
+- Provider download, lock-file creation, `.terraform`, state, real tfvars, or account-specific values.
+- AWS network validation, which belongs to S003.
+- Azure network validation, which belongs to S004.
+- OpenStack network validation, which belongs to S005.
+- Terraform drift detection and remediation, which belong to S041 and S042.
 
 ## Assumptions
 
-- Provider configuration is represented with placeholders such as `<aws-region>`, `<azure-subscription-id-redacted>`, and `<openstack-cloud-name>`.
-- Future provider initialization may be tested in isolated validation directories only after explicit approval.
-- Any future command output must be sanitized before commit.
+- Version ranges are compatibility baselines rather than a latest-version claim.
+- Future authentication must use approved secure local configuration outside the repository.

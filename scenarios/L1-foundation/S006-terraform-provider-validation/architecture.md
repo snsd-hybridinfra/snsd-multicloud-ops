@@ -1,22 +1,20 @@
 # Architecture
 
-## Relevant Components
+## Repository Components
 
-- AWS provider role: validates AWS provisioning capability for future AWS network scenarios without storing credentials.
-- AzureRM provider role: validates Azure provisioning capability for future Azure network scenarios without storing subscription or tenant identifiers.
-- OpenStack provider role: validates OpenStack provisioning capability for future OpenStack network scenarios without storing `openrc`, `clouds.yaml`, or credentials.
-- Provider version pinning: keeps provider behavior reviewable and repeatable.
-- Environment separation: keeps provider configuration isolated by environment or platform boundary.
-- `.gitignore` tfstate policy: prevents generated Terraform state from entering the repository.
+- `terraform/envs/provider-validation/versions.tf`: Terraform and provider source/version constraints.
+- `terraform/envs/provider-validation/providers.tf`: non-authenticating provider blocks.
+- `terraform/envs/provider-validation/README.md`: provider safety boundary.
+- `tools/validate-terraform-provider-baseline.ps1`: repository-only validation.
+- `evidence/L1-foundation/S006-terraform-provider-validation/`: generated evidence.
 
-## Logical Flow
+## Provider Model
 
-1. Terraform CLI availability is confirmed as a prerequisite.
-2. Provider structure is reviewed for AWS, AzureRM, and OpenStack separation.
-3. Provider version constraints are checked for each provider family.
-4. Terraform fmt, init, and validate plans are documented for future safe execution.
-5. Credential hardcoding and tfstate commit controls are reviewed.
+1. AWS uses the `hashicorp/aws` source with an explicit bounded version range.
+2. AzureRM uses the `hashicorp/azurerm` source with an explicit bounded version range and an empty `features` block.
+3. OpenStack uses the `terraform-provider-openstack/openstack` source with an explicit bounded version range.
+4. Provider blocks contain no authentication or account values.
 
-## Out-of-Scope Components
+## Validation Flow
 
-No provider credentials, backend state, cloud authentication, Terraform state, private keys, live resources, or account-specific values are used by this scenario.
+The PowerShell validator reads local files, checks declaration completeness and safety boundaries, optionally runs formatting checks, and writes a log and summary. It does not initialize or validate providers, download plugins, authenticate, create state, or contact external systems.
