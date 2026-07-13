@@ -1,7 +1,7 @@
 # Objective
 
-S030 validates the operational model for using Blackbox Exporter probes to confirm external endpoint availability across the SNSD Multi-Cloud Ops service traffic layer.
+Validate that SNSD Multi-Cloud Ops defines safe Blackbox HTTP 2xx/TCP connect probing and can classify sanitized probe metrics without external access by default.
 
-The scenario defines how endpoint probes should be planned, executed, and reviewed for Kubernetes web/API endpoints, Ingress hosts, Nginx reverse proxy endpoints, cloud service zone placeholders, and health check endpoints.
+S030 validates modules, scrape relabeling, metric thresholds, success/warning/failure fixtures, and Prometheus query sample JSON. Failure detection is proven with a negative fixture.
 
-This scenario remains documentation-only until implementation is explicitly approved. It does not create Blackbox Exporter configuration, Prometheus scrape configuration, credentials, TLS material, or live probe output.
+S028 owns Prometheus discovery, S029 dashboards, S025 load-balancer health, S023 Ingress, S024 reverse proxy, and S040 final recovery health.

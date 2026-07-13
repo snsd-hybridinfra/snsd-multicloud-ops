@@ -2,40 +2,34 @@
 
 Scenario: S030-blackbox-endpoint-probe-validation
 Level: L3-service-operations
-Capability: Blackbox Endpoint Probe Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
+Mode: Static
+Date: 2026-07-13
+Overall status: PASS
 
-No real Blackbox Exporter or Prometheus query output has been collected yet. This file defines the validation record that must be completed during future approved execution.
-
-| Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
+| Check ID | Check Description | Expected Condition | Actual Result | Status | Evidence File |
 |---|---|---|---|---|---|
-| V001 | Blackbox Exporter service status validation plan | Blackbox Exporter service status can be reviewed through an approved path. | TODO | NOT_RUN | `commands.md`; `logs/blackbox-endpoint-probe-validation.log` |
-| V002 | Blackbox probe module existence validation plan | Required probe module placeholder is documented. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-endpoint-probe-summary.md` |
-| V003 | Web endpoint probe success validation plan | Web endpoint probe returns success. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-target-mapping.md`; `logs/blackbox-endpoint-probe-validation.log` |
-| V004 | API endpoint probe success validation plan | API endpoint probe returns success. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-target-mapping.md`; `logs/blackbox-endpoint-probe-validation.log` |
-| V005 | Ingress endpoint probe success validation plan | Ingress endpoint probe returns success. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-target-mapping.md`; `screenshots/blackbox-probe-result.png` |
-| V006 | Reverse Proxy endpoint probe success validation plan | Reverse proxy endpoint probe returns success. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-target-mapping.md`; `screenshots/blackbox-probe-result.png` |
-| V007 | AWS endpoint placeholder probe validation plan | AWS endpoint placeholder probe is documented. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-target-mapping.md` |
-| V008 | Azure endpoint placeholder probe validation plan | Azure endpoint placeholder probe is documented. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-target-mapping.md` |
-| V009 | OpenStack endpoint placeholder probe validation plan | OpenStack endpoint placeholder probe is documented. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-target-mapping.md` |
-| V010 | HTTP status code validation plan | Expected HTTP status code is documented and reviewable. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-prometheus-query-mapping.md` |
-| V011 | Probe duration and latency validation plan | Probe latency can be reviewed without real endpoint values in the repo. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-prometheus-query-mapping.md`; `logs/blackbox-endpoint-probe-validation.log` |
-| V012 | Prometheus `probe_success` query validation plan | `probe_success` query evidence can be captured. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-prometheus-query-mapping.md`; `screenshots/prometheus-blackbox-query-result.png` |
-| V013 | Prometheus `probe_http_status_code` query validation plan | `probe_http_status_code` query evidence can be captured. | TODO | NOT_RUN | `commands.md`; `configs/blackbox-prometheus-query-mapping.md`; `screenshots/prometheus-blackbox-query-result.png` |
-| V014 | Failure condition for failed probe, HTTP 5xx, route timeout, DNS resolution failure, unexpected status code, excessive latency, or missing probe evidence | Endpoint probe failures produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
+| V001 | Required probe baseline files | Five artifacts. | All exist. | PASS | summary |
+| V002 | Blackbox module definitions | HTTP/TCP settings. | Complete. | PASS | exporter; summary |
+| V003 | Prometheus Blackbox scrape placeholder | Probe/relabel model. | Complete. | PASS | scrape; summary |
+| V004 | Probe metrics and threshold model | Metrics/ranges. | Complete. | PASS | baseline/matrix; summary |
+| V005 | Probe rule matrix | Nine areas. | Complete. | PASS | matrix; summary |
+| V006 | Probe command reference | Four examples. | Complete. | PASS | commands; summary |
+| V007 | Required probe samples | Four samples. | All exist. | PASS | samples; summary |
+| V008 | Healthy probe evidence | Success/status/duration normal. | Healthy. | PASS | success; summary |
+| V009 | Warning duration evidence | Duration 2-5. | WARNING at 3.20. | WARN | warning; summary |
+| V010 | Failure negative fixture | Failure/timeout detected. | Expected failure detected. | PASS | failure; summary |
+| V011 | Prometheus probe query sample | Three healthy metrics. | Valid. | PASS | query; summary |
+| V012 | Credential token cookie and TLS safety | None. | None detected. | PASS | log; summary |
+| V013 | Endpoint URL address and domain safety | None concrete. | None detected. | PASS | log; summary |
+| V014 | Account and identifier safety | None. | None detected. | PASS | log; summary |
+| V015 | Execution safety boundary | No client/reload; guarded live. | Confirmed. | PASS | script; summary |
+| V016 | Validation mode and live probe result | Static no network. | Completed safely. | PASS | log; summary |
 
-## Evidence Completeness
+## Generated Result
 
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- Blackbox endpoint probe summary is captured: NOT_READY
-- Blackbox target mapping is captured: NOT_READY
-- Blackbox Prometheus query mapping is captured: NOT_READY
-- Blackbox endpoint probe validation log is captured: NOT_READY
-- Blackbox and Prometheus screenshots are captured: NOT_READY
-
-## Notes
-
-This scenario validates endpoint probing only. Prometheus target discovery is handled in S028, Grafana dashboard validation in S029, load balancing health checks in S025, Ingress routing in S023, and Nginx Reverse Proxy forwarding in S024. TLS certificate validation is excluded from this scenario.
+- Critical failures: 0
+- Warnings: 1 (expected duration fixture)
+- Failure fixture: EXPECTED_FAILURE_DETECTED
+- LiveBlackbox: NOT_RUN
+- Final judgment: PASS
+- No live probe/query, reload, real URL/endpoint, credential, token, cookie, authorization, TLS material, address, domain, or network operation occurred.

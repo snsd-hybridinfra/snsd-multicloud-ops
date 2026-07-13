@@ -1,9 +1,12 @@
 # Rollback Plan
 
-1. Stop endpoint probe validation if real endpoint values, credentials, TLS material, or account-specific data appear in commands or evidence.
-2. Remove or sanitize any unapproved probe evidence from `commands.md`, `validation.md`, `configs/`, `logs/`, and `screenshots/`.
-3. Revert S030 status to `BLOCKED` if endpoint categories cannot be mapped safely.
-4. Recheck that only placeholder values such as `<blackbox-exporter-endpoint>`, `<probe-target>`, `<web-endpoint>`, `<api-endpoint>`, `<ingress-host>`, `<reverse-proxy-host>`, and `<health-endpoint>` remain.
-5. Preserve a short note in `docs/implementation-log.md` if rollback or sanitization is required.
+S030 writes repository evidence only; no exporter or Prometheus rollback applies.
 
-No infrastructure, Blackbox Exporter configuration, Prometheus configuration, TLS material, or endpoint implementation is changed by this documentation skeleton.
+1. Stop if real/sensitive content is found.
+2. Remove unsafe artifacts and restore placeholders.
+3. Correct module/scrape/sample/parser issues locally.
+4. Rerun Static validation.
+5. Investigate live failures separately.
+6. Revert invalid repository changes through version control.
+
+Never start, reload, reconfigure, or mutate Prometheus/Blackbox from this validator.

@@ -1,0 +1,10 @@
+{
+  "sample_notice": "SAMPLE / NON-PRODUCTION",
+  "status": "success",
+  "endpoint": "<endpoint-name-placeholder>",
+  "metrics": {
+    "probe_success": 1,
+    "probe_http_status_code": 200,
+    "probe_duration_seconds": 0.42
+  }
+}
