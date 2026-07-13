@@ -4,26 +4,26 @@
 |---|---|
 | Scenario ID | S031 |
 | Scenario Name | Web Pod Failure Recovery Validation |
-| Level | L4 Failure and Recovery Validation |
+| Level | L4 Failure Recovery Validation |
 | Category | Failure Recovery |
-| Primary Domain | Kubernetes/k3s workload self-healing |
-| Related Components | Kubernetes/k3s, Web Deployment, ReplicaSet, Web Pod, Web Service, Ingress reference, Blackbox probe reference |
-| Validation Type | Failure Recovery Validation |
+| Primary Domain | Controlled Web Pod recovery evidence |
+| Related Components | Deployment, Pods, rollout, Service endpoints |
+| Validation Type | Static with optional explicit read-only LiveKubectl |
 | Evidence Directory | evidence/L4-failure-recovery/S031-web-pod-failure-recovery-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate Web Pod failure recovery behavior in the SNSD Multi-Cloud Ops Kubernetes/k3s service runtime.
+Validate a controlled manual Pod-failure runbook, replacement/rollout/endpoint recovery criteria, and sanitized evidence without modifying Kubernetes.
 
 ## Scope Summary
 
-This scenario validates Web Pod recovery only. It covers pre-failure workload state, manual Web Pod delete failure injection, Deployment/ReplicaSet replacement behavior, recovered Pod readiness, Service endpoint recovery, HTTP health recovery, recovery time measurement, and post-recovery status review.
+Static mode invokes no kubectl. LiveKubectl requires namespace/deployment and runs four read-only commands only. Pod deletion is documented as manual disposable-lab fault injection and never automated.
 
 ## Validation Summary
 
-Validation checks confirm the Web Deployment and Pod are healthy before failure, a single Pod delete action is planned with placeholders, a replacement Pod is created, readiness and Service endpoints recover, HTTP health returns within a provisional threshold, and failures such as no replacement Pod, `Pending`, `CrashLoopBackOff`, missing Service endpoint, HTTP recovery failure, or threshold breach are captured.
+Sixteen checks cover files, workflow, criteria, command boundary, pre/post Pod state, manual event, rollout, endpoints, timing, unhealthy indicators, credentials/endpoints, and execution safety.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L4-failure-recovery/S031-web-pod-failure-recovery-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Recovery time is intentionally unmeasured and produces WARN. S031 stores no kubeconfig, token, certificate, key, cluster endpoint, IP, UID, raw live rows, or secret.

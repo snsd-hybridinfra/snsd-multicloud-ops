@@ -1,7 +1,7 @@
 # Objective
 
-S031 validates the planned recovery behavior for a failed Web Pod in the SNSD Multi-Cloud Ops Kubernetes/k3s service runtime.
+Validate that SNSD Multi-Cloud Ops defines a controlled Web Pod failure-recovery workflow and can evaluate sanitized Kubernetes recovery evidence safely.
 
-The scenario defines how to document pre-failure state, inject a controlled single-Pod failure using a placeholder `kubectl delete pod` command, observe Deployment/ReplicaSet self-healing, confirm replacement Pod readiness, validate Service endpoint recovery, and measure recovery time.
+S031 confirms pre-failure readiness, explicit manual fault record, original termination, replacement Running/Ready, rollout success, replica-preservation criteria, endpoint continuity, and recovery-time threshold documentation.
 
-This scenario remains documentation-only until execution is explicitly approved. It does not create Kubernetes manifests, kubeconfig files, secrets, credentials, or live failure evidence.
+S021 owns node readiness, S022 workload deployment, S032 API failure, S035 load-balancer failure, and S040 final service health.

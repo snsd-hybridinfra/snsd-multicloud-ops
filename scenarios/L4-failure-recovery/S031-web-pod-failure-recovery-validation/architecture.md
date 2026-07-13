@@ -1,25 +1,15 @@
 # Architecture
 
-This scenario models Web Pod recovery within the Kubernetes/k3s workload control loop.
+```text
+healthy Deployment/Pods
+  -> separately authorized manual Pod deletion in disposable lab
+  -> original terminates
+  -> Deployment creates replacement
+  -> replacement Running/Ready
+  -> rollout succeeds
+  -> Service endpoint remains non-empty
+```
 
-## Relevant Components
+Static mode parses samples. LiveKubectl performs read-only get/status queries and stores only deployment-found, Ready Pod count, rollout-success, and nonempty-endpoint count judgments.
 
-- Namespace placeholder: `<namespace>`.
-- Web Deployment placeholder: `<web-deployment>`.
-- Web Pod placeholder: `<web-pod>`.
-- Web Service placeholder: `<web-service>`.
-- Ingress host placeholder: `<ingress-host>`.
-- Health endpoint placeholder: `<health-endpoint>`.
-- Recovery threshold placeholder: `<recovery-threshold-seconds>`.
-- Evidence store: `evidence/L4-failure-recovery/S031-web-pod-failure-recovery-validation/`.
-
-## Recovery Flow
-
-1. Capture pre-failure Web Deployment, Pod, Service endpoint, and HTTP health state.
-2. Inject a single Web Pod failure by planning `kubectl delete pod <web-pod> -n <namespace>`.
-3. Observe Deployment/ReplicaSet replacement behavior.
-4. Confirm replacement Pod reaches Ready state.
-5. Confirm the Web Service endpoint and HTTP health endpoint recover.
-6. Record recovery time and compare it against provisional thresholds.
-
-This scenario does not define or change Kubernetes manifests. It validates the recovery behavior expected after workload deployment is already handled by S022.
+No live fault is injected and no raw cluster details are retained.

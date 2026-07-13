@@ -1,0 +1,3 @@
+SAMPLE / NON-PRODUCTION
+NAME                         ENDPOINTS                 AGE
+sample-service-placeholder   <pod-ip-placeholder>:80   <age-placeholder>

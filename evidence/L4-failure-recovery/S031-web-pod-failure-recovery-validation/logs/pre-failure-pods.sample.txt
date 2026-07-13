@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION
+NAME                               READY   STATUS    RESTARTS   AGE
+sample-web-placeholder-abcde       1/1     Running   0          <age-placeholder>
+sample-web-placeholder-fghij       1/1     Running   0          <age-placeholder>

@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+Original_Pod_State: sample-web-placeholder-abcde no-longer-active
+NAME                               READY   STATUS    RESTARTS   AGE
+sample-web-placeholder-fghij       1/1     Running   0          <age-placeholder>
+sample-web-placeholder-klmno       1/1     Running   0          <age-placeholder>

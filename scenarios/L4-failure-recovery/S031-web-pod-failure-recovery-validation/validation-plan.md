@@ -2,18 +2,19 @@
 
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
-| V001 | Pre-failure Web Deployment status validation plan | Plan `kubectl get deployment <web-deployment> -n <namespace>`. | Web Deployment exists and desired replicas are available before failure. | `commands.md`, `logs/web-pod-failure-recovery-validation.log`, `validation.md` |
-| V002 | Pre-failure Web Pod Ready status validation plan | Plan `kubectl get pods -n <namespace>` filtered for `<web-pod>`. | Target Web Pod is Running and Ready before failure. | `commands.md`, `screenshots/web-pod-before-failure.png`, `validation.md` |
-| V003 | Pre-failure Service endpoint validation plan | Plan endpoint review for `<web-service>`. | Web Service has at least one ready endpoint before failure. | `commands.md`, `configs/web-pod-failure-recovery-summary.md`, `validation.md` |
-| V004 | Web Pod delete failure injection plan | Plan `kubectl delete pod <web-pod> -n <namespace>`. | Only one Web Pod is targeted for controlled failure injection. | `commands.md`, `logs/web-pod-failure-recovery-validation.log`, `validation.md` |
-| V005 | Replacement Pod creation validation plan | Observe Deployment/ReplicaSet replacement behavior. | A replacement Web Pod is created. | `commands.md`, `logs/web-pod-failure-recovery-validation.log`, `validation.md` |
-| V006 | Web Pod Ready recovery validation plan | Review replacement Pod readiness. | Replacement Web Pod reaches Ready state. | `commands.md`, `screenshots/web-pod-after-recovery.png`, `validation.md` |
-| V007 | Service endpoint recovery validation plan | Review `<web-service>` endpoint after replacement. | Web Service endpoint is restored or remains available. | `commands.md`, `configs/web-pod-failure-recovery-summary.md`, `validation.md` |
-| V008 | HTTP health endpoint recovery validation plan | Plan HTTP health check against `<health-endpoint>`. | Health endpoint returns expected healthy status after recovery. | `commands.md`, `logs/web-pod-failure-recovery-validation.log`, `validation.md` |
-| V009 | Recovery time measurement plan | Measure time from delete action to restored Ready/healthy state. | Recovery time is recorded and compared with thresholds. | `commands.md`, `configs/web-pod-recovery-threshold.md`, `validation.md` |
-| V010 | Post-recovery workload status validation plan | Capture Deployment, Pod, and Service status after recovery. | Workload returns to expected replica and endpoint state. | `commands.md`, `logs/web-pod-failure-recovery-validation.log`, `screenshots/web-pod-after-recovery.png`, `validation.md` |
-| V011 | Failure condition for no replacement Pod, Pod stuck in Pending or CrashLoopBackOff, Service endpoint missing, HTTP recovery failure, or recovery threshold exceeded | Evaluate findings against explicit failure conditions. | Recovery failures produce `FAIL` or `BLOCKED` status. | `validation.md` |
-
-## Review Notes
-
-Every validation item must map to evidence. This scenario validates Web Pod recovery only; workload deployment is handled in S022, Ingress routing in S023, load balancing health checks in S025, Blackbox probing in S030, and API service failure in S032.
+| V001 | Required recovery baseline files | Test three paths. | All exist. | commands; summary |
+| V002 | Required recovery samples | Test five paths. | All exist. | samples; summary |
+| V003 | Recovery workflow documentation | Match phases/placeholders/modes. | Complete. | runbook; summary |
+| V004 | Recovery criteria matrix | Match ten phases. | Complete. | criteria; summary |
+| V005 | Command and manual fault boundary | Match commands/manual warning. | Safe. | command reference; summary |
+| V006 | Pre-failure Pod evidence | Parse Running Ready. | Healthy. | pre sample; summary |
+| V007 | Manual fault injection evidence | Parse explicit sample marker/event. | Controlled. | fault sample; summary |
+| V008 | Replacement Pod recovery evidence | Parse original inactive/replacement Ready. | Recovered. | post sample; summary |
+| V009 | Rollout status evidence | Match successful rollout. | Successful. | rollout sample; summary |
+| V010 | Service endpoint continuity evidence | Require placeholder endpoint. | Non-empty. | endpoint sample; summary |
+| V011 | Recovery time evidence | Parse numeric time or warn. | Expected WARN if unmeasured. | fault sample; summary |
+| V012 | Post-recovery failure indicators | Reject bad status/0-Ready/none. | None. | post/endpoint; summary |
+| V013 | Kubernetes credential file safety | Scan kube/TLS filenames. | None. | log; summary |
+| V014 | Cluster endpoint and secret safety | Scan content. | None. | log; summary |
+| V015 | Execution safety boundary | Require four read-only args/no mutation. | Safe. | script; summary |
+| V016 | Validation mode and live recovery state | Evaluate Static/live. | Safe/healthy. | log; summary |

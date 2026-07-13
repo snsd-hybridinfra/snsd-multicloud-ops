@@ -1,16 +1,12 @@
 # Execution Plan
 
-1. Confirm that only placeholder workload names, namespaces, and endpoints are used.
-2. Capture the pre-failure Web Deployment status for `<web-deployment>`.
-3. Capture the pre-failure Web Pod Ready status for `<web-pod>`.
-4. Capture the pre-failure Web Service endpoint status for `<web-service>`.
-5. Capture a pre-failure HTTP health check plan for `<health-endpoint>`.
-6. Plan the failure injection command: `kubectl delete pod <web-pod> -n <namespace>`.
-7. Observe Deployment/ReplicaSet replacement behavior.
-8. Validate replacement Pod creation and Ready state recovery.
-9. Validate Web Service endpoint recovery.
-10. Validate HTTP health endpoint recovery.
-11. Measure recovery time and compare it to provisional NORMAL, WARNING, and CRITICAL thresholds.
-12. Capture post-recovery workload status.
-13. Record future command output placeholders in `commands.md`.
-14. Record future validation results in `validation.md`.
+1. Run `powershell -ExecutionPolicy Bypass -File tools/validate-web-pod-failure-recovery.ps1`.
+2. Verify three baselines and five samples.
+3. Validate workflow placeholders, ten criteria phases, read-only commands, and manual deletion warning.
+4. Parse pre-failure Ready Pods, fault marker, original inactivity, replacement Ready Pod, rollout, and endpoint.
+5. Warn when elapsed recovery time is not measured.
+6. Reject unhealthy post-state, empty endpoints, kube credentials/TLS files, real endpoints/domains/IPs, secrets, and destructive validator logic.
+7. Review generated log and summary.
+8. Optionally run read-only LiveKubectl after approval.
+
+LiveKubectl and real fault injection are `NOT_RUN` in committed Static evidence.
