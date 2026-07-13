@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+Replication_Lag_Judgment: within-threshold-placeholder
+IO_Thread: healthy
+SQL_Thread: healthy
+Replication_Error: none-placeholder

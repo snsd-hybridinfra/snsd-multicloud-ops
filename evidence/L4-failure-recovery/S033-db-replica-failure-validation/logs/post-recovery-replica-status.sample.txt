@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+Replica_Service_State: active-placeholder
+Replica_IO_Running: Yes
+Replica_SQL_Running: Yes
+Seconds_Behind_Master: 0

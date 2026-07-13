@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION / FAILURE EVIDENCE SAMPLE
+Replica_Service_State: inactive-placeholder
+Replica_IO_Running: No
+Replica_SQL_Running: No
+Seconds_Behind_Master: NULL
+Last_IO_Error: <replica-io-error-placeholder>
+Last_SQL_Error: <replica-sql-error-placeholder>
