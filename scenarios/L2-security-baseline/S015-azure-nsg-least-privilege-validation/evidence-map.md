@@ -1,19 +1,19 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
+| Check ID | Validation Item | Evidence File | Required |
 |---|---|---|---|
-| Azure NSG existence validation plan | `commands.md`; `configs/azure-nsg-rule-summary.md`; `validation.md` | command plan, rule summary, validation record | yes |
-| SSH inbound restricted to Bastion CIDR validation plan | `commands.md`; `configs/azure-nsg-least-privilege-policy.md`; `validation.md` | command plan, policy summary, validation record | yes |
-| HTTP/HTTPS inbound exposure validation plan | `commands.md`; `configs/azure-nsg-rule-summary.md`; `validation.md` | command plan, rule summary, validation record | yes |
-| DB port 3306 not exposed to public internet validation plan | `commands.md`; `configs/azure-nsg-least-privilege-policy.md`; `validation.md` | command plan, policy summary, validation record | yes |
-| Azure App-to-On-Prem DB access rule validation plan | `commands.md`; `configs/azure-nsg-rule-summary.md`; `validation.md` | command plan, rule summary, validation record | yes |
-| Monitoring scrape access rule validation plan | `commands.md`; `configs/azure-nsg-rule-summary.md`; `validation.md` | command plan, rule summary, validation record | yes |
-| No Any/Internet SSH rule validation plan | `commands.md`; `logs/azure-nsg-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| No unrestricted all-ports inbound rule validation plan | `commands.md`; `logs/azure-nsg-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Outbound rule review plan | `commands.md`; `configs/azure-nsg-least-privilege-policy.md`; `validation.md` | command plan, policy summary, validation record | yes |
-| Terraform plan or Azure CLI NSG rule capture plan | `commands.md`; `logs/azure-nsg-validation.log`; `screenshots/azure-nsg-rules.png`; `validation.md` | command plan, log, screenshot reference, validation record | yes |
-| Failure condition for unrestricted SSH, unrestricted DB, missing Bastion rule, missing service rule, or unexpected wide-open inbound rule | `validation.md` | failure criteria and status record | yes |
+| V001 | Least privilege baseline | `logs/azure-nsg-least-privilege-validation.log`; `configs/azure-nsg-least-privilege-summary.md` | yes |
+| V002 | NSG rule matrix | same generated evidence | yes |
+| V003 | Required NSG placeholders | same generated evidence | yes |
+| V004 | Least privilege statements | same generated evidence | yes |
+| V005 | Terraform NSG placeholder | same generated evidence | yes |
+| V006 | Terraform state and variables | same generated evidence | yes |
+| V007 | Azure identity and secret safety | same generated evidence | yes |
+| V008 | Public IP safety | same generated evidence | yes |
+| V009 | Dangerous public inbound rules | same generated evidence | yes |
+| V010 | Public web exception | same generated evidence | yes |
+| V011 | Egress justification | same generated evidence | yes |
+| V012 | Remote backend | same generated evidence | yes |
+| V013 | Execution safety boundary | same generated evidence | yes |
 
-## Evidence Notes
-
-No real Azure NSG output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+`commands.md` documents execution and `validation.md` records final results. The generated log is ignored; the sanitized summary is tracked.

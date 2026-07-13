@@ -1,37 +1,29 @@
 # Validation
 
 Scenario: S015-azure-nsg-least-privilege-validation
+
 Level: L2-security-baseline
-Capability: Azure NSG Least Privilege Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
 
-No real Azure NSG output has been collected yet. This file defines the validation record that must be completed during future approved execution.
+Date: 2026-07-13
 
-| Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
+Overall status: PASS
+
+| Check ID | Validation Item | Expected Condition | Actual Result | Evidence File | Status |
 |---|---|---|---|---|---|
-| V001 | Azure NSG existence validation plan | Azure NSG target is identifiable by placeholder name or ID. | TODO | NOT_RUN | `commands.md`; `configs/azure-nsg-rule-summary.md` |
-| V002 | SSH inbound restricted to Bastion CIDR validation plan | SSH inbound allows only `<bastion-cidr>`. | TODO | NOT_RUN | `commands.md`; `configs/azure-nsg-least-privilege-policy.md` |
-| V003 | HTTP/HTTPS inbound exposure validation plan | HTTP/HTTPS exposure is documented and intentionally scoped. | TODO | NOT_RUN | `commands.md`; `configs/azure-nsg-rule-summary.md` |
-| V004 | DB port 3306 not exposed to public internet validation plan | DB access is not allowed from `Internet`, `Any`, `0.0.0.0/0`, or unrestricted sources. | TODO | NOT_RUN | `commands.md`; `configs/azure-nsg-least-privilege-policy.md` |
-| V005 | Azure App-to-On-Prem DB access rule validation plan | DB access uses `<onprem-db-cidr>` or another approved placeholder source. | TODO | NOT_RUN | `commands.md`; `configs/azure-nsg-rule-summary.md` |
-| V006 | Monitoring scrape access rule validation plan | Monitoring access uses `<monitoring-cidr>` and only required scrape ports. | TODO | NOT_RUN | `commands.md`; `configs/azure-nsg-rule-summary.md` |
-| V007 | No Any/Internet SSH rule validation plan | No SSH rule allows unrestricted inbound access. | TODO | NOT_RUN | `commands.md`; `logs/azure-nsg-validation.log` |
-| V008 | No unrestricted all-ports inbound rule validation plan | No unrestricted all-ports inbound rule exists. | TODO | NOT_RUN | `commands.md`; `logs/azure-nsg-validation.log` |
-| V009 | Outbound rule review plan | Outbound access is documented and any broad outbound rule is flagged for review. | TODO | NOT_RUN | `commands.md`; `configs/azure-nsg-least-privilege-policy.md` |
-| V010 | Terraform plan or Azure CLI NSG rule capture plan | NSG rules can be reviewed from sanitized evidence. | TODO | NOT_RUN | `commands.md`; `logs/azure-nsg-validation.log`; `screenshots/azure-nsg-rules.png` |
-| V011 | Failure condition for unrestricted SSH, unrestricted DB, missing Bastion rule, missing service rule, or unexpected wide-open inbound rule | Unsafe or missing required rules produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
+| V001 | Least privilege baseline | File exists. | Baseline exists. | generated log and summary | PASS |
+| V002 | NSG rule matrix | File exists. | Matrix exists. | generated log and summary | PASS |
+| V003 | Required NSG placeholders | Five NSGs exist. | All are documented. | generated log and summary | PASS |
+| V004 | Least privilege statements | Required statements exist. | All are documented. | generated log and summary | PASS |
+| V005 | Terraform NSG placeholder | Safe structure exists. | NSG, association, and documented rule intent exist. | generated log and summary | PASS |
+| V006 | Terraform state and variables | No unsafe artifact exists. | None detected. | generated log and summary | PASS |
+| V007 | Azure identity and secret safety | No forbidden content exists. | None detected. | generated log and summary | PASS |
+| V008 | Public IP safety | No real public address exists. | None detected. | generated log and summary | PASS |
+| V009 | Dangerous public inbound rules | No dangerous port is public. | None detected. | generated log and summary | PASS |
+| V010 | Public web exception | Only public-web 80/443 is public. | Exception is correctly limited. | generated log and summary | PASS |
+| V011 | Egress justification | Egress is documented. | Policy and review row exist. | generated log and summary | PASS |
+| V012 | Remote backend | No backend exists. | None detected. | generated log and summary | PASS |
+| V013 | Execution safety boundary | No live Azure or Terraform mutation exists. | None detected. | generated log and summary | PASS |
 
-## Evidence Completeness
+## Generated Result
 
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- Azure NSG rule summary is captured: NOT_READY
-- Azure NSG least privilege policy summary is captured: NOT_READY
-- Azure NSG validation log is captured: NOT_READY
-- Azure NSG screenshot is captured: NOT_READY
-
-## Notes
-
-This scenario validates Azure NSG least privilege design only. AWS Security Group validation is handled in S014, and OpenStack Security Group validation is handled in S016.
+All thirteen checks passed using repository files only. Evidence is recorded in `logs/azure-nsg-least-privilege-validation.log` and `configs/azure-nsg-least-privilege-summary.md`.

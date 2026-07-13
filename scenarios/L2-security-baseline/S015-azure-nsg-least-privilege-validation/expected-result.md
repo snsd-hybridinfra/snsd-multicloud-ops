@@ -1,22 +1,13 @@
 # Expected Result
 
-S015 is successful when the Azure NSG least privilege validation plan is complete and ready for future approved execution.
+## Pass Criteria
 
-## Success Conditions
+- V001 through V013 return `PASS`.
+- Public inbound matrix rows are limited to ports 80 and 443 on `azure-public-web-nsg`.
+- Administrative, database, monitoring, and management ports use non-public placeholders.
+- Terraform retains only safe local structural placeholders; no deployment is executed.
+- Generated summary records overall `PASS` and the log records the same checks.
 
-- Azure NSG existence can be validated using placeholder identifiers.
-- SSH inbound access is planned only from `<bastion-cidr>`.
-- HTTP and HTTPS exposure is explicitly documented where applicable.
-- DB port `3306` is not exposed to public internet sources.
-- Azure App-to-On-Prem DB access is scoped to `<onprem-db-cidr>`.
-- Monitoring scrape access is scoped to `<monitoring-cidr>`.
-- No `Any` or `Internet` SSH rule is accepted.
-- No unrestricted all-ports inbound rule is accepted.
-- Outbound policy is reviewed and broad outbound access is clearly flagged.
-- All validation checks map to required evidence files.
+## Evidence Criteria
 
-## Evidence Conditions
-
-- `commands.md` lists planned command or review actions with TODO output placeholders.
-- `validation.md` lists each check with `NOT_RUN` status until execution.
-- Future supporting evidence is expected in `configs/azure-nsg-rule-summary.md`, `configs/azure-nsg-least-privilege-policy.md`, `logs/azure-nsg-validation.log`, and `screenshots/azure-nsg-rules.png`.
+The ignored log and tracked summary contain no credentials, tenant or subscription values, secrets, state, real variables, public addresses, or account-specific data.

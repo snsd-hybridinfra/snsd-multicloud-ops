@@ -2,27 +2,15 @@
 
 ## Included
 
-- Azure service node inbound security rule validation plan.
-- Azure service node outbound security rule review plan.
-- Bastion-to-Azure SSH access rule validation plan.
-- HTTP and HTTPS service exposure rule placeholder validation.
-- Azure App Node to On-Prem DB access rule placeholder validation.
-- Monitoring scrape access rule placeholder validation.
-- Denial of unrestricted SSH access.
-- Denial of unrestricted DB access.
-- NSG rule evidence collection plan.
-- Terraform plan or Azure CLI NSG rule capture plan using placeholders.
+- Azure NSG baseline and non-production rule matrix validation.
+- Default-deny, explicit-allow, public-web exception, internal access, and egress policy checks.
+- Local inspection of Azure Terraform NSG and association placeholders.
+- Dangerous public inbound detection for ports 22, 3389, 3306, 5432, 6379, 9200, 5601, 9090, and 3000.
+- Sensitive-content, public-address, state, tfvars, backend, and execution-boundary checks.
 
 ## Excluded
 
-- Real Azure Terraform resource implementation.
-- Real Azure NSG creation or modification.
-- Azure credentials, subscription IDs, tenant IDs, tfstate, private keys, or account-specific values.
-- Real public IP addresses or production CIDR values.
-- AWS Security Group validation, which is handled in S014.
-- OpenStack Security Group validation, which is handled in S016.
-- Runtime firewall enforcement outside Azure NSG rule review.
-
-## Placeholder Rules
-
-Use placeholders such as `<azure-nsg-name>`, `<azure-app-node>`, `<bastion-cidr>`, `<monitoring-cidr>`, and `<onprem-db-cidr>`.
+- Azure authentication, Azure CLI, cloud API calls, and live NSG queries.
+- Terraform init, plan, apply, destroy, backend, state, or real variables.
+- Azure resource creation or modification.
+- Azure network provisioning (S004), provider validation (S006), SSH controls (S011-S013), AWS Security Groups (S014), and OpenStack Security Groups (S016).

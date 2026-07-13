@@ -1,19 +1,19 @@
 # Validation Plan
 
-| Check ID | Validation Item | Method | Expected Result | Evidence |
-|---|---|---|---|---|
-| V001 | Azure NSG existence validation plan | Document read-only lookup or Terraform plan review for `<azure-nsg-name>`. | Azure NSG target is identifiable by placeholder name or ID. | `commands.md`, `configs/azure-nsg-rule-summary.md`, `validation.md` |
-| V002 | SSH inbound restricted to Bastion CIDR validation plan | Review SSH inbound source for port `22`. | SSH inbound allows only `<bastion-cidr>`. | `commands.md`, `configs/azure-nsg-least-privilege-policy.md`, `validation.md` |
-| V003 | HTTP/HTTPS inbound exposure validation plan | Review planned ports `80` and `443`. | HTTP/HTTPS exposure is documented and intentionally scoped. | `commands.md`, `configs/azure-nsg-rule-summary.md`, `validation.md` |
-| V004 | DB port 3306 not exposed to public internet validation plan | Review inbound rules for port `3306`. | DB access is not allowed from `Internet`, `Any`, `0.0.0.0/0`, or unrestricted sources. | `commands.md`, `configs/azure-nsg-least-privilege-policy.md`, `validation.md` |
-| V005 | Azure App-to-On-Prem DB access rule validation plan | Review placeholder app-to-database rule. | DB access uses `<onprem-db-cidr>` or another approved placeholder source. | `commands.md`, `configs/azure-nsg-rule-summary.md`, `validation.md` |
-| V006 | Monitoring scrape access rule validation plan | Review monitoring scrape placeholder rule. | Monitoring access uses `<monitoring-cidr>` and only required scrape ports. | `commands.md`, `configs/azure-nsg-rule-summary.md`, `validation.md` |
-| V007 | No Any/Internet SSH rule validation plan | Search planned rules for SSH from `Any`, `Internet`, or public internet. | No SSH rule allows unrestricted inbound access. | `commands.md`, `logs/azure-nsg-validation.log`, `validation.md` |
-| V008 | No unrestricted all-ports inbound rule validation plan | Search planned rules for all-protocol or all-port inbound access. | No unrestricted all-ports inbound rule exists. | `commands.md`, `logs/azure-nsg-validation.log`, `validation.md` |
-| V009 | Outbound rule review plan | Review outbound rules for role alignment. | Outbound access is documented and any broad outbound rule is flagged for review. | `commands.md`, `configs/azure-nsg-least-privilege-policy.md`, `validation.md` |
-| V010 | Terraform plan or Azure CLI NSG rule capture plan | Capture planned rule output from approved read-only source. | NSG rules can be reviewed from sanitized evidence. | `commands.md`, `logs/azure-nsg-validation.log`, `screenshots/azure-nsg-rules.png`, `validation.md` |
-| V011 | Failure condition for unrestricted SSH, unrestricted DB, missing Bastion rule, missing service rule, or unexpected wide-open inbound rule | Evaluate findings against explicit failure conditions. | Unsafe or missing required rules produce `FAIL` or `BLOCKED` status. | `validation.md` |
+| Check ID | Validation Item | Expected Result | Evidence |
+|---|---|---|---|
+| V001 | Least privilege baseline | Baseline exists. | `logs/azure-nsg-least-privilege-validation.log`, `configs/azure-nsg-least-privilege-summary.md` |
+| V002 | NSG rule matrix | Matrix exists. | same generated evidence |
+| V003 | Required NSG placeholders | Five NSGs exist. | same generated evidence |
+| V004 | Least privilege statements | Required rules and placeholders exist. | same generated evidence |
+| V005 | Terraform NSG placeholder | NSG and association exist; rule intent is documented. | same generated evidence |
+| V006 | Terraform state and variables | No state, real tfvars, or auto tfvars exists. | same generated evidence |
+| V007 | Azure identity and secret safety | No forbidden identity or secret content exists. | same generated evidence |
+| V008 | Public IP safety | No real-looking public address exists. | same generated evidence |
+| V009 | Dangerous public inbound rules | No dangerous port uses `Internet` or `0.0.0.0/0`. | same generated evidence |
+| V010 | Public web exception | Only public-web ports 80/443 are public. | same generated evidence |
+| V011 | Egress justification | Egress policy and review example exist. | same generated evidence |
+| V012 | Remote backend | No backend block exists. | same generated evidence |
+| V013 | Execution safety boundary | No Azure CLI, Terraform mutation, or network command exists. | same generated evidence |
 
-## Review Notes
-
-Every validation item must map to evidence. This scenario is Azure-specific; AWS Security Group validation is S014 and OpenStack Security Group validation is S016.
+Every check is required and maps to generated evidence by check ID.

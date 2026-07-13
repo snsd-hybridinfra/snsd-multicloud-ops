@@ -1,23 +1,24 @@
 # Architecture
 
-## Relevant Components
+## Validation Flow
 
-- Control Plane: records validation commands and evidence.
-- Azure Service Zone: contains the planned Azure App Node protected by NSG rules.
-- Azure Network Security Group: represents inbound and outbound controls for the Azure App Node.
-- Bastion: approved management entry source for SSH access.
-- On-Prem DB Zone: placeholder destination for application database access.
-- Monitoring Zone: placeholder source for scrape or probe access.
+```text
+Local PowerShell validator
+  -> Azure NSG policy baseline
+  -> non-production rule matrix
+  -> Azure Terraform structural placeholders
+  -> safety and dangerous-rule checks
+  -> evidence log and summary
+```
 
-## Access Model
+## Trust Boundary
 
-- SSH access to `<azure-app-node>` must be allowed only from `<bastion-cidr>`.
-- HTTP and HTTPS inbound exposure may be planned only when the service exposure requirement is documented.
-- DB port `3306` must not be exposed to `Internet`, `Any`, `0.0.0.0/0`, or other unrestricted sources.
-- Azure App-to-On-Prem DB access must use explicit placeholders such as `<onprem-db-cidr>`.
-- Monitoring scrape access must use an explicit placeholder such as `<monitoring-cidr>`.
-- Outbound rules must be reviewed and justified for the Azure App Node role.
+All inputs and outputs stay in the repository. No Azure identity, subscription, tenant, API, live NSG, backend, state, or external endpoint participates.
 
-## Boundary Notes
+## Logical NSG Model
 
-This scenario validates Azure NSG design only. AWS Security Group and OpenStack Security Group behavior are separate scenario responsibilities.
+- `azure-public-web-nsg`: only public HTTP/HTTPS.
+- `azure-bastion-nsg`: management access from approved placeholders.
+- `azure-private-service-nsg`: internal application traffic.
+- `azure-database-nsg`: database traffic from private service references.
+- `azure-monitoring-nsg`: monitoring traffic from approved internal or management references.
