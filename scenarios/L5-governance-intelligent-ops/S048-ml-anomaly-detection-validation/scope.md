@@ -1,5 +1,7 @@
 # Scope
 
+Implemented scope is metric-only static evidence. Live systems, SIEM/Wazuh/EDR/firewall/raw-log/packet inputs, external ML libraries, training/deployment, LLM analysis, malware/threat hunting, and automated blocking are excluded.
+
 ## Included
 
 - Metric dataset input validation reference.

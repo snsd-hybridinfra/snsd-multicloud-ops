@@ -1,5 +1,7 @@
 # Objective
 
+Implementation status: `VALIDATED` using local deterministic sample scoring only.
+
 S048 validates the documentation model for detecting anomalies in operational metric datasets.
 
 The operational capability is the ability to reference the S047 dataset, define baseline and detection windows, apply statistical or threshold-based placeholders, classify anomaly results, and collect evidence without performing production ML training or deep learning.

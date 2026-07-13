@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+Cost_Guardrail_Rules_Loaded: true-placeholder
+Guardrail_Domains_Loaded: monthly,daily,delta,resource,cleanup
+Real_Billing_API_Queried: false
+External_Cost_Tool_Required: false

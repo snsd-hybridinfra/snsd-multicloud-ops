@@ -1,5 +1,7 @@
 # Architecture
 
+Implemented flow: S047/S048 references -> deterministic report template and JSON summary -> local validator -> S050 handoff.
+
 S049 models anomaly report generation as a placeholder evidence workflow.
 
 ## Components

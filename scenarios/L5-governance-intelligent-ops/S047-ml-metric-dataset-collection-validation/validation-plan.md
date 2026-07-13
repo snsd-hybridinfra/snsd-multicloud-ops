@@ -1,19 +1,22 @@
 # Validation Plan
 
-| Check ID | Validation Item | Method | Expected Result | Evidence |
-|---|---|---|---|---|
-| V001 | Prometheus metric source availability reference validation plan | Reference S028 and `<prometheus-endpoint>` placeholder. | Metric source is referenced without real output. | `commands.md`, `configs/ml-metric-source-mapping.md`, `validation.md` |
-| V002 | Metric query input validation plan | Review `<metric-query>` placeholders. | Metric queries are documented as placeholders. | `commands.md`, `configs/ml-metric-dataset-collection-summary.md`, `validation.md` |
-| V003 | Node metric dataset collection placeholder validation plan | Map node CPU, memory, disk, and network placeholders. | Node metric categories are mapped. | `configs/ml-metric-source-mapping.md`, `validation.md` |
-| V004 | Kubernetes metric dataset collection placeholder validation plan | Map pod restart and readiness placeholders. | Kubernetes metric categories are mapped. | `configs/ml-metric-source-mapping.md`, `validation.md` |
-| V005 | MariaDB metric dataset collection placeholder validation plan | Map availability or replication placeholders. | MariaDB metric category is mapped. | `configs/ml-metric-source-mapping.md`, `validation.md` |
-| V006 | Blackbox metric dataset collection placeholder validation plan | Map `probe_success` and `probe_http_status_code` placeholders. | Blackbox metric categories are mapped. | `configs/ml-metric-source-mapping.md`, `validation.md` |
-| V007 | Dataset schema validation plan | Review required dataset fields. | Dataset schema includes all required fields. | `configs/ml-metric-dataset-schema.md`, `validation.md` |
-| V008 | Timestamp field validation plan | Review `timestamp` placeholder. | Timestamp field is present and reviewable. | `configs/ml-metric-dataset-schema.md`, `validation.md` |
-| V009 | Metric value field validation plan | Review `metric_value` placeholder. | Metric value field is present and numeric policy is documented. | `configs/ml-metric-dataset-schema.md`, `validation.md` |
-| V010 | Target label consistency validation plan | Review `target_job`, `target_instance`, `provider_or_zone`, and `component_type` placeholders. | Target labels are consistent. | `configs/ml-metric-dataset-schema.md`, `configs/ml-metric-source-mapping.md`, `validation.md` |
-| V011 | Dataset file existence placeholder validation plan | Review `<dataset-file>` placeholder. | Dataset file path is documented without real records. | `commands.md`, `configs/ml-metric-dataset-collection-summary.md`, `validation.md` |
-| V012 | Dataset quality state validation plan | Apply dataset quality states. | Result is classified as `DATASET_READY`, `DATASET_PARTIAL`, `DATASET_INVALID`, `DATASET_EMPTY`, or `DATASET_INCONCLUSIVE`. | `configs/ml-dataset-quality-model.md`, `validation.md` |
-| V013 | Failure condition for missing metric source, empty dataset, invalid timestamp, missing target label, inconsistent schema, unsupported AI security claim, sensitive data exposure, or missing evidence | Evaluate findings against explicit failure conditions. | Dataset collection issues produce `FAIL` or `BLOCKED` status. | `validation.md`, `logs/ml-metric-dataset-collection-validation.log`, `screenshots/ml-metric-query-result.png`, `screenshots/ml-dataset-schema-validation.png` |
+| Check ID | Validation Item | Expected Result | Evidence |
+|---|---|---|---|
+| V001 | Required artifacts | Runbooks, schema, catalog, policy, datasets, evidence, and manifest exist. | `logs/ml-metric-dataset-collection-validation.log` |
+| V002 | Command boundary | Lab commands are manual-only; validator queries no live source and trains no model. | `runbooks/ml-metric-dataset-collection-commands.example.md` |
+| V003 | Policy | Metric-only scope and excluded security capabilities are explicit. | `policy/ml-metric-dataset-collection-policy.example.md` |
+| V004 | Schema | Required fields, numeric constraints, labels, and methods exist. | `ml-security/datasets/ml-metric-dataset-schema.example.yml` |
+| V005 | Synthetic dataset | At least 20 rows, numeric values, valid labels, and multiple feature groups exist. | `ml-security/datasets/ml-metric-dataset-synthetic.sample.csv` |
+| V006 | Invalid dataset | Deliberate numeric and label failures are clearly marked. | `ml-security/datasets/ml-metric-dataset-invalid.sample.csv` |
+| V007 | Metadata | S048/S049/S050 mappings and sample counts exist. | `ml-security/datasets/ml-metric-dataset-collection-metadata.sample.yml` |
+| V008 | Feature catalog | S028/S029/S030/S036/S040/S048/S049 mappings exist. | `ml-security/datasets/ml-metric-feature-catalog.example.md` |
+| V009 | Schema evidence | Schema-load and collection-metadata evidence are complete. | `logs/ml-dataset-schema-load.sample.txt`, `logs/ml-dataset-collection-metadata.sample.txt` |
+| V010 | Quality evidence | Valid sample passes and invalid sample is rejected. | `logs/ml-dataset-quality-*.sample.txt` |
+| V011 | Feature/privacy evidence | Catalog mapping and six privacy assertions pass. | `logs/ml-dataset-feature-mapping.sample.txt`, `logs/ml-dataset-privacy-safety.sample.txt` |
+| V012 | Final summary | Dataset is ready; no live query or model training occurred. | `logs/ml-dataset-collection-final-summary.sample.txt` |
+| V013 | Manifest | Required references and S028/S029/S030/S036/S040/S048/S049/S050 mappings exist. | `configs/ml-metric-dataset-collection-manifest.sample.yml` |
+| V014 | Optional normalizer | Standard-library CSV validation only; no network or ML dependency. | `ml-security/scripts/metric-dataset-normalization.example.py` |
+| V015 | Safety | No prohibited telemetry/model files, real endpoints, credentials, keys, or execution. | `logs/ml-metric-dataset-collection-validation.log` |
+| V016 | Maturity | Synthetic/placeholder limitation is explicitly warned. | `configs/ml-metric-dataset-collection-validation-summary.md` |
 
-Every validation item must map to evidence. This scenario validates metric dataset collection only.
+All checks are implemented in `StaticEvidence` mode.

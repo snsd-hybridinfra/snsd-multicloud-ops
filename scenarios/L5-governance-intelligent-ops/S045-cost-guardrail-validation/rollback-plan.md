@@ -1,5 +1,7 @@
 # Rollback Plan
 
+No budget or resource is changed; correct only invalid sanitized S045 artifacts and rerun.
+
 This skeleton does not connect to billing systems, provision resources, or perform cleanup, so rollback is documentation-focused.
 
 1. Stop validation if credentials, billing account IDs, cloud account values, private keys, tfstate, kubeconfig content, public IPs, or account-specific data appear.

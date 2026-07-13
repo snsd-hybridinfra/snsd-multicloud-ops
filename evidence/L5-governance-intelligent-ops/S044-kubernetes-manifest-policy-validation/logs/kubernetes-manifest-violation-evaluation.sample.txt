@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION — VIOLATION SAMPLE
+Violation_Manifest_Evaluated: true
+Privileged_Container_Violation: <violation-placeholder>
+Latest_Image_Tag_Violation: <violation-placeholder>
+Missing_Resource_Limit_Violation: <violation-placeholder>
+Service_Exposure_Violation: <violation-placeholder>
+final_judgment: K8S_POLICY_FAIL

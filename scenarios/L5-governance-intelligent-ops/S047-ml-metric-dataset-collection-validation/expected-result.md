@@ -1,5 +1,7 @@
 # Expected Result
 
+The implemented validator succeeds with zero critical failures when schema, datasets, mappings, and safety checks pass. A warning remains because data and labels are intentionally synthetic/placeholders.
+
 S047 is successful when:
 
 - Prometheus metric source availability is referenced without real output.

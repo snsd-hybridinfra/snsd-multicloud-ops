@@ -1,5 +1,7 @@
 # Architecture
 
+Implemented flow: repository-local schema/catalog/policy plus synthetic CSV -> `tools/validate-ml-metric-dataset-collection.ps1` -> generated S047 log and Markdown summary -> reference handoff to S048. There is no network collector.
+
 S047 models operational metric dataset collection as a placeholder evidence workflow.
 
 ## Components

@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+Cleanup_Rules_Loaded: true-placeholder
+Cleanup_Domains_Loaded: ownership,retention,cost,dependency,approval
+Real_Cloud_Inventory_Queried: false
+External_Cleanup_Tool_Required: false

@@ -1,0 +1,15 @@
+SAMPLE / NON-PRODUCTION
+Report_Template_Validated: true
+Report_Input_Validated: true
+Report_Output_Validated: true
+Invalid_Report_Rejected: true
+Scenario_Mapping_Validated: true
+Privacy_Safety_Validated: true
+Live_Prometheus_Query_Performed: false
+Live_Grafana_Query_Performed: false
+ML_Model_Trained: false
+Model_Deployed: false
+LLM_Analysis_Performed: false
+Automated_Blocking_Performed: false
+Final_Evidence_Report_Mapped_To: S050
+final_judgment: REPORT_READY

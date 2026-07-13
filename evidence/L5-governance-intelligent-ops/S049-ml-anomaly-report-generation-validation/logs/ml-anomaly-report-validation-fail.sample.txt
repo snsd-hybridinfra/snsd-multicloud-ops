@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION / INTENTIONALLY INVALID
+Invalid_Report_Evaluated: true
+Missing_S048_Reference: <missing-placeholder>
+Missing_Evidence_Reference: <missing-placeholder>
+Invalid_Judgment: <invalid-placeholder>
+final_judgment: REPORT_INVALID

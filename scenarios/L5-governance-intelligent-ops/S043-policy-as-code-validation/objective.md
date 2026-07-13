@@ -1,5 +1,7 @@
 # Objective
 
+Implementation status: repository-native schema, rules, sanitized inputs/evidence, manifest, and static validator are complete.
+
 S043 validates the documentation model for Policy as Code governance across infrastructure change reviews.
 
 The operational capability is the ability to define policy inputs, evaluate placeholder infrastructure resources against documented governance rules, classify the result, and preserve reviewable evidence without introducing a real policy engine.

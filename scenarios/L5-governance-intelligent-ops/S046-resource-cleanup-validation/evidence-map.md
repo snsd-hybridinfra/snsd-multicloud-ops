@@ -1,19 +1,22 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Cleanup input artifact validation plan | `commands.md`; `configs/resource-cleanup-summary.md`; `validation.md` | review plan, cleanup summary, validation record | yes |
-| Resource inventory review validation plan | `commands.md`; `configs/resource-cleanup-candidate-mapping.md`; `validation.md` | review plan, candidate mapping, validation record | yes |
-| Resource ownership validation plan | `configs/resource-cleanup-candidate-mapping.md`; `validation.md` | candidate mapping, validation record | yes |
-| Environment tag or label validation plan | `configs/resource-cleanup-candidate-mapping.md`; `validation.md` | candidate mapping, validation record | yes |
-| Resource usage state validation plan | `configs/resource-cleanup-candidate-mapping.md`; `validation.md` | candidate mapping, validation record | yes |
-| Dependency impact review validation plan | `configs/resource-cleanup-decision-record.md`; `validation.md` | decision record, validation record | yes |
-| Cleanup candidate documentation validation plan | `configs/resource-cleanup-summary.md`; `configs/resource-cleanup-candidate-mapping.md`; `validation.md` | summary, candidate mapping, validation record | yes |
-| Cleanup approval decision validation plan | `configs/resource-cleanup-decision-record.md`; `validation.md` | decision record, validation record | yes |
-| Cleanup execution placeholder validation plan | `commands.md`; `logs/resource-cleanup-validation.log`; `validation.md` | command placeholder, validation log, validation record | yes |
-| Post-cleanup inventory validation plan | `commands.md`; `screenshots/resource-cleanup-post-check.png`; `validation.md` | command placeholder, screenshot reference, validation record | yes |
-| Rollback or recreation note validation plan | `configs/resource-cleanup-decision-record.md`; `validation.md` | decision record, validation record | yes |
-| Cleanup judgment state validation plan | `configs/resource-cleanup-judgment-model.md`; `validation.md` | judgment model, validation record | yes |
-| Failure condition for missing ownership, missing usage evidence, unsafe cleanup decision, undocumented dependency impact, unsupported automated cleanup claim, accidental real resource deletion, or missing evidence | `validation.md`; `logs/resource-cleanup-validation.log`; `screenshots/resource-cleanup-candidate-review.png` | failure criteria, validation log, screenshot reference | yes |
+| Validation Check | Evidence |
+|---|---|
+| V001 Required artifacts | Runbooks, rules, criteria, decision matrices, policy, inputs, samples, and generated validator log |
+| V002 Command boundary | `runbooks/resource-cleanup-commands.example.md` |
+| V003 Rules | `cost-governance/resource-cleanup-rules.example.yml` |
+| V004 Example inputs | `cost-governance/resource-cleanup-input-*.example.json` |
+| V005 Rule load and inventory | `logs/cleanup-rule-load.sample.txt`, `logs/cleanup-candidate-inventory.sample.txt` |
+| V006 Cleanup ready | `logs/cleanup-evaluation-ready.sample.txt` |
+| V007 Cleanup blocked | `logs/cleanup-evaluation-blocked.sample.txt` |
+| V008 Exception | `logs/cleanup-exception-approval.sample.txt` |
+| V009 Impact | `logs/cleanup-impact-classification.sample.txt` |
+| V010 Cleanup plan | `logs/cleanup-plan.sample.txt` |
+| V011 Final summary | `logs/cleanup-final-summary.sample.txt` |
+| V012 Manifest mappings | `configs/resource-cleanup-validation-manifest.sample.yml` |
+| V013 Policy | `policy/resource-cleanup-policy.example.md` |
+| V014 Artifact safety | `logs/resource-cleanup-validation.log` |
+| V015 Sensitive/execution safety | `logs/resource-cleanup-validation.log` |
+| V016 Maturity | `configs/resource-cleanup-validation-summary.md` |
 
-No real cleanup output has been collected. Use TODO placeholders until execution is approved and outputs are sanitized.
+Generated evidence contains no live inventory or deletion output. Screenshots are not required for this static validation.

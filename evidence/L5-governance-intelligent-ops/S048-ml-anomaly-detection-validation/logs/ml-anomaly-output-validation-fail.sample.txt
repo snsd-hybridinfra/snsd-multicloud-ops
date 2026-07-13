@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION / INTENTIONALLY INVALID
+Invalid_Output_Evaluated: true
+Invalid_Anomaly_Score: <invalid-score-placeholder>
+Invalid_Anomaly_Decision: <invalid-decision-placeholder>
+final_judgment: ANOMALY_VALIDATION_FAILED

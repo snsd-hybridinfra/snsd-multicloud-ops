@@ -1,0 +1,1 @@
+{"sample_notice":"SAMPLE / NON-PRODUCTION","policy_domain":"<policy-domain-placeholder>","resource_type":"<resource-type-placeholder>","admin_access":"<restricted-admin-access-placeholder>","database_port":"<restricted-db-port-placeholder>","secret_files_present":false,"final_expected_judgment":"POLICY_PASS"}

@@ -1,5 +1,7 @@
 # Expected Result
 
+The implemented validator returns zero only when all critical local checks pass. A warning is expected while candidate identifiers, approvals, risk, and cleanup actions remain intentionally placeholder-only.
+
 S046 is successful when:
 
 - Cleanup input artifacts are documented as placeholders.

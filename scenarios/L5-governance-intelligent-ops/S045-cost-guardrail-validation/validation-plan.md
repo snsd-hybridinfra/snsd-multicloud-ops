@@ -1,5 +1,7 @@
 # Validation Plan
 
+Implemented checks: `V001` artifacts, `V002` commands, `V003` rules, `V004` inputs, `V005` load, `V006` pass, `V007` fail, `V008` exception, `V009` impact, `V010` cleanup, `V011` summary, `V012` manifest/mappings, `V013` policy, `V014` artifact safety, `V015` sensitive/execution safety, and `V016` maturity.
+
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
 | V001 | Cost input artifact validation plan | Review cost input placeholders. | Cost input is identified or marked missing. | `commands.md`, `configs/cost-guardrail-summary.md`, `validation.md` |

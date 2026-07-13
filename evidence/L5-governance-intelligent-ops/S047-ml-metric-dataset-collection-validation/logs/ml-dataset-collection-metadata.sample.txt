@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION
+Dataset_ID: <dataset-id-placeholder>
+Collection_Method: synthetic_sample
+Row_Count: 20
+Feature_Group_Count: 14
+Anomaly_Detection_Scenario: S048
+Anomaly_Report_Scenario: S049

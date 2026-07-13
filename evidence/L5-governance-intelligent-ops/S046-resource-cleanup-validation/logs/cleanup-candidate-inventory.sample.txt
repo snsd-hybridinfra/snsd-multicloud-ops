@@ -1,0 +1,8 @@
+SAMPLE / NON-PRODUCTION
+Cleanup_Candidate_ID: <cleanup-candidate-id-placeholder>
+Resource_Type: <resource-type-placeholder>
+Owner: <owner-placeholder>
+Retention_Class: <retention-class-placeholder>
+Cost_Classification: <cost-classification-placeholder>
+Dependency_Risk: <cleanup-risk-level-placeholder>
+Real_Resource_ID_Stored: false

@@ -1,0 +1,24 @@
+# SAMPLE / NON-PRODUCTION
+final_evidence_report_generation_validation_id: S050
+final_report_id: <final-report-id-placeholder>
+report_template_reference: docs/final-evidence-report-template.example.md
+report_output_reference: configs/final-evidence-report.sample.md
+report_summary_reference: configs/final-evidence-report-summary.sample.json
+scenario_status_matrix_reference: docs/scenario-status-matrix.md
+evidence_status_matrix_reference: docs/evidence-status-matrix.md
+progress_tracker_reference: docs/progress-tracker.md
+implementation_log_reference: docs/implementation-log.md
+risk_register_reference: docs/risk-register.md
+scope_lock_reference: docs/scope-lock.md
+excluded_scope_reference: docs/excluded-scope.md
+scenario_coverage_count: 50
+expected_scenario_count: 50
+l1_range: S001-S010
+l2_range: S011-S020
+l3_range: S021-S030
+l4_range: S031-S040
+l5_range: S041-S050
+intelligent_ops_range: S047-S049
+validation_mode: StaticEvidence
+evidence_reference: <evidence-path>
+final_judgment: FINAL_REPORT_READY

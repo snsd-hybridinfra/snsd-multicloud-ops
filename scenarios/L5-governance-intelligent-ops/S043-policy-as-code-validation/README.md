@@ -8,9 +8,9 @@
 | Category | Governance Intelligent Ops |
 | Primary Domain | Policy as Code governance validation |
 | Related Components | Terraform configuration placeholders, security rule policy placeholders, tag/label policy placeholders, naming rules, cost guardrail reference |
-| Validation Type | Governance Validation |
+| Validation Type | StaticEvidence |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S043-policy-as-code-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
@@ -26,4 +26,4 @@ Validation checks confirm that policy inputs are defined, target policy categori
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S043-policy-as-code-validation/`, with command or review plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Implemented evidence is recorded under `evidence/L5-governance-intelligent-ops/S043-policy-as-code-validation/`. The static validator does not run Terraform, OPA, Conftest, cloud CLIs/APIs, live enforcement, or automatic blocking.

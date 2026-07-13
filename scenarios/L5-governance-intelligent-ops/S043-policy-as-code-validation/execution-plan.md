@@ -1,5 +1,7 @@
 # Execution Plan
 
+Implemented command: `powershell -ExecutionPolicy Bypass -File tools/validate-policy-as-code.ps1`; it only parses local sanitized artifacts.
+
 1. Confirm that policy validation is documentation-only and placeholder-based.
 2. Identify `<policy-name>`, `<resource-name>`, `<resource-type>`, `<allowed-cidr>`, `<denied-cidr>`, `<required-tag>`, and `<policy-result>`.
 3. Define the policy input artifact review plan.

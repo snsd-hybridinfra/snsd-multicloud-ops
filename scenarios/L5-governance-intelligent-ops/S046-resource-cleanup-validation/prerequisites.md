@@ -1,5 +1,7 @@
 # Prerequisites
 
+The implemented validator requires only PowerShell and the repository files listed in the evidence manifest. No credential, provider CLI, kubeconfig, state, or live network access is required.
+
 - `docs/scope-lock.md` and `docs/excluded-scope.md` have been reviewed.
 - S046 scenario and evidence directories exist.
 - Provider, resource, ID, region, zone, environment, ownership, and cleanup values use placeholders only.

@@ -1,5 +1,7 @@
 # Failure Condition
 
+Failure covers missing/inconsistent guardrails, thresholds, exceptions, cleanup/mappings, unsafe runtime claims, billing artifacts/data, Terraform artifacts, real identifiers, credentials, keys, or secrets.
+
 S045 fails or is blocked if any of the following occur:
 
 - Cost input artifact is missing.

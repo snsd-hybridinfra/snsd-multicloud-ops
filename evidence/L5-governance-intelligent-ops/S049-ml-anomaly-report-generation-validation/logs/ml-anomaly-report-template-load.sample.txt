@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION
+Report_Template_Loaded: true
+Required_Report_Sections_Validated: true
+LLM_Runtime_Required: false

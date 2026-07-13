@@ -1,19 +1,22 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Prometheus metric source availability reference validation plan | `commands.md`; `configs/ml-metric-source-mapping.md`; `validation.md` | review plan, source mapping, validation record | yes |
-| Metric query input validation plan | `commands.md`; `configs/ml-metric-dataset-collection-summary.md`; `validation.md` | review plan, collection summary, validation record | yes |
-| Node metric dataset collection placeholder validation plan | `configs/ml-metric-source-mapping.md`; `validation.md` | source mapping, validation record | yes |
-| Kubernetes metric dataset collection placeholder validation plan | `configs/ml-metric-source-mapping.md`; `validation.md` | source mapping, validation record | yes |
-| MariaDB metric dataset collection placeholder validation plan | `configs/ml-metric-source-mapping.md`; `validation.md` | source mapping, validation record | yes |
-| Blackbox metric dataset collection placeholder validation plan | `configs/ml-metric-source-mapping.md`; `validation.md` | source mapping, validation record | yes |
-| Dataset schema validation plan | `configs/ml-metric-dataset-schema.md`; `validation.md` | schema, validation record | yes |
-| Timestamp field validation plan | `configs/ml-metric-dataset-schema.md`; `validation.md` | schema, validation record | yes |
-| Metric value field validation plan | `configs/ml-metric-dataset-schema.md`; `validation.md` | schema, validation record | yes |
-| Target label consistency validation plan | `configs/ml-metric-dataset-schema.md`; `configs/ml-metric-source-mapping.md`; `validation.md` | schema, source mapping, validation record | yes |
-| Dataset file existence placeholder validation plan | `commands.md`; `configs/ml-metric-dataset-collection-summary.md`; `validation.md` | review plan, collection summary, validation record | yes |
-| Dataset quality state validation plan | `configs/ml-dataset-quality-model.md`; `validation.md` | quality model, validation record | yes |
-| Failure condition for missing metric source, empty dataset, invalid timestamp, missing target label, inconsistent schema, unsupported AI security claim, sensitive data exposure, or missing evidence | `validation.md`; `logs/ml-metric-dataset-collection-validation.log`; `screenshots/ml-metric-query-result.png`; `screenshots/ml-dataset-schema-validation.png` | failure criteria, validation log, screenshot reference | yes |
+| Validation Check | Evidence |
+|---|---|
+| V001 Required artifacts | Runbooks, schema, catalog, policy, datasets, samples, manifest, and generated validator log |
+| V002 Command boundary | `runbooks/ml-metric-dataset-collection-commands.example.md` |
+| V003 Policy | `policy/ml-metric-dataset-collection-policy.example.md` |
+| V004 Schema | `ml-security/datasets/ml-metric-dataset-schema.example.yml` |
+| V005 Synthetic dataset | `ml-security/datasets/ml-metric-dataset-synthetic.sample.csv` |
+| V006 Invalid dataset | `ml-security/datasets/ml-metric-dataset-invalid.sample.csv` |
+| V007 Metadata | `ml-security/datasets/ml-metric-dataset-collection-metadata.sample.yml` |
+| V008 Feature catalog | `ml-security/datasets/ml-metric-feature-catalog.example.md` |
+| V009 Schema evidence | `logs/ml-dataset-schema-load.sample.txt`, `logs/ml-dataset-collection-metadata.sample.txt` |
+| V010 Quality evidence | `logs/ml-dataset-quality-pass.sample.txt`, `logs/ml-dataset-quality-fail.sample.txt` |
+| V011 Feature/privacy evidence | `logs/ml-dataset-feature-mapping.sample.txt`, `logs/ml-dataset-privacy-safety.sample.txt` |
+| V012 Final summary | `logs/ml-dataset-collection-final-summary.sample.txt` |
+| V013 Manifest | `configs/ml-metric-dataset-collection-manifest.sample.yml` |
+| V014 Optional normalizer | `ml-security/scripts/metric-dataset-normalization.example.py` |
+| V015 Safety | `logs/ml-metric-dataset-collection-validation.log` |
+| V016 Maturity | `configs/ml-metric-dataset-collection-validation-summary.md` |
 
-No real Prometheus output or dataset records have been collected. Use TODO placeholders until execution is approved and outputs are sanitized.
+No live metric export, raw log, packet data, or trained model is evidence for S047.

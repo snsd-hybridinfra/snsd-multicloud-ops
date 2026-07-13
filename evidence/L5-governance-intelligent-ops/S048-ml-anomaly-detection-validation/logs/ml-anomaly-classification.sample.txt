@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION
+Anomaly_ID: <anomaly-id-placeholder>
+Feature_Group: <feature-group-placeholder>
+Anomaly_Score: <anomaly-score-placeholder>
+Anomaly_Decision: <anomaly-decision-placeholder>
+Operational_Interpretation: <interpretation-placeholder>
+Report_Mapping: S049

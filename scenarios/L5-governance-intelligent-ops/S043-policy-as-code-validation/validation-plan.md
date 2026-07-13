@@ -1,5 +1,7 @@
 # Validation Plan
 
+Implemented checks: `V001` required artifacts, `V002` command safety, `V003` schema, `V004` rules/mappings, `V005` inputs, `V006` load, `V007` pass, `V008` fail, `V009` exception, `V010` classification, `V011` summary, `V012` manifest, `V013` Terraform artifact safety, `V014` sensitive safety, `V015` execution safety, and `V016` evidence maturity.
+
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
 | V001 | Policy input artifact validation plan | Review placeholder policy input artifacts. | Policy input is identified or marked missing. | `commands.md`, `configs/policy-as-code-summary.md`, `validation.md` |

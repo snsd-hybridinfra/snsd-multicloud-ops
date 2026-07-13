@@ -1,0 +1,3 @@
+# SAMPLE / NON-PRODUCTION / INTENTIONALLY INVALID
+detection_run_id,dataset_id,anomaly_score,anomaly_decision
+<detection-run-id-placeholder>,<dataset-id-placeholder>,not_numeric,INVALID_DECISION

@@ -1,5 +1,7 @@
 # Execution Plan
 
+Implemented execution begins with `powershell -ExecutionPolicy Bypass -File tools/validate-ml-metric-dataset-collection.ps1`; the script performs local parsing and writes only the generated S047 log and summary.
+
 1. Confirm that dataset collection validation is placeholder-only.
 2. Identify `<prometheus-endpoint>`, `<metric-query>`, `<dataset-file>`, `<dataset-window>`, `<target-job>`, `<target-instance>`, and `<collection-script>`.
 3. Reference Prometheus source availability from S028.

@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION
+Cleanup_Evaluation_Completed: true
+Owner_Present: true-placeholder
+Retention_Class_Present: true-placeholder
+Dependency_Risk: low-placeholder
+S045_Cost_Mapping_Present: true
+final_judgment: CLEANUP_READY

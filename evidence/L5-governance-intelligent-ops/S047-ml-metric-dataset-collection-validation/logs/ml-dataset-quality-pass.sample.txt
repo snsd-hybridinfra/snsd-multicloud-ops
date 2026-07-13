@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION
+Dataset_Quality_Validation_Completed: true
+Required_Columns_Present: true
+Metric_Values_Numeric: true
+Normalized_Values_Numeric: true
+Anomaly_Labels_Valid: true
+final_judgment: DATASET_READY

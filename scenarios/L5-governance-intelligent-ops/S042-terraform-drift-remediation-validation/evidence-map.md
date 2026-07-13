@@ -1,19 +1,22 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Prior drift detection evidence reference validation plan | `commands.md`; `validation.md`; `configs/terraform-drift-remediation-summary.md` | command plan, validation record, remediation summary | yes |
-| Terraform plan review validation plan | `commands.md`; `logs/terraform-drift-remediation-validation.log`; `screenshots/terraform-plan-before-remediation.png`; `validation.md` | command plan, validation log, screenshot reference, validation record | yes |
-| Remediation decision point validation plan | `configs/terraform-remediation-decision-model.md`; `validation.md` | decision model, validation record | yes |
-| Terraform apply placeholder validation plan | `commands.md`; `logs/terraform-drift-remediation-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| AWS drift remediation placeholder validation plan | `configs/terraform-remediation-target-mapping.md`; `validation.md` | target mapping, validation record | yes |
-| Azure drift remediation placeholder validation plan | `configs/terraform-remediation-target-mapping.md`; `validation.md` | target mapping, validation record | yes |
-| OpenStack drift remediation placeholder validation plan | `configs/terraform-remediation-target-mapping.md`; `validation.md` | target mapping, validation record | yes |
-| Security rule drift remediation reference validation plan | `configs/terraform-drift-remediation-summary.md`; `validation.md` | remediation summary, validation record | yes |
-| Tag or label drift remediation validation plan | `configs/terraform-remediation-target-mapping.md`; `validation.md` | target mapping, validation record | yes |
-| Post-remediation Terraform plan validation plan | `commands.md`; `screenshots/terraform-plan-after-remediation.png`; `validation.md` | command plan, screenshot reference, validation record | yes |
-| Remediation judgment state validation plan | `configs/terraform-remediation-decision-model.md`; `screenshots/terraform-remediation-judgment.png`; `validation.md` | decision model, screenshot reference, validation record | yes |
-| Remediation evidence capture plan | `commands.md`; `validation.md`; `logs/terraform-drift-remediation-validation.log` | command plan, validation record, validation log | yes |
-| Failure condition for missing drift evidence, unsafe remediation decision, unreviewed plan, failed apply, drift remaining after remediation, generated tfstate committed to repository, use of real credentials, or missing evidence | `validation.md` | failure criteria and status record | yes |
+| Check ID | Evidence |
+|---|---|
+| V001 | `validation.md`, generated log |
+| V002 | `runbooks/terraform-drift-remediation-commands.example.md` |
+| V003 | `logs/drift-detection-reference.sample.txt` |
+| V004 | `logs/remediation-decision.sample.txt` |
+| V005 | `logs/remediation-approval.sample.txt` |
+| V006 | `logs/remediation-plan.sample.txt` |
+| V007 | `logs/remediation-rollback-plan.sample.txt` |
+| V008 | `logs/post-remediation-no-drift.sample.txt` |
+| V009 | `logs/terraform-remediation-final-summary.sample.txt` |
+| V010 | `configs/terraform-drift-remediation-manifest.sample.yml` |
+| V011 | `terraform/drift-remediation-plan-*.example.json` |
+| V012 | `policy/terraform-drift-remediation-policy.example.md` |
+| V013 | generated log |
+| V014 | generated log |
+| V015 | validator source and generated log |
+| V016 | generated summary |
 
-No real Terraform output, apply output, provider output, or tfstate has been collected. Use TODO placeholders until execution is approved and outputs are sanitized.
+Generated outputs are `logs/terraform-drift-remediation-validation.log` and `configs/terraform-drift-remediation-validation-summary.md`.

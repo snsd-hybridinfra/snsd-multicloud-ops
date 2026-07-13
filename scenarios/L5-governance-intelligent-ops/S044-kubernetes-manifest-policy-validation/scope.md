@@ -1,5 +1,7 @@
 # Scope
 
+Implemented boundary: static local manifest evidence only; no kubectl, cluster, admission controller, external policy engine, kubeconfig, token/certificate, real registry/endpoint/network, or secret.
+
 ## Included
 
 - Deployment manifest policy validation placeholder.

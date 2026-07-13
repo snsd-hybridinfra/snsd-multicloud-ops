@@ -10,7 +10,7 @@
 | Related Components | Tracking documents, scenario documentation, evidence directories |
 | Validation Type | Governance Validation |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
@@ -26,4 +26,8 @@ Validation confirms that all required tracking inputs can be referenced consiste
 
 ## Evidence Output Summary
 
-Planned evidence is recorded in `commands.md`, `validation.md`, sanitized configuration summaries, a text validation log, and placeholder screenshot references in the matching evidence directory.
+Generated Markdown/JSON, validation logs, and summaries are recorded in the matching evidence directory.
+
+## Implemented Validation
+
+Run `tools/generate-final-evidence-report.ps1`, then `tools/validate-final-evidence-report.ps1`. The local workflow checks all 50 scenario IDs, required sections, governance references, Intelligent Ops coverage, and safety boundaries without accessing live infrastructure or external services.

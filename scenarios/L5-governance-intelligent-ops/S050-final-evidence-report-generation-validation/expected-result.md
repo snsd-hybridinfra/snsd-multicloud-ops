@@ -1,5 +1,7 @@
 # Expected Result
 
+All S001-S050 IDs and required sections are accounted for; Markdown/JSON outputs have a conservative valid judgment and pass safety checks.
+
 The scenario succeeds when:
 
 - All required report inputs are identified and referenceable.

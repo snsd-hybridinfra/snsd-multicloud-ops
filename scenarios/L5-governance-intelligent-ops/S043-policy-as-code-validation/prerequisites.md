@@ -1,5 +1,7 @@
 # Prerequisites
 
+PowerShell and repository samples are sufficient; OPA, Conftest, Terraform, cloud credentials/state, and network access are not required.
+
 - `docs/scope-lock.md` and `docs/excluded-scope.md` have been reviewed.
 - S043 scenario and evidence directories exist.
 - Policy names, resources, CIDRs, tags, regions, and results use placeholders only.

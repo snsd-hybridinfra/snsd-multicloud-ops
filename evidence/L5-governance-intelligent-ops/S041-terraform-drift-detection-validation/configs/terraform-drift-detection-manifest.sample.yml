@@ -1,0 +1,15 @@
+sample_notice: SAMPLE / NON-PRODUCTION
+drift_detection_id: <drift-detection-id-placeholder>
+terraform_environment: <terraform-environment>
+cloud_provider: <cloud-provider-placeholder>
+drift_status: <drift-status-placeholder>
+drift_severity: <drift-severity-placeholder>
+affected_resource: <terraform-resource-address-placeholder>
+expected_value: <expected-value-placeholder>
+observed_value: <observed-value-placeholder>
+plan_exit_code: <plan-exit-code-placeholder>
+plan_artifact_reference: <plan-artifact-reference-placeholder>
+remediation_scenario: S042
+policy_validation_scenario: S043
+evidence_reference: <evidence-path>
+final_judgment: DRIFT_DETECTED

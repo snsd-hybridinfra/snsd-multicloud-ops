@@ -1,0 +1,10 @@
+SAMPLE / NON-PRODUCTION
+No_Raw_Logs: true
+No_Packet_Payload: true
+No_SIEM_Logs: true
+No_Wazuh_Logs: true
+No_EDR_Telemetry: true
+No_Credentials: true
+No_Real_IPs: true
+No_Real_Hostnames: true
+No_Production_Identifiers: true

@@ -1,5 +1,7 @@
 # Scope
 
+Implemented boundary: static placeholders only; no Terraform, billing/cloud API, invoice/export ingestion, budget mutation, optimization, deletion, external cost runtime, credentials, or real financial/account data.
+
 ## Included
 
 - AWS cost risk placeholder validation.

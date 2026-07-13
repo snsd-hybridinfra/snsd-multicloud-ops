@@ -1,5 +1,7 @@
 # Prerequisites
 
+PowerShell and local samples are sufficient; no billing account, API, Terraform, cloud CLI, external cost tool, or live data is required.
+
 - `docs/scope-lock.md` and `docs/excluded-scope.md` have been reviewed.
 - S045 scenario and evidence directories exist.
 - Provider, resource, region, zone, environment, threshold, and cost values use placeholders only.

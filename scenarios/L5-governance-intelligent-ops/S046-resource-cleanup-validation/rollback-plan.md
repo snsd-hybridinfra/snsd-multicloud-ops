@@ -1,5 +1,7 @@
 # Rollback Plan
 
+Because validation is read-only, rollback means removing invalid generated evidence, correcting sanitized examples, and rerunning the validator. It never recreates or deletes infrastructure.
+
 This skeleton does not delete resources or run cleanup commands, so rollback is documentation-focused.
 
 1. Stop validation if credentials, billing account IDs, cloud account values, private keys, tfstate, kubeconfig content, public IPs, or account-specific data appear.

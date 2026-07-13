@@ -1,0 +1,9 @@
+SAMPLE / NON-PRODUCTION
+Exception_ID: <exception-id-placeholder>
+Owner: <owner-placeholder>
+Reason: <reason-placeholder>
+Expiry: <expiry-placeholder>
+Approval_ID: <approval-id-placeholder>
+Rollback_Condition: <rollback-condition-placeholder>
+Evidence_Reference: <evidence-path>
+final_judgment: COST_EXCEPTION_APPROVED

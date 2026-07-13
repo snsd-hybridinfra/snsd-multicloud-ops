@@ -1,5 +1,7 @@
 # Execution Plan
 
+Implemented command: `powershell -ExecutionPolicy Bypass -File tools/validate-kubernetes-manifest-policy.ps1`; it only parses local sanitized artifacts.
+
 1. Confirm that manifest policy validation is static review only.
 2. Identify `<namespace>`, `<manifest-file>`, `<deployment-name>`, `<service-name>`, `<ingress-name>`, `<container-image>`, and `<policy-result>`.
 3. Review whether namespace is explicitly defined.

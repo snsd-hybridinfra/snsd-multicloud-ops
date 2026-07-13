@@ -1,0 +1,16 @@
+sample_notice: SAMPLE / NON-PRODUCTION
+k8s_policy_validation_id: <k8s-policy-validation-id-placeholder>
+policy_rule_set_reference: <policy-rule-set-reference-placeholder>
+compliant_manifest_reference: <compliant-manifest-reference-placeholder>
+violation_manifest_reference: <violation-manifest-reference-placeholder>
+exception_manifest_reference: <exception-manifest-reference-placeholder>
+service_exposure_manifest_reference: <service-exposure-reference-placeholder>
+violation_count_placeholder: <violation-count-placeholder>
+critical_violation_count_placeholder: <critical-count-placeholder>
+exception_count_placeholder: <exception-count-placeholder>
+policy_as_code_scenario: S043
+kubernetes_rbac_scenario: S018
+workload_deployment_scenario: S022
+service_health_scenario: S040
+evidence_reference: <evidence-path>
+final_judgment: K8S_POLICY_PASS

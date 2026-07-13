@@ -1,5 +1,7 @@
 # Expected Result
 
+Implemented pass condition: zero critical failures; placeholder/native-rule maturity may remain WARN until disposable-lab evidence exists.
+
 S043 is successful when:
 
 - Policy input artifacts are documented as placeholders.

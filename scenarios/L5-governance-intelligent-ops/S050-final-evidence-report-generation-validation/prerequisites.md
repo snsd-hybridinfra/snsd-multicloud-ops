@@ -1,5 +1,7 @@
 # Prerequisites
 
+PowerShell and the local repository are sufficient. No credential, cloud CLI, kubectl, Terraform, monitoring, billing, or security platform is required.
+
 - `docs/scope-lock.md` and `docs/excluded-scope.md` have been reviewed.
 - S001 through S049 scenario and evidence directories exist.
 - Required tracking and inspection documents exist.

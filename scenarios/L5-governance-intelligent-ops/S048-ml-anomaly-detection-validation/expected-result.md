@@ -1,5 +1,7 @@
 # Expected Result
 
+All critical static checks pass and a maturity warning records that thresholds and detections are synthetic.
+
 S048 is successful when:
 
 - Dataset input from S047 is referenced.

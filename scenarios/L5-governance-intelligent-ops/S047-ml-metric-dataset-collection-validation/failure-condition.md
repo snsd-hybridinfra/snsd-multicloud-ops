@@ -1,5 +1,7 @@
 # Failure Condition
 
+The implementation also fails on fewer than 20 synthetic rows, non-numeric values, invalid labels, absent S048/S049/S050 mappings, prohibited telemetry/model files, real endpoints, sensitive content, or evidence claiming live collection/training.
+
 S047 fails or is blocked if any of the following occur:
 
 - Metric source reference is missing.

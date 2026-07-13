@@ -1,19 +1,20 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Dataset input reference validation plan | `commands.md`; `configs/ml-detection-input-schema.md`; `validation.md` | review plan, input schema, validation record | yes |
-| Dataset schema readiness validation plan | `configs/ml-detection-input-schema.md`; `validation.md` | input schema, validation record | yes |
-| Baseline window definition validation plan | `configs/ml-anomaly-detection-summary.md`; `validation.md` | detection summary, validation record | yes |
-| Detection window definition validation plan | `configs/ml-anomaly-detection-summary.md`; `validation.md` | detection summary, validation record | yes |
-| Threshold or anomaly score placeholder validation plan | `configs/ml-anomaly-detection-summary.md`; `screenshots/ml-anomaly-threshold-review.png`; `validation.md` | detection summary, screenshot reference, validation record | yes |
-| Node metric anomaly detection placeholder validation plan | `configs/ml-anomaly-target-mapping.md`; `validation.md` | target mapping, validation record | yes |
-| Kubernetes workload anomaly detection placeholder validation plan | `configs/ml-anomaly-target-mapping.md`; `validation.md` | target mapping, validation record | yes |
-| MariaDB metric anomaly detection placeholder validation plan | `configs/ml-anomaly-target-mapping.md`; `validation.md` | target mapping, validation record | yes |
-| Blackbox probe anomaly detection placeholder validation plan | `configs/ml-anomaly-target-mapping.md`; `validation.md` | target mapping, validation record | yes |
-| Endpoint latency anomaly detection placeholder validation plan | `configs/ml-anomaly-target-mapping.md`; `validation.md` | target mapping, validation record | yes |
-| Anomaly judgment state validation plan | `configs/ml-anomaly-judgment-model.md`; `validation.md` | judgment model, validation record | yes |
-| Human review note placeholder validation plan | `configs/ml-anomaly-detection-summary.md`; `validation.md` | detection summary, validation record | yes |
-| Failure condition for missing dataset, invalid dataset schema, missing baseline, missing threshold, false unsupported security claim, inconclusive result not documented, sensitive data exposure, or missing evidence | `validation.md`; `logs/ml-anomaly-detection-validation.log`; `screenshots/ml-anomaly-detection-result.png` | failure criteria, validation log, screenshot reference | yes |
-
-No real ML output or dataset records have been collected. Use TODO placeholders until execution is approved and outputs are sanitized.
+| Validation Check | Evidence |
+|---|---|
+| V001 Required artifacts | generated validation log |
+| V002 Command safety | command runbook |
+| V003 Threshold profile | threshold profile |
+| V004 Input dataset | input CSV |
+| V005 Detection output | output CSV |
+| V006 Invalid output | invalid CSV |
+| V007 Run metadata | metadata YAML |
+| V008 Detection evidence | S048 sample logs |
+| V009 Privacy | privacy sample |
+| V010 Final summary | final summary sample |
+| V011 Manifest | validation manifest |
+| V012 Policy | policy example |
+| V013 Binary safety | generated validation log |
+| V014 Sensitive/execution safety | generated validation log |
+| V015 Optional script | Python example |
+| V016 Maturity | generated summary |

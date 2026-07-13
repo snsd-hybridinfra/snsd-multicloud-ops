@@ -1,5 +1,7 @@
 # Prerequisites
 
+PowerShell and repository-local samples are sufficient; optional Python uses only the standard library.
+
 - `docs/scope-lock.md` and `docs/excluded-scope.md` have been reviewed.
 - S049 scenario and evidence directories exist.
 - Dataset paths, report paths, metric names, detection outputs, review priorities, and evidence references use placeholders only.

@@ -1,5 +1,7 @@
 # Rollback Plan
 
+No live change occurs; rollback means correcting only invalid sanitized S043 artifacts and rerunning the local validator.
+
 This skeleton does not execute policy enforcement or infrastructure changes, so rollback is documentation-focused.
 
 1. Stop validation if real credentials, tfstate, cloud account values, account identifiers, public IPs, or account-specific data appear.

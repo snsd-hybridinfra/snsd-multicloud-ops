@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION
+Remediation_Change_ID: <remediation-change-id-placeholder>
+Affected_Resource: <terraform-resource-address-placeholder>
+Expected_Value: <expected-value-placeholder>
+Remediated_Value: <remediated-value-placeholder>
+Terraform_Plan: <plan-artifact-reference-placeholder>
+Remediation_Executed_By_Validation_Script: false

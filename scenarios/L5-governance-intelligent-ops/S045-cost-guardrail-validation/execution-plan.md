@@ -1,5 +1,7 @@
 # Execution Plan
 
+Implemented command: `powershell -ExecutionPolicy Bypass -File tools/validate-cost-guardrail.ps1`; it only parses sanitized local evidence.
+
 1. Confirm that cost guardrail validation is placeholder governance review only.
 2. Identify `<provider>`, `<resource-name>`, `<resource-type>`, `<cost-owner>`, `<environment>`, `<monthly-cost-estimate>`, and `<cost-threshold>`.
 3. Review cost input artifact placeholders.

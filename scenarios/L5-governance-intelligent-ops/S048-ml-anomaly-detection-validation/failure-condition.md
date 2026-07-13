@@ -1,5 +1,7 @@
 # Failure Condition
 
+The implementation fails on missing/short/malformed datasets, invalid scores or decisions, absent S047/S049/S050 mappings, model binaries, prohibited telemetry, real endpoints, secrets, or claims of live execution/training/deployment/blocking.
+
 S048 fails or is blocked if any of the following occur:
 
 - Dataset input reference is missing.

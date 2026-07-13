@@ -10,7 +10,7 @@
 | Related Components | S047 dataset placeholder, S048 detection result placeholder, report schema, report sections, evidence references |
 | Validation Type | ML Anomaly Detection Validation |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S049-ml-anomaly-report-generation-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
@@ -26,4 +26,8 @@ Validation checks confirm that report inputs are referenced, required report fie
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S049-ml-anomaly-report-generation-validation/`, with review plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Synthetic StaticEvidence is recorded under the S049 evidence path. The validator checks report structure, JSON summary, invalid-report rejection, S047/S048/S050 mappings, privacy, human review, and no-LLM/no-blocking boundaries.
+
+## Implemented Validation
+
+Run `powershell -ExecutionPolicy Bypass -File tools/validate-ml-anomaly-report-generation.ps1`. S050 owns repository-wide final reporting.

@@ -1,5 +1,7 @@
 # Scope
 
+Implemented scope aggregates local status, evidence, validation, risk, scope, and safety references. Live infrastructure, external services, PDF/PPTX, remediation, blocking, SOC automation, and certification are excluded.
+
 ## Included
 
 - Scenario and evidence status aggregation.

@@ -1,5 +1,7 @@
 # Evidence Map
 
+Implemented mapping: `V001`-`V016` map respectively to required artifacts, command reference, schema, rule set, three input JSON files, load/pass/fail/exception/classification/final samples, manifest, generated log, validator source, and generated summary.
+
 | Validation Item | Evidence File | Evidence Type | Required |
 |---|---|---|---|
 | Policy input artifact validation plan | `commands.md`; `configs/policy-as-code-summary.md`; `validation.md` | review plan, policy summary, validation record | yes |

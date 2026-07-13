@@ -1,5 +1,7 @@
 # Failure Condition
 
+The implementation fails on missing IDs/sections/matrices/risks/exclusions, invalid judgment, unsafe certification claims, live-validation claims, state/config/key artifacts, real identifiers/networks, secrets, or production data.
+
 The scenario fails if:
 
 - A required status matrix, checklist, implementation log, or risk register is missing.

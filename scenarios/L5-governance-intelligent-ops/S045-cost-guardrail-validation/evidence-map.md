@@ -1,5 +1,7 @@
 # Evidence Map
 
+Implemented mapping: `V001`-`V016` map to required artifacts, commands, rule/matrix/policy files, three inputs, seven samples, manifest, generated log, validator source, and summary.
+
 | Validation Item | Evidence File | Evidence Type | Required |
 |---|---|---|---|
 | Cost input artifact validation plan | `commands.md`; `configs/cost-guardrail-summary.md`; `validation.md` | review plan, guardrail summary, validation record | yes |

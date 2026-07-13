@@ -10,7 +10,7 @@
 | Related Components | Cleanup candidates, Terraform-managed placeholders, AWS/Azure/OpenStack placeholders, Kubernetes placeholders, monitoring target placeholders, temporary evidence artifacts |
 | Validation Type | Governance Validation |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S046-resource-cleanup-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
@@ -26,4 +26,8 @@ Validation checks confirm that cleanup inputs are documented, resource inventory
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S046-resource-cleanup-validation/`, with review plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Static sample evidence is recorded under `evidence/L5-governance-intelligent-ops/S046-resource-cleanup-validation/`. The validator generated `logs/resource-cleanup-validation.log` and `configs/resource-cleanup-validation-summary.md` without querying or deleting any resource.
+
+## Implemented Validation
+
+Run `powershell -ExecutionPolicy Bypass -File tools/validate-resource-cleanup.ps1`. The validator checks sanitized candidate, decision, impact, exception, cleanup-plan, and final-summary evidence only. It never invokes Terraform, cloud CLIs, Kubernetes, inventories, or deletion operations.

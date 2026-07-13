@@ -1,5 +1,7 @@
 # Scope
 
+Implemented boundary: static local evidence only; no state/tfvars/plan binary/backend, credentials, real identifiers/network values, secrets, or external policy runtime.
+
 ## Included
 
 - Terraform configuration policy validation placeholder.

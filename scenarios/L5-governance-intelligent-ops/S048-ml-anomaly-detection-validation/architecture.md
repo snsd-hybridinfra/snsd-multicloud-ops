@@ -1,5 +1,7 @@
 # Architecture
 
+Implemented flow: S047 synthetic input + static threshold profile -> deterministic sample output -> local PowerShell validation -> S049 report handoff.
+
 S048 models operational metric anomaly detection as a placeholder review workflow.
 
 ## Components

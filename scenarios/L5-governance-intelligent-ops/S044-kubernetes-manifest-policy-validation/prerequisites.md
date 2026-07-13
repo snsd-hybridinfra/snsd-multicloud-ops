@@ -1,5 +1,7 @@
 # Prerequisites
 
+PowerShell and repository samples are sufficient; kubectl, OPA, Conftest, Gatekeeper, Kyverno, cluster access, and kubeconfig are not required.
+
 - `docs/scope-lock.md` and `docs/excluded-scope.md` have been reviewed.
 - S044 scenario and evidence directories exist.
 - Manifest names, namespaces, services, ingress objects, images, and policy results use placeholders only.

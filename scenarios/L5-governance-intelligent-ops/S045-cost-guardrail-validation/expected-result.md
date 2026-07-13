@@ -1,5 +1,7 @@
 # Expected Result
 
+Implemented pass condition: zero critical failures with an expected placeholder-value maturity WARN.
+
 S045 is successful when:
 
 - Cost input artifacts are documented as placeholders.

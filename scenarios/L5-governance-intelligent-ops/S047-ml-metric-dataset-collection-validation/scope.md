@@ -1,5 +1,7 @@
 # Scope
 
+Implemented scope covers schema, synthetic and deliberately invalid CSV examples, metadata, feature catalog, quality criteria, privacy safety, and S048 readiness. Live Prometheus/Grafana queries, raw logs, SIEM/Wazuh/EDR telemetry, PCAP/packet payloads, model training, and automated response are excluded.
+
 ## Included
 
 - Prometheus metric query placeholder.

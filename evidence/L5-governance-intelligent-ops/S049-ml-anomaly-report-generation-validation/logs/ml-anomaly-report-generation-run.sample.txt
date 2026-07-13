@@ -1,0 +1,12 @@
+SAMPLE / NON-PRODUCTION
+Report_Generation_Completed: true
+Anomaly_Count: 5
+Warning_Count: 1
+Review_Required_Count: 1
+Live_Prometheus_Query_Performed: false
+Live_Grafana_Query_Performed: false
+ML_Model_Training_Performed: false
+Model_Deployment_Performed: false
+LLM_Analysis_Performed: false
+Automated_Blocking_Performed: false
+SOC_Incident_Created: false

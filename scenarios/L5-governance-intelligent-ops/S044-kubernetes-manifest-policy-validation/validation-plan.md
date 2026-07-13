@@ -1,5 +1,7 @@
 # Validation Plan
 
+Implemented checks: `V001` artifacts, `V002` commands, `V003` rules, `V004` compliant baseline, `V005` violation sample, `V006` exception, `V007` service exposure, `V008` evidence, `V009` summary, `V010` manifest/mappings, `V011` kubeconfig safety, `V012` sensitive safety, `V013` execution safety, `V014` scenario boundaries, and `V015` maturity.
+
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
 | V001 | Manifest input artifact validation plan | Review `<manifest-file>` placeholder. | Manifest input is identified or marked missing. | `commands.md`, `configs/kubernetes-manifest-policy-summary.md`, `validation.md` |

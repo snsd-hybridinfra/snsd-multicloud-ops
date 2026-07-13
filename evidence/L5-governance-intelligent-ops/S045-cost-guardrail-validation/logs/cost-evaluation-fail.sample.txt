@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION
+Cost_Evaluation_Completed: true
+Monthly_Threshold_Exceeded: <violation-placeholder>
+Incremental_Cost_Delta_Exceeded: <violation-placeholder>
+Missing_Cleanup_Mapping: <violation-placeholder>
+final_judgment: COST_GUARDRAIL_FAIL

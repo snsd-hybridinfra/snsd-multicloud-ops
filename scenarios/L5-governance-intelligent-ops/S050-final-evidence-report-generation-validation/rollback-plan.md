@@ -1,5 +1,7 @@
 # Rollback Plan
 
+Generation changes only S050 local outputs. Rollback removes invalid generated files, fixes source metadata or templates, and regenerates; no infrastructure rollback exists.
+
 1. Stop report planning when an inconsistent status, missing input, sensitive value, or unsupported claim is detected.
 2. Mark the affected validation check `FAIL`, `PARTIAL`, or `BLOCKED` as appropriate.
 3. Remove or redact unsafe values while preserving a sanitized issue reference.

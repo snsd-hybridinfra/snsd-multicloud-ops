@@ -1,0 +1,15 @@
+# SAMPLE / NON-PRODUCTION
+detection_run_id: <detection-run-id-placeholder>
+dataset_source_scenario: S047
+dataset_id: <dataset-id-placeholder>
+input_dataset_reference: ml-security/datasets/ml-anomaly-detection-input.sample.csv
+output_dataset_reference: ml-security/datasets/ml-anomaly-detection-output.sample.csv
+threshold_profile_reference: ml-security/models/ml-anomaly-threshold-profile.example.yml
+detection_method: static_threshold_profile
+scoring_method: deterministic_normalized_value
+detected_anomaly_count: 5
+warning_count: 1
+review_required_count: 1
+report_generation_scenario: S049
+final_evidence_report_scenario: S050
+evidence_reference: <evidence-path>

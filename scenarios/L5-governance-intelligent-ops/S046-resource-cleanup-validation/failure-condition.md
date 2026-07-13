@@ -1,5 +1,7 @@
 # Failure Condition
 
+The implementation also fails on forbidden state/configuration artifacts, sensitive identifiers, executable cleanup workflow, missing scenario mappings, or evidence that claims a real deletion occurred.
+
 S046 fails or is blocked if any of the following occur:
 
 - Cleanup input artifact is missing.

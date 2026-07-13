@@ -1,5 +1,7 @@
 # Evidence Map
 
+Implemented mapping: `V001`-`V015` map to required artifacts, command reference, rule set, four manifest examples, six evidence samples, manifest config, generated log, validator source, and generated summary.
+
 | Validation Item | Evidence File | Evidence Type | Required |
 |---|---|---|---|
 | Manifest input artifact validation plan | `commands.md`; `configs/kubernetes-manifest-policy-summary.md`; `validation.md` | review plan, policy summary, validation record | yes |

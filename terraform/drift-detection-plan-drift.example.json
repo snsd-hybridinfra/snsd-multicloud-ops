@@ -1,0 +1,8 @@
+{
+  "sample_notice": "SAMPLE / NON-PRODUCTION",
+  "resource_changes": [{
+    "address": "<terraform-resource-address-placeholder>",
+    "change": {"actions": ["update"], "before": "<expected-value-placeholder>", "after": "<observed-value-placeholder>"}
+  }],
+  "drift_judgment": "DRIFT_DETECTED"
+}

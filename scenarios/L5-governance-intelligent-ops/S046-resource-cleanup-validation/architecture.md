@@ -1,5 +1,7 @@
 # Architecture
 
+Implemented flow: local example inputs and governance artifacts -> `tools/validate-resource-cleanup.ps1` -> generated validation log and Markdown summary. There is no connection to infrastructure control planes.
+
 S046 models resource cleanup as a governance review workflow.
 
 ## Components

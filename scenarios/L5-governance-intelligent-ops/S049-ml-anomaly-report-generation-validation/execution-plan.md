@@ -1,5 +1,7 @@
 # Execution Plan
 
+Execute `tools/validate-ml-anomaly-report-generation.ps1`; it writes only the S049 validation log and summary.
+
 1. Confirm that anomaly report generation validation is placeholder-only.
 2. Identify `<dataset-file>`, `<report-file>`, `<metric-name>`, `<target-job>`, `<target-instance>`, `<anomaly-score>`, `<anomaly-threshold>`, `<review-priority>`, and `<evidence-reference>`.
 3. Reference anomaly detection result from S048.

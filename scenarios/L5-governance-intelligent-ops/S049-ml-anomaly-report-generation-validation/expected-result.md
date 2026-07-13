@@ -1,5 +1,7 @@
 # Expected Result
 
+All critical static checks pass; one warning records synthetic interpretation/count maturity.
+
 S049 is successful when:
 
 - S048 anomaly detection result is referenced.

@@ -2,43 +2,14 @@
 
 ## Included
 
-- Drift detection result review plan.
-- Terraform remediation decision point documentation.
-- Terraform plan review before remediation.
-- Terraform apply placeholder validation plan.
-- AWS Security Group drift remediation placeholder.
-- Azure NSG drift remediation placeholder.
-- OpenStack Security Group drift remediation placeholder.
-- Security rule drift remediation reference.
-- Tag or label drift remediation placeholder.
-- Post-remediation Terraform plan validation plan.
-- Remediation evidence collection plan.
-
-## Target Remediation Categories
-
-- AWS Security Group rule drift.
-- Azure NSG rule drift.
-- OpenStack Security Group rule drift.
-- Compute instance metadata or tag drift.
-- Network route or subnet drift placeholder.
-- Terraform-managed resource configuration drift.
-
-## Remediation Decision Model
-
-- `REMEDIATION_READY`: Drift is understood and Terraform remediation is safe to proceed.
-- `REMEDIATION_APPLIED`: Terraform remediation action is executed or documented as placeholder.
-- `REMEDIATION_BLOCKED`: Drift requires manual investigation or is unsafe to remediate.
-- `REMEDIATION_FAILED`: Drift remains after remediation attempt.
-- `OUT_OF_SCOPE`: Drift belongs to Kubernetes manifest, cost, security incident, or policy validation scenarios.
+- Static validation of the remediation runbook, command boundaries, criteria, decision matrix, policy, JSON examples, S041 reference, decision, approval, plan, rollback, post-remediation sample, and manifest.
+- Approved options: `REVERT_TO_TERRAFORM`, `CODIFY_APPROVED_CHANGE`, `INVESTIGATE_ONLY`, `REJECT_CHANGE`, and controlled documented exception.
+- S043 policy and S045 cost mappings.
 
 ## Excluded
 
-- Real Terraform module implementation.
-- Real Terraform execution against AWS, Azure, OpenStack, or any cloud account.
-- Real backend bucket names, tfstate, credentials, secrets, private keys, kubeconfig, subscription IDs, tenant IDs, account IDs, public IPs, or account-specific values.
-- Automated remediation claims.
-- Terraform Cloud, Spacelift, Atlantis, GitOps, or other new tool integrations.
-- Policy as Code validation, handled in S043.
-- Kubernetes manifest policy validation, handled in S044.
-- Security misconfiguration response, handled in S037.
-- Cost guardrail validation, handled in S045.
+- Terraform `init`, `plan`, `apply`, `destroy`, `import`, state commands, remote-state access, provider/cloud API calls, real or automatic remediation.
+- tfstate, tfvars, plan binaries, backend configuration, credentials, account/resource identifiers, real IP/CIDR values, and secrets.
+- S041 detection internals, S043 Policy as Code, S045 Cost Guardrail, and S046 Resource Cleanup internals.
+
+S042 is static local evidence validation and does not claim remediation was executed.

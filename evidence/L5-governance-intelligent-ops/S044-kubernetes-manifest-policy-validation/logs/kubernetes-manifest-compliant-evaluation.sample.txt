@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+Compliant_Manifest_Evaluated: true
+Critical_Violation: false
+High_Violation: false
+final_judgment: K8S_POLICY_PASS

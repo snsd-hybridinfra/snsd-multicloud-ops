@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION
+Drift_Type: <drift-type-placeholder>
+Affected_Resource: <terraform-resource-address-placeholder>
+Expected_Value: <expected-value-placeholder>
+Observed_Value: <observed-value-placeholder>
+Severity: <drift-severity-placeholder>
+remediation_scenario: S042

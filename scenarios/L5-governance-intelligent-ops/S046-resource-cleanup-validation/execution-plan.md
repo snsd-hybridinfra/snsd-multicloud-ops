@@ -1,5 +1,7 @@
 # Execution Plan
 
+Implemented execution starts with `powershell -ExecutionPolicy Bypass -File tools/validate-resource-cleanup.ps1`; it parses repository-local examples and writes only the S046 generated log and summary.
+
 1. Confirm that cleanup validation is governance review only.
 2. Identify `<provider>`, `<resource-name>`, `<resource-id>`, `<resource-type>`, `<environment>`, `<cleanup-candidate>`, and `<cleanup-decision>`.
 3. Review cleanup input artifact placeholders.

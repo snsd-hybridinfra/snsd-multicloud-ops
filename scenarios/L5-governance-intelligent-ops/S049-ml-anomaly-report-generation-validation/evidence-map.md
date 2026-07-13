@@ -1,19 +1,20 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Anomaly detection result reference validation plan | `commands.md`; `configs/ml-anomaly-report-generation-summary.md`; `validation.md` | review plan, report summary, validation record | yes |
-| Dataset reference validation plan | `commands.md`; `configs/ml-anomaly-report-schema.md`; `validation.md` | review plan, report schema, validation record | yes |
-| Report input schema validation plan | `configs/ml-anomaly-report-schema.md`; `validation.md` | report schema, validation record | yes |
-| Required report field validation plan | `configs/ml-anomaly-report-schema.md`; `validation.md` | report schema, validation record | yes |
-| Report summary section validation plan | `configs/ml-anomaly-report-section-mapping.md`; `validation.md` | section mapping, validation record | yes |
-| Affected component section validation plan | `configs/ml-anomaly-report-section-mapping.md`; `validation.md` | section mapping, validation record | yes |
-| Metric anomaly detail section validation plan | `configs/ml-anomaly-report-section-mapping.md`; `validation.md` | section mapping, validation record | yes |
-| Review priority placeholder validation plan | `configs/ml-anomaly-report-section-mapping.md`; `validation.md` | section mapping, validation record | yes |
-| Recommended investigation placeholder validation plan | `configs/ml-anomaly-report-section-mapping.md`; `validation.md` | section mapping, validation record | yes |
-| Evidence reference mapping validation plan | `configs/ml-anomaly-report-generation-summary.md`; `validation.md` | report summary, validation record | yes |
-| Human review note placeholder validation plan | `configs/ml-anomaly-report-section-mapping.md`; `validation.md` | section mapping, validation record | yes |
-| Report judgment state validation plan | `configs/ml-anomaly-report-judgment-model.md`; `validation.md` | judgment model, validation record | yes |
-| Failure condition for missing detection result, missing dataset reference, missing required report field, missing evidence reference, unsupported security claim, inconclusive report not documented, sensitive data exposure, or missing evidence | `validation.md`; `logs/ml-anomaly-report-generation-validation.log`; `screenshots/ml-anomaly-report-validation-result.png`; `screenshots/ml-anomaly-report-preview.png` | failure criteria, validation log, screenshot reference | yes |
-
-No real ML output, dataset records, or report output have been collected. Use TODO placeholders until execution is approved and outputs are sanitized.
+| Validation Check | Evidence |
+|---|---|
+| V001 Required artifacts | generated validation log |
+| V002 Command safety | command runbook |
+| V003 Report template | report template |
+| V004 Input summary | input summary |
+| V005 Valid report | sample report |
+| V006 Summary JSON | summary JSON |
+| V007 Invalid report | invalid fixture |
+| V008 Report evidence | sample evidence logs |
+| V009 Privacy | privacy sample |
+| V010 Final summary | final sample |
+| V011 Manifest | validation manifest |
+| V012 Policy | policy example |
+| V013 Binary safety | generated log |
+| V014 Sensitive/execution safety | generated log |
+| V015 Optional script | Python example |
+| V016 Maturity | generated summary |

@@ -1,19 +1,22 @@
 # Validation Plan
 
-| Check ID | Validation Item | Method | Expected Result | Evidence |
-|---|---|---|---|---|
-| V001 | Cleanup input artifact validation plan | Review cleanup input placeholders. | Cleanup input is identified or marked missing. | `commands.md`, `configs/resource-cleanup-summary.md`, `validation.md` |
-| V002 | Resource inventory review validation plan | Review placeholder inventory of cleanup targets. | Resource inventory is reviewable. | `commands.md`, `configs/resource-cleanup-candidate-mapping.md`, `validation.md` |
-| V003 | Resource ownership validation plan | Review ownership placeholder. | Resource owner is identified or issue is recorded. | `configs/resource-cleanup-candidate-mapping.md`, `validation.md` |
-| V004 | Environment tag or label validation plan | Review `<environment>` placeholder. | Environment tag or label is present. | `configs/resource-cleanup-candidate-mapping.md`, `validation.md` |
-| V005 | Resource usage state validation plan | Review usage state placeholder. | Usage state is documented. | `configs/resource-cleanup-candidate-mapping.md`, `validation.md` |
-| V006 | Dependency impact review validation plan | Review dependency impact placeholder. | Dependency impact is documented before cleanup approval. | `configs/resource-cleanup-decision-record.md`, `validation.md` |
-| V007 | Cleanup candidate documentation validation plan | Record `<cleanup-candidate>` status. | Cleanup candidate is documented. | `configs/resource-cleanup-summary.md`, `configs/resource-cleanup-candidate-mapping.md`, `validation.md` |
-| V008 | Cleanup approval decision validation plan | Record `<cleanup-decision>` placeholder. | Manual cleanup decision is explicit. | `configs/resource-cleanup-decision-record.md`, `validation.md` |
-| V009 | Cleanup execution placeholder validation plan | Document cleanup command or runbook placeholder. | Cleanup remains placeholder-only with no real deletion. | `commands.md`, `logs/resource-cleanup-validation.log`, `validation.md` |
-| V010 | Post-cleanup inventory validation plan | Review post-cleanup inventory check placeholder. | Post-cleanup inventory validation is documented. | `commands.md`, `screenshots/resource-cleanup-post-check.png`, `validation.md` |
-| V011 | Rollback or recreation note validation plan | Review rollback or recreation note placeholder. | Recovery note is documented where applicable. | `configs/resource-cleanup-decision-record.md`, `validation.md` |
-| V012 | Cleanup judgment state validation plan | Apply cleanup judgment states. | Result is classified as `CLEANUP_NOT_REQUIRED`, `CLEANUP_CANDIDATE`, `CLEANUP_APPROVED`, `CLEANUP_COMPLETED`, `CLEANUP_BLOCKED`, or `CLEANUP_INCONCLUSIVE`. | `configs/resource-cleanup-judgment-model.md`, `validation.md` |
-| V013 | Failure condition for missing ownership, missing usage evidence, unsafe cleanup decision, undocumented dependency impact, unsupported automated cleanup claim, accidental real resource deletion, or missing evidence | Evaluate findings against explicit failure conditions. | Cleanup issues produce `FAIL` or `BLOCKED` status. | `validation.md`, `logs/resource-cleanup-validation.log`, `screenshots/resource-cleanup-candidate-review.png` |
+| Check ID | Validation Item | Expected Result | Evidence |
+|---|---|---|---|
+| V001 | Required artifacts | All runbook, policy, rules, inputs, samples, and manifest exist. | `logs/resource-cleanup-validation.log` |
+| V002 | Command boundary | Inventory is manual-only; deletion commands are `OUT OF SCOPE`. | `runbooks/resource-cleanup-commands.example.md` |
+| V003 | Rules | Judgment states, exception fields, and cleanup domains are present. | `cost-governance/resource-cleanup-rules.example.yml` |
+| V004 | Example inputs | Ready, blocked, and exception inputs have consistent expected judgments. | `cost-governance/resource-cleanup-input-*.example.json` |
+| V005 | Rule load and inventory | Sanitized rule and candidate metadata are present. | `logs/cleanup-rule-load.sample.txt`, `logs/cleanup-candidate-inventory.sample.txt` |
+| V006 | Cleanup ready | Ownership, retention, low risk, and S045 mapping are present. | `logs/cleanup-evaluation-ready.sample.txt` |
+| V007 | Cleanup blocked | Blocking reasons are explicit. | `logs/cleanup-evaluation-blocked.sample.txt` |
+| V008 | Exception | Required approved-exception fields are present. | `logs/cleanup-exception-approval.sample.txt` |
+| V009 | Impact | Impact classification is complete. | `logs/cleanup-impact-classification.sample.txt` |
+| V010 | Cleanup plan | A plan exists and confirms no deletion by the validator. | `logs/cleanup-plan.sample.txt` |
+| V011 | Final summary | Rules are validated and no live operation occurred. | `logs/cleanup-final-summary.sample.txt` |
+| V012 | Manifest mappings | S041, S042, S043, S045, and S050 mappings exist. | `configs/resource-cleanup-validation-manifest.sample.yml` |
+| V013 | Policy | Ownership, retention, cost, dependency, rollback, approval, and deletion boundaries exist. | `policy/resource-cleanup-policy.example.md` |
+| V014 | Artifact safety | State, tfvars, `.terraform`, and kubeconfig are absent. | `logs/resource-cleanup-validation.log` |
+| V015 | Sensitive/execution safety | No real identifier, network, credential, key, CLI execution, or deletion occurs. | `logs/resource-cleanup-validation.log` |
+| V016 | Maturity | Placeholder-only governance maturity is explicitly warned. | `configs/resource-cleanup-validation-summary.md` |
 
-Every validation item must map to evidence. This scenario validates cleanup governance through placeholder review only.
+All checks are implemented by `tools/validate-resource-cleanup.ps1` in `StaticEvidence` mode.

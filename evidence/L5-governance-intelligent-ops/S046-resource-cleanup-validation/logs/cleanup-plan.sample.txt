@@ -1,0 +1,7 @@
+SAMPLE / NON-PRODUCTION
+Cleanup_Change_ID: <cleanup-change-id-placeholder>
+Candidate_Resource: <resource-address-placeholder>
+Cleanup_Action: <manual-cleanup-action-placeholder>
+Approval_Requirement: <approval-id-placeholder>
+Rollback_Note: <rollback-change-id-placeholder>
+Deletion_Performed_By_Validation_Script: false

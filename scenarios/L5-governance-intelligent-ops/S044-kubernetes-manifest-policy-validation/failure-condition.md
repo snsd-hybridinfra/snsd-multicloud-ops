@@ -1,5 +1,7 @@
 # Failure Condition
 
+The validator fails for missing controls/examples/evidence/mappings, incomplete exceptions, unsafe runtime claims, kubeconfig, real endpoints/registries/networks, credentials, certificates, keys, or secrets.
+
 S044 fails or is blocked if any of the following occur:
 
 - Manifest input artifact is missing.

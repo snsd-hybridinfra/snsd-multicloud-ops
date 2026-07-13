@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION
+Input_Dataset_Validated: true
+Required_Columns_Present: true
+Metric_Values_Numeric: true
+Normalized_Values_Numeric: true
+Dataset_Source_Scenario: S047

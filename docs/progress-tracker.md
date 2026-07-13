@@ -12,12 +12,12 @@ Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 
 | Level | Category | Scenarios | Implemented | Validated | Notes |
 |---|---|---:|---:|---:|---|
-| L1 | Foundation | 10/10 | 10/10 | 9/10 | S001 implemented with a Python readiness failure; S002 through S010 validated |
+| L1 | Foundation | 10/10 | 10/10 | 10/10 | S001-S010 validated; S001 core toolchain passes with Git, PowerShell, SSH, and Python 3.13.13 |
 | L2 | Security Baseline | 10/10 | 10/10 | 10/10 | S011 through S020 validated; L2 implementation complete |
 | L3 | Service Operations | 10/10 | 10/10 | 10/10 | S021-S025 and S028-S030 validated in Static mode; S026-S027 in StaticEvidence mode; L3 complete |
 | L4 | Failure Recovery | 10/10 | 10/10 | 10/10 | S031-S040 validated with static repository evidence; L4 implementation complete |
-| L5 | Governance Intelligent Ops | 10/10 | 0/10 | 0/10 | S041 through S050 planned |
-| Total | All Levels | 50/50 | 40/50 | 39/50 | L1-L4 implementation complete; S001 remains implemented rather than validated |
+| L5 | Governance Intelligent Ops | 10/10 | 10/10 | 10/10 | S041-S050 validated with static governance, synthetic Intelligent Ops, and final local report evidence |
+| Total | All Levels | 50/50 | 50/50 | 50/50 | All 50 scenarios implemented and validated within the locked sample/non-production scope |
 
 ## Update Rule
 

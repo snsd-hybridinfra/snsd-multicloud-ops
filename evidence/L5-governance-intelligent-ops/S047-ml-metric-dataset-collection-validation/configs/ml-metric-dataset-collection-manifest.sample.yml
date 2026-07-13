@@ -1,0 +1,23 @@
+# SAMPLE / NON-PRODUCTION
+ml_dataset_collection_validation_id: S047
+dataset_id: <dataset-id-placeholder>
+dataset_type: synthetic_sample
+collection_method: synthetic_sample
+schema_reference: ml-security/datasets/ml-metric-dataset-schema.example.yml
+feature_catalog_reference: ml-security/datasets/ml-metric-feature-catalog.example.md
+synthetic_dataset_reference: ml-security/datasets/ml-metric-dataset-synthetic.sample.csv
+invalid_dataset_reference: ml-security/datasets/ml-metric-dataset-invalid.sample.csv
+collection_metadata_reference: ml-security/datasets/ml-metric-dataset-collection-metadata.sample.yml
+row_count: 20
+feature_group_count: 14
+privacy_safety_result: PASS
+prometheus_target_discovery_scenario: S028
+grafana_dashboard_scenario: S029
+blackbox_probe_scenario: S030
+prometheus_target_down_scenario: S036
+service_health_after_recovery_scenario: S040
+anomaly_detection_scenario: S048
+anomaly_report_scenario: S049
+final_evidence_report_scenario: S050
+evidence_reference: <evidence-path>
+final_judgment: DATASET_READY

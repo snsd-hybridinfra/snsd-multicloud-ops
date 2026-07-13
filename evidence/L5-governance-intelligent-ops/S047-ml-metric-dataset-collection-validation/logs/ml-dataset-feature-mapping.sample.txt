@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION
+Feature_Catalog_Mapped: true
+All_Required_Feature_Groups_Mapped: true
+Related_Scenarios_Mapped: S028,S029,S030,S036,S040,S048,S049

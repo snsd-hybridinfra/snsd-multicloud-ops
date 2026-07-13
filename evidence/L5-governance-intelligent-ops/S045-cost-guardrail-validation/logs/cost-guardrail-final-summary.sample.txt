@@ -1,0 +1,9 @@
+SAMPLE / NON-PRODUCTION
+Cost_Guardrail_Rules_Validated: true
+Pass_Sample_Validated: true
+Fail_Sample_Validated: true
+Exception_Sample_Validated: true
+Cleanup_Mapping_Validated: true
+Real_Billing_API_Queried: false
+Real_Cloud_Operation_Performed: false
+final_judgment: COST_GUARDRAIL_PASS

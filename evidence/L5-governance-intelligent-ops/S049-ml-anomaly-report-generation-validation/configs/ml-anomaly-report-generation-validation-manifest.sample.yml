@@ -1,0 +1,19 @@
+# SAMPLE / NON-PRODUCTION
+ml_anomaly_report_generation_validation_id: S049
+report_id: <report-id-placeholder>
+dataset_source_scenario: S047
+anomaly_detection_scenario: S048
+final_evidence_report_scenario: S050
+dataset_id: <dataset-id-placeholder>
+detection_run_id: <detection-run-id-placeholder>
+report_template_reference: ml-security/reports/ml-anomaly-report-template.example.md
+report_input_reference: ml-security/reports/ml-anomaly-report-input-summary.sample.yml
+report_output_reference: ml-security/reports/ml-anomaly-report.sample.md
+report_summary_reference: ml-security/reports/ml-anomaly-report-summary.sample.json
+invalid_report_reference: ml-security/reports/ml-anomaly-report-invalid.sample.md
+anomaly_count: 5
+warning_count: 1
+review_required_count: 1
+privacy_safety_result: PASS
+evidence_reference: <evidence-path>
+final_judgment: REPORT_READY

@@ -1,0 +1,11 @@
+{
+  "sample_notice": "SAMPLE / NON-PRODUCTION",
+  "drift_detection_reference": "<drift-detection-id-placeholder>",
+  "remediation_option": "REVERT_TO_TERRAFORM",
+  "resource_address": "<terraform-resource-address-placeholder>",
+  "before": "<observed-value-placeholder>",
+  "after": "<expected-value-placeholder>",
+  "approval": "<approval-id-placeholder>",
+  "rollback": "<rollback-change-id-placeholder>",
+  "final_judgment": "REMEDIATION_READY"
+}

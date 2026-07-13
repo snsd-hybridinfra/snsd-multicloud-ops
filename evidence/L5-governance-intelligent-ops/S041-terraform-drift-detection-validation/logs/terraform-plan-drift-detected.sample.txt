@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+Terraform_Plan_Exit_Code: 2
+Plan: 0 to add, 1 to change, 0 to destroy
+Affected_Resource: <terraform-resource-address-placeholder>
+final_judgment: DRIFT_DETECTED

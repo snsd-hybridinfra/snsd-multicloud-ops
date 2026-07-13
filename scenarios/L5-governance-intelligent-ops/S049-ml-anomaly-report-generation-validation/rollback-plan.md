@@ -1,5 +1,7 @@
 # Rollback Plan
 
+Validation is read-only; rollback removes unsafe output, restores sanitized templates, and reruns the validator.
+
 This skeleton does not generate real reports or automate response workflows, so rollback is documentation-focused.
 
 1. Stop validation if credentials, tokens, API keys, secrets, public IPs, cloud account values, private keys, tfstate, kubeconfig content, real report output, or account-specific data appear.

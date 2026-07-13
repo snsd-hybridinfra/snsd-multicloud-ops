@@ -1,0 +1,8 @@
+SAMPLE / NON-PRODUCTION
+S041_Drift_Reference_Present: true
+Remediation_Decision_Present: true
+Approval_Evidence_Present: true
+Rollback_Evidence_Present: true
+Post_Remediation_No_Drift_Evidence_Present: true
+Terraform_Execution_Performed_By_Validation_Script: false
+final_judgment: REMEDIATION_VALIDATED

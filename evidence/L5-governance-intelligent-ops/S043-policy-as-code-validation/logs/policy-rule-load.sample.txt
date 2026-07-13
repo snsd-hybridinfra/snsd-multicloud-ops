@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION
+Policy_Rules_Loaded: true-placeholder
+Policy_Domains_Loaded: terraform,security,backup,restore,cost,kubernetes-placeholder
+External_Policy_Engine_Required: false

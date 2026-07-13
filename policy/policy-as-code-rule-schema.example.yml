@@ -1,0 +1,21 @@
+sample_notice: SAMPLE / NON-PRODUCTION
+policy_id: <policy-id-placeholder>
+policy_name: <policy-name-placeholder>
+policy_domain: <policy-domain-placeholder>
+severity: <severity-placeholder>
+resource_type: <resource-type-placeholder>
+rule_type: <rule-type-placeholder>
+expected_condition: <expected-value-placeholder>
+violation_condition: <observed-value-placeholder>
+evidence_required: <evidence-path>
+exception_allowed: true-placeholder
+exception_required_fields:
+  - exception_id
+  - owner
+  - reason
+  - expiry
+  - approval_id
+  - rollback_condition
+  - evidence_reference
+related_scenarios: [S041, S042, S044, S045, S046]
+final_judgment_values: [POLICY_PASS, POLICY_FAIL, POLICY_WARNING, POLICY_EXCEPTION_APPROVED, POLICY_EVIDENCE_INCOMPLETE, POLICY_REVIEW_REQUIRED]

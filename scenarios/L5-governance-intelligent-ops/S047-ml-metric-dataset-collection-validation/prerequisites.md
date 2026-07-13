@@ -1,5 +1,7 @@
 # Prerequisites
 
+The validator requires PowerShell and repository-local examples only. Python execution, Prometheus/Grafana access, cloud credentials, kubeconfig, and external ML libraries are not required.
+
 - `docs/scope-lock.md` and `docs/excluded-scope.md` have been reviewed.
 - S047 scenario and evidence directories exist.
 - Metric names, queries, paths, filenames, target jobs, target instances, dataset windows, and collection scripts use placeholders only.

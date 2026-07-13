@@ -1,0 +1,10 @@
+SAMPLE / NON-PRODUCTION
+Cleanup_Rules_Validated: true
+Candidate_Inventory_Validated: true
+Ready_Sample_Validated: true
+Blocked_Sample_Validated: true
+Exception_Sample_Validated: true
+Cleanup_Plan_Validated: true
+Real_Resource_Deletion_Performed: false
+Real_Cloud_Operation_Performed: false
+final_judgment: CLEANUP_READY

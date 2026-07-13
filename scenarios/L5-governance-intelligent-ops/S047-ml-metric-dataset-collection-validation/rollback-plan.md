@@ -1,5 +1,7 @@
 # Rollback Plan
 
+Validation is read-only. Rollback removes unsafe or malformed sample evidence, restores sanitized placeholders, and reruns the validator; it never changes a monitoring system or ML runtime.
+
 This skeleton does not collect real datasets or run ML workflows, so rollback is documentation-focused.
 
 1. Stop validation if credentials, tokens, API keys, secrets, public IPs, cloud account values, private keys, tfstate, kubeconfig content, or account-specific data appear.

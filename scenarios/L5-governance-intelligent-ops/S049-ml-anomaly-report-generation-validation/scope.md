@@ -1,5 +1,7 @@
 # Scope
 
+Implemented scope is static, sanitized reporting only. Live sources, security telemetry, raw logs/packets, model operations, LLM decisions, incident automation, and blocking are excluded.
+
 ## Included
 
 - Anomaly detection result input validation reference.

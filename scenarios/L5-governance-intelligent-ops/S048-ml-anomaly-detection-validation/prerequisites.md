@@ -1,5 +1,7 @@
 # Prerequisites
 
+Only PowerShell and repository-local sanitized artifacts are required. The optional Python example uses the standard library and is not required for validation.
+
 - `docs/scope-lock.md` and `docs/excluded-scope.md` have been reviewed.
 - S048 scenario and evidence directories exist.
 - Dataset paths, metric names, baseline windows, detection windows, anomaly scores, thresholds, target jobs, and target instances use placeholders only.

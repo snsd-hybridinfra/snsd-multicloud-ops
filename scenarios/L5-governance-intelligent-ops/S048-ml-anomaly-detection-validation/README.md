@@ -10,7 +10,7 @@
 | Related Components | S047 metric dataset placeholder, baseline window, detection window, anomaly score, threshold placeholders, node/Kubernetes/MariaDB/Blackbox/endpoint metrics |
 | Validation Type | ML Anomaly Detection Validation |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S048-ml-anomaly-detection-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
@@ -26,4 +26,8 @@ Validation checks confirm that dataset inputs are referenced, required detection
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S048-ml-anomaly-detection-validation/`, with review plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Synthetic StaticEvidence is recorded under the S048 evidence path. The validator checks a 20-row input/output pair, threshold profile, invalid-output rejection, classification, mappings, and safety without live queries, training, deployment, or blocking.
+
+## Implemented Validation
+
+Run `powershell -ExecutionPolicy Bypass -File tools/validate-ml-anomaly-detection.ps1`. S047 owns dataset readiness, S049 owns human-readable reporting, and S050 owns final aggregation.

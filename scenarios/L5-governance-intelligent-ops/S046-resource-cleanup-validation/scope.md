@@ -1,5 +1,7 @@
 # Scope
 
+Implemented scope is limited to sanitized local sample evidence, policy/rule review, and manifest mapping. Resource discovery, deletion, `terraform destroy`, cloud CLI/API access, and Kubernetes deletion remain excluded.
+
 ## Included
 
 - Cleanup candidate identification plan.

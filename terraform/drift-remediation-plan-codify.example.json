@@ -1,0 +1,8 @@
+{
+  "sample_notice": "SAMPLE / NON-PRODUCTION",
+  "drift_detection_reference": "<drift-detection-id-placeholder>",
+  "remediation_option": "CODIFY_APPROVED_CHANGE",
+  "terraform_config_update": "<terraform-config-update-placeholder>",
+  "approved_change_reference": "<approval-id-placeholder>",
+  "final_judgment": "REMEDIATION_READY"
+}

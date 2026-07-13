@@ -1,5 +1,7 @@
 # Architecture
 
+Implemented flow: sanitized rules/inputs/evidence -> `validate-cost-guardrail.ps1` -> local log/summary and S046/S050 mappings.
+
 S045 models cost guardrails as a placeholder resource review workflow.
 
 ## Components

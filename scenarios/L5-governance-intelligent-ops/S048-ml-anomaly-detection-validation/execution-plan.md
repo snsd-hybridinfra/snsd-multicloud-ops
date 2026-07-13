@@ -1,5 +1,7 @@
 # Execution Plan
 
+Execute `tools/validate-ml-anomaly-detection.ps1`; it reads local samples and writes only the S048 validation log and summary.
+
 1. Confirm that anomaly detection validation is placeholder-only.
 2. Identify `<dataset-file>`, `<metric-name>`, `<baseline-window>`, `<detection-window>`, `<anomaly-score>`, `<anomaly-threshold>`, `<target-job>`, and `<target-instance>`.
 3. Reference dataset input from S047.

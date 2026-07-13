@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION
+Terraform_Plan_Exit_Code: 2
+Signal: unsafe security rule drift placeholder
+Observed_Source: <unrestricted-source-placeholder>
+Severity: Critical
+final_judgment: CRITICAL_DRIFT

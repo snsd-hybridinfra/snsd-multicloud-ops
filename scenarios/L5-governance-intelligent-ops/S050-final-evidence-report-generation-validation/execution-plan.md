@@ -1,5 +1,7 @@
 # Execution Plan
 
+Generate with `tools/generate-final-evidence-report.ps1`, validate with `tools/validate-final-evidence-report.ps1`, then rerun repository structure and quality checks.
+
 1. Confirm all target tracking, review, scenario, and evidence inputs exist.
 2. Record the planned input inspection actions in `commands.md`.
 3. Compare progress counts with scenario and evidence status matrices.

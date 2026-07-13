@@ -1,5 +1,7 @@
 # Objective
 
+Implementation status: `VALIDATED` through local `StaticEvidence` checks of synthetic metric-only data. No live source is scraped and no model is trained.
+
 S047 validates the documentation model for collecting operational metric datasets that may later support anomaly analysis.
 
 The operational capability is the ability to define metric sources, query placeholders, dataset schema, required labels, timestamps, export placeholders, and evidence requirements without collecting real Prometheus output or training an ML model.

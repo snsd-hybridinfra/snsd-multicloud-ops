@@ -8,9 +8,9 @@
 | Category | Governance Intelligent Ops |
 | Primary Domain | Kubernetes manifest policy review |
 | Related Components | Namespace, Deployment, Service, Ingress, ConfigMap placeholder, Secret reference placeholder, RBAC reference placeholder |
-| Validation Type | Governance Validation |
+| Validation Type | StaticEvidence |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 

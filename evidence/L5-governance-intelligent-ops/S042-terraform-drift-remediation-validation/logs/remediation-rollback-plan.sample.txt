@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION
+Rollback_Change_ID: <rollback-change-id-placeholder>
+Rollback_Condition: <rollback-condition-placeholder>
+Rollback_Owner_Role: <rollback-owner-role-placeholder>
+Rollback_Command: <manual-rollback-command-placeholder>
+Execution_Mode: MANUAL ROLLBACK ONLY

@@ -1,0 +1,13 @@
+# SAMPLE / NON-PRODUCTION
+report_id: <report-id-placeholder>
+dataset_source_scenario: S047
+anomaly_detection_scenario: S048
+final_evidence_report_scenario: S050
+dataset_id: <dataset-id-placeholder>
+detection_run_id: <detection-run-id-placeholder>
+anomaly_count: 5
+warning_count: 1
+review_required_count: 1
+top_anomaly_candidate: <anomaly-id-placeholder>
+affected_feature_groups: <feature-group-placeholder>
+evidence_reference: <evidence-path>

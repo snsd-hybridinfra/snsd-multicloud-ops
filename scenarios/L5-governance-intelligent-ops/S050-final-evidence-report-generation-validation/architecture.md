@@ -1,5 +1,7 @@
 # Architecture
 
+Implemented flow: canonical local docs and mirrored S001-S050 directories -> Markdown/JSON generator -> static report validator -> S050 evidence log/summary.
+
 ## Relevant Components
 
 - Tracking inputs: progress tracker, scenario status matrix, and evidence status matrix.

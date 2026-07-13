@@ -1,5 +1,7 @@
 # Rollback Plan
 
+No live resource changes occur; correct only invalid sanitized S044 artifacts and rerun the validator.
+
 This skeleton does not deploy manifests or enforce policy, so rollback is documentation-focused.
 
 1. Stop validation if kubeconfig content, Kubernetes secrets, credentials, private keys, tfstate, cloud account values, account identifiers, or account-specific data appear.

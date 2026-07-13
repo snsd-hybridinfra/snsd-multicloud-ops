@@ -1,5 +1,7 @@
 # Architecture
 
+Implemented flow: sanitized rules/manifests/evidence -> `validate-kubernetes-manifest-policy.ps1` -> local log/summary, with no cluster or engine edge.
+
 S044 models manifest policy validation as a static review workflow.
 
 ## Components

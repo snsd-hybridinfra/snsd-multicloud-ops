@@ -1,20 +1,21 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Terraform working directory validation plan | `commands.md`; `configs/terraform-drift-detection-summary.md`; `validation.md` | command plan, drift summary, validation record | yes |
-| Terraform init placeholder validation plan | `commands.md`; `logs/terraform-drift-detection-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Terraform validate placeholder validation plan | `commands.md`; `logs/terraform-drift-detection-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Terraform plan drift detection validation plan | `commands.md`; `screenshots/terraform-plan-no-drift.png`; `screenshots/terraform-plan-drift-detected.png`; `validation.md` | command plan, screenshot reference, validation record | yes |
-| AWS drift placeholder validation plan | `commands.md`; `configs/terraform-drift-target-mapping.md`; `validation.md` | command plan, target mapping, validation record | yes |
-| Azure drift placeholder validation plan | `commands.md`; `configs/terraform-drift-target-mapping.md`; `validation.md` | command plan, target mapping, validation record | yes |
-| OpenStack drift placeholder validation plan | `commands.md`; `configs/terraform-drift-target-mapping.md`; `validation.md` | command plan, target mapping, validation record | yes |
-| Security rule drift detection reference plan | `commands.md`; `configs/terraform-drift-detection-summary.md`; `validation.md` | command plan, drift summary, validation record | yes |
-| Tag or label drift detection plan | `commands.md`; `configs/terraform-drift-target-mapping.md`; `validation.md` | command plan, target mapping, validation record | yes |
-| Drift judgment state validation plan | `commands.md`; `configs/terraform-drift-judgment-model.md`; `validation.md` | command plan, judgment model, validation record | yes |
-| Drift evidence capture plan | `commands.md`; `logs/terraform-drift-detection-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Failure condition for missing Terraform baseline, missing plan output, undetected manual change, ambiguous drift result, use of real credentials, generated tfstate committed to repository, or missing evidence | `validation.md` | failure criteria and status record | yes |
+| Check ID | Evidence |
+|---|---|
+| V001 | `validation.md`, generated validation log |
+| V002 | `runbooks/terraform-drift-detection-commands.example.md` |
+| V003 | `logs/terraform-plan-no-drift.sample.txt` |
+| V004 | `logs/terraform-plan-drift-detected.sample.txt` |
+| V005 | `logs/terraform-plan-critical-drift.sample.txt` |
+| V006 | `logs/terraform-drift-classification.sample.txt` |
+| V007 | `logs/terraform-drift-final-summary.sample.txt` |
+| V008 | `configs/terraform-drift-detection-manifest.sample.yml` |
+| V009 | `terraform/drift-detection-plan-*.example.json` |
+| V010 | generated validation log |
+| V011 | generated validation log |
+| V012 | `policy/terraform-drift-detection-policy.example.md` |
+| V013 | final summary sample |
+| V014 | validator source and generated log |
+| V015 | generated summary |
 
-## Evidence Notes
-
-No real Terraform output, plan output, provider output, or tfstate has been collected. Use TODO placeholders until execution is approved and outputs are sanitized.
+Generated outputs are `logs/terraform-drift-detection-validation.log` and `configs/terraform-drift-detection-validation-summary.md`.

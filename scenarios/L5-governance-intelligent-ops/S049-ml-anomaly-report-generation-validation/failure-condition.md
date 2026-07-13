@@ -1,5 +1,7 @@
 # Failure Condition
 
+The implementation fails on missing sections/mappings/evidence, invalid judgment/JSON, model or packet binaries, prohibited telemetry, real endpoints, secrets, LLM decisions, incident creation, or blocking claims.
+
 S049 fails or is blocked if any of the following occur:
 
 - Anomaly detection result reference is missing.

@@ -6,24 +6,24 @@
 | Scenario Name | Terraform Drift Remediation Validation |
 | Level | L5 Governance and Intelligent Operations Validation |
 | Category | Governance Intelligent Ops |
-| Primary Domain | Terraform drift remediation |
-| Related Components | Terraform plan review, remediation decision placeholder, AWS/Azure/OpenStack resource placeholders, security rule drift, tag/label drift |
-| Validation Type | Governance Validation |
+| Primary Domain | Static drift-remediation decision evidence |
+| Related Components | S041 reference, decision/approval/rollback evidence, post-remediation no-drift sample, manifest |
+| Validation Type | StaticEvidence |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S042-terraform-drift-remediation-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate Terraform drift remediation behavior for the SNSD Multi-Cloud Ops infrastructure governance layer.
+Validate a controlled remediation decision, approval, plan, rollback, and post-remediation no-drift evidence chain without running Terraform or changing infrastructure.
 
 ## Scope Summary
 
-This scenario validates controlled remediation planning only. It covers prior drift evidence review, Terraform plan review, manual approval placeholder, apply placeholder validation, provider-specific remediation placeholders, post-remediation drift validation, and remediation evidence collection.
+S041 owns detection. S042 validates sanitized remediation evidence only; S043 owns Policy as Code, S045 cost impact, and S046 cleanup.
 
 ## Validation Summary
 
-Validation checks confirm that drift evidence is reviewed before remediation, a remediation decision is documented, Terraform plan output is reviewed, apply activity remains placeholder-based, provider-specific remediation targets are mapped, post-remediation validation is planned, and remediation judgment states are recorded.
+`tools/validate-terraform-drift-remediation.ps1` reads local files only. It does not execute plan/apply/import/state operations, access remote state, or call cloud APIs.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S042-terraform-drift-remediation-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Generated log/summary and sanitized samples are stored under the matching evidence directory. No real state, plan binary, backend, credential, identifier, network value, or secret is stored.

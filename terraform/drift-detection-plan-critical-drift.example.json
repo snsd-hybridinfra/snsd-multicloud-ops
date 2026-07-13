@@ -1,0 +1,9 @@
+{
+  "sample_notice": "SAMPLE / NON-PRODUCTION",
+  "resource_changes": [{
+    "address": "<security-rule-placeholder>",
+    "change": {"actions": ["update"], "before": "<approved-source-cidr-placeholder>", "after": "<unrestricted-source-placeholder>"}
+  }],
+  "severity": "Critical",
+  "drift_judgment": "CRITICAL_DRIFT"
+}

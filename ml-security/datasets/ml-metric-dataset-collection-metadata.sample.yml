@@ -1,0 +1,15 @@
+# SAMPLE / NON-PRODUCTION
+dataset_id: <dataset-id-placeholder>
+dataset_type: synthetic_sample
+collection_method: synthetic_sample
+source_system: prometheus_placeholder
+collection_window_start: <window-start-placeholder>
+collection_window_end: <window-end-placeholder>
+row_count: 20
+feature_group_count: 14
+schema_reference: ml-security/datasets/ml-metric-dataset-schema.example.yml
+feature_catalog_reference: ml-security/datasets/ml-metric-feature-catalog.example.md
+anomaly_detection_scenario: S048
+anomaly_report_scenario: S049
+final_evidence_report_scenario: S050
+evidence_reference: <evidence-path>

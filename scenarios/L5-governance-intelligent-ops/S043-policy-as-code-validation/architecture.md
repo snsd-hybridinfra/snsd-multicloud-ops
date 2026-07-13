@@ -1,5 +1,7 @@
 # Architecture
 
+Implemented flow: sanitized schema/rules/inputs/evidence -> `validate-policy-as-code.ps1` -> local log/summary, with no external execution edge.
+
 S043 models Policy as Code as a reviewable governance control, not as a deployed policy platform.
 
 ## Components

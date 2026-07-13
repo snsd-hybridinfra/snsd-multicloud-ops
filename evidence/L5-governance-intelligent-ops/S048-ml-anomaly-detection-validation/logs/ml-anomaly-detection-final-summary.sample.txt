@@ -1,0 +1,14 @@
+SAMPLE / NON-PRODUCTION
+Threshold_Profile_Validated: true
+Input_Dataset_Validated: true
+Detection_Output_Validated: true
+Invalid_Output_Rejected: true
+Anomaly_Classification_Validated: true
+Privacy_Safety_Validated: true
+Live_Prometheus_Query_Performed: false
+Live_Grafana_Query_Performed: false
+ML_Model_Trained: false
+Model_Deployed: false
+Automated_Blocking_Performed: false
+Report_Generation_Mapped_To: S049
+final_judgment: ANOMALY_DETECTED

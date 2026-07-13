@@ -1,5 +1,7 @@
 # Failure Condition
 
+Implemented validator fails for missing/inconsistent rules, inputs, exceptions, mappings, unsafe runtime claims, forbidden Terraform artifacts, real identifiers/networks, credentials, keys, or secrets.
+
 S043 fails or is blocked if any of the following occur:
 
 - Policy input artifact is missing.

@@ -8,9 +8,9 @@
 | Category | Governance Intelligent Ops |
 | Primary Domain | Operational metric dataset collection |
 | Related Components | Prometheus metric placeholders, node metrics, Kubernetes metrics, MariaDB metrics, Blackbox metrics, Nginx/service endpoint metrics, dataset schema |
-| Validation Type | ML Anomaly Detection Validation |
+| Validation Type | Static Dataset Evidence Validation |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S047-ml-metric-dataset-collection-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
@@ -26,4 +26,8 @@ Validation checks confirm that metric sources are referenced, query inputs are d
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L5-governance-intelligent-ops/S047-ml-metric-dataset-collection-validation/`, with review plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Synthetic and sanitized evidence is recorded under `evidence/L5-governance-intelligent-ops/S047-ml-metric-dataset-collection-validation/`. The validator generated a log and summary without querying Prometheus, Grafana, cloud APIs, or security telemetry and without training a model.
+
+## Implemented Validation
+
+Run `powershell -ExecutionPolicy Bypass -File tools/validate-ml-metric-dataset-collection.ps1`. S047 validates schema, 20-row synthetic CSV quality, deliberate invalid-sample rejection, feature mappings, metadata, privacy constraints, and readiness references for S048/S049/S050.

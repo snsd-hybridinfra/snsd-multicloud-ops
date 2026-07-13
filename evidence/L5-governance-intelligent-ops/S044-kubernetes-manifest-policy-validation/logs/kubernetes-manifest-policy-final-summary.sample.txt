@@ -1,0 +1,8 @@
+SAMPLE / NON-PRODUCTION
+Manifest_Policy_Rules_Validated: true
+Compliant_Sample_Validated: true
+Violation_Sample_Validated: true
+Exception_Sample_Validated: true
+Required_Exception_Fields_Present: true
+Live_Cluster_Operation_Performed: false
+final_judgment: K8S_POLICY_PASS
