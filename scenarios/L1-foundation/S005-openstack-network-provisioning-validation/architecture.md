@@ -1,25 +1,20 @@
 # Architecture
 
-## Relevant Components
+## Repository Components
 
-- Provider Network placeholder: external or shared network represented by `<openstack-provider-network-name>`. This scenario validates reference and reachability assumptions only; it does not create the provider network.
-- Tenant Network: project-owned workload network represented by `<openstack-tenant-network-name>`.
-- Tenant Subnet: tenant address segment represented by `<openstack-tenant-subnet-name>`.
-- Router: tenant router represented by `<openstack-router-name>`.
-- Router Interface: connection between router and tenant subnet represented by `<openstack-router-interface-id>`.
-- Security Group baseline: minimum traffic boundary represented by `<openstack-security-group-name>`.
-- Floating IP placeholder: future external access placeholder represented by `<openstack-floating-ip>`.
-- Keypair placeholder: future access reference represented by `<openstack-keypair-name>`.
-- Terraform or OpenStack CLI outputs: sanitized references for validation.
+- `terraform/modules/openstack-network/`: reusable OpenStack network definitions.
+- `terraform/envs/openstack-network-validation/`: local composition and non-production example values.
+- `tools/validate-openstack-network-provisioning.ps1`: repository-only safety and completeness checks.
+- `evidence/L1-foundation/S005-openstack-network-provisioning-validation/`: generated evidence.
 
-## Logical Flow
+## Defined Network Model
 
-1. OpenStack CLI authentication validation is planned without storing credential files.
-2. Network listing is planned to distinguish provider networks from tenant networks.
-3. Provider Network existence is validated as a dependency, not as a provisioned resource.
-4. Tenant Network, Tenant Subnet, Router, Router Interface, and Security Group baseline are validated as planned tenant-owned resources.
-5. Floating IP and Keypair are treated as placeholders until future execution is explicitly approved.
+1. A private network represents the validation tenant network.
+2. A private subnet uses `10.30.11.0/24` within the documented `10.30.0.0/16` plan.
+3. A router references `<external-network-name>` without resolving it.
+4. A router interface connects the private subnet to the router definition.
+5. A baseline security group contains a management-rule placeholder restricted to `10.30.1.0/24`; detailed validation remains in S016.
 
-## Out-of-Scope Components
+## Validation Flow
 
-No real OpenStack credentials, `openrc` files, `clouds.yaml`, Terraform state, private keys, provider resources, production networks, or account-specific values are used by this scenario.
+The PowerShell validator reads repository files, checks expected Terraform resource types and safety boundaries, optionally runs formatting checks, and writes a log and summary. It does not initialize providers, authenticate, read `clouds.yaml` or openrc, create state, or contact OpenStack.

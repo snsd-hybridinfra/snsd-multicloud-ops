@@ -2,19 +2,21 @@
 
 | Validation Item | Evidence File | Evidence Type | Required |
 |---|---|---|---|
-| OpenStack CLI authentication validation plan | `commands.md`; `configs/openstack-network-plan-summary.md`; `validation.md` | command plan, plan summary, validation record | yes |
-| OpenStack network list validation plan | `commands.md`; `logs/openstack-network-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Provider network existence validation plan | `configs/openstack-network-plan-summary.md`; `validation.md`; `screenshots/openstack-network-resource-view.png` | plan summary, validation record, screenshot reference | yes |
-| Tenant network creation validation plan | `configs/openstack-network-plan-summary.md`; `validation.md`; `screenshots/openstack-network-resource-view.png` | plan summary, validation record, screenshot reference | yes |
-| Tenant subnet creation validation plan | `configs/openstack-network-plan-summary.md`; `validation.md` | plan summary, validation record | yes |
-| Router creation validation plan | `commands.md`; `logs/openstack-network-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Router interface validation plan | `commands.md`; `logs/openstack-network-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Security group baseline validation plan | `configs/openstack-network-plan-summary.md`; `validation.md` | plan summary, validation record | yes |
-| Floating IP availability validation plan | `commands.md`; `logs/openstack-network-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Terraform or OpenStack CLI output capture plan | `commands.md`; `logs/openstack-network-validation.log`; `validation.md` | command plan, output capture log, validation record | yes |
-| Missing network, subnet, router, interface, or security group failure condition | `validation.md` | failure criteria and status record | yes |
-| Rollback using Terraform destroy or OpenStack CLI cleanup checklist | `commands.md`; `validation.md` | rollback checklist and validation record | yes |
+| V001 Module files | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V002 Environment files | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V003 Example variable file | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V004 State and real variable files | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V005 OpenStack authentication files | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V006 OpenStack network resources | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V007 Remote backend | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V008 Credential-like content | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V009 OpenStack account assignments | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V010 Example values | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V011 Terraform formatting | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| V012 Terraform validate boundary | `logs/openstack-network-provisioning-validation.log`; `configs/openstack-network-provisioning-summary.md` | generated log and summary | yes |
+| Script invocation and evidence inspection | `commands.md` | operator command record | yes |
+| Final validation judgment | `validation.md` | validation result | yes |
 
 ## Evidence Notes
 
-No real Terraform or OpenStack output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+The log is reproducible. Screenshots, OpenStack CLI output, plans, state, `clouds.yaml`, openrc, and real account values are neither required nor permitted.

@@ -1,19 +1,18 @@
 # Failure Condition
 
-## Failure Conditions
+## Critical Failure Conditions
 
-- OpenStack CLI authentication validation cannot be planned safely.
-- Provider Network and Tenant Network roles are not clearly distinguished.
-- Network, subnet, router, router interface, or security group validation criteria are missing.
-- Terraform or OpenStack CLI output capture would require committing tfstate, `openrc`, `clouds.yaml`, credentials, or sensitive values.
-- OpenStack CLI resource listing would expose real project IDs, credentials, real public IPs, private keys, or other sensitive values.
-- Rollback through Terraform destroy or OpenStack CLI cleanup is not documented for future approved execution.
-- Real OpenStack resources, credentials, `openrc` files, `clouds.yaml`, tfstate, private keys, or account-specific files are added.
+- A required module or environment file is missing.
+- A required OpenStack network resource type is missing.
+- A real tfvars, auto tfvars, or tfstate file is present.
+- A `clouds.yaml` or openrc file is present.
+- A backend block, account assignment, credential, private key, token, UUID-like identity value, or secret is detected.
+- Example CIDRs, external network placeholder, or non-production marker differ from the approved set.
+- The validator attempts OpenStack authentication, cloud API access, provider initialization, or state-producing Terraform execution.
 
-## Evidence of Failure
+## Non-Critical Warnings
 
-Record failed or blocked checks in `validation.md`, with supporting TODO references to `commands.md`, `configs/openstack-network-plan-summary.md`, or `logs/openstack-network-validation.log`.
+- Terraform is unavailable for formatting checks.
+- Terraform validation is skipped because initialization and provider download are prohibited.
 
-## Follow-Up Requirement
-
-Create a follow-up task to clarify the OpenStack network plan, distinguish provider and tenant responsibilities, sanitize evidence expectations, or define a safe future lab execution path before implementation proceeds.
+Critical failures produce a non-zero exit. Warnings remain documented without weakening the safety boundary.

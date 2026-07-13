@@ -6,35 +6,33 @@
 | Scenario Name | OpenStack Network Provisioning Validation |
 | Level | L1 Foundation Validation |
 | Category | Foundation |
-| Primary Domain | OpenStack baseline network readiness |
-| Related Components | Provider Network placeholder, Tenant Network, Tenant Subnet, Router, Router Interface, Security Group baseline, Floating IP placeholder, Keypair placeholder, Terraform or OpenStack CLI outputs |
+| Primary Domain | Repository-side OpenStack network definitions |
+| Related Components | OpenStack network Terraform module, validation environment, local safety validator |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S005-openstack-network-provisioning-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the OpenStack baseline network provisioning scenario for the SNSD Multi-Cloud Ops project.
+Validate that OpenStack network provisioning is represented by reviewable Terraform definitions without authenticating to OpenStack or creating resources.
 
 ## Scope Summary
 
-This scenario defines how OpenStack network provisioning will be validated later. It does not create real OpenStack resources, configure provider credentials, store `openrc` files, store `clouds.yaml`, or generate Terraform state.
+S005 checks required files and resource block types, safe examples, absence of state and real variable files, absence of backend and account configuration, absence of credential-like content, and absence of `clouds.yaml` or openrc files.
 
 ## Related Components
 
-- `<openstack-provider-network-name>` placeholder
-- `<openstack-tenant-network-name>` placeholder
-- `<openstack-tenant-subnet-name>` placeholder
-- `<openstack-router-name>` placeholder
-- `<openstack-router-interface-id>` placeholder
-- `<openstack-security-group-name>` placeholder
-- `<openstack-floating-ip>` placeholder
-- `<openstack-keypair-name>` placeholder
+- `terraform/modules/openstack-network/`
+- `terraform/envs/openstack-network-validation/`
+- `tools/validate-openstack-network-provisioning.ps1`
 
 ## Validation Summary
 
-Validation checks cover OpenStack CLI authentication planning, network listing, provider network existence, tenant network and subnet validation, router and router interface validation, security group baseline validation, floating IP availability, output capture, failure conditions, and rollback using Terraform destroy or OpenStack CLI cleanup checklists.
+Required repository checks determine success. Terraform formatting is optional when the CLI exists. Provider-dependent validation is skipped because S005 prohibits initialization, authentication, and OpenStack API access.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L1-foundation/S005-openstack-network-provisioning-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
+- `logs/openstack-network-provisioning-validation.log`
+- `configs/openstack-network-provisioning-summary.md`
+- `commands.md`
+- `validation.md`

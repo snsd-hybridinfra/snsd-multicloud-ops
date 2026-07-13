@@ -2,19 +2,19 @@
 
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
-| V001 | OpenStack CLI authentication validation plan | Document planned authentication check without storing `openrc` or `clouds.yaml`. | Authentication validation approach is defined without credentials. | `commands.md`, `configs/openstack-network-plan-summary.md`, `validation.md` |
-| V002 | OpenStack network list validation plan | Document planned `openstack network list` review. | Network listing approach distinguishes provider and tenant networks. | `commands.md`, `logs/openstack-network-validation.log`, `validation.md` |
-| V003 | Provider network existence validation plan | Define how `<openstack-provider-network-name>` would be confirmed. | Provider Network is validated as pre-existing or dependency-owned. | `configs/openstack-network-plan-summary.md`, `validation.md`, `screenshots/openstack-network-resource-view.png` |
-| V004 | Tenant network creation validation plan | Define how `<openstack-tenant-network-name>` would be confirmed. | Tenant Network validation method is documented. | `configs/openstack-network-plan-summary.md`, `validation.md`, `screenshots/openstack-network-resource-view.png` |
-| V005 | Tenant subnet creation validation plan | Define how `<openstack-tenant-subnet-name>` would be confirmed. | Tenant Subnet validation method is documented. | `configs/openstack-network-plan-summary.md`, `validation.md` |
-| V006 | Router creation validation plan | Define how `<openstack-router-name>` would be confirmed. | Router validation method is documented. | `commands.md`, `logs/openstack-network-validation.log`, `validation.md` |
-| V007 | Router interface validation plan | Define router-to-subnet interface validation. | Router Interface validation method is documented. | `commands.md`, `logs/openstack-network-validation.log`, `validation.md` |
-| V008 | Security group baseline validation plan | Define baseline security group validation checks. | Security Group baseline validation method is documented without rule implementation. | `configs/openstack-network-plan-summary.md`, `validation.md` |
-| V009 | Floating IP availability validation plan | Define floating IP availability check as a placeholder. | Floating IP availability validation method is documented. | `commands.md`, `logs/openstack-network-validation.log`, `validation.md` |
-| V010 | Terraform or OpenStack CLI output capture plan | Define expected sanitized output capture. | Output capture method is documented without tfstate or credentials. | `commands.md`, `logs/openstack-network-validation.log`, `validation.md` |
-| V011 | Missing network, subnet, router, interface, or security group failure condition | Define explicit missing-resource failure criteria. | Missing required OpenStack resources produce `FAIL` or `BLOCKED` status. | `validation.md` |
-| V012 | Rollback using Terraform destroy or OpenStack CLI cleanup checklist | Define future approved teardown checklist. | Rollback steps are documented without execution. | `commands.md`, `validation.md` |
+| V001 | Module files | Test four required module paths. | All module files exist. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V002 | Environment files | Test five required environment paths. | All environment files exist. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V003 | Example variable file | Test `terraform.tfvars.example`. | The safe example file exists. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V004 | State and real variable files | Scan Terraform paths for tfstate and non-example tfvars. | No unsafe generated or real-value file exists. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V005 | OpenStack authentication files | Scan repository filenames for `clouds.yaml` and openrc patterns. | No OpenStack authentication artifact exists. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V006 | OpenStack network resources | Search module `main.tf` for required resource block types. | Network, subnet, router, router interface, security group, and rule definitions exist. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V007 | Remote backend | Search target files for backend blocks. | No backend block exists. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V008 | Credential-like content | Scan target Terraform files for credentials, private keys, tokens, UUIDs, and secrets. | No forbidden content is detected. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V009 | OpenStack account assignments | Search target Terraform files for authentication and account assignments. | No account-specific assignment exists. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V010 | Example values | Compare example CIDRs, external network placeholder, and non-production marker with approved values. | Only approved non-production values exist. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V011 | Terraform formatting | Run `terraform fmt -check` only when Terraform exists. | Formatting passes or absence is recorded as a warning. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
+| V012 | Terraform validate boundary | Record the provider initialization boundary. | Validate is skipped because init/provider download is prohibited. | `logs/openstack-network-provisioning-validation.log`, `configs/openstack-network-provisioning-summary.md` |
 
 ## Review Notes
 
-Every validation item must map to evidence. Provider Network and Tenant Network roles must remain distinct in all future execution evidence.
+V001-V010 are required checks. V011-V012 are informational readiness checks and do not trigger a non-zero exit.

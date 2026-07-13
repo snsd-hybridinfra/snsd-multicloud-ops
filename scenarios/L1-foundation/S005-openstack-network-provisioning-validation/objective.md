@@ -1,17 +1,7 @@
 # Objective
 
-Validate the planned OpenStack baseline network provisioning model required for later multi-cloud operations scenarios.
+Validate the local Terraform definition for an OpenStack baseline network consisting of a private network, private subnet, external network reference, router, router interface, baseline security group, and security group rule placeholder.
 
-The scenario defines validation for these OpenStack network components:
+Success means the repository contains the expected reviewable resources and safe non-production examples, and the local validator completes all required checks without OpenStack authentication, provider initialization, cloud API calls, state creation, or resource provisioning.
 
-- Provider Network placeholder
-- Tenant Network
-- Tenant Subnet
-- Router
-- Router Interface
-- Security Group baseline
-- Floating IP placeholder
-- Keypair placeholder
-- Terraform or OpenStack CLI output validation plan
-
-Success means the repository has a clear, evidence-mapped plan for validating OpenStack network provisioning without creating real resources or storing OpenStack credentials, `openrc` files, `clouds.yaml`, tfstate, private keys, or account-specific files.
+Terraform provider validation is handled in S006. OpenStack security group validation is handled in S016. Terraform drift detection is handled in S041, and cost guardrail validation is handled in S045.

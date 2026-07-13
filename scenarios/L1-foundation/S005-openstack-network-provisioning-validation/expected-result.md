@@ -2,21 +2,18 @@
 
 ## Success Conditions
 
-- OpenStack baseline network validation is fully documented.
-- Provider Network role is clearly distinguished as external, shared, or dependency-owned.
-- Tenant Network role is clearly distinguished as project-owned workload networking.
-- Tenant Network, Tenant Subnet, Router, Router Interface, Security Group baseline, Floating IP placeholder, and Keypair placeholder validation methods are mapped to evidence.
-- Terraform or OpenStack CLI output capture is planned without exposing tfstate, `openrc`, `clouds.yaml`, credentials, or private keys.
-- Rollback using future Terraform destroy or OpenStack CLI cleanup checklist is defined.
+- All required module and environment files exist.
+- Required OpenStack resource block types are present.
+- Only approved non-production examples are used.
+- No state, real tfvars, backend, authentication artifact, credential-like content, or account assignment is present.
+- The validator exits zero when all required checks pass.
+- Optional Terraform formatting or provider validation limitations are recorded as warnings.
 
 ## Required Evidence
 
+- `logs/openstack-network-provisioning-validation.log`
+- `configs/openstack-network-provisioning-summary.md`
 - `commands.md`
 - `validation.md`
-- `configs/openstack-network-plan-summary.md`
-- `logs/openstack-network-validation.log`
-- `screenshots/openstack-network-resource-view.png`
 
-## Completion Criteria
-
-The scenario can move from `PLANNED` to `VALIDATED` only after approved, sanitized evidence confirms the OpenStack baseline network validation checks. Real OpenStack execution is not part of this skeleton.
+The result proves repository-side implementation readiness only; it does not prove OpenStack deployment or provider authentication.
