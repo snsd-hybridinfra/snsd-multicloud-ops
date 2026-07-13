@@ -1,19 +1,23 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
+| Check ID | Validation Item | Evidence File | Required |
 |---|---|---|---|
-| Ingress Controller pod readiness validation plan | `commands.md`; `configs/ingress-routing-summary.md`; `validation.md` | command plan, routing summary, validation record | yes |
-| Ingress resource existence validation plan | `commands.md`; `configs/ingress-routing-summary.md`; `validation.md` | command plan, routing summary, validation record | yes |
-| Web route backend mapping validation plan | `commands.md`; `configs/ingress-backend-mapping.md`; `validation.md` | command plan, backend mapping, validation record | yes |
-| API route backend mapping validation plan | `commands.md`; `configs/ingress-backend-mapping.md`; `validation.md` | command plan, backend mapping, validation record | yes |
-| Host-based routing validation plan | `commands.md`; `logs/ingress-routing-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Path-based routing validation plan | `commands.md`; `logs/ingress-routing-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| HTTP 200 response validation plan | `commands.md`; `logs/ingress-routing-validation.log`; `screenshots/ingress-routing-test.png`; `validation.md` | command plan, validation log, screenshot reference, validation record | yes |
-| Invalid path response validation plan | `commands.md`; `logs/ingress-routing-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Ingress event capture plan | `commands.md`; `logs/ingress-routing-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Ingress controller log capture plan | `commands.md`; `logs/ingress-routing-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Failure condition for missing ingress controller, missing ingress resource, wrong backend service, route timeout, HTTP 5xx, or unresolved hostname | `validation.md` | failure criteria and status record | yes |
+| V001 | Ingress documentation | `logs/ingress-routing-validation.log`; `configs/ingress-routing-summary.md` | yes |
+| V002 | Ingress example files | files; generated evidence | yes |
+| V003 | Ingress sample evidence | three samples; generated evidence | yes |
+| V004 | Required command examples | generated evidence | yes |
+| V005 | Routing model and placeholders | generated evidence | yes |
+| V006 | Ingress object and scope | manifest; generated evidence | yes |
+| V007 | Host and path routing | manifest; generated evidence | yes |
+| V008 | Backend Service reference | Ingress/Service; generated evidence | yes |
+| V009 | Ingress and TLS safety | generated evidence | yes |
+| V010 | Ingress list evidence | sample or sanitized live judgment | yes |
+| V011 | Ingress backend evidence | sample or sanitized live judgment | yes |
+| V012 | Endpoint evidence | sample or sanitized live judgment | yes |
+| V013 | Ingress address awareness | generated evidence | yes |
+| V014 | Kubernetes/TLS credential files | generated evidence | yes |
+| V015 | Routing content safety | generated evidence | yes |
+| V016 | Execution safety boundary | generated evidence | yes |
+| V017 | Validation mode | generated evidence | yes |
 
-## Evidence Notes
-
-No real ingress routing output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+`commands.md` documents both modes and the manual-only curl example. Raw live resource rows are not repository evidence.

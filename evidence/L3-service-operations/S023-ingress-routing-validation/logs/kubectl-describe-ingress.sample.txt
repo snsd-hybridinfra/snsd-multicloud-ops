@@ -1,0 +1,10 @@
+SAMPLE / NON-PRODUCTION KUBECTL DESCRIBE INGRESS OUTPUT
+Name:             sample-service-ingress-placeholder
+Namespace:        snsd-example
+Address:          <ingress-address-placeholder>
+Ingress Class:    nginx
+Rules:
+  Host                  Path  Backends
+  app.example.internal  /     sample-service-placeholder:80 (<pod-ip-placeholder>:80)
+TLS:              <tls-secret-placeholder> documentation only; no certificate material
+

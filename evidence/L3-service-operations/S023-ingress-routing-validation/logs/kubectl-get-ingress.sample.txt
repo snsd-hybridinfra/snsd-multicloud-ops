@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION KUBECTL GET INGRESS OUTPUT
+NAME                                   CLASS   HOSTS                  ADDRESS                         PORTS   AGE
+sample-service-ingress-placeholder     nginx   app.example.internal   <ingress-address-placeholder>   80      <age>
+

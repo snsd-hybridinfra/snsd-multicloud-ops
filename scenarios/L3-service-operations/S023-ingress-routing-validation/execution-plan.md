@@ -1,18 +1,14 @@
 # Execution Plan
 
-1. Confirm the scenario evidence directory exists for S023.
-2. Identify placeholder namespace as `<namespace>`.
-3. Identify placeholder Ingress Controller as `<ingress-controller>`.
-4. Identify placeholder ingress host as `<ingress-host>`.
-5. Identify placeholder backend Services as `<web-service>` and `<api-service>`.
-6. Record the planned Ingress Controller readiness check.
-7. Record the planned Ingress resource existence check.
-8. Record planned Web and API backend mapping checks.
-9. Record planned host-based and path-based routing checks.
-10. Record planned HTTP 200 response and invalid path response checks.
-11. Record planned ingress event and controller log capture actions.
-12. Record TODO placeholders in evidence files until approved execution produces sanitized output.
+1. Run the validator without parameters for static validation.
+2. Confirm documentation, Ingress files, command examples, and samples.
+3. Validate Ingress kind/name/namespace/class and host/path/pathType.
+4. Compare backend name/port/namespace with the S022 Service.
+5. Reject wildcard host, Secret resource, TLS material, and sensitive content.
+6. Parse ingress list, describe, and endpoint evidence; report placeholder ADDRESS as WARN.
+7. Confirm four guarded read-only live argument sets and no automatic curl.
+8. Use `-LiveKubectl` only when explicitly approved.
 
-## Execution Boundaries
+## Execution Boundary
 
-This plan does not create Kubernetes manifests, write kubeconfig files, create Secrets, configure TLS, create DNS records, or alter cluster state. It only defines the review flow and evidence requirements for later approved validation.
+Default mode invokes neither kubectl nor curl. Live mode only observes Ingress, Service, and Endpoints resources.

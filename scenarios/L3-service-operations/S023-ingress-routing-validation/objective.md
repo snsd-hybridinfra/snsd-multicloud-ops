@@ -1,16 +1,13 @@
 # Objective
 
-S023 defines the Kubernetes Ingress routing validation model for the SNSD Multi-Cloud Ops common service runtime.
+## Objective Statement
 
-The scenario validates that planned Ingress routing can direct Web and API traffic to the intended backend Services using placeholder hostnames and paths. It ensures ingress readiness, backend mapping, HTTP response behavior, events, logs, and connectivity are reviewable without introducing real DNS records, public IPs, kubeconfig files, Secrets, or TLS keys.
+Validate the route Client -> Ingress Controller -> Ingress Rule -> Service -> Pod through safe static artifacts and optional read-only observations.
 
-This scenario does not implement Kubernetes manifests or TLS. It defines how future Ingress route evidence must be captured and reviewed.
+## Success Measures
 
-## Operational Capability
-
-- Confirm Ingress Controller readiness is planned.
-- Confirm Ingress resource existence is planned.
-- Confirm Web and API route backend mapping is planned.
-- Confirm host-based and path-based routing placeholders are documented.
-- Confirm HTTP response and invalid path behavior can be validated.
-- Confirm ingress events and controller logs can support evidence review.
+- A marked non-production Ingress uses `snsd-example`, class `nginx`, host `app.example.internal`, path `/`, and Prefix matching.
+- Backend `sample-service-placeholder:80` aligns with the S022 Service.
+- List and describe samples contain the expected route and endpoint evidence contains a target.
+- Wildcard hosts, Secret resources, TLS material, credentials, real endpoints/domains/IPs, and mutation commands are absent.
+- Static mode invokes neither kubectl nor curl.

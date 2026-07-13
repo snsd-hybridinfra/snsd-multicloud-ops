@@ -6,24 +6,23 @@
 | Scenario Name | Ingress Routing Validation |
 | Level | L3 Service Operations Validation |
 | Category | Service Operations |
-| Primary Domain | Kubernetes service routing |
-| Related Components | Ingress Controller, Ingress resource, Web Service, API Service, namespace, service endpoint |
-| Validation Type | Service Operation Validation |
-| Evidence Directory | evidence/L3-service-operations/S023-ingress-routing-validation/ |
-| Status | PLANNED |
+| Related Components | Ingress manifest, Service backend, endpoint evidence, optional read-only kubectl mode |
+| Validation Type | Static by default; explicit optional live read-only validation |
+| Evidence Directory | `evidence/L3-service-operations/S023-ingress-routing-validation/` |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the Kubernetes Ingress routing model for the SNSD Multi-Cloud Ops common service runtime.
+Validate host/path routing from Kubernetes Ingress to a Service backend and endpoint evidence without storing cluster or TLS credentials.
 
 ## Scope Summary
 
-This scenario validates ingress routing only. It covers Ingress Controller readiness, Web and API service routes, host-based and path-based routing placeholders, service backend mapping, HTTP response validation, ingress events and logs, and ingress-to-service connectivity.
+Default execution validates repository files and samples only. `-LiveKubectl` explicitly enables four read-only resource queries; curl remains manual and is never executed by the validator.
 
 ## Validation Summary
 
-Validation checks confirm that the Ingress Controller and Ingress resource are present, routes map to the correct backend services, placeholder host/path routing can be tested, expected HTTP responses are defined, and failures such as wrong backend, route timeout, HTTP 5xx, or unresolved hostname are explicitly captured.
+Seventeen checks validate files, commands, routing placeholders, Ingress scope, host/path, backend/port alignment, TLS safety, list/describe/endpoint evidence, address awareness, credentials, content, execution, and mode.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L3-service-operations/S023-ingress-routing-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Three tracked samples and a sanitized summary accompany an ignored execution log. Static ADDRESS placeholder status is recorded as WARN.

@@ -1,23 +1,16 @@
 # Expected Result
 
-S023 is successful when the Kubernetes Ingress routing validation plan is complete and ready for future approved execution.
+## Static Pass Criteria
 
-## Success Conditions
+- Sixteen checks PASS and ADDRESS awareness produces one expected WARN.
+- Ingress route, backend Service, and endpoint evidence align on host, path, name, and port.
+- No unsafe TLS, Secret, credential, real endpoint/domain/address, or mutation content exists.
+- kubectl and curl are not invoked.
 
-- Ingress Controller pod readiness validation is planned.
-- Ingress resource existence validation is planned.
-- Web route backend mapping validation is planned.
-- API route backend mapping validation is planned.
-- Host-based routing validation uses placeholder hostnames only.
-- Path-based routing validation is planned.
-- HTTP 200 response validation is planned for valid routes.
-- Invalid path response validation is planned.
-- Ingress event capture is planned.
-- Ingress controller log capture is planned.
-- All validation checks map to required evidence files.
+## Optional Live Criteria
 
-## Evidence Conditions
+Ingress, described backend, Service, and non-empty Endpoints must all exist through four successful read-only queries.
 
-- `commands.md` lists planned command or review actions with TODO output placeholders.
-- `validation.md` lists each check with `NOT_RUN` status until execution.
-- Future supporting evidence is expected in `configs/ingress-routing-summary.md`, `configs/ingress-backend-mapping.md`, `logs/ingress-routing-validation.log`, and `screenshots/ingress-routing-test.png`.
+## Evidence Criteria
+
+Evidence records mode, file/manifest/backend/endpoint/secret results and final judgment without raw live rows or sensitive data.

@@ -1,21 +1,15 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Static Mode
 
-- S001-control-plane-toolchain-validation: confirms local command planning.
-- S018-kubernetes-rbac-validation: defines access separation assumptions.
-- S021-kubernetes-node-readiness-validation: defines node readiness assumptions.
-- S022-kubernetes-workload-deployment-validation: defines workload and Service object assumptions.
+- PowerShell and the routing baseline, command reference, Ingress/Service examples, and three sample evidence files.
+- Writable S023 evidence directories.
 
-## Required Tools or References
+## Optional LiveKubectl Mode
 
-- `kubectl` command planning capability, when future execution is approved.
-- HTTP response capture capability, when future execution is approved.
-- Evidence model from `docs/evidence-model.md`.
-- Placeholder naming rules from `docs/naming-rules.md`.
+- Explicit `-LiveKubectl`, approved external context, and existing resources in `snsd-example`.
+- No kubeconfig path, token, certificate, TLS key, endpoint, address, or credential copied to the repository.
 
 ## Safety Preconditions
 
-- Do not add kubeconfig files, Kubernetes Secrets, TLS private keys, credentials, private keys, tfstate, cloud account values, subscription IDs, tenant IDs, or account-specific values.
-- Do not record real public IPs or real DNS records.
-- Do not implement TLS, ingress manifests, or load balancing behavior as part of this scenario skeleton.
+Live mode is read-only and never runs curl or modifies resources.

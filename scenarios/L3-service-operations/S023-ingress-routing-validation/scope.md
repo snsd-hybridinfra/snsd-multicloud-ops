@@ -2,28 +2,14 @@
 
 ## Included
 
-- Ingress Controller readiness validation plan.
-- Web service ingress route validation plan.
-- API service ingress route validation plan.
-- Host-based routing placeholder.
-- Path-based routing placeholder.
-- Service backend mapping validation plan.
-- HTTP response validation plan.
-- Ingress event evidence collection plan.
-- Ingress controller log evidence collection plan.
-- Ingress-to-service connectivity validation plan.
+- Static validation of an Ingress manifest and its Service name/port/namespace alignment.
+- Parsing of non-production ingress list, ingress describe, and endpoint samples.
+- Host, path, class, backend, wildcard, TLS/Secret, and placeholder-address checks.
+- Optional explicit read-only Ingress, Service, and Endpoints queries.
+- Credential-file, endpoint, domain, address, secret-content, and execution safety.
 
 ## Excluded
 
-- Real Kubernetes manifest implementation.
-- Real kubeconfig files, Kubernetes Secrets, TLS private keys, credentials, private keys, tfstate, cloud account values, subscription IDs, tenant IDs, or account-specific files.
-- Real public IPs or real DNS records.
-- TLS implementation.
-- Workload deployment validation, which is handled in S022.
-- Nginx security header validation, which is handled in S019.
-- Load balancing health check validation, which is handled in S025.
-- Kubernetes manifest policy validation, which is handled in S044.
-
-## Placeholder Rules
-
-Use placeholders such as `<ingress-host>`, `<web-service>`, `<api-service>`, `<namespace>`, `<ingress-controller>`, and `<service-endpoint>`.
+- Automatic curl, live HTTP response, DNS, TLS, or real address validation.
+- Apply, delete, patch, edit, replace, scale, rollout, or other resource mutation.
+- Workload deployment (S022), Nginx proxy operation (S024), load-balancer health (S025), DNS model (S009), Nginx headers (S019), and manifest policy (S044).
