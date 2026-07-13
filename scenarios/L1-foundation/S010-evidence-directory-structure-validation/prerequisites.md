@@ -1,17 +1,15 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Required Repository State
 
-- `S001-control-plane-toolchain-validation` through `S009-dns-hostname-resolution-validation` are planned and define the L1 foundation model.
+- PowerShell can run the local validator.
+- `scenarios/`, `evidence/`, and `docs/evidence-status-matrix.md` are readable.
+- S001 through S050 skeleton directories exist.
 
-## Required Tools
+## Not Required
 
-- Repository access.
-- PowerShell for planned execution of `tools/validate-repo-structure.ps1`.
-- Text editor for evidence documentation.
+- Cloud, network, host, cluster, Terraform, or Ansible access.
+- Credentials, private keys, state, kubeconfig, `clouds.yaml`, openrc, or account identifiers.
+- Successful execution of every scenario.
 
-## Required Access Assumptions
-
-- No live system access is required.
-- No real credentials, private keys, public IPs, tfstate, kubeconfig files, or account-specific values are required.
-- Future evidence review must sanitize all paths and outputs before commit.
+The validator operates entirely on repository paths and filenames.

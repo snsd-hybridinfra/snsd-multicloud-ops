@@ -1,20 +1,11 @@
 # Failure Condition
 
-## Failure Conditions
+## Critical Failure Conditions
 
-- Scenario directory count is not 50.
-- Evidence directory count is not 50.
-- A scenario does not have a matching evidence directory.
-- An evidence directory is missing `commands.md` or `validation.md`.
-- An evidence directory is missing `logs/.gitkeep`, `screenshots/.gitkeep`, or `configs/.gitkeep`.
-- Evidence status matrix is missing a scenario or contains an invalid status.
-- Evidence includes real credentials, private keys, public IPs, tfstate, kubeconfig files, or account-specific values.
-- Repository validation script fails.
+- Scenario or evidence count, ID coverage, or uniqueness is invalid.
+- A scenario lacks a mirrored evidence path or an orphan evidence path exists.
+- A required evidence file or subdirectory is missing.
+- A forbidden state, real tfvars, key, credential, kubeconfig, cloud config, database dump, certificate with private material, or archive file is detected.
+- The evidence status matrix is missing S001-S050, contains duplicates, or uses a non-readiness status.
 
-## Evidence of Failure
-
-Record failed or blocked checks in `validation.md`, with supporting TODO references to `configs/evidence-structure-summary.md`, `configs/scenario-evidence-mapping-summary.md`, or `logs/evidence-structure-validation.log`.
-
-## Follow-Up Requirement
-
-Create a follow-up task to repair evidence structure, update tracking matrices, remove sensitive files, or correct repository validation script findings.
+Any critical failure produces a non-zero exit. S010 does not reinterpret an individual scenario validation result.

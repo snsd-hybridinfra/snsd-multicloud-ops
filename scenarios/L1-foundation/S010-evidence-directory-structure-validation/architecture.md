@@ -1,25 +1,24 @@
 # Architecture
 
-## Relevant Components
+## Canonical Path
 
-- `scenarios/`: source scenario documentation grouped by validation level.
-- `evidence/`: matching evidence directories grouped by validation level.
-- `commands.md`: command or action record for each scenario.
-- `validation.md`: validation result table for each scenario.
-- `logs/`: text log placeholder directory.
-- `screenshots/`: screenshot placeholder directory.
-- `configs/`: sanitized configuration or summary placeholder directory.
-- `docs/evidence-status-matrix.md`: cross-scenario evidence status tracker.
-- `tools/validate-repo-structure.ps1`: repository structure validation script.
+`evidence/<level>/<scenario-id-scenario-name>/`
 
-## Logical Flow
+Each directory contains:
 
-1. Each scenario directory maps to one evidence directory at the same level and with the same scenario name.
-2. Each evidence directory contains the required files and placeholder subdirectories.
-3. Evidence files map validation checks to supporting artifacts.
-4. Evidence status is tracked in `docs/evidence-status-matrix.md`.
-5. The repository validation script checks structural completeness.
+- `commands.md`
+- `validation.md`
+- `logs/`
+- `screenshots/`
+- `configs/`
 
-## Out-of-Scope Components
+## Validation Components
 
-Live evidence capture, binary artifact generation, infrastructure execution, sensitive file storage, and implementation-specific validation are not part of S010.
+- `scenarios/`: source path set.
+- `evidence/`: mirrored evidence path set.
+- `docs/evidence-status-matrix.md`: readiness tracking.
+- `validate-evidence-directory-structure.ps1`: repository-only structure and safety validator.
+
+## Validation Flow
+
+The validator enumerates scenario and evidence directories, compares relative paths, checks required content, scans evidence filenames for forbidden artifacts, validates matrix IDs and statuses, then writes S010 evidence. It does not execute scenario logic or inspect external systems.

@@ -1,17 +1,7 @@
 # Objective
 
-Validate the planned evidence directory structure for all 50 core validation scenarios.
+Validate that S001 through S050 have one-to-one scenario and evidence paths and that every evidence directory contains the canonical evidence structure required for repeatable validation.
 
-The scenario defines validation for:
+Success means all structural, sensitive-file, ID-coverage, uniqueness, and Evidence Readiness Status checks pass.
 
-- Matching scenario and evidence directory structure
-- 50 scenario directories under `scenarios/`
-- 50 matching evidence directories under `evidence/`
-- Required evidence files and subdirectories
-- Evidence naming rule
-- Evidence status model
-- Evidence-to-validation mapping rule
-- Sensitive data exclusion rule
-- Repository structure validation script usage
-
-Success means every scenario has a matching evidence directory with required files and placeholders, and the evidence model can be checked without adding real credentials, private keys, public IPs, tfstate, kubeconfig files, or account-specific values.
+Repository-wide scenario quality is handled by `tools/validate-scenario-quality.ps1`. Scenario-specific validation remains in each scenario, and final evidence report generation belongs to S050.

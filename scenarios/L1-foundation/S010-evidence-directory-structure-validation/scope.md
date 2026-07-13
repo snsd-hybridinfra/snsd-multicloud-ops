@@ -2,27 +2,23 @@
 
 ## Included
 
-- Scenario directory count validation plan.
-- Evidence directory count validation plan.
-- Scenario-to-evidence path matching validation plan.
-- Required evidence file validation plan.
-- Required evidence subdirectory validation plan.
-- Evidence filename convention validation plan.
-- Sensitive file exclusion validation plan.
-- Evidence status matrix consistency validation plan.
-- Repository validation script execution plan.
-- Failure condition for missing evidence directory, missing required file, inconsistent path, or sensitive file exposure.
+- Counts and ID coverage for 50 scenario and 50 evidence directories.
+- One-to-one relative-path mirroring.
+- Required `commands.md` and `validation.md` files.
+- Required `logs/`, `screenshots/`, and `configs/` directories.
+- Sensitive and account-specific evidence filename checks.
+- Evidence status matrix coverage, uniqueness, and readiness-value checks.
+- Generated S010 log and summary.
 
 ## Excluded
 
-- Terraform, Ansible, Kubernetes, cloud, monitoring, ML, or backup implementation logic.
-- Real evidence collection from live systems.
-- Real public IPs, credentials, private keys, tfstate, kubeconfig files, or account-specific files.
-- Binary evidence creation for this skeleton.
-- Modifying other scenario or evidence directories.
+- Technical success, correctness, or completeness of scenario-specific implementations.
+- Execution of scenario commands, infrastructure, cloud APIs, Ansible, Kubernetes, or Terraform.
+- Secret processing, sanitization, recovery, or archival.
+- Final evidence aggregation and reporting, which belongs to S050.
+- Repository-wide scenario content QA, which belongs to `tools/validate-scenario-quality.ps1`.
 
 ## Assumptions
 
-- The expected repository model contains 50 scenario directories and 50 matching evidence directories.
-- Evidence status values are `NOT_READY`, `PARTIAL`, `READY`, and `REVIEWED`.
-- The repository validation script is `tools/validate-repo-structure.ps1`.
+- Evidence Readiness Status describes artifact readiness, not validation results.
+- Existing placeholder files and empty canonical subdirectories are valid before scenario execution.

@@ -6,41 +6,33 @@
 | Scenario Name | Evidence Directory Structure Validation |
 | Level | L1 Foundation Validation |
 | Category | Foundation |
-| Primary Domain | Evidence structure readiness |
-| Related Components | scenarios/, evidence/, evidence status matrix, validation script, required evidence files, required evidence subdirectories |
-| Validation Type | Infrastructure Validation |
+| Primary Domain | Repository-level evidence readiness governance |
+| Related Components | All 50 scenario and evidence directories, evidence status matrix |
+| Validation Type | Evidence Validation |
 | Evidence Directory | evidence/L1-foundation/S010-evidence-directory-structure-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the evidence directory structure used by all 50 core validation scenarios in the SNSD Multi-Cloud Ops project.
+Validate that all 50 scenarios have mirrored evidence directories with the canonical files and subdirectories, safe filenames, and valid readiness statuses.
 
 ## Scope Summary
 
-This scenario validates documentation and repository structure only. It does not implement Terraform, Ansible, Kubernetes, cloud, monitoring, ML, backup, or evidence collection logic.
+S010 checks counts, IDs, path mirroring, `commands.md`, `validation.md`, `logs/`, `screenshots/`, `configs/`, sensitive filenames, and evidence-status matrix consistency.
 
-## Evidence Directory Standard
+## Related Components
 
-Each scenario must have a matching evidence directory using the same level and scenario directory name.
-
-```text
-scenarios/L1-foundation/S001-control-plane-toolchain-validation/
-evidence/L1-foundation/S001-control-plane-toolchain-validation/
-```
-
-Each evidence directory must contain:
-
-- `commands.md`
-- `validation.md`
-- `logs/.gitkeep`
-- `screenshots/.gitkeep`
-- `configs/.gitkeep`
+- `evidence/`
+- `docs/evidence-status-matrix.md`
+- `tools/validate-evidence-directory-structure.ps1`
 
 ## Validation Summary
 
-Validation checks cover scenario/evidence directory counts, matching paths, required evidence files and subdirectories, evidence naming, status matrix consistency, sensitive file exclusion, and repository validation script usage.
+S010 validates structure and readiness governance only. It does not determine the technical success of each scenario, replace scenario-specific validation, create infrastructure, or process secrets.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L1-foundation/S010-evidence-directory-structure-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
+- `logs/evidence-directory-structure-validation.log`
+- `configs/evidence-directory-structure-summary.md`
+- `commands.md`
+- `validation.md`

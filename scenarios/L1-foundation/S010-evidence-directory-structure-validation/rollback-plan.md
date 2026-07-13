@@ -1,17 +1,13 @@
 # Rollback Plan
 
-## Stop Condition
+S010 performs no infrastructure or external mutation.
 
-Stop immediately if evidence validation exposes real credentials, private keys, public IPs, tfstate, kubeconfig files, account-specific values, or unapproved binary artifacts.
+If structural or sensitive-file failures are found:
 
-## Rollback Steps
+1. Stop validation and record the failing path without exposing sensitive content.
+2. Repair only the missing canonical directory or placeholder file when ownership is clear.
+3. Quarantine or remove unsafe evidence only through a separately reviewed change.
+4. Correct invalid readiness tracking without changing scenario-specific validation results.
+5. Re-run S010 and both repository QA scripts.
 
-1. Stop validation activity.
-2. Remove unsafe evidence content.
-3. Replace sensitive values with placeholders such as `<redacted-path>` or `<redacted-value>`.
-4. Mark affected checks as `BLOCKED` or `FAIL` in `validation.md`.
-5. Record the blocked condition in the implementation log if scenario progress is affected.
-
-## Recovery Validation
-
-Confirm S010 remains repository structure and evidence policy validation only, with no implementation logic or sensitive files added.
+Generated S010 log and summary files may be regenerated safely.
