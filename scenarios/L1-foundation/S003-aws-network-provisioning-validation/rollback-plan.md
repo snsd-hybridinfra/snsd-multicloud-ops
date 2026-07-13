@@ -2,24 +2,16 @@
 
 ## Stop Condition
 
-Stop immediately if validation activity attempts to create real AWS resources, writes tfstate, reads credentials, exposes account-specific data, or executes Terraform against a real AWS account.
+Stop if any action attempts AWS authentication, provider initialization, plan/apply/destroy, state creation, credential access, or cloud resource changes.
 
 ## Rollback Steps
 
-1. Stop the activity.
-2. Remove any unsafe output from evidence files.
-3. Replace sensitive values with placeholders such as `<aws-vpc-id>` or `<aws-account-id-redacted>`.
-4. Mark the affected validation item as `BLOCKED` or `FAIL` in `validation.md`.
-5. Record the blocked condition in the implementation log if scenario progress is affected.
+1. Terminate the command.
+2. Remove unsafe generated output or non-example variable/state files.
+3. Restore the module or environment from the last reviewed Git version.
+4. Reapply only non-production example values.
+5. Rerun the repository validator.
 
-## Future Terraform Destroy Checklist
+## Recovery Validation
 
-For a future approved lab execution, rollback must include:
-
-1. Confirm the target workspace and account are approved.
-2. Capture planned resources for teardown.
-3. Run `terraform destroy` only after explicit approval.
-4. Confirm VPC, subnets, route tables, internet gateway, and security groups are removed.
-5. Capture sanitized destroy output and final AWS CLI listing evidence.
-
-This checklist is documentation only and must not be executed during the S003 skeleton phase.
+Confirm V001-V008 pass and generated evidence contains repository review results only.

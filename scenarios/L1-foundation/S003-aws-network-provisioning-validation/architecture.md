@@ -2,23 +2,19 @@
 
 ## Relevant Components
 
-- VPC: baseline AWS network boundary represented by `<aws-vpc-id>`.
-- Public Subnet: public-facing network segment represented by `<aws-public-subnet-id>`.
-- Private Subnet: internal network segment represented by `<aws-private-subnet-id>`.
-- Route Table: routing association represented by `<aws-route-table-id>`.
-- Internet Gateway: outbound or public ingress attachment represented by `<aws-internet-gateway-id>`.
-- Security Group baseline: minimum traffic boundary represented by `<aws-security-group-id>`.
-- Optional Bastion entry point: placeholder represented by `<aws-bastion-entry-point>`.
-- Terraform outputs: sanitized output values for resource references.
+- Terraform module: `terraform/modules/aws-network/`
+- Validation environment: `terraform/envs/aws-network-validation/`
+- Placeholder resources: VPC, two subnets, two route tables, internet gateway, security group
+- Repository validator and generated S003 evidence
 
 ## Logical Flow
 
-1. Terraform initialization is planned for the AWS network module context.
-2. Terraform validation is planned before any provisioning.
-3. Baseline AWS network resources are expected to be described by Terraform configuration in a future implementation phase.
-4. Terraform outputs are expected to expose sanitized references for VPC, subnet, route table, internet gateway, and security group resources.
-5. AWS CLI listing is planned as a cross-check after approved execution.
+1. The module defines AWS resource structure through variables and outputs.
+2. The environment references the local module and supplies only example values.
+3. The PowerShell validator reads the repository files and safety constraints.
+4. Terraform formatting is checked only when the CLI is locally available.
+5. Results are written to the matching S003 evidence directory.
 
 ## Out-of-Scope Components
 
-No real AWS account, credentials, provider configuration, remote backend, tfstate, public IPs, private keys, or production resources are used by this scenario.
+AWS accounts, provider credentials, remote backends, state, plans, live resources, AWS CLI, Ansible, and Kubernetes are not accessed.

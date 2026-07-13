@@ -2,17 +2,17 @@
 
 | Check ID | Validation Item | Method | Expected Result | Evidence |
 |---|---|---|---|---|
-| V001 | Terraform AWS provider initialization plan | Document planned `terraform init` validation without credentials. | Initialization approach is defined without provider credentials or backend state. | `commands.md`, `configs/aws-network-plan-summary.md`, `validation.md` |
-| V002 | Terraform validate plan | Document planned `terraform validate` check. | Configuration validation approach is defined for future AWS network code. | `commands.md`, `logs/terraform-aws-network-validation.log`, `validation.md` |
-| V003 | AWS VPC creation validation plan | Define how `<aws-vpc-id>` would be confirmed after approved execution. | VPC validation method is documented. | `configs/aws-network-plan-summary.md`, `validation.md`, `screenshots/aws-vpc-resource-view.png` |
-| V004 | AWS subnet creation validation plan | Define public and private subnet validation checks. | Public and private subnet validation method is documented. | `configs/aws-network-plan-summary.md`, `validation.md`, `screenshots/aws-vpc-resource-view.png` |
-| V005 | AWS route table validation plan | Define route table and association validation checks. | Route table validation method is documented. | `commands.md`, `logs/terraform-aws-network-validation.log`, `validation.md` |
-| V006 | AWS security group baseline validation plan | Define baseline security group validation checks. | Security group baseline validation method is documented without rule implementation. | `configs/aws-network-plan-summary.md`, `validation.md` |
-| V007 | Terraform output capture plan | Define expected sanitized Terraform outputs. | Output capture method is documented without tfstate content. | `commands.md`, `logs/terraform-aws-network-validation.log`, `validation.md` |
-| V008 | AWS CLI resource listing plan | Define planned AWS CLI list or describe commands. | AWS CLI evidence capture method is documented with placeholders only. | `commands.md`, `logs/terraform-aws-network-validation.log`, `validation.md` |
-| V009 | Missing VPC, subnet, route, or security group failure condition | Define explicit missing-resource failure criteria. | Missing required AWS network resources produce `FAIL` or `BLOCKED` status. | `validation.md` |
-| V010 | Rollback plan using terraform destroy checklist | Define future approved teardown checklist. | Rollback steps are documented without executing destroy. | `commands.md`, `validation.md` |
+| V001 | Module files | Test four required module paths. | All module files exist. | `logs/aws-network-provisioning-validation.log`, `configs/aws-network-provisioning-summary.md` |
+| V002 | Environment files | Test five required environment paths. | All environment files exist. | `logs/aws-network-provisioning-validation.log`, `configs/aws-network-provisioning-summary.md` |
+| V003 | Example variable file | Test `terraform.tfvars.example`. | The safe example file exists. | `logs/aws-network-provisioning-validation.log`, `configs/aws-network-provisioning-summary.md` |
+| V004 | State and real variable files | Scan Terraform paths for tfstate and non-example tfvars. | No unsafe generated or real-value file exists. | `logs/aws-network-provisioning-validation.log`, `configs/aws-network-provisioning-summary.md` |
+| V005 | AWS network resources | Search module `main.tf` for required resource block types. | VPC, subnet, route table, internet gateway, and security group definitions exist. | `logs/aws-network-provisioning-validation.log`, `configs/aws-network-provisioning-summary.md` |
+| V006 | Remote backend | Search target files for backend blocks. | No backend block exists. | `logs/aws-network-provisioning-validation.log`, `configs/aws-network-provisioning-summary.md` |
+| V007 | Credential-like content | Scan target files for credential, private-key, and account-ID patterns. | No forbidden content is detected. | `logs/aws-network-provisioning-validation.log`, `configs/aws-network-provisioning-summary.md` |
+| V008 | Example values | Compare example CIDRs with the approved list and marker. | Only approved non-production examples exist. | `logs/aws-network-provisioning-validation.log`, `configs/aws-network-provisioning-summary.md` |
+| V009 | Terraform formatting | Run `terraform fmt -check` only when Terraform exists. | Formatting passes or absence is recorded as a warning. | `logs/aws-network-provisioning-validation.log`, `configs/aws-network-provisioning-summary.md` |
+| V010 | Terraform validate boundary | Record the provider initialization boundary. | Validate is skipped because init/provider download is prohibited. | `logs/aws-network-provisioning-validation.log`, `configs/aws-network-provisioning-summary.md` |
 
 ## Review Notes
 
-Every validation item must map to evidence. This scenario does not create real AWS resources or execute Terraform against a real AWS account.
+V001-V008 are required checks. V009-V010 are informational readiness checks and do not trigger a non-zero exit.

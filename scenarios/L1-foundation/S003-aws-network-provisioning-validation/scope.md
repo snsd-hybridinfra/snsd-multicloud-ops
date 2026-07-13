@@ -2,30 +2,25 @@
 
 ## Included
 
-- Terraform AWS provider initialization plan.
-- Terraform validate plan.
-- AWS VPC creation validation plan.
-- AWS public and private subnet creation validation plan.
-- AWS route table validation plan.
-- AWS internet gateway validation plan.
-- AWS security group baseline validation plan.
-- Optional bastion entry point placeholder validation.
-- Terraform output capture plan.
-- AWS CLI resource listing plan.
-- Failure condition for missing VPC, subnet, route, or security group.
-- Rollback plan using a `terraform destroy` checklist.
+- Review a reusable `aws-network` Terraform module placeholder.
+- Review a local `aws-network-validation` environment placeholder.
+- Validate required module and environment files.
+- Validate VPC, subnet, route table, internet gateway, and security group resource block types.
+- Validate the example variable file and approved non-production CIDRs.
+- Detect real tfvars, tfstate, backend blocks, credentials, private keys, and account-ID patterns.
+- Optionally run `terraform fmt -check` when Terraform is installed.
 
 ## Excluded
 
-- Real AWS Terraform resource implementation.
-- Terraform provider credentials or backend configuration.
-- AWS credentials, access keys, account IDs, private keys, tfstate files, or account-specific files.
-- Real AWS resource creation, modification, or deletion.
-- Terraform plan, apply, or destroy execution against a real account.
-- Ansible, Kubernetes, monitoring, ML, backup, or other unrelated logic.
+- AWS authentication, AWS CLI calls, or cloud API access.
+- Terraform `init`, `validate`, `plan`, `apply`, or `destroy`.
+- Provider configuration and validation, handled in S006.
+- Security group least-privilege rules, handled in S014.
+- Drift detection, handled in S041.
+- Cost guardrails, handled in S045.
+- Real AWS resources, account IDs, credentials, backend names, public addresses, tfstate, and real tfvars.
 
 ## Assumptions
 
-- AWS identifiers are represented only with placeholders such as `<aws-vpc-id>` and `<aws-public-subnet-id>`.
-- Any future AWS CLI output must be sanitized before commit.
-- This scenario remains in planning status until an approved lab execution path exists.
+- `terraform.tfvars.example` contains only documented non-production values.
+- Provider initialization will occur only in a later explicitly authorized scenario.

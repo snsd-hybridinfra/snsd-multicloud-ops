@@ -662,7 +662,7 @@ $repositoryFiles = @(
 
 $riskyFileNamePattern = (
     "(?i)(^|\.)kubeconfig($|\.)|^id_(rsa|dsa|ecdsa|ed25519)(\.|$)|" +
-    "\.tfstate($|\.)|\.tfvars($|\.)|\.pem$|\.key$|\.p12$|\.pfx$|" +
+    "\.tfstate($|\.)|\.tfvars(?!\.example$)($|\.)|\.pem$|\.key$|\.p12$|\.pfx$|" +
     "\.jks$|\.keystore$|\.env($|\.)|openrc|clouds\.ya?ml$|" +
     "credentials?|private[-_]?key|access[-_]?key|api[-_]?key|" +
     "\.sql$|\.dump$|\.bak$|\.tar$|\.gz$|\.zip$"

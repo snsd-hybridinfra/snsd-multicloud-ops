@@ -12,12 +12,12 @@ Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 
 | Level | Category | Scenarios | Implemented | Validated | Notes |
 |---|---|---:|---:|---:|---|
-| L1 | Foundation | 10/10 | 2/10 | 1/10 | S001 implemented with a Python readiness failure; S002 validated; S003 through S010 planned |
+| L1 | Foundation | 10/10 | 3/10 | 2/10 | S001 implemented with a Python readiness failure; S002 and S003 validated; S004 through S010 planned |
 | L2 | Security Baseline | 10/10 | 0/10 | 0/10 | S011 through S020 planned |
 | L3 | Service Operations | 10/10 | 0/10 | 0/10 | S021 through S030 planned |
 | L4 | Failure Recovery | 10/10 | 0/10 | 0/10 | S031 through S040 planned |
 | L5 | Governance Intelligent Ops | 10/10 | 0/10 | 0/10 | S041 through S050 planned |
-| Total | All Levels | 50/50 | 2/50 | 1/50 | S001 implemented; S002 validated; remaining scenarios planned |
+| Total | All Levels | 50/50 | 3/50 | 2/50 | S001 implemented; S002 and S003 validated; remaining scenarios planned |
 
 ## Update Rule
 

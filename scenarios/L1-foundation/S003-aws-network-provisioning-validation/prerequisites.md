@@ -2,17 +2,16 @@
 
 ## Required Previous Scenarios
 
-- `S001-control-plane-toolchain-validation` is planned and identifies Terraform CLI and AWS CLI readiness checks.
-- `S002-eve-ng-onprem-routing-validation` is planned and documents the on-prem routing baseline that may later connect to cloud networks.
+- S001 records Terraform as a later-stage warning, but Terraform absence does not block S003 repository checks.
+- S002 defines the repository-side on-prem routing baseline; S003 does not test connectivity to it.
 
 ## Required Tools
 
-- Terraform CLI availability, as planned in S001.
-- AWS CLI availability, as planned in S001.
-- Access to repository documentation and evidence directories.
+- PowerShell
+- Local repository read access
+- Write access to the S003 evidence directory
+- Terraform is optional and used only for `fmt -check`
 
 ## Required Access Assumptions
 
-- No AWS login is required for this skeleton.
-- No Terraform backend, tfvars, credentials, access keys, private keys, or tfstate files are required.
-- Future execution requires explicit approval before any real AWS resource interaction.
+- No AWS login, provider credential, backend, tfstate, real tfvars, or cloud resource access is required.

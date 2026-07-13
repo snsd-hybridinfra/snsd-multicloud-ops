@@ -1,16 +1,9 @@
 # Objective
 
-Validate the planned AWS baseline network provisioning model required for later multi-cloud operations scenarios.
+## Operational Capability
 
-The scenario defines validation for these AWS network components:
+Validate a local Terraform definition for an AWS VPC, public and private subnet placeholders, route tables, an internet gateway, and an empty baseline security group.
 
-- VPC
-- Public Subnet
-- Private Subnet
-- Route Table
-- Internet Gateway
-- Security Group baseline
-- Optional Bastion entry point placeholder
-- Terraform output validation plan
+## Success Definition
 
-Success means the repository has a clear, evidence-mapped plan for validating AWS network provisioning without creating real resources or storing AWS credentials, account IDs, access keys, tfstate, private keys, or account-specific files.
+All required files and resource types exist, only approved example values are present, no state/backend/credential material exists, and the local validator exits zero without contacting AWS.

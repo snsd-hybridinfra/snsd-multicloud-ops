@@ -2,17 +2,19 @@
 
 | Validation Item | Evidence File | Evidence Type | Required |
 |---|---|---|---|
-| Terraform AWS provider initialization plan | `commands.md`; `configs/aws-network-plan-summary.md`; `validation.md` | command plan, plan summary, validation record | yes |
-| Terraform validate plan | `commands.md`; `logs/terraform-aws-network-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| AWS VPC creation validation plan | `configs/aws-network-plan-summary.md`; `validation.md`; `screenshots/aws-vpc-resource-view.png` | plan summary, validation record, screenshot reference | yes |
-| AWS subnet creation validation plan | `configs/aws-network-plan-summary.md`; `validation.md`; `screenshots/aws-vpc-resource-view.png` | plan summary, validation record, screenshot reference | yes |
-| AWS route table validation plan | `commands.md`; `logs/terraform-aws-network-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| AWS security group baseline validation plan | `configs/aws-network-plan-summary.md`; `validation.md` | plan summary, validation record | yes |
-| Terraform output capture plan | `commands.md`; `logs/terraform-aws-network-validation.log`; `validation.md` | command plan, output capture log, validation record | yes |
-| AWS CLI resource listing plan | `commands.md`; `logs/terraform-aws-network-validation.log`; `validation.md` | command plan, AWS CLI listing log, validation record | yes |
-| Missing VPC, subnet, route, or security group failure condition | `validation.md` | failure criteria and status record | yes |
-| Rollback plan using terraform destroy checklist | `commands.md`; `validation.md` | rollback checklist and validation record | yes |
+| V001 Module files | `logs/aws-network-provisioning-validation.log`; `configs/aws-network-provisioning-summary.md` | generated log and summary | yes |
+| V002 Environment files | `logs/aws-network-provisioning-validation.log`; `configs/aws-network-provisioning-summary.md` | generated log and summary | yes |
+| V003 Example variable file | `logs/aws-network-provisioning-validation.log`; `configs/aws-network-provisioning-summary.md` | generated log and summary | yes |
+| V004 State and real variable files | `logs/aws-network-provisioning-validation.log`; `configs/aws-network-provisioning-summary.md` | generated log and summary | yes |
+| V005 AWS network resources | `logs/aws-network-provisioning-validation.log`; `configs/aws-network-provisioning-summary.md` | generated log and summary | yes |
+| V006 Remote backend | `logs/aws-network-provisioning-validation.log`; `configs/aws-network-provisioning-summary.md` | generated log and summary | yes |
+| V007 Credential-like content | `logs/aws-network-provisioning-validation.log`; `configs/aws-network-provisioning-summary.md` | generated log and summary | yes |
+| V008 Example values | `logs/aws-network-provisioning-validation.log`; `configs/aws-network-provisioning-summary.md` | generated log and summary | yes |
+| V009 Terraform formatting | `logs/aws-network-provisioning-validation.log`; `configs/aws-network-provisioning-summary.md` | generated log and summary | yes |
+| V010 Terraform validate boundary | `logs/aws-network-provisioning-validation.log`; `configs/aws-network-provisioning-summary.md` | generated log and summary | yes |
+| Script invocation and evidence inspection | `commands.md` | operator command record | yes |
+| Final validation judgment | `validation.md` | validation result | yes |
 
 ## Evidence Notes
 
-No real Terraform or AWS output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+The log is reproducible. Screenshots, AWS CLI output, plans, and state are neither required nor permitted.

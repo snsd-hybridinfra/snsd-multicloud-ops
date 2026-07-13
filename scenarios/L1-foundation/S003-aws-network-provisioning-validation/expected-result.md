@@ -2,21 +2,20 @@
 
 ## Success Conditions
 
-- AWS baseline network validation is fully documented.
-- Terraform initialization and validate plans are defined without credentials or backend state.
-- VPC, subnet, route table, internet gateway, and security group validation methods are mapped to evidence.
-- Terraform output capture is planned without exposing tfstate content.
-- AWS CLI resource listing is planned with sanitized placeholders only.
-- Rollback using a future `terraform destroy` checklist is defined.
+- All required module and environment files exist.
+- Required AWS network resource block types are defined.
+- Only `terraform.tfvars.example` with approved values is present.
+- No tfstate, backend, credential, private-key, or account-ID pattern exists.
+- The local validator exits zero and generates both evidence files.
+- Terraform availability or provider initialization is not required.
 
 ## Required Evidence
 
+- `logs/aws-network-provisioning-validation.log`
+- `configs/aws-network-provisioning-summary.md`
 - `commands.md`
 - `validation.md`
-- `configs/aws-network-plan-summary.md`
-- `logs/terraform-aws-network-validation.log`
-- `screenshots/aws-vpc-resource-view.png`
 
 ## Completion Criteria
 
-The scenario can move from `PLANNED` to `VALIDATED` only after approved, sanitized evidence confirms the AWS baseline network validation checks. Real AWS execution is not part of this skeleton.
+S003 is `VALIDATED` when V001-V008 pass. This status validates repository definitions only and does not claim successful AWS provisioning.

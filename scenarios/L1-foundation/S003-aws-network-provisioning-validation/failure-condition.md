@@ -2,18 +2,18 @@
 
 ## Failure Conditions
 
-- Terraform AWS provider initialization validation cannot be planned safely.
-- Terraform validate evidence cannot be defined.
-- VPC, subnet, route table, internet gateway, or security group validation criteria are missing.
-- Terraform output capture would require committing tfstate or sensitive values.
-- AWS CLI resource listing would expose account IDs, credentials, real public IPs, or other sensitive values.
-- Rollback through `terraform destroy` is not documented for future approved execution.
-- Real AWS resources, credentials, access keys, account IDs, tfstate, private keys, or account-specific files are added.
+- A required module or environment file is missing.
+- A required AWS network resource type is absent.
+- A real tfvars, tfstate, or backend block exists.
+- Credential, private-key, account-ID, or unexpected CIDR content is detected.
+- Execution attempts Terraform initialization, validation requiring providers, planning, apply, destroy, AWS authentication, or a cloud API call.
+
+Terraform CLI absence or a formatting difference is a warning, not a required-definition failure.
 
 ## Evidence of Failure
 
-Record failed or blocked checks in `validation.md`, with supporting TODO references to `commands.md`, `configs/aws-network-plan-summary.md`, or `logs/terraform-aws-network-validation.log`.
+The generated log and summary identify the failed local check without exposing sensitive content.
 
 ## Follow-Up Requirement
 
-Create a follow-up task to clarify the AWS network plan, sanitize evidence expectations, or define a safe future lab execution path before implementation proceeds.
+Correct the repository definition or remove the unsafe file, then rerun S003. Do not authenticate to AWS as remediation.

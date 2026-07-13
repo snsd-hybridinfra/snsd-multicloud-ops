@@ -6,34 +6,33 @@
 | Scenario Name | AWS Network Provisioning Validation |
 | Level | L1 Foundation Validation |
 | Category | Foundation |
-| Primary Domain | AWS baseline network readiness |
-| Related Components | VPC, public subnet, private subnet, route table, internet gateway, security group baseline, optional bastion entry point, Terraform outputs |
+| Primary Domain | Repository-side AWS network definitions |
+| Related Components | AWS network Terraform module, validation environment, local safety validator |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S003-aws-network-provisioning-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the AWS baseline network provisioning scenario for the SNSD Multi-Cloud Ops project.
+Validate that AWS network provisioning is represented by reviewable Terraform definitions without authenticating to AWS or creating resources.
 
 ## Scope Summary
 
-This scenario defines how AWS network provisioning will be validated later. It does not create real AWS resources, configure provider credentials, store account IDs, or generate Terraform state.
+S003 checks required files, AWS resource block types, safe example values, absence of state and real variable files, absence of backend configuration, and absence of credential-like content.
 
 ## Related Components
 
-- `<aws-vpc-id>` placeholder
-- `<aws-public-subnet-id>` placeholder
-- `<aws-private-subnet-id>` placeholder
-- `<aws-route-table-id>` placeholder
-- `<aws-internet-gateway-id>` placeholder
-- `<aws-security-group-id>` placeholder
-- `<aws-bastion-entry-point>` placeholder
+- `terraform/modules/aws-network/`
+- `terraform/envs/aws-network-validation/`
+- `tools/validate-aws-network-provisioning.ps1`
 
 ## Validation Summary
 
-Validation checks cover Terraform initialization planning, Terraform validation planning, AWS resource existence validation planning, Terraform output capture planning, AWS CLI listing planning, failure conditions, and rollback through a `terraform destroy` checklist.
+Required repository checks determine success. Terraform formatting is optional when the CLI exists. Provider-dependent validation is skipped because S003 prohibits initialization and authentication.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L1-foundation/S003-aws-network-provisioning-validation/`, with command plans in `commands.md` and validation results in `validation.md`.
+- `logs/aws-network-provisioning-validation.log`
+- `configs/aws-network-provisioning-summary.md`
+- `commands.md`
+- `validation.md`
