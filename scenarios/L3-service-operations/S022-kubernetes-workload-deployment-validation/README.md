@@ -6,24 +6,23 @@
 | Scenario Name | Kubernetes Workload Deployment Validation |
 | Level | L3 Service Operations Validation |
 | Category | Service Operations |
-| Primary Domain | Kubernetes service runtime |
-| Related Components | Kubernetes/k3s runtime, namespaces, web deployment, API deployment, services, ConfigMaps, Secret templates, container images |
-| Validation Type | Service Operation Validation |
-| Evidence Directory | evidence/L3-service-operations/S022-kubernetes-workload-deployment-validation/ |
-| Status | PLANNED |
+| Related Components | namespace, Deployment, Service, command reference, sample deployment/pod evidence |
+| Validation Type | Static by default; explicit optional live read-only validation |
+| Evidence Directory | `evidence/L3-service-operations/S022-kubernetes-workload-deployment-validation/` |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the Kubernetes/k3s workload deployment model for the SNSD Multi-Cloud Ops common service runtime.
+Validate safe Kubernetes workload manifests and deployment evidence without storing cluster credentials or requiring live access.
 
 ## Scope Summary
 
-This scenario validates workload deployment only. It covers web and API deployment planning, namespace placement, rollout status, replica availability, pod readiness, service objects, ConfigMap placeholders, Secret template placeholders, resource requests and limits, image tag policy, and evidence collection.
+Default execution validates repository documents, manifests, and sample evidence only. `-LiveKubectl` explicitly enables two read-only workload listings and stores aggregate status rather than raw rows.
 
 ## Validation Summary
 
-Validation checks confirm that expected workload objects can be reviewed, rollout and pod status are captured, services and configuration references are present, images avoid `latest`, resource policies are documented, and failures such as CrashLoopBackOff, ImagePullBackOff, failed rollout, or missing resource limits are explicitly captured.
+Sixteen checks validate files, commands, manifest structure, labels/selectors, probes/resources/image, unsafe patterns, deployment and Pod readiness, restarts, credential safety, sensitive content, and mode boundaries.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L3-service-operations/S022-kubernetes-workload-deployment-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+Tracked deployment and Pod samples and a sanitized summary accompany an ignored execution log in the S022 evidence directory.

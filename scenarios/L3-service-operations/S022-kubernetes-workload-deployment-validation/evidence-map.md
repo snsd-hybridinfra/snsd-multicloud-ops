@@ -1,20 +1,22 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
+| Check ID | Validation Item | Evidence File | Required |
 |---|---|---|---|
-| Namespace existence validation plan | `commands.md`; `configs/kubernetes-workload-summary.md`; `validation.md` | command plan, workload summary, validation record | yes |
-| Web Deployment existence validation plan | `commands.md`; `configs/kubernetes-workload-summary.md`; `validation.md` | command plan, workload summary, validation record | yes |
-| API Deployment existence validation plan | `commands.md`; `configs/kubernetes-workload-summary.md`; `validation.md` | command plan, workload summary, validation record | yes |
-| Deployment rollout status validation plan | `commands.md`; `logs/kubernetes-workload-deployment-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Pod Running and Ready status validation plan | `commands.md`; `logs/kubernetes-workload-deployment-validation.log`; `screenshots/kubernetes-workload-status.png`; `validation.md` | command plan, validation log, screenshot reference, validation record | yes |
-| Replica availability validation plan | `commands.md`; `configs/kubernetes-workload-summary.md`; `validation.md` | command plan, workload summary, validation record | yes |
-| Kubernetes Service existence validation plan | `commands.md`; `configs/kubernetes-workload-summary.md`; `validation.md` | command plan, workload summary, validation record | yes |
-| ConfigMap reference validation plan | `commands.md`; `configs/kubernetes-workload-summary.md`; `validation.md` | command plan, workload summary, validation record | yes |
-| Secret template reference validation plan | `commands.md`; `configs/kubernetes-workload-summary.md`; `validation.md` | command plan, workload summary, validation record | yes |
-| Resource requests and limits validation plan | `commands.md`; `configs/kubernetes-resource-policy-summary.md`; `validation.md` | command plan, resource policy summary, validation record | yes |
-| Image tag not latest validation plan | `commands.md`; `configs/kubernetes-resource-policy-summary.md`; `validation.md` | command plan, resource policy summary, validation record | yes |
-| Failure condition for missing namespace, failed rollout, CrashLoopBackOff, ImagePullBackOff, missing service, missing config reference, or missing resource limits | `validation.md` | failure criteria and status record | yes |
+| V001 | Workload documentation | `logs/kubernetes-workload-deployment-validation.log`; `configs/kubernetes-workload-deployment-summary.md` | yes |
+| V002 | Required workload files | manifests; generated evidence | yes |
+| V003 | Sample workload evidence | both sample files; generated evidence | yes |
+| V004 | Required command examples | generated evidence | yes |
+| V005 | Deployment validation model | generated evidence | yes |
+| V006 | Manifest kinds and namespace | manifests; generated evidence | yes |
+| V007 | Labels and selectors | manifests; generated evidence | yes |
+| V008 | Runtime readiness controls | deployment; generated evidence | yes |
+| V009 | Unsafe manifest pattern denial | manifests; generated evidence | yes |
+| V010 | Deployment evidence | deployment sample or sanitized live counts | yes |
+| V011 | Pod evidence | Pod sample or sanitized live counts | yes |
+| V012 | Pod restart awareness | Pod sample or sanitized live counts | yes |
+| V013 | Kubernetes credential files | generated evidence | yes |
+| V014 | Manifest/evidence content safety | generated evidence | yes |
+| V015 | Execution safety boundary | generated evidence | yes |
+| V016 | Validation mode | generated evidence | yes |
 
-## Evidence Notes
-
-No real Kubernetes workload deployment output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+`commands.md` documents both modes and `validation.md` records the completed static result. Raw live workload rows are not repository evidence.

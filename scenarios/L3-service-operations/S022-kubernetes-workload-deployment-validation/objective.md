@@ -1,15 +1,14 @@
 # Objective
 
-S022 defines the Kubernetes/k3s workload deployment validation model for the SNSD Multi-Cloud Ops common service runtime.
+## Objective Statement
 
-The scenario validates that planned web and API workloads can be placed in the intended namespace, expose required Service objects, reference required configuration templates, use reviewable image tags, define resource requests and limits, and report healthy rollout, replica, pod Running, and pod Ready status.
+Validate that a non-production Kubernetes Deployment and Service define consistent, observable, resource-bounded workload behavior and that captured evidence indicates availability.
 
-This scenario does not implement Kubernetes manifests or create cluster access files. It defines how future workload deployment evidence must be captured and reviewed.
+## Success Measures
 
-## Operational Capability
-
-- Confirm namespace placement for workloads is planned.
-- Confirm web and API Deployment validation is planned.
-- Confirm rollout, replica, pod Running, and pod Ready checks are planned.
-- Confirm Service object, ConfigMap reference, and Secret template reference checks are planned.
-- Confirm resource requests, limits, and image tag policy checks are planned.
+- Namespace, Deployment, Service, README, command reference, and samples exist.
+- Labels and selectors align; readiness/liveness probes and requests/limits exist.
+- The image uses a fixed non-latest tag.
+- Unsafe host, privileged, Secret, image-pull-secret, cluster-binding, and NodePort patterns are absent.
+- Deployment replicas are fully ready/available; Pods are Running and ready.
+- Static mode never invokes kubectl; optional live mode remains read-only.

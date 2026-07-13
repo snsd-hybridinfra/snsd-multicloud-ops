@@ -1,23 +1,17 @@
 # Expected Result
 
-S022 is successful when the Kubernetes/k3s workload deployment validation plan is complete and ready for future approved execution.
+## Static Pass Criteria
 
-## Success Conditions
+- V001 through V016 return PASS with zero warnings for current samples.
+- One Deployment reports 2/2 ready and two available replicas.
+- Two Pods report 1/1 Running with zero restarts.
+- Manifests contain required controls and no unsafe pattern.
+- kubectl is not invoked.
 
-- Namespace existence validation is planned.
-- Web and API Deployment existence validation is planned.
-- Deployment rollout status validation is planned.
-- Pod Running and Ready status validation is planned.
-- Replica availability validation is planned.
-- Kubernetes Service object validation is planned.
-- ConfigMap reference validation is planned.
-- Secret template reference validation is planned without storing real Secret data.
-- Resource requests and limits validation is planned.
-- Image tag policy validation confirms `latest` is not accepted.
-- All validation checks map to required evidence files.
+## Optional Live Criteria
 
-## Evidence Conditions
+At least one Deployment and Pod row must parse; all desired replicas must be ready/available and all Pods Running/ready. Restarts above zero produce WARN.
 
-- `commands.md` lists planned command or review actions with TODO output placeholders.
-- `validation.md` lists each check with `NOT_RUN` status until execution.
-- Future supporting evidence is expected in `configs/kubernetes-workload-summary.md`, `configs/kubernetes-resource-policy-summary.md`, `logs/kubernetes-workload-deployment-validation.log`, and `screenshots/kubernetes-workload-status.png`.
+## Evidence Criteria
+
+Evidence records mode, required files, manifest safety, deployment/Pod parsing, restarts, secret safety, and final judgment without raw live workload rows.

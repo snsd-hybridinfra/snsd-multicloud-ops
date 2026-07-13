@@ -1,29 +1,24 @@
 # Architecture
 
-## Relevant Components
+## Validation Flow
 
-- Control Plane: planned origin for workload validation commands.
-- Kubernetes/k3s runtime: target service runtime for workload deployment validation.
-- Namespace: represented by `<namespace>`.
-- Web Deployment: represented by `<web-deployment>`.
-- API Deployment: represented by `<api-deployment>`.
-- Services: represented by `<web-service>` and `<api-service>`.
-- ConfigMap placeholder: planned non-secret configuration reference.
-- Secret template placeholder: planned secret reference without storing real Secret data.
-- Container image reference: represented by `<container-image>`.
+```text
+Static default
+  -> baseline + commands + Namespace/Deployment/Service
+  -> deployment and pod sample parsers
 
-## Deployment Model
+Explicit -LiveKubectl
+  -> kubectl get deployments -n snsd-example
+  -> kubectl get pods -n snsd-example
+  -> aggregate readiness/status/restart counts
 
-- Web and API workloads must be placed in the intended namespace.
-- Deployments must have reviewable rollout status.
-- Pods must reach Running and Ready states.
-- Replica counts must match desired availability.
-- Services must exist for planned internal or external routing.
-- ConfigMap references must be present where required.
-- Secret templates may be referenced by name only; real Secret values are prohibited.
-- Resource requests and limits must be documented.
-- Image tags must not use `latest`.
+Both modes -> manifest and secret safety -> sanitized evidence
+```
 
-## Boundary Notes
+## Workload Model
 
-This scenario validates workload deployment only. Node readiness, ingress routing, RBAC, and manifest policy are separate scenario responsibilities.
+Two replicas use matching `app` labels, readiness/liveness probes, resource requests/limits, and a ClusterIP Service. Unsafe host and secret patterns are denied.
+
+## Trust Boundary
+
+Static mode is repository-local. Live mode is opt-in and read-only; raw workload names, endpoints, kubeconfig details, and credentials are not written to evidence.

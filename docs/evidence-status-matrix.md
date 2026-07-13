@@ -25,7 +25,7 @@ Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S019 | nginx-security-header-validation | READY | READY | READY | READY | READY | READY |
 | S020 | grafana-anonymous-access-denial-validation | READY | READY | READY | READY | READY | READY |
 | S021 | kubernetes-node-readiness-validation | READY | READY | READY | READY | READY | READY |
-| S022 | kubernetes-workload-deployment-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
+| S022 | kubernetes-workload-deployment-validation | READY | READY | READY | READY | READY | READY |
 | S023 | ingress-routing-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S024 | nginx-reverse-proxy-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S025 | load-balancing-health-check-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |

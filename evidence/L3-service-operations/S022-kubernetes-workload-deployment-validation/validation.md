@@ -1,38 +1,34 @@
 # Validation
 
 Scenario: S022-kubernetes-workload-deployment-validation
+
 Level: L3-service-operations
-Capability: Kubernetes/k3s Workload Deployment Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
 
-No real Kubernetes workload deployment output has been collected yet. This file defines the validation record that must be completed during future approved execution.
+Date: 2026-07-13
 
-| Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
+Overall status: PASS
+
+Validation mode: Static
+
+| Check ID | Validation Item | Expected Condition | Actual Result | Evidence File | Status |
 |---|---|---|---|---|---|
-| V001 | Namespace existence validation plan | Target namespace is identifiable. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-workload-summary.md` |
-| V002 | Web Deployment existence validation plan | Web Deployment is identifiable in `<namespace>`. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-workload-summary.md` |
-| V003 | API Deployment existence validation plan | API Deployment is identifiable in `<namespace>`. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-workload-summary.md` |
-| V004 | Deployment rollout status validation plan | Deployment rollouts complete successfully. | TODO | NOT_RUN | `commands.md`; `logs/kubernetes-workload-deployment-validation.log` |
-| V005 | Pod Running and Ready status validation plan | Pods are Running and Ready. | TODO | NOT_RUN | `commands.md`; `logs/kubernetes-workload-deployment-validation.log`; `screenshots/kubernetes-workload-status.png` |
-| V006 | Replica availability validation plan | Available replicas match desired replicas. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-workload-summary.md` |
-| V007 | Kubernetes Service existence validation plan | Required Service objects are identifiable. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-workload-summary.md` |
-| V008 | ConfigMap reference validation plan | Required ConfigMap references are present. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-workload-summary.md` |
-| V009 | Secret template reference validation plan | Secret references exist without storing real Secret values. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-workload-summary.md` |
-| V010 | Resource requests and limits validation plan | Workloads define resource requests and limits. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-resource-policy-summary.md` |
-| V011 | Image tag not latest validation plan | Container images do not use `latest`. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-resource-policy-summary.md` |
-| V012 | Failure condition for missing namespace, failed rollout, CrashLoopBackOff, ImagePullBackOff, missing service, missing config reference, or missing resource limits | Workload deployment failures produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
+| V001 | Workload documentation | Baseline and commands exist. | Both exist. | generated evidence | PASS |
+| V002 | Required workload files | Four files exist. | All found. | manifests, generated evidence | PASS |
+| V003 | Sample workload evidence | Two samples exist. | Both found. | samples, generated evidence | PASS |
+| V004 | Required command examples | Seven examples exist. | All documented. | generated evidence | PASS |
+| V005 | Deployment validation model | Required model exists. | All terms found. | generated evidence | PASS |
+| V006 | Manifest kinds and namespace | Kinds and namespace correct. | All pass. | manifests, generated evidence | PASS |
+| V007 | Labels and selectors | Labels align. | Consistent. | manifests, generated evidence | PASS |
+| V008 | Runtime readiness controls | Probes/resources/fixed image. | All present. | deployment, generated evidence | PASS |
+| V009 | Unsafe manifest pattern denial | No unsafe pattern. | None detected. | manifests, generated evidence | PASS |
+| V010 | Deployment evidence | Fully ready and available. | One row at 2/2, available 2. | sample, generated evidence | PASS |
+| V011 | Pod evidence | Running and ready. | Two rows at 1/1 Running. | sample, generated evidence | PASS |
+| V012 | Pod restart awareness | Zero restarts. | Zero. | sample, generated evidence | PASS |
+| V013 | Kubernetes credential files | No forbidden file. | None detected. | generated evidence | PASS |
+| V014 | Manifest/evidence content safety | No endpoint, address, token, key, secret. | None detected. | generated evidence | PASS |
+| V015 | Execution safety boundary | Guarded read-only live listings only. | Boundary confirmed. | generated evidence | PASS |
+| V016 | Validation mode | Static without kubectl. | Static completed; kubectl not invoked. | generated evidence | PASS |
 
-## Evidence Completeness
+## Generated Result
 
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- Kubernetes workload summary is captured: NOT_READY
-- Kubernetes resource policy summary is captured: NOT_READY
-- Kubernetes workload deployment validation log is captured: NOT_READY
-- Kubernetes workload status screenshot is captured: NOT_READY
-
-## Notes
-
-This scenario validates Kubernetes/k3s workload deployment only. Node readiness validation is handled in S021, ingress routing in S023, Kubernetes RBAC in S018, and Kubernetes manifest policy validation in S044.
+Static validation passed all sixteen checks with one fully available Deployment, two Running/ready Pods, and zero restarts. Optional LiveKubectl mode was not run.

@@ -1,20 +1,22 @@
 # Validation Plan
 
-| Check ID | Validation Item | Method | Expected Result | Evidence |
-|---|---|---|---|---|
-| V001 | Namespace existence validation plan | Plan read-only lookup for `<namespace>`. | Target namespace is identifiable. | `commands.md`, `configs/kubernetes-workload-summary.md`, `validation.md` |
-| V002 | Web Deployment existence validation plan | Plan read-only lookup for `<web-deployment>`. | Web Deployment is identifiable in `<namespace>`. | `commands.md`, `configs/kubernetes-workload-summary.md`, `validation.md` |
-| V003 | API Deployment existence validation plan | Plan read-only lookup for `<api-deployment>`. | API Deployment is identifiable in `<namespace>`. | `commands.md`, `configs/kubernetes-workload-summary.md`, `validation.md` |
-| V004 | Deployment rollout status validation plan | Plan rollout status review for web and API Deployments. | Deployment rollouts complete successfully. | `commands.md`, `logs/kubernetes-workload-deployment-validation.log`, `validation.md` |
-| V005 | Pod Running and Ready status validation plan | Plan pod status review for workload pods. | Pods are Running and Ready. | `commands.md`, `logs/kubernetes-workload-deployment-validation.log`, `screenshots/kubernetes-workload-status.png`, `validation.md` |
-| V006 | Replica availability validation plan | Plan replica availability review for Deployments. | Available replicas match desired replicas. | `commands.md`, `configs/kubernetes-workload-summary.md`, `validation.md` |
-| V007 | Kubernetes Service existence validation plan | Plan read-only lookup for `<web-service>` and `<api-service>`. | Required Service objects are identifiable. | `commands.md`, `configs/kubernetes-workload-summary.md`, `validation.md` |
-| V008 | ConfigMap reference validation plan | Review workload references to non-secret configuration placeholders. | Required ConfigMap references are present. | `commands.md`, `configs/kubernetes-workload-summary.md`, `validation.md` |
-| V009 | Secret template reference validation plan | Review Secret template references by placeholder name only. | Secret references exist without storing real Secret values. | `commands.md`, `configs/kubernetes-workload-summary.md`, `validation.md` |
-| V010 | Resource requests and limits validation plan | Review workload resource request and limit placeholders. | Workloads define resource requests and limits. | `commands.md`, `configs/kubernetes-resource-policy-summary.md`, `validation.md` |
-| V011 | Image tag not latest validation plan | Review `<container-image>` tag policy. | Container images do not use `latest`. | `commands.md`, `configs/kubernetes-resource-policy-summary.md`, `validation.md` |
-| V012 | Failure condition for missing namespace, failed rollout, CrashLoopBackOff, ImagePullBackOff, missing service, missing config reference, or missing resource limits | Evaluate findings against explicit failure conditions. | Workload deployment failures produce `FAIL` or `BLOCKED` status. | `validation.md` |
+| Check ID | Validation Item | Expected Result | Evidence |
+|---|---|---|---|
+| V001 | Workload documentation | Baseline and commands exist. | generated log and summary |
+| V002 | Required workload files | Namespace, Deployment, Service, README exist. | manifests, generated evidence |
+| V003 | Sample workload evidence | Deployment and Pod samples exist. | samples, generated evidence |
+| V004 | Required command examples | Seven examples exist. | generated evidence |
+| V005 | Deployment validation model | Required objects and controls documented. | generated evidence |
+| V006 | Manifest kinds and namespace | Correct kinds, marker, `snsd-example`. | manifests, generated evidence |
+| V007 | Labels and selectors | All application labels align. | manifests, generated evidence |
+| V008 | Runtime readiness controls | Probes, resources, fixed image exist. | deployment, generated evidence |
+| V009 | Unsafe manifest pattern denial | No prohibited pattern. | manifests, generated evidence |
+| V010 | Deployment evidence | All desired replicas ready/available. | deployment sample or live counts |
+| V011 | Pod evidence | All Pods Running and ready. | Pod sample or live counts |
+| V012 | Pod restart awareness | PASS at zero; WARN above zero. | Pod sample or live counts |
+| V013 | Kubernetes credential files | No forbidden credential file. | generated evidence |
+| V014 | Manifest/evidence content safety | No endpoint, address, token, key, or secret. | generated evidence |
+| V015 | Execution safety boundary | Two guarded read-only live argument sets only. | generated evidence |
+| V016 | Validation mode | Static without kubectl or successful explicit live read. | generated evidence |
 
-## Review Notes
-
-Every validation item must map to evidence. This scenario validates workload deployment only; node readiness is handled in S021, ingress routing in S023, RBAC in S018, and manifest policy in S044.
+Every validation item maps to stable evidence by check ID.

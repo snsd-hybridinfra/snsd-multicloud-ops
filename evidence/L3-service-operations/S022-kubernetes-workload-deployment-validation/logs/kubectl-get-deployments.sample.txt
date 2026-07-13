@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION KUBECTL GET DEPLOYMENTS OUTPUT
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+sample-service-placeholder     2/2     2            2           <age>
+
