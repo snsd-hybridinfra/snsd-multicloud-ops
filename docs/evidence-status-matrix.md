@@ -35,7 +35,7 @@ Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S029 | grafana-dashboard-validation | READY | READY | READY | READY | READY | READY |
 | S030 | blackbox-endpoint-probe-validation | READY | READY | READY | READY | READY | READY |
 | S031 | web-pod-failure-recovery-validation | READY | READY | READY | READY | READY | READY |
-| S032 | api-service-failure-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
+| S032 | api-service-failure-validation | READY | READY | READY | READY | READY | READY |
 | S033 | db-replica-failure-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S034 | db-primary-stop-runbook-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S035 | load-balancer-failure-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |

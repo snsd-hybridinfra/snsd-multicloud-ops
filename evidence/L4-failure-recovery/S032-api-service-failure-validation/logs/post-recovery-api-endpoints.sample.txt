@@ -1,0 +1,3 @@
+SAMPLE / NON-PRODUCTION
+NAME                               ENDPOINTS
+sample-api-service-placeholder     <api-pod-ip-placeholder>:8080

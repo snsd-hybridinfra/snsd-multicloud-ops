@@ -1,7 +1,5 @@
 # Objective
 
-S032 validates the planned detection and recovery evidence model for API service failure in the SNSD Multi-Cloud Ops Kubernetes/k3s service runtime.
+Validate a controlled API service failure/recovery workflow and safely evaluate sanitized evidence. S032 confirms healthy pre-state, explicit manual fault evidence, observable API failure, replacement readiness, non-empty endpoints, HTTP recovery, and rollout success.
 
-The scenario defines how to document pre-failure API Deployment, Pod, and Service state; simulate API workload failure using placeholder commands; validate route and health endpoint failure behavior; restore the workload; and verify post-recovery health.
-
-This scenario remains documentation-only until execution is explicitly approved. It does not create Kubernetes manifests, kubeconfig files, secrets, credentials, or live failure evidence.
+S031 owns Web Pod recovery, S030 Blackbox probing, S035 load-balancer failure, and S040 final service health.

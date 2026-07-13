@@ -1,17 +1,12 @@
 # Execution Plan
 
-1. Confirm that only placeholder workload names, namespaces, paths, and endpoints are used.
-2. Capture the pre-failure API Deployment status for `<api-deployment>`.
-3. Capture the pre-failure API Pod Ready status for `<api-pod>`.
-4. Capture the pre-failure API Service endpoint status for `<api-service>`.
-5. Capture a pre-failure API route and health endpoint plan for `<ingress-host><api-path>` and `<api-health-endpoint>`.
-6. Plan API failure injection using a placeholder command.
-7. Validate that the API route failure or degraded response is detectable.
-8. Validate that the API health endpoint reflects failure or degradation.
-9. Reference Ingress API path, Nginx Reverse Proxy, Blackbox probe, and Prometheus metric observations without reimplementing those scenarios.
-10. Plan API workload restoration using an approved placeholder rollback action.
-11. Validate API health and route recovery.
-12. Measure detection and recovery timing against provisional thresholds.
-13. Capture post-recovery workload status.
-14. Record future command output placeholders in `commands.md`.
-15. Record future validation results in `validation.md`.
+1. Run `powershell -ExecutionPolicy Bypass -File tools/validate-api-service-failure.ps1`.
+2. Verify three baseline artifacts and nine samples.
+3. Validate workflow placeholders, criteria, and manual-only fault commands.
+4. Parse healthy pre-state, failure signal, recovered Pod/endpoint/HTTP state, and rollout.
+5. Warn if elapsed recovery time is unmeasured.
+6. Reject unhealthy recovered state, sensitive content, real endpoints/addresses, or destructive validator logic.
+7. Review generated log and summary.
+8. Optionally run explicitly approved read-only LiveKubectl or LiveHttp.
+
+Live access and real failure injection are `NOT_RUN` in committed evidence.

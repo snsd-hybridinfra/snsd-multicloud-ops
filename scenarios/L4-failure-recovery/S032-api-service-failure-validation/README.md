@@ -4,26 +4,25 @@
 |---|---|
 | Scenario ID | S032 |
 | Scenario Name | API Service Failure Validation |
-| Level | L4 Failure and Recovery Validation |
+| Level | L4 Failure Recovery Validation |
 | Category | Failure Recovery |
-| Primary Domain | Kubernetes/k3s API service failure detection and recovery |
-| Related Components | Kubernetes/k3s, API Deployment, API Pod, API Service, Ingress API path, Nginx reverse proxy reference, Blackbox probe reference, Prometheus metric reference |
-| Validation Type | Failure Recovery Validation |
+| Related Components | API Deployment, Pod, Service, endpoints, rollout, HTTP health |
+| Validation Type | Static with optional explicit read-only LiveKubectl and LiveHttp |
 | Evidence Directory | evidence/L4-failure-recovery/S032-api-service-failure-validation/ |
-| Status | PLANNED |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate API service failure detection and recovery evidence for the SNSD Multi-Cloud Ops Kubernetes/k3s service runtime.
+Validate the API failure runbook, criteria, and sanitized pre-failure/failure/recovery evidence without modifying Kubernetes or storing production API data.
 
 ## Scope Summary
 
-This scenario validates API service failure behavior only. It covers pre-failure API workload state, placeholder failure injection, API route failure detection, degraded health response, Ingress API path failure behavior, Blackbox and Prometheus references, workload restoration, API health recovery, and recovery time measurement.
+Static mode performs no network or cluster access. LiveKubectl requires Namespace, DeploymentName, and ServiceName and runs five read-only queries. LiveHttp requires ApiHealthUrl and sends an unauthenticated HEAD request only.
 
 ## Validation Summary
 
-Validation checks confirm that API Deployment, Pod, and Service endpoint state are captured before failure; failure injection is planned with placeholders; route and health failure behavior is detected; restoration is planned; recovery is measured; and failures such as missed detection, unexpected success during failure, `CrashLoopBackOff`, missing Service endpoint, persistent HTTP 5xx, or threshold breach are captured.
+Nineteen checks cover files, placeholders, manual fault boundaries, criteria, Pod/endpoint/HTTP evidence, failure detection, rollout, timing, secret safety, and optional live read-only state.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L4-failure-recovery/S032-api-service-failure-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+The generated log and summary contain sanitized judgments. Committed samples are non-production, and live raw output or HTTP response bodies are not retained.

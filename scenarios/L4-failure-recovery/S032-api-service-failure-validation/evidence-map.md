@@ -1,20 +1,25 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| Pre-failure API Deployment status validation plan | `commands.md`; `logs/api-service-failure-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Pre-failure API Pod Ready status validation plan | `commands.md`; `screenshots/api-service-before-failure.png`; `validation.md` | command plan, screenshot reference, validation record | yes |
-| Pre-failure API Service endpoint validation plan | `commands.md`; `configs/api-service-failure-summary.md`; `validation.md` | command plan, failure summary, validation record | yes |
-| API failure injection plan | `commands.md`; `logs/api-service-failure-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| API route failure response validation plan | `commands.md`; `screenshots/api-service-during-failure.png`; `validation.md` | command plan, screenshot reference, validation record | yes |
-| API health endpoint failure validation plan | `commands.md`; `logs/api-service-failure-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Ingress API path failure validation plan | `commands.md`; `configs/api-service-failure-summary.md`; `validation.md` | command plan, failure summary, validation record | yes |
-| Blackbox API probe failure reference plan | `commands.md`; `configs/api-service-failure-summary.md`; `validation.md` | command plan, failure summary, validation record | yes |
-| API workload restoration validation plan | `commands.md`; `logs/api-service-failure-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| API health recovery validation plan | `commands.md`; `screenshots/api-service-after-recovery.png`; `validation.md` | command plan, screenshot reference, validation record | yes |
-| Recovery time measurement plan | `commands.md`; `configs/api-service-recovery-threshold.md`; `validation.md` | command plan, threshold summary, validation record | yes |
-| Failure condition for API failure not detected, unexpected success during failure, API Pod stuck in CrashLoopBackOff, missing Service endpoint, HTTP 5xx persistence, or recovery threshold exceeded | `validation.md` | failure criteria and status record | yes |
+| Check ID | Validation Item | Evidence File |
+|---|---|---|
+| V001 | Required artifacts | commands; samples; summary |
+| V002 | Workflow and placeholders | runbook; summary |
+| V003 | Manual fault boundary | commands example; summary |
+| V004 | Failure criteria matrix | criteria; summary |
+| V005 | Pre-failure Pod evidence | pre Pod sample; summary |
+| V006 | Pre-failure endpoint evidence | pre endpoint sample; summary |
+| V007 | Pre-failure HTTP evidence | pre HTTP sample; summary |
+| V008 | Manual injection evidence | injection sample; summary |
+| V009 | Failure detection evidence | detection sample; summary |
+| V010 | Post-recovery Pod evidence | post Pod sample; summary |
+| V011 | Post-recovery endpoint evidence | post endpoint sample; summary |
+| V012 | Post-recovery HTTP evidence | post HTTP sample; summary |
+| V013 | Rollout evidence | rollout sample; summary |
+| V014 | Recovered-state health | post samples; summary |
+| V015 | Recovery timing | injection sample; summary |
+| V016 | Endpoint and secret safety | generated log; summary |
+| V017 | Execution safety boundary | validator; summary |
+| V018 | LiveKubectl read-only state | generated log; summary |
+| V019 | LiveHttp read-only health | generated log; summary |
 
-## Evidence Notes
-
-No real Kubernetes command output or API failure evidence has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+Committed samples are non-production. Generated evidence contains judgments rather than raw live output.

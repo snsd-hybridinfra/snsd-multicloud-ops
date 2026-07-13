@@ -1,0 +1,4 @@
+SAMPLE / NON-PRODUCTION
+NAME                               READY   STATUS    RESTARTS
+sample-api-placeholder-klmno       1/1     Running   0
+Replacement_Pod: sample-api-placeholder-klmno

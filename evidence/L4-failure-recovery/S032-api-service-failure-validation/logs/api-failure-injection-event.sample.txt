@@ -1,0 +1,5 @@
+SAMPLE / NON-PRODUCTION
+MANUAL FAULT INJECTION SAMPLE
+Command_Reference: kubectl delete pod sample-api-placeholder-abcde -n snsd-example
+Execution_By_Validator: false
+Recovery_Elapsed_Seconds: <not-measured>

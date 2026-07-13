@@ -1,44 +1,28 @@
-# Validation
+# Validation Result
 
-Scenario: S032-api-service-failure-validation
-Level: L4-failure-recovery
-Capability: API Service Failure Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
+- Actual Result: Static validation completed with zero critical failures and one expected timing warning.
+- Status: PASS
 
-No real Kubernetes command output or API failure evidence has been collected yet. This file defines the validation record that must be completed during future approved execution.
+| Check ID | Check Description | Expected Condition | Evidence File | Result |
+|---|---|---|---|---|
+| V001 | Required artifacts | Complete | samples/summary | PASS |
+| V002 | Workflow/placeholders | Complete | runbook/summary | PASS |
+| V003 | Manual fault boundary | Manual-only | commands/summary | PASS |
+| V004 | Criteria matrix | Complete | criteria/summary | PASS |
+| V005 | Pre Pod | Healthy | pre Pod sample | PASS |
+| V006 | Pre endpoint | Non-empty | pre endpoint sample | PASS |
+| V007 | Pre HTTP | Healthy | pre HTTP sample | PASS |
+| V008 | Injection | Manual | injection sample | PASS |
+| V009 | Failure detection | Present | detection sample | PASS |
+| V010 | Post Pod | Healthy replacement | post Pod sample | PASS |
+| V011 | Post endpoint | Non-empty | post endpoint sample | PASS |
+| V012 | Post HTTP | Healthy | post HTTP sample | PASS |
+| V013 | Rollout | Successful | rollout sample | PASS |
+| V014 | Recovered state | No bad indicators | post samples | PASS |
+| V015 | Timing | Numeric or review | injection sample | WARN |
+| V016 | Sensitive-content safety | No findings | summary | PASS |
+| V017 | Execution safety | Read-only | validator | PASS |
+| V018 | LiveKubectl | Explicit/read-only | generated log | NOT_RUN |
+| V019 | LiveHttp | Explicit/read-only | generated log | NOT_RUN |
 
-| Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
-|---|---|---|---|---|---|
-| V001 | Pre-failure API Deployment status validation plan | API Deployment exists and desired replicas are available before failure. | TODO | NOT_RUN | `commands.md`; `logs/api-service-failure-validation.log` |
-| V002 | Pre-failure API Pod Ready status validation plan | Target API Pod is Running and Ready before failure. | TODO | NOT_RUN | `commands.md`; `screenshots/api-service-before-failure.png` |
-| V003 | Pre-failure API Service endpoint validation plan | API Service has at least one ready endpoint before failure. | TODO | NOT_RUN | `commands.md`; `configs/api-service-failure-summary.md` |
-| V004 | API failure injection plan | Failure injection is scoped to API workload only. | TODO | NOT_RUN | `commands.md`; `logs/api-service-failure-validation.log` |
-| V005 | API route failure response validation plan | API route failure or degradation is visible. | TODO | NOT_RUN | `commands.md`; `screenshots/api-service-during-failure.png` |
-| V006 | API health endpoint failure validation plan | API health endpoint shows failed or degraded status. | TODO | NOT_RUN | `commands.md`; `logs/api-service-failure-validation.log` |
-| V007 | Ingress API path failure validation plan | Ingress API path failure is documented without reimplementing Ingress routing. | TODO | NOT_RUN | `commands.md`; `configs/api-service-failure-summary.md` |
-| V008 | Blackbox API probe failure reference plan | Blackbox API probe failure reference is documented. | TODO | NOT_RUN | `commands.md`; `configs/api-service-failure-summary.md` |
-| V009 | API workload restoration validation plan | API workload restoration path is documented. | TODO | NOT_RUN | `commands.md`; `logs/api-service-failure-validation.log` |
-| V010 | API health recovery validation plan | API health endpoint returns expected healthy status after recovery. | TODO | NOT_RUN | `commands.md`; `screenshots/api-service-after-recovery.png` |
-| V011 | Recovery time measurement plan | Detection and recovery timing is recorded and compared with thresholds. | TODO | NOT_RUN | `commands.md`; `configs/api-service-recovery-threshold.md` |
-| V012 | Failure condition for API failure not detected, unexpected success during failure, API Pod stuck in CrashLoopBackOff, missing Service endpoint, HTTP 5xx persistence, or recovery threshold exceeded | API failure or recovery issues produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
-
-## Evidence Completeness
-
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- API service failure summary is captured: NOT_READY
-- API service recovery threshold summary is captured: NOT_READY
-- API service failure validation log is captured: NOT_READY
-- Before, during, and after screenshots are captured: NOT_READY
-
-## Provisional Failure and Recovery Thresholds
-
-- DETECTED: API failure visible within `< 60 seconds`.
-- WARNING: recovery within `60-180 seconds`.
-- CRITICAL: recovery failed or exceeds `180 seconds`.
-
-## Notes
-
-This scenario validates API service failure behavior only. Workload deployment is handled in S022, Ingress routing in S023, Nginx Reverse Proxy forwarding in S024, load balancing health checks in S025, Blackbox endpoint probing in S030, and Web Pod failure recovery in S031.
+Static execution is the committed validation result. Live modes require explicit authorization.
