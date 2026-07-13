@@ -668,9 +668,27 @@ $riskyFileNamePattern = (
     "\.sql$|\.dump$|\.bak$|\.tar$|\.gz$|\.zip$"
 )
 
+$approvedSqlExamplePath = [System.IO.Path]::GetFullPath(
+    (Join-Path (Get-Location).Path "security-baseline\mariadb-access-control.example.sql")
+)
 $riskyFiles = @(
     $repositoryFiles |
-        Where-Object { $_.Name -match $riskyFileNamePattern }
+        Where-Object {
+            if ($_.Name -notmatch $riskyFileNamePattern) {
+                return $false
+            }
+
+            $isApprovedSqlExample = [System.IO.Path]::GetFullPath($_.FullName) -eq $approvedSqlExamplePath
+            if (-not $isApprovedSqlExample) {
+                return $true
+            }
+
+            $sqlExampleContent = Get-Content -LiteralPath $_.FullName -Raw
+            $hasSafetyMarker = $sqlExampleContent -match "(?i)NON-PRODUCTION EXAMPLE" -and
+                $sqlExampleContent -match "(?i)Do not execute this file" -and
+                $sqlExampleContent -match "<secure-password-managed-outside-repository>"
+            return -not $hasSafetyMarker
+        }
 )
 
 if ($riskyFiles.Count -eq 0) {
@@ -692,7 +710,8 @@ $textExtensions = @(
     ".json",
     ".conf",
     ".ini",
-    ".tf"
+    ".tf",
+    ".sql"
 )
 
 $sensitiveContentPatterns = @(

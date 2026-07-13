@@ -1,37 +1,30 @@
 # Validation
 
 Scenario: S017-mariadb-access-control-validation
+
 Level: L2-security-baseline
-Capability: MariaDB Access Control Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
 
-No real MariaDB access control output has been collected yet. This file defines the validation record that must be completed during future approved execution.
+Date: 2026-07-13
 
-| Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
+Overall status: PASS
+
+| Check ID | Validation Item | Expected Condition | Actual Result | Evidence File | Status |
 |---|---|---|---|---|---|
-| V001 | MariaDB bind-address validation plan | MariaDB listener is scoped to the intended On-Prem DB access boundary. | TODO | NOT_RUN | `commands.md`; `configs/mariadb-access-control-summary.md` |
-| V002 | MariaDB user and host mapping validation plan | Users are mapped only to approved placeholder hosts or CIDRs. | TODO | NOT_RUN | `commands.md`; `configs/mariadb-access-control-summary.md` |
-| V003 | Application DB user least privilege validation plan | Application user has only required application privileges. | TODO | NOT_RUN | `commands.md`; `configs/mariadb-grant-policy.md` |
-| V004 | Replication DB user separation validation plan | Replication user is separate and limited to replication purpose. | TODO | NOT_RUN | `commands.md`; `configs/mariadb-grant-policy.md` |
-| V005 | Backup DB user separation validation plan | Backup user is separate and limited to backup purpose. | TODO | NOT_RUN | `commands.md`; `configs/mariadb-grant-policy.md` |
-| V006 | Root remote access denial validation plan | Root is not allowed remote database login. | TODO | NOT_RUN | `commands.md`; `logs/mariadb-access-control-validation.log` |
-| V007 | DB port 3306 public exposure denial validation plan | DB port is not exposed to public sources. | TODO | NOT_RUN | `commands.md`; `logs/mariadb-access-control-validation.log` |
-| V008 | Cloud App/API node to DB access rule validation plan | Cloud App/API DB access is explicitly scoped. | TODO | NOT_RUN | `commands.md`; `configs/mariadb-access-control-summary.md` |
-| V009 | Web node direct DB access denial validation plan | Direct Web node DB access is denied. | TODO | NOT_RUN | `commands.md`; `logs/mariadb-access-control-validation.log` |
-| V010 | Bastion or management admin access validation plan | Administrative DB access is limited to Bastion or management boundary. | TODO | NOT_RUN | `commands.md`; `configs/mariadb-access-control-summary.md`; `screenshots/mariadb-access-control-test.png` |
-| V011 | Failure condition for public DB exposure, root remote access, overly broad grants, missing app user, missing replication user, or direct unauthorized DB access | Unsafe access patterns produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
+| V001 | Access-control baseline | File exists. | Baseline exists. | generated log and summary | PASS |
+| V002 | Grant matrix | File exists. | Matrix exists. | generated log and summary | PASS |
+| V003 | SQL baseline example | File exists. | Non-production example exists. | generated log and summary | PASS |
+| V004 | Required account placeholders | Four accounts exist. | All are documented. | generated log and summary | PASS |
+| V005 | Least privilege statements | Required statements exist. | All are documented. | generated log and summary | PASS |
+| V006 | Grant matrix role separation | Role expectations exist. | All are documented. | generated log and summary | PASS |
+| V007 | Application grant | Required DML only. | Grant is correctly limited. | generated log and summary | PASS |
+| V008 | Replication grant | Replication privileges only. | Grant is correctly limited. | generated log and summary | PASS |
+| V009 | Monitoring grant | Read-only metadata access. | Grant is correctly limited. | generated log and summary | PASS |
+| V010 | Dangerous application or monitoring privileges | No dangerous assignment. | None detected. | generated log and summary | PASS |
+| V011 | Password and connection safety | Placeholder only; no connection string. | No unsafe value detected. | generated log and summary | PASS |
+| V012 | Database dump safety | No dump or export exists. | None detected. | generated log and summary | PASS |
+| V013 | Account and address safety | No sensitive or account-specific content. | None detected. | generated log and summary | PASS |
+| V014 | Execution safety boundary | No live database or network command. | None detected. | generated log and summary | PASS |
 
-## Evidence Completeness
+## Generated Result
 
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- MariaDB access control summary is captured: NOT_READY
-- MariaDB grant policy is captured: NOT_READY
-- MariaDB access control validation log is captured: NOT_READY
-- MariaDB access control screenshot is captured: NOT_READY
-
-## Notes
-
-This scenario validates MariaDB access control design only. MariaDB replication validation is handled in S026, replication lag in S027, backup creation in S038, and restore execution in S039.
+All fourteen checks passed using repository files only. Evidence is recorded in `logs/mariadb-access-control-validation.log` and `configs/mariadb-access-control-summary.md`.

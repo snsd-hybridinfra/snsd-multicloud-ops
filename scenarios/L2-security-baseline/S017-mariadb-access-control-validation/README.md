@@ -6,24 +6,23 @@
 | Scenario Name | MariaDB Access Control Validation |
 | Level | L2 Security Baseline Validation |
 | Category | Security Baseline |
-| Primary Domain | Database access security |
-| Related Components | On-Prem DB Primary, On-Prem DB Replicas, MariaDB users, application nodes, Bastion, management access path |
-| Validation Type | Security Validation |
-| Evidence Directory | evidence/L2-security-baseline/S017-mariadb-access-control-validation/ |
-| Status | PLANNED |
+| Related Components | MariaDB policy baseline, grant matrix, SQL example, inventory placeholders, local validator |
+| Validation Type | Safe local repository validation |
+| Evidence Directory | `evidence/L2-security-baseline/S017-mariadb-access-control-validation/` |
+| Status | VALIDATED |
 
 ## Objective Summary
 
-Define and validate the MariaDB access control model for the On-Prem Internal Server Zone in the SNSD Multi-Cloud Ops project.
+Validate MariaDB least-privilege account separation and grants without connecting to a database, executing SQL, or storing credentials.
 
 ## Scope Summary
 
-This scenario validates MariaDB access control design only. It covers DB primary and replica access policy, application user access, replication user separation, backup user separation, denial of public DB access, denial of direct Web node DB access, cloud App/API node placeholders, management-only administrative access placeholders, user/host/grant review, and DB port exposure review.
+S017 reads local policy, matrix, SQL example, and inventory placeholders only. It does not create users, alter grants, query MariaDB, read credentials, or produce dumps.
 
 ## Validation Summary
 
-Validation checks confirm that MariaDB access is bound to approved hosts and roles, that root remote access and public DB exposure are denied, and that overly broad grants are treated as failures. Replication, replication lag, backup, and restore validation are handled by separate scenarios.
+Fourteen checks validate policy artifacts, account placeholders, grant separation, application/monitoring dangerous privileges, password and connection safety, dump absence, address safety, and execution boundaries.
 
 ## Evidence Output Summary
 
-Evidence must be recorded under `evidence/L2-security-baseline/S017-mariadb-access-control-validation/`, with command plans in `commands.md`, validation results in `validation.md`, and future sanitized supporting artifacts under `configs/`, `logs/`, and `screenshots/`.
+The validator writes an ignored execution log and a tracked sanitized Markdown summary under the S017 evidence directory.

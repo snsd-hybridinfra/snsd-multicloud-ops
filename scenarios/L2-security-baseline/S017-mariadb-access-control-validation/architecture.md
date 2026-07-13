@@ -1,25 +1,25 @@
 # Architecture
 
-## Relevant Components
+## Validation Flow
 
-- Control Plane: records validation commands and evidence.
-- On-Prem DB Primary: authoritative MariaDB instance for access control validation.
-- On-Prem DB Replicas: replica nodes with separate access policy review.
-- Application access path: placeholder access from approved App/API nodes.
-- Replication access path: placeholder access using `<replication-user>`.
-- Backup access path: placeholder access using `<backup-user>`.
-- Bastion or management path: approved administrative access boundary.
+```text
+Local PowerShell validator
+  -> MariaDB access-control policy
+  -> grant matrix
+  -> non-production SQL example
+  -> inventory placeholder safety
+  -> grant and sensitive-content checks
+  -> evidence log and summary
+```
 
-## Access Model
+## Account Model
 
-- `<app-db-user>` must be scoped to required application databases and approved host patterns only.
-- `<replication-user>` must be separated from application and backup users.
-- `<backup-user>` must be separated from application and replication users.
-- Root remote access must be denied.
-- DB port `3306` must not be reachable from public sources.
-- Direct Web node DB access must be denied unless later explicitly approved.
-- Cloud App/API node access must use placeholders such as `<app-node-cidr>`.
+- `<application-db-user>`: required DML only on `<application-database>`.
+- `<replication-db-user>`: replication privileges only.
+- `<monitoring-db-user>`: read-only metadata/status access.
+- `<admin-db-user>`: separate approved administration boundary.
+- Root: never used by applications and unavailable for remote login.
 
-## Boundary Notes
+## Trust Boundary
 
-This scenario validates access control design only. Replication function, replication lag, backup creation, and restore execution are separate scenario responsibilities.
+All inspection is repository-local; no database endpoint, client, credential store, or network path participates.

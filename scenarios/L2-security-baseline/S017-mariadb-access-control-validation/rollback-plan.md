@@ -1,16 +1,11 @@
 # Rollback Plan
 
-This scenario is documentation-only, so rollback means reverting unsafe documentation or evidence changes rather than changing MariaDB configuration.
+S017 changes repository policy, examples, validator, evidence, and tracking only. It performs no database action and therefore has no database rollback.
 
-## Rollback Steps
+## Repository Rollback
 
-1. Stop validation if evidence includes database passwords, credentials, real public IPs, private keys, tfstate, kubeconfig content, or account-specific values.
-2. Remove sensitive values from evidence and replace them with placeholders.
-3. Mark affected validation checks as `BLOCKED` until sanitized evidence is available.
-4. If future review identifies root remote access, public DB exposure, overly broad grants, missing required users, or direct unauthorized DB access, record the finding as `FAIL`.
-5. Do not modify MariaDB configuration from this scenario. Any future corrective database change must be handled by an explicitly approved implementation task.
-6. Update tracking files if the scenario status changes.
-
-## Recovery Notes
-
-Corrective action should tighten the proposed MariaDB user, host, grant, and network exposure model to least privilege, then repeat evidence collection with sanitized outputs.
+1. Stop if sensitive or account-specific content is found.
+2. Remove unsafe content and replace it with approved placeholders.
+3. Correct an overbroad grant or incomplete policy statement.
+4. Rerun the validator and retain only sanitized evidence.
+5. Mark scenario and evidence status appropriately if validation cannot pass.

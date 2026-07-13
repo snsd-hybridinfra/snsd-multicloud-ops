@@ -1,19 +1,20 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
+| Check ID | Validation Item | Evidence File | Required |
 |---|---|---|---|
-| MariaDB bind-address validation plan | `commands.md`; `configs/mariadb-access-control-summary.md`; `validation.md` | command plan, access summary, validation record | yes |
-| MariaDB user and host mapping validation plan | `commands.md`; `configs/mariadb-access-control-summary.md`; `validation.md` | command plan, access summary, validation record | yes |
-| Application DB user least privilege validation plan | `commands.md`; `configs/mariadb-grant-policy.md`; `validation.md` | command plan, grant policy, validation record | yes |
-| Replication DB user separation validation plan | `commands.md`; `configs/mariadb-grant-policy.md`; `validation.md` | command plan, grant policy, validation record | yes |
-| Backup DB user separation validation plan | `commands.md`; `configs/mariadb-grant-policy.md`; `validation.md` | command plan, grant policy, validation record | yes |
-| Root remote access denial validation plan | `commands.md`; `logs/mariadb-access-control-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| DB port 3306 public exposure denial validation plan | `commands.md`; `logs/mariadb-access-control-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Cloud App/API node to DB access rule validation plan | `commands.md`; `configs/mariadb-access-control-summary.md`; `validation.md` | command plan, access summary, validation record | yes |
-| Web node direct DB access denial validation plan | `commands.md`; `logs/mariadb-access-control-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Bastion or management admin access validation plan | `commands.md`; `configs/mariadb-access-control-summary.md`; `screenshots/mariadb-access-control-test.png`; `validation.md` | command plan, access summary, screenshot reference, validation record | yes |
-| Failure condition for public DB exposure, root remote access, overly broad grants, missing app user, missing replication user, or direct unauthorized DB access | `validation.md` | failure criteria and status record | yes |
+| V001 | Access-control baseline | `logs/mariadb-access-control-validation.log`; `configs/mariadb-access-control-summary.md` | yes |
+| V002 | Grant matrix | same generated evidence | yes |
+| V003 | SQL baseline example | same generated evidence | yes |
+| V004 | Required account placeholders | same generated evidence | yes |
+| V005 | Least privilege statements | same generated evidence | yes |
+| V006 | Grant matrix role separation | same generated evidence | yes |
+| V007 | Application grant | same generated evidence | yes |
+| V008 | Replication grant | same generated evidence | yes |
+| V009 | Monitoring grant | same generated evidence | yes |
+| V010 | Dangerous application or monitoring privileges | same generated evidence | yes |
+| V011 | Password and connection safety | same generated evidence | yes |
+| V012 | Database dump safety | same generated evidence | yes |
+| V013 | Account and address safety | same generated evidence | yes |
+| V014 | Execution safety boundary | same generated evidence | yes |
 
-## Evidence Notes
-
-No real MariaDB access control output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+`commands.md` documents execution and `validation.md` records final results. The generated log is ignored; the sanitized summary is tracked.
