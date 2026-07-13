@@ -21,6 +21,8 @@
 - Public IP, bastion, compute, production routing, or production NSG rules.
 - Terraform provider validation, which belongs to S006.
 - Azure NSG least-privilege validation, which belongs to S015.
+- Terraform drift detection, which belongs to S041.
+- Cost guardrail validation, which belongs to S045.
 
 ## Assumptions
 

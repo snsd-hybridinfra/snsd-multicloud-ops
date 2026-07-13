@@ -7,7 +7,7 @@ Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S001 | control-plane-toolchain-validation | READY | READY | READY | READY | READY | READY |
 | S002 | eve-ng-on-prem-routing-validation | READY | READY | READY | READY | READY | READY |
 | S003 | aws-network-provisioning-validation | READY | READY | READY | READY | READY | READY |
-| S004 | azure-network-provisioning-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
+| S004 | azure-network-provisioning-validation | READY | READY | READY | READY | READY | READY |
 | S005 | openstack-network-provisioning-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S006 | terraform-provider-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S007 | multi-cloud-inventory-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
