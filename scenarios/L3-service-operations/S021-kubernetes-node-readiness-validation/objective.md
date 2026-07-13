@@ -1,15 +1,14 @@
 # Objective
 
-S021 defines the Kubernetes/k3s node readiness validation model for the SNSD Multi-Cloud Ops service runtime.
+## Objective Statement
 
-The scenario validates that expected Kubernetes/k3s nodes across AWS, Azure, and OpenStack service zones can be queried from the Control Plane, show Ready status, expose expected roles and labels, report healthy node conditions, and provide reviewable capacity and version information.
+Validate that every evaluated Kubernetes node reports `Ready` and no node reports `NotReady`, while preserving cluster credential and endpoint safety.
 
-This scenario does not implement Kubernetes manifests or create cluster access files. It defines how future `kubectl` node readiness evidence must be captured and reviewed.
+## Success Measures
 
-## Operational Capability
-
-- Confirm `kubectl` client availability is planned.
-- Confirm Kubernetes context availability is planned using `<cluster-context>`.
-- Confirm AWS, Azure, and OpenStack Kubernetes/k3s nodes have Ready status.
-- Confirm node roles, labels, conditions, capacity, and versions are reviewable.
-- Confirm node readiness evidence is collected without kubeconfig, secrets, or account-specific values.
+- Readiness policy and five safe command references are documented.
+- Three non-production placeholder nodes are present and report Ready.
+- NotReady fails validation; SchedulingDisabled produces a visible warning.
+- Static mode never invokes kubectl.
+- Optional live mode invokes only `get nodes --no-headers` and stores no raw cluster details.
+- No kubeconfig, token, certificate, private key, endpoint, numeric address, or secret is present.

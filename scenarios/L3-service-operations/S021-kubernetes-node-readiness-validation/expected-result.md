@@ -1,23 +1,18 @@
 # Expected Result
 
-S021 is successful when the Kubernetes/k3s node readiness validation plan is complete and ready for future approved execution.
+## Static Pass Criteria
 
-## Success Conditions
+- V001 through V012 return PASS with zero warnings for the current sample.
+- Three required placeholder nodes are parsed as Ready.
+- No NotReady or SchedulingDisabled sample row is present.
+- No kubectl process is invoked.
 
-- `kubectl` client availability validation is planned.
-- Kubernetes context availability validation is planned for `<cluster-context>`.
-- `kubectl get nodes` validation is planned.
-- `<aws-k8s-node>` Ready status validation is planned.
-- `<azure-k8s-node>` Ready status validation is planned.
-- `<openstack-k8s-node>` Ready status validation is planned.
-- Node roles and labels are reviewable.
-- Node conditions are reviewable.
-- Node resource capacity is reviewable.
-- Node version consistency is reviewable.
-- All validation checks map to required evidence files.
+## Optional Live Criteria
 
-## Evidence Conditions
+- kubectl is available and the read-only command succeeds.
+- Every returned status includes Ready and none includes NotReady.
+- SchedulingDisabled is reported as WARN without modifying the node.
 
-- `commands.md` lists planned command or review actions with TODO output placeholders.
-- `validation.md` lists each check with `NOT_RUN` status until execution.
-- Future supporting evidence is expected in `configs/kubernetes-node-readiness-summary.md`, `configs/kubernetes-node-role-label-summary.md`, `logs/kubernetes-node-readiness-validation.log`, and `screenshots/kubernetes-node-status.png`.
+## Evidence Criteria
+
+Evidence contains mode, file results, row count, readiness judgment, finding counts, secret-safety result, and final judgment without raw live cluster details.

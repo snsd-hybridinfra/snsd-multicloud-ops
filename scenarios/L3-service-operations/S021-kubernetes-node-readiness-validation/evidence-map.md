@@ -1,19 +1,18 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
+| Check ID | Validation Item | Evidence File | Required |
 |---|---|---|---|
-| kubectl client availability validation plan | `commands.md`; `logs/kubernetes-node-readiness-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Kubernetes context availability validation plan | `commands.md`; `configs/kubernetes-node-readiness-summary.md`; `validation.md` | command plan, readiness summary, validation record | yes |
-| kubectl get nodes validation plan | `commands.md`; `logs/kubernetes-node-readiness-validation.log`; `screenshots/kubernetes-node-status.png`; `validation.md` | command plan, validation log, screenshot reference, validation record | yes |
-| AWS Kubernetes/k3s node Ready status validation plan | `commands.md`; `configs/kubernetes-node-readiness-summary.md`; `validation.md` | command plan, readiness summary, validation record | yes |
-| Azure Kubernetes/k3s node Ready status validation plan | `commands.md`; `configs/kubernetes-node-readiness-summary.md`; `validation.md` | command plan, readiness summary, validation record | yes |
-| OpenStack Kubernetes/k3s node Ready status validation plan | `commands.md`; `configs/kubernetes-node-readiness-summary.md`; `validation.md` | command plan, readiness summary, validation record | yes |
-| Node role and label validation plan | `commands.md`; `configs/kubernetes-node-role-label-summary.md`; `validation.md` | command plan, role and label summary, validation record | yes |
-| Node condition validation plan | `commands.md`; `logs/kubernetes-node-readiness-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| Node resource capacity validation plan | `commands.md`; `configs/kubernetes-node-readiness-summary.md`; `validation.md` | command plan, readiness summary, validation record | yes |
-| Node version consistency validation plan | `commands.md`; `configs/kubernetes-node-readiness-summary.md`; `validation.md` | command plan, readiness summary, validation record | yes |
-| Failure condition for missing node, NotReady node, unreachable cluster, invalid context, or inconsistent node role | `validation.md` | failure criteria and status record | yes |
+| V001 | Node-readiness baseline | `logs/kubernetes-node-readiness-validation.log`; `configs/kubernetes-node-readiness-summary.md` | yes |
+| V002 | Command reference | same generated evidence | yes |
+| V003 | Sample node evidence | `logs/kubectl-get-nodes.sample.txt`; generated evidence | yes |
+| V004 | Required command examples | generated log and summary | yes |
+| V005 | Readiness model and placeholders | generated log and summary | yes |
+| V006 | Required sample nodes | sample, generated log and summary | yes |
+| V007 | Node readiness evidence | sample or sanitized live counts, generated summary | yes |
+| V008 | SchedulingDisabled awareness | generated log and summary | yes |
+| V009 | Kubernetes credential files | generated log and summary | yes |
+| V010 | Evidence sensitive-content safety | generated log and summary | yes |
+| V011 | Execution safety boundary | generated log and summary | yes |
+| V012 | Validation mode | generated log and summary | yes |
 
-## Evidence Notes
-
-No real Kubernetes node readiness output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+`commands.md` documents both modes and `validation.md` records the completed static result. Raw live node rows are not repository evidence.

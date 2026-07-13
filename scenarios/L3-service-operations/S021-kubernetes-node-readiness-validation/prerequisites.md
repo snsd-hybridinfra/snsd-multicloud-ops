@@ -1,21 +1,17 @@
 # Prerequisites
 
-## Required Previous Scenarios
+## Static Mode
 
-- S001-control-plane-toolchain-validation: confirms `kubectl` planning.
-- S007-multi-cloud-inventory-validation: defines placeholder Kubernetes node inventory.
-- S008-bastion-reachability-validation: defines optional Bastion reachability path.
-- S018-kubernetes-rbac-validation: defines RBAC separation assumptions for future cluster access.
+- PowerShell capable of running repository validators.
+- Readiness policy, command reference, and tracked non-production sample evidence.
+- Writable S021 evidence directories.
 
-## Required Tools or References
+## Optional LiveKubectl Mode
 
-- `kubectl` command planning capability, when future execution is approved.
-- Placeholder Kubernetes context reference such as `<cluster-context>`.
-- Evidence model from `docs/evidence-model.md`.
-- Placeholder naming rules from `docs/naming-rules.md`.
+- The operator explicitly supplies `-LiveKubectl`.
+- `kubectl` is available and its external access context is approved outside the repository.
+- No kubeconfig path, token, certificate, endpoint, or credential is copied into repository files.
 
 ## Safety Preconditions
 
-- Do not add kubeconfig files, Kubernetes Secrets, credentials, private keys, tfstate, cloud account values, subscription IDs, tenant IDs, or account-specific values.
-- Do not execute live Kubernetes changes as part of this scenario skeleton.
-- Do not introduce EKS or AKS production-grade managed Kubernetes operations.
+Live mode remains read-only and may not apply, delete, patch, cordon, drain, taint, or edit resources.

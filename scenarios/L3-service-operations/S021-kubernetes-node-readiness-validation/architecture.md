@@ -1,24 +1,25 @@
 # Architecture
 
-## Relevant Components
+## Validation Flow
 
-- Control Plane: planned origin for `kubectl` node readiness checks.
-- Bastion: optional management path for node reachability checks.
-- Kubernetes/k3s runtime: target service runtime for node readiness validation.
-- AWS service node: represented by `<aws-k8s-node>`.
-- Azure service node: represented by `<azure-k8s-node>`.
-- OpenStack service node: represented by `<openstack-k8s-node>`.
-- Evidence directory: stores sanitized node readiness plans and future outputs.
+```text
+Static default
+  -> readiness policy + command reference + sample rows
+  -> parser -> Ready/NotReady/SchedulingDisabled counts
 
-## Readiness Model
+Explicit -LiveKubectl
+  -> kubectl get nodes --no-headers
+  -> parser -> status counts only
 
-- `kubectl` must be available before node readiness checks can run.
-- `<cluster-context>` must identify the intended cluster context without storing kubeconfig content.
-- Expected nodes must appear in `kubectl get nodes` output.
-- Nodes must report Ready status.
-- Roles, labels, conditions, capacity, and versions must be captured for review.
-- Node reachability from the Control Plane or Bastion must be planned without recording real endpoints.
+Both modes -> safety checks -> sanitized log and summary
+```
 
-## Boundary Notes
+## Judgment Model
 
-This scenario validates node readiness only. Workload deployment, ingress routing, RBAC, manifest policy, and managed Kubernetes production operations are separate responsibilities.
+- PASS: all parsed nodes include Ready and none include NotReady.
+- WARN: SchedulingDisabled is present and maintenance must be confirmed.
+- FAIL: required evidence is absent, parsing is empty, or any node is non-ready.
+
+## Trust Boundary
+
+Static mode is repository-local. Live mode is opt-in and read-only; kubeconfig details, endpoints, raw node rows, and credentials are never written to evidence.

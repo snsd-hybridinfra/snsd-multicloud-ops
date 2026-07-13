@@ -1,0 +1,6 @@
+SAMPLE / NON-PRODUCTION KUBECTL GET NODES OUTPUT
+NAME                           STATUS   ROLES           AGE     VERSION
+control-plane-placeholder      Ready    control-plane   <age>   <version>
+worker-node-placeholder-01     Ready    worker          <age>   <version>
+worker-node-placeholder-02     Ready    worker          <age>   <version>
+

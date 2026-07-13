@@ -1,22 +1,11 @@
 # Failure Condition
 
-S021 fails if Kubernetes/k3s node readiness cannot be verified or the node model is inconsistent.
+S021 fails if a required file, command reference, readiness term, sample node, or parseable row is missing; a node reports NotReady or lacks Ready; a forbidden credential or sensitive value is detected; or requested live validation cannot safely return ready node statuses.
 
-## Failure Conditions
+## Warning Condition
 
-- `kubectl` client is unavailable for planned validation.
-- `<cluster-context>` is missing, invalid, or cannot be selected.
-- Cluster is unreachable from the Control Plane or approved management path.
-- Expected node is missing from `kubectl get nodes` output.
-- `<aws-k8s-node>`, `<azure-k8s-node>`, or `<openstack-k8s-node>` reports NotReady.
-- Node roles or labels are missing, inconsistent, or do not match the expected service runtime model.
-- Node conditions report readiness blockers such as pressure, unavailable runtime, or scheduling issues.
-- Node capacity cannot be reviewed.
-- Node version inconsistency is unexplained.
-- Evidence contains kubeconfig files, Kubernetes Secrets, credentials, private keys, tfstate, cloud account values, subscription IDs, tenant IDs, or account-specific values.
+SchedulingDisabled produces WARN and requires an expected-maintenance review, but does not itself imply NotReady.
 
-## Blocked Conditions
+## Safety Failure
 
-- Validation cannot proceed because no approved placeholder node model exists.
-- Future `kubectl` output is unavailable.
-- Required evidence files are missing.
+Any kubeconfig, token, certificate, key, endpoint, numeric address, raw sensitive live output, or mutation command violates the scenario boundary.
