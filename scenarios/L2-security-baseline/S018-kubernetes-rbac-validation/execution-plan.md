@@ -1,18 +1,13 @@
 # Execution Plan
 
-1. Confirm the scenario evidence directory exists for S018.
-2. Identify placeholder namespace targets as `<namespace>`.
-3. Identify placeholder ServiceAccounts as `<service-account>`.
-4. Record the planned Role and RoleBinding review method for `<role-name>` and `<rolebinding-name>`.
-5. Review planned least privilege permissions for application workloads.
-6. Review the read-only validation account placeholder.
-7. Record planned `kubectl auth can-i` allowed action checks.
-8. Record planned `kubectl auth can-i` denied action checks.
-9. Review planned detection for unnecessary cluster-admin bindings.
-10. Review planned Secret read permission restrictions.
-11. Review workload namespace boundary checks.
-12. Record TODO placeholders in evidence files until approved execution produces sanitized output.
+1. Run `tools/validate-kubernetes-rbac-baseline.ps1` from the repository root.
+2. Confirm the baseline, matrix, example directory, and required files.
+3. Validate policy subjects and top-level YAML resource kinds file by file.
+4. Reject ClusterRoleBinding, cluster-admin, wildcard permission, default ServiceAccount, and application secrets access.
+5. Confirm monitoring verbs are limited to get, list, and watch.
+6. Reject kubeconfig, token, certificate, key, Secret, endpoint, address, or account-specific content.
+7. Confirm the validator contains no kubectl, Helm, API, or network command and inspect generated evidence.
 
-## Execution Boundaries
+## Execution Boundary
 
-This plan does not create Kubernetes manifests, apply RBAC objects, create kubeconfig files, or read Kubernetes Secrets. It only defines the review flow and evidence requirements for later approved validation.
+The script does not run kubectl, read kubeconfig, connect to a cluster, query an API server, apply manifests, or create resources.

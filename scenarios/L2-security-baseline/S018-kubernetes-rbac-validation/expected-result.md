@@ -1,22 +1,13 @@
 # Expected Result
 
-S018 is successful when the Kubernetes RBAC least privilege validation plan is complete and ready for future approved execution.
+## Pass Criteria
 
-## Success Conditions
+- V001 through V014 return `PASS`.
+- Application and monitoring workloads use distinct namespace-scoped identities and bindings.
+- No cluster-wide, wildcard, default-account, or application-secret privilege exists.
+- Monitoring permissions remain read-only.
+- No live cluster access or manifest application occurs.
 
-- Namespace separation is documented using placeholder namespace names.
-- ServiceAccounts are separated by workload or validation purpose.
-- Roles are namespace-scoped and grant only required verbs and resources.
-- RoleBindings bind only intended ServiceAccounts to intended Roles.
-- `kubectl auth can-i` allowed action checks are defined.
-- `kubectl auth can-i` denied action checks are defined.
-- Unnecessary cluster-admin bindings are denied.
-- Secret read access is restricted.
-- Workload access remains inside the intended namespace boundary.
-- All validation checks map to required evidence files.
+## Evidence Criteria
 
-## Evidence Conditions
-
-- `commands.md` lists planned command or review actions with TODO output placeholders.
-- `validation.md` lists each check with `NOT_RUN` status until execution.
-- Future supporting evidence is expected in `configs/kubernetes-rbac-summary.md`, `configs/kubernetes-rbac-policy.md`, `logs/kubernetes-rbac-validation.log`, and `screenshots/kubernetes-rbac-validation.png`.
+The ignored log and tracked summary contain sanitized static-validation results only and no kubeconfig, tokens, certificates, keys, endpoints, Secret data, or account-specific values.

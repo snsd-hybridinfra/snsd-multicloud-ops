@@ -1,36 +1,30 @@
 # Validation
 
 Scenario: S018-kubernetes-rbac-validation
+
 Level: L2-security-baseline
-Capability: Kubernetes RBAC Least Privilege Validation
-Reviewer: TBD
-Date: TBD
-Overall status: PARTIAL
 
-No real Kubernetes RBAC output has been collected yet. This file defines the validation record that must be completed during future approved execution.
+Date: 2026-07-13
 
-| Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
+Overall status: PASS
+
+| Check ID | Validation Item | Expected Condition | Actual Result | Evidence File | Status |
 |---|---|---|---|---|---|
-| V001 | Namespace existence validation plan | Required namespaces are identifiable by placeholder name. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-rbac-summary.md` |
-| V002 | ServiceAccount existence validation plan | Required ServiceAccounts are identifiable by placeholder name. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-rbac-summary.md` |
-| V003 | Role existence validation plan | Required Roles are identifiable and namespace-scoped. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-rbac-policy.md` |
-| V004 | RoleBinding existence validation plan | Required RoleBindings bind intended ServiceAccounts to intended Roles. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-rbac-policy.md` |
-| V005 | kubectl auth can-i allowed action validation plan | Required actions are allowed only for intended subjects. | TODO | NOT_RUN | `commands.md`; `logs/kubernetes-rbac-validation.log` |
-| V006 | kubectl auth can-i denied action validation plan | Unnecessary actions are denied. | TODO | NOT_RUN | `commands.md`; `logs/kubernetes-rbac-validation.log` |
-| V007 | No unnecessary cluster-admin binding validation plan | Application workloads and read-only validation accounts do not use cluster-admin. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-rbac-policy.md` |
-| V008 | Secret read permission restriction validation plan | Secret read access is denied unless explicitly required and documented. | TODO | NOT_RUN | `commands.md`; `configs/kubernetes-rbac-policy.md` |
-| V009 | Workload namespace boundary validation plan | Workload access is constrained to the intended namespace. | TODO | NOT_RUN | `commands.md`; `logs/kubernetes-rbac-validation.log`; `screenshots/kubernetes-rbac-validation.png` |
-| V010 | Failure condition for missing RBAC objects, excessive permissions, cluster-admin misuse, unrestricted secret access, or namespace boundary violation | Unsafe RBAC patterns produce `FAIL` or `BLOCKED` status. | TODO | NOT_RUN | `validation.md` |
+| V001 | RBAC baseline | File exists. | Baseline exists. | generated log and summary | PASS |
+| V002 | RBAC rule matrix | File exists. | Matrix exists. | generated log and summary | PASS |
+| V003 | RBAC manifest directory | Directory exists. | Directory exists. | generated log and summary | PASS |
+| V004 | Required manifest examples | All files exist. | All files found. | generated log and summary | PASS |
+| V005 | Policy statements and subjects | Required controls and subjects exist. | All found. | generated log and summary | PASS |
+| V006 | Namespace-scoped RBAC structure | Kinds and namespace are correct. | Structure is correct. | generated log and summary | PASS |
+| V007 | Cluster-wide privilege denial | No forbidden cluster binding. | None detected. | generated log and summary | PASS |
+| V008 | Wildcard permission denial | No wildcard permission. | None detected. | generated log and summary | PASS |
+| V009 | Application account restrictions | Dedicated account; no secrets. | Restrictions pass. | generated log and summary | PASS |
+| V010 | Default ServiceAccount denial | No default account use or approval. | None detected. | generated log and summary | PASS |
+| V011 | Monitoring read-only role | get, list, watch only. | Role is read-only. | generated log and summary | PASS |
+| V012 | Kubernetes credential files | No forbidden credential file. | None detected. | generated log and summary | PASS |
+| V013 | Manifest sensitive-content safety | No Secret, token, endpoint, or address. | None detected. | generated log and summary | PASS |
+| V014 | Execution safety boundary | No live cluster or network command. | None detected. | generated log and summary | PASS |
 
-## Evidence Completeness
+## Generated Result
 
-- Commands are planned: PARTIAL
-- Validation outputs are captured: NOT_READY
-- Kubernetes RBAC summary is captured: NOT_READY
-- Kubernetes RBAC policy is captured: NOT_READY
-- Kubernetes RBAC validation log is captured: NOT_READY
-- Kubernetes RBAC screenshot is captured: NOT_READY
-
-## Notes
-
-This scenario validates Kubernetes RBAC least privilege design only. Kubernetes workload deployment validation is handled in S022, and Kubernetes manifest policy validation is handled in S044. Service mesh, Istio, Argo CD, and full GitOps are excluded from v1 scope.
+All fourteen checks passed using repository files only. Evidence is recorded in `logs/kubernetes-rbac-validation.log` and `configs/kubernetes-rbac-summary.md`.

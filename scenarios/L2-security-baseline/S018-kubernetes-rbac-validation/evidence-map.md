@@ -1,18 +1,20 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
+| Check ID | Validation Item | Evidence File | Required |
 |---|---|---|---|
-| Namespace existence validation plan | `commands.md`; `configs/kubernetes-rbac-summary.md`; `validation.md` | command plan, RBAC summary, validation record | yes |
-| ServiceAccount existence validation plan | `commands.md`; `configs/kubernetes-rbac-summary.md`; `validation.md` | command plan, RBAC summary, validation record | yes |
-| Role existence validation plan | `commands.md`; `configs/kubernetes-rbac-policy.md`; `validation.md` | command plan, RBAC policy, validation record | yes |
-| RoleBinding existence validation plan | `commands.md`; `configs/kubernetes-rbac-policy.md`; `validation.md` | command plan, RBAC policy, validation record | yes |
-| kubectl auth can-i allowed action validation plan | `commands.md`; `logs/kubernetes-rbac-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| kubectl auth can-i denied action validation plan | `commands.md`; `logs/kubernetes-rbac-validation.log`; `validation.md` | command plan, validation log, validation record | yes |
-| No unnecessary cluster-admin binding validation plan | `commands.md`; `configs/kubernetes-rbac-policy.md`; `validation.md` | command plan, RBAC policy, validation record | yes |
-| Secret read permission restriction validation plan | `commands.md`; `configs/kubernetes-rbac-policy.md`; `validation.md` | command plan, RBAC policy, validation record | yes |
-| Workload namespace boundary validation plan | `commands.md`; `logs/kubernetes-rbac-validation.log`; `screenshots/kubernetes-rbac-validation.png`; `validation.md` | command plan, validation log, screenshot reference, validation record | yes |
-| Failure condition for missing RBAC objects, excessive permissions, cluster-admin misuse, unrestricted secret access, or namespace boundary violation | `validation.md` | failure criteria and status record | yes |
+| V001 | RBAC baseline | `logs/kubernetes-rbac-validation.log`; `configs/kubernetes-rbac-summary.md` | yes |
+| V002 | RBAC rule matrix | same generated evidence | yes |
+| V003 | RBAC manifest directory | same generated evidence | yes |
+| V004 | Required manifest examples | same generated evidence | yes |
+| V005 | Policy statements and subjects | same generated evidence | yes |
+| V006 | Namespace-scoped RBAC structure | same generated evidence | yes |
+| V007 | Cluster-wide privilege denial | same generated evidence | yes |
+| V008 | Wildcard permission denial | same generated evidence | yes |
+| V009 | Application account restrictions | same generated evidence | yes |
+| V010 | Default ServiceAccount denial | same generated evidence | yes |
+| V011 | Monitoring read-only role | same generated evidence | yes |
+| V012 | Kubernetes credential files | same generated evidence | yes |
+| V013 | Manifest sensitive-content safety | same generated evidence | yes |
+| V014 | Execution safety boundary | same generated evidence | yes |
 
-## Evidence Notes
-
-No real Kubernetes RBAC output has been collected yet. Use TODO placeholders until execution is approved and outputs are sanitized.
+`commands.md` documents execution and `validation.md` records final results. The generated log is ignored; the sanitized summary is tracked.

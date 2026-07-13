@@ -21,7 +21,7 @@ Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S015 | azure-nsg-least-privilege-validation | READY | READY | READY | READY | READY | READY |
 | S016 | openstack-security-group-validation | READY | READY | READY | READY | READY | READY |
 | S017 | mariadb-access-control-validation | READY | READY | READY | READY | READY | READY |
-| S018 | kubernetes-rbac-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
+| S018 | kubernetes-rbac-validation | READY | READY | READY | READY | READY | READY |
 | S019 | nginx-security-header-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S020 | grafana-anonymous-access-denial-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |
 | S021 | kubernetes-node-readiness-validation | PARTIAL | PARTIAL | NOT_READY | NOT_READY | NOT_READY | PARTIAL |

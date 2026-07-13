@@ -1,22 +1,11 @@
 # Failure Condition
 
-S018 fails if the Kubernetes RBAC model allows unsafe or undocumented access patterns.
+S018 fails if a required artifact, policy subject, resource kind, or namespace is absent; a ClusterRoleBinding, cluster-admin, wildcard, default application account, application secrets permission, or monitoring write verb is present; or unsafe credential, Secret, endpoint, address, or active cluster command content is detected.
 
-## Failure Conditions
+## Critical Failure Behavior
 
-- Required namespaces are missing from the planned RBAC model.
-- Required ServiceAccounts are missing or shared across unrelated workloads.
-- Required Roles are missing, cluster-scoped when namespace scope is expected, or grant excessive permissions.
-- Required RoleBindings are missing or bind unintended subjects.
-- `kubectl auth can-i` allows actions that should be denied.
-- Application workloads or read-only validation accounts receive unnecessary cluster-admin access.
-- Secret read permission is unrestricted or granted without explicit justification.
-- Workload access crosses namespace boundaries without explicit approval.
-- RBAC evidence cannot be captured or reviewed.
-- Evidence contains kubeconfig files, Kubernetes Secrets, credentials, private keys, tfstate, cloud account values, subscription IDs, tenant IDs, or account-specific values.
+Any failed check produces a non-zero exit. Missing or ambiguous evidence is not treated as successful validation.
 
-## Blocked Conditions
+## Safety Failure
 
-- Validation cannot proceed because no approved placeholder RBAC model exists.
-- Future `kubectl auth can-i` output is unavailable.
-- Required evidence files are missing.
+Detection of kubeconfig, tokens, certificates, keys, namespace secrets, endpoints, credentials, or account-specific values requires removal and rerunning the scenario.
