@@ -39,6 +39,18 @@ powershell -ExecutionPolicy Bypass -File tools\validate-final-evidence-report.ps
 
 The repository-wide wrapper runs local PowerShell validators in static-only mode. It does not run Terraform, kubectl, cloud CLIs, or live infrastructure queries.
 
+## Lab Phase 1 References
+
+The non-production reference lab is planned in:
+
+- [Lab reference architecture](docs/lab-reference-architecture.md)
+- [Lab build order](docs/lab-build-order.md)
+- [Placeholder IP plan](docs/lab-ip-plan.md)
+- [Evidence collection guide](docs/lab-evidence-collection-guide.md)
+- [Evidence sanitization rules](docs/lab-sanitization-rules.md)
+
+These documents prepare later sanitized evidence collection; they do not provision or query live infrastructure.
+
 ## Scope and Safety
 
 This repository uses sanitized examples and placeholders. Do not add credentials, secrets, private keys, generated state, kubeconfig, cloud account values, production identifiers, packet captures, malware samples, or real billing/monitoring exports.
