@@ -18,7 +18,7 @@ Define how repository tracking and scenario evidence are aggregated into a portf
 
 ## Scope Summary
 
-The scenario validates report inputs, L1 through L5 coverage, evidence completeness, required report sections, and the final judgment model. It does not generate a real report or provide compliance certification.
+The scenario validates report inputs, L1 through L5 coverage, evidence completeness, required report sections, and the final judgment model. It generates a local portfolio-grade Markdown/JSON report, not a formal audit report or compliance certification.
 
 ## Validation Summary
 

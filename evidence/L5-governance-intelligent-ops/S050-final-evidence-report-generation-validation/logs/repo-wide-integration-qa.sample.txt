@@ -1,0 +1,16 @@
+SAMPLE / NON-PRODUCTION
+SNSD repository-wide integration QA evidence example
+
+Scenario coverage: PASS - locked S001-S050 paths exist exactly once
+Evidence coverage: PASS - evidence paths mirror scenario paths
+Required scenario documents: PASS - 11 documents per scenario
+Required evidence items: PASS - commands, validation, logs, screenshots, configs
+Status model: PASS - canonical scenario and evidence readiness values only
+Cross-scenario references: PASS - required ownership and hand-off mappings present
+Safety scan: PASS - no prohibited state, credential, key, kubeconfig, cloud identifier, or live data artifact
+Local validator orchestration: PASS - static-only PowerShell validation
+Final report: PASS - local portfolio-grade Markdown/JSON only
+
+Final QA judgment: INTEGRATION_QA_PASS
+
+This is a sanitized example. It is not live infrastructure evidence, external audit approval, or compliance certification.

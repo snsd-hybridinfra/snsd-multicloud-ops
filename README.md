@@ -1,48 +1,48 @@
 # SNSD Multi-Cloud Secure Operations Validation Platform
 
-This repository is the scenario-based validation foundation for a multi-cloud secure operations platform. It is designed to prove operational, security, recovery, governance, and intelligent-operations behaviors through repeatable scenarios and evidence, before any production cloud implementation is introduced.
+**한국어 제목:** SNSD 시나리오 기반 멀티클라우드 보안 운영 검증 플랫폼
 
-## Repository Method
+Scenario-based multi-cloud secure operations validation platform for portfolio and non-production use. The repository demonstrates repeatable operational, security, recovery, governance, and intelligent-operations checks through documented criteria and traceable evidence; it does not represent a production deployment or formal compliance certification.
 
-The primary unit of work is a validation scenario. Each scenario defines:
+## Validation Model
 
-- objective and acceptance criteria
-- allowed scope and dependencies
-- execution steps
-- expected evidence
-- pass, partial, and fail conditions
+`Scenario → Validation Criteria → Evidence Output → Runbook/Rollback where applicable`
 
-Evidence is stored separately from scenario definitions so implementation work, observations, and review artifacts stay traceable.
+The locked model contains exactly 50 scenarios across five levels:
 
-## Validation Levels
+- **L1 Foundation Validation** — control-plane, network, inventory, and repository foundations
+- **L2 Security Baseline Validation** — access, least privilege, service, and platform baselines
+- **L3 Service Operations Validation** — Kubernetes, traffic, database, and observability operations
+- **L4 Failure Recovery Validation** — controlled failure, rollback, backup, restore, and recovery evidence
+- **L5 Governance Intelligent Ops** — drift, policy, cost, cleanup, ML-assisted metric analysis, and final reporting
 
-- `L1-foundation`: repository, platform structure, lab readiness, and baseline operating conventions
-- `L2-security-baseline`: identity, network, host, Kubernetes, and policy security baselines
-- `L3-service-operations`: deployment, traffic, observability, and routine service operations
-- `L4-failure-recovery`: failure injection, backup, restore, failover, and recovery validation
-- `L5-governance-intelligent-ops`: cost, compliance, reporting, anomaly detection, and ML-assisted operations
+The canonical scenario list is maintained in [docs/scenario-model.md](docs/scenario-model.md).
 
-See [docs/scenario-model.md](docs/scenario-model.md) for the 50 core scenarios.
+## Repository Layout
 
-## Scope Guardrails
+- `scenarios/` — scenario definitions grouped by validation level
+- `evidence/` — matching commands, validation records, logs, screenshots, and configs
+- `tools/` — local PowerShell generators and validators
+- `runbooks/`, `policy/`, `security-baseline/`, `cost-governance/` — non-production operational references
+- `terraform/`, `ansible/`, `kubernetes/`, `eve-ng/`, `observability/`, `ml-security/` — locked platform implementation and example areas
+- `docs/` — scope, naming, tracking, risk, and architecture records
 
-This foundation does not create real cloud resources, credentials, secrets, private keys, tfstate, kubeconfig files, or account-specific configuration. The locked scope and excluded scope are documented in:
+## Run Local Validation
 
-- [docs/scope-lock.md](docs/scope-lock.md)
-- [docs/excluded-scope.md](docs/excluded-scope.md)
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\validate-repo-structure.ps1
+powershell -ExecutionPolicy Bypass -File tools\validate-scenario-quality.ps1
+powershell -ExecutionPolicy Bypass -File tools\validate-all-scenarios.ps1
+powershell -ExecutionPolicy Bypass -File tools\generate-final-evidence-report.ps1
+powershell -ExecutionPolicy Bypass -File tools\validate-final-evidence-report.ps1
+```
 
-## Key Directories
+The repository-wide wrapper runs local PowerShell validators in static-only mode. It does not run Terraform, kubectl, cloud CLIs, or live infrastructure queries.
 
-- `scenarios/`: scenario definitions grouped by validation level
-- `evidence/`: captured results grouped by validation level
-- `terraform/`: future IaC modules and environment layouts, without providers or credentials
-- `ansible/`: future automation inventory, playbooks, and roles
-- `kubernetes/`: future namespace, workload, ingress, and security manifests
-- `eve-ng/`: topology and network device configuration references
-- `observability/`: Prometheus, Grafana, and exporter configuration references
-- `ml-security/`: datasets, scripts, models, and reports for security analytics
-- `docs/adr/`: architecture decision records
+## Scope and Safety
 
-## Working Rules
+This repository uses sanitized examples and placeholders. Do not add credentials, secrets, private keys, generated state, kubeconfig, cloud account values, production identifiers, packet captures, malware samples, or real billing/monitoring exports.
 
-Use concise scenario-first changes, document assumptions, and store validation outputs under the matching evidence level. Codex-specific working rules are in [AGENTS.md](AGENTS.md).
+Major excluded capabilities include production-grade HA/DR, automatic cross-cloud failover, SIEM/Wazuh/EDR/SOAR, threat hunting, packet payload analysis, malware detection, real-time blocking, formal compliance certification, and unapproved platform integrations. See [docs/scope-lock.md](docs/scope-lock.md) and [docs/excluded-scope.md](docs/excluded-scope.md) for the authoritative boundaries.
+
+Agent working rules are defined in [AGENTS.md](AGENTS.md).

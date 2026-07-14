@@ -49,4 +49,5 @@ Implemented boundary: static local evidence only; no state/tfvars/plan binary/ba
 - Terraform drift remediation, handled in S042.
 - Kubernetes manifest policy validation, handled in S044.
 - Cost guardrail validation, handled in S045.
+- Resource cleanup validation, handled in S046.
 - Security rule misconfiguration response, handled in S037.

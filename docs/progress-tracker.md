@@ -19,6 +19,8 @@ Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | L5 | Governance Intelligent Ops | 10/10 | 10/10 | 10/10 | S041-S050 validated with static governance, synthetic Intelligent Ops, and final local report evidence |
 | Total | All Levels | 50/50 | 50/50 | 50/50 | All 50 scenarios implemented and validated within the locked sample/non-production scope |
 
+Repository-wide integration QA is performed with `tools/validate-all-scenarios.ps1`; its latest summary is stored under the S050 evidence directory.
+
 ## Update Rule
 
 Update this file whenever a scenario moves to `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, `VALIDATED`, `PARTIAL`, `BLOCKED`, or `DEPRECATED`.

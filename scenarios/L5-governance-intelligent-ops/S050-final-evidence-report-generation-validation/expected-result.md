@@ -12,4 +12,4 @@ The scenario succeeds when:
 - Every validation check maps to planned evidence.
 - Only placeholders and sanitized references are used.
 
-Success does not mean a real final report has been generated, individual scenarios have passed, formal compliance has been certified, or production audit readiness has been established.
+Success means a local portfolio-grade final report has been generated and validated. It does not mean individual live environments have passed, formal compliance has been certified, or production audit readiness has been established.

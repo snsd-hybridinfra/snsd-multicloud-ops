@@ -190,8 +190,12 @@ else {
     Add-ValidationResult "V013" "Safety boundary documentation" "FAIL" ("Missing boundary text: " + ($missingBoundaryPhrases -join ", "))
 }
 
+$repoWideStaticOnly = $env:SNSD_REPO_WIDE_STATIC_ONLY -eq "1"
 $terraformCommand = Get-Command -Name "terraform" -ErrorAction SilentlyContinue | Select-Object -First 1
-if ($null -eq $terraformCommand) {
+if ($repoWideStaticOnly) {
+    Add-ValidationResult "V014" "Terraform formatting" "WARN" "Skipped by repository-wide static-only validation mode."
+}
+elseif ($null -eq $terraformCommand) {
     Add-ValidationResult "V014" "Terraform formatting" "WARN" "Terraform is unavailable; fmt check was skipped."
 }
 else {
