@@ -1,2 +1,2 @@
-﻿bastion-vm
+﻿<hostname-masked>
 <lab-ip-masked> <lab-ip-masked> 
