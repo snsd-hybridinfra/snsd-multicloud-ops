@@ -1,0 +1,3 @@
+﻿<hostname-masked>
+<user-masked>
+ 05:21:49 up 18 min,  2 users,  load average: 0.03, 0.16, 0.14
