@@ -1,7 +1,7 @@
 ﻿# Kubernetes Ingress Routing Summary
 
 - Scenario: S023-ingress-routing-validation
-- Generated: 2026-07-13T11:47:03+09:00
+- Generated: 2026-07-15T09:16:51+09:00
 - Validation mode: **Static**
 - Required file check result: **PASS**
 - Ingress manifest check result: **PASS**

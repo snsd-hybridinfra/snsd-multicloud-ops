@@ -33,3 +33,30 @@ Validation mode: Static
 ## Generated Result
 
 Static validation completed with sixteen PASS results and one expected ADDRESS-placeholder WARN. Optional LiveKubectl mode was not run and curl was not executed.
+
+## Real-Lab Evidence Validation - 2026-07-15
+
+Validation mode: Real lab evidence, sanitized
+
+| Check ID | Check Description | Expected Condition | Evidence File | Result |
+|---|---|---|---|---|
+| LAB-001 | Namespace and workload | Namespace contains a ready Deployment, ReplicaSet, and Running Pods. | dated sanitized log and summary | PASS |
+| LAB-002 | Service routing target | Service exists with ready backend endpoints. | dated sanitized log and summary | PASS |
+| LAB-003 | Ingress resource | Ingress has the expected host, `/` path, Service, and port mapping. | dated sanitized log and summary | PASS |
+| LAB-004 | Ingress controller | Controller and service load-balancer Pods are Running. | dated sanitized log and summary | PASS |
+| LAB-005 | HTTP route | Host-header request returns `HTTP/1.1 200 OK`. | dated sanitized log and summary | PASS |
+| LAB-006 | Response body | Host-header request returns an HTML body. | dated sanitized log and summary | PASS |
+| LAB-007 | Kubernetes events | Event query completes; no warning or failure event is reported. | dated sanitized log and summary | PASS |
+| LAB-008 | Sensitive-data handling | Local identifiers, host, image, addresses, and response identifiers are masked. | dated sanitized log and summary | PASS |
+
+Final judgment: **READY**
+
+Evidence:
+
+- `logs/20260714-S023-ingress-routing.sanitized.txt`
+- `configs/20260714-S023-ingress-routing-validation-summary.md`
+
+Raw output is not committed. No kubeconfig, service-account token, certificate,
+private key, password, secret, cookie, Authorization header, or credential value
+is retained. This evidence validates routing inside a local lab; it does not
+validate or claim public internet exposure.

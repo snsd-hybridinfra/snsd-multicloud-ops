@@ -1,0 +1,67 @@
+SAMPLE CLASSIFICATION: REAL LAB EVIDENCE / SANITIZED
+Scenario: S022-kubernetes-workload-deployment-validation
+Evidence date: 2026-07-14
+Source: pasted terminal output
+Raw output committed: NO
+
+SANITIZATION NOTICE
+- The SSH user, host and node names, namespace, workload names, ReplicaSet hash,
+  Pod suffixes, container image, and every network address were replaced.
+- The password prompt, image inventory/digests, and unrelated network-resolution
+  output were omitted.
+- No kubeconfig, service-account token, certificate, private key, password,
+  secret, cookie, Authorization header, or credential value is retained.
+
+[Namespace creation]
+$ kubectl create namespace <namespace-placeholder>
+namespace/<namespace-masked> created
+$ kubectl get namespace <namespace-placeholder>
+NAME                 STATUS   AGE
+<namespace-masked>   Active   <age-masked>
+
+[Deployment creation]
+$ kubectl apply -f <workload-manifest-placeholder>
+deployment.apps/<deployment-name-masked> created
+
+[Service creation]
+$ kubectl apply -f <service-manifest-placeholder>
+service/<service-name-masked> created
+
+[Deployment status]
+$ kubectl get deploy -n <namespace-placeholder> -o wide
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE            CONTAINERS                IMAGES                     SELECTOR
+<deployment-name-masked>   2/2     2            2           <age-masked>   <container-name-masked>   <container-image-masked>   <selector-masked>
+
+[ReplicaSet status]
+$ kubectl get rs -n <namespace-placeholder> -o wide
+NAME                       DESIRED   CURRENT   READY   AGE            CONTAINERS                IMAGES                     SELECTOR
+<replicaset-name-masked>   2         2         2       <age-masked>   <container-name-masked>   <container-image-masked>   <selector-masked>
+
+[Pod status]
+$ kubectl get pods -n <namespace-placeholder> -o wide
+NAME                   READY   STATUS    RESTARTS   AGE            IP                NODE                 NOMINATED NODE   READINESS GATES
+<pod-name-masked-01>   1/1     Running   0          <age-masked>   <lab-ip-masked>   <node-name-masked>   <none>           <none>
+<pod-name-masked-02>   1/1     Running   0          <age-masked>   <lab-ip-masked>   <node-name-masked>   <none>           <none>
+
+[Service status]
+$ kubectl get svc -n <namespace-placeholder> -o wide
+NAME                    TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)                AGE            SELECTOR
+<service-name-masked>   ClusterIP   <lab-ip-masked>   <none>        <service-port-masked>   <age-masked>   <selector-masked>
+
+[Deployment and event evidence]
+Replicas: 2 desired | 2 updated | 2 total | 2 available | 0 unavailable
+Available: True / MinimumReplicasAvailable
+Progressing: True / NewReplicaSetAvailable
+Event summary: Normal scheduling, ReplicaSet scaling, Pod creation, image pull,
+container creation, and container start events were observed for both Pods.
+Event identifiers, workload names, image values, and node names are masked.
+
+[Validation result]
+Namespace creation: PASS
+Deployment creation: PASS
+ReplicaSet desired/current/ready: 2/2/2 (PASS)
+Pods Running and ready: 2 of 2 (PASS)
+Service present: PASS
+Normal lifecycle events present: PASS
+Sensitive data sanitization: PASS
+Final judgment: READY

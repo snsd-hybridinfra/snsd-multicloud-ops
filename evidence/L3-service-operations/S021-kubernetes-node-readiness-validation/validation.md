@@ -28,3 +28,18 @@ Validation mode: Static
 ## Generated Result
 
 Static validation passed all twelve checks with three Ready placeholder nodes, zero NotReady findings, and zero SchedulingDisabled findings. Optional LiveKubectl mode was not run.
+
+## Real-Lab Evidence Intake
+
+| Check | Expected Condition | Actual Result | Status | Evidence |
+|---|---|---|---|---|
+| Real-lab source | Sanitized pasted terminal output is available | Required command categories are present in sanitized form | PASS | `logs/20260714-S021-k3s-node-readiness.sanitized.txt` |
+| k3s service | `systemctl is-active k3s` reports active | active (running) | PASS | Sanitized evidence and validation summary |
+| Node readiness | `kubectl get nodes -o wide` reports the node as Ready | Node reports Ready | PASS | Sanitized evidence and validation summary |
+| kube-system pods | `kubectl get pods -A` provides kube-system status | Observed Pods are Running or Completed; no failed Pod shown | PASS | Sanitized evidence and validation summary |
+| kubectl client | Client version output is present | Client and Kustomize versions present | PASS | Sanitized evidence and validation summary |
+| Sensitive data | No raw user, address, hostname, token, certificate, kubeconfig, key, password, secret, header, cookie, or credential is committed | Repository evidence contains placeholders and omission notices only | PASS | `configs/20260714-S021-k3s-node-readiness-validation-summary.md` |
+
+Real-lab final judgment: **READY**.
+
+Raw terminal output is not committed. The static repository model and sanitized real-lab readiness evidence are validated. This judgment covers the observed node-readiness state only and does not expose kubeconfig or cluster credentials.

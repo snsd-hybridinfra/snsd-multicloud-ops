@@ -1,3 +1,63 @@
-﻿<hostname-masked>
-<user-masked>
- 05:21:49 up 18 min,  2 users,  load average: 0.03, 0.16, 0.14
+S021 KUBERNETES NODE READINESS - SANITIZED REAL-LAB EVIDENCE
+
+Evidence source: pasted terminal output
+Validation mode: real lab evidence, sanitized
+Raw output committed: NO
+Sanitization result: PASS
+
+COMMAND CATEGORY: sudo systemctl is-active k3s
+RESULT:
+active
+
+COMMAND CATEGORY: sudo systemctl status k3s --no-pager
+SANITIZED RESULT:
+k3s.service - Lightweight Kubernetes
+Loaded: loaded (<service-unit-path-masked>; enabled; preset: enabled)
+Active: active (running) since 2026-07-14 05:15:56 UTC; observed uptime 14min
+Docs: <documentation-url-masked>
+Main PID: <pid-masked> (k3s-server)
+Tasks: <task-count-observed>
+Memory: <memory-observed>
+CPU: <cpu-observed>
+CGroup and process paths: <local-process-details-masked>
+Recent journal source hostname: <hostname-masked>
+Recent journal details: <journal-details-masked>
+
+COMMAND CATEGORY: sudo kubectl get nodes -o wide
+SANITIZED RESULT:
+NAME                STATUS   ROLES           AGE   VERSION        INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION              CONTAINER-RUNTIME
+<hostname-masked>   Ready    control-plane   14m   v1.36.2+k3s1   <lab-ip-masked>   <none>        <os-image-observed>   6.8.0-134-generic (amd64)   containerd://2.3.2-k3s2
+
+COMMAND CATEGORY: sudo kubectl get pods -A
+SANITIZED RESULT:
+NAMESPACE     NAME                                      READY   STATUS      RESTARTS      AGE
+kube-system   coredns-<pod-id-masked>                   1/1     Running     0             14m
+kube-system   helm-install-traefik-<pod-id-masked>      0/1     Completed   2 (14m ago)   14m
+kube-system   helm-install-traefik-crd-<pod-id-masked>  0/1     Completed   0             14m
+kube-system   local-path-provisioner-<pod-id-masked>    1/1     Running     0             14m
+kube-system   metrics-server-<pod-id-masked>            1/1     Running     0             14m
+kube-system   svclb-traefik-<pod-id-masked>             2/2     Running     0             13m
+kube-system   traefik-<pod-id-masked>                   1/1     Running     0             13m
+
+COMMAND CATEGORY: sudo kubectl version --client
+SANITIZED RESULT:
+Client Version: v1.36.2+k3s1
+Kustomize Version: v5.8.1
+
+SANITIZATION NOTES:
+- SSH user replaced with <user-masked> if present.
+- Bastion address replaced with <bastion-ip-masked> if present.
+- Expected k3s node address replaced with <k3s-node-ip-masked> if present.
+- Other observed lab address replaced with <lab-ip-masked>.
+- Node hostname replaced with <hostname-masked>.
+- Service paths, process identifiers, Pod identifiers, documentation URL, and journal details masked.
+- No kubeconfig content, token, certificate, private key, password, secret,
+  Authorization header, cookie, or credential committed.
+
+OBSERVED JUDGMENT:
+- k3s service status: ACTIVE
+- Kubernetes node readiness: READY
+- kube-system pod status: HEALTHY (Running or Completed; no failed Pod shown)
+- kubectl client version evidence: PRESENT
+
+Final judgment: READY

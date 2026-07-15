@@ -1,7 +1,7 @@
 ﻿# Kubernetes Workload Deployment Summary
 
 - Scenario: S022-kubernetes-workload-deployment-validation
-- Generated: 2026-07-13T11:39:18+09:00
+- Generated: 2026-07-14T17:49:52+09:00
 - Validation mode: **Static**
 - Required file check result: **PASS**
 - Manifest safety check result: **PASS**

@@ -26,3 +26,7 @@ Twelve checks validate files, command references, readiness rules, placeholder n
 ## Evidence Output Summary
 
 Tracked sample output and a sanitized summary accompany an ignored execution log in the S021 evidence directory.
+
+## Real-Lab Evidence Status
+
+The repository-side static model remains validated. Sanitized 2026-07-14 real-lab evidence confirms that k3s is active, the node reports Ready, observed kube-system Pods are Running or Completed, and kubectl client version evidence is present. Raw output and sensitive lab identifiers are not committed.

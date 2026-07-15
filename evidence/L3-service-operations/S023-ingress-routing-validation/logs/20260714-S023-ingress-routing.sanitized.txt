@@ -1,0 +1,83 @@
+EVIDENCE CLASSIFICATION: REAL LAB / SANITIZED
+Scenario: S023-ingress-routing-validation
+Evidence source: pasted terminal output
+Raw output committed: NO
+
+SANITIZATION NOTICE
+- User, host/node, namespace, Deployment, ReplicaSet, Pod, Service, Ingress,
+  container image, selector/hash, local DNS host, and every address are masked.
+- Response ETag, exact timestamps, server version, and page content identifiers
+  were omitted or replaced.
+- No kubeconfig, service-account token, certificate, private key, password,
+  secret, cookie, Authorization header, or credential value is retained.
+
+[Workload and Service readiness]
+$ kubectl get deploy,rs,pods,svc,ingress -n <namespace-placeholder> -o wide
+
+KIND          NAME                       READY/CURRENT/AVAILABLE   STATUS    ADDRESS
+Deployment    <deployment-name-masked>   2/2/2                     Ready     <not-applicable>
+ReplicaSet    <replicaset-name-masked>   2/2/2                     Ready     <not-applicable>
+Pod           <pod-name-masked-01>       1/1                       Running   <lab-ip-masked>
+Pod           <pod-name-masked-02>       1/1                       Running   <lab-ip-masked>
+Service       <service-name-masked>      <not-applicable>          ClusterIP <lab-ip-masked>
+Ingress       <ingress-name-masked>      <not-applicable>          Present   <lab-ip-masked>
+
+Observed namespace: <namespace-masked>
+Observed node: <node-name-masked>
+Observed image: <container-image-masked>
+Observed Ingress host: <ingress-host-placeholder>
+Observed Ingress class: traefik
+Observed Ingress port: 80
+
+[Ingress description]
+$ kubectl describe ingress <ingress-name-placeholder> -n <namespace-placeholder>
+Name:             <ingress-name-masked>
+Namespace:        <namespace-masked>
+Address:          <lab-ip-masked>
+Ingress Class:    traefik
+Rule Host:        <ingress-host-placeholder>
+Rule Path:        /
+Backend:          <service-name-masked>:80
+Backend Endpoints: <lab-ip-masked>:80, <lab-ip-masked>:80
+Ingress Events:   <none>
+
+[Ingress controller evidence]
+$ kubectl get pods -n kube-system
+<ingress-install-pod-masked-01>      Completed
+<ingress-install-pod-masked-02>      Completed
+<ingress-load-balancer-pod-masked>   Running (2/2)
+<ingress-controller-pod-masked>      Running (1/1)
+
+[Host-header routing test]
+$ curl -I -H "Host: <ingress-host-placeholder>" http://<k3s-node-ip-placeholder>/
+HTTP/1.1 200 OK
+Content-Length: <response-length-masked>
+Content-Type: text/html
+Date: <response-date-masked>
+ETag: <response-etag-masked>
+Last-Modified: <response-last-modified-masked>
+Server: <server-header-masked>
+
+$ curl -s -H "Host: <ingress-host-placeholder>" http://<k3s-node-ip-placeholder>/
+<!DOCTYPE html>
+<html>
+<head>
+<title><response-title-masked></title>
+...
+
+[Kubernetes event evidence]
+$ kubectl get events -n <namespace-placeholder> --sort-by=.lastTimestamp
+No resources found in <namespace-masked> namespace.
+
+[Validation result]
+Namespace present: PASS
+Deployment and Pods ready: PASS
+Service present with ready endpoints: PASS
+Ingress resource and host/path/backend mapping: PASS
+Ingress controller evidence: PASS
+HTTP status response: 200 OK (PASS)
+Host-header route response body: PRESENT (PASS)
+Event query: COMPLETED / NO EVENTS (PASS)
+Sensitive data sanitization: PASS
+Public internet exposure validation: NOT PERFORMED
+Final judgment: READY

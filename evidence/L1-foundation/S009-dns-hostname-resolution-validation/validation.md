@@ -28,3 +28,17 @@ Overall status: PASS
 ## Generated Result
 
 All fourteen file, alias, placeholder, policy, safety, artifact, and execution-boundary checks passed. No DNS query, resolver change, host connection, credential access, cloud authentication, cloud query, or live network request occurred.
+
+## Lab Phase 2 Expected Result
+
+Lab hostname/resolution collection is currently `NOT_RUN`. The existing PASS result above covers the static repository model only.
+
+| Lab Check | Expected Condition | Current Result | Planned Evidence |
+|---|---|---|---|
+| Hostname configured | `hostname` returns a non-empty lab hostname | NOT_RUN | Sanitized hostname evidence under `<evidence-path>/logs/` |
+| Interface address evidence | `hostname -I` output is collected for review | NOT_RUN | Output with every address replaced by `<lab-ip-masked>` |
+| Basic resolution | `getent hosts <hostname-placeholder>` resolves when a hosts/DNS mapping is configured | NOT_RUN | Sanitized resolution output or documented `NOT_APPLICABLE` result |
+| Optional DNS query | `nslookup <hostname-placeholder>` is collected when applicable | NOT_RUN | Sanitized lookup output or documented `NOT_APPLICABLE` result |
+| Commit safety | Actual IP values and hostnames are masked before commit | NOT_RUN | Sanitization review note |
+
+No live success claim may be made until the sanitized evidence has been reviewed. Raw DNS/resolver output, real addresses, hostnames, credentials, and identifiers remain outside the repository.
