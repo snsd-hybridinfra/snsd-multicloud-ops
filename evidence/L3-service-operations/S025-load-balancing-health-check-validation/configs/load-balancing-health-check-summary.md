@@ -1,7 +1,7 @@
 ﻿# Load Balancing Health Check Summary
 
 - Scenario: S025-load-balancing-health-check-validation
-- Generated: 2026-07-13T12:07:48+09:00
+- Generated: 2026-07-15T09:33:21+09:00
 - Validation mode: **Static**
 - Required file check result: **PASS**
 - Backend pool definition check result: **PASS**

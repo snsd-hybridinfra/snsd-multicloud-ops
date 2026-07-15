@@ -33,3 +33,44 @@ Overall status: PASS
 - Optional LiveHttp: NOT_RUN
 - Final judgment: PASS
 - No Nginx, curl, network, failover, configuration change, target URL, response content, credential, cookie, token, TLS material, domain, or numeric address was used or stored.
+
+## Real Virtual-Lab Evidence Validation - 2026-07-15
+
+Validation mode: Real virtual lab evidence, sanitized
+
+| Check ID | Check Description | Expected Condition | Evidence File | Result |
+|---|---|---|---|---|
+| LAB-001 | Initial backend replicas | At least two backend Pods exist and are Ready. | normal-state log and summary | PASS |
+| LAB-002 | Initial Service endpoints | Service contains at least two ready endpoints. | normal-state log and summary | PASS |
+| LAB-003 | Initial request distribution | Requests succeed and identify both backends. | normal-state log and summary | PASS |
+| LAB-004 | Controlled readiness failure | One running Pod becomes NotReady without deletion. | unhealthy-exclusion log and summary | PASS |
+| LAB-005 | Unhealthy backend exclusion | NotReady Pod is absent from Service-ready endpoints. | unhealthy-exclusion log and summary | PASS |
+| LAB-006 | Healthy traffic continuity | Requests continue through the healthy backend. | unhealthy-exclusion log and summary | PASS |
+| LAB-007 | NotReady backend traffic | No degraded-state response identifies the NotReady backend. | unhealthy-exclusion log and summary | PASS |
+| LAB-008 | Readiness restoration | Target Pod returns to Ready without replacement. | restoration log and summary | PASS |
+| LAB-009 | Endpoint restoration | Service returns to two ready endpoints. | restoration log and summary | PASS |
+| LAB-010 | EndpointSlice restoration | Both final EndpointSlice conditions report ready and serving. | restoration log and summary | PASS |
+| LAB-011 | Post-recovery distribution | Requests again identify both backends. | restoration log and summary | PASS |
+| LAB-012 | Sensitive-data handling | Raw identifiers, addresses, bodies, credentials, and secrets are absent. | all dated evidence | PASS |
+
+Final judgment: **READY**
+
+Validated traffic path:
+
+`Client -> Ingress Controller -> Kubernetes Service -> Ready backend endpoint`
+
+The controlled target remained `Running` but became `0/1`; Kubernetes removed
+it from the Service-ready endpoint set. No Pod deletion or container crash was
+used. Full Pod failure and Deployment self-healing remain separately owned by
+S031 Web Pod Failure Recovery.
+
+Evidence:
+
+- `logs/20260715-S025-load-balancing-normal-state.sanitized.txt`
+- `logs/20260715-S025-unhealthy-backend-exclusion.sanitized.txt`
+- `logs/20260715-S025-backend-health-restoration.sanitized.txt`
+- `configs/20260715-S025-load-balancing-health-check-validation-summary.md`
+
+Raw output, response bodies, kubeconfig, service-account tokens, certificates,
+private keys, passwords, cookies, Authorization headers, credentials, and
+secrets are not committed.

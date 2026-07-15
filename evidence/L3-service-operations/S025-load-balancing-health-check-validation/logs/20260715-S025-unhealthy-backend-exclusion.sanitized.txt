@@ -1,0 +1,51 @@
+EVIDENCE CLASSIFICATION: REAL VIRTUAL LAB / SANITIZED
+Scenario: S025-load-balancing-health-check-validation
+State: Controlled readiness degradation
+Evidence source: pasted terminal output
+Raw output committed: NO
+
+[Controlled readiness failure]
+Target Pod: <backend-pod-a>
+Method: kubectl exec ... rm -f /tmp/ready
+Pod deletion used: NO
+Container crash induced: NO
+Wait before observation: <wait-duration-masked>
+
+[Pod readiness after failure]
+Backend Pod A: <backend-pod-a> / 0/1 Running / address <lab-ip-masked> / node <node-name-masked>
+Backend Pod B: <backend-pod-b> / 1/1 Running / address <lab-ip-masked> / node <node-name-masked>
+Target Pod running state: PASS
+Target Pod NotReady state: PASS
+Readiness probe failure event: PRESENT / IDENTIFIERS MASKED
+
+[Service-ready endpoint exclusion]
+Service: <service-placeholder>
+Ready endpoint count: 1
+Remaining ready endpoint: <lab-ip-masked>:80 -> <backend-pod-b>
+NotReady backend in ready Service Endpoints set: NO
+Exclusion judgment: PASS
+
+[EndpointSlice degraded observation]
+EndpointSlice: <endpointslice-placeholder>
+Member address count in wide output: 2
+Per-endpoint readiness conditions in degraded capture: NOT PRINTED
+No EndpointSlice `ready:false` value is claimed. Readiness-based traffic
+eligibility is evidenced by Pod readiness plus the Service-ready Endpoints set.
+
+[Traffic continuity during degradation]
+Loopback-path requests: 10/10 successful
+Node-address requests: 10/10 successful
+Total successful requests: 20/20
+Backend Pod A observations: 0
+Backend Pod B observations: 20
+HTTP/application health marker passed for every response: YES
+NotReady backend received application traffic: NOT OBSERVED
+Raw response bodies: NOT RETAINED
+
+[Degraded-state judgment]
+Running Pod became NotReady: PASS
+NotReady backend excluded from Service-ready endpoints: PASS
+Healthy endpoint remained: PASS
+HTTP continuity through healthy backend: PASS
+No Pod deletion used for the controlled failure: PASS
+State judgment: READY

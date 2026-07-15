@@ -1,7 +1,7 @@
 ﻿# MariaDB Access Control Summary
 
 - Scenario: S017-mariadb-access-control-validation
-- Generated: 2026-07-13T10:53:46+09:00
+- Generated: 2026-07-15T14:35:34+09:00
 - Overall result: **PASS**
 - Scope: local policy, matrix, SQL example, inventory placeholders, and safety checks
 

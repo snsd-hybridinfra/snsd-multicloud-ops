@@ -1,0 +1,45 @@
+EVIDENCE CLASSIFICATION: REAL VIRTUAL LAB / SANITIZED
+Scenario: S025-load-balancing-health-check-validation
+State: Readiness restored
+Evidence source: pasted terminal output
+Raw output committed: NO
+
+[Readiness restoration]
+Target Pod: <backend-pod-a>
+Method: kubectl exec ... touch /tmp/ready
+Wait before observation: <wait-duration-masked>
+Pod replacement or deletion used for restoration: NO
+
+[Restored Pod state]
+Backend Pod A: <backend-pod-a> / 1/1 Running / address <lab-ip-masked> / node <node-name-masked>
+Backend Pod B: <backend-pod-b> / 1/1 Running / address <lab-ip-masked> / node <node-name-masked>
+Restored ready replica count: 2
+
+[Restored Service endpoints]
+Service: <service-placeholder>
+Ready endpoint count: 2
+Endpoint A: <lab-ip-masked>:80 -> <backend-pod-a>
+Endpoint B: <lab-ip-masked>:80 -> <backend-pod-b>
+
+[Restored EndpointSlice readiness]
+EndpointSlice: <endpointslice-placeholder>
+Endpoint A conditions: ready=true, serving=true, terminating=false
+Endpoint B conditions: ready=true, serving=true, terminating=false
+Node names, Pod references, UIDs, timestamps, resource versions, and addresses:
+MASKED OR OMITTED
+
+[Post-recovery repeated requests]
+Request count: 12
+Successful response count: 12
+Backend Pod A observations: 6
+Backend Pod B observations: 6
+Health marker passed for every response: YES
+Raw response bodies: NOT RETAINED
+
+[Restoration judgment]
+Readiness file restored: PASS
+Target Pod returned to 1/1 Ready: PASS
+Service endpoint count returned to 2: PASS
+EndpointSlice reports both endpoints ready: PASS
+Both backends observed after restoration: PASS
+State judgment: READY
