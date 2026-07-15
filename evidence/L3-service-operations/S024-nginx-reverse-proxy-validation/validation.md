@@ -33,3 +33,39 @@ Overall status: PASS
 - Optional LiveHttp: NOT_RUN
 - Final judgment: PASS
 - No Nginx process, curl command, network request, target URL, response content, credential, cookie, token, TLS material, domain, or numeric address was used or stored.
+
+## Real Virtual-Lab Evidence Validation - 2026-07-15
+
+Validation mode: Real virtual lab evidence, sanitized
+
+| Check ID | Check Description | Expected Condition | Evidence File | Result |
+|---|---|---|---|---|
+| LAB-001 | Deployment availability | Desired replicas are ready and available. | dated sanitized log and summary | PASS |
+| LAB-002 | Backend Pod readiness | At least one backend Pod is ready; both observed Pods were ready. | dated sanitized log and summary | PASS |
+| LAB-003 | Service selector | Service selector aligns with the backend workload. | dated sanitized log and summary | PASS |
+| LAB-004 | Endpoint discovery | Service has at least one ready endpoint. | dated sanitized log and summary | PASS |
+| LAB-005 | Ingress backend mapping | Host and `/` route map to the Service on port 80. | dated sanitized log and summary | PASS |
+| LAB-006 | Reverse-proxy response | Host-header root request returns a successful response. | dated sanitized log and summary | PASS |
+| LAB-007 | Health endpoint | `/healthz` returns `200 OK` and the health marker. | dated sanitized log and summary | PASS |
+| LAB-008 | Backend identification | Response-derived aggregate evidence identifies a ready backend Pod. | dated sanitized log and summary | PASS |
+| LAB-009 | Repeated requests | Repeated requests succeed and observe both backend Pods. | dated sanitized log and summary | PASS |
+| LAB-010 | Nginx and Traefik logs | Record log evidence only if supplied. | dated sanitized log and summary | NOT PRESENT |
+| LAB-011 | Kubernetes events | Normal lifecycle evidence is present without failure events. | dated sanitized log and summary | PASS |
+| LAB-012 | Sensitive-data handling | Identifiers, addresses, images, response details, and secrets are absent or masked. | dated sanitized log and summary | PASS |
+
+Final judgment: **READY**
+
+Validated traffic path:
+
+`Client -> Ingress Controller -> Kubernetes Service -> Nginx Backend Pod`
+
+Evidence:
+
+- `logs/20260715-S024-nginx-reverse-proxy.sanitized.txt`
+- `configs/20260715-S024-nginx-reverse-proxy-validation-summary.md`
+
+Nginx and Traefik logs were not present in the source and are not inferred. Raw
+terminal output, response bodies, kubeconfig, service-account tokens,
+certificates, private keys, passwords, cookies, Authorization headers,
+credentials, and secrets are not committed. This validates local virtual-lab
+reverse proxy behavior, not public internet exposure.

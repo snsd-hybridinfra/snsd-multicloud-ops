@@ -1,7 +1,7 @@
 ﻿# Nginx Reverse Proxy Summary
 
 - Scenario: S024-nginx-reverse-proxy-validation
-- Generated: 2026-07-13T11:59:51+09:00
+- Generated: 2026-07-15T09:24:59+09:00
 - Validation mode: **Static**
 - Required file check result: **PASS**
 - Reverse proxy directive check result: **PASS**

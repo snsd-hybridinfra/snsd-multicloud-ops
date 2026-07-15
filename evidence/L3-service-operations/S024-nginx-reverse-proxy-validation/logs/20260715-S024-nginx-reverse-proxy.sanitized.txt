@@ -1,0 +1,100 @@
+EVIDENCE CLASSIFICATION: REAL VIRTUAL LAB / SANITIZED
+Scenario: S024-nginx-reverse-proxy-validation
+Evidence source: pasted terminal output
+Raw output committed: NO
+
+SANITIZATION NOTICE
+- User, host/node, namespace, Deployment, ReplicaSet, Pod, Service, Ingress,
+  selector/hash, image, local DNS host, and every address were replaced.
+- Exact response timestamps, server version, content length, and raw response
+  body were omitted. Only aggregate routing judgments and masked backend markers
+  are retained.
+- No kubeconfig, service-account token, certificate, private key, password,
+  secret, cookie, Authorization header, or credential value is retained.
+
+[Workload availability]
+$ kubectl get deploy,rs,pods,svc,ingress,endpoints -n <namespace-placeholder> -o wide
+Deployment: <deployment-placeholder>
+Desired/ready/available replicas: 2/2/2
+Current ReplicaSet: <replicaset-current-masked> (2 desired, 2 current, 2 ready)
+Previous ReplicaSet: <replicaset-previous-masked> (0 desired, 0 current, 0 ready)
+Backend Pod A: <backend-pod-a> / 1/1 Running / address <lab-ip-masked> / node <node-name-masked>
+Backend Pod B: <backend-pod-b> / 1/1 Running / address <lab-ip-masked> / node <node-name-masked>
+Container image: <container-image-masked>
+
+[Service and endpoint discovery]
+$ kubectl describe svc <service-placeholder> -n <namespace-placeholder>
+Service: <service-placeholder>
+Type: ClusterIP
+ClusterIP: <lab-ip-masked>
+Selector: <selector-masked>
+Port/target port: 80/TCP
+Endpoint count: 2
+Endpoint A: <lab-ip-masked>:80 -> <backend-pod-a>
+Endpoint B: <lab-ip-masked>:80 -> <backend-pod-b>
+Service events: <none>
+Endpoint API notice: v1 Endpoints deprecation warning observed; evidence remains
+valid for this run and EndpointSlice should be preferred in later collection.
+
+[Ingress backend mapping]
+$ kubectl describe ingress <ingress-placeholder> -n <namespace-placeholder>
+Ingress: <ingress-placeholder>
+Namespace: <namespace-masked>
+Address: <lab-ip-masked>
+Ingress class: traefik
+Host: <ingress-host-placeholder>
+Path: /
+Backend: <service-placeholder>:80
+Resolved backend count: 2
+Ingress events: <none>
+
+[Reverse-proxy HTTP request]
+$ curl -i -H "Host: <ingress-host-placeholder>" http://<node-address-placeholder>/
+HTTP status: 200 OK
+Content type: text/plain
+Response body validation: PASS
+Backend marker: <backend-pod-b>
+Proxy validation marker: PASS
+Raw response headers and body: NOT RETAINED
+
+[Health endpoint]
+$ curl -i -H "Host: <ingress-host-placeholder>" http://<node-address-placeholder>/healthz
+HTTP status: 200 OK
+Health marker validation: PASS
+Raw response headers and body: NOT RETAINED
+
+[Repeated request result]
+Request count: 10
+Successful response count: 10
+Backend Pod A observations: 5
+Backend Pod B observations: 5
+Distinct ready backends observed: 2
+Proxy validation marker passed for every response: YES
+Raw response bodies: NOT RETAINED
+
+[Log and event evidence]
+Nginx application log output: NOT PRESENT IN SOURCE
+Traefik controller log output: NOT PRESENT IN SOURCE
+Kubernetes event query: PRESENT
+Event interpretation: normal scheduling, rolling ReplicaSet replacement,
+container lifecycle, and disposable request-client lifecycle events only.
+Event object names, image names, hashes, node names, and namespace were masked.
+
+[Validated traffic path]
+Client -> Ingress Controller -> Kubernetes Service -> Nginx Backend Pod
+
+[Validation result]
+Deployment availability: PASS
+Pod readiness: PASS
+Service selector alignment: PASS
+Endpoint discovery: PASS (2 ready endpoints; deprecation warning noted)
+Ingress backend mapping: PASS
+Root HTTP response: 200 OK (PASS)
+Health endpoint: 200 OK (PASS)
+Backend Pod identification: PASS
+Repeated requests: PASS (10/10; both backends observed)
+Nginx log evidence: NOT PRESENT / NOT REQUIRED FOR READY
+Traefik log evidence: NOT PRESENT / NOT REQUIRED FOR READY
+Sensitive data sanitization: PASS
+Public internet exposure validation: NOT PERFORMED
+Final judgment: READY
