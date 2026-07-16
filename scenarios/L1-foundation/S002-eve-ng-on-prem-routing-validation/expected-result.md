@@ -1,20 +1,18 @@
 # Expected Result
 
-## Success Conditions
+## Technical Result
 
-- The required topology and four example configs exist.
-- All five zones, five devices, and five CIDR placeholders are documented.
-- Example configs are explicitly non-production and placeholder-only.
-- No private-key marker, credential assignment, or IPv4 literal is present.
-- The script exits zero and creates both evidence outputs.
-
-## Required Evidence
-
-- `logs/eve-ng-routing-baseline-validation.log`
-- `configs/eve-ng-routing-baseline-summary.md`
-- `commands.md`
-- `validation.md`
+- The EVE-NG host has separate operational NAT and host-only paths plus KVM.
+- `SNSD-R1` and `SNSD-SW1` boot and retain configuration after reload.
+- Six VLANs and gateway subinterfaces operate across an 802.1Q trunk.
+- The router has a default route and PAT provides external connectivity.
+- Baseline inter-VLAN routing works.
+- The temporary directional ACL denies the intended DMZ-originated flow while
+  retaining approved gateway, internet, and reverse-direction traffic.
+- The temporary ACL is removed after capture.
 
 ## Completion Criteria
 
-S002 is `VALIDATED` when all eight repository-side checks pass. This status does not assert live EVE-NG or routing functionality.
+All E001-E014 categories, including allowed, denied, reverse-direction,
+cleanup, SSH, and HTTP evidence, are represented. S002 is `VALIDATED` with
+evidence readiness `READY`.

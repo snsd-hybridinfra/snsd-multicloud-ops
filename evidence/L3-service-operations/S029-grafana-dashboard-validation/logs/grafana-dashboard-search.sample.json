@@ -1,7 +1,0 @@
-{
-  "sample_notice": "SAMPLE / NON-PRODUCTION",
-  "status": "success",
-  "results": [
-    { "title": "SNSD Ops Overview Placeholder", "uid": "<dashboard-uid-placeholder>", "type": "dash-db" }
-  ]
-}

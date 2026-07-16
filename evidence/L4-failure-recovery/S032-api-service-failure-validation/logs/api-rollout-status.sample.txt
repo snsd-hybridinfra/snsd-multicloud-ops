@@ -1,2 +1,0 @@
-SAMPLE / NON-PRODUCTION
-deployment "sample-api-placeholder" successfully rolled out

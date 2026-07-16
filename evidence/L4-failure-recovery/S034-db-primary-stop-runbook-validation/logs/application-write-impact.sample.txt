@@ -1,5 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Write_Path: unavailable-placeholder
-HTTP_Status: 503-placeholder
-DB_Write: failed-placeholder
-Payload_Stored: false

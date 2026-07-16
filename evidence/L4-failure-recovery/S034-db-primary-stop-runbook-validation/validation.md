@@ -1,25 +1,17 @@
-# Validation Result
+# Validation
 
-- Actual Result: StaticEvidence validation completed; generated summary is authoritative.
-- Status: PASS when critical failures equal zero; unmeasured time is WARN.
+Scenario: S034-db-primary-stop-runbook-validation
 
-| Check ID | Check Description | Expected Condition | Evidence File | Result |
-|---|---|---|---|---|
-| V001 | Artifacts | Complete | summary | PASS |
-| V002 | Boundary | Manual/no promotion | runbook | PASS |
-| V003 | Criteria | Complete | criteria | PASS |
-| V004 | Ansible | Debug-only | playbook | PASS |
-| V005 | Metrics | Symbolic | metrics | PASS |
-| V006 | Pre Primary | Healthy | pre primary | PASS |
-| V007 | Pre replication | Healthy | pre replica | PASS |
-| V008 | Stop | Manual | stop event | PASS |
-| V009 | Down | Detected | down sample | PASS |
-| V010 | Write impact | Detected | impact | PASS |
-| V011 | No promotion | Confirmed | outage replica | PASS |
-| V012 | Recovery | Manual | recovery event | PASS |
-| V013 | Post state | Healthy | post samples | PASS |
-| V014 | Catch-up | Healthy | catch-up | PASS |
-| V015 | Timing | Review | stop event | WARN |
-| V016 | Post indicators | None | post/catch-up | PASS |
-| V017 | Sensitive safety | Safe | summary | PASS |
-| V018 | Execution safety | No execution | validator | PASS |
+Level: L4-failure-recovery
+
+Overall status: `NOT_RUN`
+
+| Check ID | Validation Item | Expected Condition | Actual Result | Status | Evidence |
+|---|---|---|---|---|---|
+| TS001 | Runtime execution | Scenario is executed against the intended real lab target. | Not executed. | NOT_RUN | TODO |
+| TS002 | Evidence integrity | Sanitized evidence is collected from observed execution. | No authoritative runtime evidence exists. | NOT_RUN | TODO |
+
+Repository/document linting is not runtime scenario validation and cannot
+change this result. Previously generated static, sample, synthetic, or
+operator-pasted artifacts were moved to the non-authoritative quarantine and
+must not be cited as scenario evidence.

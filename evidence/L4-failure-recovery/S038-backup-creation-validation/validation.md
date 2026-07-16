@@ -1,22 +1,17 @@
-# Validation Result
+# Validation
 
-- Actual Result: StaticEvidence validation completed; generated summary is authoritative.
-- Status: PASS when critical failures equal zero.
+Scenario: S038-backup-creation-validation
 
-| Check ID | Check Description | Expected Condition | Evidence File | Result |
-|---|---|---|---|---|
-| V001 | Artifacts | Complete | summary | PASS |
-| V002 | Workflow | Complete | runbook | PASS |
-| V003 | Criteria | Complete | criteria | PASS |
-| V004 | Retention policy | Complete | policy | PASS |
-| V005 | Ansible | Debug only | playbook | PASS |
-| V006 | Command evidence | Sanitized | command sample | PASS |
-| V007 | Metadata | Positive/complete | metadata | PASS |
-| V008 | Checksum | SHA256 | checksum | PASS |
-| V009 | Listing | Symbolic | listing | PASS |
-| V010 | Manifest | Complete | manifest | PASS |
-| V011 | Summary | Complete/no artifact | creation summary | PASS |
-| V012 | Artifact safety | None | evidence tree | PASS |
-| V013 | Path/secret safety | Safe | summary | PASS |
-| V014 | Execution safety | No action | validator | PASS |
-| V015 | Command boundary | Out of scope | commands | PASS |
+Level: L4-failure-recovery
+
+Overall status: `NOT_RUN`
+
+| Check ID | Validation Item | Expected Condition | Actual Result | Status | Evidence |
+|---|---|---|---|---|---|
+| TS001 | Runtime execution | Scenario is executed against the intended real lab target. | Not executed. | NOT_RUN | TODO |
+| TS002 | Evidence integrity | Sanitized evidence is collected from observed execution. | No authoritative runtime evidence exists. | NOT_RUN | TODO |
+
+Repository/document linting is not runtime scenario validation and cannot
+change this result. Previously generated static, sample, synthetic, or
+operator-pasted artifacts were moved to the non-authoritative quarantine and
+must not be cited as scenario evidence.

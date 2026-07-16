@@ -1,7 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Violation_ID: <violation-id-placeholder>
-Severity: <severity-placeholder>
-Affected_Policy: <policy-id-placeholder>
-Affected_Resource: <resource-address-placeholder>
-Required_Action: <required-action-placeholder>
-Related_Scenario: <related-scenario-placeholder>

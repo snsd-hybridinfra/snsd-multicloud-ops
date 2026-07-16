@@ -1,85 +1,80 @@
-# Lab Phase 1 Build Order
+# Authoritative Lab Phase Plan
 
-## Purpose and Rules
+**Status: ACTIVE — the EVE-NG network foundation and S002 evidence are
+validated; later service/cloud phases are not started.**
 
-The build order converts the locked S001-S050 repository model into a controlled non-production evidence-collection sequence. Each phase must complete its local checks and sanitization review before the next phase begins. Commands listed below are references for later collection; they are not executed by this document.
+## Authority and Purpose
 
-## Phase 0: Repository Validator Baseline
+This is the single authoritative execution order for the non-production SNSD
+Multi-Cloud Secure Operations Validation Platform lab. It normalizes earlier
+phase labels without provisioning infrastructure or changing the locked S001-
+S050 scenario set. A phase entry describes planned work, not implementation or
+validation evidence.
 
-- **Goal:** Establish a clean repository baseline before any VM is prepared.
-- **Related scenarios:** S001, S006, S010, S041-S050.
-- **Commands to collect later:** `tools\validate-repo-structure.ps1`, `tools\validate-scenario-quality.ps1`, `tools\validate-all-scenarios.ps1`.
-- **Evidence output:** S001, S006, S010, and S050 matching `logs/` and `configs/` directories.
-- **Completion criteria:** Base validators pass, scenario/evidence coverage is 50/50, and no unsafe file is present.
+Supporting architecture, addressing, cost, lifecycle, and exposure rules are
+defined in the documents linked from `docs/lab-reference-architecture.md`.
 
-## Phase 1: Virtual Lab Architecture and VM Preparation
+## Repository Preflight
 
-- **Goal:** Prepare the minimum bastion, k3s, database, and monitoring VM roles on `<lab-network-placeholder>`.
-- **Related scenarios:** S002-S007 and S009.
-- **Commands to collect later:** hypervisor inventory, VM state, sanitized interface summary, sanitized route summary, and local hostname mapping commands appropriate to the disposable lab.
-- **Evidence output:** `evidence/L1-foundation/<scenario>/logs/`, `screenshots/`, and `configs/`.
-- **Completion criteria:** Every planned role exists, role ownership is documented, and committed outputs use placeholders instead of real addresses or hostnames.
+Before Lab Phase 0:
 
-## Phase 2: Bastion Reachability
+- review `docs/scope-lock.md`, `docs/excluded-scope.md`, and this plan;
+- run repository structure and scenario-quality validators;
+- confirm the worktree contains no credential, state, kubeconfig, private key,
+  account-specific value, or unsanitized evidence;
+- identify the scenario that will own every later evidence artifact.
 
-- **Goal:** Confirm the planned management path through `bastion-vm` and document least-privilege access boundaries.
-- **Related scenarios:** S008, S011-S016, and S037.
-- **Commands to collect later:** sanitized SSH verbose result, reachability result, route/path summary, and security-rule read-only output from the disposable lab.
-- **Evidence output:** matching L1, L2, and S037 evidence directories.
-- **Completion criteria:** Approved bastion path succeeds, prohibited direct paths are documented, and no key, username, real address, or provider identifier is committed.
+Preflight proves repository readiness only. It does not prove lab readiness.
 
-## Phase 3: k3s and Sample Service
+## Canonical Phase Order
 
-- **Goal:** Deploy a disposable sample service and collect Kubernetes readiness, workload, ingress, proxy, and health evidence.
-- **Related scenarios:** S018, S021-S025, S031-S032, S035, and S044.
-- **Commands to collect later:** `kubectl get nodes`, `kubectl get pods -A`, `kubectl get service -A`, `kubectl get ingress -A`, and sanitized application health output.
-- **Evidence output:** matching L2, L3, L4, and L5 scenario evidence paths.
-- **Completion criteria:** Sample workloads are replaceable, required states are captured, kubeconfig and tokens remain outside the repository, and outputs are sanitized.
+| Phase | Objective | Primary Work | Exit Condition |
+|---|---|---|---|
+| Lab Phase 0 | Architecture and host-capacity baseline | Platform roles, address plan, zones, host capacity, VM allocations, staged execution profiles, storage/snapshot policy, cost guardrails, lifecycle, NICs, gateways, external exposure, and ADR | Planning documents agree; profile arithmetic preserves the host reserve; unresolved provider networks remain discovery-required |
+| Lab Phase 1 | EVE-NG and bastion network control | On-Prem routing, Bastion path, inter-zone ACLs, and network failure-path planning | Planned routes/ACLs are reviewed; no real device value is committed |
+| Lab Phase 2 | OpenStack private cloud | Neutron tenant network, discovered provider network, Security Group, Floating IP window, and Terraform validation | Provider network is discovered from the real lab, resource limits are enforced, and cleanup is planned |
+| Lab Phase 3 | Minimum AWS and Azure foundations | One bounded VPC/VNet foundation, subnets, SG/NSG, and optional temporary compute | Cost guardrails and tags pass before apply; temporary compute/public addresses have TTL and cleanup owner |
+| Lab Phase 4 | Multi-cloud inventory and optional connectivity | Inventory normalization and optional WireGuard overlay decision | Provider roles and non-overlapping routes are documented; overlay remains optional |
+| Lab Phase 5 | Kubernetes service platform | Local Kubernetes workloads, Ingress, reverse proxy, load balancing, and platform-local validation | Service path is healthy and sanitized evidence maps to S021-S025 |
+| Lab Phase 6 | Database platform | Local MariaDB primary/replica, access control, replication, and lag | Least privilege and replication evidence are complete without credentials or dumps |
+| Lab Phase 7 | Observability | Prometheus, Grafana, exporters, Blackbox, and bounded metric collection | Approved targets are observable and committed outputs are sanitized |
+| Lab Phase 8 | Failure, backup, and recovery | Controlled failures, backup, restore, rollback, and post-recovery health | Preconditions, manual actions, rollback, and post-checks are evidenced in owning L4 scenarios |
+| Lab Phase 9 | Governance and intelligent operations | Drift, policy, cost, cleanup, metric dataset, anomaly analysis, and reporting | Governance judgments reference sanitized inputs and do not claim automated enforcement |
+| Lab Phase 10 | Final evidence and reporting | Coverage aggregation, missing-evidence review, final report generation, and repository QA | S050 report and repository validators reflect actual evidence maturity without certification claims |
 
-## Phase 4: MariaDB Primary/Replica
+## Phase Gates
 
-- **Goal:** Configure a synthetic-data MariaDB primary/replica pair for access, replication, lag, backup, and recovery evidence.
-- **Related scenarios:** S017, S026-S027, S033-S034, and S038-S040.
-- **Commands to collect later:** sanitized service status, replication status, lag measurement, synthetic consistency query, backup metadata, and restore verification.
-- **Evidence output:** matching L2, L3, and L4 scenario evidence paths.
-- **Completion criteria:** Replication is observable, only synthetic data is used, credentials/dumps are excluded, and rollback/recovery steps are recorded.
+Every infrastructure-bearing phase follows:
 
-## Phase 5: Prometheus/Grafana/Blackbox
+`Plan -> Apply -> Validate -> Collect sanitized evidence -> Destroy -> Verify cleanup`
 
-- **Goal:** Observe lab-only nodes, services, endpoints, and database behavior through the approved monitoring stack.
-- **Related scenarios:** S019-S020, S028-S030, S036, S040, and S047.
-- **Commands to collect later:** sanitized target status, selected metric queries, Blackbox probe results, dashboard inventory, and exporter status.
-- **Evidence output:** matching L2-L5 scenario evidence paths, with screenshots placed in each scenario's `screenshots/` directory.
-- **Completion criteria:** Required targets are represented, screenshots are masked, authentication data is excluded, and raw production-style exports are not committed.
+- Apply requires an owner, TTL, purpose, cost review, and rollback/cleanup plan.
+- Public addresses exist only during an approved validation window.
+- AWS/Azure/OpenStack compute stays disabled by default where practical.
+- A later phase cannot convert a planning artifact into a validation claim.
 
-## Phase 6: Failure and Recovery Experiments
+## Lab Phase 0 Planning Completion
 
-- **Goal:** Run controlled disposable failures and prove documented recovery without automatic production actions.
-- **Related scenarios:** S031-S040.
-- **Commands to collect later:** pre-check, manual failure action record, detection output, rollback/recovery action record, and post-recovery health checks.
-- **Evidence output:** `evidence/L4-failure-recovery/<scenario>/`.
-- **Completion criteria:** Preconditions and rollback are recorded, post-recovery state is safe, and experiments remain confined to the disposable lab.
+Lab Phase 0 documentation is complete at the planning level only. It establishes
+the host-capacity baseline, 294GB nominal VM disk plan, mutually exclusive
+execution profiles, storage roles, snapshot limits, and one-small-Nova-instance
+initial ceiling. It does not prove that a VM, router, firewall, network zone,
+OpenStack service, Kubernetes service, database, monitoring service, backup
+repository, AWS resource, or Azure resource exists.
 
-## Phase 7: Governance Evidence
+## Current Evidence State
 
-- **Goal:** Compare sanitized lab state with the existing drift, policy, cost, cleanup, and evidence-governance models.
-- **Related scenarios:** S037 and S041-S046, with aggregation in S050.
-- **Commands to collect later:** local plan/config comparison, policy checklist, ownership/tag review, cleanup candidate review, and repository evidence completeness checks.
-- **Evidence output:** matching L4/L5 evidence directories.
-- **Completion criteria:** Governance judgments reference sanitized inputs, remediation remains controlled, and no provider billing or live account data is committed.
+S002 now has partial authoritative runtime evidence for the EVE-NG host bridge,
+default route, KVM, live router/switch state, VLAN/trunk/subinterfaces/routes,
+NAT/PAT, persistence, pre-ACL permitted traffic, post-ACL denied traffic,
+reverse-direction permit, local gateway reachability, and public IPv4
+reachability, post-ACL-removal state, host-only ping, SSH/22, and HTTP/80.
+HTTPS/443 is accurately recorded unavailable; no required S002 gap remains.
+Static, sample, synthetic, and provenance-uncertain artifacts created before
+the truth-state reset remain quarantined and support no scenario state.
 
-## Phase 8: ML Metric Dataset Evidence
+## Non-Production Disclaimer
 
-- **Goal:** Produce a sanitized or synthetic metric dataset and deterministic anomaly/report evidence.
-- **Related scenarios:** S047-S049.
-- **Commands to collect later:** bounded metric export, schema validation, deterministic anomaly detection, and report generation commands already documented by those scenarios.
-- **Evidence output:** `evidence/L5-governance-intelligent-ops/S047-*`, `S048-*`, and `S049-*`.
-- **Completion criteria:** Dataset fields follow the documented schema, labels and endpoints are masked, no logs/packets/security telemetry are introduced, and human review remains explicit.
-
-## Phase 9: Final Evidence Report Regeneration
-
-- **Goal:** Recalculate repository coverage after sanitized lab evidence is added.
-- **Related scenarios:** S050, aggregating S001-S050.
-- **Commands to collect later:** `tools\generate-final-evidence-report.ps1`, `tools\validate-final-evidence-report.ps1`, and `tools\validate-all-scenarios.ps1`.
-- **Evidence output:** `evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/`.
-- **Completion criteria:** Final local report is regenerated, repository validators pass, missing/live-unvalidated work remains visible, and no certification claim is made.
+This phase plan governs a disposable portfolio lab. It does not authorize cloud
+spend, provision resources, prove production readiness, or change any scenario
+status by itself.

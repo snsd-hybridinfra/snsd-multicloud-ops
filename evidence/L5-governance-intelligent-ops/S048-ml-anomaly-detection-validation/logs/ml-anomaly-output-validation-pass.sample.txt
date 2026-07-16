@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Detection_Output_Validated: true
-Anomaly_Score_Numeric: true
-Anomaly_Decision_Valid: true
-At_Least_One_Anomaly_Detected: true
-final_judgment: ANOMALY_DETECTED

@@ -1,5 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Cleanup_Candidate: <cleanup-candidate-placeholder>
-Cleanup_Scenario: S046
-Cleanup_Required: true-placeholder
-Real_Resource_Deletion_Performed: false

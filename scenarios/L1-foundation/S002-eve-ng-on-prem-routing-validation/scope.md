@@ -2,25 +2,29 @@
 
 ## Included
 
-- Validate the on-prem routing topology document exists.
-- Validate five required zone names, five placeholder devices, and five CIDR placeholder tokens.
-- Validate four non-production router example configs exist.
-- Validate example configs contain placeholder interfaces and routes.
-- Detect private-key markers, credential assignments, and literal IPv4 addresses.
-- Generate a local log and Markdown summary.
+- EVE-NG NAT and host-only management readiness.
+- KVM capability and `pnet0` through `pnet7` bridge readiness.
+- `SNSD-R1` and `SNSD-SW1` boot and configuration persistence.
+- VLANs 20, 30, 40, 50, 60, and 70.
+- 802.1Q trunk and six Router-on-a-Stick subinterfaces.
+- Connected routes, router default route, and PAT for `10.10.0.0/16`.
+- Pre-ACL zone routing, directional deny, preserved allowed traffic, and
+  reverse-direction permit.
+- Temporary ACL removal and restoration of lab Cloud/LAN connections.
+- Sanitized evidence and topology summary.
 
 ## Excluded
 
-- Live EVE-NG authentication or API access.
-- SSH, console, or other connections to routers and network devices.
-- Real reachability, routing table, or firewall validation.
-- Cloud connectivity and AWS/Azure/OpenStack provisioning; those belong to S003, S004, and S005.
-- Multi-cloud inventory, handled in S007.
-- Bastion reachability, handled in S008.
-- DNS and hostname resolution, handled in S009.
-- Credentials, private keys, secrets, real addressing, tfstate, kubeconfig, and account-specific data.
+- Service VM deployment or service-zone application validation.
+- OpenStack, Kubernetes, database, monitoring, backup, AWS, or Azure integration.
+- Production firewall enforcement or persistent production ACLs.
+- Cisco image files, filenames, checksums, binaries, serial numbers, or image
+  acquisition details.
+- Raw console output, credentials, secrets, runtime WAN/management addresses,
+  MAC addresses, or hardware identifiers.
 
-## Assumptions
+## Current Boundary
 
-- Example configs intentionally use angle-bracket placeholders.
-- Live routing validation will be designed in a later explicitly authorized scenario.
+The implementation and required E001-E014 evidence chain are represented in
+sanitized form. S002 is `VALIDATED`; service VM and cloud integrations remain
+outside this scenario and are `NOT_STARTED`.

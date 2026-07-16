@@ -1,5 +1,21 @@
 # Commands
 
-Run `powershell -ExecutionPolicy Bypass -File tools/validate-kubernetes-manifest-policy.ps1`; inspect `logs/kubernetes-manifest-policy-validation.log` and `configs/kubernetes-manifest-policy-validation-summary.md`.
+Scenario: S044-kubernetes-manifest-policy-validation
 
-Manual disposable-lab evidence must be sanitized. The validator does not run kubectl, OPA, Conftest, Kyverno, cloud CLIs, or live checks. Optional examples are not runtime requirements. Do not commit kubeconfig, tokens, certificates, private registry values, real endpoints, or secrets. Live execution: `NOT_RUN`.
+Level: L5-governance-intelligent-ops
+
+Repository truth state: `NOT_STARTED`
+
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
+
+## Planned Execution Record
+
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
+
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

@@ -9,7 +9,7 @@
 | Related Components | Load balancer, reverse proxy, two backends, client path, bypass/rollback |
 | Validation Type | Static with optional explicit read-only LiveHttp |
 | Evidence Directory | evidence/L4-failure-recovery/S035-load-balancer-failure-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

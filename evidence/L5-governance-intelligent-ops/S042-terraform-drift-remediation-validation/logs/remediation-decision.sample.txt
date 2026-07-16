@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Remediation_Option: REVERT_TO_TERRAFORM
-Operational_Reason: <operational-reason-placeholder>
-Selected_By: <operator-role-placeholder>
-Risk_Assessment: <risk-assessment-placeholder>
-Real_Cloud_Operation_Performed: false

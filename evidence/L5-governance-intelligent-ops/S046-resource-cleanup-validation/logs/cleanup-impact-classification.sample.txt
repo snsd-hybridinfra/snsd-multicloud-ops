@@ -1,7 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Resource_Category: <resource-category-placeholder>
-Cleanup_Signal: <cleanup-signal-placeholder>
-Dependency_Risk: <dependency-risk-placeholder>
-Cost_Impact: <estimated-monthly-cost-placeholder>
-Required_Action: <required-action-placeholder>
-Related_Scenario: <related-scenario-placeholder>

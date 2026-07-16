@@ -1,5 +1,0 @@
-SAMPLE / NON-PRODUCTION / FAILURE ASSESSMENT
-Affected_Surface: public-admin-and-database-placeholder
-Potential_Path: <unauthorized-access-path-placeholder>
-Required_Action: rollback-required-placeholder
-Production_Data_Stored: false

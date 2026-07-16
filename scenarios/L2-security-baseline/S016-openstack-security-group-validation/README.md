@@ -9,7 +9,7 @@
 | Related Components | OpenStack Security Group policy, rule matrix, Terraform placeholders, local validator |
 | Validation Type | Safe local repository validation |
 | Evidence Directory | `evidence/L2-security-baseline/S016-openstack-security-group-validation/` |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

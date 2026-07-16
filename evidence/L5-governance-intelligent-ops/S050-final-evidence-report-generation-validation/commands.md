@@ -1,16 +1,21 @@
 # Commands
 
-Planned/not-run note: live infrastructure and external reporting remain `NOT_RUN`.
+Scenario: S050-final-evidence-report-generation-validation
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/generate-final-evidence-report.ps1
-powershell -ExecutionPolicy Bypass -File tools/validate-final-evidence-report.ps1
-powershell -ExecutionPolicy Bypass -File tools/validate-all-scenarios.ps1
-Get-Content evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/configs/final-evidence-report.generated.md
-Get-Content evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/configs/final-evidence-report-summary.generated.json
-Get-Content evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/logs/final-evidence-report-generation.log
-Get-Content evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/logs/repo-wide-validation.log
-Get-Content evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/configs/repo-wide-validation-summary.md
-```
+Level: L5-governance-intelligent-ops
 
-S050 runs no Terraform, kubectl, cloud CLI, monitoring/billing/security query, packet analysis, remediation, or external service. The repository-wide wrapper sets static-only mode before invoking local PowerShell validators. S050 generates Markdown/JSON and text evidence only, not PDF/PPTX, and claims no certification or production audit approval.
+Repository truth state: `NOT_STARTED`
+
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
+
+## Planned Execution Record
+
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
+
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

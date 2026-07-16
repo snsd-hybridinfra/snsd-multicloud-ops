@@ -4,19 +4,18 @@ Scenario: S019-nginx-security-header-validation
 
 Level: L2-security-baseline
 
-## Run Validation
+Repository truth state: `NOT_STARTED`
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools\validate-nginx-security-header-baseline.ps1
-```
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-## Inspect Generated Evidence
+## Planned Execution Record
 
-```powershell
-Get-Content evidence\L2-security-baseline\S019-nginx-security-header-validation\logs\nginx-security-header-validation.log
-Get-Content evidence\L2-security-baseline\S019-nginx-security-header-validation\configs\nginx-security-header-summary.md
-```
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-## Safety Notes
-
-These commands do not run or reload Nginx, modify configuration, curl services, connect to hosts, access TLS material, or require network access. No planned or `NOT_RUN` live-response output is required.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

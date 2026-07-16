@@ -80,3 +80,6 @@ __pycache__/
 *.xlsx
 *.docx
 *.pptx
+
+# Local-only non-authoritative evidence quarantine
+quarantine/

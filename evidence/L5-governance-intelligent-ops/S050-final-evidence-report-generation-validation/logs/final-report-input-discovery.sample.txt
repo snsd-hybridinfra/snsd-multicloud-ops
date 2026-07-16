@@ -1,8 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Progress_Tracker_Discovered: true
-Scenario_Status_Matrix_Discovered: true
-Evidence_Status_Matrix_Discovered: true
-Implementation_Log_Discovered: true
-Risk_Register_Discovered: true
-Scenarios_Directory_Discovered: true
-Evidence_Directory_Discovered: true

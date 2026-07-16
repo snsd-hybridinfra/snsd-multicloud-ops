@@ -10,7 +10,7 @@
 | Related Components | Root denial policy, example sshd settings, non-root and sudo placeholders |
 | Validation Type | Security Validation |
 | Evidence Directory | evidence/L2-security-baseline/S013-root-login-denial-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

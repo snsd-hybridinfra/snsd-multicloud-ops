@@ -1,17 +1,15 @@
 # Failure Condition
 
-## Failure Conditions
+- A required E001-E014 output is missing or cannot be sanitized.
+- KVM, a required node, VLAN, trunk, subinterface, connected route, or default
+  route is unavailable.
+- PAT does not create translations or counters do not increase.
+- Baseline allowed traffic fails before ACL application.
+- The ACL fails to deny the intended direction or blocks approved reverse,
+  gateway, or internet traffic.
+- Configuration does not persist after reload.
+- The temporary ACL or disconnected Cloud/LAN link is not restored.
+- Raw identifiers, credentials, secrets, image details, binaries, MACs, serials,
+  or unsanitized runtime addresses enter evidence.
 
-- The topology document or a required router example is missing.
-- A required zone, device, or CIDR token is absent.
-- An example lacks the required placeholder structure.
-- A private-key marker, credential assignment, or IPv4 literal is detected.
-- Validation attempts a router connection, EVE-NG API call, credential read, cloud access, kubeconfig read, or tfstate access.
-
-## Evidence of Failure
-
-The generated log and summary identify the failed check and sanitized reason.
-
-## Follow-Up Requirement
-
-Correct only the repository topology or example config, then rerun S002. Live network remediation remains outside this scenario.
+Missing evidence is an incomplete result, not permission to infer `PASS`.

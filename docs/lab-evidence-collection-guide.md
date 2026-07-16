@@ -1,5 +1,8 @@
 # Lab Evidence Collection Guide
 
+**Status: ACTIVE — S002 has READY authoritative sanitized runtime evidence;
+all other scenario evidence remains subject to the truth-state reset.**
+
 ## Purpose
 
 This guide defines how evidence from the disposable reference lab is collected, sanitized, named, and mapped to the existing S001-S050 directories. Collection must follow the owning scenario's validation plan and the rules in `docs/lab-sanitization-rules.md`.

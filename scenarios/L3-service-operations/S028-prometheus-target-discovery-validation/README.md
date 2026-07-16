@@ -10,7 +10,7 @@
 | Related Components | Static jobs, Kubernetes SD, exporters, targets API, up query |
 | Validation Type | Static with optional explicit LivePrometheus |
 | Evidence Directory | evidence/L3-service-operations/S028-prometheus-target-discovery-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

@@ -4,30 +4,18 @@ Scenario: S001-control-plane-toolchain-validation
 
 Level: L1-foundation
 
-Target: local control plane workstation
+Repository truth state: `NOT_STARTED`
 
-## Run Validation
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-From the repository root:
+## Planned Execution Record
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools\validate-control-plane-toolchain.ps1
-```
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-## Inspect Generated Log
-
-```powershell
-Get-Content evidence\L1-foundation\S001-control-plane-toolchain-validation\logs\control-plane-toolchain-validation.log
-```
-
-## Inspect Generated Summary
-
-```powershell
-Get-Content evidence\L1-foundation\S001-control-plane-toolchain-validation\configs\control-plane-toolchain-summary.md
-```
-
-## Safety Notes
-
-- These are local discovery and version-only checks.
-- No planned infrastructure action, authentication, remote cluster connection, registry access, credential read, kubeconfig read, or tfstate access occurs.
-- The generated files contain no environment-variable dump or account-specific input.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

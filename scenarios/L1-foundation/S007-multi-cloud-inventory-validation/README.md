@@ -10,7 +10,7 @@
 | Related Components | On-Prem, AWS, Azure, OpenStack, control plane, service groups |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S007-multi-cloud-inventory-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

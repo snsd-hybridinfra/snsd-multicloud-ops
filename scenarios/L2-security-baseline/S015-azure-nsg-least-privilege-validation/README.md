@@ -8,7 +8,7 @@
 | Category | Security Baseline |
 | Validation Type | Safe local repository validation |
 | Evidence Directory | `evidence/L2-security-baseline/S015-azure-nsg-least-privilege-validation/` |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

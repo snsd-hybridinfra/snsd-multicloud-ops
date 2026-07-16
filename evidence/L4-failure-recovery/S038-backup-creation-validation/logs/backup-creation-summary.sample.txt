@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Backup_Created: true-placeholder
-Manifest_Created: true
-Checksum_Generated: true
-Retention_Class_Assigned: true
-Real_Backup_Artifact_Committed: false

@@ -1,7 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Primary_Node: <db-primary-host>
-Replica_Node: <db-replica-host>
-Replication_User: <replication-db-user>
-Replication_Channel: <replication-channel>
-Replication_Delay_Threshold_Seconds: 5
-Collection_Mode: sanitized-manual-lab-reference

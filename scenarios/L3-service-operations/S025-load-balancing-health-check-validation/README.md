@@ -8,22 +8,22 @@
 | Category | Service Operations |
 | Primary Domain | Backend health and passive upstream routing |
 | Related Components | Load-balancing layer, backend pool, health endpoint, sanitized HTTP evidence |
-| Validation Type | Static local validation with optional explicit LiveHttp; sanitized operator-provided real virtual-lab readiness evidence review |
+| Validation Type | Planned; not executed |
 | Evidence Directory | evidence/L3-service-operations/S025-load-balancing-health-check-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 
-Validate the repository's backend pool, health endpoint, timeout/retry, unhealthy-threshold, passive routing, and sanitized health-evidence model. The dated record additionally validates Kubernetes readiness-based Service endpoint eligibility in a local virtual lab.
+Define future backend pool, health endpoint, timeout/retry, passive routing, and sanitized health-evidence checks.
 
 ## Scope Summary
 
-Static mode invokes neither Nginx nor curl and makes no network request. Optional LiveHttp requires explicit load-balancer and backend health URLs, sends cookie-free HEAD requests, and stores indexed statuses only.
+No load balancer, Nginx, Kubernetes workload, or backend service is implemented in the confirmed lab. No health or traffic result is authoritative.
 
 ## Validation Summary
 
-Seventeen static checks cover required artifacts, pool members, health route and status, passive retry/timeouts, rule coverage, sample parsing, sensitive-content safety, active-health boundaries, and guarded execution. A separate three-state real-lab review confirms normal two-backend traffic, exclusion of one running-but-NotReady Pod, continuity through the healthy endpoint, and endpoint/distribution restoration.
+The documented checks are planned acceptance criteria only and have not run against a backend pool or load balancer.
 
 ## Evidence Output Summary
 
-S025 does not modify Nginx or a public load balancer, claim production failover or Nginx Plus active checks, or store raw targets, bodies, headers, credentials, cookies, tokens, TLS material, domains, or numeric addresses. The controlled lab test changed only a readiness sentinel file inside one running Pod; it did not delete a Pod or test S031 self-healing.
+No authoritative evidence exists. Previous static, sample, synthetic, or pasted artifacts are quarantined and must not be cited as load-balancing evidence.

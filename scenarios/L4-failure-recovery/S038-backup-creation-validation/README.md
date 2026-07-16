@@ -9,7 +9,7 @@
 | Related Components | Backup scope, manifest, metadata, SHA256, retention, protection placeholders |
 | Validation Type | StaticEvidence only |
 | Evidence Directory | evidence/L4-failure-recovery/S038-backup-creation-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

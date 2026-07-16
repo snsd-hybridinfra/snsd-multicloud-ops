@@ -10,7 +10,7 @@
 | Related Components | MariaDB replica fields, lag thresholds, metric placeholders |
 | Validation Type | StaticEvidence |
 | Evidence Directory | evidence/L3-service-operations/S027-db-replication-lag-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

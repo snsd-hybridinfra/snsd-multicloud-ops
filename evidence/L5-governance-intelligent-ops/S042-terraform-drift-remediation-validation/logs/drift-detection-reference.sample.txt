@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Source_Scenario: S041
-Drift_Detection_ID: <drift-detection-id-placeholder>
-Drift_Status: <drift-status-placeholder>
-Drift_Severity: Critical-placeholder
-Affected_Resource: <terraform-resource-address-placeholder>

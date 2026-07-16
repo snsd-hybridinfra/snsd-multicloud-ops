@@ -10,7 +10,7 @@
 | Related Components | Git, PowerShell, SSH, Python, Terraform, Ansible, kubectl, Docker |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S001-control-plane-toolchain-validation/ |
-| Status | IMPLEMENTED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

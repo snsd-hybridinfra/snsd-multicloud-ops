@@ -1,5 +1,0 @@
-SAMPLE / NON-PRODUCTION
-MANUAL FAULT INJECTION SAMPLE
-kubectl delete pod sample-web-placeholder-abcde -n snsd-example
-pod deleted placeholder
-Recovery_Elapsed_Seconds: <not-measured-placeholder>

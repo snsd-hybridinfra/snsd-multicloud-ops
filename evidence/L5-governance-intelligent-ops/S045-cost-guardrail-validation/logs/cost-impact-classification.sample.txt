@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Resource_Category: <resource-category-placeholder>
-Cost_Signal: <cost-signal-placeholder>
-Risk_Level: <risk-level-placeholder>
-Required_Action: <required-action-placeholder>
-Related_Scenario: <related-scenario-placeholder>

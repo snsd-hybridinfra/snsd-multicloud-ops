@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION / MISCONFIGURATION DETECTION
-Detection: unsafe-rule-detected-placeholder
-Affected_Service: <affected-service-placeholder>
-Unsafe_Source: <unsafe-source-placeholder>
-Unsafe_Port: <unsafe-port-placeholder>
-Severity: Critical-placeholder

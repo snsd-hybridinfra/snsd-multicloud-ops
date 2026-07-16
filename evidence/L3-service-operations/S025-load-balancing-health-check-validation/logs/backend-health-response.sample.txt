@@ -1,3 +1,0 @@
-SAMPLE / NON-PRODUCTION
-backend-service-a-placeholder: 200 OK
-backend-service-b-placeholder: 200 OK

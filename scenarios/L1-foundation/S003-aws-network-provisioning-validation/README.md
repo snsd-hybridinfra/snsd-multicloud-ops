@@ -10,7 +10,7 @@
 | Related Components | AWS network Terraform module, validation environment, local safety validator |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S003-aws-network-provisioning-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

@@ -1,11 +1,21 @@
 # Commands
 
-Planned/not-run note: live collection, model operations, LLM analysis, incident creation, and blocking remain `NOT_RUN`.
+Scenario: S049-ml-anomaly-report-generation-validation
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-ml-anomaly-report-generation.ps1
-Get-Content evidence/L5-governance-intelligent-ops/S049-ml-anomaly-report-generation-validation/logs/ml-anomaly-report-generation-validation.log
-Get-Content evidence/L5-governance-intelligent-ops/S049-ml-anomaly-report-generation-validation/configs/ml-anomaly-report-generation-validation-summary.md
-```
+Level: L5-governance-intelligent-ops
 
-Optional deterministic Python reporting is documented in the runbook. No live/cloud/security telemetry, raw data, credentials, production identifiers, model/LLM operations, blocking, or incident automation is allowed. S050 owns final reporting.
+Repository truth state: `NOT_STARTED`
+
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
+
+## Planned Execution Record
+
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
+
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

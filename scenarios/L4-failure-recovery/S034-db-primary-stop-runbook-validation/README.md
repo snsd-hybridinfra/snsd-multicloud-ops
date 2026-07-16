@@ -9,7 +9,7 @@
 | Related Components | MariaDB Primary, Replica, write path, replication, manual decision points |
 | Validation Type | StaticEvidence only |
 | Evidence Directory | evidence/L4-failure-recovery/S034-db-primary-stop-runbook-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

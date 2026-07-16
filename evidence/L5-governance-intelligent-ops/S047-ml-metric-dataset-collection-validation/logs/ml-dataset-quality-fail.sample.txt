@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION / INTENTIONALLY INVALID
-Invalid_Dataset_Evaluated: true
-Missing_Required_Field: <missing-field-placeholder>
-Invalid_Label: <invalid-label-placeholder>
-Non_Numeric_Metric_Value: <non-numeric-placeholder>
-final_judgment: DATASET_INVALID

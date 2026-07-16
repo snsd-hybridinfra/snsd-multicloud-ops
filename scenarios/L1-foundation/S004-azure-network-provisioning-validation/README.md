@@ -10,7 +10,7 @@
 | Related Components | Azure network Terraform module, validation environment, local safety validator |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S004-azure-network-provisioning-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

@@ -1,5 +1,0 @@
-SAMPLE / NON-PRODUCTION KUBECTL GET PODS OUTPUT
-NAME                                   READY   STATUS    RESTARTS   AGE
-sample-service-placeholder-xxxxx       1/1     Running   0          <age>
-sample-service-placeholder-yyyyy       1/1     Running   0          <age>
-

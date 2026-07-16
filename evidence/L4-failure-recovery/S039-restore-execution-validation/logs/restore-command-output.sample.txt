@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-MANUAL LAB RESTORE SAMPLE
-Restore_Command_Result: completed-placeholder
-Restore_Job_ID: <restore-job-id-placeholder>
-Production_Restore_Output_Stored: false
-Execution_By_Validator: false

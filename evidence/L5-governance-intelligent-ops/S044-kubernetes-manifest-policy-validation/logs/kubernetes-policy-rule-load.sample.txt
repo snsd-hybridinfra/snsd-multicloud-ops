@@ -1,4 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Kubernetes_Manifest_Policy_Rules_Loaded: true-placeholder
-Policy_Areas_Loaded: security-context,image,resources,probes,exposure,secrets
-External_Policy_Engine_Required: false

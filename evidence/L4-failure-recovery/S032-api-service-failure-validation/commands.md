@@ -1,25 +1,21 @@
 # Commands
 
-## Static validation
+Scenario: S032-api-service-failure-validation
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-api-service-failure.ps1
-```
+Level: L4-failure-recovery
 
-## Optional read-only modes
+Repository truth state: `NOT_STARTED`
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-api-service-failure.ps1 -LiveKubectl -Namespace "snsd-example" -DeploymentName "sample-api-placeholder" -ServiceName "sample-api-service-placeholder"
-powershell -ExecutionPolicy Bypass -File tools/validate-api-service-failure.ps1 -LiveHttp -ApiHealthUrl "http://<api-url-placeholder>/health"
-```
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-## Inspect generated evidence
+## Planned Execution Record
 
-```powershell
-Get-Content evidence/L4-failure-recovery/S032-api-service-failure-validation/logs/api-service-failure-validation.log
-Get-Content evidence/L4-failure-recovery/S032-api-service-failure-validation/configs/api-service-failure-summary.md
-```
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-Manual collection must use a disposable lab, sanitize all output, and store no payloads or credentials. `kubectl delete pod` and `kubectl scale --replicas=0` are MANUAL FAULT INJECTION ONLY and are never executed by the validator.
-
-LiveKubectl and LiveHttp output are `NOT_RUN` in the committed Static result.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

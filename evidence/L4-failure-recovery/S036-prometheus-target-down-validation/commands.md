@@ -1,11 +1,21 @@
 # Commands
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-prometheus-target-down.ps1
-powershell -ExecutionPolicy Bypass -File tools/validate-prometheus-target-down.ps1 -LivePrometheus -PrometheusUrl "http://<prometheus-server-placeholder>"
-powershell -ExecutionPolicy Bypass -File tools/validate-prometheus-target-down.ps1 -LivePrometheus -PrometheusUrl "http://<prometheus-server-placeholder>" -ExpectedJob "<scrape-job-name-placeholder>" -ExpectDown
-Get-Content evidence/L4-failure-recovery/S036-prometheus-target-down-validation/logs/prometheus-target-down-validation.log
-Get-Content evidence/L4-failure-recovery/S036-prometheus-target-down-validation/configs/prometheus-target-down-summary.md
-```
+Scenario: S036-prometheus-target-down-validation
 
-LivePrometheus and exporter actions are `NOT_RUN` in committed evidence. Exporter stop/start are manual fault/recovery references only and never validator-executed.
+Level: L4-failure-recovery
+
+Repository truth state: `NOT_STARTED`
+
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
+
+## Planned Execution Record
+
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
+
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

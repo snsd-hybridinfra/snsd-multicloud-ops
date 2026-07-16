@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-probe_success 0
-probe_http_status_code 0
-probe_duration_seconds 5.00
-probe_failed_due_to_regex 0
-failure_reason <timeout-or-connection-refused-placeholder>

@@ -1,2 +1,0 @@
-SAMPLE / NON-PRODUCTION
-<client-placeholder> - - [<timestamp-placeholder>] "GET /<backend-health-path-placeholder> HTTP/1.1" 200 <response-size-placeholder> "-" "<user-agent-placeholder>"

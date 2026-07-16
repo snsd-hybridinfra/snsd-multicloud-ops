@@ -1,4 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Backup_Command_Result: completed-placeholder
-Backup_File_Generated: <backup-file-placeholder>
-Production_Command_Output_Stored: false

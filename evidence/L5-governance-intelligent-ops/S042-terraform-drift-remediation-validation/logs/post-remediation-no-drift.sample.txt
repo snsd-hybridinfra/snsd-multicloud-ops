@@ -1,5 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Terraform_Plan_Exit_Code: 0
-Message: No changes. Infrastructure matches the configuration.
-Drift_Status: NO_DRIFT
-final_judgment: REMEDIATION_VALIDATED

@@ -1,29 +1,21 @@
 # Commands
 
 Scenario: S028-prometheus-target-discovery-validation
+
 Level: L3-service-operations
-Validation mode executed: Static
-Live Prometheus validation: NOT_RUN
 
-## Run Static Validation
+Repository truth state: `NOT_STARTED`
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-prometheus-target-discovery.ps1
-```
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-## Optional Live Prometheus Validation
+## Planned Execution Record
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-prometheus-target-discovery.ps1 -LivePrometheus -PrometheusUrl "http://<prometheus-server-placeholder>"
-```
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-Run only after explicit approval. The validator sends no credentials/cookies/authorization and stores neither the URL nor raw response.
-
-## Inspect Evidence
-
-```powershell
-Get-Content evidence/L3-service-operations/S028-prometheus-target-discovery-validation/logs/prometheus-target-discovery-validation.log
-Get-Content evidence/L3-service-operations/S028-prometheus-target-discovery-validation/configs/prometheus-target-discovery-summary.md
-```
-
-For manual lab collection, save no credentials or real endpoints. Retain only required job names, `health`, and `up` judgments after sanitizing targets, labels, cluster names, and environment identifiers. The generated `.log` is ignored.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

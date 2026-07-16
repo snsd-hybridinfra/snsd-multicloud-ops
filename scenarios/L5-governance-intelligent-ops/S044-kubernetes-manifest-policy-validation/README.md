@@ -10,7 +10,7 @@
 | Related Components | Namespace, Deployment, Service, Ingress, ConfigMap placeholder, Secret reference placeholder, RBAC reference placeholder |
 | Validation Type | StaticEvidence |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

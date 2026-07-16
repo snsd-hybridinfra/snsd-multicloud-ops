@@ -1,5 +1,13 @@
 # Scenario Model
 
+## Current Repository State
+
+The canonical S001-S050 set is defined. S002 is `VALIDATED` with `READY`
+sanitized EVE-NG network-foundation evidence; all unrelated scenario statuses
+remain unchanged. No service VM or cloud integration is implemented.
+Repository/document validation is tracked separately and cannot advance a
+scenario lifecycle state.
+
 Scenario-based validation is the main repository method. Each scenario is a controlled test of one operational capability and must produce reviewable evidence.
 
 ## Scenario Format

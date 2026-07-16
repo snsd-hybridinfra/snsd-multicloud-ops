@@ -1,14 +1,17 @@
 # Validation
 
-| Field | Value |
-|---|---|
-| Actual Result | PASS with expected synthetic-maturity warning |
-| Status | VALIDATED |
-| Mode | StaticEvidence |
+Scenario: S048-ml-anomaly-detection-validation
 
-| Check ID | Actual Result | Status | Evidence |
-|---|---|---|---|
-| V001-V015 | All critical local checks passed | PASS | generated log and mapped samples |
-| V016 | Thresholds and decisions are synthetic | WARN | generated summary |
+Level: L5-governance-intelligent-ops
 
-Final sample judgment: `ANOMALY_DETECTED`; human review is required and no operational action occurred.
+Overall status: `NOT_RUN`
+
+| Check ID | Validation Item | Expected Condition | Actual Result | Status | Evidence |
+|---|---|---|---|---|---|
+| TS001 | Runtime execution | Scenario is executed against the intended real lab target. | Not executed. | NOT_RUN | TODO |
+| TS002 | Evidence integrity | Sanitized evidence is collected from observed execution. | No authoritative runtime evidence exists. | NOT_RUN | TODO |
+
+Repository/document linting is not runtime scenario validation and cannot
+change this result. Previously generated static, sample, synthetic, or
+operator-pasted artifacts were moved to the non-authoritative quarantine and
+must not be cited as scenario evidence.

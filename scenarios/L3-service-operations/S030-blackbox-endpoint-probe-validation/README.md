@@ -10,7 +10,7 @@
 | Related Components | Blackbox modules, Prometheus scrape placeholder, probe metrics |
 | Validation Type | Static with optional explicit LiveBlackbox |
 | Evidence Directory | evidence/L3-service-operations/S030-blackbox-endpoint-probe-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

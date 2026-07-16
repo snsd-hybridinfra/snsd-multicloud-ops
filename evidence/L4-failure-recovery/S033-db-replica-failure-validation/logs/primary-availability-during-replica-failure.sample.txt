@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Primary_Service: reachable-placeholder
-Primary_Role: read-write-available-placeholder
-SHOW_MASTER_STATUS: placeholder-only
-File: <binlog-file-placeholder>
-Position: <binlog-position-placeholder>

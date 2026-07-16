@@ -6,27 +6,23 @@
 | Scenario Name | Kubernetes Node Readiness Validation |
 | Level | L3 Service Operations Validation |
 | Category | Service Operations |
-| Related Components | readiness model, command reference, sample node evidence, optional read-only kubectl mode |
-| Validation Type | Static by default; explicit optional live read-only validation |
+| Related Components | Planned readiness model and command reference |
+| Validation Type | Planned; not executed |
 | Evidence Directory | `evidence/L3-service-operations/S021-kubernetes-node-readiness-validation/` |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 
-Validate the Kubernetes node readiness model and safely parse readiness evidence without storing cluster credentials or requiring live access.
+Define a future Kubernetes node-readiness validation without storing cluster credentials.
 
 ## Scope Summary
 
-Default execution validates repository documents and sample evidence only. `-LiveKubectl` explicitly enables the single read-only command `kubectl get nodes --no-headers` and stores status counts rather than raw live rows.
+Kubernetes has not been implemented in the confirmed lab. No kubectl or runtime node-readiness execution is authoritative.
 
 ## Validation Summary
 
-Twelve checks validate files, command references, readiness rules, placeholder nodes, Ready/NotReady status, scheduling awareness, credential-file and content safety, live-command restrictions, and selected mode.
+The documented checks are planned acceptance criteria only and have not run against a Kubernetes node.
 
 ## Evidence Output Summary
 
-Tracked sample output and a sanitized summary accompany an ignored execution log in the S021 evidence directory.
-
-## Real-Lab Evidence Status
-
-The repository-side static model remains validated. Sanitized 2026-07-14 real-lab evidence confirms that k3s is active, the node reports Ready, observed kube-system Pods are Running or Completed, and kubectl client version evidence is present. Raw output and sensitive lab identifiers are not committed.
+No authoritative evidence exists. Previous static, sample, or pasted artifacts are quarantined and must not be cited as Kubernetes evidence.

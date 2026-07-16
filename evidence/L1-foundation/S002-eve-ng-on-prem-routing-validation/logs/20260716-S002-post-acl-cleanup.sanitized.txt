@@ -1,0 +1,43 @@
+S002 POST-ACL CLEANUP EVIDENCE
+Captured: 2026-07-16
+Source: real SNSD-R1 terminal output supplied by the operator
+Sanitization: the runtime subinterface address is replaced with a role-based
+placeholder. Raw output is not committed.
+
+COMMAND: show access-lists
+
+Standard IP access list 10
+    10 permit 10.10.0.0, wildcard bits 0.0.255.255
+
+INTERPRETATION: only the standard NAT source-selection ACL remains in the
+reported ACL inventory. The temporary directional validation ACL is absent.
+
+COMMAND: show ip interface FastEthernet0/1.20
+
+FastEthernet0/1.20 is up, line protocol is up
+  Internet address is <dmz-gateway-masked>/24
+  Address determined by non-volatile memory
+  Outgoing access list is not set
+  Inbound access list is not set
+  Network address translation is enabled, interface in domain inside
+
+RESULT: PASS - the DMZ router subinterface is up/up, has no inbound or outgoing
+ACL attached, and remains configured as a NAT inside interface. This confirms
+the temporary directional ACL was removed after evidence collection.
+
+POST-CLEANUP DMZ TO KUBERNETES CONNECTIVITY
+
+VPCS> ping <kubernetes-test-endpoint-masked>
+<kubernetes-test-endpoint-masked> icmp_seq=1 timeout
+84 bytes from <kubernetes-test-endpoint-masked> icmp_seq=2 ttl=63 time=<latency-masked>
+84 bytes from <kubernetes-test-endpoint-masked> icmp_seq=3 ttl=63 time=<latency-masked>
+84 bytes from <kubernetes-test-endpoint-masked> icmp_seq=4 ttl=63 time=<latency-masked>
+84 bytes from <kubernetes-test-endpoint-masked> icmp_seq=5 ttl=63 time=<latency-masked>
+
+RESULT: PASS WITH INITIAL LOSS - four consecutive replies after the first
+timeout confirm that DMZ-to-Kubernetes routing was restored after ACL removal.
+The initial timeout is retained as observed and may reflect ARP/cache warm-up;
+this evidence does not claim 5/5 loss-free recovery.
+
+No credential, secret, MAC address, serial number, proprietary image detail,
+WAN address, management address, or public test address is retained.

@@ -1,3 +1,0 @@
-SAMPLE / NON-PRODUCTION
-deployment-placeholder successfully rolled out
-pod-placeholder   1/1   Running   0

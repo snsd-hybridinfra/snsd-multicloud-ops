@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION / MISCONFIGURATION
-MANUAL MISCONFIGURATION SAMPLE
-Admin_Port_Source: <unrestricted-source-placeholder>
-Database_Port_Source: <unrestricted-source-placeholder>
-Execution_By_Validator: false
-Temporary_Exception_Expiry: <expiry-placeholder>

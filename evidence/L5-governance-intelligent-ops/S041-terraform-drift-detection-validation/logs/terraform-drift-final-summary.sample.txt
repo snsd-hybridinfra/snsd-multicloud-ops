@@ -1,7 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Drift_Detection_Completed: true
-Drift_Evidence_Present: true
-Remediation_Executed: false
-Remediation_Mapped_To: S042
-Policy_Validation_Mapped_To: S043
-Real_Cloud_Operation_Performed: false

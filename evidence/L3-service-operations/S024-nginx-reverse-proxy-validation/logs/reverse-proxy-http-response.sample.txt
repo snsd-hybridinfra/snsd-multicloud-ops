@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-HTTP/1.1 200 OK
-Content-Type: text/plain
-
-<backend-service-response-placeholder>
-

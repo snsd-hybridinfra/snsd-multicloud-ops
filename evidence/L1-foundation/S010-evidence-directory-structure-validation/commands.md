@@ -4,25 +4,18 @@ Scenario: S010-evidence-directory-structure-validation
 
 Level: L1-foundation
 
-## Run Validation
+Repository truth state: `NOT_STARTED`
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools\validate-evidence-directory-structure.ps1
-```
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-## Inspect Generated Evidence
+## Planned Execution Record
 
-```powershell
-Get-Content evidence\L1-foundation\S010-evidence-directory-structure-validation\logs\evidence-directory-structure-validation.log
-Get-Content evidence\L1-foundation\S010-evidence-directory-structure-validation\configs\evidence-directory-structure-summary.md
-```
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-## Rerun Repository Structure Validation
-
-```powershell
-powershell -ExecutionPolicy Bypass -File tools\validate-repo-structure.ps1
-```
-
-## Safety Notes
-
-No planned command executes scenario implementations, processes secrets, or contacts external systems. The validator enumerates repository paths and status rows only.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

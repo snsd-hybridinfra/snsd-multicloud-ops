@@ -4,21 +4,18 @@ Scenario: S007-multi-cloud-inventory-validation
 
 Level: L1-foundation
 
-## Run Validation
+Repository truth state: `NOT_STARTED`
 
-From the repository root:
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools\validate-multicloud-inventory.ps1
-```
+## Planned Execution Record
 
-## Inspect Generated Evidence
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-```powershell
-Get-Content evidence\L1-foundation\S007-multi-cloud-inventory-validation\logs\multicloud-inventory-validation.log
-Get-Content evidence\L1-foundation\S007-multi-cloud-inventory-validation\configs\multicloud-inventory-summary.md
-```
-
-## Safety Notes
-
-No planned command executes Ansible, connects to a host, reads a key or credential, resolves DNS, or queries a cloud provider, cluster, OpenStack endpoint, or EVE-NG lab. The validator reads repository text only.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

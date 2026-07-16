@@ -9,7 +9,7 @@
 | Related Components | AWS SG, Azure NSG, OpenStack SG, firewall, NetworkPolicy placeholders, rollback policy |
 | Validation Type | StaticEvidence only |
 | Evidence Directory | evidence/L4-failure-recovery/S037-security-rule-misconfiguration-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

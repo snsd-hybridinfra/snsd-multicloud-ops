@@ -1,18 +1,29 @@
 # Evidence Map
 
-| Validation Item | Evidence File | Evidence Type | Required |
-|---|---|---|---|
-| V001 Topology document | `logs/eve-ng-routing-baseline-validation.log`; `configs/eve-ng-routing-baseline-summary.md` | generated log and summary | yes |
-| V002 Router example configs | `logs/eve-ng-routing-baseline-validation.log`; `configs/eve-ng-routing-baseline-summary.md` | generated log and summary | yes |
-| V003 Required zones | `logs/eve-ng-routing-baseline-validation.log`; `configs/eve-ng-routing-baseline-summary.md` | generated log and summary | yes |
-| V004 Placeholder devices | `logs/eve-ng-routing-baseline-validation.log`; `configs/eve-ng-routing-baseline-summary.md` | generated log and summary | yes |
-| V005 CIDR placeholders | `logs/eve-ng-routing-baseline-validation.log`; `configs/eve-ng-routing-baseline-summary.md` | generated log and summary | yes |
-| V006 Example config structure | `logs/eve-ng-routing-baseline-validation.log`; `configs/eve-ng-routing-baseline-summary.md` | generated log and summary | yes |
-| V007 Secret-like content | `logs/eve-ng-routing-baseline-validation.log`; `configs/eve-ng-routing-baseline-summary.md` | generated log and summary | yes |
-| V008 Literal IP addresses | `logs/eve-ng-routing-baseline-validation.log`; `configs/eve-ng-routing-baseline-summary.md` | generated log and summary | yes |
-| Script invocation and evidence inspection | `commands.md` | operator command record | yes |
-| Final validation judgment | `validation.md` | validation result | yes |
+| Check ID | Evidence Location | Current State |
+|---|---|---|
+| E001 | `logs/20260715-S002-eve-uplink-bootstrap.sanitized.txt`; `logs/20260716-S002-router-switch-network-state.sanitized.txt`; `logs/20260716-S002-management-reachability.sanitized.txt` | EVIDENCED |
+| E002 | `logs/20260716-S002-kvm-availability.sanitized.txt` | EVIDENCED |
+| E003 | `logs/20260716-S002-router-switch-network-state.sanitized.txt` | EVIDENCED |
+| E004 | `logs/20260716-S002-router-switch-network-state.sanitized.txt` | EVIDENCED |
+| E005 | `logs/20260716-S002-router-switch-network-state.sanitized.txt` | EVIDENCED |
+| E006 | `logs/20260716-S002-router-switch-network-state.sanitized.txt` | EVIDENCED |
+| E007 | `logs/20260716-S002-router-switch-network-state.sanitized.txt` | EVIDENCED |
+| E008 | `logs/20260716-S002-router-switch-network-state.sanitized.txt` | EVIDENCED |
+| E009 | `logs/20260716-S002-router-switch-network-state.sanitized.txt` | EVIDENCED |
+| E010 | `logs/20260716-S002-routing-acl-connectivity.sanitized.txt` | EVIDENCED |
+| E011 | `logs/20260716-S002-routing-acl-connectivity.sanitized.txt` | EVIDENCED |
+| E012 | `logs/20260716-S002-routing-acl-connectivity.sanitized.txt` | EVIDENCED |
+| E013 | `logs/20260716-S002-router-switch-network-state.sanitized.txt` | EVIDENCED |
+| E014 | `configs/20260716-S002-network-foundation-topology-summary.md`; `logs/20260716-S002-post-acl-cleanup.sanitized.txt` | EVIDENCED |
+| All checks | `commands.md`, `validation.md` | READY |
 
-## Evidence Notes
+## Evidence Safety Boundary
 
-The log is reproducible by rerunning the script. Screenshots and live device output are not required.
+Sanitized host-only ping, SSH/22, and HTTP/80 management output are represented.
+KVM, node boot,
+VLANs, trunk, subinterfaces, routes, PAT, baseline allowed traffic,
+directional deny, reverse-direction permit, persistence, and cleanup are now
+represented. Raw
+outputs, device serials, MACs, runtime addresses, proprietary image details,
+credentials, secrets, and binaries are prohibited.

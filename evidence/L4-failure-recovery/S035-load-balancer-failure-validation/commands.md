@@ -1,10 +1,21 @@
 # Commands
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-load-balancer-failure.ps1
-powershell -ExecutionPolicy Bypass -File tools/validate-load-balancer-failure.ps1 -LiveHttp -LoadBalancerUrl "http://<load-balancer-url-placeholder>" -BackendAUrl "http://<backend-a-url-placeholder>" -BackendBUrl "http://<backend-b-url-placeholder>"
-Get-Content evidence/L4-failure-recovery/S035-load-balancer-failure-validation/logs/load-balancer-failure-validation.log
-Get-Content evidence/L4-failure-recovery/S035-load-balancer-failure-validation/configs/load-balancer-failure-summary.md
-```
+Scenario: S035-load-balancer-failure-validation
 
-LiveHttp and service actions are `NOT_RUN` in committed evidence. Stop/start are MANUAL FAULT/RECOVERY ONLY and never validator-executed.
+Level: L4-failure-recovery
+
+Repository truth state: `NOT_STARTED`
+
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
+
+## Planned Execution Record
+
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
+
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

@@ -1,8 +1,23 @@
 # SNSD Multi-Cloud Secure Operations Validation Platform
 
+## Current Repository Truth State
+
+- Status: **EVE-NG NETWORK FOUNDATION VALIDATED / S002 READY**
+- The EVE-NG host, one router, one Layer-2 switch, six VLAN gateways,
+  Router-on-a-Stick, NAT/PAT, and a temporary directional ACL test are
+  operator-confirmed implemented.
+- Service VM, OpenStack, Kubernetes, MariaDB, monitoring, backup, AWS, and
+  Azure integration remain `NOT_STARTED`.
+- S002 has READY sanitized E001-E014 runtime evidence; all unrelated scenario
+  statuses remain unchanged.
+- Local repository/document validators check structure and safety only. Their
+  success is not infrastructure or scenario validation.
+
 **한국어 제목:** SNSD 시나리오 기반 멀티클라우드 보안 운영 검증 플랫폼
 
-Scenario-based multi-cloud secure operations validation platform for portfolio and non-production use. The repository demonstrates repeatable operational, security, recovery, governance, and intelligent-operations checks through documented criteria and traceable evidence; it does not represent a production deployment or formal compliance certification.
+Scenario-based planning repository for a future multi-cloud secure operations
+validation platform. It currently defines intended criteria and evidence paths;
+it does not demonstrate deployed infrastructure or completed runtime checks.
 
 ## Validation Model
 
@@ -37,19 +52,31 @@ powershell -ExecutionPolicy Bypass -File tools\generate-final-evidence-report.ps
 powershell -ExecutionPolicy Bypass -File tools\validate-final-evidence-report.ps1
 ```
 
-The repository-wide wrapper runs local PowerShell validators in static-only mode. It does not run Terraform, kubectl, cloud CLIs, or live infrastructure queries.
+These local PowerShell commands validate repository/document structure only.
+They do not produce authoritative scenario evidence and do not run Terraform,
+kubectl, cloud CLIs, or live infrastructure queries.
 
-## Lab Phase 1 References
+## Authoritative Lab Architecture References
 
-The non-production reference lab is planned in:
+The non-production multi-cloud lab baseline is defined in:
 
-- [Lab reference architecture](docs/lab-reference-architecture.md)
-- [Lab build order](docs/lab-build-order.md)
-- [Placeholder IP plan](docs/lab-ip-plan.md)
+- [Multi-cloud architecture baseline](docs/lab-reference-architecture.md)
+- [Authoritative phase plan](docs/lab-build-order.md)
+- [IP address and reservation plan](docs/lab-ip-plan.md)
+- [Network zone plan](docs/lab-network-zone-plan.md)
+- [Platform responsibility matrix](docs/platform-responsibility-matrix.md)
+- [Cloud cost guardrails](docs/cloud-cost-guardrails.md)
+- [Resource lifecycle policy](docs/resource-lifecycle-policy.md)
+- [External address policy](docs/external-address-policy.md)
+- [Host capacity baseline](docs/host-capacity-baseline.md)
+- [VM resource allocation plan](docs/vm-resource-allocation-plan.md)
+- [Lab execution profiles](docs/lab-execution-profiles.md)
+- [Storage and snapshot policy](docs/storage-and-snapshot-policy.md)
+- [ADR-0001](docs/adr/ADR-0001-multicloud-network-and-platform-baseline.md)
 - [Evidence collection guide](docs/lab-evidence-collection-guide.md)
 - [Evidence sanitization rules](docs/lab-sanitization-rules.md)
 
-These documents prepare later sanitized evidence collection; they do not provision or query live infrastructure.
+These documents prepare later sanitized evidence collection; they do not provision or query live infrastructure, authorize cloud spend, or change scenario status.
 
 ## Scope and Safety
 

@@ -1,4 +1,0 @@
-SAMPLE / NON-PRODUCTION
-MANUAL RECOVERY ACTION SAMPLE
-Command_Reference: systemctl start <load-balancer-service-placeholder>
-Execution_By_Validator: false

@@ -1,7 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Cleanup_Evaluation_Completed: true
-Missing_Owner: <blocked-placeholder>
-Missing_Retention_Class: <blocked-placeholder>
-Dependency_Risk: high-placeholder
-Missing_Approval: <blocked-placeholder>
-final_judgment: CLEANUP_BLOCKED

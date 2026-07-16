@@ -9,7 +9,7 @@
 | Related Components | Nginx header policy, rule matrix, non-production config example, local validator |
 | Validation Type | Safe local repository validation |
 | Evidence Directory | `evidence/L2-security-baseline/S019-nginx-security-header-validation/` |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

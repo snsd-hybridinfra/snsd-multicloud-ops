@@ -10,7 +10,7 @@
 | Related Components | Grafana dashboard JSON, Prometheus datasource, API evidence |
 | Validation Type | Static with optional explicit LiveGrafana |
 | Evidence Directory | evidence/L3-service-operations/S029-grafana-dashboard-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

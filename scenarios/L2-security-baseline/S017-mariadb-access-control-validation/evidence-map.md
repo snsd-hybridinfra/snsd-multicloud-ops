@@ -17,16 +17,7 @@
 | V013 | Account and address safety | same generated evidence | yes |
 | V014 | Execution safety boundary | same generated evidence | yes |
 
-`commands.md` documents execution and `validation.md` records final results. The generated log is ignored; the sanitized summary is tracked.
-
-## Real Virtual-Lab Evidence Map
-
-| Check ID | Validation Item | Evidence File | Status |
-|---|---|---|---|
-| LAB-001-LAB-002 | Service and listener | `logs/20260715-S017-mariadb-service-listener.sanitized.txt` | PASS with firewall WARN |
-| LAB-003-LAB-005 | Host-scoped application/read-only grants | `logs/20260715-S017-mariadb-grants.sanitized.txt` | PASS |
-| LAB-006-LAB-008 | Read-only allow/deny operations | `logs/20260715-S017-readonly-allow-deny.sanitized.txt` | PARTIAL - DDL denial missing |
-| LAB-009-LAB-011 | Application allow/deny operations | `logs/20260715-S017-application-user-allow-deny.sanitized.txt` | PARTIAL - system-database denial missing |
-| LAB-012 | Sanitization and final judgment | `configs/20260715-S017-mariadb-access-control-validation-summary.md` | PARTIAL |
-
-Raw terminal output and authentication material are not evidence artifacts.
+`commands.md` contains a `NOT_RUN` record and `validation.md` records the current
+`NOT_RUN` result. Every listed evidence path is planned and currently absent.
+Previous static, sample, or pasted artifacts are quarantined and are not
+evidence artifacts.

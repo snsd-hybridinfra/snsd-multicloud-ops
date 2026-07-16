@@ -4,21 +4,18 @@ Scenario: S015-azure-nsg-least-privilege-validation
 
 Level: L2-security-baseline
 
-## Run Validation
+Repository truth state: `NOT_STARTED`
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools\validate-azure-nsg-least-privilege.ps1
-```
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-## Inspect Generated Evidence
+## Planned Execution Record
 
-```powershell
-Get-Content evidence\L2-security-baseline\S015-azure-nsg-least-privilege-validation\logs\azure-nsg-least-privilege-validation.log
-Get-Content evidence\L2-security-baseline\S015-azure-nsg-least-privilege-validation\configs\azure-nsg-least-privilege-summary.md
-```
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-## Safety Notes
-
-These commands do not authenticate to Azure, invoke Azure CLI, query NSGs, initialize Terraform, create a plan, apply changes, read credentials, or contact external systems.
-
-No planned or `NOT_RUN` live-cloud output is required; only generated local validation evidence is inspected.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

@@ -1,29 +1,17 @@
 # Validation
 
-| Field | Value |
-|---|---|
-| Mode | StaticEvidence |
-| Actual Result | PASS with expected maturity warning |
-| Status | VALIDATED |
-| Live collection/training | None |
+Scenario: S047-ml-metric-dataset-collection-validation
 
-| Check ID | Result | Evidence |
-|---|---|---|
-| V001 | PASS | Required artifacts exist |
-| V002 | PASS | Manual-only commands and no-query/no-training boundary |
-| V003 | PASS | Metric-only policy and exclusions |
-| V004 | PASS | Dataset schema and constraints |
-| V005 | PASS | 20-row numeric synthetic dataset with valid labels |
-| V006 | PASS | Intentionally invalid sample recognized |
-| V007 | PASS | Metadata and S048/S049/S050 mappings |
-| V008 | PASS | Required feature/scenario mappings |
-| V009 | PASS | Schema and metadata evidence |
-| V010 | PASS | Ready sample accepted; invalid sample rejected |
-| V011 | PASS | Feature and privacy evidence |
-| V012 | PASS | Final summary confirms no live query/training |
-| V013 | PASS | Dataset collection manifest |
-| V014 | PASS | Standard-library optional helper |
-| V015 | PASS | Telemetry, endpoint, identifier, and secret safety |
-| V016 | WARN | Values and labels remain synthetic/placeholders by design |
+Level: L5-governance-intelligent-ops
 
-Final judgment: `DATASET_READY` for the S048 static handoff. This is not production monitoring data or a trained security model.
+Overall status: `NOT_RUN`
+
+| Check ID | Validation Item | Expected Condition | Actual Result | Status | Evidence |
+|---|---|---|---|---|---|
+| TS001 | Runtime execution | Scenario is executed against the intended real lab target. | Not executed. | NOT_RUN | TODO |
+| TS002 | Evidence integrity | Sanitized evidence is collected from observed execution. | No authoritative runtime evidence exists. | NOT_RUN | TODO |
+
+Repository/document linting is not runtime scenario validation and cannot
+change this result. Previously generated static, sample, synthetic, or
+operator-pasted artifacts were moved to the non-authoritative quarantine and
+must not be cited as scenario evidence.

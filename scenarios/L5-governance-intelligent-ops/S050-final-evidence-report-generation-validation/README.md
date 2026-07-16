@@ -10,7 +10,7 @@
 | Related Components | Tracking documents, scenario documentation, evidence directories |
 | Validation Type | Governance Validation |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

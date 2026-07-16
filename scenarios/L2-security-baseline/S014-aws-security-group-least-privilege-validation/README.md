@@ -10,7 +10,7 @@
 | Related Components | Rule policy, rule matrix, AWS Terraform Security Group placeholder |
 | Validation Type | Security Validation |
 | Evidence Directory | evidence/L2-security-baseline/S014-aws-security-group-least-privilege-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

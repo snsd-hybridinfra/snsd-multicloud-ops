@@ -1,1 +1,0 @@
-{"sample":"NON-PRODUCTION","status":"success","data":{"activeTargets":[{"labels":{"job":"<scrape-job-name-placeholder>","instance":"<target-instance-placeholder>"},"health":"down","lastError":"<scrape-error-placeholder>"}]}}

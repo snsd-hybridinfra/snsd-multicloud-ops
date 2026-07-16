@@ -1,19 +1,17 @@
-# Validation Results
+# Validation
 
-| Check ID | Check Description | Expected Condition | Evidence File | Actual Result | Status |
+Scenario: S044-kubernetes-manifest-policy-validation
+
+Level: L5-governance-intelligent-ops
+
+Overall status: `NOT_RUN`
+
+| Check ID | Validation Item | Expected Condition | Actual Result | Status | Evidence |
 |---|---|---|---|---|---|
-| V001 | Artifacts | Complete | Generated log | Present | PASS |
-| V002 | Commands | Optional/no live cluster | Command reference | Matched | PASS |
-| V003 | Rules | Areas/judgments/exceptions | Rules | Matched | PASS |
-| V004 | Compliant | Secure baseline | Compliant example | Matched | PASS |
-| V005 | Violation | Labeled violations | Violation example | Matched | PASS |
-| V006 | Exception | Complete | Exception example | Matched | PASS |
-| V007 | Exposure | Violation-only/ClusterIP | Service example | Matched | PASS |
-| V008 | Evidence | Consistent | Evidence samples | Matched | PASS |
-| V009 | Summary | PASS/no live operation | Final sample | Matched | PASS |
-| V010 | Manifest | Fields/mappings | Manifest | Matched | PASS |
-| V011 | Kubeconfig | Absent | Generated log | Checked | PASS |
-| V012 | Sensitive safety | Clean | Generated log | Checked | PASS |
-| V013 | Execution | None | Validator | Checked | PASS |
-| V014 | Boundaries | S018/S043/out-of-scope | Runbook | Matched | PASS |
-| V015 | Maturity | Placeholder warning | Summary | Expected | WARN |
+| TS001 | Runtime execution | Scenario is executed against the intended real lab target. | Not executed. | NOT_RUN | TODO |
+| TS002 | Evidence integrity | Sanitized evidence is collected from observed execution. | No authoritative runtime evidence exists. | NOT_RUN | TODO |
+
+Repository/document linting is not runtime scenario validation and cannot
+change this result. Previously generated static, sample, synthetic, or
+operator-pasted artifacts were moved to the non-authoritative quarantine and
+must not be cited as scenario evidence.

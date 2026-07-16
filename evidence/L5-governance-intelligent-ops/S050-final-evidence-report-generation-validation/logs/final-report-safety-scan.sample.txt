@@ -1,8 +1,0 @@
-SAMPLE / NON-PRODUCTION
-No_Secrets_Detected: true
-No_Real_Identifiers_Detected: true
-No_Production_Logs_Detected: true
-No_Production_Metrics_Detected: true
-No_Billing_Data_Detected: true
-No_SIEM_Wazuh_EDR_Data_Detected: true
-No_Packet_Payloads_Detected: true

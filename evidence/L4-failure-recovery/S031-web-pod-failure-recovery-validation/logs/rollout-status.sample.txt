@@ -1,2 +1,0 @@
-SAMPLE / NON-PRODUCTION
-deployment "sample-web-placeholder" successfully rolled out

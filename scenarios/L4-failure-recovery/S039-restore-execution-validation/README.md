@@ -9,7 +9,7 @@
 | Related Components | S038 manifest/checksum, disposable restore target, metadata, consistency, rollback, S040 |
 | Validation Type | StaticEvidence only |
 | Evidence Directory | evidence/L4-failure-recovery/S039-restore-execution-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

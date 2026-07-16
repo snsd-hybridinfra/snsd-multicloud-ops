@@ -10,7 +10,7 @@
 | Related Components | On-Prem, AWS, Azure, OpenStack, Kubernetes, database, monitoring, bastion |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S009-dns-hostname-resolution-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

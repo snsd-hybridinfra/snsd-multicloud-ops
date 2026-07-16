@@ -1,4 +1,0 @@
-SAMPLE / NON-PRODUCTION / FAILURE EVIDENCE SAMPLE
-HTTP/1.1 503 Service Unavailable
-Endpoint_State: <none>
-Failure_Signal: unavailable-placeholder

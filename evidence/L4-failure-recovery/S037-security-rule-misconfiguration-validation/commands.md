@@ -1,9 +1,21 @@
 # Commands
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-security-rule-misconfiguration.ps1
-Get-Content evidence/L4-failure-recovery/S037-security-rule-misconfiguration-validation/logs/security-rule-misconfiguration-validation.log
-Get-Content evidence/L4-failure-recovery/S037-security-rule-misconfiguration-validation/configs/security-rule-misconfiguration-summary.md
-```
+Scenario: S037-security-rule-misconfiguration-validation
 
-To collect future evidence, use only a separately approved disposable lab and sanitize every identifier/network value. Real SG, NSG, OpenStack SG, firewall, NetworkPolicy, Terraform, and routing modification is out of scope. Rollback is sanitized sample evidence only. All cloud/network actions are `NOT_RUN` by this validator.
+Level: L4-failure-recovery
+
+Repository truth state: `NOT_STARTED`
+
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
+
+## Planned Execution Record
+
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
+
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

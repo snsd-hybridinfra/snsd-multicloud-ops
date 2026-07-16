@@ -1,25 +1,21 @@
 # Commands
 
 Scenario: S030-blackbox-endpoint-probe-validation
+
 Level: L3-service-operations
-Validation mode executed: Static
-Live Blackbox validation: NOT_RUN
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-blackbox-endpoint-probe.ps1
-```
+Repository truth state: `NOT_STARTED`
 
-Optional, explicitly approved live validation:
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-blackbox-endpoint-probe.ps1 -LiveBlackbox -BlackboxExporterUrl "http://<blackbox-exporter-placeholder>:9115" -TargetUrl "http://<endpoint-url-placeholder>"
-```
+## Planned Execution Record
 
-Inspect evidence:
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-```powershell
-Get-Content evidence/L3-service-operations/S030-blackbox-endpoint-probe-validation/logs/blackbox-endpoint-probe-validation.log
-Get-Content evidence/L3-service-operations/S030-blackbox-endpoint-probe-validation/configs/blackbox-endpoint-probe-summary.md
-```
-
-Manual evidence collection must omit credentials, tokens, cookies, authorization, real URLs/endpoints/domains/addresses, and raw responses. Retain only sanitized probe metrics and placeholder endpoint name.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

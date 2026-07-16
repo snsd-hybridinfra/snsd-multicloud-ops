@@ -4,21 +4,18 @@ Scenario: S006-terraform-provider-validation
 
 Level: L1-foundation
 
-## Run Validation
+Repository truth state: `NOT_STARTED`
 
-From the repository root:
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools\validate-terraform-provider-baseline.ps1
-```
+## Planned Execution Record
 
-## Inspect Generated Evidence
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-```powershell
-Get-Content evidence\L1-foundation\S006-terraform-provider-validation\logs\terraform-provider-validation.log
-Get-Content evidence\L1-foundation\S006-terraform-provider-validation\configs\terraform-provider-baseline-summary.md
-```
-
-## Safety Notes
-
-No planned command authenticates to a provider, reads credentials or kubeconfig, contacts cloud APIs, downloads providers, or runs Terraform init, validate, plan, apply, or destroy. The validator reads repository files and optionally runs `terraform fmt -check` only.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

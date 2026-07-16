@@ -10,7 +10,7 @@
 | Related Components | Deployment, Pods, rollout, Service endpoints |
 | Validation Type | Static with optional explicit read-only LiveKubectl |
 | Evidence Directory | evidence/L4-failure-recovery/S031-web-pod-failure-recovery-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

@@ -1,5 +1,10 @@
 # Repository QA Report
 
+> Superseded status note (2026-07-15): this historical repository/document QA
+> report is not scenario or runtime evidence. Current scenario states are all
+> `NOT_STARTED`, and current evidence states are all `NOT_READY`. Any older
+> matrix counts below are retained only as document-history context.
+
 QA date: 2026-07-10
 
 Target: SNSD Multi-Cloud Secure Operations Validation Platform

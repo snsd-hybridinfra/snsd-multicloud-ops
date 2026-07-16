@@ -1,9 +1,21 @@
 # Commands
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-backup-creation.ps1
-Get-Content evidence/L4-failure-recovery/S038-backup-creation-validation/logs/backup-creation-validation.log
-Get-Content evidence/L4-failure-recovery/S038-backup-creation-validation/configs/backup-creation-validation-summary.md
-```
+Scenario: S038-backup-creation-validation
 
-Real backup, dump, archive, upload, storage query, and Ansible actions are `NOT_RUN`. Future collection must be separately approved and sanitized; no real artifact belongs in this repository.
+Level: L4-failure-recovery
+
+Repository truth state: `NOT_STARTED`
+
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
+
+## Planned Execution Record
+
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
+
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

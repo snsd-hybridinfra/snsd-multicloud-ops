@@ -1,5 +1,9 @@
 # Implementation Readiness Review
 
+> Superseded status note (2026-07-15): no scenario is currently implemented or
+> runtime-validated. Current authoritative status is maintained in
+> `docs/scenario-status-matrix.md` and `docs/evidence-status-matrix.md`.
+
 Readiness date: 2026-07-10
 
 ## Classification Basis
@@ -70,4 +74,3 @@ Every scenario passes local structure, metadata, Included/Excluded scope, valida
 | BLOCKED | 0 |
 
 After the canonical model, naming rule, and status vocabulary are aligned, re-run the quality validator. If it passes, S001 is the recommended first implementation scenario.
-

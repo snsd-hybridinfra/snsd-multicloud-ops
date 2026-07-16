@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Approval_ID: <approval-id-placeholder>
-Approval_Status: approved-placeholder
-Approver_Role: <approver-role-placeholder>
-Approval_Scope: <approval-scope-placeholder>
-Real_Person_Or_Organization_Data: false

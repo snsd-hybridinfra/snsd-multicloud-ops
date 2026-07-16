@@ -10,7 +10,7 @@
 | Related Components | SSH denial policy, example sshd settings, repository secret safety |
 | Validation Type | Security Validation |
 | Evidence Directory | evidence/L2-security-baseline/S012-password-login-denial-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

@@ -10,7 +10,7 @@
 | Related Components | S047 dataset placeholder, S048 detection result placeholder, report schema, report sections, evidence references |
 | Validation Type | ML Anomaly Detection Validation |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S049-ml-anomaly-report-generation-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

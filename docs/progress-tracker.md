@@ -12,14 +12,31 @@ Evidence status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 
 | Level | Category | Scenarios | Implemented | Validated | Notes |
 |---|---|---:|---:|---:|---|
-| L1 | Foundation | 10/10 | 10/10 | 10/10 | S001-S010 validated; S001 core toolchain passes with Git, PowerShell, SSH, and Python 3.13.13 |
-| L2 | Security Baseline | 10/10 | 10/10 | 9/10 | S011-S016 and S018-S020 validated; S017 real-lab evidence is PARTIAL pending read-only DDL denial and application system-database denial tests |
-| L3 | Service Operations | 10/10 | 10/10 | 10/10 | S021 includes sanitized node readiness evidence; S022-S024 include sanitized workload/Ingress/proxy evidence; S025 includes sanitized normal, NotReady-exclusion, continuity, and restoration evidence; S028-S030 remain validated in Static mode; S026-S027 remain validated in StaticEvidence mode |
-| L4 | Failure Recovery | 10/10 | 10/10 | 10/10 | S031-S040 validated with static repository evidence; L4 implementation complete |
-| L5 | Governance Intelligent Ops | 10/10 | 10/10 | 10/10 | S041-S050 validated with static governance, synthetic Intelligent Ops, and final local report evidence |
-| Total | All Levels | 50/50 | 50/50 | 49/50 | All 50 scenarios remain implemented; S017 is PARTIAL from incomplete real-lab denial evidence, while S021-S025 include sanitized real-lab evidence within the locked non-production scope |
+| L1 | Foundation | 10/10 | 1/10 | 1/10 | S002 network foundation is VALIDATED with READY E001-E014 evidence; other L1 scenarios remain unchanged |
+| L2 | Security Baseline | 10/10 | 0/10 | 0/10 | Definitions exist; all S011-S020 scenarios are NOT_STARTED |
+| L3 | Service Operations | 10/10 | 0/10 | 0/10 | Definitions exist; all S021-S030 scenarios are NOT_STARTED |
+| L4 | Failure Recovery | 10/10 | 0/10 | 0/10 | Definitions exist; all S031-S040 scenarios are NOT_STARTED |
+| L5 | Governance Intelligent Ops | 10/10 | 0/10 | 0/10 | Definitions exist; all S041-S050 scenarios are NOT_STARTED |
+| Total | All Levels | 50/50 | 1/50 | 1/50 | S002 is the first validated runtime scenario; all unrelated statuses remain unchanged |
 
-Repository-wide integration QA is performed with `tools/validate-all-scenarios.ps1`; its latest summary is stored under the S050 evidence directory.
+Repository/document structure checks may be run locally, but their results do
+not count as S001-S050 implementation, evidence readiness, or runtime validation.
+
+## Environment Note
+
+The EVE-NG host, `SNSD-R1`, `SNSD-SW1`, six VLAN gateways, Router-on-a-Stick,
+NAT/PAT, and temporary directional ACL test are operator-confirmed implemented.
+The repository contains only the earlier sanitized host bridge/address/route
+output plus sanitized KVM, live router/switch state, VLAN/trunk/subinterface,
+routing, NAT/counter, persistence, pre-ACL allow, post-ACL deny, reverse permit,
+gateway, public-connectivity, post-ACL-removal cleanup, host-only ping, SSH/22,
+and HTTP/80 results. E001-E014 are represented, so S002 is
+`VALIDATED`/`READY`. HTTPS/443 remains accurately recorded unavailable.
+
+Lab Phase 0 host-capacity, VM allocation, staged execution, and storage policy
+documents remain planning artifacts only. They do not add to the scenario
+totals; S002 alone accounts for the current 1/50 implementation and validation
+totals.
 
 ## Update Rule
 

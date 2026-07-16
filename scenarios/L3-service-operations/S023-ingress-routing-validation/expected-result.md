@@ -24,8 +24,6 @@ Evidence records mode, file/manifest/backend/endpoint/secret results and final j
 - Local-lab success does not establish public internet exposure.
 - Raw output, kubeconfig, service-account tokens, certificates, keys, passwords, and secrets are not committed.
 
-## 2026-07-15 Real-Lab Result
+## Current Result
 
-**READY** - sanitized evidence confirms ready workload backends, a ClusterIP
-Service, an Ingress host/path/backend rule, running Traefik components, and a
-Host-header request returning `HTTP/1.1 200 OK` with an HTML body.
+`NOT_RUN`. Kubernetes and Ingress are not implemented in the confirmed lab.

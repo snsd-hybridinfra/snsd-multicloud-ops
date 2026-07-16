@@ -9,7 +9,7 @@
 | Related Components | Grafana access policy, control matrix, non-production INI example, local validator |
 | Validation Type | Safe local repository validation |
 | Evidence Directory | `evidence/L2-security-baseline/S020-grafana-anonymous-access-denial-validation/` |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

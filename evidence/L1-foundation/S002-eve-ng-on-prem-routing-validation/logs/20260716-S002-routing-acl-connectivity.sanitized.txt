@@ -1,0 +1,70 @@
+S002 ROUTING AND DIRECTIONAL ACL CONNECTIVITY EVIDENCE
+Captured: 2026-07-16
+Source: real lab VPCS terminal output supplied by the operator
+Sanitization: endpoint, gateway, and public test IPv4 addresses are replaced
+with role-based placeholders. Raw output is not committed.
+
+PHASE 1: PRE-ACL DMZ TO KUBERNETES ROUTING
+
+VPCS> ping <kubernetes-test-endpoint-masked>
+84 bytes from <kubernetes-test-endpoint-masked> icmp_seq=1 ttl=63 time=<latency-masked>
+84 bytes from <kubernetes-test-endpoint-masked> icmp_seq=2 ttl=63 time=<latency-masked>
+84 bytes from <kubernetes-test-endpoint-masked> icmp_seq=3 ttl=63 time=<latency-masked>
+84 bytes from <kubernetes-test-endpoint-masked> icmp_seq=4 ttl=63 time=<latency-masked>
+84 bytes from <kubernetes-test-endpoint-masked> icmp_seq=5 ttl=63 time=<latency-masked>
+
+RESULT: PASS - DMZ-originated traffic reached the Kubernetes test endpoint
+before the directional ACL was applied.
+
+PHASE 2: POST-ACL DMZ TO KUBERNETES DENY
+
+VPCS> ping <kubernetes-test-endpoint-masked>
+*<dmz-gateway-masked> icmp_seq=1 ttl=255 time=<latency-masked> (ICMP type:3, code:13, Communication administratively prohibited)
+*<dmz-gateway-masked> icmp_seq=2 ttl=255 time=<latency-masked> (ICMP type:3, code:13, Communication administratively prohibited)
+*<dmz-gateway-masked> icmp_seq=3 ttl=255 time=<latency-masked> (ICMP type:3, code:13, Communication administratively prohibited)
+*<dmz-gateway-masked> icmp_seq=4 ttl=255 time=<latency-masked> (ICMP type:3, code:13, Communication administratively prohibited)
+*<dmz-gateway-masked> icmp_seq=5 ttl=255 time=<latency-masked> (ICMP type:3, code:13, Communication administratively prohibited)
+
+RESULT: PASS - the router explicitly denied the intended DMZ-originated ICMP
+flow after ACL application.
+
+PHASE 3: PERMITTED DMZ GATEWAY CONNECTIVITY
+
+VPCS> ping <dmz-gateway-masked>
+84 bytes from <dmz-gateway-masked> icmp_seq=1 ttl=255 time=<latency-masked>
+84 bytes from <dmz-gateway-masked> icmp_seq=2 ttl=255 time=<latency-masked>
+84 bytes from <dmz-gateway-masked> icmp_seq=3 ttl=255 time=<latency-masked>
+84 bytes from <dmz-gateway-masked> icmp_seq=4 ttl=255 time=<latency-masked>
+84 bytes from <dmz-gateway-masked> icmp_seq=5 ttl=255 time=<latency-masked>
+
+RESULT: PASS - the ACL preserved access to the local DMZ gateway.
+
+PHASE 4: PERMITTED PUBLIC CONNECTIVITY
+
+VPCS> ping <public-connectivity-test-address>
+84 bytes from <public-connectivity-test-address> icmp_seq=1 ttl=127 time=<latency-masked>
+84 bytes from <public-connectivity-test-address> icmp_seq=2 ttl=127 time=<latency-masked>
+84 bytes from <public-connectivity-test-address> icmp_seq=3 ttl=127 time=<latency-masked>
+84 bytes from <public-connectivity-test-address> icmp_seq=4 ttl=127 time=<latency-masked>
+84 bytes from <public-connectivity-test-address> icmp_seq=5 ttl=127 time=<latency-masked>
+
+RESULT: PASS - public IPv4 connectivity remained available while the
+directional ACL was active.
+
+PHASE 5: REVERSE-DIRECTION KUBERNETES TO DMZ PERMIT
+
+<kubernetes-vpcs-prompt> ping <dmz-test-endpoint-masked>
+84 bytes from <dmz-test-endpoint-masked> icmp_seq=1 ttl=63 time=<latency-masked>
+84 bytes from <dmz-test-endpoint-masked> icmp_seq=2 ttl=63 time=<latency-masked>
+84 bytes from <dmz-test-endpoint-masked> icmp_seq=3 ttl=63 time=<latency-masked>
+84 bytes from <dmz-test-endpoint-masked> icmp_seq=4 ttl=63 time=<latency-masked>
+84 bytes from <dmz-test-endpoint-masked> icmp_seq=5 ttl=63 time=<latency-masked>
+
+RESULT: PASS - Kubernetes-originated traffic reached the DMZ test endpoint,
+confirming that the directional ACL preserved the reverse path.
+
+EVIDENCE BOUNDARY
+- The malformed intermediate VPCS command was omitted because it produced no
+  validation result.
+- This output does not show NAT translations, NAT statistics, or ACL counters.
+- This output does not prove that the temporary ACL was removed afterward.

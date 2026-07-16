@@ -10,7 +10,7 @@
 | Related Components | S047 metric dataset placeholder, baseline window, detection window, anomaly score, threshold placeholders, node/Kubernetes/MariaDB/Blackbox/endpoint metrics |
 | Validation Type | ML Anomaly Detection Validation |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S048-ml-anomaly-detection-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

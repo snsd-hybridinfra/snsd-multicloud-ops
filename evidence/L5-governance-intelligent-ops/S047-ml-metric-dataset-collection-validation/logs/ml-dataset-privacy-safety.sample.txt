@@ -1,7 +1,0 @@
-SAMPLE / NON-PRODUCTION
-No_Raw_Logs: true
-No_Packet_Payload: true
-No_Credentials: true
-No_Real_IPs: true
-No_Real_Hostnames: true
-No_Production_Identifiers: true

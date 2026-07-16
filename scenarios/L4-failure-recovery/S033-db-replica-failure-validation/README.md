@@ -9,7 +9,7 @@
 | Related Components | MariaDB Primary, Replica, replication threads, lag, catch-up |
 | Validation Type | StaticEvidence only |
 | Evidence Directory | evidence/L4-failure-recovery/S033-db-replica-failure-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

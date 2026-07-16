@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION / SAFE STATE
-SSH_Source: <bastion-cidr-placeholder>
-DB_Source: <application-subnet-placeholder>
-Internal_API_Source: <internal-service-cidr-placeholder>
-Unrestricted_Admin_Exposure: false
-Unrestricted_DB_Exposure: false

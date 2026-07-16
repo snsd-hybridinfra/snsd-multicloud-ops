@@ -9,7 +9,7 @@
 | Related Components | Prometheus targets API, up metric, exporter, alert rule, recovery state |
 | Validation Type | Static with optional explicit read-only LivePrometheus |
 | Evidence Directory | evidence/L4-failure-recovery/S036-prometheus-target-down-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

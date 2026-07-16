@@ -1,7 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Violation_ID: <violation-id-placeholder>
-Severity: <severity-placeholder>
-Affected_Manifest: <manifest-file-placeholder>
-Affected_Resource_Kind: <resource-kind-placeholder>
-Required_Action: <required-action-placeholder>
-Related_Scenario: <related-scenario-placeholder>

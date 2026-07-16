@@ -4,22 +4,14 @@ Scenario: S010-evidence-directory-structure-validation
 
 Level: L1-foundation
 
-Date: 2026-07-13
+Overall status: `NOT_RUN`
 
-Overall status: PASS
-
-| Check ID | Validation Item | Expected Result | Actual Result | Status | Evidence |
+| Check ID | Validation Item | Expected Condition | Actual Result | Status | Evidence |
 |---|---|---|---|---|---|
-| V001 | Scenario directory set | Exactly 50 unique directories cover S001-S050. | Count 50; coverage and uniqueness passed. | PASS | `logs/evidence-directory-structure-validation.log`, `configs/evidence-directory-structure-summary.md` |
-| V002 | Evidence directory set | Exactly 50 unique directories cover S001-S050. | Count 50; coverage and uniqueness passed. | PASS | `logs/evidence-directory-structure-validation.log`, `configs/evidence-directory-structure-summary.md` |
-| V003 | Scenario and evidence path mirroring | Every path mirrors one-to-one. | No missing mirror or orphan path exists. | PASS | `logs/evidence-directory-structure-validation.log`, `configs/evidence-directory-structure-summary.md` |
-| V004 | Required evidence files | Every directory has two required files. | All directories contain both files. | PASS | `logs/evidence-directory-structure-validation.log`, `configs/evidence-directory-structure-summary.md` |
-| V005 | Required evidence subdirectories | Every directory has three required subdirectories. | All directories contain all three. | PASS | `logs/evidence-directory-structure-validation.log`, `configs/evidence-directory-structure-summary.md` |
-| V006 | Sensitive evidence files | No forbidden artifact exists. | No forbidden file was detected. | PASS | `logs/evidence-directory-structure-validation.log`, `configs/evidence-directory-structure-summary.md` |
-| V007 | Evidence matrix ID coverage | Matrix contains S001-S050. | Fifty required rows exist. | PASS | `logs/evidence-directory-structure-validation.log`, `configs/evidence-directory-structure-summary.md` |
-| V008 | Evidence matrix ID uniqueness | Matrix has no duplicate ID. | No duplicate was detected. | PASS | `logs/evidence-directory-structure-validation.log`, `configs/evidence-directory-structure-summary.md` |
-| V009 | Evidence readiness status values | Only canonical readiness values appear. | Every status cell is valid. | PASS | `logs/evidence-directory-structure-validation.log`, `configs/evidence-directory-structure-summary.md` |
+| TS001 | Runtime execution | Scenario is executed against the intended real lab target. | Not executed. | NOT_RUN | TODO |
+| TS002 | Evidence integrity | Sanitized evidence is collected from observed execution. | No authoritative runtime evidence exists. | NOT_RUN | TODO |
 
-## Generated Result
-
-All nine count, coverage, mirroring, canonical-content, sensitive-file, and matrix checks passed. This result confirms repository evidence readiness structure only and does not replace technical validation within S001-S050.
+Repository/document linting is not runtime scenario validation and cannot
+change this result. Previously generated static, sample, synthetic, or
+operator-pasted artifacts were moved to the non-authoritative quarantine and
+must not be cited as scenario evidence.

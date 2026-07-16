@@ -10,7 +10,7 @@
 | Related Components | Runbook, criteria/decision matrices, policy, plan JSON examples, manifest, static validator |
 | Validation Type | StaticEvidence |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S041-terraform-drift-detection-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

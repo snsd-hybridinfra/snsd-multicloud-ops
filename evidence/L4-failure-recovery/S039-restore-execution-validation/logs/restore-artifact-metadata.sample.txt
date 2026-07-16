@@ -1,5 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Restored_Artifact: <restored-artifact-placeholder>
-Restored_At: <restored-at-placeholder>
-Restored_Size_Bytes: 1024
-Restore_Target: <restore-target-placeholder>

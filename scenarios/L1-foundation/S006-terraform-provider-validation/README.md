@@ -10,7 +10,7 @@
 | Related Components | AWS, AzureRM, and OpenStack provider baselines; local safety validator |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S006-terraform-provider-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

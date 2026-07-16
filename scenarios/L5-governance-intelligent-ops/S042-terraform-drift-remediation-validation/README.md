@@ -10,7 +10,7 @@
 | Related Components | S041 reference, decision/approval/rollback evidence, post-remediation no-drift sample, manifest |
 | Validation Type | StaticEvidence |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S042-terraform-drift-remediation-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

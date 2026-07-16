@@ -14,9 +14,7 @@ The generated log and summary record aggregate judgments only. They never contai
 - Nginx and Traefik logs are reported only when actually supplied; they are not required when routing and backend-processing evidence is otherwise complete.
 - Local virtual-lab success does not establish public internet exposure.
 
-## 2026-07-15 Real-Lab Result
+## Current Result
 
-**READY** - sanitized evidence confirms two available backend replicas, two
-ready Service endpoints, the expected Ingress-to-Service mapping, successful
-root and health requests, and 10 of 10 repeated requests reaching both masked
-backend Pods. Raw response bodies and sensitive environment data are not stored.
+`NOT_RUN`. Nginx, Kubernetes, and the backend service are not implemented in
+the confirmed lab.

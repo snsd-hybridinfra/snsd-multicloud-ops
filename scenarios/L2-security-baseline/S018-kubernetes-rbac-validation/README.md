@@ -9,7 +9,7 @@
 | Related Components | RBAC policy, rule matrix, namespace-scoped example manifests, local validator |
 | Validation Type | Safe local repository validation |
 | Evidence Directory | `evidence/L2-security-baseline/S018-kubernetes-rbac-validation/` |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

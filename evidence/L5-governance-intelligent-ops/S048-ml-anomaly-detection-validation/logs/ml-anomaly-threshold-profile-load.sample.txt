@@ -1,4 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Threshold_Profile_Loaded: true
-Profile_Type: static_threshold_profile
-Trained_Model_Binary_Required: false

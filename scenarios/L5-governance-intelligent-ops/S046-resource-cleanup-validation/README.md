@@ -10,7 +10,7 @@
 | Related Components | Cleanup candidates, Terraform-managed placeholders, AWS/Azure/OpenStack placeholders, Kubernetes placeholders, monitoring target placeholders, temporary evidence artifacts |
 | Validation Type | Governance Validation |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S046-resource-cleanup-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

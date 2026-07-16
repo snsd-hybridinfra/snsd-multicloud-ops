@@ -10,7 +10,7 @@
 | Related Components | Control plane, bastion, internal zones, cloud service nodes |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S008-bastion-reachability-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

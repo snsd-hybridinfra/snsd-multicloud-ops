@@ -2,8 +2,14 @@
 
 ## Operational Capability
 
-Validate a repository-side routing baseline for the Management, Bastion, Transit, Internal Server, and Monitoring zones using documentation and placeholder router examples.
+Demonstrate that the non-production EVE-NG host can support a Cisco router and
+Layer-2 switch implementing six VLAN gateways, 802.1Q Router-on-a-Stick,
+VMware-NAT egress with PAT, and a temporary directional ACL test.
 
 ## Success Definition
 
-The topology, device model, CIDR tokens, and four example configurations are present and pass local safety checks. Success requires no router credentials, EVE-NG API, powered-on lab, cloud connection, or live network access.
+Success requires sanitized execution results for all fourteen evidence
+categories, including both permitted and denied traffic, reverse-direction
+traffic, configuration persistence, and final cleanup. Operator confirmation
+without corresponding execution output records implementation progress but
+does not complete validation.

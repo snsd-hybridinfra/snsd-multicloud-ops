@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Policy_Evaluation_Completed: true
-Critical_Violation_Detected: <critical-violation-placeholder>
-Unsafe_Admin_Exposure: <unsafe-admin-exposure-placeholder>
-Missing_Rollback_Evidence: <missing-rollback-evidence-placeholder>
-final_judgment: POLICY_FAIL

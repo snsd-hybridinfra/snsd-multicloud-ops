@@ -1,5 +1,13 @@
 # Evidence Model
 
+## Current Truth State
+
+All S001-S050 evidence packages are currently `NOT_READY`, and every runtime
+validation result is `NOT_RUN`. Repository/document lint results are not
+scenario evidence. Static examples, synthetic output, sample terminal text, and
+operator-pasted text cannot be promoted to evidence without an observed,
+authorized real execution and provenance record.
+
 Evidence proves that a scenario was executed and validated. It must be reproducible, reviewable, and mapped to validation criteria.
 
 Screenshots alone are not enough. Every evidence item must be linked to a scenario and explain what it proves.
@@ -130,6 +138,11 @@ Do not commit:
 - `.env` files
 - binary archives
 - unexplained screenshots
+
+Non-executed or provenance-uncertain material must be removed from the active
+scenario evidence path or placed under `quarantine/non-authoritative-evidence/`.
+Quarantined material is historical context only and must never support a PASS,
+READY, IMPLEMENTED, PARTIAL, or VALIDATED claim.
 
 ## Evidence Review Checklist
 

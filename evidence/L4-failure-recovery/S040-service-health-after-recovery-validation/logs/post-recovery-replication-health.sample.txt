@@ -1,4 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Replica_IO_Running: Yes
-Replica_SQL_Running: Yes
-Seconds_Behind_Master: 0

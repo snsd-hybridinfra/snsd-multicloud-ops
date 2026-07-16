@@ -1,21 +1,23 @@
 # Architecture
 
-## Relevant Components
+```text
+VMware NAT / Host-only Management
+              |
+          EVE-NG Host
+              |
+          SNSD-R1
+              |
+        802.1Q trunk
+              |
+          SNSD-SW1
+   +-----+-----+-----+-----+-----+-----+
+ VLAN20 VLAN30 VLAN40 VLAN50 VLAN60 VLAN70
+  DMZ    K8S     DB    MON   BACKUP  OSP-PROVIDER
+```
 
-- Management Zone and `mgmt-router-01`
-- Bastion Zone and `bastion-host-01`
-- Transit Zone and `transit-router-01`
-- Internal Server Zone and `internal-router-01`
-- Monitoring Zone and `monitoring-router-01`
-- Repository-local topology, examples, validator, and evidence
+`SNSD-R1` provides six `/24` gateways, a VMware NAT-side DHCP uplink, a
+default route through `<vmware-nat-gateway-masked>`, and PAT for
+`10.10.0.0/16`. A temporary ACL was used only to prove directional behavior
+and was removed after validation.
 
-## Logical Flow
-
-1. The topology document defines the five-zone logical model with CIDR placeholders.
-2. Four example configurations describe placeholder interfaces and static routes.
-3. The PowerShell validator reads those repository files only.
-4. Results are written to the matching S002 evidence directory.
-
-## Out-of-Scope Components
-
-Live EVE-NG nodes, router sessions, device APIs, firewalls, cloud networks, Terraform, Ansible, Kubernetes, and monitoring systems are not accessed.
+No service VM or OpenStack component is part of the implemented topology yet.

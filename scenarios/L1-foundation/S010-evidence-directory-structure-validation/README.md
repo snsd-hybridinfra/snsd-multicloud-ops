@@ -10,7 +10,7 @@
 | Related Components | All 50 scenario and evidence directories, evidence status matrix |
 | Validation Type | Evidence Validation |
 | Evidence Directory | evidence/L1-foundation/S010-evidence-directory-structure-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

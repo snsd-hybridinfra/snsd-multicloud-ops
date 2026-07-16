@@ -1,8 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Policy_Rules_Validated: true
-Pass_Sample_Validated: true
-Fail_Sample_Validated: true
-Exception_Sample_Validated: true
-Required_Exception_Fields_Present: true
-Real_Cloud_Operation_Performed: false
-final_judgment: POLICY_PASS

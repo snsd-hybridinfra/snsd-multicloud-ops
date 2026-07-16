@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Report_Input_Summary_Validated: true
-Detection_Output_Reference_Present: true
-Dataset_Mapping: S047
-Detection_Mapping: S048
-Final_Evidence_Report_Mapping: S050

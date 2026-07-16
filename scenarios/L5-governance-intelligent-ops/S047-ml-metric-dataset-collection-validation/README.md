@@ -10,7 +10,7 @@
 | Related Components | Prometheus metric placeholders, node metrics, Kubernetes metrics, MariaDB metrics, Blackbox metrics, Nginx/service endpoint metrics, dataset schema |
 | Validation Type | Static Dataset Evidence Validation |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S047-ml-metric-dataset-collection-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

@@ -9,7 +9,7 @@
 | Related Components | API Deployment, Pod, Service, endpoints, rollout, HTTP health |
 | Validation Type | Static with optional explicit read-only LiveKubectl and LiveHttp |
 | Evidence Directory | evidence/L4-failure-recovery/S032-api-service-failure-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

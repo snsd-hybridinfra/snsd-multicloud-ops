@@ -19,9 +19,7 @@ The ignored log and tracked summary contain sanitized check results only and no 
 - `BLOCKED`: service or intended remote access fails, wildcard account hosts are unjustified, read-only writes succeed, application administration is granted, or authentication material cannot be removed safely.
 - Replication behavior remains S026 and is not inferred here.
 
-## 2026-07-15 Real-Lab Result
+## Current Result
 
-**PARTIAL** - service, listener, exact source-host grants, read-only SELECT and
-INSERT denial, application DML, and CREATE USER denial are evidenced. Read-only
-CREATE TABLE denial and application mysql.user denial were not supplied. UFW
-was inactive and is recorded as a warning.
+`NOT_RUN`. MariaDB has not been implemented in the confirmed lab, and no
+runtime result or evidence is authoritative.

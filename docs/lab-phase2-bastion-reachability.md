@@ -1,12 +1,18 @@
-# Lab Phase 2 Bastion Reachability Evidence Collection
+# Bastion Reachability Evidence Collection (Legacy Filename)
+
+**Status: PLANNED — no Bastion VM or reachability evidence exists.**
+
+> Canonical phase mapping: this guide belongs to **Lab Phase 1** under
+> `docs/lab-build-order.md`. The filename is retained to avoid breaking existing
+> links; it is not an independent phase-order authority.
 
 ## Purpose
 
-Lab Phase 2 prepares a safe, repeatable workflow for collecting sanitized Bastion VM reachability evidence from a disposable non-production lab. It does not change the locked architecture or scenario list, and it does not claim that live Bastion validation has already occurred.
+Lab Phase 1 prepares a safe, repeatable workflow for collecting sanitized Bastion VM reachability evidence from a disposable non-production lab. It does not change the locked architecture or scenario list, and it does not claim that live Bastion validation has already occurred.
 
 ## Related Scenarios
 
-| Scenario | Phase 2 Relationship |
+| Scenario | Lab Phase 1 Relationship |
 |---|---|
 | S001 Control Plane Toolchain Validation | Confirms the host workstation has Git, PowerShell, SSH, and Python available before collection |
 | S008 Bastion Reachability Validation | Owns the SSH path, Bastion access boundary, and sanitized reachability result |
@@ -28,13 +34,14 @@ Repository references use `<bastion-ip-placeholder>`, `<ssh-user-placeholder>`, 
 
 | Resource | Reference Size | Notes |
 |---|---|---|
-| vCPU | 1-2 virtual CPUs | Sufficient for SSH and basic administration in a disposable lab |
-| Memory | 1-2 GB | Increase only if the selected guest OS requires it |
-| Disk | 10-20 GB | No production data or long-term evidence archive |
+| vCPU | 1 virtual CPU | Authoritative Lab Phase 0 allocation |
+| Memory | 1 GB | Authoritative Lab Phase 0 allocation |
+| Disk | 12 GB | Active-VM SSD; no production data or long-term evidence archive |
 | Network adapters | 2 | One NAT adapter and one host-only/lab adapter |
 | Operating system | Supported non-production Linux distribution | Keep package and security updates current before evidence collection |
 
-These values are planning guidance, not production sizing or architecture changes.
+These values are planning guidance aligned with
+`docs/vm-resource-allocation-plan.md`, not proof that the Bastion VM exists.
 
 ## Recommended Network Model
 
@@ -135,7 +142,7 @@ Only `.sanitized.txt` output may be copied into an evidence directory. Keep `.ra
 
 ## Completion Criteria
 
-Lab Phase 2 is complete only when:
+The Bastion evidence portion of Lab Phase 1 is complete only when:
 
 - S001 confirms the Host PC SSH tool is available;
 - the Host PC can connect to the Bastion through the approved lab SSH path;

@@ -1,6 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Final_Evidence_Report_Generated: true
-Summary_JSON_Generated: true
-Manifest_Generated: true
-Live_Infrastructure_Query_Performed: false
-External_Reporting_Dependency_Required: false

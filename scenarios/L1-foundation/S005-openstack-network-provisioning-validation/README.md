@@ -10,7 +10,7 @@
 | Related Components | OpenStack network Terraform module, validation environment, local safety validator |
 | Validation Type | Infrastructure Validation |
 | Evidence Directory | evidence/L1-foundation/S005-openstack-network-provisioning-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

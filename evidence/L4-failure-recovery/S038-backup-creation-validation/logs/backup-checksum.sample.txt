@@ -1,5 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Checksum_Algorithm: SHA256
-Checksum: <sha256-placeholder>
-Backup_File: <backup-file-placeholder>
-Production_Hash_Stored: false

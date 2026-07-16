@@ -1,7 +1,0 @@
-SAMPLE / NON-PRODUCTION
-prometheus-self-placeholder
-node-exporter-placeholder
-mariadb-exporter-placeholder
-nginx-exporter-placeholder
-blackbox-exporter-placeholder
-kubernetes-service-discovery-placeholder

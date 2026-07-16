@@ -1,17 +1,13 @@
 # Rollback Plan
 
-## Stop Condition
+1. Stop if the temporary ACL affects an unintended flow.
+2. Remove the temporary ACL from the router subinterface.
+3. Restore disconnected Cloud/LAN-segment links.
+4. Restore the last known lab configuration if a trunk, duplex, route, or NAT
+   change causes loss of reachability.
+5. Verify baseline permitted traffic and management access.
+6. Delete unsafe raw evidence and retain only sanitized outputs.
 
-Stop if validation attempts remote access or if real addressing, credentials, or other sensitive content appears.
-
-## Rollback Steps
-
-1. Terminate validation.
-2. Remove unsafe generated evidence.
-3. Restore the affected topology or example file from the last reviewed Git version.
-4. Replace environment-specific content with approved placeholders.
-5. Rerun the repository-side validator.
-
-## Recovery Validation
-
-Confirm all eight checks pass and both generated evidence files contain only repository model results.
+The temporary ACL was removed and the lab links were restored. Sanitized ACL
+inventory, interface attachment state, and restored reachability output are
+retained in the S002 evidence package.

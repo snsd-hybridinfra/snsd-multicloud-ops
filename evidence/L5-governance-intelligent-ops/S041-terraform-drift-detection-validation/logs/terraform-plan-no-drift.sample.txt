@@ -1,4 +1,0 @@
-SAMPLE / NON-PRODUCTION
-Terraform_Plan_Exit_Code: 0
-Message: No changes. Infrastructure matches the configuration.
-final_judgment: NO_DRIFT

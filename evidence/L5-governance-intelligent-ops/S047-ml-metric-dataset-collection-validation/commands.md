@@ -1,18 +1,21 @@
 # Commands
 
-Planned/not-run output note: live collection, security telemetry ingestion, and model training remain `NOT_RUN`; only the implemented static validator is executed.
+Scenario: S047-ml-metric-dataset-collection-validation
 
-Run static evidence validation:
+Level: L5-governance-intelligent-ops
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-ml-metric-dataset-collection.ps1
-```
+Repository truth state: `NOT_STARTED`
 
-Inspect generated output:
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-```powershell
-Get-Content evidence/L5-governance-intelligent-ops/S047-ml-metric-dataset-collection-validation/logs/ml-metric-dataset-collection-validation.log
-Get-Content evidence/L5-governance-intelligent-ops/S047-ml-metric-dataset-collection-validation/configs/ml-metric-dataset-collection-validation-summary.md
-```
+## Planned Execution Record
 
-Sanitized evidence from a disposable lab may be collected manually using the examples in `runbooks/ml-metric-dataset-collection-commands.example.md`, then scrubbed before review. The validator never queries Prometheus, Grafana, cloud APIs, SIEM, Wazuh, or EDR. Do not commit raw logs, packet payloads, PCAP files, production metrics, credentials, or production identifiers. S047 does not train a model; S048 owns anomaly detection and S049 owns anomaly reporting.
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
+
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

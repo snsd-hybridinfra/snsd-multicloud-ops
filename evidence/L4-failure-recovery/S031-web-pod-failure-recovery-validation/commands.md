@@ -1,25 +1,21 @@
 # Commands
 
 Scenario: S031-web-pod-failure-recovery-validation
+
 Level: L4-failure-recovery
-Validation mode executed: Static
-LiveKubectl and real fault injection: NOT_RUN
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-web-pod-failure-recovery.ps1
-```
+Repository truth state: `NOT_STARTED`
 
-Optional read-only validation:
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/validate-web-pod-failure-recovery.ps1 -LiveKubectl -Namespace "snsd-example" -DeploymentName "sample-web-placeholder"
-```
+## Planned Execution Record
 
-Inspect evidence:
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-```powershell
-Get-Content evidence/L4-failure-recovery/S031-web-pod-failure-recovery-validation/logs/web-pod-failure-recovery-validation.log
-Get-Content evidence/L4-failure-recovery/S031-web-pod-failure-recovery-validation/configs/web-pod-failure-recovery-summary.md
-```
-
-WARNING: `kubectl delete pod` is manual fault injection only, requires separate approval and a disposable lab namespace, and is never executed by this validator. Sanitize all manually collected cluster details before repository review.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

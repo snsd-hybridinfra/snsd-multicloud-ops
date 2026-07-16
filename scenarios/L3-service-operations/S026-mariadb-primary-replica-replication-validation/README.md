@@ -10,7 +10,7 @@
 | Related Components | Primary, replica, binary-log stream, IO/SQL threads |
 | Validation Type | StaticEvidence |
 | Evidence Directory | evidence/L3-service-operations/S026-mariadb-primary-replica-replication-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

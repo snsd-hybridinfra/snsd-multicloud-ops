@@ -1,92 +1,108 @@
-# Lab Phase 1 Reference Virtual Lab Architecture
+# Authoritative Multi-Cloud Lab Architecture Baseline
 
-## Purpose
+**Status: PLANNED — no described platform or network component is implemented.**
 
-This document defines the minimum non-production virtual lab used to collect sanitized, reviewable evidence for the locked S001-S050 scenario set. It is a planning reference for later lab construction; it does not provision infrastructure, assign real addresses, or prove that any live scenario has passed.
+## Purpose and Authority
 
-## Relationship to S001-S050
+This document is the authoritative platform baseline for the non-production
+SNSD Multi-Cloud Secure Operations Validation Platform. It defines responsibility
+and trust boundaries only; it does not provision resources or prove that planned
+components exist.
 
-The lab supplies reusable hosts and network boundaries for evidence collection without changing scenario ownership or acceptance criteria.
+Related authoritative documents:
 
-- L1 scenarios establish the control plane, routing, inventory, reachability, naming, and evidence foundations.
-- L2 scenarios validate access-control and least-privilege baselines.
-- L3 scenarios validate service, database, traffic, and observability operations.
-- L4 scenarios use controlled, disposable experiments and documented rollback.
-- L5 scenarios evaluate governance artifacts, sanitized metrics, and final evidence aggregation.
+- `docs/lab-build-order.md` - canonical phase order;
+- `docs/lab-network-zone-plan.md` - network zones and flow policy;
+- `docs/lab-ip-plan.md` - address reservations and conflict checks;
+- `docs/platform-responsibility-matrix.md` - platform ownership;
+- `docs/cloud-cost-guardrails.md` - provider cost limits;
+- `docs/resource-lifecycle-policy.md` - creation and cleanup lifecycle;
+- `docs/external-address-policy.md` - optional external exposure boundary;
+- `docs/host-capacity-baseline.md` - observed host capacity and reserve;
+- `docs/vm-resource-allocation-plan.md` - authoritative planned VM sizing;
+- `docs/lab-execution-profiles.md` - mutually exclusive staged power profiles;
+- `docs/storage-and-snapshot-policy.md` - disk roles, retention, and repository boundary;
+- `docs/adr/ADR-0001-multicloud-network-and-platform-baseline.md` - decision record.
 
-Evidence remains stored under each existing scenario at `<evidence-path>`. Lab results supplement sample evidence; they do not create a new scenario or replace the canonical S001-S050 model.
+## Host Capacity Boundary
 
-## Minimum Lab Topology
+The planned VM set totals 33GB RAM and therefore cannot run simultaneously on
+the approximately 31.9GiB effective-memory host. Lab work must use Profiles A-D
+from `docs/lab-execution-profiles.md`, preserve approximately 8GB for Windows
+and virtualization overhead, and keep OpenStack separate from the complete
+local-service stack. Capacity planning is not VM implementation evidence.
+
+## Platform Positioning
+
+| Axis | Authoritative Role | Boundary |
+|---|---|---|
+| EVE-NG / On-Prem | Network-control axis for zoning, routing, ACLs, and network failure paths | Does not become the application or database platform |
+| OpenStack | Private Cloud axis using Neutron, Security Groups, Floating IPs, Terraform, drift, and cleanup | Provider/external CIDR must be discovered, never invented |
+| AWS | Minimal Public Cloud A validation environment | One temporary EC2 maximum; free-tier/credit bounded; not a full runtime platform |
+| Azure | Minimal Public Cloud B validation environment | One temporary VM maximum; free-tier/credit bounded; not a full runtime platform |
+| Local Kubernetes | Application runtime for workloads, Ingress, reverse proxy, load balancing, and controlled failures | Not EKS/AKS and not a public management plane |
+| Local MariaDB | Internal primary/replica data platform for access control, replication, backup, and restore | Never publicly exposed |
+| External address | Optional HTTP/HTTPS entry for availability and Blackbox checks | No SSH, database, Kubernetes API, cloud API, monitoring, or EVE-NG management exposure |
+
+## Logical Architecture
 
 ```text
-Control workstation
-  |
+Optional external client
+  | HTTP/HTTPS only via <external-address-masked>
   v
-bastion-vm ---- management boundary ---- <lab-network-placeholder>
-  |                    |                         |
-  |                    |                         +-- monitoring stack
-  |                    +-- k3s-node
-  +-- internal data zone
-                         +-- db-primary
-                         +-- db-replica
+Local Kubernetes Ingress -> Service -> application Pods
+  | approved application-to-database flow
+  v
+Local MariaDB primary/replica
+
+Control workstation -> Bootstrap Management Network -> Bastion
+                                             |
+                                             v
+EVE-NG On-Prem zones and ACL boundary
+  |                 |                  |
+  v                 v                  v
+OpenStack        AWS minimum        Azure minimum
+Private Cloud    validation env     validation env
 ```
 
-All logical names and addresses in this document are placeholders. A real implementation must use disposable non-production resources and sanitize collected evidence before committing it.
+The optional WireGuard aggregate is reserved for later connectivity but is not
+a mandatory dependency.
 
-## VM Role Table
+## Bootstrap Management Versus Service Networks
 
-| Logical VM Role | Address Placeholder | Primary Responsibility | Related Scenario Areas | Evidence Boundary |
-|---|---|---|---|---|
-| `bastion-vm` | `<bastion-ip-placeholder>` | Controlled administrative entry point, SSH path verification, and management-zone separation | S008, S011-S016, S037 | Record sanitized reachability and policy results only; never commit keys, usernames, or source addresses |
-| `k3s-node` | `<k3s-node-ip-placeholder>` | Non-production k3s runtime for sample workloads, ingress, service health, and controlled workload-failure exercises | S018, S021-S025, S031-S032, S035, S044 | Do not commit kubeconfig, service-account tokens, cluster identifiers, or unsanitized manifests |
-| `db-primary` | `<db-primary-ip-placeholder>` | MariaDB primary role for access, replication, backup, and controlled stop/recovery evidence | S017, S026-S027, S034, S038-S040 | Do not commit database credentials, dumps, user data, or actual internal addresses |
-| `db-replica` | `<db-replica-ip-placeholder>` | MariaDB replica role for replication, lag, replica-failure, and recovery evidence | S026-S027, S033, S038-S040 | Commit only sanitized status output and synthetic test data |
-| `monitoring stack` | `<monitoring-ip-placeholder>` | Prometheus, Grafana, Blackbox Exporter, and approved exporter evidence collection | S019-S020, S028-S030, S036, S040, S047-S049 | Do not commit session cookies, Authorization headers, tokens, raw production metrics, or real endpoint labels |
+The Bootstrap Management Network exists so hosts can be installed, repaired,
+and migrated before EVE-NG service zones are complete. Its actual CIDR and host
+addresses are private local planning values and remain masked in the repository.
 
-Every VM should use a lab-only hostname represented in repository documentation as `<hostname-placeholder>`.
+Service networks under the planned On-Prem aggregate separate Bastion/transit,
+Kubernetes, database, monitoring, and backup responsibilities. Migration is a
+future implementation action; current documents must not imply it already
+occurred.
 
-## Role Boundaries
+## Security Boundaries
 
-### bastion-vm
+- Administrative access enters through the approved control/Bastion path.
+- Database access is limited to approved application, replication, backup, and
+  administration sources.
+- Kubernetes API, OpenStack API, Prometheus, Grafana, EVE-NG management, SSH,
+  and database ports are not public services.
+- Public ingress, when enabled, is limited to HTTP/HTTPS and short validation
+  windows.
+- Cloud Security Groups/NSGs, OpenStack Security Groups, and On-Prem ACLs use
+  least privilege and must have rollback evidence.
 
-- Provides the only planned administrative path into internal lab roles.
-- Supports evidence for approved-source access and denied direct-access paths.
-- Does not store committed private keys or real administrator identity data.
+## Evidence State
 
-### k3s-node
+No bootstrap, flat-network, service-zone, cloud, Kubernetes, MariaDB, monitoring,
+backup, or recovery result is authoritative. Previous static, sample, synthetic,
+or pasted artifacts are quarantined as non-evidence. Future observed execution
+must write sanitized evidence to the existing S001-S050 paths.
 
-- Runs only disposable sample workloads required by existing Kubernetes scenarios.
-- Keeps application data synthetic and replaceable.
-- Separates live lab execution from committed sanitized manifests and logs.
-
-### db-primary and db-replica
-
-- Use synthetic records solely to demonstrate replication, lag, backup, restore, and recovery behavior.
-- Remain in an internal data zone and are not exposed as public services.
-- Use manual, documented rollback and recovery where required by L4 scenarios.
-
-### monitoring stack
-
-- Collects lab-only infrastructure and service metrics.
-- Produces screenshots and exported summaries only after labels, endpoints, and identifiers are masked.
-- Does not operate as SIEM, EDR, SOAR, or production monitoring.
-
-## Optional EVE-NG Integration
-
-EVE-NG may be introduced after the minimum VM lab is stable to represent routing, segmentation, and controlled transit boundaries for S002 and related network scenarios. EVE-NG device names, management addresses, configurations, and screenshots must be sanitized before entering evidence directories. The optional integration does not change the locked platform architecture.
-
-## Optional Public Cloud Integration
-
-Later phases may attach disposable AWS, Azure, or OpenStack resources to the same evidence process for the scenarios that already own those providers. Public-cloud work requires separate user authorization, cost controls, placeholder-safe documentation, and sanitized outputs. Lab Phase 1 neither authenticates to a provider nor creates cloud resources.
-
-## Evidence Collection Boundary
-
-- Collect only commands and outputs required by an existing scenario validation plan.
-- Store evidence in the matching `<evidence-path>` under `logs/`, `screenshots/`, or `configs/`.
-- Keep useful sample files and add real sanitized lab evidence alongside them.
-- Mask actual addresses, hostnames, usernames, resource identifiers, URLs, and authentication material.
-- Stop collection if output contains an unknown sensitive value; create a sanitized summary instead.
+This planned baseline does not create S051, alter acceptance criteria, or claim
+implementation.
 
 ## Non-Production Disclaimer
 
-This reference architecture is for a disposable portfolio lab. It is not a production design, availability commitment, security certification, external audit result, or authorization to access any live cloud or organizational network.
+All resources described here are disposable lab resources. This is not a
+production topology, HA/DR commitment, compliance certification, cloud-spend
+authorization, or proof that a planned resource exists.

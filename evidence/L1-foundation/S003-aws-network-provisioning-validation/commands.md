@@ -4,26 +4,18 @@ Scenario: S003-aws-network-provisioning-validation
 
 Level: L1-foundation
 
-Target: repository-side AWS network Terraform definitions
+Repository truth state: `NOT_STARTED`
 
-## Run Validation
+No runtime, cloud, network, platform, service, failure, recovery, governance,
+or intelligent-operations validation command has been executed for this
+scenario. Commands defined by the scenario are planned instructions only.
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools\validate-aws-network-provisioning.ps1
-```
+## Planned Execution Record
 
-## Inspect Generated Log
+- Execution status: `NOT_RUN`
+- Runtime target: `TODO`
+- Execution timestamp: `TODO`
+- Sanitized evidence path: `TODO`
 
-```powershell
-Get-Content evidence\L1-foundation\S003-aws-network-provisioning-validation\logs\aws-network-provisioning-validation.log
-```
-
-## Inspect Generated Summary
-
-```powershell
-Get-Content evidence\L1-foundation\S003-aws-network-provisioning-validation\configs\aws-network-provisioning-summary.md
-```
-
-## Safety Notes
-
-No planned command runs Terraform init, validate, plan, apply, or destroy; authenticates to AWS; reads credentials; configures a backend; or accesses cloud APIs.
+Only evidence produced by an explicitly observed real execution may replace
+these placeholders.

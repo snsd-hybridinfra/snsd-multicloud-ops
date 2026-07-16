@@ -10,7 +10,7 @@
 | Related Components | Terraform configuration placeholders, security rule policy placeholders, tag/label policy placeholders, naming rules, cost guardrail reference |
 | Validation Type | StaticEvidence |
 | Evidence Directory | evidence/L5-governance-intelligent-ops/S043-policy-as-code-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

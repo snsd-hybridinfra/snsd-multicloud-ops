@@ -10,7 +10,7 @@
 | Related Components | SSH policy, example sshd settings, repository key safety |
 | Validation Type | Security Validation |
 | Evidence Directory | evidence/L2-security-baseline/S011-ssh-key-authentication-validation/ |
-| Status | VALIDATED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 

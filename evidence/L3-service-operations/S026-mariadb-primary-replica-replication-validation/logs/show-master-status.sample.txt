@@ -1,4 +1,0 @@
-SAMPLE / NON-PRODUCTION
-File: <binlog-file-placeholder>
-Position: <binlog-position-placeholder>
-Executed_Gtid_Set: <gtid-placeholder>

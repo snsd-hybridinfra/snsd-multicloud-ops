@@ -10,7 +10,7 @@
 | Related Components | Web workload, API workload, Kubernetes Service, Ingress, Nginx Reverse Proxy, load balancing health endpoint, MariaDB Primary/Replica, Prometheus, Grafana, Blackbox probes |
 | Validation Type | Failure Recovery Validation |
 | Evidence Directory | evidence/L4-failure-recovery/S040-service-health-after-recovery-validation/ |
-| Status | PLANNED |
+| Status | NOT_STARTED |
 
 ## Objective Summary
 
