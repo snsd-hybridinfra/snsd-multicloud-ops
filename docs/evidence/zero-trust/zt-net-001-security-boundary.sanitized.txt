@@ -1,0 +1,12 @@
+ZT-NET-001 restricted endpoint boundary validation
+Execution authority: CODEX_EXECUTED_LIVE_RUNTIME
+Execution date: 2026-07-17
+
+[PASS] Allowed fixed command completed without a password prompt.
+[PASS] Interactive shell request was denied with exit code 1.
+[PASS] Arbitrary command request was denied with exit code 1.
+[PASS] Configuration-mode request was denied with exit code 1.
+[PASS] Caller-controlled ping request was denied with exit code 1.
+
+The fixed validator issued only predefined read-only show commands and two
+fixed, root-owned reachability targets. No Cisco configuration was changed.

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-capability-backlog.schema.json",
+  "title": "SNSD Zero Trust Capability Implementation Backlog",
+  "type": "object",
+  "required": ["metadata", "waves", "capabilities"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["source", "generated_from", "scope", "environment", "status", "limitations"],
+      "properties": {
+        "source": { "const": "제로트러스트 가이드라인 2.0" },
+        "generated_from": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "scope": { "type": "string", "minLength": 1 },
+        "environment": { "type": "string", "minLength": 1 },
+        "status": { "const": "PLANNED" },
+        "limitations": { "$ref": "#/$defs/nonEmptyStringArray" }
+      },
+      "additionalProperties": false
+    },
+    "waves": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": { "$ref": "#/$defs/wave" }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 52,
+      "maxItems": 52,
+      "items": { "$ref": "#/$defs/backlogItem" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "capabilityId": {
+      "type": "string",
+      "pattern": "^ZT-(?:[1-6]\\.[1-9][0-9]*\\.[1-9][0-9]*|[78]\\.[1-9][0-9]*)$"
+    },
+    "maturity": {
+      "enum": ["UNASSESSED", "TRADITIONAL", "INITIAL", "ADVANCED", "OPTIMAL", "NOT_APPLICABLE"]
+    },
+    "implementationStatus": {
+      "enum": ["REFERENCE_ONLY", "MAPPED", "PLANNED", "IMPLEMENTED", "PARTIALLY_VALIDATED", "VALIDATED", "GAP_IDENTIFIED", "NOT_APPLICABLE"]
+    },
+    "wave": {
+      "type": "object",
+      "required": ["id", "name", "objective", "entry_criteria", "exit_criteria", "dependencies", "capabilities"],
+      "properties": {
+        "id": { "enum": ["W0", "W1", "W2", "W3", "W4", "W5"] },
+        "name": { "type": "string", "minLength": 1 },
+        "objective": { "type": "string", "minLength": 1 },
+        "entry_criteria": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "exit_criteria": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "dependencies": { "type": "array", "uniqueItems": true, "items": { "enum": ["W0", "W1", "W2", "W3", "W4", "W5"] } },
+        "capabilities": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/capabilityId" } }
+      },
+      "additionalProperties": false
+    },
+    "backlogItem": {
+      "type": "object",
+      "required": [
+        "id", "pillar", "function", "capability", "applicability",
+        "current_maturity", "lab_target_maturity", "enterprise_reference_target",
+        "target_rationale", "target_limitations", "implementation_status",
+        "validation_status", "evidence_level", "priority", "dependency_ids",
+        "blocking_gaps", "candidate_control_patterns", "required_components",
+        "implementation_tasks", "validation_tasks", "evidence_requirements",
+        "success_criteria", "limitations", "target_wave",
+        "future_scenario_boundary", "notes"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/capabilityId" },
+        "pillar": { "enum": ["identity", "device-endpoint", "network", "system", "application-workload", "data", "visibility-analytics", "automation-integration"] },
+        "function": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "capability": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "applicability": { "enum": ["LAB_IMPLEMENTABLE", "PARTIALLY_LAB_IMPLEMENTABLE", "REFERENCE_ONLY", "NOT_APPLICABLE", "REVIEW_REQUIRED"] },
+        "current_maturity": { "$ref": "#/$defs/maturity" },
+        "lab_target_maturity": { "type": ["string", "null"], "enum": ["TRADITIONAL", "INITIAL", "ADVANCED", "OPTIMAL", null] },
+        "enterprise_reference_target": { "$ref": "#/$defs/maturity" },
+        "target_rationale": { "type": "string", "minLength": 1 },
+        "target_limitations": { "type": "string", "minLength": 1 },
+        "implementation_status": { "$ref": "#/$defs/implementationStatus" },
+        "validation_status": { "$ref": "#/$defs/implementationStatus" },
+        "evidence_level": { "enum": ["NONE", "DESIGN", "CONFIGURATION", "RUNTIME", "CONTINUOUS"] },
+        "priority": { "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW", "DEFERRED"] },
+        "dependency_ids": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/capabilityId" } },
+        "blocking_gaps": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "candidate_control_patterns": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "required_components": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "implementation_tasks": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "validation_tasks": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "evidence_requirements": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "success_criteria": { "type": "string", "minLength": 1 },
+        "limitations": { "type": "string", "minLength": 1 },
+        "target_wave": { "type": ["string", "null"], "enum": ["W0", "W1", "W2", "W3", "W4", "W5", null] },
+        "future_scenario_boundary": { "type": "string", "minLength": 1 },
+        "notes": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,18 @@
+ZT-FND-001 RESTRICTED ENDPOINT SECURITY BOUNDARY
+Classification: SANITIZED CODEX-EXECUTED EVIDENCE
+Date: 2026-07-17
+Raw SSH sessions committed: NO
+
+OpenStack endpoint:
+- Allowed validate-all request: PASS, exit 0
+- Empty interactive request: BLOCKED, non-zero exit
+- Harmless arbitrary request: BLOCKED, non-zero exit
+- Credential-read request: BLOCKED in the existing 2026-07-16 restricted-endpoint evidence
+
+EVE-NG endpoint:
+- Allowed validate-host request: PASS, exit 0
+- Empty interactive request: BLOCKED, exit 1
+- Harmless arbitrary request: BLOCKED, exit 1
+- Configuration-read request: BLOCKED, exit 1
+
+Operator access and unrelated SSH keys were not removed.

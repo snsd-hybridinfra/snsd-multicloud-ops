@@ -54,6 +54,23 @@ Every scenario must define:
 - Governance Validation
 - ML Anomaly Detection Validation
 
+## Optional Standard Zero Trust Alignment
+
+When a scenario has a genuine capability relationship, add a `Zero Trust
+Alignment` section with:
+
+- Guideline: `제로트러스트 가이드라인 2.0`
+- Pillars: canonical Korean name plus stable English slug
+- Functions and capability IDs
+- Current and target maturity
+- Implementation and validation status
+- Evidence level and assessment confidence
+- Gaps and exceptions
+
+Use `NOT_MAPPED`, `UNASSESSED`, or `REVIEW_REQUIRED` rather than forcing a
+relationship. This optional metadata does not replace scenario lifecycle or
+evidence status and does not retroactively change existing scenario facts.
+
 ## Standard File Definitions
 
 ### README.md

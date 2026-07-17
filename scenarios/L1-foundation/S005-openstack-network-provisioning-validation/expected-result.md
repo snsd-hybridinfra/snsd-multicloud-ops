@@ -2,18 +2,24 @@
 
 ## Success Conditions
 
-- All required module and environment files exist.
-- Required OpenStack resource block types are present.
-- Only approved non-production examples are used.
-- No state, real tfvars, backend, authentication artifact, credential-like content, or account assignment is present.
-- The validator exits zero when all required checks pass.
-- Optional Terraform formatting or provider validation limitations are recorded as warnings.
+- The AIO deployment and post-deploy authentication complete.
+- Required core services, endpoints, Nova services, hypervisor, and Neutron agents are healthy.
+- Provider and tenant networks, router, image, instance, and Floating IP are active.
+- Router/DHCP namespaces and the OVS provider path are present.
+- EVE-NG reaches the Neutron external router and Floating IP.
+- The tenant instance reaches its gateway and the public IPv4 network.
+- Cloud-init completion is observed.
+- Sanitized evidence supports every validation item.
 
 ## Required Evidence
 
-- `logs/openstack-network-provisioning-validation.log`
-- `configs/openstack-network-provisioning-summary.md`
 - `commands.md`
 - `validation.md`
+- `logs/20260716-S005-openstack-aio-e2e-network.sanitized.txt`
+- `configs/20260716-S005-openstack-aio-validation-summary.md`
 
-The result proves repository-side implementation readiness only; it does not prove OpenStack deployment or provider authentication.
+## Completion Criteria
+
+S005 is `VALIDATED` only when V001-V021 are `PASS`. This verdict does not
+advance S006, S016, or any HA, storage, backup, monitoring, governance, AWS,
+Azure, or Kubernetes scenario.

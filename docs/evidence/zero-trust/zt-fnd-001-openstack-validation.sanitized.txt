@@ -1,0 +1,22 @@
+ZT-FND-001 OPENSTACK RESTRICTED READ-ONLY VALIDATION
+Classification: SANITIZED CODEX-EXECUTED EVIDENCE
+Date: 2026-07-17
+Environment: NON-PRODUCTION SINGLE-NODE AIO LAB
+Execution path: openstack-validator forced command -> validate-all
+Raw SSH session committed: NO
+Credentials, private keys, identifiers, MAC addresses, and runtime addresses retained: NO
+
+[PASS] OpenStack client and protected cloud profile are available
+[PASS] Keystone authentication succeeds without displaying a token
+[PASS] Required services, endpoints, Nova services, hypervisor, and Neutron agents are healthy
+[PASS] Provider network, tenant network, router, image, instance, Floating IP, and namespaces meet the declared state
+[PASS] br-ex, br-int, br-tun, provider interface, and patch path meet the declared state
+[PASS] No unhealthy OpenStack containers were detected
+[PASS] Required instance console markers and bounded reachability results are present
+[PASS] Keystone API and Horizon respond
+
+Validation Summary
+PASS: 50
+WARN: 0
+FAIL: 0
+Command exit status: 0

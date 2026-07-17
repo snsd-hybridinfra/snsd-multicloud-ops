@@ -1,0 +1,54 @@
+{
+  "package_id": "ZT-VIS-001",
+  "package_name": "Centralized Telemetry and Security Event Correlation Foundation",
+  "execution_date": "2026-07-17",
+  "environment": "disposable non-production laboratory",
+  "executor": "Codex",
+  "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+  "telemetry_architecture": "local bounded JSONL normalization and deterministic correlation pipeline",
+  "sources": [
+    {"name": "openstack-validator", "state": "CURRENT_RUNNING", "result": "PASS"},
+    {"name": "eve-validator", "state": "CURRENT_RUNNING", "result": "PASS"},
+    {"name": "router-validator", "state": "CURRENT_RUNNING", "result": "PASS"},
+    {"name": "repository-validator", "state": "CURRENT_RUNNING", "result": "PASS"},
+    {"name": "central-log-service", "state": "ABSENT", "result": "NOT_AVAILABLE"}
+  ],
+  "normalization": {"tool": "tools/telemetry/normalize_events.py", "result": "PASS"},
+  "schema_validation": {"event_schema": "PASS", "finding_schema": "PASS"},
+  "correlation_rules": {"loaded": 7, "live_findings": 0, "controlled_fixture_findings": 1, "result": "PASS"},
+  "commands": [
+    "powershell -ExecutionPolicy Bypass -File tools/live-validation/collect-telemetry-live.ps1",
+    "python tools/telemetry/validate_telemetry_sources.py"
+  ],
+  "results": {
+    "source_count": 5,
+    "running_sources": 4,
+    "configuration_only_sources": 0,
+    "unavailable_sources": 1,
+    "normalized_events": 164,
+    "rejected_events": 0,
+    "findings": 0,
+    "controlled_fixture_findings": 1,
+    "pass": 8,
+    "warn": 0,
+    "fail": 0,
+    "exit_code": 0
+  },
+  "evidence_files": ["docs/evidence/zero-trust/zt-vis-001-live-summary.sanitized.txt"],
+  "sanitization": {"status": "PASS", "raw_runtime_ignored": true, "credentials_collected": false},
+  "retention": "raw runtime is ephemeral and ignored; reviewed summaries are retained in Git",
+  "capability_mappings": ["ZT-7.1", "ZT-7.2", "ZT-7.3", "ZT-8.2", "ZT-8.6"],
+  "implementation_status": "IMPLEMENTED",
+  "validation_status": "PARTIALLY_VALIDATED",
+  "current_maturity": "UNASSESSED",
+  "assessment_confidence": "HIGH",
+  "limitations": [
+    "No persistent central log storage or deployed dashboard exists.",
+    "The package is operational monitoring plus deterministic security-event correlation, not a complete SIEM.",
+    "ZT-7.4 behavior analytics is not mapped because no behavior-analysis logic exists."
+  ],
+  "remaining_gaps": [
+    "Deploy the user-approved Monitoring VM and bounded Grafana/Loki/Alloy stack before claiming persistent centralized storage.",
+    "Add approved host-journal sources with least-privilege collection and retention evidence."
+  ]
+}

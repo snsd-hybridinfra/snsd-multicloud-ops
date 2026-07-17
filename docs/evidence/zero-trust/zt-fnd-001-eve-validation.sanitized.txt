@@ -1,0 +1,26 @@
+ZT-FND-001 EVE-NG RESTRICTED READ-ONLY VALIDATION
+Classification: SANITIZED CODEX-EXECUTED EVIDENCE
+Date: 2026-07-17
+Environment: NON-PRODUCTION LAB
+Execution path: eve-validator forced command -> validate-host
+Raw SSH session committed: NO
+Credentials, private keys, MAC addresses, and runtime addresses retained: NO
+
+[PASS] Hostname, uptime, memory state, and load average are available
+[PASS] Root and EVE image filesystems are below the critical threshold
+[PASS] eth0 through eth7 are operational
+[PASS] pnet0 through pnet7 are operational
+[PASS] pnet0-to-eth0 through pnet7-to-eth7 bridge mappings are present
+[PASS] pnet1 uses the approved management prefix
+[PASS] pnet0 has the bootstrap or NAT path
+[PASS] Default route exists
+[PASS] KVM device and module are available
+[PASS] Dynamips and QEMU capabilities are available
+[PASS] Dynamips and QEMU node processes are running
+[PASS] OpenStack management host, SSH port, and API endpoint are reachable
+
+Validation Summary
+PASS: 42
+WARN: 0
+FAIL: 0
+Command exit status: 0

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/zero-trust-telemetry-event.schema.json",
+  "title": "SNSD Zero Trust Telemetry Event",
+  "type": "object",
+  "required": ["event"],
+  "additionalProperties": false,
+  "properties": {
+    "event": {
+      "type": "object",
+      "required": [
+        "schema_version", "event_id", "timestamp", "received_timestamp",
+        "source_type", "source_name", "environment", "event_category",
+        "event_type", "severity", "action", "outcome", "actor", "target",
+        "network", "process", "authentication", "authorization", "policy",
+        "validation", "correlation", "evidence", "sensitivity",
+        "sanitization", "raw_reference"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {"const": "1.0"},
+        "event_id": {"type": "string", "minLength": 8, "maxLength": 128},
+        "timestamp": {"type": "string", "format": "date-time"},
+        "received_timestamp": {"type": "string", "format": "date-time"},
+        "source_type": {"type": "string", "minLength": 1},
+        "source_name": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "environment": {"const": "NON_PRODUCTION_LAB"},
+        "event_category": {"enum": ["AUTHENTICATION", "AUTHORIZATION", "PRIVILEGE_USE", "VALIDATOR_EXECUTION", "SERVICE_HEALTH", "NETWORK_STATE", "NETWORK_POLICY", "WORKLOAD_STATE", "CONFIGURATION_STATE", "REPOSITORY_VALIDATION", "EVIDENCE_GENERATION"]},
+        "event_type": {"type": "string", "minLength": 1},
+        "severity": {"enum": ["INFO", "LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+        "action": {"type": ["string", "null"]},
+        "outcome": {"enum": ["PASS", "WARN", "FAIL", "UNKNOWN"]},
+        "actor": {"type": ["object", "null"]},
+        "target": {"type": ["object", "null"]},
+        "network": {"type": ["object", "null"]},
+        "process": {"type": ["object", "null"]},
+        "authentication": {"type": ["object", "null"]},
+        "authorization": {"type": ["object", "null"]},
+        "policy": {"type": ["object", "null"]},
+        "validation": {"type": ["object", "null"]},
+        "correlation": {"type": ["object", "null"]},
+        "evidence": {"type": ["object", "null"]},
+        "sensitivity": {"enum": ["PUBLIC", "INTERNAL", "SANITIZED"]},
+        "sanitization": {"type": "object", "required": ["status"], "properties": {"status": {"enum": ["APPLIED", "NOT_REQUIRED"]}}, "additionalProperties": true},
+        "raw_reference": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

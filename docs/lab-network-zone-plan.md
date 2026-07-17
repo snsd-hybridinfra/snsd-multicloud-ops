@@ -1,7 +1,7 @@
 # Lab Network Zone Plan
 
-**Status: EVE-NG network foundation VALIDATED with READY evidence. Service VM
-and OpenStack integration are NOT_STARTED.**
+**Status: EVE-NG network foundation and OpenStack provider/tenant integration
+VALIDATED with READY evidence. Other service VMs remain NOT_STARTED.**
 
 ## Purpose
 
@@ -53,8 +53,8 @@ S002 is `VALIDATED` with evidence readiness `READY`.
 | Database | `10.10.40.0/24` | Local MariaDB | Primary/replica, application DB access, backup | VLAN/gateway implemented; DB VMs not started |
 | Monitoring | `10.10.50.0/24` | Observability stack | Scrape, dashboard, and probe traffic | VLAN/gateway implemented; monitoring VM not started |
 | Backup | `10.10.60.0/24` | Backup role | Backup repository and restore staging | VLAN/gateway implemented; backup VM not started |
-| OpenStack Provider | `10.10.70.0/24` | EVE-NG / OpenStack | Future provider-network attachment | VLAN/gateway implemented; OpenStack not started |
-| OpenStack Tenant | `10.20.10.0/24` | OpenStack | Private-cloud instances and validation | Neutron and Security Group controlled |
+| OpenStack Provider | `10.10.70.0/24` | EVE-NG / OpenStack | Flat provider network and Floating IP path | VLAN gateway, `physnet1`, `br-ex`, router external interface, and reachability validated |
+| OpenStack Tenant | `10.20.10.0/24` | OpenStack | Private-cloud instance validation | Tenant network, DHCP, router path, one instance, and outbound connectivity validated; Security Group policy remains S016 |
 | AWS | `10.30.0.0/16` | AWS Terraform environment | Minimum public-cloud validation | SG-controlled; temporary resources only |
 | Azure | `10.40.0.0/16` | Azure Terraform environment | Minimum public-cloud validation | NSG-controlled; temporary resources only |
 | Optional Overlay | `10.255.0.0/16` | Connectivity owner | Optional WireGuard transit | Disabled unless separately approved |
@@ -93,6 +93,7 @@ unless node or workload runtime configuration changes.
 
 ## Non-Production Disclaimer
 
-The EVE-NG VLAN/gateway topology and S002 evidence chain are validated. Planned
-service flows do not prove that a service VM, OpenStack component, cloud
-resource, or production security control exists.
+The EVE-NG VLAN/gateway topology (S002) and one OpenStack AIO provider/tenant
+network path (S005) are validated from operator-executed results. Planned
+service flows do not prove that Kubernetes, database, monitoring, backup,
+public-cloud, HA, storage, or production security controls exist.

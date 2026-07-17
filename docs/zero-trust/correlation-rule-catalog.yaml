@@ -1,0 +1,68 @@
+{
+  "catalog_version": "1.0",
+  "rules": [
+    {
+      "id": "ZTC-AUTH-001", "version": "1.0", "title": "Repeated authentication failures",
+      "purpose": "Group repeated sanitized authentication failures from one bounded source.",
+      "source_requirements": ["approved authentication adapter"], "event_selection": {"event_category": "AUTHENTICATION", "outcome": "FAIL"},
+      "grouping": ["source_name"], "threshold": 3, "time_window_seconds": 300, "severity": "HIGH",
+      "expected_false_positives": ["operator typo"], "response_actions": ["LOG", "ALERT", "CREATE_EVIDENCE", "REQUIRE_REVIEW"],
+      "automation_status": "DETECTION_ONLY", "validation_method": "controlled fixture", "evidence": "runtime correlation finding",
+      "limitations": ["No account blocking."], "capability_mappings": ["ZT-7.3", "ZT-8.6"]
+    },
+    {
+      "id": "ZTC-PRIV-001", "version": "1.0", "title": "Restricted validator command denied",
+      "purpose": "Record a restricted validator command outside its allowlist.",
+      "source_requirements": ["authorization event adapter"], "event_selection": {"event_category": "AUTHORIZATION", "event_type": "COMMAND_DENIED"},
+      "grouping": ["source_name"], "threshold": 1, "time_window_seconds": 300, "severity": "MEDIUM",
+      "expected_false_positives": ["boundary test"], "response_actions": ["LOG", "CREATE_EVIDENCE", "REQUIRE_REVIEW"],
+      "automation_status": "DETECTION_ONLY", "validation_method": "controlled fixture", "evidence": "runtime correlation finding",
+      "limitations": ["No automated response."], "capability_mappings": ["ZT-7.1", "ZT-7.3", "ZT-8.6"]
+    },
+    {
+      "id": "ZTC-VAL-001", "version": "1.0", "title": "Validator reported failure",
+      "purpose": "Identify one or more failed validator checks.",
+      "source_requirements": ["validator-summary"], "event_selection": {"event_category": "VALIDATOR_EXECUTION", "outcome": "FAIL"},
+      "grouping": ["source_name"], "threshold": 1, "time_window_seconds": 300, "severity": "HIGH",
+      "expected_false_positives": ["controlled negative test"], "response_actions": ["LOG", "ALERT", "CREATE_EVIDENCE", "REQUIRE_REVIEW"],
+      "automation_status": "DETECTION_ONLY", "validation_method": "controlled fixture", "evidence": "runtime correlation finding",
+      "limitations": ["No infrastructure modification."], "capability_mappings": ["ZT-7.1", "ZT-7.3", "ZT-8.2", "ZT-8.6"]
+    },
+    {
+      "id": "ZTC-VAL-002", "version": "1.0", "title": "Validator freshness exceeded",
+      "purpose": "Flag an expected validator whose latest success exceeds its freshness window.",
+      "source_requirements": ["source-health summary"], "event_selection": {"event_category": "VALIDATOR_EXECUTION", "event_type": "FRESHNESS_EXCEEDED"},
+      "grouping": ["source_name"], "threshold": 1, "time_window_seconds": 86400, "severity": "MEDIUM",
+      "expected_false_positives": ["planned lab shutdown"], "response_actions": ["LOG", "ALERT", "REQUIRE_REVIEW"],
+      "automation_status": "DETECTION_ONLY", "validation_method": "controlled fixture", "evidence": "runtime correlation finding",
+      "limitations": ["Lab power schedules require human interpretation."], "capability_mappings": ["ZT-7.1", "ZT-7.2", "ZT-8.2"]
+    },
+    {
+      "id": "ZTC-SVC-001", "version": "1.0", "title": "Critical service unhealthy",
+      "purpose": "Flag a required service or container health failure.",
+      "source_requirements": ["OpenStack service summary"], "event_selection": {"event_category": "SERVICE_HEALTH", "outcome": "FAIL"},
+      "grouping": ["source_name"], "threshold": 1, "time_window_seconds": 300, "severity": "HIGH",
+      "expected_false_positives": ["planned maintenance"], "response_actions": ["LOG", "ALERT", "CREATE_EVIDENCE", "REQUIRE_REVIEW"],
+      "automation_status": "DETECTION_ONLY", "validation_method": "controlled fixture", "evidence": "runtime correlation finding",
+      "limitations": ["No service restart."], "capability_mappings": ["ZT-7.1", "ZT-7.3", "ZT-8.6"]
+    },
+    {
+      "id": "ZTC-NET-001", "version": "1.0", "title": "Required network component unavailable",
+      "purpose": "Flag a required provider interface, OVS bridge, or EVE bridge failure.",
+      "source_requirements": ["network validation summary"], "event_selection": {"event_category": "NETWORK_STATE", "outcome": "FAIL"},
+      "grouping": ["source_name"], "threshold": 1, "time_window_seconds": 300, "severity": "HIGH",
+      "expected_false_positives": ["planned lab shutdown"], "response_actions": ["LOG", "ALERT", "CREATE_EVIDENCE", "REQUIRE_REVIEW"],
+      "automation_status": "DETECTION_ONLY", "validation_method": "controlled fixture", "evidence": "runtime correlation finding",
+      "limitations": ["No network configuration change."], "capability_mappings": ["ZT-7.1", "ZT-7.3", "ZT-8.6"]
+    },
+    {
+      "id": "ZTC-EVD-001", "version": "1.0", "title": "Evidence generation failed",
+      "purpose": "Flag sanitization or evidence-generation failure.",
+      "source_requirements": ["repository evidence summary"], "event_selection": {"event_category": "EVIDENCE_GENERATION", "outcome": "FAIL"},
+      "grouping": ["source_name"], "threshold": 1, "time_window_seconds": 300, "severity": "HIGH",
+      "expected_false_positives": ["controlled invalid fixture"], "response_actions": ["LOG", "ALERT", "REQUIRE_REVIEW"],
+      "automation_status": "DETECTION_ONLY", "validation_method": "controlled fixture", "evidence": "runtime correlation finding",
+      "limitations": ["No file deletion or repair."], "capability_mappings": ["ZT-7.1", "ZT-8.2", "ZT-8.6"]
+    }
+  ]
+}

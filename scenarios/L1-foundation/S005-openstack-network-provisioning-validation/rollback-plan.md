@@ -1,13 +1,20 @@
 # Rollback Plan
 
-S005 creates no OpenStack resource and therefore requires no cloud rollback or Terraform destroy operation.
+## Stop Condition
 
-If an unsafe repository artifact is discovered:
+Stop validation if credentials or raw authentication material could be captured,
+if provider routing affects an unintended network, or if host-capacity limits
+are exceeded.
 
-1. Stop validation.
-2. Remove only the unsafe artifact after confirming it belongs to this scenario change.
-3. Replace account-specific content with approved non-production examples and placeholders.
-4. Re-run the local validator and both repository QA scripts.
-5. Record any unresolved issue as `BLOCKED` or `FAIL` without exposing the sensitive value.
+## Rollback Steps
 
-Generated S005 log and summary files may be regenerated safely by re-running the validator.
+1. Stop further lab mutations and preserve only sanitized diagnostic notes.
+2. Use the operator-approved Kolla/OpenStack cleanup procedure outside the repository.
+3. Remove temporary instance, Floating IP, router, and network resources in dependency order when teardown is authorized.
+4. Confirm the provider VLAN and EVE-NG routing baseline remain intact.
+5. Record cleanup under its owning validation scenario; do not infer success from this plan.
+
+## Recovery Validation
+
+S005 recovery requires a fresh pass of V001-V021. Automated teardown,
+destroy/recreate, backup, and disaster recovery are not validated here.

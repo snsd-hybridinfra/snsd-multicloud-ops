@@ -1,6 +1,7 @@
 # Platform Responsibility Matrix
 
-**Status: PLANNED — responsibilities describe intended future roles only.**
+**Status: ACTIVE BASELINE — EVE-NG and one OpenStack AIO network path are
+implemented; other platform responsibilities remain planned.**
 
 ## Purpose
 
@@ -9,7 +10,7 @@ This matrix prevents overlap and inflated claims across the lab platforms.
 | Platform | Primary Responsibility | Validation Focus | Explicitly Not Responsible For |
 |---|---|---|---|
 | EVE-NG / On-Prem | Network zoning, routing, ACLs, and failure paths | On-Prem segmentation and controlled transit | Cloud resource lifecycle, application runtime, database service |
-| OpenStack | Private Cloud | Neutron, Security Group, Floating IP window, Terraform, drift, cleanup | Public Cloud A/B claims, EKS/AKS, production HA |
+| OpenStack | Private Cloud | Neutron provider/tenant path and Floating IP validated; Security Group policy, Terraform, drift, and cleanup remain separate | Public Cloud A/B claims, EKS/AKS, production HA |
 | AWS | Public Cloud A minimum environment | VPC/subnets/SG, optional one EC2, Terraform/inventory/drift/policy/cleanup | Full application runtime, EKS, RDS, always-on public service |
 | Azure | Public Cloud B minimum environment | VNet/subnets/NSG, optional one VM, Terraform/inventory/drift/policy/cleanup | Full application runtime, AKS, managed DB, always-on public service |
 | Local Kubernetes | Application runtime | Nodes, workloads, Ingress, reverse proxy, load balancing, controlled failures | Cloud networking authority, public management plane, database persistence |

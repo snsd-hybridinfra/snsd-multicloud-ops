@@ -1,0 +1,29 @@
+{
+  "package_id": "ZT-FND-001",
+  "package_name": "Restricted Validation and Evidence Foundation",
+  "implementation_status": "IMPLEMENTED",
+  "validation_status": "VALIDATED",
+  "current_maturity": "UNASSESSED",
+  "target_maturity": "INITIAL",
+  "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+  "execution_record": "docs/evidence/zero-trust/zt-fnd-001-validation.yaml",
+  "capability_mappings": [
+    "ZT-1.4.2",
+    "ZT-4.1.1",
+    "ZT-4.2.2",
+    "ZT-7.1",
+    "ZT-8.2",
+    "ZT-8.5"
+  ],
+  "runtime_directory": ".runtime/zero-trust/",
+  "required_commands": {
+    "openstack": "ssh -o BatchMode=yes openstack-validator validate-all",
+    "eve": "ssh -o BatchMode=yes eve-validator validate-host"
+  },
+  "blockers": [],
+  "limitations": [
+    "Both restricted endpoints are operational and boundary-validated.",
+    "This package validates a bounded non-production laboratory and does not establish enterprise PAM or repository-wide maturity.",
+    "No capability implementation status or maturity is promoted by this configuration-only package."
+  ]
+}

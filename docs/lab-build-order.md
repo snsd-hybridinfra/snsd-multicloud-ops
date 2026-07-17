@@ -1,7 +1,7 @@
 # Authoritative Lab Phase Plan
 
-**Status: ACTIVE — the EVE-NG network foundation and S002 evidence are
-validated; later service/cloud phases are not started.**
+**Status: ACTIVE — the EVE-NG foundation (S002) and OpenStack AIO network path
+(S005) are validated; later platform phases remain unvalidated.**
 
 ## Authority and Purpose
 
@@ -32,7 +32,7 @@ Preflight proves repository readiness only. It does not prove lab readiness.
 |---|---|---|---|
 | Lab Phase 0 | Architecture and host-capacity baseline | Platform roles, address plan, zones, host capacity, VM allocations, staged execution profiles, storage/snapshot policy, cost guardrails, lifecycle, NICs, gateways, external exposure, and ADR | Planning documents agree; profile arithmetic preserves the host reserve; unresolved provider networks remain discovery-required |
 | Lab Phase 1 | EVE-NG and bastion network control | On-Prem routing, Bastion path, inter-zone ACLs, and network failure-path planning | Planned routes/ACLs are reviewed; no real device value is committed |
-| Lab Phase 2 | OpenStack private cloud | Neutron tenant network, discovered provider network, Security Group, Floating IP window, and Terraform validation | Provider network is discovered from the real lab, resource limits are enforced, and cleanup is planned |
+| Lab Phase 2 | OpenStack private cloud | Kolla-Ansible AIO, Neutron tenant/provider networks, router, one instance, Floating IP, and later Terraform reproduction | AIO and end-to-end network path validated; Terraform, Security Group policy, cleanup, storage, and hardening remain pending |
 | Lab Phase 3 | Minimum AWS and Azure foundations | One bounded VPC/VNet foundation, subnets, SG/NSG, and optional temporary compute | Cost guardrails and tags pass before apply; temporary compute/public addresses have TTL and cleanup owner |
 | Lab Phase 4 | Multi-cloud inventory and optional connectivity | Inventory normalization and optional WireGuard overlay decision | Provider roles and non-overlapping routes are documented; overlay remains optional |
 | Lab Phase 5 | Kubernetes service platform | Local Kubernetes workloads, Ingress, reverse proxy, load balancing, and platform-local validation | Service path is healthy and sanitized evidence maps to S021-S025 |
@@ -72,6 +72,12 @@ reachability, post-ACL-removal state, host-only ping, SSH/22, and HTTP/80.
 HTTPS/443 is accurately recorded unavailable; no required S002 gap remains.
 Static, sample, synthetic, and provenance-uncertain artifacts created before
 the truth-state reset remain quarantined and support no scenario state.
+
+S005 additionally records user-executed Kolla-Ansible AIO deployment,
+control-plane health, Neutron resource state, Open vSwitch provider mapping,
+EVE-NG VLAN 70 reachability, Floating IP DNAT, tenant gateway/Internet
+reachability, and cloud-init completion. Codex normalized and sanitized the
+supplied results but did not connect to or re-execute checks against the lab.
 
 ## Non-Production Disclaimer
 

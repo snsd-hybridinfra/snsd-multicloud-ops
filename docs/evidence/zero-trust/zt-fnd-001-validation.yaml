@@ -1,0 +1,71 @@
+{
+  "package_id": "ZT-FND-001",
+  "package_name": "Restricted Validation and Evidence Foundation",
+  "execution_date": "2026-07-17",
+  "environment": "NON_PRODUCTION_LAB",
+  "executor": "Codex",
+  "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+  "commands": [
+    "ssh -o BatchMode=yes openstack-validator validate-all",
+    "ssh -o BatchMode=yes openstack-validator",
+    "ssh -o BatchMode=yes openstack-validator <harmless-arbitrary-command>",
+    "ssh -o BatchMode=yes eve-validator validate-host"
+  ],
+  "targets": [
+    "openstack-validator",
+    "eve-validator"
+  ],
+  "results": {
+    "openstack": {
+      "exit_code": 0,
+      "pass": 50,
+      "warn": 0,
+      "fail": 0
+    },
+    "eve": {
+      "exit_code": 0,
+      "pass": 42,
+      "warn": 0,
+      "fail": 0,
+      "classification": "RESTRICTED_ENDPOINT_OPERATIONAL"
+    }
+  },
+  "security_boundary": {
+    "interactive_shell_blocked": true,
+    "arbitrary_command_blocked": true,
+    "credential_read_blocked": true,
+    "validated_targets": [
+      "openstack-validator",
+      "eve-validator"
+    ],
+    "eve_restricted_endpoint": true
+  },
+  "evidence_files": [
+    "evidence/L1-foundation/S005-openstack-network-provisioning-validation/logs/20260716-S005-codex-restricted-live-validation.sanitized.txt",
+    "evidence/L1-foundation/S005-openstack-network-provisioning-validation/configs/20260716-S005-restricted-endpoint-security-summary.md",
+    "docs/evidence/zero-trust/zt-fnd-001-openstack-validation.sanitized.txt",
+    "docs/evidence/zero-trust/zt-fnd-001-eve-validation.sanitized.txt",
+    "docs/evidence/zero-trust/zt-fnd-001-security-boundary.sanitized.txt"
+  ],
+  "sanitization": {
+    "raw_runtime_committed": false,
+    "runtime_directory_ignored": true,
+    "sanitized_output_reviewed": true
+  },
+  "limitations": [
+    "Validation is limited to the declared non-production OpenStack AIO and EVE-NG hosts.",
+    "Operator break-glass passwords remain outside the repository and are not managed or exposed by the validation workflow."
+  ],
+  "capability_mappings": [
+    "ZT-1.4.2",
+    "ZT-4.1.1",
+    "ZT-4.2.2",
+    "ZT-7.1",
+    "ZT-8.2",
+    "ZT-8.5"
+  ],
+  "implementation_status": "IMPLEMENTED",
+  "validation_status": "VALIDATED",
+  "current_maturity": "UNASSESSED",
+  "assessment_confidence": "MEDIUM"
+}

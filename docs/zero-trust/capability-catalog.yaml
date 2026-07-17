@@ -1,0 +1,2352 @@
+{
+  "catalog_version": "2.0-repository-v1",
+  "authoritative_document": "제로트러스트 가이드라인 2.0",
+  "capability_count": 52,
+  "status_note": "Mapping and evidence state do not establish compliance or maturity. Evidence authority uses the repository enum.",
+  "serialization": "JSON-compatible YAML 1.2",
+  "capabilities": [
+    {
+      "id": "ZT-1.1.1",
+      "pillar": "identity",
+      "pillar_ko": "식별자·신원",
+      "function": "identifier-management",
+      "function_ko": "식별자 관리",
+      "capability": "user-inventory",
+      "capability_ko": "사용자 인벤토리",
+      "definition": "사용자 계정과 주체의 목록을 식별·유지한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "56",
+        "table_or_figure": "Table 3-11; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "사용자 인벤토리 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "사용자 인벤토리 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-1.1.2",
+      "pillar": "identity",
+      "pillar_ko": "식별자·신원",
+      "function": "identifier-management",
+      "function_ko": "식별자 관리",
+      "capability": "id-federation-user-credentials",
+      "capability_ko": "ID 연계 및 사용자 자격 증명",
+      "definition": "식별자 연계와 사용자 자격 증명의 수명주기를 관리한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "56",
+        "table_or_figure": "Table 3-11; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "ID 연계 및 사용자 자격 증명 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "ID 연계 및 사용자 자격 증명 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-1.2.1",
+      "pillar": "identity",
+      "pillar_ko": "식별자·신원",
+      "function": "authentication",
+      "function_ko": "인증",
+      "capability": "multi-factor-authentication",
+      "capability_ko": "다중인증 (MFA)",
+      "definition": "둘 이상의 인증 요소로 접근 주체를 확인한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "57",
+        "table_or_figure": "Table 3-12; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "다중인증 (MFA) 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "다중인증 (MFA) 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-1.2.2",
+      "pillar": "identity",
+      "pillar_ko": "식별자·신원",
+      "function": "authentication",
+      "function_ko": "인증",
+      "capability": "continuous-authentication",
+      "capability_ko": "지속 인증",
+      "definition": "세션 중에도 신뢰 신호를 재평가하여 인증을 지속한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "57",
+        "table_or_figure": "Table 3-12; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "지속 인증 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "지속 인증 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-1.3.1",
+      "pillar": "identity",
+      "pillar_ko": "식별자·신원",
+      "function": "risk-assessment",
+      "function_ko": "위험도 평가",
+      "capability": "integrated-icam-platform",
+      "capability_ko": "통합 ICAM 플랫폼",
+      "definition": "식별자·자격·접근관리 정보를 통합해 위험 판단에 사용한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "58",
+        "table_or_figure": "Table 3-13; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "통합 ICAM 플랫폼 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "통합 ICAM 플랫폼 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-1.3.2",
+      "pillar": "identity",
+      "pillar_ko": "식별자·신원",
+      "function": "risk-assessment",
+      "function_ko": "위험도 평가",
+      "capability": "behavior-context-id-biometric-recognition",
+      "capability_ko": "행동, 컨텍스트 기반 ID 및 생체 인식",
+      "definition": "행동·컨텍스트·생체 신호를 신원 위험 평가에 활용한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "58",
+        "table_or_figure": "Table 3-13; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "행동, 컨텍스트 기반 ID 및 생체 인식 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "행동, 컨텍스트 기반 ID 및 생체 인식 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-1.4.1",
+      "pillar": "identity",
+      "pillar_ko": "식별자·신원",
+      "function": "access-management",
+      "function_ko": "접근관리",
+      "capability": "conditional-user-access",
+      "capability_ko": "조건부 사용자 접근",
+      "definition": "정책과 컨텍스트 조건에 따라 사용자 접근을 결정한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "59",
+        "table_or_figure": "Table 3-14; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "조건부 사용자 접근 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "조건부 사용자 접근 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-1.4.2",
+      "pillar": "identity",
+      "pillar_ko": "식별자·신원",
+      "function": "access-management",
+      "function_ko": "접근관리",
+      "capability": "least-privilege-access",
+      "capability_ko": "최소 권한 접근",
+      "definition": "업무에 필요한 최소 권한과 범위만 부여한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "59",
+        "table_or_figure": "Table 3-14; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "최소 권한 접근 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "최소 권한 접근 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-2.1.1",
+      "pillar": "device-endpoint",
+      "pillar_ko": "기기 및 엔드포인트",
+      "function": "policy-compliance-monitoring",
+      "function_ko": "정책 준수 모니터링",
+      "capability": "device-detection-compliance",
+      "capability_ko": "기기 감지 및 규정 준수",
+      "definition": "기기를 식별하고 보안 정책 준수 상태를 확인한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "60",
+        "table_or_figure": "Table 3-15; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "기기 감지 및 규정 준수 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "기기 감지 및 규정 준수 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-2.2.1",
+      "pillar": "device-endpoint",
+      "pillar_ko": "기기 및 엔드포인트",
+      "function": "data-access-control",
+      "function_ko": "데이터 접근제어",
+      "capability": "real-time-inspection-device-authorization",
+      "capability_ko": "실시간 검사를 통한 기기 권한 부여",
+      "definition": "실시간 기기 상태 검사 결과로 데이터 접근 권한을 결정한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "61",
+        "table_or_figure": "Table 3-16; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "실시간 검사를 통한 기기 권한 부여 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "실시간 검사를 통한 기기 권한 부여 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-2.3.1",
+      "pillar": "device-endpoint",
+      "pillar_ko": "기기 및 엔드포인트",
+      "function": "asset-management",
+      "function_ko": "자산관리",
+      "capability": "device-inventory",
+      "capability_ko": "기기 인벤토리",
+      "definition": "관리 대상 기기와 상태의 권위 있는 목록을 유지한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "62",
+        "table_or_figure": "Table 3-17; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "기기 인벤토리 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "기기 인벤토리 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-2.3.2",
+      "pillar": "device-endpoint",
+      "pillar_ko": "기기 및 엔드포인트",
+      "function": "asset-management",
+      "function_ko": "자산관리",
+      "capability": "unified-endpoint-mobile-device-management",
+      "capability_ko": "통합 엔드포인트 관리 및 모바일 기기 관리",
+      "definition": "엔드포인트와 모바일 기기를 일관된 정책으로 관리한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "62",
+        "table_or_figure": "Table 3-17; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "통합 엔드포인트 관리 및 모바일 기기 관리 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "통합 엔드포인트 관리 및 모바일 기기 관리 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-2.4.1",
+      "pillar": "device-endpoint",
+      "pillar_ko": "기기 및 엔드포인트",
+      "function": "device-threat-protection",
+      "function_ko": "기기 위협 보호",
+      "capability": "endpoint-extended-detection-response",
+      "capability_ko": "엔드포인트 및 확장된 탐지·대응 (EDR 및 XDR)",
+      "definition": "엔드포인트 위협을 탐지하고 대응 흐름과 연계한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "63",
+        "table_or_figure": "Table 3-18; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "엔드포인트 및 확장된 탐지·대응 (EDR 및 XDR) 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "엔드포인트 및 확장된 탐지·대응 (EDR 및 XDR) 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-2.4.2",
+      "pillar": "device-endpoint",
+      "pillar_ko": "기기 및 엔드포인트",
+      "function": "device-threat-protection",
+      "function_ko": "기기 위협 보호",
+      "capability": "asset-vulnerability-patch-automation",
+      "capability_ko": "자산, 취약성 및 패치 관리 자동화",
+      "definition": "자산 취약점과 패치 상태의 식별·조치를 자동화한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "63",
+        "table_or_figure": "Table 3-18; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "자산, 취약성 및 패치 관리 자동화 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "자산, 취약성 및 패치 관리 자동화 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-3.1.1",
+      "pillar": "network",
+      "pillar_ko": "네트워크",
+      "function": "network-segmentation",
+      "function_ko": "네트워크 세분화",
+      "capability": "macro-segmentation",
+      "capability_ko": "매크로 세그멘테이션",
+      "definition": "큰 보안 영역과 신뢰 경계를 분리하고 경계 간 흐름을 통제한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "64-65",
+        "table_or_figure": "Table 3-19; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "매크로 세그멘테이션 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "매크로 세그멘테이션 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "MEDIUM",
+      "notes": "Limited evidence validates only the repository-bounded aspect described in the scenario matrix; capability-wide implementation and maturity remain unassessed.",
+      "evidence_authority": [
+        "USER_EXECUTED_RUNTIME",
+        "CODEX_EXECUTED_LIVE_RUNTIME"
+      ]
+    },
+    {
+      "id": "ZT-3.1.2",
+      "pillar": "network",
+      "pillar_ko": "네트워크",
+      "function": "network-segmentation",
+      "function_ko": "네트워크 세분화",
+      "capability": "micro-segmentation",
+      "capability_ko": "마이크로 세그멘테이션",
+      "definition": "세밀한 워크로드·자원 단위로 통신 정책을 분리한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "64-65",
+        "table_or_figure": "Table 3-19; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "마이크로 세그멘테이션 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "마이크로 세그멘테이션 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-3.1.3",
+      "pillar": "network",
+      "pillar_ko": "네트워크",
+      "function": "network-segmentation",
+      "function_ko": "네트워크 세분화",
+      "capability": "software-defined-networking",
+      "capability_ko": "소프트웨어 정의 네트워킹",
+      "definition": "소프트웨어 기반 정책으로 네트워크 연결과 분리를 제어한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "64-65",
+        "table_or_figure": "Table 3-19; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "소프트웨어 정의 네트워킹 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "소프트웨어 정의 네트워킹 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-3.2.1",
+      "pillar": "network",
+      "pillar_ko": "네트워크",
+      "function": "threat-response",
+      "function_ko": "위협 대응",
+      "capability": "threat-response",
+      "capability_ko": "위협 대응",
+      "definition": "네트워크 위협을 식별하고 승인된 대응 절차로 처리한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "66",
+        "table_or_figure": "Table 3-20; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "위협 대응 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "위협 대응 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "Scenario content provides conceptual alignment only; implementation, runtime validation, and maturity are not established.",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ]
+    },
+    {
+      "id": "ZT-3.3.1",
+      "pillar": "network",
+      "pillar_ko": "네트워크",
+      "function": "traffic-encryption",
+      "function_ko": "트래픽 암호화",
+      "capability": "traffic-encryption",
+      "capability_ko": "트래픽 암호화",
+      "definition": "전송 구간의 기밀성과 무결성을 암호화로 보호한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "67",
+        "table_or_figure": "Table 3-21; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "트래픽 암호화 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "트래픽 암호화 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-3.4.1",
+      "pillar": "network",
+      "pillar_ko": "네트워크",
+      "function": "traffic-management",
+      "function_ko": "트래픽 관리",
+      "capability": "data-flow-mapping",
+      "capability_ko": "데이터 흐름 매핑",
+      "definition": "주체·서비스·데이터 사이의 실제 통신 흐름을 식별한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "68",
+        "table_or_figure": "Table 3-22; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "데이터 흐름 매핑 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "데이터 흐름 매핑 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "MEDIUM",
+      "notes": "Limited evidence validates only the repository-bounded aspect described in the scenario matrix; capability-wide implementation and maturity remain unassessed.",
+      "evidence_authority": [
+        "USER_EXECUTED_RUNTIME",
+        "CODEX_EXECUTED_LIVE_RUNTIME"
+      ]
+    },
+    {
+      "id": "ZT-3.5.1",
+      "pillar": "network",
+      "pillar_ko": "네트워크",
+      "function": "network-resilience",
+      "function_ko": "네트워크 회복성",
+      "capability": "network-resilience",
+      "capability_ko": "네트워크 회복성",
+      "definition": "장애와 공격 후에도 네트워크 기능을 유지·복구한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "69",
+        "table_or_figure": "Table 3-23; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "네트워크 회복성 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "네트워크 회복성 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "Scenario content provides conceptual alignment only; implementation, runtime validation, and maturity are not established.",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ]
+    },
+    {
+      "id": "ZT-4.1.1",
+      "pillar": "system",
+      "pillar_ko": "시스템",
+      "function": "access-control",
+      "function_ko": "접근통제",
+      "capability": "access-control",
+      "capability_ko": "접근통제",
+      "definition": "시스템 접근 요청을 정책에 따라 허용·거부한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "70",
+        "table_or_figure": "Table 3-24; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "접근통제 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "접근통제 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "MEDIUM",
+      "notes": "Limited evidence validates only the repository-bounded aspect described in the scenario matrix; capability-wide implementation and maturity remain unassessed.",
+      "evidence_authority": [
+        "CODEX_EXECUTED_LIVE_RUNTIME"
+      ]
+    },
+    {
+      "id": "ZT-4.2.1",
+      "pillar": "system",
+      "pillar_ko": "시스템",
+      "function": "system-account-management",
+      "function_ko": "시스템 계정 관리",
+      "capability": "privileged-access-management",
+      "capability_ko": "PAM",
+      "definition": "특권 계정과 세션을 제한·승인·감사한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "71",
+        "table_or_figure": "Table 3-25; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "PAM 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "PAM 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-4.2.2",
+      "pillar": "system",
+      "pillar_ko": "시스템",
+      "function": "system-account-management",
+      "function_ko": "시스템 계정 관리",
+      "capability": "credential-management",
+      "capability_ko": "자격 증명 관리",
+      "definition": "시스템 자격 증명을 안전하게 발급·보관·교체·폐기한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "71",
+        "table_or_figure": "Table 3-25; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "자격 증명 관리 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "자격 증명 관리 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-4.3.1",
+      "pillar": "system",
+      "pillar_ko": "시스템",
+      "function": "network-separation-policy",
+      "function_ko": "네트워크 분리 정책",
+      "capability": "network-segmentation-intergroup-movement",
+      "capability_ko": "네트워크 세분화 및 그룹 간 이동",
+      "definition": "시스템 그룹 간 이동을 분리 정책과 허용 경로로 제한한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "72",
+        "table_or_figure": "Table 3-26; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "네트워크 세분화 및 그룹 간 이동 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "네트워크 세분화 및 그룹 간 이동 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "MEDIUM",
+      "notes": "Limited evidence validates only the repository-bounded aspect described in the scenario matrix; capability-wide implementation and maturity remain unassessed.",
+      "evidence_authority": [
+        "USER_EXECUTED_RUNTIME"
+      ]
+    },
+    {
+      "id": "ZT-4.4.1",
+      "pillar": "system",
+      "pillar_ko": "시스템",
+      "function": "system-security-policy-management",
+      "function_ko": "시스템 보안 및 정책 관리",
+      "capability": "environment-based-policy-management",
+      "capability_ko": "시스템 환경에 따른 정책 관리",
+      "definition": "시스템 환경과 상태에 맞는 보안 정책을 적용·검증한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "73",
+        "table_or_figure": "Table 3-27; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "시스템 환경에 따른 정책 관리 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "시스템 환경에 따른 정책 관리 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "Scenario content provides conceptual alignment only; implementation, runtime validation, and maturity are not established.",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ]
+    },
+    {
+      "id": "ZT-5.1.1",
+      "pillar": "application-workload",
+      "pillar_ko": "애플리케이션 및 워크로드",
+      "function": "application-access",
+      "function_ko": "애플리케이션 접근",
+      "capability": "resource-authorization-integration",
+      "capability_ko": "리소스 권한 부여 및 통합",
+      "definition": "애플리케이션 리소스 권한을 정책과 통합해 부여한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "74",
+        "table_or_figure": "Table 3-28; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "리소스 권한 부여 및 통합 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "리소스 권한 부여 및 통합 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "Scenario content provides conceptual alignment only; implementation, runtime validation, and maturity are not established.",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ]
+    },
+    {
+      "id": "ZT-5.2.1",
+      "pillar": "application-workload",
+      "pillar_ko": "애플리케이션 및 워크로드",
+      "function": "application-threat-protection",
+      "function_ko": "애플리케이션 위협 보호",
+      "capability": "continuous-monitoring-approval-in-progress",
+      "capability_ko": "지속적인 모니터링 및 진행 중인 승인",
+      "definition": "애플리케이션 상태를 지속 관찰하고 세션 중 승인 여부를 재평가한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "75",
+        "table_or_figure": "Table 3-29; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "지속적인 모니터링 및 진행 중인 승인 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "지속적인 모니터링 및 진행 중인 승인 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-5.3.1",
+      "pillar": "application-workload",
+      "pillar_ko": "애플리케이션 및 워크로드",
+      "function": "accessible-application",
+      "function_ko": "접근 가능한 애플리케이션",
+      "capability": "remote-access",
+      "capability_ko": "원격 접속",
+      "definition": "승인된 주체가 정책에 따라 애플리케이션에 원격 접근하도록 한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "76",
+        "table_or_figure": "Table 3-30; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "원격 접속 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "원격 접속 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-5.4.1",
+      "pillar": "application-workload",
+      "pillar_ko": "애플리케이션 및 워크로드",
+      "function": "secure-application-deployment",
+      "function_ko": "안전한 애플리케이션 배포",
+      "capability": "secure-application-deployment",
+      "capability_ko": "안전한 애플리케이션 배포",
+      "definition": "검증된 구성과 통제를 거쳐 애플리케이션을 배포한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "77",
+        "table_or_figure": "Table 3-31; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "안전한 애플리케이션 배포 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "안전한 애플리케이션 배포 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "Scenario content provides conceptual alignment only; implementation, runtime validation, and maturity are not established.",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ]
+    },
+    {
+      "id": "ZT-5.4.2",
+      "pillar": "application-workload",
+      "pillar_ko": "애플리케이션 및 워크로드",
+      "function": "secure-application-deployment",
+      "function_ko": "안전한 애플리케이션 배포",
+      "capability": "application-inventory",
+      "capability_ko": "애플리케이션 인벤토리",
+      "definition": "애플리케이션과 워크로드의 목록·소유자·상태를 관리한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "77",
+        "table_or_figure": "Table 3-31; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "애플리케이션 인벤토리 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "애플리케이션 인벤토리 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-5.5.1",
+      "pillar": "application-workload",
+      "pillar_ko": "애플리케이션 및 워크로드",
+      "function": "software-application-security",
+      "function_ko": "소프트웨어·애플리케이션 보안",
+      "capability": "secure-application-development-integration",
+      "capability_ko": "안전한 소프트웨어·애플리케이션 개발 및 통합",
+      "definition": "개발·통합 과정에 보안 요구와 검증을 포함한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "78",
+        "table_or_figure": "Table 3-32; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "안전한 소프트웨어·애플리케이션 개발 및 통합 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "안전한 소프트웨어·애플리케이션 개발 및 통합 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-5.5.2",
+      "pillar": "application-workload",
+      "pillar_ko": "애플리케이션 및 워크로드",
+      "function": "software-application-security",
+      "function_ko": "소프트웨어·애플리케이션 보안",
+      "capability": "software-vulnerability-management",
+      "capability_ko": "소프트웨어 취약 관리",
+      "definition": "소프트웨어 취약점을 식별·우선순위화·조치한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "78",
+        "table_or_figure": "Table 3-32; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "소프트웨어 취약 관리 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "소프트웨어 취약 관리 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-6.1.1",
+      "pillar": "data",
+      "pillar_ko": "데이터",
+      "function": "data-inventory-management",
+      "function_ko": "데이터 목록 관리",
+      "capability": "data-catalog-risk-sorting",
+      "capability_ko": "데이터 카탈로그 위험 정렬",
+      "definition": "데이터 카탈로그를 만들고 위험 기준으로 분류·정렬한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "79",
+        "table_or_figure": "Table 3-33; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "데이터 카탈로그 위험 정렬 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "데이터 카탈로그 위험 정렬 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-6.1.2",
+      "pillar": "data",
+      "pillar_ko": "데이터",
+      "function": "data-inventory-management",
+      "function_ko": "데이터 목록 관리",
+      "capability": "enterprise-data-governance",
+      "capability_ko": "기업 데이터 거버넌스",
+      "definition": "기업 데이터의 소유권·수명주기·정책을 거버넌스로 관리한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "79",
+        "table_or_figure": "Table 3-33; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "기업 데이터 거버넌스 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "기업 데이터 거버넌스 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-6.2.1",
+      "pillar": "data",
+      "pillar_ko": "데이터",
+      "function": "access-decision-method",
+      "function_ko": "접근 결정방법",
+      "capability": "data-access-control",
+      "capability_ko": "데이터 접근제어",
+      "definition": "데이터 민감도와 주체·컨텍스트에 따라 접근을 결정한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "80",
+        "table_or_figure": "Table 3-34; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "데이터 접근제어 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "데이터 접근제어 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "Scenario content provides conceptual alignment only; implementation, runtime validation, and maturity are not established.",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ]
+    },
+    {
+      "id": "ZT-6.3.1",
+      "pillar": "data",
+      "pillar_ko": "데이터",
+      "function": "data-encryption",
+      "function_ko": "데이터 암호화",
+      "capability": "data-encryption-key-management",
+      "capability_ko": "데이터 암호화 및 권한 관리",
+      "definition": "데이터 암호화와 키·권한 관리를 결합한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "81",
+        "table_or_figure": "Table 3-35; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "데이터 암호화 및 권한 관리 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "데이터 암호화 및 권한 관리 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-6.4.1",
+      "pillar": "data",
+      "pillar_ko": "데이터",
+      "function": "data-classification",
+      "function_ko": "데이터 분류",
+      "capability": "data-labeling-tagging",
+      "capability_ko": "데이터 라벨링 및 태그 지정",
+      "definition": "데이터에 분류 라벨과 정책 태그를 부여한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "82",
+        "table_or_figure": "Table 3-36; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "데이터 라벨링 및 태그 지정 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "데이터 라벨링 및 태그 지정 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-6.5.1",
+      "pillar": "data",
+      "pillar_ko": "데이터",
+      "function": "data-loss-prevention",
+      "function_ko": "데이터 손실 방지",
+      "capability": "data-loss-prevention",
+      "capability_ko": "데이터 손실 방지 (DLP)",
+      "definition": "정책 위반 데이터 이동과 유출을 방지한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "83",
+        "table_or_figure": "Table 3-37; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "데이터 손실 방지 (DLP) 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "데이터 손실 방지 (DLP) 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-6.5.2",
+      "pillar": "data",
+      "pillar_ko": "데이터",
+      "function": "data-loss-prevention",
+      "function_ko": "데이터 손실 방지",
+      "capability": "data-monitoring-detection",
+      "capability_ko": "데이터 모니터링 및 감지",
+      "definition": "데이터 사용·이동을 관찰하고 이상을 감지한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "83",
+        "table_or_figure": "Table 3-37; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "데이터 모니터링 및 감지 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "데이터 모니터링 및 감지 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-7.1",
+      "pillar": "visibility-analytics",
+      "pillar_ko": "가시성 및 분석",
+      "function": "visibility-analytics",
+      "function_ko": "가시성 및 분석",
+      "capability": "record-all-relevant-activities",
+      "capability_ko": "모든 관련 활동 기록",
+      "definition": "제로트러스트 판단과 감사에 필요한 관련 활동을 기록한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "84-86",
+        "table_or_figure": "Table 3-38; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "모든 관련 활동 기록 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "모든 관련 활동 기록 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "MEDIUM",
+      "notes": "Limited evidence validates only the repository-bounded aspect described in the scenario matrix; capability-wide implementation and maturity remain unassessed.",
+      "evidence_authority": [
+        "USER_EXECUTED_RUNTIME",
+        "CODEX_EXECUTED_LIVE_RUNTIME"
+      ]
+    },
+    {
+      "id": "ZT-7.2",
+      "pillar": "visibility-analytics",
+      "pillar_ko": "가시성 및 분석",
+      "function": "visibility-analytics",
+      "function_ko": "가시성 및 분석",
+      "capability": "centralized-security-information-event-management",
+      "capability_ko": "중앙집중적 보안 정보 및 이벤트 관리",
+      "definition": "보안 정보와 이벤트를 중앙에서 수집·연계·관리한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "84-86",
+        "table_or_figure": "Table 3-38; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "중앙집중적 보안 정보 및 이벤트 관리 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "중앙집중적 보안 정보 및 이벤트 관리 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-7.3",
+      "pillar": "visibility-analytics",
+      "pillar_ko": "가시성 및 분석",
+      "function": "visibility-analytics",
+      "function_ko": "가시성 및 분석",
+      "capability": "security-threat-analysis",
+      "capability_ko": "보안 위협 분석",
+      "definition": "수집된 신호를 분석해 보안 위협과 우선순위를 판단한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "84-86",
+        "table_or_figure": "Table 3-38; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "보안 위협 분석 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "보안 위협 분석 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-7.4",
+      "pillar": "visibility-analytics",
+      "pillar_ko": "가시성 및 분석",
+      "function": "visibility-analytics",
+      "function_ko": "가시성 및 분석",
+      "capability": "user-device-behavior-analysis",
+      "capability_ko": "사용자 및 기기 동작 분석",
+      "definition": "사용자와 기기의 정상 행동 기준과 이상 행동을 분석한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "84-86",
+        "table_or_figure": "Table 3-38; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "사용자 및 기기 동작 분석 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "사용자 및 기기 동작 분석 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-7.5",
+      "pillar": "visibility-analytics",
+      "pillar_ko": "가시성 및 분석",
+      "function": "visibility-analytics",
+      "function_ko": "가시성 및 분석",
+      "capability": "threat-intelligence-integration",
+      "capability_ko": "위협 인텔리전스 통합",
+      "definition": "내·외부 위협 인텔리전스를 정책 판단과 분석에 통합한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "84-86",
+        "table_or_figure": "Table 3-38; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "위협 인텔리전스 통합 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "위협 인텔리전스 통합 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-7.6",
+      "pillar": "visibility-analytics",
+      "pillar_ko": "가시성 및 분석",
+      "function": "visibility-analytics",
+      "function_ko": "가시성 및 분석",
+      "capability": "automated-dynamic-policy",
+      "capability_ko": "자동화된 동적 정책",
+      "definition": "관찰된 위험과 컨텍스트에 따라 정책을 동적으로 갱신한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "84-86",
+        "table_or_figure": "Table 3-38; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "자동화된 동적 정책 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "자동화된 동적 정책 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-8.1",
+      "pillar": "automation-integration",
+      "pillar_ko": "자동화 및 통합",
+      "function": "automation-integration",
+      "function_ko": "자동화 및 통합",
+      "capability": "policy-integration",
+      "capability_ko": "정책 통합",
+      "definition": "여러 통제 지점의 정책 정의와 판단을 일관되게 통합한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "87-89",
+        "table_or_figure": "Table 3-39; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "정책 통합 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "정책 통합 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "Scenario content provides conceptual alignment only; implementation, runtime validation, and maturity are not established.",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ]
+    },
+    {
+      "id": "ZT-8.2",
+      "pillar": "automation-integration",
+      "pillar_ko": "자동화 및 통합",
+      "function": "automation-integration",
+      "function_ko": "자동화 및 통합",
+      "capability": "critical-process-automation",
+      "capability_ko": "중요 프로세스 자동화",
+      "definition": "반복 가능하고 승인된 중요 운영·보안 프로세스를 자동화한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "87-89",
+        "table_or_figure": "Table 3-39; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "중요 프로세스 자동화 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "중요 프로세스 자동화 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "MEDIUM",
+      "notes": "Limited evidence validates only the repository-bounded aspect described in the scenario matrix; capability-wide implementation and maturity remain unassessed.",
+      "evidence_authority": [
+        "CODEX_EXECUTED_LIVE_RUNTIME"
+      ]
+    },
+    {
+      "id": "ZT-8.3",
+      "pillar": "automation-integration",
+      "pillar_ko": "자동화 및 통합",
+      "function": "automation-integration",
+      "function_ko": "자동화 및 통합",
+      "capability": "artificial-intelligence",
+      "capability_ko": "인공지능",
+      "definition": "검증된 범위에서 인공지능을 분석·판단 지원에 활용한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "87-89",
+        "table_or_figure": "Table 3-39; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "인공지능 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "인공지능 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-8.4",
+      "pillar": "automation-integration",
+      "pillar_ko": "자동화 및 통합",
+      "function": "automation-integration",
+      "function_ko": "자동화 및 통합",
+      "capability": "security-integration-automation-response",
+      "capability_ko": "보안 통합, 자동화 및 대응",
+      "definition": "보안 도구·데이터·대응 절차를 통합하고 승인된 자동화를 수행한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "87-89",
+        "table_or_figure": "Table 3-39; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "보안 통합, 자동화 및 대응 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "보안 통합, 자동화 및 대응 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-8.5",
+      "pillar": "automation-integration",
+      "pillar_ko": "자동화 및 통합",
+      "function": "automation-integration",
+      "function_ko": "자동화 및 통합",
+      "capability": "data-exchange-standardization",
+      "capability_ko": "데이터 교환 표준화",
+      "definition": "구성요소 사이의 보안 데이터 형식과 교환 방식을 표준화한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "87-89",
+        "table_or_figure": "Table 3-39; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "데이터 교환 표준화 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "데이터 교환 표준화 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    },
+    {
+      "id": "ZT-8.6",
+      "pillar": "automation-integration",
+      "pillar_ko": "자동화 및 통합",
+      "function": "automation-integration",
+      "function_ko": "자동화 및 통합",
+      "capability": "security-operations-coordination-incident-response",
+      "capability_ko": "보안 운영 조정 및 사고 대응",
+      "definition": "보안 운영 주체와 사고 대응 절차를 조정한다.",
+      "source": {
+        "document": "제로트러스트 가이드라인 2.0",
+        "printed_page": "87-89",
+        "table_or_figure": "Table 3-39; capability relationship also in Table 3-10, pp. 54-55"
+      },
+      "maturity": {
+        "traditional": "SOURCE_DEFINED_NOT_ASSESSED",
+        "initial": "SOURCE_DEFINED_NOT_ASSESSED",
+        "advanced": "SOURCE_DEFINED_NOT_ASSESSED",
+        "optimal": "SOURCE_DEFINED_NOT_ASSESSED"
+      },
+      "implementation_examples": [
+        "보안 운영 조정 및 사고 대응 정책·구성",
+        "비운영 랩의 최소 범위 구현"
+      ],
+      "validation_methods": [
+        "보안 운영 조정 및 사고 대응 설정 검토",
+        "승인·거부·예외 경로의 통제된 테스트"
+      ],
+      "evidence_types": [
+        "DESIGN",
+        "CONFIGURATION",
+        "RUNTIME",
+        "CONTINUOUS"
+      ],
+      "repository_status": "GAP_IDENTIFIED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "current_maturity": "UNASSESSED",
+      "assessment_confidence": "LOW",
+      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "evidence_authority": [
+        "MISSING"
+      ]
+    }
+  ]
+}

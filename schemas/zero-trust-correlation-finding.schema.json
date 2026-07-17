@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["finding_id", "rule_id", "rule_version", "timestamp", "severity", "confidence", "source_event_ids", "response_actions", "summary"],
+  "additionalProperties": false,
+  "properties": {
+    "finding_id": {"type": "string"},
+    "rule_id": {"type": "string", "pattern": "^ZTC-[A-Z]+-[0-9]{3}$"},
+    "rule_version": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "severity": {"enum": ["INFO", "LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+    "confidence": {"enum": ["LOW", "MEDIUM", "HIGH"]},
+    "source_event_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "response_actions": {"type": "array", "items": {"enum": ["LOG", "ALERT", "CREATE_EVIDENCE", "REQUIRE_REVIEW"]}},
+    "summary": {"type": "string"}
+  }
+}

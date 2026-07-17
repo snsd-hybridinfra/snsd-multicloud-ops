@@ -285,6 +285,21 @@ Test-FileContains `
     -RequiredText @("Tracking File Update Rule") `
     -Description "AGENTS.md contains Tracking File Update Rule"
 
+Write-Host "Zero Trust governance validation result:"
+$powerShellExecutable = (Get-Process -Id $PID).Path
+$zeroTrustValidator = Join-Path -Path $PSScriptRoot -ChildPath "validate-zero-trust.ps1"
+$zeroTrustOutput = @(& $powerShellExecutable -NoProfile -ExecutionPolicy Bypass -File $zeroTrustValidator 2>&1)
+foreach ($line in $zeroTrustOutput) {
+    Write-Host $line
+}
+if ($LASTEXITCODE -eq 0) {
+    Write-Pass "Zero Trust governance validation passed."
+}
+else {
+    Write-Fail "Zero Trust governance validation failed with exit code $LASTEXITCODE."
+    $missing.Add("Zero Trust governance validation failed") | Out-Null
+}
+
 if ($missing.Count -eq 0) {
     Write-Pass "Repository structure validation passed."
     exit 0

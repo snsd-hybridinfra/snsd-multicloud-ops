@@ -2,9 +2,12 @@
 
 ## Current Repository State
 
-The canonical S001-S050 set is defined. S002 is `VALIDATED` with `READY`
-sanitized EVE-NG network-foundation evidence; all unrelated scenario statuses
-remain unchanged. No service VM or cloud integration is implemented.
+The canonical S001-S050 set is defined. S002 and S005 are `VALIDATED` with
+`READY` sanitized evidence. S005 combines operator-executed deployment and
+data-plane evidence with later Codex-executed forced-command read-only
+corroboration. It covers the non-production OpenStack AIO control plane and one
+end-to-end provider/tenant/Floating-IP network path; all unrelated scenario
+statuses remain unchanged.
 Repository/document validation is tracked separately and cannot advance a
 scenario lifecycle state.
 

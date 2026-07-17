@@ -1,19 +1,19 @@
 # Prerequisites
 
-## Required Repository State
+## Required Previous Scenarios
 
-- The repository can be read locally.
-- The S005 scenario and evidence directories exist.
-- PowerShell can run the validation script.
+- S002 EVE-NG On-Prem Routing Validation, including VLAN 70 gateway and NAT/PAT evidence.
 
-## Optional Tool
+## Required Platform Conditions
 
-- Terraform is optional for the formatting check. Its absence produces a warning and does not fail required repository validation.
+- Ubuntu Server 24.04 disposable AIO VM with nested virtualization.
+- Dedicated management and provider interfaces.
+- Kolla-Ansible configured for OpenStack 2026.1 and Open vSwitch.
+- Passwordless non-interactive privilege escalation for the controlled deployment workflow.
+- Kolla virtual environment dependencies installed in the interpreter actually used by Kolla-Ansible.
 
-## Not Required
+## Required Access Assumptions
 
-- OpenStack CLI, login, `clouds.yaml`, or openrc.
-- Provider credentials, authentication URLs, or account identifiers.
-- Terraform initialization, backend access, state, plan, or cloud access.
-
-S001 records local toolchain readiness. S006 owns provider validation.
+- Authentication material and SSH keys are managed outside the repository.
+- The operator runs Kolla/OpenStack commands in the lab and supplies only sanitized results.
+- No `clouds.yaml`, openrc content, token value, password, or key is copied into evidence.

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Root-owned forced-command dispatcher template for the non-production EVE-NG
+# validation endpoint. Install outside the repository only after review.
+readonly REQUESTED_COMMAND="${SSH_ORIGINAL_COMMAND:-}"
+
+case "$REQUESTED_COMMAND" in
+    validate-host)
+        exec /usr/bin/sudo -n /usr/local/sbin/validate-eve-readonly
+        ;;
+    "")
+        printf '%s\n' "Interactive shell access is disabled."
+        exit 1
+        ;;
+    *)
+        printf '%s\n' "Command is not permitted."
+        exit 1
+        ;;
+esac

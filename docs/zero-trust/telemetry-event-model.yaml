@@ -1,0 +1,36 @@
+{
+  "event": {
+    "schema_version": "1.0",
+    "event_id": "<stable-event-id>",
+    "timestamp": "<source-utc-timestamp>",
+    "received_timestamp": "<ingestion-utc-timestamp>",
+    "source_type": "<approved-source-adapter>",
+    "source_name": "<bounded-source-name>",
+    "environment": "NON_PRODUCTION_LAB",
+    "event_category": "<normalized-category>",
+    "event_type": "<normalized-type>",
+    "severity": "<INFO|LOW|MEDIUM|HIGH|CRITICAL>",
+    "action": "<observed-action-or-null>",
+    "outcome": "<PASS|WARN|FAIL|UNKNOWN>",
+    "actor": null,
+    "target": null,
+    "network": null,
+    "process": null,
+    "authentication": null,
+    "authorization": null,
+    "policy": null,
+    "validation": {"check": "<sanitized-check>", "result": "<outcome>"},
+    "correlation": null,
+    "evidence": {"authority": "<evidence-authority>"},
+    "sensitivity": "SANITIZED",
+    "sanitization": {"status": "APPLIED"},
+    "raw_reference": "<ignored-runtime-relative-reference>"
+  },
+  "rules": [
+    "Use UTC for event and ingestion timestamps while preserving an available source timestamp.",
+    "Missing source values remain null and are never invented.",
+    "Actor fields are null for system events unless an approved source supplies a sanitized identity.",
+    "Tokens, secrets, private keys, credential files, complete dynamic identifiers, and raw personal activity are prohibited.",
+    "Stable event identifiers are derived from sanitized content and bounded source metadata."
+  ]
+}

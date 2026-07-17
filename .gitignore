@@ -83,3 +83,14 @@ __pycache__/
 
 # Local-only non-authoritative evidence quarantine
 quarantine/
+
+# Restricted validator local artifacts
+.ssh/
+*.raw.txt
+*.raw.log
+evidence/**/raw/
+tools/openstack-validator/*.rendered
+tools/openstack-validator/*.local
+
+# Local-only restricted Zero Trust runtime output
+.runtime/zero-trust/

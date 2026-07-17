@@ -1,6 +1,6 @@
 # ADR-0001: Multi-Cloud Network and Platform Baseline
 
-- Status: PLANNED (decision baseline only; not implemented)
+- Status: ACCEPTED (EVE-NG and one OpenStack AIO network path partially implement the baseline)
 - Date: 2026-07-15
 - Decision Type: Architecture and planning normalization
 - Implementation Effect: None by itself
@@ -27,8 +27,9 @@ service-zone migration.
 7. Planned aggregates are `10.10.0.0/16` (On-Prem), `10.20.0.0/16`
    (OpenStack), `10.30.0.0/16` (AWS), `10.40.0.0/16` (Azure), and optional
    `10.255.0.0/16` (WireGuard).
-8. The OpenStack provider/external CIDR is discovery-required and must not be
-   invented.
+8. The OpenStack provider/external CIDR must be discovered from the lab rather
+   than invented. The S005 run established the approved VLAN 70 provider
+   subnet while dynamic router and Floating IP values remain masked.
 9. Actual bootstrap runtime CIDR/host addresses and the external address remain
    masked under repository policy.
 10. Infrastructure follows Plan, Apply, Validate, sanitized evidence, Destroy,
@@ -55,13 +56,15 @@ service-zone migration.
   after service-zone migration.
 - S021/S022 are not repeated solely for renumbering unless runtime configuration
   changes.
-- No scenario status changes merely because this ADR is accepted.
+- No scenario status changes merely because this ADR is accepted; S002 and
+  S005 advance only through their separate evidence packages.
 
 ## Validation and Review
 
 Review the architecture documents for internal consistency, run repository
-validators, and repeat CIDR conflict checks before any apply. This ADR is a
-planning decision, not implementation evidence.
+validators, and repeat CIDR conflict checks before any apply. This ADR remains
+a decision record, not implementation evidence; runtime evidence is held by
+S002 and S005.
 
 ## Non-Production Disclaimer
 

@@ -1,0 +1,25 @@
+ZT-VIS-001 live telemetry validation
+Execution date: 2026-07-17
+Execution authority: CODEX_EXECUTED_LIVE_RUNTIME
+Architecture: bounded local JSONL normalization and deterministic correlation
+
+[PASS] OpenStack restricted-validator collection and normalization succeeded.
+[PASS] EVE-NG restricted-validator collection and normalization succeeded.
+[PASS] Router restricted-validator collection and normalization succeeded.
+[PASS] Repository validator collection and normalization succeeded.
+[PASS] Seven deterministic, non-blocking rules loaded.
+[PASS] Live correlation completed with zero findings.
+[PASS] A controlled failure fixture produced one expected finding.
+[PASS] Telemetry source-health validation passed.
+
+Normalized events: 164
+Rejected events: 0
+Live findings: 0
+Controlled fixture findings: 1
+PASS count: 8
+WARN count: 0
+FAIL count: 0
+Exit code: 0
+
+No credential file, token, private key, raw remote configuration, personal
+workstation activity, or infrastructure mutation was collected or performed.

@@ -1,12 +1,14 @@
 # Cloud Cost Guardrails
 
-**Status: PLANNED — no AWS, Azure, or OpenStack resource exists.**
+**Status: ACTIVE PLANNING BOUNDARY — one small OpenStack Nova workload and one
+Floating IP path were operator-validated; AWS and Azure remain not started.**
 
 ## Purpose
 
 AWS and Azure are minimum, credit-bounded validation environments. OpenStack is
-the private-cloud validation axis. No document authorizes provider spend or
-proves that a resource exists.
+the private-cloud validation axis. S005 proves only the supplied single-node
+lab result; this document does not authorize provider spend or additional
+resource creation.
 
 ## Resource Limits
 

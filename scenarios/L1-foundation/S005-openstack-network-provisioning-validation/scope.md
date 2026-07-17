@@ -2,31 +2,28 @@
 
 ## Included
 
-- OpenStack private network and subnet Terraform definitions.
-- External network reference placeholder.
-- Router and router interface definitions.
-- Baseline security group and one management rule placeholder.
-- Safe non-production example CIDRs, documentation DNS address, and metadata tags.
-- Local checks for required files, resource blocks, unsafe files, authentication artifacts, backend blocks, account assignments, and credential-like content.
-- Optional `terraform fmt -check` when Terraform is locally available.
-- Generated local log and Markdown summary evidence.
+- Kolla-Ansible AIO deployment completion in a disposable lab.
+- Keystone token issuance without retaining the token value.
+- Nova service and hypervisor health.
+- Neutron agent health and router/DHCP namespace presence.
+- One flat external provider network on `physnet1` and one tenant network.
+- Neutron router, image, flavor, key-pair reference, one instance, and one Floating IP state.
+- EVE-NG VLAN 70 to provider-network reachability.
+- Instance gateway and outbound public IPv4 reachability.
+- Open vSwitch `br-tun`, `br-int`, `br-ex`, patch-port, and provider-NIC mapping.
+- Normalized, sanitized operator-supplied evidence dated 2026-07-16.
 
 ## Excluded
 
-- OpenStack authentication, CLI execution, or cloud API access.
-- `clouds.yaml`, openrc, provider credentials, authentication URLs, project IDs, tenant IDs, usernames, passwords, tokens, and application credentials.
-- Provider initialization or download.
-- `terraform init`, `validate`, `plan`, `apply`, or `destroy` execution.
-- Real variable files, backend configuration, state, public IPs, or account-specific values.
-- Real OpenStack resource creation, modification, lookup, or deletion.
-- Terraform provider validation, which belongs to S006.
-- OpenStack security group validation, which belongs to S016.
-- Terraform drift detection, which belongs to S041.
-- Cost guardrail validation, which belongs to S045.
-- OpenStack multi-node HA, Ceph, Octavia, and production-grade private cloud HA.
+- Repository-driven OpenStack changes or credential access.
+- Raw console output, `clouds.yaml`, openrc, passwords, tokens, keys, UUIDs, MAC addresses, and unmasked runtime addresses.
+- Terraform reproduction, provider authentication, idempotency, plan/apply/destroy, and state.
+- Detailed Security Group rule validation, which belongs to S016.
+- Cinder, Ceph, Heat, Octavia, Swift, Magnum, HA, multi-node control plane, and production hardening.
+- Backup/restore, monitoring, AWS/Azure, and Kubernetes integration.
 
 ## Assumptions
 
-- Definitions are non-production repository artifacts only.
-- The external network is represented only by `<external-network-name>`.
-- Later provider or cloud execution requires a separately approved scenario.
+- The operator-supplied execution narrative is authoritative for the observed run.
+- Provider and tenant CIDRs are approved lab design values; dynamic addresses use placeholders.
+- Kolla-generated authentication material remains outside the repository.

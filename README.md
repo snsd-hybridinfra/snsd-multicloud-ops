@@ -2,22 +2,33 @@
 
 ## Current Repository Truth State
 
-- Status: **EVE-NG NETWORK FOUNDATION VALIDATED / S002 READY**
+- Status: **EVE-NG NETWORK FOUNDATION AND OPENSTACK AIO NETWORK PATH VALIDATED**
 - The EVE-NG host, one router, one Layer-2 switch, six VLAN gateways,
   Router-on-a-Stick, NAT/PAT, and a temporary directional ACL test are
   operator-confirmed implemented.
-- Service VM, OpenStack, Kubernetes, MariaDB, monitoring, backup, AWS, and
-  Azure integration remain `NOT_STARTED`.
-- S002 has READY sanitized E001-E014 runtime evidence; all unrelated scenario
-  statuses remain unchanged.
+- A non-production Kolla-Ansible OpenStack AIO control plane and one
+  provider/tenant/Floating-IP path are operator-validated under S005.
+- S002 and S005 have `READY` sanitized evidence; Kubernetes, MariaDB,
+  monitoring, backup, AWS, Azure, Terraform reproduction, HA, and persistent
+  storage remain unvalidated.
 - Local repository/document validators check structure and safety only. Their
   success is not infrastructure or scenario validation.
 
 **한국어 제목:** SNSD 시나리오 기반 멀티클라우드 보안 운영 검증 플랫폼
 
-Scenario-based planning repository for a future multi-cloud secure operations
-validation platform. It currently defines intended criteria and evidence paths;
-it does not demonstrate deployed infrastructure or completed runtime checks.
+Scenario-based portfolio repository for a non-production multi-cloud secure
+operations validation platform. It records planned criteria and sanitized
+operator-executed lab evidence without storing credentials or raw runtime data.
+
+## Zero Trust Guideline 2.0 Positioning
+
+This repository is designed to align hybrid and multicloud operational
+capabilities with the Korean Zero Trust Guideline 2.0. Capability alignment,
+implementation status, runtime validation, evidence level, and maturity
+assessment are tracked separately. This is not a claim of full compliance,
+complete implementation, certification, or organization-wide maturity.
+
+See the [Zero Trust Guideline 2.0 framework](docs/zero-trust/README.md).
 
 ## Validation Model
 
@@ -56,6 +67,17 @@ These local PowerShell commands validate repository/document structure only.
 They do not produce authoritative scenario evidence and do not run Terraform,
 kubectl, cloud CLIs, or live infrastructure queries.
 
+## Current OpenStack Result
+
+- Kolla-Ansible single-node AIO deployment: operator-validated.
+- Core services, Nova compute, hypervisor, and Neutron agents: healthy in the supplied results.
+- EVE-NG VLAN 70 -> `physnet1` -> `br-ex` -> Neutron router -> Floating IP -> tenant instance: validated.
+- Tenant instance gateway and outbound public IPv4 reachability: validated.
+- Scope: disposable non-production single-node lab; no HA, persistent storage, production hardening, Terraform reproduction, or automated cleanup claim.
+
+See [S005](scenarios/L1-foundation/S005-openstack-network-provisioning-validation/README.md)
+and its [validation record](evidence/L1-foundation/S005-openstack-network-provisioning-validation/validation.md).
+
 ## Authoritative Lab Architecture References
 
 The non-production multi-cloud lab baseline is defined in:
@@ -73,6 +95,7 @@ The non-production multi-cloud lab baseline is defined in:
 - [Lab execution profiles](docs/lab-execution-profiles.md)
 - [Storage and snapshot policy](docs/storage-and-snapshot-policy.md)
 - [ADR-0001](docs/adr/ADR-0001-multicloud-network-and-platform-baseline.md)
+- [ADR-0002 runtime evidence boundary](docs/adr/0002-non-production-runtime-evidence-boundary.md)
 - [Evidence collection guide](docs/lab-evidence-collection-guide.md)
 - [Evidence sanitization rules](docs/lab-sanitization-rules.md)
 

@@ -1,6 +1,7 @@
 # Authoritative Multi-Cloud Lab Architecture Baseline
 
-**Status: PLANNED — no described platform or network component is implemented.**
+**Status: PARTIALLY IMPLEMENTED — EVE-NG routing and the OpenStack AIO
+provider/tenant network path are validated; later platforms remain planned.**
 
 ## Purpose and Authority
 
@@ -37,7 +38,7 @@ local-service stack. Capacity planning is not VM implementation evidence.
 | Axis | Authoritative Role | Boundary |
 |---|---|---|
 | EVE-NG / On-Prem | Network-control axis for zoning, routing, ACLs, and network failure paths | Does not become the application or database platform |
-| OpenStack | Private Cloud axis using Neutron, Security Groups, Floating IPs, Terraform, drift, and cleanup | Provider/external CIDR must be discovered, never invented |
+| OpenStack | Private Cloud axis; single-node AIO, Neutron provider/tenant networks, router, one instance, and one Floating IP are operator-validated | Terraform reproduction, Security Group policy, drift, cleanup, HA, storage, and hardening remain unvalidated |
 | AWS | Minimal Public Cloud A validation environment | One temporary EC2 maximum; free-tier/credit bounded; not a full runtime platform |
 | Azure | Minimal Public Cloud B validation environment | One temporary VM maximum; free-tier/credit bounded; not a full runtime platform |
 | Local Kubernetes | Application runtime for workloads, Ingress, reverse proxy, load balancing, and controlled failures | Not EKS/AKS and not a public management plane |
@@ -93,13 +94,15 @@ occurred.
 
 ## Evidence State
 
-No bootstrap, flat-network, service-zone, cloud, Kubernetes, MariaDB, monitoring,
-backup, or recovery result is authoritative. Previous static, sample, synthetic,
-or pasted artifacts are quarantined as non-evidence. Future observed execution
-must write sanitized evidence to the existing S001-S050 paths.
+- S002 contains the validated EVE-NG routing/NAT/ACL foundation evidence.
+- S005 contains operator-executed OpenStack AIO control-plane and end-to-end
+  provider/tenant/Floating-IP evidence normalized by Codex.
+- Kubernetes, MariaDB, monitoring, backup/recovery, AWS, and Azure remain
+  unvalidated.
+- Previous static, sample, synthetic, or provenance-uncertain artifacts remain
+  quarantined as non-evidence.
 
-This planned baseline does not create S051, alter acceptance criteria, or claim
-implementation.
+This baseline does not create S051 or imply completion of unrelated scenarios.
 
 ## Non-Production Disclaimer
 

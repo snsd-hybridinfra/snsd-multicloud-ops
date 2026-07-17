@@ -2,17 +2,27 @@
 
 ## Preparation
 
-1. Confirm no real tfvars, tfstate, backend, credentials, OpenStack account assignments, `clouds.yaml`, or openrc files are present.
-2. Confirm the validation paths are inside the repository.
+1. Confirm Profile B/C capacity limits and nested virtualization.
+2. Confirm the EVE-NG VLAN 70 provider path and one-small-Nova-instance ceiling.
+3. Keep credentials, generated authentication files, and keys outside the repository.
 
-## Execution Steps
+## Executed Workflow
 
-1. Run `tools/validate-openstack-network-provisioning.ps1` from the repository root.
-2. Review V001-V010 as required repository checks.
-3. Review V011-V012 as informational Terraform readiness checks.
-4. Inspect the generated log and summary.
-5. Run repository structure and scenario quality validation.
+1. Run Kolla-Ansible bootstrap and prechecks.
+2. Pull the approved lab images and deploy the AIO services.
+3. Generate post-deploy client configuration with the explicit inventory path.
+4. Confirm authentication, service registration, endpoints, Nova health, hypervisor state, and Neutron agents.
+5. Create the provider and tenant network resources, router, image, minimal flavor, Security Group reference, key-pair reference, instance, and Floating IP.
+6. Validate namespaces, Open vSwitch bridges/ports, resource states, EVE-NG ingress, instance gateway reachability, public IPv4 egress, and cloud-init completion.
+7. Normalize the operator-supplied results and remove all sensitive/dynamic values before writing evidence.
 
-## Safety Boundary
+## Evidence Capture
 
-The execution reads local files and may run `terraform fmt -check` only. It does not run OpenStack CLI, authenticate, read credential sources or kubeconfig, initialize providers, or execute Terraform validation, planning, apply, or destroy operations.
+Only the sanitized result categories and verdicts are retained. Raw command
+output, token values, authentication files, IDs, MAC addresses, and dynamic
+addresses are not committed.
+
+## Planned Follow-Up
+
+Terraform reproduction, idempotency, destroy/recreate, Security Group policy,
+backup, monitoring, and hardening remain planned under their owning scenarios.

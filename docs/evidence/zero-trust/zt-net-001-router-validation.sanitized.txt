@@ -1,0 +1,42 @@
+[PASS] Expected router identity detected
+[PASS] Cisco IOS family is readable
+[PASS] Router uptime is readable
+[PASS] Router clock output is readable
+[PASS] Required interface FastEthernet0/0 is operational
+[PASS] Required interface FastEthernet0/1 is operational
+[PASS] Required interface FastEthernet0/1.20 is operational
+[PASS] Required interface FastEthernet0/1.30 is operational
+[PASS] Required interface FastEthernet0/1.40 is operational
+[PASS] Required interface FastEthernet0/1.50 is operational
+[PASS] Required interface FastEthernet0/1.60 is operational
+[PASS] Required interface FastEthernet0/1.70 is operational
+[PASS] VLAN 20 802.1Q subinterface is configured
+[PASS] VLAN 30 802.1Q subinterface is configured
+[PASS] VLAN 40 802.1Q subinterface is configured
+[PASS] VLAN 50 802.1Q subinterface is configured
+[PASS] VLAN 60 802.1Q subinterface is configured
+[PASS] VLAN 70 802.1Q subinterface is configured
+[PASS] Provider VLAN gateway configuration is present
+[PASS] Connected route for VLAN 20 is present
+[PASS] Connected route for VLAN 30 is present
+[PASS] Connected route for VLAN 40 is present
+[PASS] Connected route for VLAN 50 is present
+[PASS] Connected route for VLAN 60 is present
+[PASS] Connected route for VLAN 70 is present
+[PASS] Default route is present
+[PASS] No unexpected dynamic routing process is active
+[PASS] NAT outside interface is defined
+[PASS] NAT inside interfaces are defined
+[PASS] NAT overload rule references ACL 10
+[PASS] NAT ACL 10 resolves
+[PASS] NAT runtime statistics are readable
+[PASS] NAT runtime is ACTIVE
+[WARN] No persistent interface ACL binding is present; only macro VLAN separation is observable
+[PASS] Segmentation classification: SEGMENTATION_CONFIGURATION_ONLY
+[PASS] NAT permit logic is parseable
+[PASS] OpenStack router external path fixed reachability: 100%
+[PASS] OpenStack Floating IP path fixed reachability: 100%
+[PASS] Static route configuration was read without modification
+PASS count: 38
+WARN count: 1
+FAIL count: 0

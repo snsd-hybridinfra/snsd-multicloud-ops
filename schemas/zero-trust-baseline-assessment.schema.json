@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-baseline-assessment.schema.json",
+  "title": "SNSD Zero Trust Baseline Assessment",
+  "type": "object",
+  "required": ["assessment", "summary", "capabilities"],
+  "properties": {
+    "assessment": {
+      "type": "object",
+      "required": ["scope", "environment", "date", "evaluator", "authority", "limitations"],
+      "properties": {
+        "scope": { "type": "string", "minLength": 1 },
+        "environment": { "type": "string", "minLength": 1 },
+        "date": { "type": "string", "format": "date" },
+        "evaluator": { "type": "string", "minLength": 1 },
+        "authority": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "limitations": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "required": ["total_capabilities", "validated", "partially_validated", "implemented", "mapped", "planned", "unassessed", "not_applicable", "gap_identified"],
+      "properties": {
+        "total_capabilities": { "type": "integer", "minimum": 0 },
+        "validated": { "type": "integer", "minimum": 0 },
+        "partially_validated": { "type": "integer", "minimum": 0 },
+        "implemented": { "type": "integer", "minimum": 0 },
+        "mapped": { "type": "integer", "minimum": 0 },
+        "planned": { "type": "integer", "minimum": 0 },
+        "unassessed": { "type": "integer", "minimum": 0 },
+        "not_applicable": { "type": "integer", "minimum": 0 },
+        "gap_identified": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 52,
+      "maxItems": 52,
+      "items": { "$ref": "#/$defs/assessmentRecord" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "repositoryStatus": {
+      "enum": ["REFERENCE_ONLY", "MAPPED", "PLANNED", "IMPLEMENTED", "PARTIALLY_VALIDATED", "VALIDATED", "GAP_IDENTIFIED", "NOT_APPLICABLE"]
+    },
+    "maturityValue": {
+      "enum": ["UNASSESSED", "TRADITIONAL", "INITIAL", "ADVANCED", "OPTIMAL", "NOT_APPLICABLE"]
+    },
+    "evidenceLevel": {
+      "enum": ["NONE", "DESIGN", "CONFIGURATION", "RUNTIME", "CONTINUOUS"]
+    },
+    "evidenceAuthority": {
+      "enum": ["USER_EXECUTED_RUNTIME", "CODEX_EXECUTED_LOCAL", "CODEX_EXECUTED_LIVE_RUNTIME", "DESIGN_ONLY", "CONFIGURATION_ONLY", "MISSING"]
+    },
+    "assessmentRecord": {
+      "type": "object",
+      "required": ["id", "current_maturity", "target_maturity", "implementation_status", "validation_status", "evidence_level", "evidence_authority", "confidence", "evidence", "gaps", "next_action"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^ZT-(?:[1-6]\\.[1-9][0-9]*\\.[1-9][0-9]*|[78]\\.[1-9][0-9]*)$" },
+        "current_maturity": { "$ref": "#/$defs/maturityValue" },
+        "target_maturity": { "$ref": "#/$defs/maturityValue" },
+        "implementation_status": { "$ref": "#/$defs/repositoryStatus" },
+        "validation_status": { "$ref": "#/$defs/repositoryStatus" },
+        "evidence_level": { "$ref": "#/$defs/evidenceLevel" },
+        "evidence_authority": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/evidenceAuthority" } },
+        "confidence": { "enum": ["LOW", "MEDIUM", "HIGH"] },
+        "evidence": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "gaps": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "next_action": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

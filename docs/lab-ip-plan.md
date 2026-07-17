@@ -1,7 +1,7 @@
 # Authoritative Lab IP Address and Reservation Plan
 
-**Status: EVE-NG gateways and S002 evidence VALIDATED; service hosts and cloud
-integrations remain PLANNED/NOT_STARTED.**
+**Status: EVE-NG gateways (S002) and the OpenStack provider/tenant path (S005)
+VALIDATED; other service hosts and cloud integrations remain planned.**
 
 ## Status and Safety Rule
 
@@ -16,7 +16,7 @@ masked under repository policy.
 |---|---|---|---|
 | Bootstrap Management | `<bootstrap-management-cidr>` | Existing local network; exact value not committed | Installation, repair, initial evidence, and migration path |
 | On-Prem service zones | `10.10.0.0/16` | Router-on-a-Stick gateways implemented | EVE-NG-controlled DMZ, Kubernetes, database, monitoring, backup, and OpenStack provider zones |
-| OpenStack private cloud | `10.20.0.0/16` | Planned reservation | Tenant/private-cloud address space |
+| OpenStack private cloud | `10.20.0.0/16` | Partially implemented | `10.20.10.0/24` tenant network validated; other subnets remain reserved |
 | AWS Public Cloud A | `10.30.0.0/16` | Planned reservation | Minimum VPC validation environment |
 | Azure Public Cloud B | `10.40.0.0/16` | Planned reservation | Minimum VNet validation environment |
 | Optional WireGuard | `10.255.0.0/16` | Reserved / optional | Future overlay only; not an implementation dependency |
@@ -54,7 +54,7 @@ masked.
 | Database | `10.10.40.0/24` | `10.10.40.1` | Primary `10.10.40.10`; replica `10.10.40.11` | Internal data platform |
 | Monitoring | `10.10.50.0/24` | `10.10.50.1` | Monitoring `10.10.50.10` | Metrics, dashboards, and probes |
 | Backup | `10.10.60.0/24` | `10.10.60.1` | Backup `10.10.60.10` | Backup repository and restore staging |
-| VLAN 70 / OpenStack Provider | `10.10.70.0/24` | `10.10.70.1` | None | Gateway implemented; OpenStack integration not started |
+| VLAN 70 / OpenStack Provider | `10.10.70.0/24` | `10.10.70.1` | Controlled pool `10.10.70.100-10.10.70.199` | Gateway and OpenStack provider/Floating-IP integration validated |
 
 Within each `/24`, `.1` is implemented as the EVE router gateway, `.2-.9` for network
 services, `.10-.19` for fixed role hosts, `.20-.99` for later fixed lab roles,
@@ -65,8 +65,8 @@ reservations do not prove that any service VM exists.
 
 | Platform | Network | Purpose | Reservation Rule |
 |---|---|---|---|
-| OpenStack | `10.20.10.0/24` | Primary tenant subnet | Instance addresses remain private and sanitized |
-| OpenStack | `TO_BE_DISCOVERED_FROM_REAL_ENVIRONMENT` | Provider/external network | Do not invent or commit a provider CIDR before discovery and sanitization |
+| OpenStack | `10.20.10.0/24` | Primary tenant subnet | Validated; instance address remains masked |
+| OpenStack | `10.10.70.0/24` | Provider/external network | Discovered and validated; dynamic router/Floating IP values remain masked |
 | AWS | `10.30.10.0/24` | Public validation subnet | Temporary public path only when approved |
 | AWS | `10.30.20.0/24` | Private validation subnet | Preferred temporary compute placement where practical |
 | AWS | `10.30.30.0/24` | Reserved subnet | No default deployment |
@@ -98,7 +98,7 @@ paths before removing bootstrap connectivity.
 | OpenStack vs AWS vs Azure aggregates | PASS - distinct `/16` ranges |
 | Optional `10.255.0.0/16` vs defined aggregates | PASS - no overlap |
 | Bootstrap network vs planned aggregates | LOCAL CHECK REQUIRED because committed bootstrap CIDR is masked |
-| OpenStack provider network vs all aggregates | DISCOVERY REQUIRED before routing or allocation |
+| OpenStack provider `10.10.70.0/24` vs tenant/public-cloud aggregates | PASS - provider is inside the On-Prem aggregate and distinct from tenant/AWS/Azure ranges |
 
 The conflict check must be repeated against the host LAN, VPN clients,
 hypervisor networks, EVE-NG management, cloud provider network, and any overlay

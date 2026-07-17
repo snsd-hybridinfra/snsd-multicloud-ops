@@ -1,0 +1,363 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+readonly OPENSTACK="/opt/openstack-client/bin/openstack"
+readonly DOCKER="/usr/bin/docker"
+readonly IP="/usr/sbin/ip"
+readonly CURL="/usr/bin/curl"
+readonly CLOUD_CONFIG="/etc/kolla/clouds.yaml"
+readonly CLOUD_PROFILE="<OPENSTACK_CLOUD_PROFILE>"
+readonly PROVIDER_NETWORK="<PROVIDER_NETWORK>"
+readonly TENANT_NETWORK="<TENANT_NETWORK>"
+readonly ROUTER_NAME="<ROUTER_NAME>"
+readonly IMAGE_NAME="<IMAGE_NAME>"
+readonly SERVER_NAME="<SERVER_NAME>"
+readonly PROVIDER_INTERFACE="<PROVIDER_INTERFACE>"
+readonly OVS_DB_CONTAINER="openvswitch_db"
+
+export OS_CLIENT_CONFIG_FILE="$CLOUD_CONFIG"
+export OS_CLOUD="$CLOUD_PROFILE"
+
+PASS_COUNT=0
+WARN_COUNT=0
+FAIL_COUNT=0
+
+pass() {
+    printf '[PASS] %s\n' "$1"
+    PASS_COUNT=$((PASS_COUNT + 1))
+}
+
+fail() {
+    printf '[FAIL] %s\n' "$1"
+    FAIL_COUNT=$((FAIL_COUNT + 1))
+}
+
+warn() {
+    printf '[WARN] %s\n' "$1"
+    WARN_COUNT=$((WARN_COUNT + 1))
+}
+
+check_equal() {
+    local description="$1"
+    local actual="$2"
+    local expected="$3"
+
+    if [[ "$actual" == "$expected" ]]; then
+        pass "$description"
+    else
+        fail "$description"
+    fi
+}
+
+os() {
+    "$OPENSTACK" --os-cloud "$CLOUD_PROFILE" "$@"
+}
+
+ovs() {
+    "$DOCKER" exec "$OVS_DB_CONTAINER" ovs-vsctl "$@"
+}
+
+printf '%s\n' \
+    '==================================================' \
+    ' SNSD OpenStack Live Read-Only Validation' \
+    '=================================================='
+
+for required_path in "$OPENSTACK" "$DOCKER" "$IP" "$CURL"; do
+    if [[ ! -x "$required_path" ]]; then
+        fail "Required validator executable is unavailable"
+    fi
+done
+if [[ ! -r "$CLOUD_CONFIG" ]]; then
+    fail "OpenStack cloud configuration is unavailable"
+fi
+if (( FAIL_COUNT > 0 )); then
+    printf 'PASS: %d\nWARN: %d\nFAIL: %d\n' "$PASS_COUNT" "$WARN_COUNT" "$FAIL_COUNT"
+    exit 2
+fi
+
+if [[ -x "$OPENSTACK" ]]; then
+    pass "OpenStack client is installed"
+else
+    fail "OpenStack client is unavailable"
+fi
+
+if [[ -r "$CLOUD_CONFIG" ]]; then
+    pass "OpenStack cloud configuration is readable by the root validator"
+else
+    fail "OpenStack cloud configuration is unavailable"
+fi
+
+if os token issue >/dev/null 2>&1; then
+    pass "Keystone authentication succeeded without displaying a token"
+else
+    fail "Keystone authentication failed"
+fi
+
+SERVICE_NAMES="$(os service list -f value -c Name 2>/dev/null || true)"
+for service in keystone glance nova neutron placement; do
+    if grep -qx "$service" <<<"$SERVICE_NAMES"; then
+        pass "Service registered: $service"
+    else
+        fail "Service missing: $service"
+    fi
+
+    if os endpoint list --service "$service" -f value -c ID 2>/dev/null |
+       grep -q .; then
+        pass "Endpoint registered for service: $service"
+    else
+        fail "Endpoint missing for service: $service"
+    fi
+done
+
+COMPUTE_SERVICES="$({
+    os compute service list \
+        -f value \
+        -c Binary \
+        -c Status \
+        -c State 2>/dev/null || true
+})"
+
+for binary in nova-scheduler nova-conductor nova-compute; do
+    if awk -v target="$binary" '
+        $1 == target && $2 == "enabled" && $3 == "up" { found = 1 }
+        END { exit !found }
+    ' <<<"$COMPUTE_SERVICES"; then
+        pass "$binary is enabled and up"
+    else
+        fail "$binary is not enabled and up"
+    fi
+done
+
+if os hypervisor list -f value -c State 2>/dev/null |
+   awk '
+       NF { total++; if ($1 != "up") bad++ }
+       END { exit !(total > 0 && bad == 0) }
+   '; then
+    pass "All listed hypervisors are up"
+else
+    fail "One or more hypervisors are unavailable"
+fi
+
+AGENT_OUTPUT="$({
+    os network agent list \
+        -f value \
+        -c "Agent Type" \
+        -c Alive \
+        -c State 2>/dev/null || true
+})"
+
+for agent in \
+    "Open vSwitch agent" \
+    "L3 agent" \
+    "DHCP agent" \
+    "Metadata agent"
+do
+    agent_line="$(grep -F "$agent" <<<"$AGENT_OUTPUT" | head -1 || true)"
+    if [[ -n "$agent_line" &&
+          ( "$agent_line" == *"True True"* ||
+            "$agent_line" == *":-) UP"* ) ]]; then
+        pass "Neutron agent is alive and up: $agent"
+    else
+        fail "Neutron agent is unavailable: $agent"
+    fi
+done
+
+check_equal \
+    "Provider network is ACTIVE" \
+    "$(os network show "$PROVIDER_NETWORK" -f value -c status 2>/dev/null || true)" \
+    "ACTIVE"
+check_equal \
+    "Provider network type is flat" \
+    "$(os network show "$PROVIDER_NETWORK" -f value -c 'provider:network_type' 2>/dev/null || true)" \
+    "flat"
+check_equal \
+    "Provider physical network is physnet1" \
+    "$(os network show "$PROVIDER_NETWORK" -f value -c 'provider:physical_network' 2>/dev/null || true)" \
+    "physnet1"
+
+PROVIDER_EXTERNAL="$(
+    os network show "$PROVIDER_NETWORK" \
+        -f value -c 'router:external' 2>/dev/null || true
+)"
+if [[ "${PROVIDER_EXTERNAL,,}" == "true" ]]; then
+    pass "Provider network is external"
+else
+    fail "Provider network is not external"
+fi
+
+check_equal \
+    "Tenant network is ACTIVE" \
+    "$(os network show "$TENANT_NETWORK" -f value -c status 2>/dev/null || true)" \
+    "ACTIVE"
+check_equal \
+    "Neutron router is ACTIVE" \
+    "$(os router show "$ROUTER_NAME" -f value -c status 2>/dev/null || true)" \
+    "ACTIVE"
+check_equal \
+    "Glance image is active" \
+    "$(os image show "$IMAGE_NAME" -f value -c status 2>/dev/null || true)" \
+    "active"
+check_equal \
+    "Instance is ACTIVE" \
+    "$(os server show "$SERVER_NAME" -f value -c status 2>/dev/null || true)" \
+    "ACTIVE"
+
+SERVER_ADDRESSES="$(
+    os server show "$SERVER_NAME" -f value -c addresses 2>/dev/null || true
+)"
+FIXED_IP="$(
+    grep -oE '10\.20\.10\.[0-9]+' <<<"$SERVER_ADDRESSES" |
+    head -1 || true
+)"
+FLOATING_IP="$(
+    grep -oE '10\.10\.70\.[0-9]+' <<<"$SERVER_ADDRESSES" |
+    head -1 || true
+)"
+
+if [[ -n "$FIXED_IP" ]]; then
+    pass "Tenant fixed IP is assigned"
+else
+    fail "Tenant fixed IP is missing"
+fi
+
+if [[ -n "$FLOATING_IP" ]]; then
+    pass "Floating IP is associated"
+    check_equal \
+        "Floating IP is ACTIVE" \
+        "$(os floating ip show "$FLOATING_IP" -f value -c status 2>/dev/null || true)" \
+        "ACTIVE"
+else
+    fail "Floating IP is missing"
+    fail "Floating IP status cannot be checked"
+fi
+
+if "$IP" netns list | grep -q '^qrouter-'; then
+    pass "Neutron router namespace exists"
+else
+    fail "Neutron router namespace is missing"
+fi
+
+if "$IP" netns list | grep -q '^qdhcp-'; then
+    pass "Neutron DHCP namespace exists"
+else
+    fail "Neutron DHCP namespace is missing"
+fi
+
+for bridge in br-ex br-int br-tun; do
+    if ovs br-exists "$bridge" 2>/dev/null; then
+        pass "OVS bridge exists: $bridge"
+    else
+        fail "OVS bridge is missing: $bridge"
+    fi
+done
+
+check_equal \
+    "Provider interface link state is up" \
+    "$(ovs get Interface "$PROVIDER_INTERFACE" link_state 2>/dev/null | tr -d '"' || true)" \
+    "up"
+check_equal \
+    "Provider interface administrative state is up" \
+    "$(ovs get Interface "$PROVIDER_INTERFACE" admin_state 2>/dev/null | tr -d '"' || true)" \
+    "up"
+check_equal \
+    "Provider interface maps to br-ex" \
+    "$(ovs port-to-br "$PROVIDER_INTERFACE" 2>/dev/null | tr -d '"' || true)" \
+    "br-ex"
+
+OVS_OFPORT="$(
+    ovs get Interface "$PROVIDER_INTERFACE" ofport 2>/dev/null |
+    tr -d '"' || true
+)"
+if [[ "$OVS_OFPORT" =~ ^[1-9][0-9]*$ ]]; then
+    pass "Provider interface OpenFlow port is positive"
+else
+    fail "Provider interface OpenFlow port is invalid"
+fi
+
+if ovs list-ports br-ex 2>/dev/null | grep -qx 'phy-br-ex' &&
+   ovs list-ports br-int 2>/dev/null | grep -qx 'int-br-ex' &&
+   [[ "$(ovs get Interface phy-br-ex type 2>/dev/null | tr -d '"' || true)" == "patch" ]] &&
+   [[ "$(ovs get Interface int-br-ex type 2>/dev/null | tr -d '"' || true)" == "patch" ]]; then
+    pass "phy-br-ex and int-br-ex patch path exists"
+else
+    fail "phy-br-ex and int-br-ex patch path is incomplete"
+fi
+
+UNHEALTHY_CONTAINERS="$(
+    "$DOCKER" ps --filter health=unhealthy --format '{{.Names}}' 2>/dev/null || true
+)"
+if [[ -z "$UNHEALTHY_CONTAINERS" ]]; then
+    pass "No unhealthy OpenStack Docker containers were detected"
+else
+    fail "One or more OpenStack Docker containers are unhealthy"
+fi
+
+CONSOLE_LOG="$(
+    os console log show --lines 500 "$SERVER_NAME" 2>/dev/null || true
+)"
+
+for marker in \
+    SNSD_NETWORK_VALIDATION_START \
+    SNSD_NETWORK_VALIDATION_END \
+    SNSD_CLOUD_INIT_COMPLETE
+do
+    if grep -q "$marker" <<<"$CONSOLE_LOG"; then
+        pass "Console marker exists: $marker"
+    else
+        fail "Console marker is missing: $marker"
+    fi
+done
+
+if grep -qE 'bytes from 10\.20\.10\.1' <<<"$CONSOLE_LOG"; then
+    pass "Instance reached the tenant gateway"
+else
+    fail "Tenant gateway reachability was not confirmed"
+fi
+
+if grep -qE 'bytes from 1\.1\.1\.1' <<<"$CONSOLE_LOG"; then
+    pass "Instance reached the public IPv4 endpoint"
+else
+    fail "Public IPv4 reachability was not confirmed"
+fi
+
+KEYSTONE_URL="$(
+    os endpoint list \
+        --service keystone \
+        --interface public \
+        -f value -c URL 2>/dev/null |
+    head -1 || true
+)"
+
+if [[ -n "$KEYSTONE_URL" ]] &&
+   "$CURL" -fsS --max-time 10 "$KEYSTONE_URL" >/dev/null; then
+    pass "Keystone API responds"
+else
+    fail "Keystone API did not respond"
+fi
+
+HORIZON_BASE="$(
+    sed -E 's#(https?://[^/:]+).*#\1#' <<<"$KEYSTONE_URL"
+)"
+HORIZON_HTTP_STATUS="$(
+    "$CURL" -sS --max-time 10 -o /dev/null -w '%{http_code}' \
+        "$HORIZON_BASE" 2>/dev/null || true
+)"
+if [[ "$HORIZON_HTTP_STATUS" =~ ^(200|301|302)$ ]]; then
+    pass "Horizon returned an accepted HTTP status"
+else
+    fail "Horizon returned an unexpected HTTP status"
+fi
+
+printf '\n%s\n' \
+    '==================================================' \
+    ' Validation Summary' \
+    '=================================================='
+printf 'PASS: %d\n' "$PASS_COUNT"
+printf 'WARN: %d\n' "$WARN_COUNT"
+printf 'FAIL: %d\n' "$FAIL_COUNT"
+
+if (( FAIL_COUNT > 0 )); then
+    exit 1
+fi
+
+exit 0

@@ -1,0 +1,19 @@
+{
+  "package_id": "ZT-NET-001",
+  "package_name": "Restricted Router Validation and Network Policy Evidence",
+  "implementation_status": "IMPLEMENTED",
+  "validation_status": "PARTIALLY_VALIDATED",
+  "current_maturity": "UNASSESSED",
+  "target_maturity": "INITIAL",
+  "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+  "execution_record": "docs/evidence/zero-trust/zt-net-001-validation.yaml",
+  "capability_mappings": ["ZT-3.1.1", "ZT-3.4.1", "ZT-4.1.1", "ZT-4.3.1", "ZT-7.1", "ZT-8.2"],
+  "required_command": "ssh -o BatchMode=yes snsd-r1-validator validate-routing",
+  "segmentation_classification": "SEGMENTATION_CONFIGURATION_ONLY",
+  "blockers": [],
+  "limitations": [
+    "No persistent interface access-group binding exists on SNSD-R1.",
+    "Router-only evidence proves only the router-observable portion of the OpenStack provider path.",
+    "The package does not establish complete micro-segmentation, dynamic policy, or enterprise-wide maturity."
+  ]
+}

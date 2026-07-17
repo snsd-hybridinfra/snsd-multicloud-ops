@@ -1,0 +1,78 @@
+S005 OPENSTACK AIO END-TO-END NETWORK VALIDATION
+Classification: SANITIZED NORMALIZED EVIDENCE
+Date: 2026-07-16
+Environment: NON-PRODUCTION SINGLE-NODE AIO LAB
+Runtime execution authority: USER / LAB OPERATOR
+Codex authority: LOCAL REPOSITORY NORMALIZATION AND CONSISTENCY REVIEW ONLY
+Raw output committed: NO
+
+[PASS] Kolla-Ansible workflow
+  bootstrap-servers: completed
+  prechecks: completed
+  image pull: completed
+  deploy: completed
+  post-deploy: completed using explicit <AIO_INVENTORY>
+
+[PASS] Authentication and service registration
+  Keystone token issuance: succeeded; value omitted
+  Registered services: identity, compute, placement, image, network
+  Public/internal endpoint registration through <KOLLA_INTERNAL_VIP>: present
+
+[PASS] Nova health
+  nova-scheduler: enabled / up
+  nova-conductor: enabled / up
+  nova-compute: enabled / up
+  hypervisor host: <OPENSTACK_AIO_HOST>
+  hypervisor state/type: up / QEMU
+
+[PASS] Neutron agents
+  Open vSwitch agent: alive / up
+  L3 agent: alive / up
+  DHCP agent: alive / up
+  metadata agent: alive / up
+
+[PASS] OpenStack resources
+  <PROVIDER_NETWORK>: ACTIVE; flat; physnet1; external=true
+  <TENANT_NETWORK>: ACTIVE; subnet 10.20.10.0/24; DHCP assignment observed
+  <ROUTER>: ACTIVE; provider-side external port allocated
+  <IMAGE>: active
+  <INSTANCE>: ACTIVE; fixed address <INSTANCE_FIXED_IP>
+  <FLOATING_IP>: ACTIVE and associated
+  router namespace: <ROUTER_NAMESPACE> present
+  DHCP namespace: <DHCP_NAMESPACE> present
+
+[PASS] Open vSwitch provider path
+  bridges: br-tun, br-int, br-ex present
+  patch path: int-br-ex <-> phy-br-ex present
+  provider NIC: <PROVIDER_NIC> mapped to br-ex
+  provider NIC link/admin state: up / up
+  provider NIC OpenFlow port: positive
+  router external interface and instance qvo/tap categories: present on br-int
+
+[INTERPRETATION] LOCAL(br-ex)
+  OpenFlow LOCAL port config/state: PORT_DOWN / LINK_DOWN
+  Judgment: not a forwarding failure in this architecture
+  Corroboration: physical link up, bridge mapping valid, router reachable,
+  Floating IP reachable, and tenant instance outbound connectivity successful
+  Corrective action intentionally not taken: manual br-ex link change
+
+[PASS] EVE-NG to OpenStack provider path
+  EVE-NG VLAN 70 -> <ROUTER_EXTERNAL_IP>: 4 of 5 recorded probes succeeded
+  First loss interpretation: initial ARP convergence
+  EVE-NG VLAN 70 -> <FLOATING_IP>: 5 of 5 recorded probes succeeded
+
+[PASS] Tenant instance path and cloud-init
+  SNSD_NETWORK_VALIDATION_START marker: present
+  <TENANT_GATEWAY> reachability: succeeded
+  <PUBLIC_CONNECTIVITY_TEST_ADDRESS> reachability: succeeded
+  SNSD_NETWORK_VALIDATION_END marker: present
+  SNSD_CLOUD_INIT_COMPLETE marker: present
+
+[PASS] Sanitization
+  Authentication values, generated authentication files, IDs, UUIDs, MAC
+  addresses, keys, dynamic addresses, and raw terminal output: not retained
+
+[PASS] Final verdict
+  Runtime result validated from user-supplied output.
+  OpenStack AIO deployment and end-to-end provider/tenant/Floating-IP path:
+  VALIDATED

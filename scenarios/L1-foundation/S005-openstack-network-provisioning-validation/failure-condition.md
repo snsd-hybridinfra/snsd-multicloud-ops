@@ -1,18 +1,25 @@
 # Failure Condition
 
-## Critical Failure Conditions
+## Failure Conditions
 
-- A required module or environment file is missing.
-- A required OpenStack network resource type is missing.
-- A real tfvars, auto tfvars, or tfstate file is present.
-- A `clouds.yaml` or openrc file is present.
-- A backend block, account assignment, credential, private key, token, UUID-like identity value, or secret is detected.
-- Example CIDRs, external network placeholder, or non-production marker differ from the approved set.
-- The validator attempts OpenStack authentication, cloud API access, provider initialization, or state-producing Terraform execution.
+- Kolla deployment or post-deploy authentication fails.
+- A required core service, Nova service, hypervisor, or Neutron agent is unavailable.
+- A provider/tenant network, router, image, instance, or Floating IP is not active.
+- Required router/DHCP namespaces or OVS provider mappings are absent.
+- EVE-NG cannot reach the external router/Floating IP after convergence.
+- The instance cannot reach its gateway or the public IPv4 network.
+- Cloud-init completion is not observed.
+- Evidence is incomplete, provenance is unclear, or sensitive values remain.
 
-## Non-Critical Warnings
+`LOCAL(br-ex)` DOWN alone is not a failure when the provider NIC, OVS mapping,
+and end-to-end functional path all pass.
 
-- Terraform is unavailable for formatting checks.
-- Terraform validation is skipped because initialization and provider download are prohibited.
+## Evidence of Failure
 
-Critical failures produce a non-zero exit. Warnings remain documented without weakening the safety boundary.
+Record failed or inconclusive checks in `validation.md` without copying tokens,
+authentication files, IDs, or raw terminal output.
+
+## Follow-Up Requirement
+
+Keep the scenario `IN_PROGRESS`, `PARTIAL`, or `BLOCKED` until the failed check
+is rerun and sanitized evidence closes the gap.

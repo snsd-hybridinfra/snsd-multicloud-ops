@@ -2,11 +2,20 @@
 
 ## Current Truth State
 
-All S001-S050 evidence packages are currently `NOT_READY`, and every runtime
-validation result is `NOT_RUN`. Repository/document lint results are not
-scenario evidence. Static examples, synthetic output, sample terminal text, and
-operator-pasted text cannot be promoted to evidence without an observed,
-authorized real execution and provenance record.
+S002 and S005 have `READY` sanitized evidence packages. S002 is based on
+authorized operator-executed lab validation. S005 combines operator-executed
+deployment/data-plane evidence with Codex-executed forced-command read-only
+corroboration. Other packages remain unchanged.
+Repository/document lint results are not scenario evidence. Static examples,
+synthetic output, sample terminal text, and provenance-uncertain material
+cannot be promoted without an observed execution and provenance record.
+
+Operator-supplied runtime results may support validation when their command
+context is identifiable, pass criteria are satisfied, corroborating
+control-plane/data-plane observations agree, contradictions are resolved, and
+sensitive values are removed. The evidence must state whether Codex only
+normalized the supplied result or also executed a separately authorized
+restricted live check.
 
 Evidence proves that a scenario was executed and validated. It must be reproducible, reviewable, and mapped to validation criteria.
 
@@ -122,6 +131,26 @@ Evidence must be:
 - scenario-mapped
 - repeatable
 - minimal but sufficient
+
+## Zero Trust Capability and Maturity Evidence
+
+Zero Trust assessment records must identify the capability ID, authoritative
+source table, bounded environment, evaluator, validation authority, evidence
+date, evidence level, exceptions, and gaps.
+
+- Source authority: the local `제로트러스트 가이드라인 2.0` PDF defines
+  terminology and maturity characteristics.
+- Evidence authority uses exactly: `USER_EXECUTED_RUNTIME`,
+  `CODEX_EXECUTED_LOCAL`, `CODEX_EXECUTED_LIVE_RUNTIME`, `DESIGN_ONLY`,
+  `CONFIGURATION_ONLY`, or `MISSING`.
+- `DESIGN` evidence supports alignment only.
+- `CONFIGURATION` evidence supports bounded implementation but not behavior.
+- `RUNTIME` evidence supports only the observed paths and time window.
+- `CONTINUOUS` evidence requires repeated or continuously collected coverage
+  with review rules.
+
+Scenario `VALIDATED` status does not automatically validate every mapped Zero
+Trust capability and never assigns a maturity level by itself.
 
 ## Prohibited Evidence
 

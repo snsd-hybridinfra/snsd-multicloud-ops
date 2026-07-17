@@ -1,6 +1,7 @@
 # Resource Lifecycle and Cleanup Policy
 
-**Status: PLANNED — no resource lifecycle has started.**
+**Status: ACTIVE POLICY — OpenStack apply/validate evidence exists, while
+destroy and cleanup verification remain unvalidated.**
 
 ## Required Lifecycle
 

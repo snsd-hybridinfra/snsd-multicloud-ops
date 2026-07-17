@@ -1,8 +1,9 @@
 # Evidence Status Matrix
 
-Current environment truth: S002 contains a complete required E001-E014
-sanitized evidence chain and is `READY`. HTTPS/443 is accurately recorded
-unavailable while HTTP/80 is validated. Other packages are unchanged.
+Current environment truth: S002 and S005 contain `READY` sanitized evidence.
+S005 distinguishes operator-executed deployment/data-plane evidence from the
+later Codex-executed forced-command read-only corroboration. Other packages are
+unchanged.
 Non-executed historical artifacts remain quarantined outside `evidence/`.
 
 Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
@@ -13,7 +14,7 @@ Evidence Readiness Status values: `NOT_READY`, `PARTIAL`, `READY`, `REVIEWED`
 | S002 | eve-ng-on-prem-routing-validation | READY | READY | READY | NOT_READY | READY | READY |
 | S003 | aws-network-provisioning-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
 | S004 | azure-network-provisioning-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
-| S005 | openstack-network-provisioning-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
+| S005 | openstack-network-provisioning-validation | READY | READY | READY | NOT_READY | READY | READY |
 | S006 | terraform-provider-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
 | S007 | multi-cloud-inventory-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |
 | S008 | bastion-reachability-validation | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY | NOT_READY |

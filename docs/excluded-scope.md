@@ -4,7 +4,9 @@ The following work is explicitly excluded from the initial repository foundation
 
 ## Cloud and Infrastructure
 
-- Provisioning resources in AWS, Azure, GCP, OCI, or any other cloud.
+- Repository automation that provisions, changes, or destroys resources in
+  AWS, Azure, GCP, OCI, OpenStack, or any other cloud without a separately
+  approved execution boundary.
 - Terraform provider blocks, remote backends, tfvars, state files, or account-specific modules.
 - Real VPC, VNet, subnet, IAM, firewall, load balancer, DNS, VPN, or Kubernetes cluster creation.
 
@@ -19,6 +21,8 @@ The following work is explicitly excluded from the initial repository foundation
 - CI/CD pipelines that deploy to real environments.
 - Real monitoring integrations, alert routing, or incident paging.
 - Real ML training jobs, model deployment, or production inference services.
+- Committing raw terminal output from a live lab. Only normalized, sanitized,
+  scenario-mapped text evidence is permitted.
 
 ## Technology Expansion
 
@@ -27,3 +31,7 @@ The following work is explicitly excluded from the initial repository foundation
 - Binary deliverables, screenshots, archives, or generated reports.
 
 Excluded items may be reconsidered only through an ADR and explicit scope update.
+
+Operator-authorized execution in the disposable non-production OpenStack lab
+is not itself stored or automated here. Its sanitized results may be retained
+under an existing scenario according to ADR-0002 and the evidence model.

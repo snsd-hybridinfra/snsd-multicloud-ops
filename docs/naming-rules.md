@@ -66,3 +66,25 @@ Example:
 ```text
 docs/adr/0001-lock-foundation-scope.md
 ```
+
+## Zero Trust Names
+
+- Capability ID: `ZT-<source-number>` using source numbering exactly, for
+  example `ZT-1.1.1`, `ZT-3.1.1`, and `ZT-8.6`.
+- English slugs: lowercase kebab-case stable identifiers such as
+  `device-endpoint` and `visibility-analytics`.
+- Korean display names: preserve canonical source spelling; do not replace it
+  with an unofficial translation.
+- Official maturity display values: `Traditional`, `Initial`, `Advanced`, and
+  `Optimal`, paired with `기존 단계`, `초기 단계`, `향상 단계`, and
+  `최적화 단계`.
+- Repository maturity extensions: `UNASSESSED` and `NOT_APPLICABLE`.
+- Capability workflow states: `REFERENCE_ONLY`, `MAPPED`, `PLANNED`,
+  `IMPLEMENTED`, `PARTIALLY_VALIDATED`, `VALIDATED`, `GAP_IDENTIFIED`, and
+  `NOT_APPLICABLE`.
+- Evidence levels: `NONE`, `DESIGN`, `CONFIGURATION`, `RUNTIME`, and
+  `CONTINUOUS`.
+- Assessment confidence: `LOW`, `MEDIUM`, or `HIGH`.
+- Evidence authority: `USER_EXECUTED_RUNTIME`, `CODEX_EXECUTED_LOCAL`,
+  `CODEX_EXECUTED_LIVE_RUNTIME`, `DESIGN_ONLY`, `CONFIGURATION_ONLY`, or
+  `MISSING`.

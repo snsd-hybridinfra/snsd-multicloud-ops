@@ -1,0 +1,959 @@
+{
+  "assessment": {
+    "scope": "Capability-level Zero Trust baseline for the locked S001-S050 repository.",
+    "environment": "Non-production SNSD portfolio lab and repository governance artifacts.",
+    "date": "2026-07-17",
+    "evaluator": "Codex second-pass documentation QA",
+    "authority": [
+      "Local authoritative PDF",
+      "docs/scenario-status-matrix.md",
+      "docs/evidence-status-matrix.md",
+      "sanitized scenario evidence"
+    ],
+    "limitations": [
+      "No repository-wide maturity score.",
+      "Single-lab evidence is not enterprise-wide evidence.",
+      "Scenario validation does not establish full capability validation."
+    ]
+  },
+  "summary": {
+    "total_capabilities": 52,
+    "validated": 0,
+    "partially_validated": 6,
+    "implemented": 0,
+    "mapped": 7,
+    "planned": 0,
+    "unassessed": 52,
+    "not_applicable": 0,
+    "gap_identified": 39
+  },
+  "capabilities": [
+    {
+      "id": "ZT-1.1.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-1.1.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-1.2.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-1.2.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-1.3.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-1.3.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-1.4.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-1.4.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-2.1.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-2.2.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-2.3.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-2.3.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-2.4.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-2.4.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-3.1.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "evidence_authority": [
+        "USER_EXECUTED_RUNTIME",
+        "CODEX_EXECUTED_LIVE_RUNTIME"
+      ],
+      "confidence": "MEDIUM",
+      "evidence": [
+        "evidence/L1-foundation/S002-eve-ng-on-prem-routing-validation/",
+        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-3.1.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-3.1.3",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-3.2.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ],
+      "confidence": "LOW",
+      "evidence": [
+        "scenarios/L4-failure-recovery/S037-security-rule-misconfiguration-validation/"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-3.3.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-3.4.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "evidence_authority": [
+        "USER_EXECUTED_RUNTIME",
+        "CODEX_EXECUTED_LIVE_RUNTIME"
+      ],
+      "confidence": "MEDIUM",
+      "evidence": [
+        "evidence/L1-foundation/S002-eve-ng-on-prem-routing-validation/",
+        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-3.5.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ],
+      "confidence": "LOW",
+      "evidence": [
+        "scenarios/L4-failure-recovery/S035-load-balancer-failure-validation/"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-4.1.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "evidence_authority": [
+        "CODEX_EXECUTED_LIVE_RUNTIME"
+      ],
+      "confidence": "MEDIUM",
+      "evidence": [
+        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-4.2.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-4.2.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-4.3.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "evidence_authority": [
+        "USER_EXECUTED_RUNTIME"
+      ],
+      "confidence": "MEDIUM",
+      "evidence": [
+        "evidence/L1-foundation/S002-eve-ng-on-prem-routing-validation/",
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-4.4.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ],
+      "confidence": "LOW",
+      "evidence": [
+        "scenarios/L4-failure-recovery/S037-security-rule-misconfiguration-validation/",
+        "scenarios/L5-governance-intelligent-ops/S041-terraform-drift-detection-validation/",
+        "scenarios/L5-governance-intelligent-ops/S042-terraform-drift-remediation-validation/",
+        "scenarios/L5-governance-intelligent-ops/S043-policy-as-code-validation/",
+        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-5.1.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ],
+      "confidence": "LOW",
+      "evidence": [
+        "scenarios/L2-security-baseline/S018-kubernetes-rbac-validation/",
+        "scenarios/L2-security-baseline/S020-grafana-anonymous-access-denial-validation/"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-5.2.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-5.3.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-5.4.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ],
+      "confidence": "LOW",
+      "evidence": [
+        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-5.4.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-5.5.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-5.5.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-6.1.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-6.1.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-6.2.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ],
+      "confidence": "LOW",
+      "evidence": [
+        "scenarios/L2-security-baseline/S017-mariadb-access-control-validation/"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-6.3.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-6.4.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-6.5.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-6.5.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-7.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "evidence_authority": [
+        "USER_EXECUTED_RUNTIME",
+        "CODEX_EXECUTED_LIVE_RUNTIME"
+      ],
+      "confidence": "MEDIUM",
+      "evidence": [
+        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-7.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-7.3",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-7.4",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-7.5",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-7.6",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-8.1",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "evidence_authority": [
+        "DESIGN_ONLY"
+      ],
+      "confidence": "LOW",
+      "evidence": [
+        "scenarios/L5-governance-intelligent-ops/S043-policy-as-code-validation/",
+        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-8.2",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "evidence_authority": [
+        "CODEX_EXECUTED_LIVE_RUNTIME"
+      ],
+      "confidence": "MEDIUM",
+      "evidence": [
+        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml"
+      ],
+      "gaps": [
+        "Capability-wide coverage and maturity characteristics remain unassessed."
+      ],
+      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+    },
+    {
+      "id": "ZT-8.3",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-8.4",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-8.5",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    },
+    {
+      "id": "ZT-8.6",
+      "current_maturity": "UNASSESSED",
+      "target_maturity": "UNASSESSED",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "evidence_authority": [
+        "MISSING"
+      ],
+      "confidence": "LOW",
+      "evidence": [],
+      "gaps": [
+        "No direct implementation or runtime evidence."
+      ],
+      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+    }
+  ]
+}

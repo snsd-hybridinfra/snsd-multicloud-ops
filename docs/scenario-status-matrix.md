@@ -1,8 +1,10 @@
 # Scenario Status Matrix
 
-Current environment truth: the EVE-NG network foundation is implemented and
-the complete E001-E014 sanitized evidence chain is represented. S002 is
-`VALIDATED`; all other scenarios remain unchanged.
+Current environment truth: S002 EVE-NG routing and S005 OpenStack AIO network
+provisioning are `VALIDATED`. S005 combines sanitized operator-executed
+deployment/data-plane evidence with a Codex-executed forced-command read-only
+corroboration. Codex has no general OpenStack shell or mutation authority. All
+unrelated scenarios remain unchanged.
 
 Scenario Lifecycle Status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, `VALIDATED`, `PARTIAL`, `BLOCKED`, `DEPRECATED`
 
@@ -12,7 +14,7 @@ Scenario Lifecycle Status values: `NOT_STARTED`, `PLANNED`, `IN_PROGRESS`, `IMPL
 | S002 | eve-ng-on-prem-routing-validation | L1 | Foundation | VALIDATED | 2026-07-16 | E001-E014 complete: host/KVM, devices, VLAN/routing, NAT/PAT, persistence, directional traffic, cleanup, host-only ping, SSH/22, and HTTP/80; HTTPS/443 accurately recorded unavailable |
 | S003 | aws-network-provisioning-validation | L1 | Foundation | NOT_STARTED | 2026-07-15 | Planned definition only; no runtime implementation, target execution, or authoritative scenario evidence exists |
 | S004 | azure-network-provisioning-validation | L1 | Foundation | NOT_STARTED | 2026-07-15 | Planned definition only; no runtime implementation, target execution, or authoritative scenario evidence exists |
-| S005 | openstack-network-provisioning-validation | L1 | Foundation | NOT_STARTED | 2026-07-15 | Planned definition only; no runtime implementation, target execution, or authoritative scenario evidence exists |
+| S005 | openstack-network-provisioning-validation | L1 | Foundation | VALIDATED | 2026-07-16 | User-executed deployment/data-plane evidence plus Codex-executed forced read-only validation (50 PASS, 0 FAIL, exit 0); no general shell or mutation authority |
 | S006 | terraform-provider-validation | L1 | Foundation | NOT_STARTED | 2026-07-15 | Planned definition only; no runtime implementation, target execution, or authoritative scenario evidence exists |
 | S007 | multi-cloud-inventory-validation | L1 | Foundation | NOT_STARTED | 2026-07-15 | Planned definition only; no runtime implementation, target execution, or authoritative scenario evidence exists |
 | S008 | bastion-reachability-validation | L1 | Foundation | NOT_STARTED | 2026-07-15 | Planned definition only; no runtime implementation, target execution, or authoritative scenario evidence exists |

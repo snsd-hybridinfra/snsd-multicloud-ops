@@ -1,0 +1,2832 @@
+{
+  "metadata": {
+    "source": "제로트러스트 가이드라인 2.0",
+    "generated_from": [
+      "docs/zero-trust/capability-catalog.yaml",
+      "docs/zero-trust/current-baseline-assessment.yaml",
+      "docs/zero-trust/gap-register.md"
+    ],
+    "scope": "Planning-only capability implementation backlog for the non-production SNSD laboratory; locked scenarios S001-S050 remain unchanged.",
+    "environment": "Disposable portfolio laboratory with validated EVE-NG network and one OpenStack AIO network path.",
+    "status": "PLANNED",
+    "limitations": [
+      "No infrastructure is implemented by this backlog.",
+      "No capability status is promoted by planning.",
+      "Lab targets do not represent enterprise maturity.",
+      "Reference-only records have no lab implementation target."
+    ]
+  },
+  "waves": [
+    {
+      "id": "W0",
+      "name": "Governance and Evidence Foundation",
+      "objective": "Establish authoritative data, validation authority, evidence handling, and repeatable quality gates.",
+      "entry_criteria": [
+        "Catalog and baseline authorities are approved",
+        "Repository validators pass"
+      ],
+      "exit_criteria": [
+        "Machine-readable authorities validate",
+        "Evidence and exception governance is reviewable"
+      ],
+      "dependencies": [],
+      "capabilities": [
+        "ZT-1.1.1",
+        "ZT-2.3.1",
+        "ZT-7.1",
+        "ZT-8.5"
+      ]
+    },
+    {
+      "id": "W1",
+      "name": "Infrastructure and Trust Foundations",
+      "objective": "Build inventories, access foundations, segmentation, telemetry inputs, and recovery prerequisites.",
+      "entry_criteria": [
+        "W0 exit criteria pass",
+        "Lab capacity and rollback boundaries are approved"
+      ],
+      "exit_criteria": [
+        "Foundation controls have bounded configuration or runtime evidence",
+        "Unresolved dependencies are recorded"
+      ],
+      "dependencies": [
+        "W0"
+      ],
+      "capabilities": [
+        "ZT-1.4.2",
+        "ZT-3.1.1",
+        "ZT-3.1.3",
+        "ZT-3.4.1",
+        "ZT-3.5.1",
+        "ZT-4.1.1",
+        "ZT-4.2.1",
+        "ZT-4.2.2",
+        "ZT-4.3.1",
+        "ZT-4.4.1",
+        "ZT-8.1",
+        "ZT-8.2"
+      ]
+    },
+    {
+      "id": "W2",
+      "name": "Identity, Endpoint, and Workload Controls",
+      "objective": "Add bounded identity, authentication, endpoint posture, workload inventory, and authorization controls.",
+      "entry_criteria": [
+        "Required inventories exist",
+        "Administrative and evidence paths are restricted"
+      ],
+      "exit_criteria": [
+        "Positive and negative access tests pass in lab scope",
+        "Control limitations are recorded"
+      ],
+      "dependencies": [
+        "W1"
+      ],
+      "capabilities": [
+        "ZT-1.1.2",
+        "ZT-1.2.1",
+        "ZT-1.2.2",
+        "ZT-1.4.1",
+        "ZT-2.1.1",
+        "ZT-2.2.1",
+        "ZT-2.4.2",
+        "ZT-3.1.2",
+        "ZT-5.1.1",
+        "ZT-5.2.1",
+        "ZT-5.3.1",
+        "ZT-5.4.2"
+      ]
+    },
+    {
+      "id": "W3",
+      "name": "Application, Software, and Data Protection",
+      "objective": "Add secure workload delivery, software risk, data inventory, classification, access, and encryption patterns.",
+      "entry_criteria": [
+        "Application and data owners are defined",
+        "Rollback and backup prerequisites are approved"
+      ],
+      "exit_criteria": [
+        "Protection controls and recovery evidence meet bounded success criteria",
+        "No secret or data artifact is committed"
+      ],
+      "dependencies": [
+        "W2"
+      ],
+      "capabilities": [
+        "ZT-3.3.1",
+        "ZT-5.4.1",
+        "ZT-5.5.1",
+        "ZT-5.5.2",
+        "ZT-6.1.1",
+        "ZT-6.2.1",
+        "ZT-6.3.1",
+        "ZT-6.4.1",
+        "ZT-6.5.2"
+      ]
+    },
+    {
+      "id": "W4",
+      "name": "Visibility, Correlation, and Automated Response",
+      "objective": "Correlate telemetry and exercise policy-driven, approval-bounded response and coordination.",
+      "entry_criteria": [
+        "Reliable telemetry and ownership exist",
+        "Response authority and rollback are approved"
+      ],
+      "exit_criteria": [
+        "Detection-to-decision evidence is repeatable",
+        "Automation remains bounded and reversible"
+      ],
+      "dependencies": [
+        "W3"
+      ],
+      "capabilities": [
+        "ZT-3.2.1",
+        "ZT-7.3",
+        "ZT-7.4",
+        "ZT-8.3",
+        "ZT-8.4",
+        "ZT-8.6"
+      ]
+    },
+    {
+      "id": "W5",
+      "name": "Continuous Verification and Maturity Reassessment",
+      "objective": "Repeat validation, detect drift, test recovery, and reassess capability maturity without aggregate scoring.",
+      "entry_criteria": [
+        "Prior wave evidence is accepted",
+        "Periodic review cadence and retention are approved"
+      ],
+      "exit_criteria": [
+        "Repeatable evidence supports capability reassessment",
+        "Remaining gaps and exceptions are recalculated"
+      ],
+      "dependencies": [
+        "W4"
+      ],
+      "capabilities": [
+        "ZT-7.6"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "ZT-1.1.1",
+      "pillar": "identity",
+      "function": "identifier-management",
+      "capability": "user-inventory",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "����� �κ��丮 is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "CRITICAL",
+      "dependency_ids": [],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-ID-001"
+      ],
+      "required_components": [
+        "identity inventory",
+        "authentication and authorization policy",
+        "sanitized identity decision evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ����� �κ��丮.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ����� �κ��丮 control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W0",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 56, Table 3-11; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-1.1.2",
+      "pillar": "identity",
+      "function": "identifier-management",
+      "capability": "id-federation-user-credentials",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "ID ���� �� ����� �ڰ� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-1.1.1",
+        "ZT-4.2.2"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-ID-001"
+      ],
+      "required_components": [
+        "identity inventory",
+        "authentication and authorization policy",
+        "sanitized identity decision evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ID ���� �� ����� �ڰ� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ID ���� �� ����� �ڰ� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 56, Table 3-11; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-1.2.1",
+      "pillar": "identity",
+      "function": "authentication",
+      "capability": "multi-factor-authentication",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�������� (MFA) is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-1.1.1",
+        "ZT-4.2.2"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-ID-001"
+      ],
+      "required_components": [
+        "identity inventory",
+        "authentication and authorization policy",
+        "sanitized identity decision evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for �������� (MFA).",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �������� (MFA) control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 57, Table 3-12; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-1.2.2",
+      "pillar": "identity",
+      "function": "authentication",
+      "capability": "continuous-authentication",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "TRADITIONAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���� ���� is targeted at TRADITIONAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-1.2.1",
+        "ZT-7.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-ID-001"
+      ],
+      "required_components": [
+        "identity inventory",
+        "authentication and authorization policy",
+        "sanitized identity decision evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ���� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 57, Table 3-12; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-1.3.1",
+      "pillar": "identity",
+      "function": "risk-assessment",
+      "capability": "integrated-icam-platform",
+      "applicability": "REFERENCE_ONLY",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": null,
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���� ICAM �÷��� requires organizational scale, authority, commercial capability, or operating conditions not reproducible honestly in this lab.",
+      "target_limitations": "No laboratory implementation target is assigned; retain source traceability and design review only.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "DEFERRED",
+      "dependency_ids": [
+        "ZT-1.1.1",
+        "ZT-1.1.2",
+        "ZT-1.2.1"
+      ],
+      "blocking_gaps": [
+        "Organizational-scale authority or capability is outside the current laboratory boundary."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-ID-001"
+      ],
+      "required_components": [
+        "External organizational capability or commercial-scale operating context."
+      ],
+      "implementation_tasks": [
+        "Maintain source-backed reference design for ���� ICAM �÷���.",
+        "Reassess applicability only after an approved scope change."
+      ],
+      "validation_tasks": [
+        "Perform STATIC_REVIEW of source requirements and laboratory exclusions."
+      ],
+      "evidence_requirements": [
+        "Source citation",
+        "Applicability decision",
+        "Documented limitation"
+      ],
+      "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
+      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "target_wave": null,
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 58, Table 3-13; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-1.3.2",
+      "pillar": "identity",
+      "function": "risk-assessment",
+      "capability": "behavior-context-id-biometric-recognition",
+      "applicability": "REFERENCE_ONLY",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": null,
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�ൿ, ���ؽ�Ʈ ��� ID �� ��ü �ν� requires organizational scale, authority, commercial capability, or operating conditions not reproducible honestly in this lab.",
+      "target_limitations": "No laboratory implementation target is assigned; retain source traceability and design review only.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "DEFERRED",
+      "dependency_ids": [
+        "ZT-1.1.1",
+        "ZT-7.1"
+      ],
+      "blocking_gaps": [
+        "Organizational-scale authority or capability is outside the current laboratory boundary."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-ID-001"
+      ],
+      "required_components": [
+        "External organizational capability or commercial-scale operating context."
+      ],
+      "implementation_tasks": [
+        "Maintain source-backed reference design for �ൿ, ���ؽ�Ʈ ��� ID �� ��ü �ν�.",
+        "Reassess applicability only after an approved scope change."
+      ],
+      "validation_tasks": [
+        "Perform STATIC_REVIEW of source requirements and laboratory exclusions."
+      ],
+      "evidence_requirements": [
+        "Source citation",
+        "Applicability decision",
+        "Documented limitation"
+      ],
+      "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
+      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "target_wave": null,
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 58, Table 3-13; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-1.4.1",
+      "pillar": "identity",
+      "function": "access-management",
+      "capability": "conditional-user-access",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���Ǻ� ����� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-1.1.1",
+        "ZT-1.2.1",
+        "ZT-2.1.1",
+        "ZT-7.1",
+        "ZT-8.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-ID-001"
+      ],
+      "required_components": [
+        "identity inventory",
+        "authentication and authorization policy",
+        "sanitized identity decision evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ���Ǻ� ����� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ���Ǻ� ����� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 59, Table 3-14; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-1.4.2",
+      "pillar": "identity",
+      "function": "access-management",
+      "capability": "least-privilege-access",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�ּ� ���� ���� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-1.1.1",
+        "ZT-4.1.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-ID-001"
+      ],
+      "required_components": [
+        "identity inventory",
+        "authentication and authorization policy",
+        "sanitized identity decision evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for �ּ� ���� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �ּ� ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 59, Table 3-14; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-2.1.1",
+      "pillar": "device-endpoint",
+      "function": "policy-compliance-monitoring",
+      "capability": "device-detection-compliance",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "��� ���� �� ���� �ؼ� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-2.3.1",
+        "ZT-7.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DEV-001"
+      ],
+      "required_components": [
+        "host and device inventory",
+        "posture or configuration evidence",
+        "local compliance validator"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ��� ���� �� ���� �ؼ�.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ��� ���� �� ���� �ؼ� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 60, Table 3-15; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-2.2.1",
+      "pillar": "device-endpoint",
+      "function": "data-access-control",
+      "capability": "real-time-inspection-device-authorization",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�ǽð� �˻縦 ���� ��� ���� �ο� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-2.1.1",
+        "ZT-4.1.1",
+        "ZT-8.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DEV-001"
+      ],
+      "required_components": [
+        "host and device inventory",
+        "posture or configuration evidence",
+        "local compliance validator"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for �ǽð� �˻縦 ���� ��� ���� �ο�.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �ǽð� �˻縦 ���� ��� ���� �ο� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 61, Table 3-16; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-2.3.1",
+      "pillar": "device-endpoint",
+      "function": "asset-management",
+      "capability": "device-inventory",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "��� �κ��丮 is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "CRITICAL",
+      "dependency_ids": [],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DEV-001"
+      ],
+      "required_components": [
+        "host and device inventory",
+        "posture or configuration evidence",
+        "local compliance validator"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ��� �κ��丮.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ��� �κ��丮 control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W0",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 62, Table 3-17; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-2.3.2",
+      "pillar": "device-endpoint",
+      "function": "asset-management",
+      "capability": "unified-endpoint-mobile-device-management",
+      "applicability": "REFERENCE_ONLY",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": null,
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���� ��������Ʈ ���� �� ����� ��� ���� requires organizational scale, authority, commercial capability, or operating conditions not reproducible honestly in this lab.",
+      "target_limitations": "No laboratory implementation target is assigned; retain source traceability and design review only.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "DEFERRED",
+      "dependency_ids": [
+        "ZT-2.3.1"
+      ],
+      "blocking_gaps": [
+        "Organizational-scale authority or capability is outside the current laboratory boundary."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DEV-001"
+      ],
+      "required_components": [
+        "External organizational capability or commercial-scale operating context."
+      ],
+      "implementation_tasks": [
+        "Maintain source-backed reference design for ���� ��������Ʈ ���� �� ����� ��� ����.",
+        "Reassess applicability only after an approved scope change."
+      ],
+      "validation_tasks": [
+        "Perform STATIC_REVIEW of source requirements and laboratory exclusions."
+      ],
+      "evidence_requirements": [
+        "Source citation",
+        "Applicability decision",
+        "Documented limitation"
+      ],
+      "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
+      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "target_wave": null,
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 62, Table 3-17; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-2.4.1",
+      "pillar": "device-endpoint",
+      "function": "device-threat-protection",
+      "capability": "endpoint-extended-detection-response",
+      "applicability": "REFERENCE_ONLY",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": null,
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "��������Ʈ �� Ȯ��� Ž�������� (EDR �� XDR) requires organizational scale, authority, commercial capability, or operating conditions not reproducible honestly in this lab.",
+      "target_limitations": "No laboratory implementation target is assigned; retain source traceability and design review only.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "DEFERRED",
+      "dependency_ids": [
+        "ZT-2.3.1",
+        "ZT-7.1"
+      ],
+      "blocking_gaps": [
+        "Organizational-scale authority or capability is outside the current laboratory boundary."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DEV-001"
+      ],
+      "required_components": [
+        "External organizational capability or commercial-scale operating context."
+      ],
+      "implementation_tasks": [
+        "Maintain source-backed reference design for ��������Ʈ �� Ȯ��� Ž�������� (EDR �� XDR).",
+        "Reassess applicability only after an approved scope change."
+      ],
+      "validation_tasks": [
+        "Perform STATIC_REVIEW of source requirements and laboratory exclusions."
+      ],
+      "evidence_requirements": [
+        "Source citation",
+        "Applicability decision",
+        "Documented limitation"
+      ],
+      "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
+      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "target_wave": null,
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 63, Table 3-18; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-2.4.2",
+      "pillar": "device-endpoint",
+      "function": "device-threat-protection",
+      "capability": "asset-vulnerability-patch-automation",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�ڻ�, ��༺ �� ��ġ ���� �ڵ�ȭ is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-2.3.1",
+        "ZT-2.1.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DEV-001"
+      ],
+      "required_components": [
+        "host and device inventory",
+        "posture or configuration evidence",
+        "local compliance validator"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for �ڻ�, ��༺ �� ��ġ ���� �ڵ�ȭ.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �ڻ�, ��༺ �� ��ġ ���� �ڵ�ȭ control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 63, Table 3-18; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-3.1.1",
+      "pillar": "network",
+      "function": "network-segmentation",
+      "capability": "macro-segmentation",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "��ũ�� ���׸����̼� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "priority": "CRITICAL",
+      "dependency_ids": [
+        "ZT-2.3.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-NET-001"
+      ],
+      "required_components": [
+        "EVE-NG or OpenStack network controls",
+        "explicit flow policy",
+        "sanitized allow and deny evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ��ũ�� ���׸����̼�.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ��ũ�� ���׸����̼� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 64-65, Table 3-19; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-3.1.2",
+      "pillar": "network",
+      "function": "network-segmentation",
+      "capability": "micro-segmentation",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "����ũ�� ���׸����̼� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-2.3.1",
+        "ZT-3.1.1",
+        "ZT-4.3.1",
+        "ZT-5.4.2"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-NET-001"
+      ],
+      "required_components": [
+        "EVE-NG or OpenStack network controls",
+        "explicit flow policy",
+        "sanitized allow and deny evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ����ũ�� ���׸����̼�.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ����ũ�� ���׸����̼� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 64-65, Table 3-19; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-3.1.3",
+      "pillar": "network",
+      "function": "network-segmentation",
+      "capability": "software-defined-networking",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "����Ʈ���� ���� ��Ʈ��ŷ is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-3.1.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-NET-001"
+      ],
+      "required_components": [
+        "EVE-NG or OpenStack network controls",
+        "explicit flow policy",
+        "sanitized allow and deny evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ����Ʈ���� ���� ��Ʈ��ŷ.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ����Ʈ���� ���� ��Ʈ��ŷ control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 64-65, Table 3-19; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-3.2.1",
+      "pillar": "network",
+      "function": "threat-response",
+      "capability": "threat-response",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "priority": "MEDIUM",
+      "dependency_ids": [
+        "ZT-7.1",
+        "ZT-8.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-NET-001"
+      ],
+      "required_components": [
+        "EVE-NG or OpenStack network controls",
+        "explicit flow policy",
+        "sanitized allow and deny evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ���� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W4",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 66, Table 3-20; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-3.3.1",
+      "pillar": "network",
+      "function": "traffic-encryption",
+      "capability": "traffic-encryption",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "Ʈ���� ��ȣȭ is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-4.2.2",
+        "ZT-3.4.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-NET-001"
+      ],
+      "required_components": [
+        "EVE-NG or OpenStack network controls",
+        "explicit flow policy",
+        "sanitized allow and deny evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for Ʈ���� ��ȣȭ.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded Ʈ���� ��ȣȭ control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W3",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 67, Table 3-21; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-3.4.1",
+      "pillar": "network",
+      "function": "traffic-management",
+      "capability": "data-flow-mapping",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "������ �帧 ���� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "priority": "CRITICAL",
+      "dependency_ids": [
+        "ZT-3.1.1",
+        "ZT-7.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-NET-001"
+      ],
+      "required_components": [
+        "EVE-NG or OpenStack network controls",
+        "explicit flow policy",
+        "sanitized allow and deny evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ������ �帧 ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ������ �帧 ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 68, Table 3-22; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-3.5.1",
+      "pillar": "network",
+      "function": "network-resilience",
+      "capability": "network-resilience",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "��Ʈ��ũ ȸ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-3.1.1",
+        "ZT-3.4.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-NET-001"
+      ],
+      "required_components": [
+        "EVE-NG or OpenStack network controls",
+        "explicit flow policy",
+        "sanitized allow and deny evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ��Ʈ��ũ ȸ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ��Ʈ��ũ ȸ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 69, Table 3-23; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-4.1.1",
+      "pillar": "system",
+      "function": "access-control",
+      "capability": "access-control",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�������� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "priority": "CRITICAL",
+      "dependency_ids": [
+        "ZT-1.1.1",
+        "ZT-4.2.2"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-SYS-001"
+      ],
+      "required_components": [
+        "Linux or OpenStack system control",
+        "credential boundary",
+        "configuration and access evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ��������.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �������� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 70, Table 3-24; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-4.2.1",
+      "pillar": "system",
+      "function": "system-account-management",
+      "capability": "privileged-access-management",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "PAM is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-1.1.1",
+        "ZT-4.2.2"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-SYS-001"
+      ],
+      "required_components": [
+        "Linux or OpenStack system control",
+        "credential boundary",
+        "configuration and access evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for PAM.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded PAM control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 71, Table 3-25; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-4.2.2",
+      "pillar": "system",
+      "function": "system-account-management",
+      "capability": "credential-management",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�ڰ� ���� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "CRITICAL",
+      "dependency_ids": [
+        "ZT-1.1.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-SYS-001"
+      ],
+      "required_components": [
+        "Linux or OpenStack system control",
+        "credential boundary",
+        "configuration and access evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for �ڰ� ���� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �ڰ� ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 71, Table 3-25; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-4.3.1",
+      "pillar": "system",
+      "function": "network-separation-policy",
+      "capability": "network-segmentation-intergroup-movement",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "��Ʈ��ũ ����ȭ �� �׷� �� �̵� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "priority": "CRITICAL",
+      "dependency_ids": [
+        "ZT-3.1.1",
+        "ZT-4.1.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-SYS-001"
+      ],
+      "required_components": [
+        "Linux or OpenStack system control",
+        "credential boundary",
+        "configuration and access evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ��Ʈ��ũ ����ȭ �� �׷� �� �̵�.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ��Ʈ��ũ ����ȭ �� �׷� �� �̵� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 72, Table 3-26; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-4.4.1",
+      "pillar": "system",
+      "function": "system-security-policy-management",
+      "capability": "environment-based-policy-management",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�ý��� ȯ�濡 ���� ��å ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-4.1.1",
+        "ZT-7.1",
+        "ZT-8.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-SYS-001"
+      ],
+      "required_components": [
+        "Linux or OpenStack system control",
+        "credential boundary",
+        "configuration and access evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for �ý��� ȯ�濡 ���� ��å ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �ý��� ȯ�濡 ���� ��å ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 73, Table 3-27; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-5.1.1",
+      "pillar": "application-workload",
+      "function": "application-access",
+      "capability": "resource-authorization-integration",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���ҽ� ���� �ο� �� ���� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-1.1.1",
+        "ZT-4.1.1",
+        "ZT-8.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-APP-001"
+      ],
+      "required_components": [
+        "local workload boundary",
+        "application inventory",
+        "authorization or deployment evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ���ҽ� ���� �ο� �� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ���ҽ� ���� �ο� �� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 74, Table 3-28; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-5.2.1",
+      "pillar": "application-workload",
+      "function": "application-threat-protection",
+      "capability": "continuous-monitoring-approval-in-progress",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�������� ����͸� �� ���� ���� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-5.1.1",
+        "ZT-7.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-APP-001"
+      ],
+      "required_components": [
+        "local workload boundary",
+        "application inventory",
+        "authorization or deployment evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for �������� ����͸� �� ���� ���� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �������� ����͸� �� ���� ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 75, Table 3-29; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-5.3.1",
+      "pillar": "application-workload",
+      "function": "accessible-application",
+      "capability": "remote-access",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-1.2.1",
+        "ZT-4.1.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-APP-001"
+      ],
+      "required_components": [
+        "local workload boundary",
+        "application inventory",
+        "authorization or deployment evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ���� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 76, Table 3-30; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-5.4.1",
+      "pillar": "application-workload",
+      "function": "secure-application-deployment",
+      "capability": "secure-application-deployment",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "������ ���ø����̼� ���� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-5.4.2",
+        "ZT-4.4.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-APP-001"
+      ],
+      "required_components": [
+        "local workload boundary",
+        "application inventory",
+        "authorization or deployment evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ������ ���ø����̼� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ������ ���ø����̼� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W3",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 77, Table 3-31; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-5.4.2",
+      "pillar": "application-workload",
+      "function": "secure-application-deployment",
+      "capability": "application-inventory",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���ø����̼� �κ��丮 is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-2.3.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-APP-001"
+      ],
+      "required_components": [
+        "local workload boundary",
+        "application inventory",
+        "authorization or deployment evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ���ø����̼� �κ��丮.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ���ø����̼� �κ��丮 control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W2",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 77, Table 3-31; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-5.5.1",
+      "pillar": "application-workload",
+      "function": "software-application-security",
+      "capability": "secure-application-development-integration",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "������ ����Ʈ������ø����̼� ���� �� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-5.4.1",
+        "ZT-5.4.2",
+        "ZT-8.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-APP-001"
+      ],
+      "required_components": [
+        "local workload boundary",
+        "application inventory",
+        "authorization or deployment evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ������ ����Ʈ������ø����̼� ���� �� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ������ ����Ʈ������ø����̼� ���� �� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W3",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 78, Table 3-32; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-5.5.2",
+      "pillar": "application-workload",
+      "function": "software-application-security",
+      "capability": "software-vulnerability-management",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "����Ʈ���� ��� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-5.4.2",
+        "ZT-2.4.2"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-APP-001"
+      ],
+      "required_components": [
+        "local workload boundary",
+        "application inventory",
+        "authorization or deployment evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ����Ʈ���� ��� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ����Ʈ���� ��� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W3",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 78, Table 3-32; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-6.1.1",
+      "pillar": "data",
+      "function": "data-inventory-management",
+      "capability": "data-catalog-risk-sorting",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "������ īŻ�α� ���� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-5.4.2"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DATA-001"
+      ],
+      "required_components": [
+        "local data-service boundary",
+        "classification and ownership policy",
+        "access or protection evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ������ īŻ�α� ���� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ������ īŻ�α� ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W3",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 79, Table 3-33; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-6.1.2",
+      "pillar": "data",
+      "function": "data-inventory-management",
+      "capability": "enterprise-data-governance",
+      "applicability": "REFERENCE_ONLY",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": null,
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "��� ������ �Ź��ͽ� requires organizational scale, authority, commercial capability, or operating conditions not reproducible honestly in this lab.",
+      "target_limitations": "No laboratory implementation target is assigned; retain source traceability and design review only.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "DEFERRED",
+      "dependency_ids": [
+        "ZT-6.1.1",
+        "ZT-6.4.1"
+      ],
+      "blocking_gaps": [
+        "Organizational-scale authority or capability is outside the current laboratory boundary."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DATA-001"
+      ],
+      "required_components": [
+        "External organizational capability or commercial-scale operating context."
+      ],
+      "implementation_tasks": [
+        "Maintain source-backed reference design for ��� ������ �Ź��ͽ�.",
+        "Reassess applicability only after an approved scope change."
+      ],
+      "validation_tasks": [
+        "Perform STATIC_REVIEW of source requirements and laboratory exclusions."
+      ],
+      "evidence_requirements": [
+        "Source citation",
+        "Applicability decision",
+        "Documented limitation"
+      ],
+      "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
+      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "target_wave": null,
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 79, Table 3-33; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-6.2.1",
+      "pillar": "data",
+      "function": "access-decision-method",
+      "capability": "data-access-control",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "������ �������� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-1.1.1",
+        "ZT-4.1.1",
+        "ZT-6.4.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DATA-001"
+      ],
+      "required_components": [
+        "local data-service boundary",
+        "classification and ownership policy",
+        "access or protection evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ������ ��������.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ������ �������� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W3",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 80, Table 3-34; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-6.3.1",
+      "pillar": "data",
+      "function": "data-encryption",
+      "capability": "data-encryption-key-management",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "������ ��ȣȭ �� ���� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-4.2.2",
+        "ZT-6.1.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DATA-001"
+      ],
+      "required_components": [
+        "local data-service boundary",
+        "classification and ownership policy",
+        "access or protection evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ������ ��ȣȭ �� ���� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ������ ��ȣȭ �� ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W3",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 81, Table 3-35; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-6.4.1",
+      "pillar": "data",
+      "function": "data-classification",
+      "capability": "data-labeling-tagging",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "������ �󺧸� �� �±� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-6.1.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DATA-001"
+      ],
+      "required_components": [
+        "local data-service boundary",
+        "classification and ownership policy",
+        "access or protection evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ������ �󺧸� �� �±� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ������ �󺧸� �� �±� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W3",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 82, Table 3-36; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-6.5.1",
+      "pillar": "data",
+      "function": "data-loss-prevention",
+      "capability": "data-loss-prevention",
+      "applicability": "REFERENCE_ONLY",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": null,
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "������ �ս� ���� (DLP) requires organizational scale, authority, commercial capability, or operating conditions not reproducible honestly in this lab.",
+      "target_limitations": "No laboratory implementation target is assigned; retain source traceability and design review only.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "DEFERRED",
+      "dependency_ids": [
+        "ZT-6.4.1",
+        "ZT-6.2.1",
+        "ZT-7.1"
+      ],
+      "blocking_gaps": [
+        "Organizational-scale authority or capability is outside the current laboratory boundary."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DATA-001"
+      ],
+      "required_components": [
+        "External organizational capability or commercial-scale operating context."
+      ],
+      "implementation_tasks": [
+        "Maintain source-backed reference design for ������ �ս� ���� (DLP).",
+        "Reassess applicability only after an approved scope change."
+      ],
+      "validation_tasks": [
+        "Perform STATIC_REVIEW of source requirements and laboratory exclusions."
+      ],
+      "evidence_requirements": [
+        "Source citation",
+        "Applicability decision",
+        "Documented limitation"
+      ],
+      "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
+      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "target_wave": null,
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 83, Table 3-37; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-6.5.2",
+      "pillar": "data",
+      "function": "data-loss-prevention",
+      "capability": "data-monitoring-detection",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "������ ����͸� �� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "HIGH",
+      "dependency_ids": [
+        "ZT-6.1.1",
+        "ZT-7.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-DATA-001"
+      ],
+      "required_components": [
+        "local data-service boundary",
+        "classification and ownership policy",
+        "access or protection evidence"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ������ ����͸� �� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ������ ����͸� �� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W3",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 83, Table 3-37; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-7.1",
+      "pillar": "visibility-analytics",
+      "function": "visibility-analytics",
+      "capability": "record-all-relevant-activities",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "��� ���� Ȱ�� ��� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "priority": "CRITICAL",
+      "dependency_ids": [
+        "ZT-2.3.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-VA-001"
+      ],
+      "required_components": [
+        "sanitized telemetry pipeline",
+        "bounded correlation rule",
+        "evidence storage"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ��� ���� Ȱ�� ���.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ��� ���� Ȱ�� ��� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W0",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-7.2",
+      "pillar": "visibility-analytics",
+      "function": "visibility-analytics",
+      "capability": "centralized-security-information-event-management",
+      "applicability": "REFERENCE_ONLY",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": null,
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�߾������� ���� ���� �� �̺�Ʈ ���� requires organizational scale, authority, commercial capability, or operating conditions not reproducible honestly in this lab.",
+      "target_limitations": "No laboratory implementation target is assigned; retain source traceability and design review only.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "DEFERRED",
+      "dependency_ids": [
+        "ZT-7.1",
+        "ZT-8.5"
+      ],
+      "blocking_gaps": [
+        "Organizational-scale authority or capability is outside the current laboratory boundary."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-VA-001"
+      ],
+      "required_components": [
+        "External organizational capability or commercial-scale operating context."
+      ],
+      "implementation_tasks": [
+        "Maintain source-backed reference design for �߾������� ���� ���� �� �̺�Ʈ ����.",
+        "Reassess applicability only after an approved scope change."
+      ],
+      "validation_tasks": [
+        "Perform STATIC_REVIEW of source requirements and laboratory exclusions."
+      ],
+      "evidence_requirements": [
+        "Source citation",
+        "Applicability decision",
+        "Documented limitation"
+      ],
+      "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
+      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "target_wave": null,
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-7.3",
+      "pillar": "visibility-analytics",
+      "function": "visibility-analytics",
+      "capability": "security-threat-analysis",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���� ���� �м� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "MEDIUM",
+      "dependency_ids": [
+        "ZT-7.1",
+        "ZT-8.5"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-VA-001"
+      ],
+      "required_components": [
+        "sanitized telemetry pipeline",
+        "bounded correlation rule",
+        "evidence storage"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ���� ���� �м�.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ���� ���� �м� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W4",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-7.4",
+      "pillar": "visibility-analytics",
+      "function": "visibility-analytics",
+      "capability": "user-device-behavior-analysis",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "����� �� ��� ���� �м� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "MEDIUM",
+      "dependency_ids": [
+        "ZT-7.1",
+        "ZT-1.1.1",
+        "ZT-2.3.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-VA-001"
+      ],
+      "required_components": [
+        "sanitized telemetry pipeline",
+        "bounded correlation rule",
+        "evidence storage"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ����� �� ��� ���� �м�.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ����� �� ��� ���� �м� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W4",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-7.5",
+      "pillar": "visibility-analytics",
+      "function": "visibility-analytics",
+      "capability": "threat-intelligence-integration",
+      "applicability": "REFERENCE_ONLY",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": null,
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���� ���ڸ����� ���� requires organizational scale, authority, commercial capability, or operating conditions not reproducible honestly in this lab.",
+      "target_limitations": "No laboratory implementation target is assigned; retain source traceability and design review only.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "DEFERRED",
+      "dependency_ids": [
+        "ZT-7.2",
+        "ZT-8.5"
+      ],
+      "blocking_gaps": [
+        "Organizational-scale authority or capability is outside the current laboratory boundary."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-VA-001"
+      ],
+      "required_components": [
+        "External organizational capability or commercial-scale operating context."
+      ],
+      "implementation_tasks": [
+        "Maintain source-backed reference design for ���� ���ڸ����� ����.",
+        "Reassess applicability only after an approved scope change."
+      ],
+      "validation_tasks": [
+        "Perform STATIC_REVIEW of source requirements and laboratory exclusions."
+      ],
+      "evidence_requirements": [
+        "Source citation",
+        "Applicability decision",
+        "Documented limitation"
+      ],
+      "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
+      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "target_wave": null,
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-7.6",
+      "pillar": "visibility-analytics",
+      "function": "visibility-analytics",
+      "capability": "automated-dynamic-policy",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "TRADITIONAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�ڵ�ȭ�� ���� ��å is targeted at TRADITIONAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "MEDIUM",
+      "dependency_ids": [
+        "ZT-7.3",
+        "ZT-7.4",
+        "ZT-8.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-VA-001"
+      ],
+      "required_components": [
+        "sanitized telemetry pipeline",
+        "bounded correlation rule",
+        "evidence storage"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for �ڵ�ȭ�� ���� ��å.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �ڵ�ȭ�� ���� ��å control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W5",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-8.1",
+      "pillar": "automation-integration",
+      "function": "automation-integration",
+      "capability": "policy-integration",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "��å ���� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "MAPPED",
+      "validation_status": "REFERENCE_ONLY",
+      "evidence_level": "DESIGN",
+      "priority": "CRITICAL",
+      "dependency_ids": [
+        "ZT-4.1.1",
+        "ZT-7.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-AI-001"
+      ],
+      "required_components": [
+        "read-only validator",
+        "approval and rollback workflow",
+        "decision record"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ��å ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ��å ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-8.2",
+      "pillar": "automation-integration",
+      "function": "automation-integration",
+      "capability": "critical-process-automation",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�߿� ���μ��� �ڵ�ȭ is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
+      "priority": "CRITICAL",
+      "dependency_ids": [
+        "ZT-7.1",
+        "ZT-8.1"
+      ],
+      "blocking_gaps": [
+        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-AI-001"
+      ],
+      "required_components": [
+        "read-only validator",
+        "approval and rollback workflow",
+        "decision record"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for �߿� ���μ��� �ڵ�ȭ.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �߿� ���μ��� �ڵ�ȭ control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W1",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-8.3",
+      "pillar": "automation-integration",
+      "function": "automation-integration",
+      "capability": "artificial-intelligence",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "�ΰ����� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "MEDIUM",
+      "dependency_ids": [
+        "ZT-7.1",
+        "ZT-7.4"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-AI-001"
+      ],
+      "required_components": [
+        "read-only validator",
+        "approval and rollback workflow",
+        "decision record"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for �ΰ�����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded �ΰ����� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W4",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-8.4",
+      "pillar": "automation-integration",
+      "function": "automation-integration",
+      "capability": "security-integration-automation-response",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "TRADITIONAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���� ����, �ڵ�ȭ �� ���� is targeted at TRADITIONAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "MEDIUM",
+      "dependency_ids": [
+        "ZT-3.2.1",
+        "ZT-7.3",
+        "ZT-8.1",
+        "ZT-8.2"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-AI-001"
+      ],
+      "required_components": [
+        "read-only validator",
+        "approval and rollback workflow",
+        "decision record"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ���� ����, �ڵ�ȭ �� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ���� ����, �ڵ�ȭ �� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W4",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-8.5",
+      "pillar": "automation-integration",
+      "function": "automation-integration",
+      "capability": "data-exchange-standardization",
+      "applicability": "LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "ADVANCED",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "������ ��ȯ ǥ��ȭ is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "CRITICAL",
+      "dependency_ids": [
+        "ZT-7.1"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-AI-001"
+      ],
+      "required_components": [
+        "read-only validator",
+        "approval and rollback workflow",
+        "decision record"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ������ ��ȯ ǥ��ȭ.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Run positive, negative, failure, and recovery checks appropriate to the control.",
+        "Repeat the check and compare sanitized evidence."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ������ ��ȯ ǥ��ȭ control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W0",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
+    },
+    {
+      "id": "ZT-8.6",
+      "pillar": "automation-integration",
+      "function": "automation-integration",
+      "capability": "security-operations-coordination-incident-response",
+      "applicability": "PARTIALLY_LAB_IMPLEMENTABLE",
+      "current_maturity": "UNASSESSED",
+      "lab_target_maturity": "INITIAL",
+      "enterprise_reference_target": "UNASSESSED",
+      "target_rationale": "���� � ���� �� ��� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
+      "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
+      "implementation_status": "GAP_IDENTIFIED",
+      "validation_status": "GAP_IDENTIFIED",
+      "evidence_level": "NONE",
+      "priority": "MEDIUM",
+      "dependency_ids": [
+        "ZT-3.2.1",
+        "ZT-7.1",
+        "ZT-8.2",
+        "ZT-8.4"
+      ],
+      "blocking_gaps": [
+        "No accepted capability-specific implementation or runtime evidence exists."
+      ],
+      "candidate_control_patterns": [
+        "ZTP-AI-001"
+      ],
+      "required_components": [
+        "read-only validator",
+        "approval and rollback workflow",
+        "decision record"
+      ],
+      "implementation_tasks": [
+        "Define the bounded lab control for ���� � ���� �� ��� ����.",
+        "Implement only after all dependency and phase-gate criteria pass.",
+        "Document owner, rollback, and secret-handling boundaries."
+      ],
+      "validation_tasks": [
+        "Validate the bounded subset with positive and negative tests.",
+        "Record unimplemented source characteristics as explicit limitations."
+      ],
+      "evidence_requirements": [
+        "Design record",
+        "Sanitized configuration evidence",
+        "Sanitized validation result",
+        "Evidence authority",
+        "Rollback or cleanup record where applicable"
+      ],
+      "success_criteria": "The bounded ���� � ���� �� ��� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
+      "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
+      "target_wave": "W4",
+      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
+    }
+  ]
+}
