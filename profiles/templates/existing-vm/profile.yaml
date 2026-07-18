@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "environment_name": "<environment-name>",
+    "target_type": "existing-vm",
+    "platform_version": "<pinned-version>",
+    "owner_role": "<owner-role>"
+  },
+  "provider": {
+    "type": "existing-vm",
+    "region": "<region-or-not-applicable>",
+    "cloud_profile_reference": "<external-reference-or-not-applicable>",
+    "provisions_compute": false
+  },
+  "network": {
+    "management_zone": "<zone>",
+    "management_interface": "<interface>",
+    "management_cidr": "<cidr>",
+    "gateway": "<gateway>",
+    "dns": [
+      "<dns-server>"
+    ],
+    "public_exposure_allowed": false
+  },
+  "targets": {
+    "monitoring": false,
+    "identity": false,
+    "application": false,
+    "optional_nodes": []
+  },
+  "resources": {
+    "cpu": 2,
+    "memory": "4GiB",
+    "disk": "40GiB"
+  },
+  "access": {
+    "ssh_alias": "<approved-alias>",
+    "privilege_model": "approved-bounded-escalation",
+    "secret_source": "external-interactive-source"
+  },
+  "features": {
+    "monitoring": false,
+    "identity": false,
+    "policy_engine": false,
+    "runtime_validation": true,
+    "drift_detection": false
+  }
+}

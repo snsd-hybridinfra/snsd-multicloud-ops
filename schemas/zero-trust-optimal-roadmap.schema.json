@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-optimal-roadmap.schema.json",
+  "type": "object",
+  "required": [
+    "roadmap_id",
+    "official_target",
+    "current_implementation_status",
+    "current_validation_status",
+    "roadmap_status",
+    "architecture_designation",
+    "official_maturity_level",
+    "extension_interfaces",
+    "reuse"
+  ],
+  "properties": {
+    "roadmap_id": {
+      "const": "ZT-OPTIMAL-ROADMAP-001"
+    },
+    "official_target": {
+      "const": "OPTIMAL"
+    },
+    "current_implementation_status": {
+      "const": "NOT_STARTED"
+    },
+    "current_validation_status": {
+      "const": "UNASSESSED"
+    },
+    "roadmap_status": {
+      "const": "ROADMAP_ONLY"
+    },
+    "architecture_designation": {
+      "const": "OPTIMAL_READY"
+    },
+    "official_maturity_level": {
+      "const": false
+    },
+    "extension_interfaces": {
+      "type": "array"
+    },
+    "reuse": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": false
+}

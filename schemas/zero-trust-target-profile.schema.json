@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-target-profile.schema.json",
+  "type": "object",
+  "required": [
+    "metadata",
+    "provider",
+    "network",
+    "targets",
+    "resources",
+    "access",
+    "features"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": [
+        "environment_name",
+        "target_type",
+        "platform_version",
+        "owner_role"
+      ],
+      "properties": {
+        "environment_name": {
+          "type": "string"
+        },
+        "target_type": {
+          "enum": [
+            "openstack-vm",
+            "existing-vm",
+            "physical-server"
+          ]
+        },
+        "platform_version": {
+          "type": "string"
+        },
+        "owner_role": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "provider": {
+      "type": "object",
+      "required": [
+        "type",
+        "region",
+        "cloud_profile_reference",
+        "provisions_compute"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "openstack",
+            "existing-vm",
+            "physical-server"
+          ]
+        },
+        "region": {
+          "type": "string"
+        },
+        "cloud_profile_reference": {
+          "type": "string"
+        },
+        "provisions_compute": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "network": {
+      "type": "object"
+    },
+    "targets": {
+      "type": "object"
+    },
+    "resources": {
+      "type": "object"
+    },
+    "access": {
+      "type": "object"
+    },
+    "features": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

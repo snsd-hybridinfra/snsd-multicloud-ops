@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-advanced-maturity-scope.schema.json",
+  "type": "object",
+  "required": [
+    "architecture_package",
+    "implementation_status",
+    "validation_status",
+    "current_maturity",
+    "target_boundary",
+    "architecture_designation",
+    "responsibilities",
+    "policy_default",
+    "provider_adapters"
+  ],
+  "properties": {
+    "architecture_package": {
+      "const": "ZT-ARC-001"
+    },
+    "title": {
+      "type": "string"
+    },
+    "project_positioning": {
+      "type": "string"
+    },
+    "public_positioning": {
+      "type": "string"
+    },
+    "implementation_status": {
+      "const": "DESIGN_ONLY"
+    },
+    "validation_status": {
+      "enum": [
+        "LOCAL_VALIDATED",
+        "UNASSESSED"
+      ]
+    },
+    "current_maturity": {
+      "const": "UNASSESSED"
+    },
+    "target_boundary": {
+      "const": "ADVANCED_TARGET"
+    },
+    "architecture_designation": {
+      "type": "object"
+    },
+    "official_maturity_levels": {
+      "type": "array"
+    },
+    "repository_assessment_states": {
+      "type": "array"
+    },
+    "selection_counts": {
+      "type": "object"
+    },
+    "selected_capability_ids": {
+      "type": "object"
+    },
+    "responsibilities": {
+      "type": "object"
+    },
+    "policy_default": {
+      "const": "DENY_BY_DEFAULT_FOR_UNREGISTERED_CHANGE"
+    },
+    "provider_adapters": {
+      "type": "array",
+      "minItems": 3
+    },
+    "limitations": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": false
+}

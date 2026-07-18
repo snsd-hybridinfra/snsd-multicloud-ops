@@ -1,26 +1,87 @@
 # Zero Trust Implementation Roadmap
 
-The detailed, dependency-checked planning authority is the [capability implementation backlog](capability-implementation-backlog.yaml), supported by the [implementation blueprint](implementation-blueprint.md), [phase gates](phase-gates.md), and [prioritized implementation queue](prioritized-implementation-queue.md). This roadmap does not itself authorize implementation or scenario creation.
+The authoritative post-Phase-1 roadmap is
+[ZT-ARC-001](target-architecture/phase-roadmap.md). The machine dependency
+authority is
+[implementation-dependency-map.yaml](target-architecture/implementation-dependency-map.yaml).
+The 52-capability backlog and Waves W0-W5 remain planning inputs; neither a
+phase nor a queue position promotes current state or maturity.
 
-## Phase 1 - Governance, Infrastructure, and Trust Foundations
+## Phase 1 - Foundation and Verification Operations
 
-Use Waves W0-W1 to establish inventories, evidence contracts, restricted administration, segmentation, telemetry inputs, and rollback prerequisites. S001-S050 remain locked. Do not infer capability maturity from scenario completion.
+Boundary: `ZT-SCH-001` (`DESIGN_ONLY`).
 
-## Phase 2 - Identity, Workload, Application, and Data Controls
+Phase state: `PARTIAL` implementation / `PARTIALLY_VALIDATED` validation /
+`NOT_COMPLETE` completion. `ZT-ID-001` remains a `REFERENCED_ONLY`,
+`NOT_IMPLEMENTED`, and `NOT_VALIDATED` Phase 1 candidate.
 
-Use Waves W2-W3 for bounded identity/MFA, endpoint posture, workload authorization, secure delivery, software risk, data inventory/classification, access, encryption, and recovery. No future scenario identifier is assigned or reserved here.
+The boundary covers restricted validation, evidence governance, automation
+safety, repeatable validation, and a scheduled-validation foundation. Actual
+completion evidence is separate: `ZT-FND-001` is validated, while
+`ZT-NET-001` and `ZT-VIS-001` are partially validated. The boundary identifier
+is not itself an implementation package result.
 
-## Phase 3 - Correlation, Controlled Automation, and Reassessment
+## Phase 2 - Centralized Identity and Visibility
 
-Use Waves W4-W5 to correlate reliable telemetry, coordinate bounded response, exercise approval-gated rollback, repeat verification, and reassess capability-specific gaps. Enterprise SIEM/SOAR, autonomous defense, and organization-wide maturity remain outside the demonstrated boundary.
+Phase state: `DESIGN_ONLY`. No Phase 2 package is promoted by this roadmap.
 
-## Gates
+Primary use case: protect Grafana through centralized identity, OIDC, MFA,
+role mapping, explicit allow/deny behavior, and access-decision telemetry.
+Monitoring is an enabling platform.
 
-- Source traceability and capability ownership
-- Approved scope and architecture decision where required
-- Explicit implementation and mutation authority
-- Sanitized evidence plan and evaluator authority
-- Capability-level assessment against the relevant source table
-- No full-compliance or enterprise-wide claim from a lab result
+Candidates: `ZT-USE-001`, `ZT-ID-002`, `ZT-APP-002`, `ZT-ACC-001`,
+`ZT-PEP-001`, `ZT-VIS-002`, and `ZT-EFF-001`. The existing queue's
+`ZT-ID-001` remains the approved identity predecessor; `ZT-ID-002` is a later
+candidate, not a rename. Active `ZT-VIS-002` work under `.runtime` remains an
+unaccepted dependency until sanitized package evidence passes review.
 
-The authoritative gate definitions are in [phase-gates.md](phase-gates.md). Future scenario proposals follow [future-scenario-governance.md](future-scenario-governance.md) and use backlog IDs until explicitly approved.
+Exit requires runtime-validated monitoring and identity stacks, OIDC, MFA,
+role mapping, allow and deny behavior, access-decision telemetry, and sanitized
+evidence.
+
+## Phase 3 - Cross-Domain Policy Enforcement
+
+Candidates: `ZT-PIP-001`, `ZT-POL-002`, `ZT-NET-002`, `ZT-SYS-002`,
+`ZT-DEV-002`, `ZT-COR-001`, `ZT-INC-001`, `ZT-AUTO-002`, `ZT-RESP-001`, and
+`ZT-REC-001`.
+
+Exit requires connected selected trust signals, a validated policy-decision
+model and PEP, deterministic correlation, an approval boundary for response,
+and recovery validation.
+
+## Phase 4 - IaC, Configuration as Code, and Policy as Code Convergence
+
+Candidates: `ZT-ONB-001`, `ZT-IAC-001`, `ZT-IAC-002`, `ZT-CFG-001`,
+`ZT-PAC-001` through `ZT-PAC-004`, `ZT-DRIFT-001`, `ZT-PLN-001`, and
+`ZT-DEP-001`.
+
+Exit requires a validated target profile, at least one IaC path, existing-VM
+or physical-server onboarding, Configuration as Code idempotency, a Policy as
+Code deny test, deployment gate, drift detection, and approved reconciliation.
+
+## Phase 5 - Portability, Runbooks, Handoff, and Advanced Acceptance
+
+Candidates: `ZT-RUN-001`, `ZT-HOF-001`, `ZT-MAT-001`, and `ZT-PLT-001`.
+
+Exit requires clean deployment, rollback, backup and restore, clean-operator
+handoff, validated runbooks, capability-specific maturity reassessment, and no
+unsupported maturity statement.
+
+## Future Phase 6 - Optimal-Maturity Expansion
+
+`ZT-RISK-001`, `ZT-BA-001`, `ZT-PDP-002`, `ZT-PEP-002`, `ZT-AUTO-003`,
+`ZT-OPT-001`, and `ZT-OPT-002` are all `NOT_STARTED` / `UNASSESSED` /
+`ROADMAP_ONLY`. They require separate scope approval and do not establish
+current `OPTIMAL` maturity.
+
+## Common Gates
+
+- Canonical source and capability ownership
+- Approved dependency and architecture boundary
+- Explicit mutation and service-impact authority
+- Secret-free profile and external secret source
+- Policy result and approval bound to an unchanged plan hash
+- Rollback and validator availability
+- Sanitized evidence plan and evidence authority
+- Capability-specific source-table assessment
+- No overall maturity inference from a lab result

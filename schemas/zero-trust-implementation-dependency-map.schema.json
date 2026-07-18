@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-implementation-dependency-map.schema.json",
+  "type": "object",
+  "required": [
+    "architecture_package",
+    "phases",
+    "package_status",
+    "constraints"
+  ],
+  "properties": {
+    "architecture_package": {
+      "const": "ZT-ARC-001"
+    },
+    "phases": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6
+    },
+    "package_status": {
+      "type": "object"
+    },
+    "constraints": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": false
+}

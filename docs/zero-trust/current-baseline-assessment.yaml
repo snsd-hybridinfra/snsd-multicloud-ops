@@ -13,7 +13,8 @@
     "limitations": [
       "No repository-wide maturity score.",
       "Single-lab evidence is not enterprise-wide evidence.",
-      "Scenario validation does not establish full capability validation."
+      "Scenario validation does not establish full capability validation.",
+      "ZT-ARC-001 target selection and OPTIMAL_READY architecture do not promote current implementation, validation, evidence, or maturity."
     ]
   },
   "summary": {

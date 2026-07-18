@@ -4,7 +4,8 @@
     "generated_from": [
       "docs/zero-trust/capability-catalog.yaml",
       "docs/zero-trust/current-baseline-assessment.yaml",
-      "docs/zero-trust/gap-register.md"
+      "docs/zero-trust/gap-register.md",
+      "docs/zero-trust/target-architecture/capability-selection.yaml"
     ],
     "scope": "Planning-only capability implementation backlog for the non-production SNSD laboratory; locked scenarios S001-S050 remain unchanged.",
     "environment": "Disposable portfolio laboratory with validated EVE-NG network and one OpenStack AIO network path.",
@@ -13,7 +14,8 @@
       "No infrastructure is implemented by this backlog.",
       "No capability status is promoted by planning.",
       "Lab targets do not represent enterprise maturity.",
-      "Reference-only records have no lab implementation target."
+      "Reference-only records have no lab implementation target.",
+      "ZT-ARC-001 selection and Advanced targets are separate planning views and do not replace current backlog or baseline state."
     ]
   },
   "waves": [
