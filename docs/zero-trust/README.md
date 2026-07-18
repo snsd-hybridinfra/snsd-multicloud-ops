@@ -6,6 +6,13 @@ This framework maps the SNSD lab and its locked S001-S050 validation model to se
 
 Repository positioning: **Hybrid and Multicloud Secure Operations Platform aligned with the Korean Zero Trust Guideline 2.0.** Alignment means traceable mapping and evidence-based assessment. It does not mean full compliance, complete implementation, certification, or organization-wide maturity.
 
+The post-Phase-1 target positioning is **IaC, Configuration as Code, and Policy
+as Code-driven Advanced Zero Trust Secure Operations Platform with an
+Optimal-Ready Extension Architecture**. The conservative public title is
+**Hybrid and Multicloud-Ready Secure Operations Platform**. Configuration as
+Code is the meaning of CaC throughout the target architecture; CaC does not
+mean Compliance as Code here.
+
 ## Scope and Boundaries
 
 - The authoritative source defines terminology, architecture, maturity, capabilities, adoption, and assessment concepts.
@@ -41,8 +48,14 @@ Repository positioning: **Hybrid and Multicloud Secure Operations Platform align
 - [Future scenario governance](future-scenario-governance.md)
 - [Governance rules](governance.md)
 - [Maintenance workflow](maintenance-workflow.md)
+- [ZT-ARC-001 target architecture](target-architecture/README.md)
+- [Advanced target selection](target-architecture/capability-selection.yaml)
+- [Advanced acceptance model](target-architecture/advanced-maturity-acceptance-model.yaml)
+- [Target phase roadmap](target-architecture/phase-roadmap.md)
+- [Authoritative operational runbook index](../runbooks/RUNBOOK_INDEX.md)
 - [ZT-FND-001 package](packages/zt-fnd-001-restricted-validation-foundation.md)
 - [ZT-FND-001 rollback](packages/zt-fnd-001-rollback.md)
+- [ZT-ARC-001 package](packages/zt-arc-001-advanced-target-architecture.md)
 
 ## Machine Validation
 
@@ -52,6 +65,7 @@ The catalog, baseline, and capability backlog YAML files are the repository mach
 python tools/validate_zero_trust.py --verbose
 python tools/check_zero_trust_sync.py
 python tools/generate_zero_trust_reports.py --check
+python tools/validate_advanced_target_architecture.py --verbose
 powershell -ExecutionPolicy Bypass -File tools/validate-zero-trust.ps1
 python -m unittest discover -s tests -v
 ```
@@ -66,3 +80,8 @@ The second-pass baseline records 0 fully validated capabilities, 6 partially
 validated capabilities within the bounded lab scope, 7 mapped-only
 capabilities, and 39 identified capability gaps. All 52 maturity values remain
 `UNASSESSED`.
+
+ZT-ARC-001 classifies 21 capabilities as Advanced primary targets, 15 as
+Advanced supporting targets, 4 as Initial targets, 5 as design-only, and 7 as
+future Optimal-roadmap items. These are target-selection judgments only. The
+architecture package does not change the current counts above.

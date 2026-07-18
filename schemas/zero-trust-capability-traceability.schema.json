@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-capability-traceability.schema.json",
+  "type": "object",
+  "required": [
+    "architecture_package",
+    "capability_count",
+    "capabilities"
+  ],
+  "properties": {
+    "architecture_package": {
+      "const": "ZT-ARC-001"
+    },
+    "capability_count": {
+      "const": 52
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 52,
+      "maxItems": 52
+    }
+  },
+  "additionalProperties": false
+}

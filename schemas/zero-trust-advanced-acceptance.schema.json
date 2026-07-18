@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-advanced-acceptance.schema.json",
+  "type": "object",
+  "required": [
+    "architecture_package",
+    "advanced_target_count",
+    "allowed_results",
+    "capabilities"
+  ],
+  "properties": {
+    "architecture_package": {
+      "const": "ZT-ARC-001"
+    },
+    "advanced_target_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "allowed_results": {
+      "type": "array"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "official_definition",
+          "advanced_stage_requirement",
+          "runtime_evidence_required",
+          "result",
+          "limitation",
+          "assessor_rationale"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^ZT-(?:[1-6]\\.[1-9][0-9]*\\.[1-9][0-9]*|[78]\\.[1-9][0-9]*)$"
+          },
+          "canonical_name_ko": {
+            "type": "string"
+          },
+          "selection": {
+            "enum": [
+              "ADVANCED_PRIMARY_TARGET",
+              "ADVANCED_SUPPORTING_TARGET"
+            ]
+          },
+          "official_definition": {
+            "type": "string"
+          },
+          "advanced_stage_requirement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_reference": {
+            "type": "object"
+          },
+          "implementation_mapping": {
+            "type": "array"
+          },
+          "configuration_evidence_required": {
+            "type": "boolean"
+          },
+          "runtime_evidence_required": {
+            "const": true
+          },
+          "enforcement_evidence_required": {
+            "type": "boolean"
+          },
+          "repeatability_evidence_required": {
+            "type": "boolean"
+          },
+          "freshness_days": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "failure_test_required": {
+            "type": "boolean"
+          },
+          "rollback_or_recovery_test_required": {
+            "type": "boolean"
+          },
+          "required_authorities": {
+            "type": "array"
+          },
+          "result": {
+            "enum": [
+              "ADVANCED_VALIDATED",
+              "ADVANCED_PARTIALLY_SUPPORTED",
+              "INITIAL_VALIDATED",
+              "DESIGN_ONLY",
+              "UNASSESSED",
+              "NOT_APPLICABLE",
+              "BLOCKED"
+            ]
+          },
+          "confidence": {
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ]
+          },
+          "limitation": {
+            "type": "string"
+          },
+          "assessor_rationale": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

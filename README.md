@@ -1,4 +1,4 @@
-# SNSD Multi-Cloud Secure Operations Validation Platform
+# SNSD Hybrid and Multicloud-Ready Secure Operations Platform
 
 ## Current Repository Truth State
 
@@ -29,6 +29,22 @@ assessment are tracked separately. This is not a claim of full compliance,
 complete implementation, certification, or organization-wide maturity.
 
 See the [Zero Trust Guideline 2.0 framework](docs/zero-trust/README.md).
+
+## Post-Phase-1 Target Architecture
+
+The authoritative target is an **IaC, Configuration as Code, and Policy as
+Code-driven Advanced Zero Trust Secure Operations Platform with an
+Optimal-Ready Extension Architecture**. `OPTIMAL_READY` is a repository-local
+design designation, not an official maturity level and not evidence of
+`OPTIMAL` maturity.
+
+See [ZT-ARC-001](docs/zero-trust/target-architecture/README.md). The package is
+`DESIGN_ONLY` / `LOCAL_VALIDATED`; it deploys no service, promotes no current
+capability status, and leaves all capability maturity values `UNASSESSED`.
+AWS and Azure adapters remain roadmap-only, so the public positioning remains
+**Hybrid and Multicloud-Ready Secure Operations Platform**.
+The [authoritative operational runbook index](docs/runbooks/RUNBOOK_INDEX.md)
+contains design specifications only until a package records stronger evidence.
 
 ## Validation Model
 
@@ -66,6 +82,27 @@ powershell -ExecutionPolicy Bypass -File tools\validate-final-evidence-report.ps
 These local PowerShell commands validate repository/document structure only.
 They do not produce authoritative scenario evidence and do not run Terraform,
 kubectl, cloud CLIs, or live infrastructure queries.
+
+`validate-all-scenarios.ps1` is read-only by default. It snapshots the current
+tracked, untracked, and staged working-tree state, runs all scenario validators
+against an isolated operating-system temporary copy, removes that temporary
+copy, and fails if the source repository state changed. A clean working tree is
+not required. Pre-existing recovery changes are accepted only when their Git
+state, size, timestamp, and SHA-256 hash remain identical before and after.
+
+Repository report generation is a separate, explicitly mutating operation:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\validate-all-scenarios.ps1 -GenerateReports
+```
+
+Generation mode writes scenario validator outputs and the S050 repository-wide
+log and summary, so it requires separate review and is not part of ordinary
+validation. Exit `0` means all checks passed, exit `1` means one or more
+validation checks failed, and exit `2` means wrapper configuration, temporary
+workspace cleanup, or the repository immutability guarantee failed. The
+repository-wide wrapper always enforces static-only child execution; it never
+enables S021 `-LiveKubectl` or another live-runtime mode.
 
 ## Current OpenStack Result
 

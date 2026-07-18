@@ -10,6 +10,14 @@
 
 This is an evidence-based, capability-level baseline. It is not a compliance assessment, certification, enterprise-wide assessment, or overall maturity score.
 
+## Target Architecture Boundary
+
+[ZT-ARC-001](target-architecture/README.md) defines Advanced targets and a
+repository-local `OPTIMAL_READY` extension design. It is `DESIGN_ONLY` /
+`LOCAL_VALIDATED` and does not change this current assessment. Target
+selection, implementation, validation, evidence, and current maturity remain
+independent.
+
 ## Evidence Sources
 
 - User-executed sanitized EVE-NG runtime evidence under S002

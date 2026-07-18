@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-host-onboarding-contract.schema.json",
+  "type": "object",
+  "required": [
+    "contract_id",
+    "allowed_states",
+    "deployment_gate",
+    "required_checks",
+    "target_types"
+  ],
+  "properties": {
+    "contract_id": {
+      "const": "ZT-HOST-ONBOARDING-001"
+    },
+    "applies_after_provider_stage": {
+      "const": true
+    },
+    "allowed_states": {
+      "type": "array",
+      "minItems": 5
+    },
+    "deployment_gate": {
+      "type": "object"
+    },
+    "required_checks": {
+      "type": "array",
+      "minItems": 18
+    },
+    "target_types": {
+      "type": "array",
+      "minItems": 3
+    }
+  },
+  "additionalProperties": false
+}

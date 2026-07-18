@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-handoff-acceptance.schema.json",
+  "type": "object",
+  "required": [
+    "model_id",
+    "status",
+    "validation_status",
+    "operator_steps",
+    "acceptance_checks"
+  ],
+  "properties": {
+    "model_id": {
+      "const": "ZT-HANDOFF-001"
+    },
+    "status": {
+      "const": "DESIGN_SPECIFICATION"
+    },
+    "validation_status": {
+      "enum": [
+        "NOT_IMPLEMENTED",
+        "VALIDATED_LOCAL",
+        "VALIDATED_RUNTIME"
+      ]
+    },
+    "operator_steps": {
+      "type": "array",
+      "minItems": 15
+    },
+    "acceptance_checks": {
+      "type": "array",
+      "minItems": 13
+    }
+  },
+  "additionalProperties": false
+}
