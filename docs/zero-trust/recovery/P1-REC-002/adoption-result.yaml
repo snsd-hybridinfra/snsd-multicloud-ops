@@ -1,0 +1,847 @@
+{
+  "recovery_action": {
+    "id": "P1-REC-002",
+    "name": "Apply Approved Non-Destructive Recovery Adoption Plan",
+    "timestamp": "2026-07-18T23:36:07+09:00",
+    "repository": "C:/Users/swfco/OneDrive/바탕 화면/github/snsd-multicloud-ops",
+    "branch": "main",
+    "head": "593f1f2c270a6338043d57cda5a4cea1d43f9342",
+    "origin_head": "593f1f2c270a6338043d57cda5a4cea1d43f9342",
+    "baseline_fingerprint": "ad2d9d792391bd569b455df22a3db6d4b404776a60e3a13cab98832800bbb974",
+    "baseline_verified": true,
+    "status": "COMPLETE_NON_DESTRUCTIVE_ADOPTION"
+  },
+  "approved_decisions": {
+    "tracked_modifications": "INDIVIDUALLY_REVIEWED_AND_MERGED_OR_PRESERVED",
+    "zt_arc_001": "ADOPTED_AS_AUTHORITATIVE_DESIGN_ONLY_ARCHITECTURE_GOVERNANCE",
+    "runbook_authority": "docs/runbooks/",
+    "phase_ordering": "ZT-ID-001_PHASE_1_CANDIDATE; ZT-VIS-002_PHASE_2_ENABLING_AND_PROTECTED"
+  },
+  "summary": {
+    "files_adopted": 83,
+    "files_normalized": 21,
+    "files_merged": 11,
+    "files_protected": 204,
+    "files_deferred": 115,
+    "files_rejected_not_deleted": 0,
+    "authority_conflicts": 0,
+    "package_conflicts": 0,
+    "unsupported_claims_downgraded": 8,
+    "note": "Counts overlap by design: a file may be adopted, normalized, protected, and deferred from implementation while having one authority role."
+  },
+  "adopted_files": [
+    {
+      "path": "docs/adr/0003-advanced-maturity-implementation-target.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/adr/0004-iac-cac-pac-responsibility-boundaries.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/adr/0005-portable-vm-physical-onboarding.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/adr/0006-policy-gated-operations.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/adr/0007-optimal-ready-extension-interfaces.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/adr/0008-runbook-backed-operator-handoff.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/00-platform-overview.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/01-prerequisites.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/02-target-selection.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/03-openstack-vm-onboarding.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/04-existing-vm-onboarding.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/05-physical-server-onboarding.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/06-environment-profile.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/07-secret-preparation.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/08-preflight-validation.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/09-iac-plan.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/10-policy-evaluation.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/11-deployment-approval.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/12-platform-deployment.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/13-runtime-validation.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/14-platform-status.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/15-drift-detection.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/16-reconciliation.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/17-backup.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/18-restore.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/19-rollback.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/20-upgrade.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/21-secret-rotation.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/22-certificate-rotation.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/23-incident-response.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/24-target-replacement.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/25-decommission.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/26-evidence-handling.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/27-operator-handoff.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/28-troubleshooting.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/README.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/RUNBOOK_INDEX.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/runbooks/RUNBOOK_TEMPLATE.md",
+      "authority": "AUTHORITATIVE_OPERATIONAL_RUNBOOK_FRAMEWORK",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-advanced-target-architecture.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-package.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-rollback.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/phase-1-recovery-audit.md",
+      "authority": "AUTHORITATIVE_RECOVERY_HISTORY",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/phase-1-recovery-audit.yaml",
+      "authority": "AUTHORITATIVE_RECOVERY_HISTORY",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/README.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-acceptance-model.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-acceptance-model.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-scope.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-scope.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-selection-method.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-selection.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-traceability-matrix.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-traceability-matrix.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/golden-path.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/handoff-acceptance-model.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/handoff-acceptance-model.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/host-onboarding-contract.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/host-onboarding-contract.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/iac-cac-pac-reference-architecture.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/limitations.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/operator-interface-contract.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-expansion-roadmap.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-expansion-roadmap.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-readiness-architecture.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/phase-roadmap.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/portfolio-positioning.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/project-objective.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/target-portability-architecture.md",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "profiles/templates/existing-vm/profile.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "profiles/templates/openstack-vm/profile.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "profiles/templates/physical-server/profile.yaml",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "schemas/zero-trust-advanced-acceptance.schema.json",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "schemas/zero-trust-advanced-maturity-scope.schema.json",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "schemas/zero-trust-capability-selection.schema.json",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "schemas/zero-trust-capability-traceability.schema.json",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "schemas/zero-trust-handoff-acceptance.schema.json",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "schemas/zero-trust-host-onboarding-contract.schema.json",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "schemas/zero-trust-implementation-dependency-map.schema.json",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "schemas/zero-trust-optimal-roadmap.schema.json",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "schemas/zero-trust-target-profile.schema.json",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "tests/test_advanced_target_architecture.py",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    },
+    {
+      "path": "tools/validate_advanced_target_architecture.py",
+      "authority": "AUTHORITATIVE_ZT_ARC_001_DESIGN_GOVERNANCE",
+      "implementation_evidence": false
+    }
+  ],
+  "normalized_files": [
+    {
+      "path": "docs/implementation-log.md",
+      "before_sha256": "ef93be6cf629eca713f240b3ece448bf0eff6400311f81dad5d2d01cdc127228",
+      "after_sha256": "294c6a81fd3ef5170bebedb4c826a7f177f5d58edc0b0bc05b57a46c12473cb3"
+    },
+    {
+      "path": "docs/progress-tracker.md",
+      "before_sha256": "c67185cbe889cd5bbf0e4c8fcfe5b630b8dd9b813d2db867d0f3241ff8445e81",
+      "after_sha256": "a10543244c771b473adc9f4663e572f5bd29bdc0e5128d46d62683fc2f82f4fb"
+    },
+    {
+      "path": "docs/runbooks/README.md",
+      "before_sha256": "9f4577cee97a544f53a6dde20b5810885cff98d2f456437d713de15fa01df8bf",
+      "after_sha256": "fcde4254eb00e2cb30d04363c975c6672efa0e53ad1b956123e64526988a69b8"
+    },
+    {
+      "path": "docs/runbooks/RUNBOOK_INDEX.md",
+      "before_sha256": "2fa050744c308fe492f4fa7f15e0f61334074468f4e847bcc7386eafb7d75028",
+      "after_sha256": "705a6075d249d28775f0910339d46932587598884a9bbdd901828e3127413136"
+    },
+    {
+      "path": "docs/runbooks/RUNBOOK_TEMPLATE.md",
+      "before_sha256": "c3852344f5a95462e3795c7467c4a7ad716872f0264e48e6c269c1136662c19e",
+      "after_sha256": "182d93b4adae381df27ad75a26779c1af7fa26b39ad9e26feaa9f1af8a3bd26b"
+    },
+    {
+      "path": "docs/zero-trust/current-baseline-assessment.md",
+      "before_sha256": "f4ee630c6367a13281b3085fcfcdca2764305789c7666b8cf329e92b4ebd73f0",
+      "after_sha256": "8518366fc829c60a43218c90a59b4fb88d47bfdf7311f5a95649111e308b8552"
+    },
+    {
+      "path": "docs/zero-trust/gap-register.md",
+      "before_sha256": "a9f0f60fe2f4c018c3e10667cb42137fe1a281910a094a9e65841fcf93a44d8d",
+      "after_sha256": "6a7aa6ddc323dea033a15fc80f5cbd60b4e84b478634697656c6c101b954548a"
+    },
+    {
+      "path": "docs/zero-trust/implementation-roadmap.md",
+      "before_sha256": "b8664bb57c1449b630af9a52d84f3452d0ccb8d9462d30bb1c83aee6f2e46bf2",
+      "after_sha256": "12318bd1cd44ea9adc9dfbf522ae6105bf352c75855c78980d521c48db6279a9"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-advanced-target-architecture.md",
+      "before_sha256": "f88b1a5c3e747057d1a6cef8db38101e9b7c190d998538ab340c6255e4bec7ff",
+      "after_sha256": "ea95eadfb809dcd6a8cf8b3692216b65051cceb0721aa615c96d131159c388d6"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-package.yaml",
+      "before_sha256": "a95c355245f7bfacefdf687f355b880e18bbf0a92987663d75abb15ee547f39f",
+      "after_sha256": "d73f28a42586476f5b689f30be0c40475c6485b4d0c2a7e71c067a48f84cdcbd"
+    },
+    {
+      "path": "docs/zero-trust/prioritized-implementation-queue.md",
+      "before_sha256": "696139500febda8c501054e5541032e191ee406dc7cb461c7b912f9ef8e9264f",
+      "after_sha256": "0af694c1c2bfd7dc36787c445c2a033f126af9c44e7607ffb0d83bb416621614"
+    },
+    {
+      "path": "docs/zero-trust/README.md",
+      "before_sha256": "bebf455b92ed05be984d5c5919d4ac2adb973ecdedca8ce30e073e5a82985b53",
+      "after_sha256": "c1338c6c25bb4bb2b12e244b2c2a111d6cc2c81c636065d5d3a80eeb6eec34f0"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-scope.yaml",
+      "before_sha256": "388da8db115b3fc8107c00f639bde7ce2bc135a67495695146f10d55e0061fac",
+      "after_sha256": "8f9e248b25d452487ee9c9f7492b21c866845c37ccb1f953d8999e3322545df2"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.md",
+      "before_sha256": "390d39e8896a5d52e3403af20ac43473cee57d232e3b14d07fd7272f33a40ace",
+      "after_sha256": "67a287542cb74f194f7d839fa87692c54181020294c3e63b28f91d4131339e08"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.yaml",
+      "before_sha256": "0c131982f1f4c6183819247db0eb6b9bd709a02c831e911282ebab36d24b7b92",
+      "after_sha256": "56a71ec06491739c83bc87ad1c2e9d89f28433551655b044f32b9fea22941a48"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/phase-roadmap.md",
+      "before_sha256": "3f0a160a34918061bce3650208bc29dc596bdb17e2cfdebe6f92c0674a400ca0",
+      "after_sha256": "04a57ae168322a01e8514c40ddcb208f9b5df9b6113cdbe4bbedfa08af852db1"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/README.md",
+      "before_sha256": "287d6ad2e1efb8e08ae92f2820ebbceccb66ecefcb339713c10ea3763a91d7ce",
+      "after_sha256": "02aa43bb7df2490c0614dbb7ff58e668727135d410a80d493df0e63ad5e36520"
+    },
+    {
+      "path": "README.md",
+      "before_sha256": "ef0be7701d6752ac115859937c5339b42f6453c276bf0bb53b39484ad7fcf7c8",
+      "after_sha256": "979666a177fd6d20101e605001dd5180ac895d8bfc9994385a737659de629db3"
+    },
+    {
+      "path": "schemas/zero-trust-advanced-maturity-scope.schema.json",
+      "before_sha256": "63a4cb9144e6c613b8a55b3c1a9a1809c7c1ceabfc2475d249809b6d0496f08a",
+      "after_sha256": "fc83ba9ed46b46d517a5cc8b1c61ff50c4b0a4235156f46582adffb7de968305"
+    },
+    {
+      "path": "tests/test_advanced_target_architecture.py",
+      "before_sha256": "07428f83fd4b45f5405ff489c182d3251dbd33354c91084186037483cb202ca0",
+      "after_sha256": "dfb1497a395273e3bda840b95ab39f202a7820b13546067d9c48c2f7cde6e367"
+    },
+    {
+      "path": "tools/validate_advanced_target_architecture.py",
+      "before_sha256": "08bf2aaa819adcb59705255e1533e811cb1a0ef87e6b3a4044d517dbc4896c52",
+      "after_sha256": "bc39c6f8a497766144ca6330c8ffd8ddee9111a2599979dd044b0dad1440524d"
+    }
+  ],
+  "merged_files": [
+    "docs/implementation-log.md",
+    "docs/progress-tracker.md",
+    "docs/risk-register.md",
+    "docs/zero-trust/capability-implementation-backlog.yaml",
+    "docs/zero-trust/current-baseline-assessment.md",
+    "docs/zero-trust/current-baseline-assessment.yaml",
+    "docs/zero-trust/gap-register.md",
+    "docs/zero-trust/implementation-roadmap.md",
+    "docs/zero-trust/prioritized-implementation-queue.md",
+    "docs/zero-trust/README.md",
+    "README.md"
+  ],
+  "protected_files_record": "docs/zero-trust/recovery/P1-REC-002/authority-map.yaml",
+  "deferred_files_record": "docs/zero-trust/recovery/P1-REC-002/deferred-files.yaml",
+  "claim_downgrades": [
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-package.yaml",
+      "from": "Local design validation without explicit runtime/claim fields",
+      "to": "LOCAL_VALIDATED with runtime NOT_VALIDATED, maturity UNASSESSED, advanced/optimal claims false"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/README.md",
+      "from": "Design/local status without complete Phase 1 boundary fields",
+      "to": "Authoritative design only; Phase 1 PARTIAL/PARTIALLY_VALIDATED/NOT_COMPLETE"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/phase-roadmap.md",
+      "from": "Phase 2 ACTIVE_DEPENDENCY and ZT-ID-001 listed in Phase 2",
+      "to": "Phase 2 DESIGN_ONLY; ZT-ID-001 referenced-only Phase 1 candidate"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.yaml",
+      "from": "ZT-VIS-002 IN_PROGRESS_UNTRACKED_RUNTIME/ACTIVE_DEPENDENCY",
+      "to": "PREPARATION_TRACES_ONLY/NOT_VALIDATED/DESIGN_ONLY and protected"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.md",
+      "from": "Monitoring described as an active dependency",
+      "to": "Protected Phase 2 enabling preparation without deployment or validation authority"
+    },
+    {
+      "path": "docs/zero-trust/prioritized-implementation-queue.md",
+      "from": "ZT-ID-001 gated after monitoring dependency",
+      "to": "ZT-ID-001 remains Phase 1 candidate; ZT-VIS-002 cannot replace or close it"
+    },
+    {
+      "path": "docs/zero-trust/gap-register.md",
+      "from": "ZT-VIS-002 gap state IN_PROGRESS",
+      "to": "PREPARATION_TRACES_ONLY"
+    },
+    {
+      "path": "docs/zero-trust/implementation-roadmap.md",
+      "from": "Phase boundary narrative without exact completion fields",
+      "to": "PARTIAL/PARTIALLY_VALIDATED/NOT_COMPLETE and Phase 2 DESIGN_ONLY"
+    }
+  ],
+  "phase_1": {
+    "boundary": "ZT-SCH-001",
+    "implementation_status": "PARTIAL",
+    "validation_status": "PARTIALLY_VALIDATED",
+    "completion_status": "NOT_COMPLETE",
+    "blockers": [
+      "ZT-SCH-001 remains DESIGN_ONLY with no scheduled execution.",
+      "ZT-NET-001 lacks permanent ACL enforcement evidence.",
+      "ZT-VIS-001 lacks accepted central monitoring deployment and persistent storage evidence.",
+      "ZT-ID-001 remains REFERENCED_ONLY, NOT_IMPLEMENTED, and NOT_VALIDATED.",
+      "Aggregate scenario validation has a known mutation/logic hygiene blocker."
+    ]
+  },
+  "packages": [
+    {
+      "package_id": "ZT-FND-001",
+      "authoritative_path": "docs/zero-trust/packages/zt-fnd-001-package.yaml",
+      "package_type": "VALIDATION_FOUNDATION",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "RUNTIME_VALIDATED",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "authority_status": "AUTHORITATIVE",
+      "limitations": [
+        "Limited non-production environment",
+        "No capability maturity promotion"
+      ]
+    },
+    {
+      "package_id": "ZT-NET-001",
+      "authoritative_path": "docs/zero-trust/packages/zt-net-001-package.yaml",
+      "package_type": "NETWORK_VALIDATION",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED_AS_RECORDED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "authority_status": "AUTHORITATIVE",
+      "limitations": [
+        "Permanent ACL enforcement evidence is missing",
+        "No completion or permanent enforcement claim"
+      ]
+    },
+    {
+      "package_id": "ZT-VIS-001",
+      "authoritative_path": "docs/zero-trust/packages/zt-vis-001-package.yaml",
+      "package_type": "BOUNDED_TELEMETRY_FOUNDATION",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "authority_status": "AUTHORITATIVE",
+      "limitations": [
+        "No accepted centralized monitoring deployment",
+        "No accepted persistent central storage",
+        "Not equivalent to ZT-VIS-002"
+      ]
+    },
+    {
+      "package_id": "ZT-ID-001",
+      "authoritative_path": "docs/zero-trust/prioritized-implementation-queue.md",
+      "package_type": "CANDIDATE_REFERENCE",
+      "phase": "PHASE_1_CANDIDATE",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "validation_status": "NOT_VALIDATED",
+      "evidence_authority": "DESIGN_ONLY",
+      "authority_status": "REFERENCED_ONLY",
+      "limitations": [
+        "No package implementation exists",
+        "Exact next implementation action remains separately selected"
+      ]
+    },
+    {
+      "package_id": "ZT-SCH-001",
+      "authoritative_path": "docs/zero-trust/target-architecture/implementation-dependency-map.yaml",
+      "package_type": "PHASE_BOUNDARY_REFERENCE",
+      "phase": "PHASE_1_BOUNDARY",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "validation_status": "NOT_VALIDATED",
+      "evidence_authority": "DESIGN_ONLY",
+      "authority_status": "DESIGN_ONLY",
+      "limitations": [
+        "No scheduler, job, tracked package, or execution evidence"
+      ]
+    },
+    {
+      "package_id": "ZT-VIS-002",
+      "authoritative_path": null,
+      "package_type": "PHASE_2_ENABLING_WORK",
+      "phase": "PHASE_2_FUTURE",
+      "implementation_status": "PREPARATION_TRACES_ONLY",
+      "validation_status": "NOT_VALIDATED",
+      "evidence_authority": "IGNORED_RUNTIME_NOT_ACCEPTED",
+      "authority_status": "NOT_AUTHORITATIVE",
+      "limitations": [
+        "Docker or Compose preparation traces only",
+        "No Grafana, Loki, Alloy, ingestion, persistence, or package acceptance"
+      ]
+    },
+    {
+      "package_id": "ZT-ARC-001",
+      "authoritative_path": "docs/zero-trust/packages/zt-arc-001-package.yaml",
+      "package_type": "ARCHITECTURE_GOVERNANCE",
+      "phase": "CROSS_PHASE_GOVERNANCE",
+      "implementation_status": "DESIGN_ONLY",
+      "validation_status": "LOCAL_VALIDATED",
+      "evidence_authority": "CODEX_EXECUTED_LOCAL",
+      "authority_status": "AUTHORITATIVE",
+      "limitations": [
+        "Runtime validation NOT_VALIDATED",
+        "Maturity UNASSESSED",
+        "Advanced is target only",
+        "OPTIMAL_READY is repository-local and non-official"
+      ]
+    }
+  ],
+  "validators": [
+    {
+      "command": "python tools/validate_zero_trust.py --verbose",
+      "purpose": "Taxonomy, package, claims, scenario, links, and secret validation",
+      "exit_code": 0,
+      "pass": 34,
+      "warn": 0,
+      "fail": 0,
+      "generated_file_behavior": "READ_ONLY"
+    },
+    {
+      "command": "python tools/check_zero_trust_sync.py",
+      "purpose": "Machine authority synchronization",
+      "exit_code": 0,
+      "pass": 5,
+      "warn": 0,
+      "fail": 0,
+      "generated_file_behavior": "READ_ONLY"
+    },
+    {
+      "command": "python tools/generate_zero_trust_reports.py --check",
+      "purpose": "Generated view synchronization check",
+      "exit_code": 0,
+      "pass": 1,
+      "warn": 0,
+      "fail": 0,
+      "generated_file_behavior": "CHECK_MODE_READ_ONLY"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/validate-zero-trust.ps1",
+      "purpose": "Combined Zero Trust validation",
+      "exit_code": 0,
+      "pass": 1,
+      "warn": 0,
+      "fail": 0,
+      "generated_file_behavior": "READ_ONLY"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/validate-repo-structure.ps1",
+      "purpose": "Repository and S001-S050 structure",
+      "exit_code": 0,
+      "pass": 1,
+      "warn": 0,
+      "fail": 0,
+      "generated_file_behavior": "READ_ONLY"
+    },
+    {
+      "command": "python tools/validate_advanced_target_architecture.py --verbose",
+      "purpose": "ZT-ARC-001 schemas, package metadata, runbooks, profiles, scenario and secret boundaries",
+      "exit_code": 0,
+      "pass": 28,
+      "warn": 0,
+      "fail": 0,
+      "generated_file_behavior": "READ_ONLY"
+    },
+    {
+      "command": "python -m unittest discover -s tests -v",
+      "purpose": "Full regression suite",
+      "exit_code": 0,
+      "pass": 62,
+      "warn": 0,
+      "fail": 0,
+      "generated_file_behavior": "READ_ONLY_WITH_BYTECODE_DISABLED"
+    }
+  ],
+  "security": {
+    "tracked_runtime_files": 0,
+    "tracked_secret_findings": 0,
+    "scenario_lock": "PASS_S001_THROUGH_S050_EXACTLY",
+    "s051_present": false,
+    "final_diff_check": "PASS",
+    "staged_files": 0,
+    "validator_mutation_detected": false,
+    "commit_created": false,
+    "push_performed": false
+  },
+  "next_action": {
+    "action_id": "P1-HYG-001",
+    "objective": "Repair the repository validation hygiene blocker so aggregate scenario validation is provably read-only and the S021 strict-mode Count defect is covered by regression tests.",
+    "rationale": "An unresolved validator mutation/logic blocker precedes new package implementation, affects every later audit, requires no live infrastructure, and offers high closure value with minimal rework.",
+    "prerequisites": [
+      "Revalidate the P1-REC-002 Git baseline and protected paths.",
+      "Capture exact pre-change hashes of the two validators.",
+      "Keep all validation execution static and local; do not run live S021."
+    ],
+    "authorized_files": [
+      "tools/validate-all-scenarios.ps1",
+      "tools/validate-kubernetes-node-readiness.ps1",
+      "tests/ (only validator-hygiene regression coverage)",
+      "docs/risk-register.md",
+      "docs/implementation-log.md",
+      "docs/zero-trust/recovery/P1-HYG-001/ (recovery/hygiene records only)"
+    ],
+    "protected_files": [
+      ".runtime/zero-trust/**",
+      "scenarios/**",
+      "evidence/**",
+      "docs/zero-trust/packages/**",
+      "docs/evidence/zero-trust/**",
+      "docs/zero-trust/target-architecture/**",
+      "docs/runbooks/**"
+    ],
+    "expected_outputs": [
+      "A static aggregate validation mode that creates no repository files.",
+      "A corrected S021 collection/count path with regression coverage.",
+      "A before/after mutation check and hygiene validation report."
+    ],
+    "validation": [
+      "Run the repaired commands only in a captured static/read-only mode.",
+      "Compare full working-tree hashes before and after.",
+      "Run Zero Trust, repository structure, and full unit tests."
+    ],
+    "stop_conditions": [
+      "Any validator creates or modifies a repository file.",
+      "A command attempts live infrastructure, deployment, remediation, or runtime access.",
+      "Scenario/evidence content would need repair beyond validator hygiene.",
+      "A concurrent writer, secret, tracked runtime file, or baseline drift appears."
+    ]
+  }
+}

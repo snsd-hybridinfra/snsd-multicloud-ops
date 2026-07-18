@@ -1,0 +1,3674 @@
+{
+  "recovery_action_id": "P1-REC-001",
+  "generated_at": "2026-07-18T23:08:52+09:00",
+  "summary": {
+    "exact_protected_records": 198,
+    "ignored_runtime_records": 50,
+    "active_monitoring_runtime_records": 4,
+    "recovered_monitoring_design_records": 19,
+    "recovered_identity_planning_records": 49,
+    "candidate_records": 95,
+    "output_records": 6
+  },
+  "files": [
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T080744Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T080930Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T081106Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T081855Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T082200Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T083718Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T081136Z-eve.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T081136Z-eve.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T081927Z-eve.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T081927Z-eve.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T082230Z-eve.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T082230Z-eve.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T083749Z-eve.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T083749Z-eve.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T080825Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T080825Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T080931Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T080931Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T081106Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T081106Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T081855Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T081855Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T082200Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T082200Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T083718Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T083718Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/openstack-maintenance/validate-openstack-readonly.rendered",
+      "protection_reason": "Protected cloud-profile reference; content must remain ignored",
+      "owner": "CROSS_PHASE_GOVERNANCE",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101515Z-router.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101515Z-router.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101734Z-router.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101734Z-router.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101846Z-router.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101846Z-router.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/router/audit_console.py",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-controlled-findings.jsonl",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-eve-validator.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-eve-validator.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-events.jsonl",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-live-findings.jsonl",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-openstack-validator.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-openstack-validator.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-repository-validator.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-repository-validator.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-router-validator.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-router-validator.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-telemetry-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/docker-runtime-install.raw.txt",
+      "protection_reason": "Active monitoring prerequisite work; ignored runtime metadata only",
+      "owner": "ZT-VIS-002",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/inspect-docker-install.ps1",
+      "protection_reason": "Active monitoring prerequisite work; ignored runtime metadata only",
+      "owner": "ZT-VIS-002",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/install-docker-runtime.ps1",
+      "protection_reason": "Active monitoring prerequisite work; ignored runtime metadata only",
+      "owner": "ZT-VIS-002",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/monitoring-base-validation.raw.txt",
+      "protection_reason": "Active monitoring prerequisite work; ignored runtime metadata only",
+      "owner": "ZT-VIS-002",
+      "allowed_future_operations": [
+        "Read safe metadata",
+        "Recompute metadata inventory after owner approval",
+        "Sanitize into an existing evidence path only through a separate action"
+      ],
+      "prohibited_future_operations": [
+        "Track raw file",
+        "Copy raw content into docs or evidence",
+        "Overwrite",
+        "Move",
+        "Delete",
+        "Normalize",
+        "Expose sensitive values"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/adr/0003-advanced-maturity-implementation-target.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/adr/0004-iac-cac-pac-responsibility-boundaries.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/adr/0005-portable-vm-physical-onboarding.md",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/adr/0006-policy-gated-operations.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/adr/0007-optimal-ready-extension-interfaces.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/adr/0008-runbook-backed-operator-handoff.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/architecture.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-fnd-001-eve-validation.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Delete",
+        "Move",
+        "Replace with ignored runtime content"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-fnd-001-openstack-validation.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Delete",
+        "Move",
+        "Replace with ignored runtime content"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-fnd-001-security-boundary.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Delete",
+        "Move",
+        "Replace with ignored runtime content"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-fnd-001-validation.yaml",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Delete",
+        "Move",
+        "Replace with ignored runtime content"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-net-001-router-validation.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Delete",
+        "Move",
+        "Replace with ignored runtime content"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-net-001-security-boundary.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Delete",
+        "Move",
+        "Replace with ignored runtime content"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-net-001-validation.yaml",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Delete",
+        "Move",
+        "Replace with ignored runtime content"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-vis-001-live-summary.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Delete",
+        "Move",
+        "Replace with ignored runtime content"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-vis-001-validation.yaml",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Delete",
+        "Move",
+        "Replace with ignored runtime content"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/implementation-log.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/progress-tracker.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/risk-register.md",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/00-platform-overview.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/01-prerequisites.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/02-target-selection.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/03-openstack-vm-onboarding.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/04-existing-vm-onboarding.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/05-physical-server-onboarding.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/06-environment-profile.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/07-secret-preparation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/08-preflight-validation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/09-iac-plan.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/10-policy-evaluation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/11-deployment-approval.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/12-platform-deployment.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/13-runtime-validation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/14-platform-status.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/15-drift-detection.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/16-reconciliation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/17-backup.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/18-restore.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/19-rollback.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/20-upgrade.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/21-secret-rotation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/22-certificate-rotation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/23-incident-response.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/24-target-replacement.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/25-decommission.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/26-evidence-handling.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/27-operator-handoff.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/28-troubleshooting.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/README.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/RUNBOOK_INDEX.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/runbooks/RUNBOOK_TEMPLATE.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/capability-implementation-backlog.yaml",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Existing identity/phase planning authority; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/current-baseline-assessment.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/current-baseline-assessment.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Existing identity/phase planning authority; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/gap-register.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/implementation-roadmap.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Existing identity/phase planning authority; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-advanced-target-architecture.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-package.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-rollback.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-fnd-001-package.yaml",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review through a separately approved same-path merge"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from recovered design",
+        "Delete",
+        "Move",
+        "Promote status without evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-fnd-001-restricted-validation-foundation.md",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review through a separately approved same-path merge"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from recovered design",
+        "Delete",
+        "Move",
+        "Promote status without evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-fnd-001-rollback.md",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review through a separately approved same-path merge"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from recovered design",
+        "Delete",
+        "Move",
+        "Promote status without evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-net-001-package.yaml",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review through a separately approved same-path merge"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from recovered design",
+        "Delete",
+        "Move",
+        "Promote status without evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-net-001-rollback.md",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review through a separately approved same-path merge"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from recovered design",
+        "Delete",
+        "Move",
+        "Promote status without evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-net-001-router-validation.md",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review through a separately approved same-path merge"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from recovered design",
+        "Delete",
+        "Move",
+        "Promote status without evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-vis-001-centralized-telemetry-foundation.md",
+      "protection_reason": "Existing authoritative package file; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review through a separately approved same-path merge"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from recovered design",
+        "Delete",
+        "Move",
+        "Promote status without evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-vis-001-package.yaml",
+      "protection_reason": "Existing authoritative package file; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review through a separately approved same-path merge"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from recovered design",
+        "Delete",
+        "Move",
+        "Promote status without evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-vis-001-rollback.md",
+      "protection_reason": "Existing authoritative package file; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review through a separately approved same-path merge"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from recovered design",
+        "Delete",
+        "Move",
+        "Promote status without evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/phase-1-recovery-audit.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/phase-1-recovery-audit.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/prioritized-implementation-queue.md",
+      "protection_reason": "Existing identity/phase planning authority; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZERO_TRUST_GOVERNANCE",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Reviewed same-path merge"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from recovered roadmap",
+        "Promote package state without evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/README.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/adoption-plan.md",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review",
+        "Append a dated revision after baseline revalidation"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite historical recovery data",
+        "Delete without approval",
+        "Misclassify as implementation evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/file-disposition.yaml",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review",
+        "Append a dated revision after baseline revalidation"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite historical recovery data",
+        "Delete without approval",
+        "Misclassify as implementation evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/protected-files.yaml",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review",
+        "Append a dated revision after baseline revalidation"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite historical recovery data",
+        "Delete without approval",
+        "Misclassify as implementation evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/README.md",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review",
+        "Append a dated revision after baseline revalidation"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite historical recovery data",
+        "Delete without approval",
+        "Misclassify as implementation evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/recovery-snapshot.yaml",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review",
+        "Append a dated revision after baseline revalidation"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite historical recovery data",
+        "Delete without approval",
+        "Misclassify as implementation evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/validation-report.md",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Review",
+        "Append a dated revision after baseline revalidation"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite historical recovery data",
+        "Delete without approval",
+        "Misclassify as implementation evidence"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-acceptance-model.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-acceptance-model.yaml",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-scope.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-scope.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-selection-method.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-selection.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-traceability-matrix.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-traceability-matrix.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/golden-path.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/handoff-acceptance-model.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/handoff-acceptance-model.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/host-onboarding-contract.md",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/host-onboarding-contract.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/iac-cac-pac-reference-architecture.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.md",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/limitations.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/operator-interface-contract.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-expansion-roadmap.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-expansion-roadmap.yaml",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-readiness-architecture.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/phase-roadmap.md",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/portfolio-positioning.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/project-objective.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/README.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/target-portability-architecture.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain as design",
+        "Normalize only after identity-owner approval"
+      ],
+      "prohibited_future_operations": [
+        "Deploy identity service",
+        "Create secrets",
+        "Claim OIDC, MFA, or role enforcement",
+        "Overwrite"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/exporters/.gitkeep",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/exporters/blackbox-endpoint-probe-commands.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/exporters/blackbox-endpoint-probe-rule-matrix.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/exporters/blackbox-endpoint-probe-validation.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/exporters/blackbox-exporter.example.yml",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/grafana/.gitkeep",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/grafana/dashboards/snsd-ops-overview.example.json",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/grafana/datasource.prometheus.example.yml",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/grafana/grafana-dashboard-commands.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/grafana/grafana-dashboard-rule-matrix.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/grafana/grafana-dashboard-validation.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/grafana/grafana.ini.anonymous-denial.example",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/.gitkeep",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/blackbox-endpoint-probe-scrape.example.yml",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/db-primary-stop-metrics.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/db-replica-failure-metrics.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/db-replication-lag-metrics.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/load-balancer-failure-metrics.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-discovery-commands.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-discovery-rule-matrix.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-discovery-validation.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-down-alerts.example.yml",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-down-criteria.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-down-response-matrix.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/prometheus.scrape-targets.example.yml",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "observability/prometheus/service-health-after-recovery-metrics.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "profiles/templates/existing-vm/profile.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "profiles/templates/openstack-vm/profile.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "profiles/templates/physical-server/profile.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "README.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "schemas/zero-trust-advanced-acceptance.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "schemas/zero-trust-advanced-maturity-scope.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "schemas/zero-trust-capability-selection.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "schemas/zero-trust-capability-traceability.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "schemas/zero-trust-handoff-acceptance.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "schemas/zero-trust-host-onboarding-contract.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "schemas/zero-trust-implementation-dependency-map.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "schemas/zero-trust-optimal-roadmap.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "schemas/zero-trust-target-profile.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "tests/test_advanced_target_architecture.py",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Apply only an explicitly approved disposition"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite",
+        "Move",
+        "Rename",
+        "Delete",
+        "Normalize before approval"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "tools/telemetry/correlate_events.py",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "tools/telemetry/normalize_events.py",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "tools/telemetry/validate_telemetry_sources.py",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Validate"
+      ],
+      "prohibited_future_operations": [
+        "Overwrite from ZT-ARC-001 design",
+        "Delete",
+        "Move",
+        "Change ports, images, volumes, or credentials"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "tools/validate_advanced_target_architecture.py",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Hash",
+        "Retain unchanged",
+        "Normalize only after joint approval"
+      ],
+      "prohibited_future_operations": [
+        "Treat as deployed",
+        "Overwrite active monitoring work",
+        "Change runtime configuration"
+      ],
+      "approval_required": true
+    }
+  ],
+  "directory_boundaries": [
+    {
+      "path": ".runtime/zero-trust/",
+      "protection_reason": "Raw and local runtime boundary; all 50 current files are enumerated above.",
+      "owner": "RUNTIME_OWNERS",
+      "allowed_future_operations": [
+        "Safe metadata inventory",
+        "Separately approved sanitization"
+      ],
+      "prohibited_future_operations": [
+        "Track raw content",
+        "Bulk copy",
+        "Overwrite",
+        "Delete"
+      ],
+      "approval_required": true
+    },
+    {
+      "path": "runbooks/",
+      "protection_reason": "Existing canonical runbook authority.",
+      "owner": "RUNBOOK_OWNER",
+      "allowed_future_operations": [
+        "Read",
+        "Reviewed merge"
+      ],
+      "prohibited_future_operations": [
+        "Replace wholesale with docs/runbooks/"
+      ],
+      "approval_required": true
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "recovery_action_id": "P1-HYG-001",
+  "baseline": {
+    "tracked_modified_count": 11,
+    "untracked_count": 96,
+    "staged_count": 0,
+    "tracked_runtime_count": 0,
+    "ignored_runtime_count": 50,
+    "scenario_count": 50,
+    "s051_present": false,
+    "fingerprint": "9ded7512022c4b864e8bfa36ba3050bf925eaa329af823a5eb4b5025fbb7cd1d"
+  },
+  "tests": [
+    {"test_id": "PS-PARSER", "target": "six changed PowerShell files", "mode": "STATIC_AST", "expected": "zero parser errors", "actual": "zero parser errors", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "PowerShell parser only."},
+    {"test_id": "S021-NULL", "target": "NodeReadinessParser", "mode": "STRICT_STATIC_FIXTURE", "expected": "valid zero-result collection", "actual": "NodeCount 0, IsValid true", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "Null is distinct from malformed embedded null."},
+    {"test_id": "S021-EMPTY", "target": "NodeReadinessParser", "mode": "STRICT_STATIC_FIXTURE", "expected": "valid empty collection", "actual": "NodeCount 0, Object[]", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "No Count exception."},
+    {"test_id": "S021-ONE", "target": "NodeReadinessParser", "mode": "STRICT_STATIC_FIXTURE", "expected": "one Object[] node", "actual": "NodeCount 1", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "Scalar-like input normalized."},
+    {"test_id": "S021-MULTIPLE", "target": "NodeReadinessParser", "mode": "STRICT_STATIC_FIXTURE", "expected": "three Object[] nodes", "actual": "NodeCount 3", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "Ready, NotReady, and SchedulingDisabled parsed."},
+    {"test_id": "S021-MALFORMED", "target": "NodeReadinessParser", "mode": "STRICT_STATIC_FIXTURE", "expected": "malformed input rejected", "actual": "missing column, invalid status, and embedded null rejected", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "No broad exception suppression."},
+    {"test_id": "S021-EXPECTED", "target": "NodeReadinessParser", "mode": "STRICT_STATIC_FIXTURE", "expected": "three placeholder Ready rows", "actual": "three valid rows", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "Strict mode remained enabled."},
+    {"test_id": "GUARD-CLEAN", "target": "RepositoryValidationSafety", "mode": "ISOLATED_TEMP_GIT", "expected": "clean state unchanged", "actual": "unchanged", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "Clean repository not required by production guard."},
+    {"test_id": "GUARD-DIRTY", "target": "RepositoryValidationSafety", "mode": "ISOLATED_TEMP_GIT", "expected": "pre-existing tracked and untracked state preserved", "actual": "preserved", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "Dirty state accepted by equality, not cleanliness."},
+    {"test_id": "GUARD-FAILURE", "target": "RepositoryValidationSafety", "mode": "ISOLATED_TEMP_GIT", "expected": "nested exit 7 and unchanged state", "actual": "exit 7 and unchanged", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "Failure exit remained meaningful."},
+    {"test_id": "GUARD-MUTATION", "target": "RepositoryValidationSafety", "mode": "ISOLATED_TEMP_GIT", "expected": "new file, content hash, and staged state detected", "actual": "all detected", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "Fixture mutations occurred only under OS temp."},
+    {"test_id": "PY-INTEGRATION", "target": "PowerShell hygiene integration", "mode": "PYTHON_UNIT", "expected": "4 pass", "actual": "4 pass", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "Includes default mode, parser, guard, and strict-mode contract."},
+    {"test_id": "S021-ISOLATED-STATIC", "target": "validate-kubernetes-node-readiness.ps1", "mode": "ISOLATED_STATIC", "expected": "semantic exit 1 without Count exception", "actual": "V003/V006/V007 fail, exit 1, no Count exception", "exit_code": 1, "repository_mutated": false, "pass": true, "notes": "Missing sample remains missing; live test disabled."},
+    {"test_id": "AGGREGATE-ACTUAL", "target": "validate-all-scenarios.ps1", "mode": "READ_ONLY_ISOLATED_ACTUAL_REPOSITORY", "expected": "50 scenarios, deterministic results, unchanged source", "actual": "PASS 15, WARN 5, FAIL 30, exit 1, unchanged", "exit_code": 1, "repository_mutated": false, "pass": true, "notes": "Report generation skipped; integration failures 0."},
+    {"test_id": "STANDARD-VALIDATORS", "target": "Zero Trust, sync, report check, architecture, structure, quality", "mode": "READ_ONLY", "expected": "all pass", "actual": "34/34, 5/5, report pass, 28/28, structure pass, quality pass", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "No capability state promotion."},
+    {"test_id": "FULL-UNIT", "target": "tests", "mode": "PYTHON_UNIT_DISCOVERY", "expected": "66 pass", "actual": "66 pass", "exit_code": 0, "repository_mutated": false, "pass": true, "notes": "Bytecode disabled."}
+  ],
+  "targeted_summary": {
+    "targeted_test_count": 21,
+    "pass": 21,
+    "warn": 0,
+    "fail": 0,
+    "power_shell_parser_files": 6,
+    "s021_fixture_tests": 9,
+    "repository_guard_tests": 8,
+    "python_hygiene_tests": 4
+  },
+  "validate_all_scenarios": {
+    "exit_code": 1,
+    "scenarios_evaluated": 50,
+    "pass_count": 15,
+    "warn_count": 5,
+    "fail_count": 30,
+    "integration_fail_count": 0,
+    "repository_state_before": "31f3bec9267cd697347c92b3baa5a7c44d03fa9cdb715af3fd30a4142eaac132",
+    "repository_state_after": "31f3bec9267cd697347c92b3baa5a7c44d03fa9cdb715af3fd30a4142eaac132",
+    "repository_unchanged": true,
+    "report_generation_invoked": false
+  },
+  "s021": {
+    "strict_mode_enabled": true,
+    "fixture_tests": 9,
+    "live_test_executed": false,
+    "pass": true,
+    "remaining_limitations": [
+      "Tracked authoritative sample evidence is absent.",
+      "Static scenario validation therefore returns semantic exit 1.",
+      "No Kubernetes runtime or cluster readiness was validated."
+    ]
+  },
+  "phase_and_packages": {
+    "phase_implementation_status": "PARTIAL",
+    "phase_validation_status": "PARTIALLY_VALIDATED",
+    "phase_completion_status": "NOT_COMPLETE",
+    "package_states_changed": false
+  },
+  "final": {
+    "tracked_modified_count": 13,
+    "untracked_count": 105,
+    "staged_count": 0,
+    "tracked_runtime_count": 0,
+    "scenario_count": 50,
+    "s051_present": false,
+    "fingerprint": "73b30e2b542c2361c7e487236d343c8f21e2613ee6d73e4abb46c6758446c25d",
+    "fingerprint_scope": "All tracked, staged, and untracked candidates except the four self-referential P1-HYG-001 output records; those records are parsed and counted separately.",
+    "unexplained_changes": [],
+    "status": "COMPLETE_REPOSITORY_HYGIENE_REPAIR"
+  }
+}

@@ -1,0 +1,1700 @@
+{
+  "recovery_action_id": "P1-REC-002",
+  "authorities": {
+    "repository_governance": [
+      "AGENTS.md",
+      "docs/scope-lock.md",
+      "docs/excluded-scope.md"
+    ],
+    "zero_trust_root": "docs/zero-trust/README.md",
+    "capability_catalog": "docs/zero-trust/capability-catalog.yaml",
+    "maturity_model": [
+      "docs/zero-trust/maturity-assessment-method.md",
+      "docs/zero-trust/current-baseline-assessment.yaml"
+    ],
+    "package_status": "docs/zero-trust/packages/",
+    "evidence_matrix": "docs/zero-trust/evidence-coverage-matrix.md",
+    "control_matrix": "docs/zero-trust/control-coverage-matrix.md",
+    "implementation_backlog": "docs/zero-trust/capability-implementation-backlog.yaml",
+    "prioritized_queue": "docs/zero-trust/prioritized-implementation-queue.md",
+    "gap_register": "docs/zero-trust/gap-register.md",
+    "progress_tracker": "docs/progress-tracker.md",
+    "implementation_log": "docs/implementation-log.md",
+    "risk_register": "docs/risk-register.md",
+    "target_architecture": "docs/zero-trust/target-architecture/README.md",
+    "runbooks": [
+      "docs/runbooks/README.md",
+      "docs/runbooks/RUNBOOK_INDEX.md",
+      "docs/runbooks/RUNBOOK_TEMPLATE.md"
+    ],
+    "schemas": "schemas/",
+    "validators": [
+      "tools/validate_zero_trust.py",
+      "tools/validate_advanced_target_architecture.py",
+      "tools/check_zero_trust_sync.py"
+    ],
+    "tracked_evidence": "docs/evidence/zero-trust/",
+    "ignored_runtime": ".runtime/zero-trust/"
+  },
+  "packages": [
+    {
+      "package_id": "ZT-FND-001",
+      "authoritative_path": "docs/zero-trust/packages/zt-fnd-001-package.yaml",
+      "package_type": "VALIDATION_FOUNDATION",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "RUNTIME_VALIDATED",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "authority_status": "AUTHORITATIVE",
+      "limitations": [
+        "Limited non-production environment",
+        "No capability maturity promotion"
+      ]
+    },
+    {
+      "package_id": "ZT-NET-001",
+      "authoritative_path": "docs/zero-trust/packages/zt-net-001-package.yaml",
+      "package_type": "NETWORK_VALIDATION",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED_AS_RECORDED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "authority_status": "AUTHORITATIVE",
+      "limitations": [
+        "Permanent ACL enforcement evidence is missing",
+        "No completion or permanent enforcement claim"
+      ]
+    },
+    {
+      "package_id": "ZT-VIS-001",
+      "authoritative_path": "docs/zero-trust/packages/zt-vis-001-package.yaml",
+      "package_type": "BOUNDED_TELEMETRY_FOUNDATION",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "authority_status": "AUTHORITATIVE",
+      "limitations": [
+        "No accepted centralized monitoring deployment",
+        "No accepted persistent central storage",
+        "Not equivalent to ZT-VIS-002"
+      ]
+    },
+    {
+      "package_id": "ZT-ID-001",
+      "authoritative_path": "docs/zero-trust/prioritized-implementation-queue.md",
+      "package_type": "CANDIDATE_REFERENCE",
+      "phase": "PHASE_1_CANDIDATE",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "validation_status": "NOT_VALIDATED",
+      "evidence_authority": "DESIGN_ONLY",
+      "authority_status": "REFERENCED_ONLY",
+      "limitations": [
+        "No package implementation exists",
+        "Exact next implementation action remains separately selected"
+      ]
+    },
+    {
+      "package_id": "ZT-SCH-001",
+      "authoritative_path": "docs/zero-trust/target-architecture/implementation-dependency-map.yaml",
+      "package_type": "PHASE_BOUNDARY_REFERENCE",
+      "phase": "PHASE_1_BOUNDARY",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "validation_status": "NOT_VALIDATED",
+      "evidence_authority": "DESIGN_ONLY",
+      "authority_status": "DESIGN_ONLY",
+      "limitations": [
+        "No scheduler, job, tracked package, or execution evidence"
+      ]
+    },
+    {
+      "package_id": "ZT-VIS-002",
+      "authoritative_path": null,
+      "package_type": "PHASE_2_ENABLING_WORK",
+      "phase": "PHASE_2_FUTURE",
+      "implementation_status": "PREPARATION_TRACES_ONLY",
+      "validation_status": "NOT_VALIDATED",
+      "evidence_authority": "IGNORED_RUNTIME_NOT_ACCEPTED",
+      "authority_status": "NOT_AUTHORITATIVE",
+      "limitations": [
+        "Docker or Compose preparation traces only",
+        "No Grafana, Loki, Alloy, ingestion, persistence, or package acceptance"
+      ]
+    },
+    {
+      "package_id": "ZT-ARC-001",
+      "authoritative_path": "docs/zero-trust/packages/zt-arc-001-package.yaml",
+      "package_type": "ARCHITECTURE_GOVERNANCE",
+      "phase": "CROSS_PHASE_GOVERNANCE",
+      "implementation_status": "DESIGN_ONLY",
+      "validation_status": "LOCAL_VALIDATED",
+      "evidence_authority": "CODEX_EXECUTED_LOCAL",
+      "authority_status": "AUTHORITATIVE",
+      "limitations": [
+        "Runtime validation NOT_VALIDATED",
+        "Maturity UNASSESSED",
+        "Advanced is target only",
+        "OPTIMAL_READY is repository-local and non-official"
+      ]
+    }
+  ],
+  "non_authoritative_references": [
+    {
+      "path": "docs/architecture.md",
+      "role": "RECOVERED_NONAUTHORITATIVE_ARCHITECTURE_REFERENCE",
+      "authoritative_alternative": "docs/zero-trust/target-architecture/README.md",
+      "reason": "P1-REC-001 retained this generic index as nonauthoritative; recency does not establish authority."
+    },
+    {
+      "path": "runbooks/.gitkeep",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/api-service-failure-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/api-service-failure-criteria.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/api-service-failure-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/backup-creation-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/backup-creation-criteria.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/backup-creation-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/cost-guardrail-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/cost-guardrail-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/db-primary-stop-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/db-primary-stop-criteria.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/db-primary-stop-runbook-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/db-replica-failure-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/db-replica-failure-criteria.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/db-replica-failure-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/db-replication-lag-threshold-matrix.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/db-replication-lag-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/final-evidence-report-generation-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/final-evidence-report-generation-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/kubernetes-manifest-policy-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/kubernetes-manifest-policy-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/load-balancer-failure-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/load-balancer-failure-criteria.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/load-balancer-failure-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/mariadb-primary-replica-replication-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/mariadb-replication-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/ml-anomaly-detection-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/ml-anomaly-detection-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/ml-anomaly-report-generation-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/ml-anomaly-report-generation-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/ml-metric-dataset-collection-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/ml-metric-dataset-collection-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/policy-as-code-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/policy-as-code-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/prometheus-target-down-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/prometheus-target-down-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/resource-cleanup-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/resource-cleanup-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/restore-execution-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/restore-execution-criteria.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/restore-execution-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/security-rule-misconfiguration-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/security-rule-misconfiguration-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/service-health-after-recovery-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/service-health-after-recovery-criteria.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/service-health-after-recovery-decision-matrix.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/service-health-after-recovery-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/terraform-drift-detection-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/terraform-drift-detection-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/terraform-drift-remediation-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/terraform-drift-remediation-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/web-pod-failure-recovery-commands.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/web-pod-failure-recovery-criteria.example.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    },
+    {
+      "path": "runbooks/web-pod-failure-recovery-validation.md",
+      "role": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "authoritative_alternative": "docs/runbooks/RUNBOOK_INDEX.md",
+      "reason": "The approved operational runbook authority is docs/runbooks/; existing scenario references remain in place and are not deleted."
+    }
+  ],
+  "protected_paths": [
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T080744Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T080930Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T081106Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T081855Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T082200Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/20260717T083718Z-foundation-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T081136Z-eve.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T081136Z-eve.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T081927Z-eve.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T081927Z-eve.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T082230Z-eve.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T082230Z-eve.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T083749Z-eve.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/eve-validator/20260717T083749Z-eve.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T080825Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T080825Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T080931Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T080931Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T081106Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T081106Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T081855Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T081855Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T082200Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T082200Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T083718Z-openstack.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/foundation/openstack-validator/20260717T083718Z-openstack.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-FND-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/openstack-maintenance/validate-openstack-readonly.rendered",
+      "protection_reason": "Protected cloud-profile reference; content must remain ignored",
+      "owner": "CROSS_PHASE_GOVERNANCE",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101515Z-router.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101515Z-router.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101734Z-router.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101734Z-router.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101846Z-router.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/router/20260717T101846Z-router.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/router/audit_console.py",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-NET-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-controlled-findings.jsonl",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-eve-validator.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-eve-validator.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-events.jsonl",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-live-findings.jsonl",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-openstack-validator.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-openstack-validator.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-repository-validator.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-repository-validator.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-router-validator.raw.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-router-validator.sanitized.txt",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/telemetry/20260717T103311Z-telemetry-summary.json",
+      "protection_reason": "Existing ignored runtime/evidence material",
+      "owner": "ZT-VIS-001",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/docker-runtime-install.raw.txt",
+      "protection_reason": "Active monitoring prerequisite work; ignored runtime metadata only",
+      "owner": "ZT-VIS-002",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/inspect-docker-install.ps1",
+      "protection_reason": "Active monitoring prerequisite work; ignored runtime metadata only",
+      "owner": "ZT-VIS-002",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/install-docker-runtime.ps1",
+      "protection_reason": "Active monitoring prerequisite work; ignored runtime metadata only",
+      "owner": "ZT-VIS-002",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/monitoring-base-validation.raw.txt",
+      "protection_reason": "Active monitoring prerequisite work; ignored runtime metadata only",
+      "owner": "ZT-VIS-002",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/adr/0003-advanced-maturity-implementation-target.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/adr/0004-iac-cac-pac-responsibility-boundaries.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/adr/0005-portable-vm-physical-onboarding.md",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/adr/0006-policy-gated-operations.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/adr/0007-optimal-ready-extension-interfaces.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/adr/0008-runbook-backed-operator-handoff.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/architecture.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-fnd-001-eve-validation.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-fnd-001-openstack-validation.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-fnd-001-security-boundary.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-fnd-001-validation.yaml",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-net-001-router-validation.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-net-001-security-boundary.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-net-001-validation.yaml",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-vis-001-live-summary.sanitized.txt",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/evidence/zero-trust/zt-vis-001-validation.yaml",
+      "protection_reason": "Existing sanitized package evidence; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EVIDENCE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/implementation-log.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/progress-tracker.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/risk-register.md",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/00-platform-overview.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/01-prerequisites.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/02-target-selection.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/03-openstack-vm-onboarding.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/04-existing-vm-onboarding.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/05-physical-server-onboarding.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/06-environment-profile.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/07-secret-preparation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/08-preflight-validation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/09-iac-plan.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/10-policy-evaluation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/11-deployment-approval.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/12-platform-deployment.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/13-runtime-validation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/14-platform-status.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/15-drift-detection.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/16-reconciliation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/17-backup.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/18-restore.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/19-rollback.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/20-upgrade.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/21-secret-rotation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/22-certificate-rotation.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/23-incident-response.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/24-target-replacement.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/25-decommission.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/26-evidence-handling.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/27-operator-handoff.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/28-troubleshooting.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/README.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/RUNBOOK_INDEX.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/runbooks/RUNBOOK_TEMPLATE.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/capability-implementation-backlog.yaml",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Existing identity/phase planning authority; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/current-baseline-assessment.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/current-baseline-assessment.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Existing identity/phase planning authority; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/gap-register.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/implementation-roadmap.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Existing identity/phase planning authority; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-advanced-target-architecture.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-package.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-arc-001-rollback.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-fnd-001-package.yaml",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-fnd-001-restricted-validation-foundation.md",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-fnd-001-rollback.md",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-net-001-package.yaml",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-net-001-rollback.md",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-net-001-router-validation.md",
+      "protection_reason": "Existing authoritative package file",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-vis-001-centralized-telemetry-foundation.md",
+      "protection_reason": "Existing authoritative package file; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-vis-001-package.yaml",
+      "protection_reason": "Existing authoritative package file; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/packages/zt-vis-001-rollback.md",
+      "protection_reason": "Existing authoritative package file; Existing monitoring/telemetry configuration or evidence",
+      "owner": "EXISTING_PACKAGE_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/phase-1-recovery-audit.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/phase-1-recovery-audit.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/prioritized-implementation-queue.md",
+      "protection_reason": "Existing identity/phase planning authority; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZERO_TRUST_GOVERNANCE",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/README.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/adoption-plan.md",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/file-disposition.yaml",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/protected-files.yaml",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/README.md",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/recovery-snapshot.yaml",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-001/validation-report.md",
+      "protection_reason": "P1-REC-001 recovery governance output",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-acceptance-model.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-acceptance-model.yaml",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-scope.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-scope.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-selection-method.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-selection.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-traceability-matrix.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-traceability-matrix.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/golden-path.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/handoff-acceptance-model.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/handoff-acceptance-model.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/host-onboarding-contract.md",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/host-onboarding-contract.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/iac-cac-pac-reference-architecture.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.md",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.yaml",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/limitations.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/operator-interface-contract.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-expansion-roadmap.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-expansion-roadmap.yaml",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-readiness-architecture.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/phase-roadmap.md",
+      "protection_reason": "Recovered monitoring design overlap; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/portfolio-positioning.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/project-objective.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/README.md",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/target-portability-architecture.md",
+      "protection_reason": "Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "IDENTITY_PLANNING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/exporters/.gitkeep",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/exporters/blackbox-endpoint-probe-commands.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/exporters/blackbox-endpoint-probe-rule-matrix.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/exporters/blackbox-endpoint-probe-validation.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/exporters/blackbox-exporter.example.yml",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/grafana/.gitkeep",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/grafana/dashboards/snsd-ops-overview.example.json",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/grafana/datasource.prometheus.example.yml",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/grafana/grafana-dashboard-commands.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/grafana/grafana-dashboard-rule-matrix.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/grafana/grafana-dashboard-validation.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/grafana/grafana.ini.anonymous-denial.example",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/.gitkeep",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/blackbox-endpoint-probe-scrape.example.yml",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/db-primary-stop-metrics.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/db-replica-failure-metrics.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/db-replication-lag-metrics.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/load-balancer-failure-metrics.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-discovery-commands.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-discovery-rule-matrix.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-discovery-validation.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-down-alerts.example.yml",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-down-criteria.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/prometheus-target-down-response-matrix.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/prometheus.scrape-targets.example.yml",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "observability/prometheus/service-health-after-recovery-metrics.example.md",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "profiles/templates/existing-vm/profile.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "profiles/templates/openstack-vm/profile.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "profiles/templates/physical-server/profile.yaml",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "README.md",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "schemas/zero-trust-advanced-acceptance.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "schemas/zero-trust-advanced-maturity-scope.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "schemas/zero-trust-capability-selection.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "schemas/zero-trust-capability-traceability.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "schemas/zero-trust-handoff-acceptance.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "schemas/zero-trust-host-onboarding-contract.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "schemas/zero-trust-implementation-dependency-map.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "schemas/zero-trust-optimal-roadmap.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "schemas/zero-trust-target-profile.schema.json",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "tests/test_advanced_target_architecture.py",
+      "protection_reason": "Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "P1-REC-001_RECOVERY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "tools/telemetry/correlate_events.py",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "tools/telemetry/normalize_events.py",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "tools/telemetry/validate_telemetry_sources.py",
+      "protection_reason": "Existing monitoring/telemetry configuration or evidence",
+      "owner": "VISIBILITY_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "tools/validate_advanced_target_architecture.py",
+      "protection_reason": "Recovered monitoring design overlap; Recovered identity planning reference; no runtime implementation evidence; Hash-addressed recovery candidate; disposition not yet applied",
+      "owner": "ZT-ARC-001_AND_MONITORING_OWNER",
+      "source": "P1-REC-001 protected-files.yaml"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-002/README.md",
+      "protection_reason": "P1-REC-002 recovery governance output; not implementation evidence",
+      "owner": "P1-REC-002_RECOVERY_OWNER",
+      "source": "P1-REC-002"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-002/adoption-result.yaml",
+      "protection_reason": "P1-REC-002 recovery governance output; not implementation evidence",
+      "owner": "P1-REC-002_RECOVERY_OWNER",
+      "source": "P1-REC-002"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-002/authority-map.yaml",
+      "protection_reason": "P1-REC-002 recovery governance output; not implementation evidence",
+      "owner": "P1-REC-002_RECOVERY_OWNER",
+      "source": "P1-REC-002"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-002/merge-record.yaml",
+      "protection_reason": "P1-REC-002 recovery governance output; not implementation evidence",
+      "owner": "P1-REC-002_RECOVERY_OWNER",
+      "source": "P1-REC-002"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-002/deferred-files.yaml",
+      "protection_reason": "P1-REC-002 recovery governance output; not implementation evidence",
+      "owner": "P1-REC-002_RECOVERY_OWNER",
+      "source": "P1-REC-002"
+    },
+    {
+      "path": "docs/zero-trust/recovery/P1-REC-002/validation-report.md",
+      "protection_reason": "P1-REC-002 recovery governance output; not implementation evidence",
+      "owner": "P1-REC-002_RECOVERY_OWNER",
+      "source": "P1-REC-002"
+    }
+  ],
+  "unresolved_authority_conflicts": []
+}

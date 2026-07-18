@@ -1,13 +1,45 @@
+[CmdletBinding()]
+param(
+    [switch] $GenerateReports
+)
+
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
-$repositoryRoot = Split-Path -Parent $PSScriptRoot
+$sourceRepositoryRoot = Split-Path -Parent $PSScriptRoot
+$stateModulePath = Join-Path $PSScriptRoot "modules\RepositoryValidationSafety.psm1"
+Import-Module -Name $stateModulePath -Force
+
+$repositoryStateBefore = Get-RepositoryStateSnapshot -RepositoryRoot $sourceRepositoryRoot
+$temporaryContainer = $null
+$executionError = $null
+$cleanupError = $null
+$validationExitCode = 2
+
+try {
+    if ($GenerateReports) {
+        $repositoryRoot = $sourceRepositoryRoot
+        $validationToolsRoot = $PSScriptRoot
+        $validationMode = "GenerateReports"
+    }
+    else {
+        $temporaryContainer = Join-Path ([System.IO.Path]::GetTempPath()) ("snsd-scenario-validation-" + [guid]::NewGuid().ToString('N'))
+        $repositoryRoot = Join-Path $temporaryContainer "repository"
+        New-Item -ItemType Directory -Force -Path $repositoryRoot | Out-Null
+        foreach ($item in Get-ChildItem -LiteralPath $sourceRepositoryRoot -Force) {
+            if ($item.Name -in @('.git', '.runtime')) {
+                continue
+            }
+            Copy-Item -LiteralPath $item.FullName -Destination $repositoryRoot -Recurse -Force
+        }
+        $validationToolsRoot = Join-Path $repositoryRoot "tools"
+        $validationMode = "ReadOnlyIsolated"
+    }
+
 $evidenceRoot = Join-Path $repositoryRoot "evidence\L5-governance-intelligent-ops\S050-final-evidence-report-generation-validation"
 $logPath = Join-Path $evidenceRoot "logs\repo-wide-validation.log"
 $summaryPath = Join-Path $evidenceRoot "configs\repo-wide-validation-summary.md"
 $powerShellExecutable = (Get-Process -Id $PID).Path
-
-New-Item -ItemType Directory -Force -Path (Split-Path $logPath), (Split-Path $summaryPath) | Out-Null
 
 $expectedScenarioPaths = @(
     "L1-foundation/S001-control-plane-toolchain-validation",
@@ -166,16 +198,18 @@ if ($s050Text -notmatch 'S001' -or $s050Text -notmatch 'S050') {
 Add-IntegrationResult "CrossScenarioReferences" ($missingReferences.Count -eq 0) $(if ($missingReferences.Count -eq 0) { "Required ownership and hand-off references are present." } else { $missingReferences -join ", " })
 
 $baseValidatorNames = @("validate-repo-structure.ps1", "validate-scenario-quality.ps1")
-$excludedValidatorNames = @("validate-all-scenarios.ps1") + $baseValidatorNames
-$scenarioValidators = @(Get-ChildItem -LiteralPath $PSScriptRoot -File -Filter "validate-*.ps1" |
+$repositoryValidatorNames = @("validate-all-scenarios.ps1", "validate-zero-trust.ps1")
+$excludedValidatorNames = $repositoryValidatorNames + $baseValidatorNames
+$scenarioValidators = @(Get-ChildItem -LiteralPath $validationToolsRoot -File -Filter "validate-*.ps1" |
     Where-Object { $_.Name -notin $excludedValidatorNames } |
     Sort-Object Name)
 Add-IntegrationResult "ValidatorCoverage" ($scenarioValidators.Count -eq 50) "Discovered $($scenarioValidators.Count) scenario-specific local validators."
 
-$validators = @($baseValidatorNames | ForEach-Object { Get-Item -LiteralPath (Join-Path $PSScriptRoot $_) }) + $scenarioValidators
+$validators = @($baseValidatorNames | ForEach-Object { Get-Item -LiteralPath (Join-Path $validationToolsRoot $_) }) + $scenarioValidators
 $previousStaticMode = $env:SNSD_REPO_WIDE_STATIC_ONLY
 $env:SNSD_REPO_WIDE_STATIC_ONLY = "1"
 
+Push-Location $repositoryRoot
 try {
     foreach ($validator in $validators) {
         $logLines.Add("=== $($validator.Name) ===") | Out-Null
@@ -194,6 +228,7 @@ try {
     }
 }
 finally {
+    Pop-Location
     if ($null -eq $previousStaticMode) {
         Remove-Item Env:SNSD_REPO_WIDE_STATIC_ONLY -ErrorAction SilentlyContinue
     }
@@ -206,50 +241,115 @@ $integrationFailures = @($integrationResults | Where-Object Status -eq "FAIL").C
 $validatorFailures = @($validatorResults | Where-Object Status -eq "FAIL").Count
 $warningTotal = ($validatorResults | Measure-Object -Property Warnings -Sum).Sum
 $finalStatus = if (($integrationFailures + $validatorFailures) -eq 0) { "PASS" } else { "FAIL" }
-$generatedAt = Get-Date -Format "yyyy-MM-ddTHH:mm:ssK"
+$validatorPassCount = @($validatorResults | Where-Object Status -eq "PASS").Count
+$validatorWarnCount = @($validatorResults | Where-Object Status -eq "PASS_WITH_WARNINGS").Count
+$scenarioValidatorNames = @($scenarioValidators | ForEach-Object Name)
+$scenarioResults = @($validatorResults | Where-Object { $_.Validator -in $scenarioValidatorNames })
+$scenarioPassCount = @($scenarioResults | Where-Object Status -eq "PASS").Count
+$scenarioWarnCount = @($scenarioResults | Where-Object Status -eq "PASS_WITH_WARNINGS").Count
+$scenarioFailCount = @($scenarioResults | Where-Object Status -eq "FAIL").Count
 
-$logHeader = @(
-    "SNSD REPOSITORY-WIDE LOCAL VALIDATION",
-    "Generated: $generatedAt",
-    "Mode: StaticOnly",
-    "No Terraform, kubectl, cloud CLI, monitoring query, or external service was invoked by this wrapper.",
-    ""
-)
-Set-Content -LiteralPath $logPath -Value @($logHeader + $logLines) -Encoding UTF8
+if ($GenerateReports) {
+    $generatedAt = Get-Date -Format "yyyy-MM-ddTHH:mm:ssK"
+    New-Item -ItemType Directory -Force -Path (Split-Path $logPath), (Split-Path $summaryPath) | Out-Null
 
-$summaryLines = [System.Collections.Generic.List[string]]::new()
-$summaryLines.Add("# Repository-Wide Validation Summary") | Out-Null
-$summaryLines.Add("") | Out-Null
-$summaryLines.Add("- Generated: $generatedAt") | Out-Null
-$summaryLines.Add("- Mode: **StaticOnly**") | Out-Null
-$summaryLines.Add("- Final result: **$finalStatus**") | Out-Null
-$summaryLines.Add("- Integration failures: **$integrationFailures**") | Out-Null
-$summaryLines.Add("- Validator failures: **$validatorFailures**") | Out-Null
-$summaryLines.Add("- Non-blocking validator warnings: **$warningTotal**") | Out-Null
-$summaryLines.Add("") | Out-Null
-$summaryLines.Add("## Integration Checks") | Out-Null
-$summaryLines.Add("") | Out-Null
-$summaryLines.Add("| Check | Status | Detail |") | Out-Null
-$summaryLines.Add("|---|---|---|") | Out-Null
-foreach ($result in $integrationResults) {
-    $detail = $result.Detail.Replace('|', '\|')
-    $summaryLines.Add("| $($result.Name) | $($result.Status) | $detail |") | Out-Null
+    $logHeader = @(
+        "SNSD REPOSITORY-WIDE LOCAL VALIDATION",
+        "Generated: $generatedAt",
+        "Mode: StaticOnlyGenerateReports",
+        "No Terraform, kubectl, cloud CLI, monitoring query, or external service was invoked by this wrapper.",
+        ""
+    )
+    Set-Content -LiteralPath $logPath -Value @($logHeader + $logLines) -Encoding UTF8
+
+    $summaryLines = [System.Collections.Generic.List[string]]::new()
+    $summaryLines.Add("# Repository-Wide Validation Summary") | Out-Null
+    $summaryLines.Add("") | Out-Null
+    $summaryLines.Add("- Generated: $generatedAt") | Out-Null
+    $summaryLines.Add("- Mode: **StaticOnlyGenerateReports**") | Out-Null
+    $summaryLines.Add("- Final result: **$finalStatus**") | Out-Null
+    $summaryLines.Add("- Integration failures: **$integrationFailures**") | Out-Null
+    $summaryLines.Add("- Validator failures: **$validatorFailures**") | Out-Null
+    $summaryLines.Add("- Non-blocking validator warnings: **$warningTotal**") | Out-Null
+    $summaryLines.Add("- Scenario results: **PASS=$scenarioPassCount WARN=$scenarioWarnCount FAIL=$scenarioFailCount**") | Out-Null
+    $summaryLines.Add("") | Out-Null
+    $summaryLines.Add("## Integration Checks") | Out-Null
+    $summaryLines.Add("") | Out-Null
+    $summaryLines.Add("| Check | Status | Detail |") | Out-Null
+    $summaryLines.Add("|---|---|---|") | Out-Null
+    foreach ($result in $integrationResults) {
+        $detail = $result.Detail.Replace('|', '\|')
+        $summaryLines.Add("| $($result.Name) | $($result.Status) | $detail |") | Out-Null
+    }
+    $summaryLines.Add("") | Out-Null
+    $summaryLines.Add("## Validator Results") | Out-Null
+    $summaryLines.Add("") | Out-Null
+    $summaryLines.Add("| Validator | Status | Exit Code | Warnings |") | Out-Null
+    $summaryLines.Add("|---|---|---:|---:|") | Out-Null
+    foreach ($result in $validatorResults) {
+        $summaryLines.Add("| $($result.Validator) | $($result.Status) | $($result.ExitCode) | $($result.Warnings) |") | Out-Null
+    }
+    $summaryLines.Add("") | Out-Null
+    $summaryLines.Add("This mutating mode writes reviewed local reports. It does not run Terraform, kubectl, cloud CLIs, live monitoring queries, or external infrastructure checks.") | Out-Null
+    Set-Content -LiteralPath $summaryPath -Value $summaryLines -Encoding UTF8
+
+    Write-Host "Log: $logPath"
+    Write-Host "Summary: $summaryPath"
 }
-$summaryLines.Add("") | Out-Null
-$summaryLines.Add("## Validator Results") | Out-Null
-$summaryLines.Add("") | Out-Null
-$summaryLines.Add("| Validator | Status | Exit Code | Warnings |") | Out-Null
-$summaryLines.Add("|---|---|---:|---:|") | Out-Null
-foreach ($result in $validatorResults) {
-    $summaryLines.Add("| $($result.Validator) | $($result.Status) | $($result.ExitCode) | $($result.Warnings) |") | Out-Null
+else {
+    Write-Host "Report generation: SKIPPED (read-only isolated mode)."
 }
-$summaryLines.Add("") | Out-Null
-$summaryLines.Add("This wrapper runs local PowerShell validators in static-only mode. It does not run Terraform, kubectl, cloud CLIs, live monitoring queries, or external infrastructure checks.") | Out-Null
-Set-Content -LiteralPath $summaryPath -Value $summaryLines -Encoding UTF8
 
+Write-Host "Repository-wide validation mode: $validationMode"
+Write-Host "Scenarios evaluated: $($scenarioValidators.Count)"
+Write-Host "Scenario results: PASS=$scenarioPassCount WARN=$scenarioWarnCount FAIL=$scenarioFailCount"
+Write-Host "Validator results: PASS=$validatorPassCount WARN=$validatorWarnCount FAIL=$validatorFailures"
+Write-Host "Integration failures: $integrationFailures"
 Write-Host "Repository-wide validation result: $finalStatus"
-Write-Host "Log: $logPath"
-Write-Host "Summary: $summaryPath"
+$validationExitCode = if ($finalStatus -eq "FAIL") { 1 } else { 0 }
+}
+catch {
+    $executionError = $_
+    $validationExitCode = 2
+}
+finally {
+    if ($null -ne $temporaryContainer) {
+        try {
+            $resolvedTemporaryContainer = [System.IO.Path]::GetFullPath($temporaryContainer)
+            $resolvedSystemTemp = [System.IO.Path]::GetFullPath([System.IO.Path]::GetTempPath())
+            $temporaryName = Split-Path -Leaf $resolvedTemporaryContainer
+            if (
+                -not $resolvedTemporaryContainer.StartsWith($resolvedSystemTemp, [System.StringComparison]::OrdinalIgnoreCase) -or
+                $temporaryName -notlike 'snsd-scenario-validation-*'
+            ) {
+                throw "Refusing to remove unexpected validation workspace: $resolvedTemporaryContainer"
+            }
+            Remove-Item -LiteralPath $resolvedTemporaryContainer -Recurse -Force
+        }
+        catch {
+            $cleanupError = $_
+        }
+    }
+}
 
-if ($finalStatus -eq "FAIL") { exit 1 }
-exit 0
+$repositoryStateAfter = Get-RepositoryStateSnapshot -RepositoryRoot $sourceRepositoryRoot
+$stateComparison = Compare-RepositoryStateSnapshot -Before $repositoryStateBefore -After $repositoryStateAfter
+Write-Host "Repository state before: $($repositoryStateBefore.Fingerprint)"
+Write-Host "Repository state after:  $($repositoryStateAfter.Fingerprint)"
+Write-Host "Repository unchanged: $($stateComparison.Unchanged)"
+
+if (-not $stateComparison.Unchanged) {
+    foreach ($difference in $stateComparison.Differences) {
+        Write-Host "[FAIL] Repository mutation: $($difference.Change) $($difference.Path)"
+    }
+    exit 2
+}
+if ($null -ne $cleanupError) {
+    Write-Host "[FAIL] Temporary validation workspace cleanup failed: $($cleanupError.Exception.Message)"
+    exit 2
+}
+if ($null -ne $executionError) {
+    Write-Host "[FAIL] Repository-wide validator error: $($executionError.Exception.Message)"
+    exit 2
+}
+exit $validationExitCode

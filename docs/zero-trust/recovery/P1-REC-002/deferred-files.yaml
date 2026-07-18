@@ -1,0 +1,1412 @@
+{
+  "recovery_action_id": "P1-REC-002",
+  "summary": {
+    "deferred_record_count": 115,
+    "deletion_candidates": 0,
+    "rejected_claim_candidates": 0,
+    "duplicate_candidates": 0,
+    "unsafe_candidates": 0,
+    "unresolved_user_decisions": 0,
+    "protected_monitoring_runtime": 4,
+    "identity_design_references": 49,
+    "future_phase_design_records": 4
+  },
+  "files": [
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/docker-runtime-install.raw.txt",
+      "current_state": "IGNORED_RUNTIME_PROTECTED",
+      "reason": [
+        "Docker or Compose preparation trace belongs to protected ZT-VIS-002 work."
+      ],
+      "future_action": "Keep ignored; sanitize or adopt only through a separate monitoring action.",
+      "required_approval": "MONITORING_RUNTIME_OWNER",
+      "blocking": true,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/inspect-docker-install.ps1",
+      "current_state": "IGNORED_RUNTIME_PROTECTED",
+      "reason": [
+        "Docker or Compose preparation trace belongs to protected ZT-VIS-002 work."
+      ],
+      "future_action": "Keep ignored; sanitize or adopt only through a separate monitoring action.",
+      "required_approval": "MONITORING_RUNTIME_OWNER",
+      "blocking": true,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/install-docker-runtime.ps1",
+      "current_state": "IGNORED_RUNTIME_PROTECTED",
+      "reason": [
+        "Docker or Compose preparation trace belongs to protected ZT-VIS-002 work."
+      ],
+      "future_action": "Keep ignored; sanitize or adopt only through a separate monitoring action.",
+      "required_approval": "MONITORING_RUNTIME_OWNER",
+      "blocking": true,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": ".runtime/zero-trust/zt-vis-002/monitoring-base-validation.raw.txt",
+      "current_state": "IGNORED_RUNTIME_PROTECTED",
+      "reason": [
+        "Docker or Compose preparation trace belongs to protected ZT-VIS-002 work."
+      ],
+      "future_action": "Keep ignored; sanitize or adopt only through a separate monitoring action.",
+      "required_approval": "MONITORING_RUNTIME_OWNER",
+      "blocking": true,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/adr/0005-portable-vm-physical-onboarding.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/architecture.md",
+      "current_state": "NONAUTHORITATIVE_REFERENCE",
+      "reason": [
+        "Generic recovered architecture index overlaps the adopted target-architecture authority."
+      ],
+      "future_action": "Retain unchanged or merge selected links only through a later approved documentation action.",
+      "required_approval": "DOCUMENTATION_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/implementation-log.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/risk-register.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/00-platform-overview.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/01-prerequisites.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/02-target-selection.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/03-openstack-vm-onboarding.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/04-existing-vm-onboarding.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/05-physical-server-onboarding.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/06-environment-profile.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/07-secret-preparation.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/08-preflight-validation.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/09-iac-plan.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/10-policy-evaluation.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/11-deployment-approval.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/12-platform-deployment.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/13-runtime-validation.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/14-platform-status.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/15-drift-detection.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/16-reconciliation.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/17-backup.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/18-restore.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/19-rollback.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/20-upgrade.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/21-secret-rotation.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/22-certificate-rotation.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/23-incident-response.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/24-target-replacement.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/25-decommission.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/26-evidence-handling.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/27-operator-handoff.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/runbooks/28-troubleshooting.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/capability-implementation-backlog.yaml",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/current-baseline-assessment.yaml",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/gap-register.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/implementation-roadmap.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/phase-1-recovery-audit.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/phase-1-recovery-audit.yaml",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-acceptance-model.yaml",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/advanced-maturity-scope.yaml",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-selection.yaml",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-traceability-matrix.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/capability-traceability-matrix.yaml",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/golden-path.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/host-onboarding-contract.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/iac-cac-pac-reference-architecture.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/implementation-dependency-map.yaml",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/limitations.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-expansion-roadmap.md",
+      "current_state": "ADOPTED_ROADMAP_ONLY",
+      "reason": [
+        "Future-phase design is authoritative architecture but not active implementation evidence."
+      ],
+      "future_action": "Activate only through a separately approved phase/package action with runtime and evidence gates.",
+      "required_approval": "ARCHITECTURE_AND_SCOPE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-expansion-roadmap.yaml",
+      "current_state": "ADOPTED_ROADMAP_ONLY",
+      "reason": [
+        "Future-phase design is authoritative architecture but not active implementation evidence.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Activate only through a separately approved phase/package action with runtime and evidence gates.",
+      "required_approval": "ARCHITECTURE_AND_SCOPE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/optimal-readiness-architecture.md",
+      "current_state": "ADOPTED_ROADMAP_ONLY",
+      "reason": [
+        "Future-phase design is authoritative architecture but not active implementation evidence.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Activate only through a separately approved phase/package action with runtime and evidence gates.",
+      "required_approval": "ARCHITECTURE_AND_SCOPE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/phase-roadmap.md",
+      "current_state": "ADOPTED_ROADMAP_ONLY",
+      "reason": [
+        "Future-phase design is authoritative architecture but not active implementation evidence.",
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery."
+      ],
+      "future_action": "Activate only through a separately approved phase/package action with runtime and evidence gates.",
+      "required_approval": "ARCHITECTURE_AND_SCOPE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "docs/zero-trust/target-architecture/target-portability-architecture.md",
+      "current_state": "ADOPTED_IDENTITY_DESIGN_ONLY",
+      "reason": [
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Implement only through a future explicitly approved identity package.",
+      "required_approval": "IDENTITY_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "README.md",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/.gitkeep",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/api-service-failure-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/api-service-failure-criteria.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/api-service-failure-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/backup-creation-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/backup-creation-criteria.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/backup-creation-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/cost-guardrail-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/cost-guardrail-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/db-primary-stop-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/db-primary-stop-criteria.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/db-primary-stop-runbook-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/db-replica-failure-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/db-replica-failure-criteria.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/db-replica-failure-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/db-replication-lag-threshold-matrix.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/db-replication-lag-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/final-evidence-report-generation-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/final-evidence-report-generation-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/kubernetes-manifest-policy-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/kubernetes-manifest-policy-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/load-balancer-failure-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/load-balancer-failure-criteria.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/load-balancer-failure-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/mariadb-primary-replica-replication-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/mariadb-replication-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/ml-anomaly-detection-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/ml-anomaly-detection-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/ml-anomaly-report-generation-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/ml-anomaly-report-generation-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/ml-metric-dataset-collection-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/ml-metric-dataset-collection-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/policy-as-code-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/policy-as-code-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/prometheus-target-down-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/prometheus-target-down-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/resource-cleanup-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/resource-cleanup-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/restore-execution-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/restore-execution-criteria.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/restore-execution-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/security-rule-misconfiguration-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/security-rule-misconfiguration-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/service-health-after-recovery-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/service-health-after-recovery-criteria.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/service-health-after-recovery-decision-matrix.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/service-health-after-recovery-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/terraform-drift-detection-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/terraform-drift-detection-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/terraform-drift-remediation-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/terraform-drift-remediation-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/web-pod-failure-recovery-commands.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/web-pod-failure-recovery-criteria.example.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "runbooks/web-pod-failure-recovery-validation.md",
+      "current_state": "SECONDARY_SCENARIO_VALIDATION_REFERENCE",
+      "reason": [
+        "Operational authority moved to docs/runbooks/; existing content remains in place without deletion."
+      ],
+      "future_action": "Retain for scenario context or map into the authoritative index through a later reviewed action.",
+      "required_approval": "RUNBOOK_AND_SCENARIO_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    },
+    {
+      "path": "tools/validate_advanced_target_architecture.py",
+      "current_state": "ADOPTED_DESIGN_ONLY",
+      "reason": [
+        "The file contains monitoring design references; active monitoring state is not adopted by recovery.",
+        "Identity references have architecture or planning authority only; no deployment evidence exists."
+      ],
+      "future_action": "Keep design-only and coordinate any implementation change with the monitoring owner.",
+      "required_approval": "MONITORING_AND_ARCHITECTURE_OWNER",
+      "blocking": false,
+      "protected": true,
+      "deletion_not_executed": true
+    }
+  ]
+}
