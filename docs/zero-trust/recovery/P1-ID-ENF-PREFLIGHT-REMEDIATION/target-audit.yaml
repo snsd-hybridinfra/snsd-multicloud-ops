@@ -1,0 +1,32 @@
+{
+  "action_id": "P1-ID-ENF-PREFLIGHT-REMEDIATION",
+  "package_id": "ZT-ID-001",
+  "target_alias": "NONPROD_VALIDATOR_TARGET_01",
+  "target_environment": "NON_PRODUCTION",
+  "target_class": "EVE_NG_RESTRICTED_VALIDATOR_ENDPOINT",
+  "baseline_main_sha": "776f0e11fd552aac254d611e52bf8187418732b5",
+  "recovery_path": {
+    "type": "VMWARE_HYPERVISOR_CONSOLE",
+    "verified": true,
+    "independent_of_ssh": true,
+    "operator_role": "EXISTING_ADMINISTRATIVE_OPERATOR"
+  },
+  "offending_file": {
+    "alias": "EVE_NG_PLATFORM_SUDOERS_DROPIN",
+    "classification": "PACKAGE_OWNED_CONFIRMED",
+    "owning_package_class": "EVE_NG_PLATFORM_PACKAGE",
+    "restricted_validator_package_owned": false,
+    "regular_file": true,
+    "symlink": false,
+    "parent_metadata_valid": true,
+    "content_checksum_recorded_target_local": true
+  },
+  "scope_expansion": {
+    "approved": true,
+    "authority": "USER_APPROVED_DISCOVERED_ERROR_REMEDIATION",
+    "limit": "OWNER_GROUP_MODE_ONLY_NO_CONTENT_CHANGE"
+  },
+  "secret_material_observed": false,
+  "private_connection_details_recorded": false,
+  "timestamp": "2026-07-19T03:42:58Z"
+}

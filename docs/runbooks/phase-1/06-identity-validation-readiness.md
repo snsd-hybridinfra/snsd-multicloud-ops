@@ -120,6 +120,16 @@ still not validated; no Keycloak/OIDC/MFA/RBAC deployment or enforcement claim
 is present; ZT-VIS-002 does not replace runtime identity work; S001-S050 remains
 locked.
 
+### Recorded sudoers preflight remediation
+
+`P1-ID-ENF-PREFLIGHT-REMEDIATION` repaired one pre-existing `eve-ng`
+package-owned sudoers file mode on the approved non-production target. The
+repair changed metadata only, preserved rule content and the existing validator
+boundary, and passed exact/global sudoers validation, independent-console,
+rollback, and operator-access checks. It did not execute identity enforcement
+or promote ZT-ID-001 runtime validation; a fresh approved P1-ID-ENF-001 retry is
+still required.
+
 ## Procedure
 
 1. Confirm the package metadata preserves local/runtime/maturity truth.

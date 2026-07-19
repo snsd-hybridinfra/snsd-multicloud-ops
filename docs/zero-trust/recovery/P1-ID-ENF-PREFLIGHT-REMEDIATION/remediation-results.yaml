@@ -1,0 +1,43 @@
+{
+  "action_id": "P1-ID-ENF-PREFLIGHT-REMEDIATION",
+  "result": "PASS",
+  "pre_existing_global_validation": "FAILED_METADATA_ONLY",
+  "defect": {
+    "type": "FILE_MODE_TOO_BROAD",
+    "metadata_before": "ROOT_ROOT_0644",
+    "metadata_after": "ROOT_ROOT_0440",
+    "content_changed": false
+  },
+  "backup": {
+    "created": true,
+    "target_local": true,
+    "restrictive_mode": true,
+    "original_content_and_metadata_preserved": true
+  },
+  "rollback": {
+    "script_validated": true,
+    "checksum_recorded_target_local": true,
+    "transient_one_time_timer_armed": true,
+    "timer_window_minutes": 10,
+    "cancelled_after_validation": true,
+    "residual_job": false
+  },
+  "validation": {
+    "syntax_copy_before_change": "PASS",
+    "exact_file_after_change": "PASS",
+    "global_sudoers_after_change": "PASS",
+    "new_operator_session": "PASS",
+    "independent_console_after_change": "PASS",
+    "validator_endpoint": "PASS_42_WARN_0_FAIL_0",
+    "validator_arbitrary_command": "DENIED_AS_EXPECTED",
+    "validator_unrestricted_sudo": false,
+    "identity_state_unchanged": true,
+    "ssh_state_unchanged": true,
+    "restricted_validator_sudoers_unchanged": true
+  },
+  "identity_enforcement_executed": false,
+  "runtime_validation_promoted": false,
+  "monitoring_changed": false,
+  "phase_2_identity_changed": false,
+  "timestamp": "2026-07-19T03:42:58Z"
+}
