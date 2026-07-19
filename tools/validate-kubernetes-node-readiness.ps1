@@ -6,6 +6,8 @@ $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
+$parserModulePath = Join-Path $PSScriptRoot "modules\NodeReadinessParser.psm1"
+Import-Module -Name $parserModulePath -Force
 $baselinePath = Join-Path $repositoryRoot "kubernetes\node-readiness-validation.md"
 $commandReferencePath = Join-Path $repositoryRoot "kubernetes\node-readiness-commands.example.md"
 $evidenceRoot = Join-Path $repositoryRoot "evidence\L3-service-operations\S021-kubernetes-node-readiness-validation"
@@ -54,23 +56,6 @@ function Add-ValidationResult {
     $script:results.Add([pscustomobject]@{ Id = $Id; Description = $Description; Result = $Result; Detail = $Detail }) | Out-Null
 }
 
-function Get-NodeStatusEvidence {
-    param([string[]] $Lines)
-
-    $nodes = [System.Collections.Generic.List[object]]::new()
-    foreach ($line in $Lines) {
-        $trimmed = $line.Trim()
-        if (-not $trimmed -or $trimmed -match '^(?:SAMPLE|NON-PRODUCTION|#)' -or $trimmed -match '^NAME\s+STATUS') {
-            continue
-        }
-        $columns = @($trimmed -split '\s+')
-        if ($columns.Count -ge 2) {
-            $nodes.Add([pscustomobject]@{ Name = $columns[0]; Status = $columns[1] }) | Out-Null
-        }
-    }
-    return @($nodes)
-}
-
 $baselineExists = Test-Path -LiteralPath $baselinePath -PathType Leaf
 Add-ValidationResult "V001" "Node-readiness baseline" $(if ($baselineExists) { "PASS" } else { "FAIL" }) $(if ($baselineExists) { "Baseline document exists." } else { "Baseline document is missing." })
 
@@ -91,19 +76,33 @@ Add-ValidationResult "V004" "Required command examples" $(if ($missingCommands.C
 $missingBaselineTerms = @($requiredBaselineTerms | Where-Object { $baselineContent -notmatch [regex]::Escape($_) })
 Add-ValidationResult "V005" "Readiness model and placeholders" $(if ($missingBaselineTerms.Count -eq 0) { "PASS" } else { "FAIL" }) $(if ($missingBaselineTerms.Count -eq 0) { "Ready, NotReady, scheduling, kubelet, role, evidence, and mode rules exist." } else { "Required readiness terms are missing." })
 
-$sampleNodes = if ($sampleExists) { @(Get-NodeStatusEvidence -Lines (Get-Content -LiteralPath $samplePath)) } else { @() }
+$sampleParse = if ($sampleExists) {
+    ConvertFrom-NodeStatusEvidence -Lines ([object[]](Get-Content -LiteralPath $samplePath))
+}
+else {
+    ConvertFrom-NodeStatusEvidence -Lines $null
+}
+$sampleNodes = [System.Collections.Generic.List[object]]::new()
+foreach ($node in $sampleParse.Nodes) {
+    $sampleNodes.Add($node) | Out-Null
+}
 $sampleNodeNames = @($sampleNodes | ForEach-Object Name)
 $missingSampleNodes = @($requiredSampleNodes | Where-Object { $_ -notin $sampleNodeNames })
-Add-ValidationResult "V006" "Required sample nodes" $(if ($missingSampleNodes.Count -eq 0) { "PASS" } else { "FAIL" }) $(if ($missingSampleNodes.Count -eq 0) { "All three placeholder nodes are present." } else { "Missing sample nodes: " + ($missingSampleNodes -join ", ") })
+Add-ValidationResult "V006" "Required sample nodes" $(if ($sampleParse.IsValid -and $missingSampleNodes.Count -eq 0) { "PASS" } else { "FAIL" }) $(if (-not $sampleParse.IsValid) { "Sample evidence contains $($sampleParse.MalformedCount) malformed record(s)." } elseif ($missingSampleNodes.Count -eq 0) { "All three placeholder nodes are present." } else { "Missing sample nodes: " + ($missingSampleNodes -join ", ") })
 
-$activeNodes = $sampleNodes
+$activeNodes = [System.Collections.Generic.List[object]]::new()
+foreach ($node in $sampleNodes) {
+    $activeNodes.Add($node) | Out-Null
+}
+$activeParseValid = $sampleParse.IsValid
 $liveCommandPassed = $true
 $liveCommandDetail = "Live kubectl was not requested; static evidence is authoritative for this run."
 if ($LiveKubectl) {
     $kubectlCommand = Get-Command "kubectl" -CommandType Application -ErrorAction SilentlyContinue
     if ($null -eq $kubectlCommand) {
         $liveCommandPassed = $false
-        $activeNodes = @()
+        $activeNodes.Clear()
+        $activeParseValid = $true
         $liveCommandDetail = "LiveKubectl was requested but kubectl is unavailable."
     }
     else {
@@ -112,20 +111,26 @@ if ($LiveKubectl) {
         $liveExitCode = $LASTEXITCODE
         if ($liveExitCode -ne 0) {
             $liveCommandPassed = $false
-            $activeNodes = @()
+            $activeNodes.Clear()
+            $activeParseValid = $true
             $liveCommandDetail = "The read-only kubectl command failed; raw error output was not stored."
         }
         else {
-            $activeNodes = @(Get-NodeStatusEvidence -Lines @($liveOutput | ForEach-Object { [string]$_ }))
-            $liveCommandPassed = $activeNodes.Count -gt 0
-            $liveCommandDetail = if ($liveCommandPassed) { "Read-only kubectl returned $($activeNodes.Count) node status row(s); raw rows were not stored." } else { "kubectl returned no parseable node status rows." }
+            $liveParse = ConvertFrom-NodeStatusEvidence -Lines ([object[]]@($liveOutput | ForEach-Object { [string]$_ }))
+            $activeNodes.Clear()
+            foreach ($node in $liveParse.Nodes) {
+                $activeNodes.Add($node) | Out-Null
+            }
+            $activeParseValid = $liveParse.IsValid
+            $liveCommandPassed = $activeParseValid -and $activeNodes.Count -gt 0
+            $liveCommandDetail = if (-not $activeParseValid) { "The read-only kubectl output contained $($liveParse.MalformedCount) malformed row(s); raw rows were not stored." } elseif ($liveCommandPassed) { "Read-only kubectl returned $($activeNodes.Count) node status row(s); raw rows were not stored." } else { "kubectl returned no parseable node status rows." }
         }
     }
 }
 
 $notReadyNodes = @($activeNodes | Where-Object { $_.Status -match '(?i)NotReady' })
 $nonReadyNodes = @($activeNodes | Where-Object { $_.Status -notmatch '(?i)(^|,)Ready($|,)' })
-$readinessPassed = $activeNodes.Count -gt 0 -and $notReadyNodes.Count -eq 0 -and $nonReadyNodes.Count -eq 0
+$readinessPassed = $activeParseValid -and $activeNodes.Count -gt 0 -and $notReadyNodes.Count -eq 0 -and $nonReadyNodes.Count -eq 0
 Add-ValidationResult "V007" "Node readiness evidence" $(if ($readinessPassed) { "PASS" } else { "FAIL" }) $(if ($readinessPassed) { "All $($activeNodes.Count) evaluated node(s) include Ready and none include NotReady." } else { "Node evidence is empty, NotReady, or lacks Ready status." })
 
 $schedulingDisabledNodes = @($activeNodes | Where-Object { $_.Status -match '(?i)SchedulingDisabled' })

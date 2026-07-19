@@ -1,0 +1,184 @@
+{
+  "action_id": "P1-RUN-BASE",
+  "validators": [
+    {
+      "command": "Markdown structural and JSON block audit",
+      "purpose": "Confirm seven files, metadata parsing, and 29 ordered sections per runbook.",
+      "exit_code": 0,
+      "pass_count": 7,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "JSON-compatible YAML parse of runbook-manifest.yaml",
+      "purpose": "Parse manifest without a new dependency.",
+      "exit_code": 0,
+      "pass_count": 1,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "python -m unittest tests.test_phase1_runbook_baseline -v",
+      "purpose": "Exercise isolated positive and negative runbook validator fixtures.",
+      "exit_code": 0,
+      "pass_count": 29,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "python tools/validate_phase1_runbook_baseline.py --strict --verbose --format text",
+      "purpose": "Validate the complete authoritative Phase 1 runbook baseline.",
+      "exit_code": 0,
+      "pass_count": 18,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tests/powershell/test-repository-validation-safety.ps1",
+      "purpose": "Regress dirty-tree and mutation guard behavior.",
+      "exit_code": 0,
+      "pass_count": 8,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tests/powershell/test-s021-node-status-parser.ps1",
+      "purpose": "Regress strict-mode collection shapes without live Kubernetes.",
+      "exit_code": 0,
+      "pass_count": 9,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "python tools/validate_zero_trust.py --verbose",
+      "purpose": "Preserve taxonomy, package, evidence, claim, secret, and scenario governance.",
+      "exit_code": 0,
+      "pass_count": 34,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "python tools/check_zero_trust_sync.py",
+      "purpose": "Confirm machine and presentation authorities remain synchronized.",
+      "exit_code": 0,
+      "pass_count": 5,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "python tools/generate_zero_trust_reports.py --check",
+      "purpose": "Check report synchronization without writing.",
+      "exit_code": 0,
+      "pass_count": 1,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "python tools/validate_advanced_target_architecture.py --verbose",
+      "purpose": "Confirm architecture and future-runbook design boundaries.",
+      "exit_code": 0,
+      "pass_count": 28,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/validate-repo-structure.ps1",
+      "purpose": "Confirm repository, scenario, evidence, and governance structure.",
+      "exit_code": 0,
+      "pass_count": 1,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/validate-all-scenarios.ps1",
+      "purpose": "Run the repaired default isolated read-only aggregate.",
+      "exit_code": 1,
+      "pass_count": 15,
+      "warn_count": 5,
+      "fail_count": 30,
+      "repository_mutated": false,
+      "result": "ACCEPTED_EXISTING_SCENARIO_GAPS_ZERO_INTEGRATION_FAILURES"
+    },
+    {
+      "command": "python -B -m unittest discover -s tests -v",
+      "purpose": "Run the full Python unit suite without bytecode writes.",
+      "exit_code": 0,
+      "pass_count": 95,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    },
+    {
+      "command": "secret, staged-state, scenario-lock, and runtime tracking checks",
+      "purpose": "Confirm no sensitive value, staged file, new scenario, or tracked runtime.",
+      "exit_code": 0,
+      "pass_count": 4,
+      "warn_count": 0,
+      "fail_count": 0,
+      "repository_mutated": false,
+      "result": "PASS"
+    }
+  ],
+  "runbook_validator": {
+    "required_runbooks": 7,
+    "discovered_runbooks": 7,
+    "pass_count": 18,
+    "warn_count": 0,
+    "fail_count": 0,
+    "exit_code": 0
+  },
+  "scenario_validation": {
+    "scenarios_evaluated": 50,
+    "pass_count": 15,
+    "warn_count": 5,
+    "fail_count": 30,
+    "integration_failure_count": 0,
+    "exit_code": 1,
+    "repository_unchanged": true
+  },
+  "security": {
+    "tracked_secret_findings": 0,
+    "tracked_runtime_files": 0,
+    "s051_present": false
+  },
+  "final": {
+    "status": "COMPLETE_WITH_EXISTING_SCENARIO_GAPS",
+    "fingerprint_before": "741dccb73de707ed3bed724bde1fa4eb56c43468d3936a345fa309a5e6f37b0b",
+    "fingerprint_after": "741dccb73de707ed3bed724bde1fa4eb56c43468d3936a345fa309a5e6f37b0b",
+    "fingerprint_scope": "All Git candidates after implementation and before action records; the four self-referential P1-RUN-BASE records are excluded from the comparison.",
+    "unexplained_changes": [],
+    "phase_status_changed": false,
+    "package_status_changed": false,
+    "generation_mode_executed": false,
+    "live_s021_executed": false,
+    "live_infrastructure_executed": false,
+    "ignored_bytecode_cleanup": [
+      "tests/__pycache__/test_phase1_runbook_baseline.cpython-313.pyc",
+      "tools/__pycache__/validate_phase1_runbook_baseline.cpython-313.pyc"
+    ],
+    "ignored_bytecode_cleanup_result": "REMOVED_REGENERABLE_UNTRACKED_TASK_OUTPUTS"
+  }
+}

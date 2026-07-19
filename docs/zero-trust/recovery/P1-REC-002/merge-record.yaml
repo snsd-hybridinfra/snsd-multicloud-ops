@@ -1,0 +1,349 @@
+{
+  "recovery_action_id": "P1-REC-002",
+  "baseline_fingerprint": "ad2d9d792391bd569b455df22a3db6d4b404776a60e3a13cab98832800bbb974",
+  "summary": {
+    "merge_record_count": 11,
+    "byte_modified_by_p1_rec_002": 8,
+    "preserved_without_additional_byte_change": 3,
+    "whole_file_replacements": 0,
+    "rejected_valid_prior_content": 0
+  },
+  "records": [
+    {
+      "source_path": "docs/implementation-log.md",
+      "target_path": "docs/implementation-log.md",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "2026-07-18 ZT-ARC-001 recovery row"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "VALIDATED_LOCAL normalized to LOCAL_VALIDATED"
+      ],
+      "claim_downgrades": [
+        "Architecture event retained as design/local validation only"
+      ],
+      "links_updated": [
+        "docs/zero-trust/target-architecture/",
+        "docs/runbooks/",
+        "tools/validate_advanced_target_architecture.py"
+      ],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 ef93be6cf629eca713f240b3ece448bf0eff6400311f81dad5d2d01cdc127228; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "ef93be6cf629eca713f240b3ece448bf0eff6400311f81dad5d2d01cdc127228",
+      "post_adoption_sha256": "294c6a81fd3ef5170bebedb4c826a7f177f5d58edc0b0bc05b57a46c12473cb3",
+      "byte_change_by_p1_rec_002": true
+    },
+    {
+      "source_path": "docs/progress-tracker.md",
+      "target_path": "docs/progress-tracker.md",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "ZT-ARC-001 target-architecture bullet",
+        "ZT-VIS-002 protection bullet"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "ZT-ARC-001 LOCAL_VALIDATED",
+        "ZT-VIS-002 remains non-evidence"
+      ],
+      "claim_downgrades": [
+        "No scenario, capability current state, or maturity change"
+      ],
+      "links_updated": [],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 c67185cbe889cd5bbf0e4c8fcfe5b630b8dd9b813d2db867d0f3241ff8445e81; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "c67185cbe889cd5bbf0e4c8fcfe5b630b8dd9b813d2db867d0f3241ff8445e81",
+      "post_adoption_sha256": "a10543244c771b473adc9f4663e572f5bd29bdc0e5128d46d62683fc2f82f4fb",
+      "byte_change_by_p1_rec_002": true
+    },
+    {
+      "source_path": "docs/risk-register.md",
+      "target_path": "docs/risk-register.md",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "R027 updated",
+        "R028",
+        "R029",
+        "R030"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "Open architecture, monitoring collision, and identity-ID risks retained"
+      ],
+      "claim_downgrades": [
+        "No stronger monitoring or identity state accepted"
+      ],
+      "links_updated": [],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 dbe1c93f386867f4a8458ba8788df0171241da31516945473be1a799c48f5821; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "dbe1c93f386867f4a8458ba8788df0171241da31516945473be1a799c48f5821",
+      "post_adoption_sha256": "dbe1c93f386867f4a8458ba8788df0171241da31516945473be1a799c48f5821",
+      "byte_change_by_p1_rec_002": false
+    },
+    {
+      "source_path": "docs/zero-trust/capability-implementation-backlog.yaml",
+      "target_path": "docs/zero-trust/capability-implementation-backlog.yaml",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "metadata.generated_from",
+        "metadata.limitations"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "Backlog remains planning-only authority"
+      ],
+      "claim_downgrades": [
+        "ZT-ARC-001 selection does not replace baseline or backlog state"
+      ],
+      "links_updated": [
+        "docs/zero-trust/target-architecture/capability-selection.yaml"
+      ],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 b758c799e702ff89303d97674cd2073ec1242726d5b319d5f7b8192efa637654; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "b758c799e702ff89303d97674cd2073ec1242726d5b319d5f7b8192efa637654",
+      "post_adoption_sha256": "b758c799e702ff89303d97674cd2073ec1242726d5b319d5f7b8192efa637654",
+      "byte_change_by_p1_rec_002": false
+    },
+    {
+      "source_path": "docs/zero-trust/current-baseline-assessment.md",
+      "target_path": "docs/zero-trust/current-baseline-assessment.md",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "Target Architecture Boundary"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "ZT-ARC-001 LOCAL_VALIDATED design boundary"
+      ],
+      "claim_downgrades": [
+        "Current assessment remains unchanged"
+      ],
+      "links_updated": [
+        "target-architecture/README.md"
+      ],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 f4ee630c6367a13281b3085fcfcdca2764305789c7666b8cf329e92b4ebd73f0; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "f4ee630c6367a13281b3085fcfcdca2764305789c7666b8cf329e92b4ebd73f0",
+      "post_adoption_sha256": "8518366fc829c60a43218c90a59b4fb88d47bfdf7311f5a95649111e308b8552",
+      "byte_change_by_p1_rec_002": true
+    },
+    {
+      "source_path": "docs/zero-trust/current-baseline-assessment.yaml",
+      "target_path": "docs/zero-trust/current-baseline-assessment.yaml",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "assessment.limitations"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "All current maturity values remain governed by baseline evidence"
+      ],
+      "claim_downgrades": [
+        "ZT-ARC-001 cannot promote implementation, validation, evidence, or maturity"
+      ],
+      "links_updated": [],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 2e4baddbc0e5927ddf64c139eb80984a42a0ee81839752d1cf93cdde609dba1e; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "2e4baddbc0e5927ddf64c139eb80984a42a0ee81839752d1cf93cdde609dba1e",
+      "post_adoption_sha256": "2e4baddbc0e5927ddf64c139eb80984a42a0ee81839752d1cf93cdde609dba1e",
+      "byte_change_by_p1_rec_002": false
+    },
+    {
+      "source_path": "docs/zero-trust/gap-register.md",
+      "target_path": "docs/zero-trust/gap-register.md",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "ZG-013",
+        "ZG-014",
+        "ZG-015"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "ZT-VIS-002 normalized to PREPARATION_TRACES_ONLY"
+      ],
+      "claim_downgrades": [
+        "No accepted monitoring stack or identity package state"
+      ],
+      "links_updated": [],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 a9f0f60fe2f4c018c3e10667cb42137fe1a281910a094a9e65841fcf93a44d8d; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "a9f0f60fe2f4c018c3e10667cb42137fe1a281910a094a9e65841fcf93a44d8d",
+      "post_adoption_sha256": "6a7aa6ddc323dea033a15fc80f5cbd60b4e84b478634697656c6c101b954548a",
+      "byte_change_by_p1_rec_002": true
+    },
+    {
+      "source_path": "docs/zero-trust/implementation-roadmap.md",
+      "target_path": "docs/zero-trust/implementation-roadmap.md",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "Authority preface",
+        "Phase 1 through Phase 5",
+        "Future Phase 6",
+        "Common Gates"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "Phase 1 PARTIAL/PARTIALLY_VALIDATED/NOT_COMPLETE",
+        "ZT-ID-001 Phase 1 candidate",
+        "Phase 2 DESIGN_ONLY"
+      ],
+      "claim_downgrades": [
+        "Future phases remain design/not-started/roadmap-only"
+      ],
+      "links_updated": [
+        "target-architecture/phase-roadmap.md",
+        "target-architecture/implementation-dependency-map.yaml"
+      ],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 b8664bb57c1449b630af9a52d84f3452d0ccb8d9462d30bb1c83aee6f2e46bf2; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "b8664bb57c1449b630af9a52d84f3452d0ccb8d9462d30bb1c83aee6f2e46bf2",
+      "post_adoption_sha256": "12318bd1cd44ea9adc9dfbf522ae6105bf352c75855c78980d521c48db6279a9",
+      "byte_change_by_p1_rec_002": true
+    },
+    {
+      "source_path": "docs/zero-trust/prioritized-implementation-queue.md",
+      "target_path": "docs/zero-trust/prioritized-implementation-queue.md",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "Approved package gate",
+        "ZT-ARC-001 boundary"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "ZT-ID-001 REFERENCED_ONLY/NOT_IMPLEMENTED/NOT_VALIDATED",
+        "ZT-VIS-002 Phase 2 preparation only",
+        "ZT-ARC-001 LOCAL_VALIDATED design"
+      ],
+      "claim_downgrades": [
+        "Monitoring does not replace identity or close visibility"
+      ],
+      "links_updated": [],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 696139500febda8c501054e5541032e191ee406dc7cb461c7b912f9ef8e9264f; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "696139500febda8c501054e5541032e191ee406dc7cb461c7b912f9ef8e9264f",
+      "post_adoption_sha256": "0af694c1c2bfd7dc36787c445c2a033f126af9c44e7607ffb0d83bb416621614",
+      "byte_change_by_p1_rec_002": true
+    },
+    {
+      "source_path": "docs/zero-trust/README.md",
+      "target_path": "docs/zero-trust/README.md",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "Target positioning",
+        "Navigation",
+        "Machine validation",
+        "Target-selection summary"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "ZT-ARC-001 adopted as authoritative design governance"
+      ],
+      "claim_downgrades": [
+        "Target selection remains independent of current state"
+      ],
+      "links_updated": [
+        "target-architecture/README.md",
+        "../runbooks/RUNBOOK_INDEX.md",
+        "packages/zt-arc-001-advanced-target-architecture.md"
+      ],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 bebf455b92ed05be984d5c5919d4ac2adb973ecdedca8ce30e073e5a82985b53; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "bebf455b92ed05be984d5c5919d4ac2adb973ecdedca8ce30e073e5a82985b53",
+      "post_adoption_sha256": "c1338c6c25bb4bb2b12e244b2c2a111d6cc2c81c636065d5d3a80eeb6eec34f0",
+      "byte_change_by_p1_rec_002": true
+    },
+    {
+      "source_path": "README.md",
+      "target_path": "README.md",
+      "disposition": "MERGE_INTO_EXISTING_AUTHORITATIVE_FILE",
+      "sections_or_records_merged": [
+        "Repository title",
+        "Post-Phase-1 Target Architecture",
+        "Authoritative operational runbook link"
+      ],
+      "sections_or_records_rejected": [],
+      "status_changes": [
+        "ZT-ARC-001 terminology normalized to DESIGN_ONLY/LOCAL_VALIDATED"
+      ],
+      "claim_downgrades": [
+        "No runtime, capability, or maturity promotion"
+      ],
+      "links_updated": [
+        "docs/zero-trust/target-architecture/README.md",
+        "docs/runbooks/RUNBOOK_INDEX.md"
+      ],
+      "validation": [
+        "Zero Trust validator",
+        "Synchronization check",
+        "Generated-report check",
+        "Repository structure",
+        "Git diff review"
+      ],
+      "rollback_method": "Use P1-REC-001 pre-change SHA-256 ef0be7701d6752ac115859937c5339b42f6453c276bf0bb53b39484ad7fcf7c8; inspect the uncommitted Git diff and reverse only the approved P1-REC-002 hunk. Do not use reset or restore.",
+      "pre_change_sha256": "ef0be7701d6752ac115859937c5339b42f6453c276bf0bb53b39484ad7fcf7c8",
+      "post_adoption_sha256": "979666a177fd6d20101e605001dd5180ac895d8bfc9994385a737659de629db3",
+      "byte_change_by_p1_rec_002": true
+    }
+  ]
+}

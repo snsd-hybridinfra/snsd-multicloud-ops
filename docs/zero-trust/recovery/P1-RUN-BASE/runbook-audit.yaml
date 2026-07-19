@@ -1,0 +1,122 @@
+{
+  "action": {
+    "id": "P1-RUN-BASE",
+    "timestamp": "2026-07-19T01:11:09.8502898+09:00",
+    "repository": "snsd-multicloud-ops",
+    "branch": "main",
+    "head": "593f1f2c270a6338043d57cda5a4cea1d43f9342",
+    "status": "COMPLETE_WITH_RECORDED_LIMITATIONS"
+  },
+  "baseline": {
+    "tracked_modified_count": 13,
+    "untracked_count": 105,
+    "staged_count": 0,
+    "tracked_runtime_count": 0,
+    "ignored_runtime_count": 50,
+    "scenario_count": 50,
+    "s051_present": false,
+    "fingerprint": "f96168169dc67a6280566cf2d64650737de4b6a8fa5bc02cc63943c4a6c7e5ff",
+    "fingerprint_authority": "P1_HYG_001_HANDOFF_REFERENCE",
+    "repository_guard_observed": "7df4af7d017ee1d72d6adac4048dbcb7408d0e5fa9db55486e7606bd9dfdca67",
+    "repository_guard_scope": "All Git candidates with state, path, size, UTC modification time, and SHA-256.",
+    "reconciliation": "All enumerated baseline facts matched and the P1-HYG-001 core guard scope reproduced its recorded 31f3bec9267cd697347c92b3baa5a7c44d03fa9cdb715af3fd30a4142eaac132 value; the handoff fingerprint calculation method was not recorded."
+  },
+  "existing_runbooks": {
+    "total": 82,
+    "authoritative": 29,
+    "legacy_reference": 53,
+    "duplicate_scope": 29,
+    "missing_status": 0,
+    "missing_rollback": 0,
+    "unsupported_claims": 0,
+    "notes": "The 29 authoritative numbered documents used the same generic 24-section future design form. Root runbooks were scenario-specific secondary references."
+  },
+  "phase_1_runbooks": [
+    {
+      "runbook_id": "RB-P1-001",
+      "path": "docs/runbooks/phase-1/01-phase-1-entry-and-preflight.md",
+      "source": "P1-RUN-BASE_NEW_CANONICAL",
+      "procedure_status": "IMPLEMENTED",
+      "validation_status": "VALIDATED_LOCAL",
+      "related_packages": ["P1-REC-002", "P1-HYG-001", "P1-RUN-BASE"],
+      "normalized": true,
+      "limitation": "Repository readiness only; no runtime package validation."
+    },
+    {
+      "runbook_id": "RB-P1-002",
+      "path": "docs/runbooks/phase-1/02-repository-safe-validation.md",
+      "source": "P1-HYG-001_IMPLEMENTED_BEHAVIOR",
+      "procedure_status": "IMPLEMENTED",
+      "validation_status": "VALIDATED_LOCAL",
+      "related_packages": ["P1-HYG-001"],
+      "normalized": true,
+      "limitation": "Existing scenario gaps remain 30 failures; live S021 remains excluded."
+    },
+    {
+      "runbook_id": "RB-P1-003",
+      "path": "docs/runbooks/phase-1/03-evidence-handling-and-sanitization.md",
+      "source": "ZERO_TRUST_EVIDENCE_GOVERNANCE",
+      "procedure_status": "PARTIALLY_IMPLEMENTED",
+      "validation_status": "VALIDATED_LOCAL",
+      "related_packages": ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001"],
+      "normalized": true,
+      "limitation": "Local handling contract only; no new runtime evidence."
+    },
+    {
+      "runbook_id": "RB-P1-004",
+      "path": "docs/runbooks/phase-1/04-network-validation-and-gap-management.md",
+      "source": "ZT-NET-001_PACKAGE_AND_EVIDENCE_RECORDS",
+      "procedure_status": "PARTIALLY_IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "related_packages": ["ZT-NET-001"],
+      "normalized": true,
+      "limitation": "PERMANENT_ACL_ENFORCEMENT_EVIDENCE_MISSING remains open."
+    },
+    {
+      "runbook_id": "RB-P1-005",
+      "path": "docs/runbooks/phase-1/05-visibility-validation-and-gap-management.md",
+      "source": "ZT-VIS-001_PACKAGE_AND_P1-REC-002_PROTECTION",
+      "procedure_status": "PARTIALLY_IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "related_packages": ["ZT-VIS-001", "ZT-VIS-002"],
+      "normalized": true,
+      "limitation": "Central monitoring and persistent storage gaps remain; ZT-VIS-002 is protected non-evidence."
+    },
+    {
+      "runbook_id": "RB-P1-006",
+      "path": "docs/runbooks/phase-1/06-identity-validation-readiness.md",
+      "source": "P1-REC-002_REFERENCED_ONLY_BOUNDARY",
+      "procedure_status": "DESIGN_SPECIFICATION",
+      "validation_status": "VALIDATED_LOCAL",
+      "related_packages": ["ZT-ID-001"],
+      "normalized": true,
+      "limitation": "Only document structure is local-valid; identity is not implemented or runtime validated."
+    },
+    {
+      "runbook_id": "RB-P1-007",
+      "path": "docs/runbooks/phase-1/07-repeatable-and-scheduled-validation.md",
+      "source": "P1-REC-002_DESIGN_BOUNDARY",
+      "procedure_status": "DESIGN_SPECIFICATION",
+      "validation_status": "VALIDATED_LOCAL",
+      "related_packages": ["ZT-CV-001", "ZT-RV-001", "ZT-SCH-001"],
+      "normalized": true,
+      "limitation": "No package, scheduler, job, service, or runtime evidence exists."
+    }
+  ],
+  "protected_files": [
+    ".runtime/**",
+    "evidence/**",
+    "scenarios/**",
+    "docs/zero-trust/packages/**",
+    "docs/evidence/**",
+    "observability/**",
+    "active identity planning",
+    "Docker and Compose preparation traces",
+    "deployment and infrastructure files"
+  ],
+  "deferred_runbooks": [
+    "docs/runbooks/00-platform-overview.md through docs/runbooks/28-troubleshooting.md remain 29 future-phase design specifications.",
+    "Root runbooks/ retains 53 Markdown secondary scenario references."
+  ],
+  "authority_conflicts": []
+}

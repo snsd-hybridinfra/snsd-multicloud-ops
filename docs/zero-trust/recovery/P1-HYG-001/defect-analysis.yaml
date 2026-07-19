@@ -1,0 +1,114 @@
+{
+  "recovery_action": {
+    "id": "P1-HYG-001",
+    "name": "Repository-Safe Scenario Validation and S021 Strict-Mode Regression Repair",
+    "timestamp": "2026-07-19T00:13:15+09:00",
+    "repository": "C:/Users/swfco/OneDrive/바탕 화면/github/snsd-multicloud-ops",
+    "branch": "main",
+    "head": "593f1f2c270a6338043d57cda5a4cea1d43f9342",
+    "status": "COMPLETE_REPOSITORY_HYGIENE_REPAIR"
+  },
+  "validator_discovery": [
+    {
+      "validator_id": "REPOSITORY_AGGREGATE",
+      "path": "tools/validate-all-scenarios.ps1",
+      "entry_point": "powershell -ExecutionPolicy Bypass -File tools/validate-all-scenarios.ps1",
+      "called_helpers": [
+        "tools/validate-repo-structure.ps1",
+        "tools/validate-scenario-quality.ps1",
+        "50 scenario-specific validate-*.ps1 files",
+        "tools/modules/RepositoryValidationSafety.psm1"
+      ],
+      "generated_outputs": [
+        "evidence/**/logs/*-validation.log",
+        "evidence/**/configs/*-summary.md",
+        "evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/logs/repo-wide-validation.log",
+        "evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/configs/repo-wide-validation-summary.md"
+      ],
+      "current_parameters": ["-GenerateReports (explicit mutating mode)"],
+      "default_mode": "READ_ONLY_ISOLATED",
+      "mutation_behavior": "All child writes are confined to an OS temporary copy; source state is guarded before and after.",
+      "failure_behavior": "Exit 1 for validation failures; exit 2 for wrapper, cleanup, or immutability failure.",
+      "test_coverage": "Repository state guard, source contract, actual dirty-tree execution, and full unit suite."
+    },
+    {
+      "validator_id": "S021",
+      "path": "tools/validate-kubernetes-node-readiness.ps1",
+      "entry_point": "Static by default; -LiveKubectl remains explicit and was not executed.",
+      "called_helpers": ["tools/modules/NodeReadinessParser.psm1"],
+      "generated_outputs": [
+        "evidence/L3-service-operations/S021-kubernetes-node-readiness-validation/logs/kubernetes-node-readiness-validation.log",
+        "evidence/L3-service-operations/S021-kubernetes-node-readiness-validation/configs/kubernetes-node-readiness-summary.md"
+      ],
+      "current_parameters": ["-LiveKubectl"],
+      "default_mode": "STATIC",
+      "mutation_behavior": "Direct invocation retains prior report behavior; aggregate read-only invocation isolates it outside the source repository.",
+      "failure_behavior": "Missing sample or malformed/empty readiness evidence returns deterministic exit 1 without a Count exception.",
+      "test_coverage": "Null, empty, scalar one, multiple, malformed column, invalid status, embedded null, valid fixture, and repository immutability."
+    }
+  ],
+  "validate_all_scenarios": {
+    "path": "tools/validate-all-scenarios.ps1",
+    "root_cause": "The wrapper created S050 output directories, ran all child validators from the source repository, and unconditionally wrote its own log and summary. Every one of the 50 scenario validators contains a repository-writing command, so static-only runtime selection did not imply repository immutability.",
+    "mutation_paths": [
+      "The authoritative P1-0 audit records 21 generated untracked scenario summary/log files.",
+      "Exact deleted path names were not retained after the P1-0 byte-exact rollback; this action does not invent them.",
+      "Current code analysis identifies the affected path families as evidence/**/logs and evidence/**/configs plus the two S050 aggregate outputs."
+    ],
+    "implicit_generators": [
+      "New-Item at the aggregate entry point",
+      "all 50 scenario-specific validators using New-Item and/or Set-Content",
+      "unconditional aggregate Set-Content calls for the S050 log and summary"
+    ],
+    "prior_behavior": "No-argument execution modified the working tree, mixed validation with report generation, and discovered a non-scenario Zero Trust wrapper as a 51st scenario validator.",
+    "repaired_behavior": "No-argument execution snapshots the dirty source tree, copies repository inputs except .git and .runtime to an OS temporary directory, executes exactly 50 scenario validators there, suppresses aggregate report generation, removes the temporary directory, and fails if source state differs.",
+    "backward_compatibility": "The documented no-argument command remains valid and now read-only. Existing report behavior remains available through explicit -GenerateReports. Scenario result lines and deterministic exit codes remain visible.",
+    "limitations": [
+      "Child validators still combine validation and report writing internally; default aggregate execution contains those writes in an isolated temporary copy.",
+      "The current repository has 30 legitimate scenario validator failures and five warning results due to planned or missing artifacts; this repair does not weaken or close them.",
+      "Ignored files are excluded from Git candidate hashing; protected .runtime is omitted from the temporary copy and separately confirmed ignored and untracked."
+    ]
+  },
+  "s021": {
+    "validator_path": "tools/validate-kubernetes-node-readiness.ps1",
+    "failing_expression": "$activeNodes.Count at the readiness expression, after $sampleNodes = if ($sampleExists) { @(...) } else { @() } produced pipeline-unrolled output.",
+    "root_cause": "Under Set-StrictMode -Version Latest, an empty conditional branch was assigned as null and a one-row branch could be assigned as a scalar PSCustomObject. Neither shape reliably exposed Count; only multiple rows produced Object[].",
+    "strict_mode": "Set-StrictMode -Version Latest remains enabled in the validator, parser, and tests.",
+    "zero_result_behavior": "Returns a valid explicit zero-result parser object; scenario readiness still fails because zero nodes cannot satisfy V007.",
+    "one_result_behavior": "Returns Nodes as Object[] with NodeCount 1.",
+    "multiple_result_behavior": "Returns Nodes as Object[] with the exact parsed count.",
+    "malformed_input_behavior": "Returns IsValid false with sanitized line number and reason; malformed data is not converted to an empty success.",
+    "repaired_behavior": "A dedicated parser returns typed arrays and counts, while the validator copies parsed nodes into Generic.List[object] before counting or iterating.",
+    "limitations": [
+      "The authoritative S021 sample file remains absent, so static S021 exits 1 with V003, V006, and V007 failures.",
+      "No live kubectl command was run and no Kubernetes runtime state was validated.",
+      "Parser success is repository logic validation, not S021 runtime evidence."
+    ]
+  },
+  "files_modified": [
+    "README.md",
+    "tools/validate-all-scenarios.ps1",
+    "tools/validate-kubernetes-node-readiness.ps1",
+    "tools/modules/RepositoryValidationSafety.psm1",
+    "tools/modules/NodeReadinessParser.psm1",
+    "tests/powershell/test-repository-validation-safety.ps1",
+    "tests/powershell/test-s021-node-status-parser.ps1",
+    "tests/test_repository_validation_hygiene.py",
+    "docs/zero-trust/recovery/P1-HYG-001/README.md",
+    "docs/zero-trust/recovery/P1-HYG-001/defect-analysis.yaml",
+    "docs/zero-trust/recovery/P1-HYG-001/regression-results.yaml",
+    "docs/zero-trust/recovery/P1-HYG-001/validation-report.md"
+  ],
+  "files_protected": [
+    ".runtime/zero-trust/**",
+    "docs/evidence/zero-trust/**",
+    "docs/zero-trust/packages/**",
+    "docs/zero-trust/target-architecture/**",
+    "docs/runbooks/**",
+    "observability/**",
+    "scenarios/**",
+    "evidence/** (source content unchanged)",
+    "identity and monitoring configuration",
+    "P1-REC-001 and P1-REC-002 records"
+  ]
+}
