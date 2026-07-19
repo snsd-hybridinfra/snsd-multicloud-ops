@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-access-decision.schema.json",
+  "type": "object",
+  "required": ["decision_id", "identity_id", "requested_action", "target_scope", "evaluated_role", "policy_version", "decision", "reason_codes", "approval_requirement", "evidence_authority", "timestamp", "limitations"],
+  "properties": {
+    "decision_id": {"type": "string", "pattern": "^DEC-[A-Z0-9-]+$"},
+    "identity_id": {"$ref": "zero-trust-identity-common.schema.json#/$defs/identityId"},
+    "requested_action": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"},
+    "target_scope": {"type": "string", "minLength": 1},
+    "evaluated_role": {"type": ["string", "null"]},
+    "policy_version": {"$ref": "zero-trust-identity-common.schema.json#/$defs/policyVersion"},
+    "decision": {"enum": ["ALLOW", "DENY", "REVIEW_REQUIRED", "NOT_APPLICABLE"]},
+    "reason_codes": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"}},
+    "approval_requirement": {"enum": ["NONE", "SATISFIED_BY_SYNTHETIC_FIXTURE", "SEPARATE_APPROVAL_REQUIRED"]},
+    "evidence_authority": {"const": "CODEX_EXECUTED_LOCAL"},
+    "timestamp": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+    "limitations": {"$ref": "zero-trust-identity-common.schema.json#/$defs/limitations"}
+  },
+  "additionalProperties": false
+}

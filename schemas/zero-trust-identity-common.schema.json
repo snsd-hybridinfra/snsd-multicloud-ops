@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-identity-common.schema.json",
+  "$defs": {
+    "schemaVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "packageId": {"const": "ZT-ID-001"},
+    "policyVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "capabilityId": {"type": "string", "pattern": "^ZT-(?:[1-6]\\.[1-9][0-9]*\\.[1-9][0-9]*|[78]\\.[1-9][0-9]*)$"},
+    "identityId": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,63}$"},
+    "identityType": {
+      "enum": ["HUMAN_OPERATOR", "SERVICE_IDENTITY", "AUTOMATION_IDENTITY", "VALIDATOR_IDENTITY", "BREAK_GLASS_IDENTITY"]
+    },
+    "roleName": {
+      "enum": ["IDENTITY_READER", "VALIDATION_OPERATOR", "EVIDENCE_REVIEWER", "PACKAGE_APPROVER", "MUTATING_OPERATOR", "BREAK_GLASS_OPERATOR"]
+    },
+    "lifecycleState": {
+      "enum": ["PROPOSED", "APPROVED", "ACTIVE", "SUSPENDED", "REVOKED", "EXPIRED", "REVIEW_REQUIRED"]
+    },
+    "authenticationMethod": {
+      "enum": ["SSH_KEY", "LOCAL_CREDENTIAL", "FEDERATED_OIDC", "SERVICE_TOKEN", "CERTIFICATE", "MFA_PROTECTED_INTERACTIVE", "BREAK_GLASS_CREDENTIAL"]
+    },
+    "secretReference": {
+      "type": "string",
+      "pattern": "^(?:env|file-ref|vault-ref|external-secret)://[A-Za-z0-9][A-Za-z0-9._/-]*$"
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "nonEmptyString": {"type": "string", "minLength": 1}
+  }
+}

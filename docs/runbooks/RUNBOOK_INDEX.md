@@ -4,7 +4,7 @@
 
 | Collection | Count | Authority | Current meaning |
 |---|---:|---|---|
-| Phase 1 baseline | 7 | Authoritative for bounded Phase 1 operator procedure | Two repository procedures implemented, three package/evidence procedures partial, two design specifications |
+| Phase 1 baseline | 7 | Authoritative for bounded Phase 1 operator procedure | Two repository procedures implemented, four package/evidence procedures partial, one design specification |
 | Future-phase numbered designs | 29 | Architecture design authority only | `DESIGN_SPECIFICATION`; no executable implementation is implied |
 | Root `runbooks/` references | 53 Markdown files | Secondary reference only | Scenario-specific material; never overrides this index or the Phase 1 manifest |
 
@@ -22,7 +22,7 @@ capability-wide validation, compliance, certification, or maturity.
 | RB-P1-003 | [`phase-1/03-evidence-handling-and-sanitization.md`](phase-1/03-evidence-handling-and-sanitization.md) | PARTIALLY_IMPLEMENTED | VALIDATED_LOCAL | ZT-FND-001, ZT-NET-001, ZT-VIS-001 |
 | RB-P1-004 | [`phase-1/04-network-validation-and-gap-management.md`](phase-1/04-network-validation-and-gap-management.md) | PARTIALLY_IMPLEMENTED | PARTIALLY_RUNTIME_VALIDATED | ZT-NET-001 |
 | RB-P1-005 | [`phase-1/05-visibility-validation-and-gap-management.md`](phase-1/05-visibility-validation-and-gap-management.md) | PARTIALLY_IMPLEMENTED | PARTIALLY_RUNTIME_VALIDATED | ZT-VIS-001, ZT-VIS-002 |
-| RB-P1-006 | [`phase-1/06-identity-validation-readiness.md`](phase-1/06-identity-validation-readiness.md) | DESIGN_SPECIFICATION | VALIDATED_LOCAL | ZT-ID-001 |
+| RB-P1-006 | [`phase-1/06-identity-validation-readiness.md`](phase-1/06-identity-validation-readiness.md) | PARTIALLY_IMPLEMENTED | VALIDATED_LOCAL | ZT-ID-001 |
 | RB-P1-007 | [`phase-1/07-repeatable-and-scheduled-validation.md`](phase-1/07-repeatable-and-scheduled-validation.md) | DESIGN_SPECIFICATION | VALIDATED_LOCAL | ZT-CV-001, ZT-RV-001, ZT-SCH-001 |
 
 ## Future-phase design specifications

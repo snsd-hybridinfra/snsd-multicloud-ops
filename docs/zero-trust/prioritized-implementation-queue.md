@@ -2,14 +2,15 @@
 
 ## Approved package gate
 
-`ZT-FND-001` is `IMPLEMENTED` / `VALIDATED`, `ZT-NET-001` is `IMPLEMENTED` / `PARTIALLY_VALIDATED`, and `ZT-VIS-001` is `IMPLEMENTED` / `PARTIALLY_VALIDATED`. VIS normalized 164 events from four live bounded sources, loaded seven deterministic non-blocking rules, and produced the expected controlled-fixture finding; accepted persistent central log storage remains absent. `ZT-ID-001` remains a `REFERENCED_ONLY`, `NOT_IMPLEMENTED`, and `NOT_VALIDATED` Phase 1 candidate. Active `ZT-VIS-002` Docker or Compose preparation traces remain protected Phase 2 enabling work; they do not replace or close `ZT-ID-001`, do not close `ZT-VIS-001`, and do not promote monitoring state. The exact next Phase 1 action is selected only after recovery adoption.
+`ZT-FND-001` is `IMPLEMENTED` / `VALIDATED`, `ZT-NET-001` is `IMPLEMENTED` / `PARTIALLY_VALIDATED`, and `ZT-VIS-001` is `IMPLEMENTED` / `PARTIALLY_VALIDATED`. VIS normalized 164 events from four live bounded sources, loaded seven deterministic non-blocking rules, and produced the expected controlled-fixture finding; accepted persistent central log storage remains absent. `ZT-ID-001` is now a `PRESENT`, `IMPLEMENTED`, and `LOCAL_VALIDATED` Phase 1 policy package; runtime validation remains `NOT_VALIDATED`, runtime acceptance remains pending separate approval, and maturity remains `UNASSESSED`. Active `ZT-VIS-002` Docker or Compose preparation traces remain protected Phase 2 enabling work; they do not replace identity runtime acceptance, do not close `ZT-VIS-001`, and do not promote monitoring state.
 
 The capability queue below remains the dependency-planning authority. Explicit package approval does not promote any capability status or maturity.
 
 `ZT-ARC-001` is `DESIGN_ONLY` / `LOCAL_VALIDATED` and contributes no runtime
 implementation. Its `ZT-ID-002` Phase 2 candidate is a later extension and
 must not be confused with or substituted for the already approved
-`ZT-ID-001` predecessor.
+`ZT-ID-001` local-policy predecessor. Package-local validation does not promote
+the capability queue or satisfy Phase 2 runtime identity gates.
 
 The queue orders the 44 applicable capabilities by dependency readiness first, then risk reduction, reuse, priority, feasibility, and expected evidence. It is not a calendar commitment and does not authorize implementation. Reference-only capabilities remain deferred architecture references.
 

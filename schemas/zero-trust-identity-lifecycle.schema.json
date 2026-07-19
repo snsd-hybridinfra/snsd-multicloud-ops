@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-identity-lifecycle.schema.json",
+  "type": "object",
+  "required": ["schema_version", "package_id", "policy_version", "states", "transitions", "acceptance_rules", "review_policy", "limitations"],
+  "properties": {
+    "schema_version": {"$ref": "zero-trust-identity-common.schema.json#/$defs/schemaVersion"},
+    "package_id": {"$ref": "zero-trust-identity-common.schema.json#/$defs/packageId"},
+    "policy_version": {"$ref": "zero-trust-identity-common.schema.json#/$defs/policyVersion"},
+    "states": {"type": "array", "minItems": 7, "uniqueItems": true, "items": {"$ref": "zero-trust-identity-common.schema.json#/$defs/lifecycleState"}},
+    "transitions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "requirements"],
+        "properties": {
+          "from": {"$ref": "zero-trust-identity-common.schema.json#/$defs/lifecycleState"},
+          "to": {"$ref": "zero-trust-identity-common.schema.json#/$defs/lifecycleState"},
+          "requirements": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "acceptance_rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["rule_id", "rule", "failure_level"],
+        "properties": {
+          "rule_id": {"type": "string", "pattern": "^LIFECYCLE-[0-9]{3}$"},
+          "rule": {"type": "string", "minLength": 1},
+          "failure_level": {"enum": ["FAIL", "WARN_OR_FAIL_BY_PRIVILEGE"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "review_policy": {"type": "object"},
+    "limitations": {"$ref": "zero-trust-identity-common.schema.json#/$defs/limitations"}
+  },
+  "additionalProperties": false
+}

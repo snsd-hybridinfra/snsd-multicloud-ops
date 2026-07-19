@@ -1,0 +1,101 @@
+{
+  "package_id": "ZT-ID-001",
+  "package_name": "Bounded Identity Inventory, Role, Authentication, and Access Validation",
+  "package_type": "IDENTITY_VALIDATION",
+  "phase": "PHASE_1",
+  "package_state": "PRESENT",
+  "authority_status": "AUTHORITATIVE",
+  "implementation_status": "IMPLEMENTED",
+  "validation_status": "LOCAL_VALIDATED",
+  "runtime_validation_status": "NOT_VALIDATED",
+  "runtime_acceptance_status": "PENDING",
+  "maturity_status": "UNASSESSED",
+  "current_maturity": "UNASSESSED",
+  "target_maturity": "ADVANCED",
+  "phase_2_dependency": "CENTRALIZED_IDENTITY_AND_ENFORCEMENT",
+  "phase_2_dependency_status": "OPEN",
+  "live_identity_changed": false,
+  "identity_provider_deployed": false,
+  "mfa_enforced": false,
+  "oidc_deployed": false,
+  "rbac_runtime_enforced": false,
+  "runtime_executed": false,
+  "secrets_tracked": false,
+  "policy_version": "1.0.0",
+  "validator": "tools/validate_zt_id_001.py",
+  "execution_record": "docs/evidence/zero-trust/zt-id-001-local-validation.yaml",
+  "identity_root": "docs/zero-trust/identity/",
+  "capability_ids": [
+    "ZT-1.1.1",
+    "ZT-1.1.2",
+    "ZT-1.2.1",
+    "ZT-1.4.1",
+    "ZT-1.4.2"
+  ],
+  "capability_mappings": [
+    {
+      "id": "ZT-1.1.1",
+      "canonical_name_ko": "사용자 인벤토리",
+      "relationship": "DIRECT_LOCAL_POLICY_IMPLEMENTATION",
+      "local_validation": "LOCAL_VALIDATED",
+      "runtime_validation": "NOT_VALIDATED",
+      "limitation": "Synthetic repository fixtures only; no real account inventory was collected."
+    },
+    {
+      "id": "ZT-1.1.2",
+      "canonical_name_ko": "ID 연계 및 사용자 자격 증명",
+      "relationship": "REQUIREMENT_ONLY_NOT_IMPLEMENTED",
+      "local_validation": "POLICY_REQUIREMENT_VALIDATED",
+      "runtime_validation": "NOT_VALIDATED",
+      "limitation": "Federation, OIDC, and credential lifecycle integration are not deployed."
+    },
+    {
+      "id": "ZT-1.2.1",
+      "canonical_name_ko": "다중인증 (MFA)",
+      "relationship": "REQUIREMENT_ONLY_NOT_IMPLEMENTED",
+      "local_validation": "POLICY_REQUIREMENT_VALIDATED",
+      "runtime_validation": "NOT_VALIDATED",
+      "limitation": "Privileged interactive MFA is required by policy but is not enforced or runtime validated."
+    },
+    {
+      "id": "ZT-1.4.1",
+      "canonical_name_ko": "조건부 사용자 접근",
+      "relationship": "LOCAL_DECISION_POLICY_ONLY",
+      "local_validation": "LOCAL_VALIDATED",
+      "runtime_validation": "NOT_VALIDATED",
+      "limitation": "Deterministic synthetic decisions are validated; no runtime policy enforcement point exists."
+    },
+    {
+      "id": "ZT-1.4.2",
+      "canonical_name_ko": "최소 권한 접근",
+      "relationship": "LOCAL_ROLE_POLICY_ONLY",
+      "local_validation": "LOCAL_VALIDATED",
+      "runtime_validation": "NOT_VALIDATED",
+      "limitation": "Role and separation-of-duties policy is locally validated without live RBAC enforcement."
+    }
+  ],
+  "excluded_identity_capability_ids": [
+    "ZT-1.2.2",
+    "ZT-1.3.1",
+    "ZT-1.3.2"
+  ],
+  "related_capability_references": [
+    "ZT-4.1.1",
+    "ZT-4.2.1",
+    "ZT-4.2.2"
+  ],
+  "related_runbooks": [
+    "docs/runbooks/phase-1/06-identity-validation-readiness.md"
+  ],
+  "related_architecture": [
+    "docs/zero-trust/target-architecture/implementation-dependency-map.md",
+    "docs/zero-trust/target-architecture/operator-interface-contract.md"
+  ],
+  "limitations": [
+    "The package validates repository-local policy, schemas, synthetic fixtures, and decision logic only.",
+    "No real identity, account, credential, authentication factor, login history, or production identifier was collected.",
+    "No identity provider, MFA provider, OIDC provider, PAM system, runtime RBAC control, or policy enforcement point is deployed.",
+    "No runtime validation or capability maturity is established.",
+    "Phase 1 remains PARTIAL, PARTIALLY_VALIDATED, and NOT_COMPLETE."
+  ]
+}

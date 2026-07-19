@@ -143,6 +143,13 @@ class AdvancedTargetArchitectureTests(unittest.TestCase):
         validator.validate_dependency_data(value, result)
         self.assert_failure(result, "roadmap.package-status")
 
+    def test_identity_package_cannot_claim_runtime_validation(self) -> None:
+        value = copy.deepcopy(self.dependency)
+        value["package_status"]["ZT-ID-001"]["runtime_validation_status"] = "RUNTIME_VALIDATED"
+        result = validator.ValidationResult()
+        validator.validate_dependency_data(value, result)
+        self.assert_failure(result, "roadmap.package-status")
+
     def test_architecture_package_cannot_drop_authority_boundary(self) -> None:
         value = copy.deepcopy(self.package)
         value["runtime_validation_status"] = "RUNTIME_VALIDATED"

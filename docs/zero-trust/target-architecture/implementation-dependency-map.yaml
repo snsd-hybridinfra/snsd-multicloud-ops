@@ -9,11 +9,10 @@
       "actual_packages": [
         "ZT-FND-001",
         "ZT-NET-001",
-        "ZT-VIS-001"
-      ],
-      "candidate_packages": [
+        "ZT-VIS-001",
         "ZT-ID-001"
       ],
+      "candidate_packages": [],
       "packages": [],
       "implementation_status": "PARTIAL",
       "validation_status": "PARTIALLY_VALIDATED",
@@ -177,11 +176,14 @@
       "roadmap_status": "PLANNED"
     },
     "ZT-ID-001": {
-      "package_state": "REFERENCED_ONLY",
-      "phase": "PHASE_1_CANDIDATE",
-      "implementation_status": "NOT_IMPLEMENTED",
-      "validation_status": "NOT_VALIDATED",
-      "roadmap_status": "DESIGN_ONLY"
+      "package_state": "PRESENT",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "LOCAL_VALIDATED",
+      "runtime_validation_status": "NOT_VALIDATED",
+      "maturity_status": "UNASSESSED",
+      "phase_2_dependency_status": "OPEN",
+      "roadmap_status": "LOCAL_POLICY_PACKAGE"
     },
     "ZT-ID-002": {
       "implementation_status": "NOT_STARTED",
@@ -379,7 +381,7 @@
   },
   "constraints": [
     "No package is promoted by architecture documentation.",
-    "ZT-ID-001 remains a referenced-only Phase 1 candidate; ZT-ID-002 is a later Phase 2 roadmap candidate.",
+    "ZT-ID-001 is an implemented and locally validated Phase 1 policy package with runtime validation pending; ZT-ID-002 is a separate later Phase 2 roadmap candidate.",
     "ZT-VIS-002 runtime work is protected Phase 2 enabling preparation, remains untracked, and cannot replace ZT-ID-001 or close ZT-VIS-001."
   ]
 }

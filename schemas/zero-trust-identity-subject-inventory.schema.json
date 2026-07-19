@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-identity-subject-inventory.schema.json",
+  "type": "object",
+  "required": ["schema_version", "package_id", "policy_version", "fixture_time", "data_classification", "production_data", "purpose_limitation", "retention_policy", "identities"],
+  "properties": {
+    "schema_version": {"$ref": "zero-trust-identity-common.schema.json#/$defs/schemaVersion"},
+    "package_id": {"$ref": "zero-trust-identity-common.schema.json#/$defs/packageId"},
+    "policy_version": {"$ref": "zero-trust-identity-common.schema.json#/$defs/policyVersion"},
+    "fixture_time": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+    "data_classification": {"const": "SYNTHETIC_LOCAL_FIXTURE"},
+    "production_data": {"const": false},
+    "purpose_limitation": {"$ref": "zero-trust-identity-common.schema.json#/$defs/nonEmptyString"},
+    "retention_policy": {"$ref": "zero-trust-identity-common.schema.json#/$defs/nonEmptyString"},
+    "identities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["identity_id", "identity_type", "display_name", "owner_role", "accountable_owner", "target_scope", "environment_scope", "authentication_method", "privilege_level", "assigned_roles", "lifecycle_status", "approval_status", "creation_authority", "review_due", "expiration", "revocation_status", "shared_identity", "interactive_access", "mfa_requirement", "recovery_requirement", "secret_references", "evidence_reference", "limitations"],
+        "properties": {
+          "identity_id": {"$ref": "zero-trust-identity-common.schema.json#/$defs/identityId"},
+          "identity_type": {"$ref": "zero-trust-identity-common.schema.json#/$defs/identityType"},
+          "display_name": {"$ref": "zero-trust-identity-common.schema.json#/$defs/nonEmptyString"},
+          "owner_role": {"$ref": "zero-trust-identity-common.schema.json#/$defs/nonEmptyString"},
+          "accountable_owner": {"type": "string", "pattern": "^ROLE:[A-Z][A-Z0-9_]+$"},
+          "target_scope": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "environment_scope": {"const": "LOCAL_REPOSITORY_FIXTURE"},
+          "authentication_method": {"$ref": "zero-trust-identity-common.schema.json#/$defs/authenticationMethod"},
+          "privilege_level": {"enum": ["READ_ONLY", "STANDARD", "PRIVILEGED", "EMERGENCY"]},
+          "assigned_roles": {"type": "array", "items": {"$ref": "zero-trust-identity-common.schema.json#/$defs/roleName"}},
+          "lifecycle_status": {"$ref": "zero-trust-identity-common.schema.json#/$defs/lifecycleState"},
+          "approval_status": {"enum": ["PROPOSED", "APPROVED", "REVIEW_REQUIRED", "DENIED"]},
+          "creation_authority": {"const": "P1-ID-001_SYNTHETIC_FIXTURE"},
+          "review_due": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+          "expiration": {"type": ["string", "null"]},
+          "revocation_status": {"enum": ["NOT_REVOKED", "REVOKED"]},
+          "shared_identity": {"type": "boolean"},
+          "interactive_access": {"type": "boolean"},
+          "mfa_requirement": {"enum": ["REQUIRED_NOT_IMPLEMENTED", "NOT_REQUIRED_FOR_BOUNDED_READ_ONLY_FIXTURE", "NOT_APPLICABLE_NON_INTERACTIVE"]},
+          "recovery_requirement": {"type": "string", "minLength": 1},
+          "secret_references": {"type": "array", "items": {"$ref": "zero-trust-identity-common.schema.json#/$defs/secretReference"}},
+          "approval_reference": {"type": "string", "pattern": "^fixture-approval://[a-z0-9-]+$"},
+          "logging_requirement": {"const": "REQUIRED"},
+          "recovery_procedure": {"type": "string", "minLength": 1},
+          "rollback_procedure": {"type": "string", "minLength": 1},
+          "lockout_stop_condition": {"const": "STOP_ON_UNEXPECTED_DENIAL"},
+          "evidence_reference": {"type": "string", "pattern": "^fixture://[a-z0-9/-]+$"},
+          "limitations": {"$ref": "zero-trust-identity-common.schema.json#/$defs/limitations"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

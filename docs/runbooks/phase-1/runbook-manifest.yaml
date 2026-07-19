@@ -110,15 +110,15 @@
       "phase": "PHASE_1",
       "related_packages": ["ZT-ID-001"],
       "owner_domain": "IDENTITY_SECURITY",
-      "supported_target_types": ["REPOSITORY_LOCAL_DESIGN_REVIEW"],
-      "procedure_status": "DESIGN_SPECIFICATION",
+      "supported_target_types": ["REPOSITORY_LOCAL_POLICY_VALIDATION"],
+      "procedure_status": "PARTIALLY_IMPLEMENTED",
       "validation_status": "VALIDATED_LOCAL",
       "runtime_required": true,
       "live_execution_permitted": false,
-      "required_authority": "FUTURE_PACKAGE_APPROVAL_AND_IDENTITY_OWNER_REVIEW",
-      "evidence_authority": "NONE",
+      "required_authority": "ZT_ID_001_LOCAL_PACKAGE_AUTHORITY_AND_SEPARATE_RUNTIME_APPROVAL",
+      "evidence_authority": "CODEX_EXECUTED_LOCAL",
       "last_reviewed": "2026-07-19",
-      "limitations": ["Only the runbook structure is locally validated; ZT-ID-001 remains referenced-only, not implemented, and not validated."]
+      "limitations": ["ZT-ID-001 policy, schemas, validator, and synthetic fixtures are locally validated; live identity inspection and enforcement remain not implemented and not validated."]
     },
     {
       "runbook_id": "RB-P1-007",
@@ -162,10 +162,13 @@
     },
     {
       "package_id": "ZT-ID-001",
-      "implementation_status": "NOT_IMPLEMENTED",
-      "validation_status": "NOT_VALIDATED",
-      "authority_status": "REFERENCED_ONLY",
-      "evidence_authority": "NONE"
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "LOCAL_VALIDATED",
+      "runtime_validation_status": "NOT_VALIDATED",
+      "runtime_acceptance_status": "PENDING",
+      "maturity_status": "UNASSESSED",
+      "authority_status": "AUTHORITATIVE",
+      "evidence_authority": "CODEX_EXECUTED_LOCAL"
     },
     {
       "package_id": "ZT-CV-001",
@@ -263,7 +266,7 @@
       "status": "OPEN"
     },
     {
-      "gap_id": "IDENTITY_PACKAGE_ABSENT",
+      "gap_id": "IDENTITY_RUNTIME_VALIDATION_NOT_IMPLEMENTED",
       "owner": "ZT-ID-001",
       "status": "OPEN"
     },

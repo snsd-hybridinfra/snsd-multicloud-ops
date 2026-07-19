@@ -164,8 +164,8 @@ class Phase1RunbookBaselineTests(unittest.TestCase):
         self._append("RB-P1-004", "ZT-NET-001 is fully validated.")
         self._assert_failure("runbooks.claims")
 
-    def test_identity_implemented_claim(self) -> None:
-        self._append("RB-P1-006", "ZT-ID-001 is IMPLEMENTED.")
+    def test_identity_runtime_overclaim(self) -> None:
+        self._append("RB-P1-006", "ZT-ID-001 is RUNTIME_VALIDATED.")
         self._assert_failure("runbooks.claims")
 
     def test_scheduler_operational_claim(self) -> None:

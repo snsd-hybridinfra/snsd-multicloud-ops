@@ -55,6 +55,9 @@ mean Compliance as Code here.
 - [Authoritative operational runbook index](../runbooks/RUNBOOK_INDEX.md)
 - [ZT-FND-001 package](packages/zt-fnd-001-restricted-validation-foundation.md)
 - [ZT-FND-001 rollback](packages/zt-fnd-001-rollback.md)
+- [ZT-ID-001 package](packages/zt-id-001-bounded-identity-validation.md)
+- [ZT-ID-001 policy models](identity/README.md)
+- [ZT-ID-001 local evidence](../evidence/zero-trust/zt-id-001-local-validation.yaml)
 - [ZT-ARC-001 package](packages/zt-arc-001-advanced-target-architecture.md)
 
 ## Machine Validation
@@ -66,6 +69,7 @@ python tools/validate_zero_trust.py --verbose
 python tools/check_zero_trust_sync.py
 python tools/generate_zero_trust_reports.py --check
 python tools/validate_advanced_target_architecture.py --verbose
+python tools/validate_zt_id_001.py --verbose --strict
 powershell -ExecutionPolicy Bypass -File tools/validate-zero-trust.ps1
 python -m unittest discover -s tests -v
 ```

@@ -1,0 +1,50 @@
+{
+  "action_id": "P1-ID-001",
+  "package_id": "ZT-ID-001",
+  "execution_authority": "CODEX_EXECUTED_LOCAL",
+  "execution_mode": "SYNTHETIC_FIXTURE_AND_REPOSITORY_VALIDATION",
+  "runtime_executed": false,
+  "live_identity_changed": false,
+  "results": [
+    {"validation": "YAML_AND_JSON_PARSE", "status": "PASS", "errors": 0},
+    {"validation": "JSON_SCHEMA", "status": "PASS", "schemas": 7, "errors": 0},
+    {"validation": "ZT_ID_001_TARGETED_TESTS", "status": "PASS", "passed": 63, "failed": 0},
+    {"validation": "POSITIVE_FIXTURES", "status": "PASS", "passed": 9, "failed": 0},
+    {"validation": "NEGATIVE_FIXTURES", "status": "PASS", "passed": 34, "failed": 0},
+    {"validation": "ZT_ID_001_VALIDATOR_STRICT", "status": "PASS", "passed": 18, "warnings": 0, "failed": 0},
+    {"validation": "PHASE_1_RUNBOOK_VALIDATOR", "status": "PASS", "passed": 18, "warnings": 0, "failed": 0},
+    {"validation": "P1_HYG_REPOSITORY_SAFETY", "status": "PASS", "passed": 8, "failed": 0},
+    {"validation": "S021_STRICT_PARSER", "status": "PASS", "passed": 9, "failed": 0},
+    {"validation": "ZERO_TRUST_VALIDATOR", "status": "PASS", "passed": 34, "warnings": 0, "failed": 0},
+    {"validation": "ZERO_TRUST_SYNCHRONIZATION", "status": "PASS", "passed": 5, "failed": 0},
+    {"validation": "ZERO_TRUST_REPORT_CHECK", "status": "PASS", "failed": 0},
+    {"validation": "ADVANCED_TARGET_ARCHITECTURE", "status": "PASS", "passed": 28, "warnings": 0, "failed": 0},
+    {"validation": "REPOSITORY_STRUCTURE", "status": "PASS", "scenario_directories": 50, "evidence_directories": 50},
+    {"validation": "SCENARIO_AGGREGATE_READ_ONLY_ISOLATED", "status": "EXPECTED_EXISTING_FAILURES", "evaluated": 50, "pass": 15, "warn": 5, "fail": 30, "integration_failures": 0, "exit_code": 1},
+    {"validation": "FULL_UNIT_TEST_SUITE", "status": "PASS", "passed": 159, "failed": 0},
+    {"validation": "SECRET_SCAN", "status": "PASS", "likely_real_secret_findings": 0},
+    {"validation": "TRACKED_RUNTIME", "status": "PASS", "tracked_files": 0},
+    {"validation": "REPOSITORY_MUTATION", "status": "PASS", "unexplained_mutations": 0}
+  ],
+  "package_status": {
+    "package_state": "PRESENT",
+    "implementation_status": "IMPLEMENTED",
+    "validation_status": "LOCAL_VALIDATED",
+    "runtime_validation_status": "NOT_VALIDATED",
+    "runtime_acceptance_status": "PENDING",
+    "maturity_status": "UNASSESSED",
+    "phase_2_dependency_status": "OPEN"
+  },
+  "phase_1_status": {
+    "implementation_status": "PARTIAL",
+    "validation_status": "PARTIALLY_VALIDATED",
+    "completion_status": "NOT_COMPLETE",
+    "boundary": "ZT-SCH-001"
+  },
+  "limitations": [
+    "All identity decisions and subjects are synthetic repository fixtures.",
+    "No live account, authentication event, authorization enforcement, or identity provider was validated.",
+    "Existing scenario failures remain accurately reported and are not P1-ID-001 integration failures."
+  ],
+  "status": "LOCAL_VALIDATION_COMPLETE_RUNTIME_NOT_EXECUTED"
+}

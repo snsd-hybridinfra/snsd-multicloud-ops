@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/snsd/zero-trust-authentication-assurance.schema.json",
+  "type": "object",
+  "required": ["schema_version", "package_id", "policy_version", "identity_provider_deployed", "mfa_enforced", "oidc_deployed", "runtime_authentication_validated", "authentication_methods", "assurance_requirements", "external_secret_reference_schemes", "limitations"],
+  "properties": {
+    "schema_version": {"$ref": "zero-trust-identity-common.schema.json#/$defs/schemaVersion"},
+    "package_id": {"$ref": "zero-trust-identity-common.schema.json#/$defs/packageId"},
+    "policy_version": {"$ref": "zero-trust-identity-common.schema.json#/$defs/policyVersion"},
+    "identity_provider_deployed": {"const": false},
+    "mfa_enforced": {"const": false},
+    "oidc_deployed": {"const": false},
+    "runtime_authentication_validated": {"const": false},
+    "authentication_methods": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "required": ["method", "policy_status", "deployed_by_package"],
+        "properties": {
+          "method": {"$ref": "zero-trust-identity-common.schema.json#/$defs/authenticationMethod"},
+          "policy_status": {"enum": ["CATEGORY_DEFINED", "CATEGORY_DEFINED_EXTERNAL_REFERENCE_ONLY", "REQUIRED_NOT_IMPLEMENTED"]},
+          "deployed_by_package": {"const": false}
+        },
+        "additionalProperties": false
+      }
+    },
+    "assurance_requirements": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["subject_class", "required_methods", "mfa_requirement", "interactive_access", "external_secret_reference_required", "runtime_acceptance"],
+        "properties": {
+          "subject_class": {"enum": ["PRIVILEGED_INTERACTIVE_IDENTITY", "NON_PRIVILEGED_HUMAN_IDENTITY", "AUTOMATION_IDENTITY", "SERVICE_IDENTITY", "VALIDATOR_IDENTITY", "EMERGENCY_IDENTITY"]},
+          "required_methods": {"type": "array", "minItems": 1, "items": {"$ref": "zero-trust-identity-common.schema.json#/$defs/authenticationMethod"}},
+          "mfa_requirement": {"enum": ["REQUIRED_NOT_IMPLEMENTED", "RISK_AND_TARGET_DEPENDENT", "NOT_APPLICABLE_NON_INTERACTIVE"]},
+          "interactive_access": {"type": "boolean"},
+          "external_secret_reference_required": {"type": "boolean"},
+          "runtime_acceptance": {"const": "PENDING_SEPARATE_APPROVAL"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "external_secret_reference_schemes": {"type": "array", "minItems": 4, "items": {"type": "string"}},
+    "limitations": {"$ref": "zero-trust-identity-common.schema.json#/$defs/limitations"}
+  },
+  "additionalProperties": false
+}

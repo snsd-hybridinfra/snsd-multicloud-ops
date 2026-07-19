@@ -275,6 +275,23 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
         if not phase.get("entry_criteria") or not phase.get("exit_criteria"):
             result.fail("roadmap.gates", f"{phase.get('id')}: entry and exit criteria are required")
     for package_id, status in dependency.get("package_status", {}).items():
+        if package_id == "ZT-ID-001":
+            expected_identity_status = {
+                "package_state": "PRESENT",
+                "phase": "PHASE_1_CURRENT",
+                "implementation_status": "IMPLEMENTED",
+                "validation_status": "LOCAL_VALIDATED",
+                "runtime_validation_status": "NOT_VALIDATED",
+                "maturity_status": "UNASSESSED",
+                "phase_2_dependency_status": "OPEN",
+                "roadmap_status": "LOCAL_POLICY_PACKAGE",
+            }
+            if status != expected_identity_status:
+                result.fail(
+                    "roadmap.package-status",
+                    "ZT-ID-001 must remain bounded to implemented/local-validated policy with no runtime or maturity promotion",
+                )
+            continue
         implementation = status.get("implementation_status")
         if implementation in {"IMPLEMENTED", "COMPLETED", "VALIDATED"}:
             result.fail("roadmap.package-status", f"{package_id}: roadmap package is improperly marked {implementation}")
@@ -287,7 +304,7 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
             if status != {"implementation_status": "NOT_STARTED", "validation_status": "UNASSESSED", "roadmap_status": "ROADMAP_ONLY"}:
                 result.fail("roadmap.optimal", f"{package_id}: invalid future Optimal status")
     if not _has_failures(result, "roadmap."):
-        result.passed("roadmap", "All phases have gates and roadmap packages remain unimplemented.")
+        result.passed("roadmap", "All phases have gates; ZT-ID-001 remains local-policy-only and roadmap packages remain unimplemented.")
 
 
 def validate_package_data(package: dict[str, Any], result: ValidationResult) -> None:
