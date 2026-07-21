@@ -1,0 +1,35 @@
+{
+  "action_id": "P1-ID-ENF-001-RETRY",
+  "package_id": "ZT-ID-001",
+  "target_alias": "NONPROD_VALIDATOR_TARGET_01",
+  "target_environment": "NON_PRODUCTION",
+  "target_class": "EVE_NG_RESTRICTED_VALIDATOR_ENDPOINT",
+  "operator_access_sessions": 2,
+  "operator_access_status": "PASS",
+  "independent_recovery_console": "PASS",
+  "sshd_validation": "PASS",
+  "ssh_service_health": "PASS",
+  "global_sudoers_validation": "PASS",
+  "third_party_sudoers": {
+    "classification": "EVE_NG_PACKAGE_OWNED",
+    "change_policy": "PROTECTED_READ_ONLY",
+    "content_unchanged": true,
+    "metadata_unchanged": true,
+    "validation": "PASS"
+  },
+  "validator_identity": {
+    "account_state": "REUSED",
+    "group_state": "REUSED",
+    "password_authentication": "DISABLED",
+    "broad_administrative_groups": "ABSENT",
+    "unrestricted_sudo": "ABSENT",
+    "private_key_access": "ABSENT",
+    "general_interactive_shell": "DENIED"
+  },
+  "conflicting_writers": "ABSENT",
+  "disk_capacity": "PASS",
+  "clock_usable": true,
+  "privacy_findings": 0,
+  "secret_findings": 0
+}
+

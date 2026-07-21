@@ -13,9 +13,9 @@ Boundary: `ZT-SCH-001` (`DESIGN_ONLY`).
 
 Phase state: `PARTIAL` implementation / `PARTIALLY_VALIDATED` validation /
 `NOT_COMPLETE` completion. `ZT-ID-001` is `PRESENT`, `IMPLEMENTED`, and
-`LOCAL_VALIDATED` for repository-local policy and synthetic fixtures only;
-runtime validation is `NOT_VALIDATED`, maturity is `UNASSESSED`, and the Phase
-2 centralized-identity dependency remains open.
+`RUNTIME_VALIDATED`; runtime validation is `VALIDATED` and acceptance is
+`ACCEPTED` for one `BOUNDED_NON_PRODUCTION_TARGET`. Maturity is `UNASSESSED`,
+and the Phase 2 centralized-identity dependency remains open.
 
 The boundary covers restricted validation, evidence governance, automation
 safety, repeatable validation, and a scheduled-validation foundation. Actual
@@ -33,7 +33,7 @@ Monitoring is an enabling platform.
 
 Candidates: `ZT-USE-001`, `ZT-ID-002`, `ZT-APP-002`, `ZT-ACC-001`,
 `ZT-PEP-001`, `ZT-VIS-002`, and `ZT-EFF-001`. The existing queue's
-`ZT-ID-001` remains the approved local-policy identity predecessor; `ZT-ID-002` is a later
+`ZT-ID-001` remains the approved bounded Phase 1 identity predecessor; `ZT-ID-002` is a later
 candidate, not a rename. Active `ZT-VIS-002` work under `.runtime` remains an
 unaccepted dependency until sanitized package evidence passes review.
 

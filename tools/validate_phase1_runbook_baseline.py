@@ -119,7 +119,7 @@ PACKAGE_BOUNDARIES = {
     "ZT-FND-001": ("IMPLEMENTED", "VALIDATED_RUNTIME"),
     "ZT-NET-001": ("IMPLEMENTED", "PARTIALLY_RUNTIME_VALIDATED"),
     "ZT-VIS-001": ("IMPLEMENTED", "PARTIALLY_RUNTIME_VALIDATED"),
-    "ZT-ID-001": ("IMPLEMENTED", "LOCAL_VALIDATED"),
+    "ZT-ID-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
     "ZT-CV-001": ("NOT_IMPLEMENTED", "NOT_VALIDATED"),
     "ZT-RV-001": ("NOT_IMPLEMENTED", "NOT_VALIDATED"),
     "ZT-SCH-001": ("DESIGN_ONLY", "NOT_VALIDATED"),
@@ -446,7 +446,7 @@ def _validate_semantics(root: Path, parsed: dict[str, tuple[Path, str, dict[str,
         "RB-P1-003": list(EVIDENCE_AUTHORITIES) + [".runtime/zero-trust/", "clouds.yaml", "kubeconfig"],
         "RB-P1-004": ["PERMANENT_ACL_ENFORCEMENT_EVIDENCE_MISSING", "PARTIAL_NO_INTERFACE_BINDING", "SEGMENTATION_CONFIGURATION_ONLY"],
         "RB-P1-005": ["CENTRAL_MONITORING_SERVICE_ABSENT", "PERSISTENT_STORAGE_EVIDENCE_MISSING", "PREPARATION_TRACES_ONLY"],
-        "RB-P1-006": ["PRESENT", "IMPLEMENTED", "LOCAL_VALIDATED", "NOT_VALIDATED", "package files exist", "runtime acceptance"],
+        "RB-P1-006": ["PRESENT", "IMPLEMENTED", "RUNTIME_VALIDATED", "VALIDATED", "ACCEPTED", "BOUNDED_NON_PRODUCTION_TARGET", "runtime acceptance"],
         "RB-P1-007": ["ZT-CV-001", "ZT-RV-001", "ABSENT", "ZT-SCH-001", "no scheduler"],
     }
     for runbook_id, tokens in requirements.items():
@@ -459,7 +459,7 @@ def _validate_semantics(root: Path, parsed: dict[str, tuple[Path, str, dict[str,
 
     prohibited_claims = [
         (r"ZT-(?:NET|VIS)-001.{0,100}\b(?:fully|completely)\s+(?:validated|implemented)\b", "package overclaim"),
-        (r"ZT-ID-001.{0,120}\b(?:RUNTIME_VALIDATED|MFA_ENFORCED|OIDC_OPERATIONAL|RBAC_RUNTIME_ENFORCED)\b", "identity runtime overclaim"),
+        (r"ZT-ID-001.{0,120}\b(?:FULL_PRODUCTION_VALIDATED|MFA_ENFORCED|OIDC_OPERATIONAL|RBAC_RUNTIME_ENFORCED)\b", "identity runtime overclaim"),
         (r"ZT-SCH-001\s+(?:is\s+)?(?:OPERATIONAL|IMPLEMENTED|VALIDATED)\b", "scheduler operational claim"),
         (r"ZT-VIS-002\s+(?:provides\s+runtime\s+evidence|is\s+(?:deployed|validated))", "protected visibility evidence claim"),
         (r"(?:current|achieved|implemented)[^\n]{0,60}\bADVANCED\b", "ADVANCED maturity claim"),

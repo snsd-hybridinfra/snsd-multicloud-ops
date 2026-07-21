@@ -17,8 +17,10 @@ from typing import Any, Iterable
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VALIDATOR_VERSION = "1.0.0"
-POLICY_VERSION = "1.0.0"
+VALIDATOR_VERSION = "1.1.0"
+POLICY_VERSION = "1.1.0"
+LOCAL_EVIDENCE_VALIDATOR_VERSION = "1.0.0"
+LOCAL_EVIDENCE_POLICY_VERSION = "1.0.0"
 
 PACKAGE_PATH = Path("docs/zero-trust/packages/zt-id-001-package.yaml")
 PACKAGE_DOCUMENT_PATH = Path(
@@ -28,6 +30,9 @@ CATALOG_PATH = Path("docs/zero-trust/capability-catalog.yaml")
 RUNBOOK_PATH = Path("docs/runbooks/phase-1/06-identity-validation-readiness.md")
 MANIFEST_PATH = Path("docs/runbooks/phase-1/runbook-manifest.yaml")
 EVIDENCE_PATH = Path("docs/evidence/zero-trust/zt-id-001-local-validation.yaml")
+RUNTIME_EVIDENCE_PATH = Path(
+    "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml"
+)
 
 MODEL_PATHS = {
     "inventory": Path("docs/zero-trust/identity/identity-subject-model.yaml"),
@@ -252,6 +257,25 @@ class LocalSchemaValidator:
         location: str,
         errors: list[str],
     ) -> None:
+        if "oneOf" in schema:
+            candidate_results: list[list[str]] = []
+            for candidate in schema["oneOf"]:
+                candidate_errors: list[str] = []
+                self._walk(
+                    instance,
+                    candidate,
+                    schema_path,
+                    location,
+                    candidate_errors,
+                )
+                candidate_results.append(candidate_errors)
+            matches = [item for item in candidate_results if not item]
+            if len(matches) != 1:
+                errors.append(
+                    f"{location}: expected exactly one oneOf schema match, got {len(matches)}"
+                )
+            return
+
         if "$ref" in schema:
             resolved, resolved_path = self._resolve_ref(schema["$ref"], schema_path)
             self._walk(instance, resolved, resolved_path, location, errors)
@@ -350,9 +374,10 @@ def validate_package_document(
         "package_state": "PRESENT",
         "authority_status": "AUTHORITATIVE",
         "implementation_status": "IMPLEMENTED",
-        "validation_status": "LOCAL_VALIDATED",
-        "runtime_validation_status": "NOT_VALIDATED",
-        "runtime_acceptance_status": "PENDING",
+        "validation_status": "RUNTIME_VALIDATED",
+        "runtime_validation_status": "VALIDATED",
+        "runtime_acceptance_status": "ACCEPTED",
+        "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
         "maturity_status": "UNASSESSED",
         "target_maturity": "ADVANCED",
         "phase_2_dependency": "CENTRALIZED_IDENTITY_AND_ENFORCEMENT",
@@ -372,12 +397,10 @@ def validate_package_document(
                 codes.add("INVALID_PACKAGE_STATE")
 
     false_fields = {
-        "live_identity_changed",
         "identity_provider_deployed",
         "mfa_enforced",
         "oidc_deployed",
         "rbac_runtime_enforced",
-        "runtime_executed",
         "secrets_tracked",
     }
     if any(package.get(field) is not False for field in false_fields):
@@ -391,6 +414,9 @@ def validate_package_document(
     if set(package.get("excluded_identity_capability_ids", [])) != EXCLUDED_IDENTITY_CAPABILITY_IDS:
         codes.add("INVALID_EXCLUDED_CAPABILITY_MAPPING")
 
+    if package.get("runtime_executed") is not True or package.get("live_identity_changed") is not True:
+        codes.add("UNSUPPORTED_RUNTIME_CLAIM")
+
     mapping_rows = package.get("capability_mappings", [])
     row_ids = {row.get("id") for row in mapping_rows if isinstance(row, dict)}
     if row_ids != DIRECT_CAPABILITY_IDS:
@@ -401,7 +427,14 @@ def validate_package_document(
             continue
         if CANONICAL_NAMES.get(row.get("id")) != row.get("canonical_name_ko"):
             codes.add("INVALID_CAPABILITY_MAPPING")
-        if row.get("runtime_validation") != "NOT_VALIDATED":
+        expected_runtime = {
+            "ZT-1.1.1": "BOUNDED_RUNTIME_VALIDATED",
+            "ZT-1.1.2": "NOT_VALIDATED",
+            "ZT-1.2.1": "NOT_VALIDATED",
+            "ZT-1.4.1": "BOUNDED_RUNTIME_VALIDATED",
+            "ZT-1.4.2": "BOUNDED_RUNTIME_VALIDATED",
+        }.get(row.get("id"))
+        if row.get("runtime_validation") != expected_runtime:
             codes.add("UNSUPPORTED_RUNTIME_CLAIM")
 
     if catalog is not None:
@@ -798,8 +831,8 @@ def validate_evidence_document(
         "execution_authority": "CODEX_EXECUTED_LOCAL",
         "execution_mode": "SYNTHETIC_FIXTURE_VALIDATION",
         "validator": "tools/validate_zt_id_001.py",
-        "validator_version": VALIDATOR_VERSION,
-        "policy_version": POLICY_VERSION,
+        "validator_version": LOCAL_EVIDENCE_VALIDATOR_VERSION,
+        "policy_version": LOCAL_EVIDENCE_POLICY_VERSION,
         "target": "LOCAL_REPOSITORY_FIXTURES",
         "result": "PASS",
         "runtime_executed": False,
@@ -834,13 +867,93 @@ def validate_evidence_document(
     return codes
 
 
+def validate_runtime_evidence_document(
+    evidence: dict[str, Any], package: dict[str, Any]
+) -> set[str]:
+    codes: set[str] = set()
+    required = {
+        "action_id": "P1-ID-ENF-001-RETRY",
+        "parent_action_id": "P1-ID-ENF-001",
+        "package_id": "ZT-ID-001",
+        "execution_authority": "USER_APPROVED_CODEX_EXECUTION",
+        "execution_mode": "BOUNDED_NON_PRODUCTION_ENFORCEMENT",
+        "target_alias": "NONPROD_VALIDATOR_TARGET_01",
+        "target_environment": "NON_PRODUCTION",
+        "target_class": "EVE_NG_RESTRICTED_VALIDATOR_ENDPOINT",
+        "operator_access": "PASS",
+        "validator_identity": "DEDICATED_PACKAGE_OWNED_VALIDATOR",
+        "forced_command": "ENFORCED",
+        "ssh_enforcement": "ENFORCED",
+        "sudoers_enforcement": "ENFORCED",
+        "third_party_sudoers_unchanged": True,
+        "backup_created": True,
+        "rollback_armed": True,
+        "rollback_cancelled": True,
+        "residual_jobs": 0,
+        "unexpected_allowances": 0,
+        "protected_state_mutations": "PACKAGE_OWNED_CONFIGURATION_ONLY",
+        "sshd_validation": "PASS",
+        "sudoers_package_validation": "PASS",
+        "sudoers_global_validation": "PASS",
+        "ssh_reload": "PASS",
+        "service_health": "PASS",
+        "runtime_executed": True,
+        "live_identity_changed": True,
+        "identity_provider_deployed": False,
+        "mfa_enforced": False,
+        "oidc_deployed": False,
+        "rbac_runtime_enforced": False,
+        "secret_findings": 0,
+        "privacy_findings": 0,
+        "evidence_freshness": "CURRENT_ACTION",
+        "implementation_status": "IMPLEMENTED",
+        "validation_status": "RUNTIME_VALIDATED",
+        "runtime_validation_status": "VALIDATED",
+        "runtime_acceptance_status": "ACCEPTED",
+        "maturity_status": "UNASSESSED",
+        "validator": "tools/validate_zt_id_001.py",
+        "validator_version": VALIDATOR_VERSION,
+        "policy_version": POLICY_VERSION,
+        "result": "PASS",
+    }
+    for field, expected in required.items():
+        if evidence.get(field) != expected:
+            codes.add("RUNTIME_EVIDENCE_STATUS_MISMATCH")
+
+    if set(evidence.get("capability_ids", [])) != set(package.get("capability_ids", [])):
+        codes.add("PACKAGE_EVIDENCE_STATUS_MISMATCH")
+    if (
+        evidence.get("positive_test_count", 0) < 20
+        or evidence.get("positive_pass_count") != evidence.get("positive_test_count")
+        or evidence.get("negative_test_count", 0) < 42
+        or evidence.get("negative_denied_count") != evidence.get("negative_test_count")
+    ):
+        codes.add("RUNTIME_EVIDENCE_COUNT_MISMATCH")
+    if evidence.get("account_created_or_reused") not in {"CREATED", "REUSED"}:
+        codes.add("RUNTIME_IDENTITY_STATE_MISMATCH")
+    if evidence.get("group_created_or_reused") not in {"CREATED", "REUSED"}:
+        codes.add("RUNTIME_IDENTITY_STATE_MISMATCH")
+    if _parse_datetime(evidence.get("timestamp")) is None:
+        codes.add("INVALID_EVIDENCE_TIMESTAMP")
+    if not evidence.get("limitations"):
+        codes.add("MISSING_EVIDENCE_LIMITATION")
+    return codes
+
+
 def _check_paths_and_claims(root: Path, results: Results) -> None:
     required_paths = [
         PACKAGE_DOCUMENT_PATH,
         RUNBOOK_PATH,
+        RUNTIME_EVIDENCE_PATH,
         Path("docs/zero-trust/identity/rollback-and-lockout-safety.md"),
         Path("docs/zero-trust/target-architecture/implementation-dependency-map.md"),
         Path("docs/zero-trust/target-architecture/operator-interface-contract.md"),
+        Path("tools/live-validation/install-eve-validator.ps1"),
+        Path("tools/live-validation/remote/codex-eve-dispatcher.sh.example"),
+        Path("tools/live-validation/remote/validate-eve-identity-readonly.sh.example"),
+        Path("tools/live-validation/remote/eve-validator-sudoers.example"),
+        Path("tools/live-validation/remote/eve-validator-authorized-key.example"),
+        Path("tools/live-validation/remote/eve-validator-sshd.conf.example"),
     ]
     missing = [path.as_posix() for path in required_paths if not (root / path).is_file()]
     if missing:
@@ -890,13 +1003,68 @@ def _check_paths_and_claims(root: Path, results: Results) -> None:
         r"OIDC\s+(?:is\s+)?OPERATIONAL",
         r"KEYCLOAK\s+(?:is\s+)?OPERATIONAL",
         r"RBAC_RUNTIME_ENFORCED\s*[:=]\s*true",
-        r"runtime_validation_status\s*[:=]\s*RUNTIME_VALIDATED",
         r"maturity_status\s*[:=]\s*ADVANCED",
     ]
     if any(re.search(pattern, package_text, re.IGNORECASE) for pattern in prohibited_affirmative):
         results.fail("package.claims", "A prohibited runtime or maturity claim is present.")
     else:
         results.pass_("package.claims", "Runtime, provider, MFA, OIDC, RBAC, and maturity boundaries are explicit.")
+
+    enforcement_requirements = {
+        Path("tools/live-validation/remote/codex-eve-dispatcher.sh.example"): [
+            "identity-summary",
+            "bounded-validation",
+            "UNSAFE_SYNTAX",
+            "/usr/local/sbin/validate-eve-identity-readonly",
+        ],
+        Path("tools/live-validation/remote/validate-eve-identity-readonly.sh.example"): [
+            "DEDICATED_VALIDATOR",
+            "EXACT_ALLOWLIST",
+            "configuration_metadata=COMPLIANT",
+        ],
+        Path("tools/live-validation/remote/eve-validator-sudoers.example"): [
+            "NOSETENV",
+            "identity-summary",
+            "validator-version",
+        ],
+        Path("tools/live-validation/remote/eve-validator-authorized-key.example"): [
+            "restrict,command=",
+            "no-agent-forwarding",
+            "no-port-forwarding",
+            "no-pty",
+            "no-user-rc",
+            "no-X11-forwarding",
+        ],
+        Path("tools/live-validation/remote/eve-validator-sshd.conf.example"): [
+            "AuthenticationMethods publickey",
+            "PasswordAuthentication no",
+            "AllowTcpForwarding no",
+            "AllowStreamLocalForwarding no",
+            "ForceCommand /usr/local/sbin/codex-eve-dispatcher",
+        ],
+        Path("tools/live-validation/install-eve-validator.ps1"): [
+            "RollbackArmed",
+            "visudo -cf",
+            "sshd -t",
+            "systemctl reload",
+        ],
+    }
+    missing_controls: list[str] = []
+    for path, tokens in enforcement_requirements.items():
+        text = (root / path).read_text(encoding="utf-8")
+        for token in tokens:
+            if token not in text:
+                missing_controls.append(f"{path.as_posix()}:{token}")
+    if missing_controls:
+        results.fail(
+            "enforcement.templates",
+            f"Bounded enforcement templates are incomplete: {missing_controls}",
+        )
+    else:
+        results.pass_(
+            "enforcement.templates",
+            "Forced command, identity helper, SSH, authorized-key, sudoers, and rollback-gated installer templates are synchronized.",
+        )
 
 
 def _validate_repository_integrity(root: Path, results: Results) -> None:
@@ -938,6 +1106,7 @@ def validate(root: Path = ROOT, strict: bool = False) -> dict[str, Any]:
         "catalog": CATALOG_PATH,
         "manifest": MANIFEST_PATH,
         "evidence": EVIDENCE_PATH,
+        "runtime_evidence": RUNTIME_EVIDENCE_PATH,
         "positive": POSITIVE_FIXTURES,
         "negative": NEGATIVE_FIXTURES,
         **MODEL_PATHS,
@@ -966,6 +1135,11 @@ def validate(root: Path = ROOT, strict: bool = False) -> dict[str, Any]:
         ),
         ("lifecycle", documents["lifecycle"], SCHEMA_PATHS["lifecycle"]),
         ("evidence", documents["evidence"], SCHEMA_PATHS["evidence"]),
+        (
+            "runtime_evidence",
+            documents["runtime_evidence"],
+            SCHEMA_PATHS["evidence"],
+        ),
     ]
     schema_errors: list[str] = []
     for name, instance, schema_path in instance_pairs:
@@ -1061,16 +1235,33 @@ def validate(root: Path = ROOT, strict: bool = False) -> dict[str, Any]:
     else:
         results.pass_("evidence.sync", "Evidence counts, authority, package status, and runtime boundary are synchronized.")
 
+    runtime_evidence_codes = validate_runtime_evidence_document(
+        documents["runtime_evidence"], documents["package"]
+    )
+    if runtime_evidence_codes:
+        results.fail(
+            "evidence.runtime_sync",
+            f"Runtime evidence failures: {sorted(runtime_evidence_codes)}",
+        )
+    else:
+        results.pass_(
+            "evidence.runtime_sync",
+            "Runtime evidence counts, enforcement outcomes, package status, and limitations are synchronized.",
+        )
+
     contract = documents["evidence_contract"]
     if (
-        contract.get("required_execution_authority") != "CODEX_EXECUTED_LOCAL"
-        or contract.get("runtime_executed") is not False
-        or contract.get("live_identity_changed") is not False
-        or contract.get("status") != "LOCAL_VALIDATION_ONLY"
+        contract.get("required_execution_authority")
+        != "USER_APPROVED_CODEX_EXECUTION"
+        or contract.get("required_execution_mode")
+        != "BOUNDED_NON_PRODUCTION_ENFORCEMENT"
+        or contract.get("runtime_executed") is not True
+        or contract.get("live_identity_changed") is not True
+        or contract.get("status") != "RUNTIME_ACCEPTED"
     ):
-        results.fail("evidence.contract", "Evidence contract exceeds local synthetic authority.")
+        results.fail("evidence.contract", "Evidence contract does not match bounded runtime authority.")
     else:
-        results.pass_("evidence.contract", "Evidence contract enforces local authority, sanitization, privacy, and external secrets.")
+        results.pass_("evidence.contract", "Evidence contract enforces bounded runtime authority, sanitization, privacy, and external secrets.")
 
     _check_paths_and_claims(root, results)
     _validate_repository_integrity(root, results)
@@ -1095,8 +1286,8 @@ def validate(root: Path = ROOT, strict: bool = False) -> dict[str, Any]:
         "validator_version": VALIDATOR_VERSION,
         "root": root.as_posix(),
         "strict": strict,
-        "runtime_executed": False,
-        "live_identity_changed": False,
+        "runtime_executed": True,
+        "live_identity_changed": True,
         "findings": [asdict(item) for item in results.findings],
         "summary": summary,
         "fixture_summary": {

@@ -27,7 +27,7 @@ The architecture represents all 52 canonical capabilities: 21 Advanced primary, 
 
 Active monitoring work under `.runtime/zero-trust/zt-vis-002/` is protected. This package neither edits that work nor claims the monitoring stack is runtime validated.
 
-Phase 1 remains bounded by `ZT-SCH-001` with implementation `PARTIAL`, validation `PARTIALLY_VALIDATED`, and completion `NOT_COMPLETE`. `ZT-ID-001` remains a referenced-only Phase 1 candidate. `ZT-VIS-002` is protected Phase 2 enabling work and does not replace it.
+Phase 1 remains bounded by `ZT-SCH-001` with implementation `PARTIAL`, validation `PARTIALLY_VALIDATED`, and completion `NOT_COMPLETE`. `ZT-ID-001` is runtime accepted only for one bounded non-production validator endpoint; centralized identity, MFA, OIDC, application RBAC, production validation, and maturity remain open. `ZT-VIS-002` is protected Phase 2 enabling work and does not replace identity or close visibility gaps.
 
 ## Navigation
 

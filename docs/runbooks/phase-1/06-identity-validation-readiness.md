@@ -7,88 +7,92 @@
   "phase": "PHASE_1",
   "related_packages": ["ZT-ID-001"],
   "owner_domain": "IDENTITY_SECURITY",
-  "supported_target_types": ["REPOSITORY_LOCAL_POLICY_VALIDATION"],
-  "procedure_status": "PARTIALLY_IMPLEMENTED",
-  "validation_status": "VALIDATED_LOCAL",
+  "supported_target_types": ["REPOSITORY_LOCAL_POLICY_VALIDATION", "BOUNDED_NON_PRODUCTION_EVE_NG_VALIDATOR"],
+  "procedure_status": "IMPLEMENTED",
+  "validation_status": "VALIDATED_RUNTIME",
   "runtime_required": true,
-  "live_execution_permitted": false,
-  "required_authority": "ZT_ID_001_LOCAL_PACKAGE_AUTHORITY_AND_SEPARATE_RUNTIME_APPROVAL",
-  "evidence_authority": "CODEX_EXECUTED_LOCAL",
+  "live_execution_permitted": true,
+  "required_authority": "EXPLICIT_USER_APPROVAL_FOR_BOUNDED_NON_PRODUCTION_ENFORCEMENT",
+  "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
   "last_reviewed": "2026-07-19",
-  "limitations": ["ZT-ID-001 policy, schemas, validator, and synthetic fixtures are locally validated; live identity inspection and enforcement remain not implemented and not validated."]
+  "limitations": ["Runtime acceptance covers one dedicated validator identity on one non-production EVE-NG endpoint; centralized identity, MFA, OIDC, application RBAC, production validation, and maturity remain absent or unassessed."]
 }
 ```
 
 ## Purpose
 
-Define the minimum gates for validating the implemented repository-local
-ZT-ID-001 policy package and for keeping any future runtime identity work under
-separate approval, without configuring an identity service.
+Define the gates for validating the repository-local ZT-ID-001 policy package
+and applying its dedicated validator boundary to one explicitly approved
+non-production target without configuring a centralized identity service.
 
 ## Scope
 
-Repository-local synthetic identity inventory, access policy, MFA requirement,
-role mapping, lifecycle, decision, evidence, failure, and rollback validation.
-Live target selection, inspection, authentication, and enforcement are outside
-the current procedure.
+Repository-local synthetic policy validation plus one bounded validator account
+and group, forced command, SSH restrictions, exact sudo allowlist, positive and
+negative authorization tests, backup, rollback, recovery, and sanitized runtime
+evidence. Centralized identity and application integration remain excluded.
 
 ## Related Phase
 
-ZT-ID-001 is a Phase 1 package. Package-local implementation does not complete
-Phase 1 or satisfy runtime acceptance for identity controls.
+ZT-ID-001 is a Phase 1 package. Its bounded runtime acceptance does not complete
+Phase 1 and does not satisfy Phase 2 centralized-identity gates.
 
 ## Related Package or Governance Action
 
-ZT-ID-001 package files exist and are `PRESENT`, `IMPLEMENTED`, and
-`LOCAL_VALIDATED`. Runtime validation remains `NOT_VALIDATED`, runtime
-acceptance is pending, and maturity is `UNASSESSED`.
+ZT-ID-001 is `PRESENT`, `IMPLEMENTED`, and `RUNTIME_VALIDATED`. Runtime
+validation is `VALIDATED`, runtime acceptance is `ACCEPTED`, scope is
+`BOUNDED_NON_PRODUCTION_TARGET`, and maturity is `UNASSESSED`.
 
 ## Supported Target Types
 
-Repository-local policy, schema, validator, and synthetic-fixture validation
-only. No Keycloak, OIDC provider, MFA service, directory, RBAC engine,
-application integration, or live identity target is approved.
+Repository-local policy, schema, validator, synthetic fixtures, and one bounded
+non-production EVE-NG restricted-validator endpoint. No Keycloak, OIDC
+provider, MFA service, directory, application RBAC engine, or production target
+is approved.
 
 ## Current Procedure Status
 
-`PARTIALLY_IMPLEMENTED`: the local package procedure is executable and
-read-only; runtime inspection and enforcement procedures are not implemented.
+`IMPLEMENTED`: local policy validation and the bounded non-production validator
+enforcement procedure are executable and evidence-backed.
 
 ## Current Validation Status
 
-`VALIDATED_LOCAL` covers ZT-ID-001 schemas, policy semantics, 9 positive
-synthetic cases, 34 negative synthetic cases, evidence synchronization, and
-repository integrity. Identity runtime remains `NOT_VALIDATED`.
+`VALIDATED_RUNTIME` covers the local 9 positive and 34 negative synthetic cases
+plus 20 target positive checks and 42 harmless deterministic target denials.
+Unexpected allowances, residual jobs, secret findings, and privacy findings are
+zero.
 
 ## Evidence Authority
 
-`CODEX_EXECUTED_LOCAL` for synthetic fixture and package validation. Runtime
-identity evidence authority remains `NONE`.
+`CODEX_EXECUTED_LOCAL` applies to synthetic fixtures. The accepted runtime
+record uses `USER_APPROVED_CODEX_EXECUTION`; the runbook classifies its evidence
+as `CODEX_EXECUTED_LIVE_RUNTIME`.
 
 ## Required Authority
 
-The current local procedure uses ZT-ID-001 package authority. Future runtime
-work additionally requires an identified identity owner, target owner,
-data/privacy review, change approval, rollback approval, and bounded runtime
-authority.
+Runtime execution requires explicit user approval, a verified non-production
+target, operator and recovery-console access, package ownership classification,
+backup and automatic rollback, sanitized evidence, and bounded remediation.
 
 ## User-Performed Physical or Approval Steps
 
-Select and approve the identity target, accounts/roles, MFA method, recovery
-owners, service window, and any interactive secret entry outside Git.
+Select and approve the target and bounded control scope; preserve the
+independent VMware recovery path. No MFA method or interactive secret entry is
+part of this package.
 
 ## Codex or Automation-Managed Steps
 
-Validate the secret-free package, schemas, policy mappings, synthetic fixtures,
-sanitization rules, local evidence, and rollback documentation. Do not execute
-runtime adapters or resolve external secret references.
+Validate the secret-free package, schemas, mappings, fixtures, sanitization and
+local evidence; inventory the approved target; arm rollback; apply only
+package-owned controls; run positive and negative tests; preserve operator and
+console access; generate sanitized evidence; and cancel rollback after success.
 
 ## Prerequisites
 
-For local validation: authoritative package ID, explicit synthetic scope,
-least-privilege roles, lifecycle, MFA requirement, evidence contract, rollback,
-and stop criteria. A non-production target and live owner approvals are
-prerequisites only for a separate runtime action.
+Authoritative package ID, local policy validation, explicit non-production
+target, two operator sessions, independent recovery console, valid SSH and
+sudoers configuration, package ownership boundaries, target-local backup,
+automatic rollback, disk and service health, and stop criteria.
 
 ## Inputs
 
@@ -104,20 +108,22 @@ identifiers remain external and interactively supplied only when authorized.
 
 ## Service Impact
 
-None in the current phase action. A future identity change may block access and
-must have a service-impact review and break-glass recovery.
+The bounded action reloaded SSH after successful syntax validation. Operator
+access and EVE-NG health remained available; no reboot or unrelated service
+change occurred.
 
 ## Security Impact
 
-Identity misconfiguration can create privilege escalation, lockout, weak MFA,
-or unauthorized federation. Default-deny, least privilege, separation of duty,
-and recovery controls are future acceptance requirements, not current facts.
+Identity misconfiguration can create privilege escalation or lockout. The
+accepted endpoint uses public-key-only access, a forced command, no forwarding
+or PTY, exact sudo commands, default denial, deterministic audit reason codes,
+operator-session preservation, and independent recovery.
 
 ## Preflight Checks
 
-Confirm ZT-ID-001 is promoted only to local package implementation; runtime is
-still not validated; no Keycloak/OIDC/MFA/RBAC deployment or enforcement claim
-is present; ZT-VIS-002 does not replace runtime identity work; S001-S050 remains
+Confirm ZT-ID-001 is runtime accepted only for the bounded endpoint; no
+Keycloak/OIDC/MFA/application-RBAC or production claim is present; ZT-VIS-002
+does not replace identity evidence; Phase 1 stays partial; S001-S050 remains
 locked.
 
 ### Recorded sudoers preflight remediation
@@ -126,37 +132,40 @@ locked.
 package-owned sudoers file mode on the approved non-production target. The
 repair changed metadata only, preserved rule content and the existing validator
 boundary, and passed exact/global sudoers validation, independent-console,
-rollback, and operator-access checks. It did not execute identity enforcement
-or promote ZT-ID-001 runtime validation; a fresh approved P1-ID-ENF-001 retry is
-still required.
+rollback, and operator-access checks. It did not itself execute identity
+enforcement. The separately approved P1-ID-ENF-001-RETRY action subsequently
+completed bounded enforcement and runtime acceptance.
 
 ## Procedure
 
-1. Confirm the package metadata preserves local/runtime/maturity truth.
-2. Parse the JSON-compatible policy models and JSON Schemas.
-3. Run `python tools/validate_zt_id_001.py --verbose --strict --format text`.
-4. Run `python -m unittest tests.test_zt_id_001 -v`.
-5. Confirm no repository mutation, tracked runtime, secret, or scenario drift.
-6. Stop before any live identity inspection, authentication, or enforcement.
+1. Confirm package ownership, target, operator access, and recovery-console gates.
+2. Back up package-owned state and arm the target-local automatic rollback.
+3. Validate candidate wrapper, SSH, authorized-key, and sudoers controls.
+4. Apply atomically, validate SSH and sudoers, and reload SSH without reboot.
+5. Run at least 20 positive checks and all 42 deterministic denial checks.
+6. Generate sanitized runtime evidence and cancel rollback only after acceptance.
+7. Run `python tools/validate_zt_id_001.py --verbose --strict --format text`.
+8. Run `python -m unittest tests.test_zt_id_001 -v` and repository safety checks.
 
 ## Expected Output
 
-For the current action: deterministic local decisions, package validation,
-sanitized local evidence, and explicit limitations. This runbook does not
-produce identity runtime evidence.
+Deterministic local decisions, package validation, 20/20 positive and 42/42
+negative target outcomes, zero unexpected allowances, preserved recovery paths,
+and sanitized local and runtime evidence.
 
 ## Validation
 
-Current validation covers local schema, policy, fixture, decision, privacy,
-secret-reference, evidence, and repository-integrity checks. Separately
-authorized runtime positive/negative tests remain required for runtime
-acceptance.
+Validation covers local schema, policy, fixture, privacy, secret-reference and
+repository checks plus target SSH, sudoers, service, identity boundary,
+positive/negative behavior, backup, rollback, recovery, and third-party
+integrity checks.
 
 ## Pass Criteria
 
-The local validator and tests pass, all identities remain synthetic, no secret
-is stored, the package claim is limited to local implementation, runtime
-authority remains separate, and rollback and negative tests are reviewable.
+Local and runtime evidence pass schema and synchronization tests; all 20
+positive checks pass; all 42 negative checks deny with nonzero outcomes; no
+unexpected allowance or protected mutation exists; operator and console access
+pass; rollback is cancelled with no residual job; no secret is tracked.
 
 ## Stop Conditions
 
@@ -173,16 +182,19 @@ ZT-VIS-002 preparation as identity evidence.
 
 ## Rollback
 
-Current rollback removes only repository-local ZT-ID-001 artifacts and restores
-reviewed tracking records. A future runtime action must define tested config,
-session/token, role, federation, and service-access rollback before execution.
+The target-local idempotent rollback restores existing package-owned files,
+removes newly created package-owned files, restores account/group and key
+restrictions, validates SSH and sudoers, reloads SSH only after validation, and
+preserves unrelated policy. The accepted action cancelled its timer after all
+checks and retained the restrictive backup under target policy.
 
 ## Evidence
 
-Current evidence authority is `CODEX_EXECUTED_LOCAL` at
-`docs/evidence/zero-trust/zt-id-001-local-validation.yaml`. It contains only
-synthetic case outcomes and sanitized counts. Future runtime evidence must be a
-separate record and must omit real identities and secrets.
+Local evidence remains at
+`docs/evidence/zero-trust/zt-id-001-local-validation.yaml`. Accepted runtime
+evidence is `docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml`; it
+contains aliases, counts, statuses, limitations, and no real identities,
+addresses, keys, credentials, raw sudoers, or full authentication logs.
 
 ## Escalation
 
@@ -191,10 +203,10 @@ service lockout risk, secret handling, and any production or enterprise scope.
 
 ## Known Limitations
 
-The document does not choose or configure Keycloak, OIDC, MFA, runtime RBAC, a
-user store, an application, or a policy engine. It establishes a local policy
-package only; it establishes no runtime identity control, runtime capability
-validation, maturity, or compliance.
+The procedure does not choose or configure Keycloak, OIDC, MFA, application
+RBAC, a centralized user store, or an adaptive policy engine. Runtime acceptance
+is bounded to one non-production endpoint and establishes no production scope,
+capability maturity, certification, or Phase 1 completion.
 
 ## Related Architecture
 

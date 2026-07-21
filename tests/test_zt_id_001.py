@@ -31,6 +31,7 @@ class ZtId001TestCase(unittest.TestCase):
         paths = [
             VALIDATOR.PACKAGE_PATH,
             VALIDATOR.EVIDENCE_PATH,
+            VALIDATOR.RUNTIME_EVIDENCE_PATH,
             VALIDATOR.POSITIVE_FIXTURES,
             VALIDATOR.NEGATIVE_FIXTURES,
             *VALIDATOR.MODEL_PATHS.values(),
@@ -42,6 +43,7 @@ class ZtId001TestCase(unittest.TestCase):
             shutil.copy2(ROOT / relative, target)
         self.package = self._load(VALIDATOR.PACKAGE_PATH)
         self.evidence = self._load(VALIDATOR.EVIDENCE_PATH)
+        self.runtime_evidence = self._load(VALIDATOR.RUNTIME_EVIDENCE_PATH)
         self.inventory = self._load(VALIDATOR.MODEL_PATHS["inventory"])
         self.roles = self._load(VALIDATOR.MODEL_PATHS["roles"])
         self.authentication = self._load(VALIDATOR.MODEL_PATHS["authentication"])
@@ -306,6 +308,38 @@ class ZtId001TestCase(unittest.TestCase):
     def test_valid_local_evidence(self) -> None:
         self.assertEqual(set(), self._evidence_codes())
 
+    def _runtime_evidence_codes(self, evidence: dict | None = None) -> set[str]:
+        return VALIDATOR.validate_runtime_evidence_document(
+            evidence or self.runtime_evidence, self.package
+        )
+
+    def test_valid_runtime_evidence(self) -> None:
+        self.assertEqual(set(), self._runtime_evidence_codes())
+
+    def test_runtime_evidence_unexpected_allowance_rejected(self) -> None:
+        value = copy.deepcopy(self.runtime_evidence)
+        value["unexpected_allowances"] = 1
+        self.assertIn(
+            "RUNTIME_EVIDENCE_STATUS_MISMATCH",
+            self._runtime_evidence_codes(value),
+        )
+
+    def test_runtime_evidence_count_mismatch_rejected(self) -> None:
+        value = copy.deepcopy(self.runtime_evidence)
+        value["negative_denied_count"] -= 1
+        self.assertIn(
+            "RUNTIME_EVIDENCE_COUNT_MISMATCH",
+            self._runtime_evidence_codes(value),
+        )
+
+    def test_runtime_evidence_provider_claim_rejected(self) -> None:
+        value = copy.deepcopy(self.runtime_evidence)
+        value["identity_provider_deployed"] = True
+        self.assertIn(
+            "RUNTIME_EVIDENCE_STATUS_MISMATCH",
+            self._runtime_evidence_codes(value),
+        )
+
     def test_runtime_claim_without_runtime_execution_rejected(self) -> None:
         value = copy.deepcopy(self.evidence)
         value["execution_authority"] = "CODEX_EXECUTED_LIVE_RUNTIME"
@@ -354,8 +388,8 @@ class ZtId001TestCase(unittest.TestCase):
     def test_valid_repository_baseline_passes(self) -> None:
         report = VALIDATOR.validate(ROOT, strict=True)
         self.assertEqual(0, report["exit_status"])
-        self.assertFalse(report["runtime_executed"])
-        self.assertFalse(report["live_identity_changed"])
+        self.assertTrue(report["runtime_executed"])
+        self.assertTrue(report["live_identity_changed"])
 
 
 if __name__ == "__main__":

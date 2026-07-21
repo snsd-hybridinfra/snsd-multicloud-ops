@@ -1,0 +1,34 @@
+{
+  "action_id": "P1-ID-ENF-001-RETRY",
+  "result": "PASS",
+  "package_owned_changes": [
+    "FORCED_COMMAND_DISPATCHER",
+    "READ_ONLY_IDENTITY_HELPER",
+    "EXACT_COMMAND_SUDOERS_DROP_IN",
+    "VALIDATOR_SCOPED_SSH_DROP_IN",
+    "RESTRICTED_AUTHORIZED_KEY_ENTRY",
+    "VALIDATOR_HOME_AND_KEY_METADATA"
+  ],
+  "account_created_or_reused": "REUSED",
+  "group_created_or_reused": "REUSED",
+  "forced_command": "ENFORCED",
+  "public_key_only": true,
+  "password_authentication": false,
+  "pty": false,
+  "agent_forwarding": false,
+  "tcp_forwarding": false,
+  "stream_local_forwarding": false,
+  "x11_forwarding": false,
+  "tunneling": false,
+  "user_environment": false,
+  "user_rc": false,
+  "sftp": false,
+  "scp_bypass": false,
+  "sudo_scope": "EXACT_PACKAGE_OWNED_READ_ONLY_COMMANDS_ONLY",
+  "ssh_reload": "PASS",
+  "package_metadata": "PASS",
+  "third_party_files_changed": false,
+  "protected_state_mutations": "PACKAGE_OWNED_CONFIGURATION_ONLY",
+  "live_identity_changed": true
+}
+

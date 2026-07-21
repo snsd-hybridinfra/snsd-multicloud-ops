@@ -1,15 +1,17 @@
 {
   "schema_version": "1.0.0",
   "package_id": "ZT-ID-001",
-  "policy_version": "1.0.0",
+  "policy_version": "1.1.0",
   "evidence_schema": "schemas/zero-trust-identity-evidence.schema.json",
-  "required_execution_authority": "CODEX_EXECUTED_LOCAL",
-  "required_execution_mode": "SYNTHETIC_FIXTURE_VALIDATION",
-  "required_target": "LOCAL_REPOSITORY_FIXTURES",
-  "runtime_executed": false,
-  "live_identity_changed": false,
-  "status": "LOCAL_VALIDATION_ONLY",
-  "retention_policy": "Retain schemas, synthetic fixtures, deterministic decisions, validator version, sanitized counts, and explicit limitations in Git.",
+  "required_execution_authority": "USER_APPROVED_CODEX_EXECUTION",
+  "required_execution_mode": "BOUNDED_NON_PRODUCTION_ENFORCEMENT",
+  "required_target": "NONPROD_VALIDATOR_TARGET_01",
+  "runtime_executed": true,
+  "live_identity_changed": true,
+  "status": "RUNTIME_ACCEPTED",
+  "local_validation_record": "docs/evidence/zero-trust/zt-id-001-local-validation.yaml",
+  "runtime_validation_record": "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml",
+  "retention_policy": "Retain schemas, synthetic fixtures, deterministic decisions, sanitized runtime counts, control outcomes, validator version, and explicit limitations in Git; keep raw runtime output ignored.",
   "prohibited_content": [
     "REAL_USERNAMES",
     "PERSONAL_EMAIL_ADDRESSES",
@@ -34,18 +36,19 @@
     "Use synthetic labels and stable fixture identifiers.",
     "Record counts and reason codes instead of identity attributes when possible.",
     "Retain external secret references only and never dereference them.",
-    "Record no runtime authentication result in P1-ID-001."
+    "Use the non-sensitive target alias and package-owned control labels only.",
+    "Record runtime allow and deny counts without usernames, addresses, complete keys, credentials, or full authentication logs."
   ],
   "privacy_requirements": [
     "PURPOSE_LIMITATION",
     "MINIMUM_IDENTITY_ATTRIBUTES",
-    "SYNTHETIC_FIXTURES_ONLY",
+    "BOUNDED_NON_PRODUCTION_SCOPE_ONLY",
     "NO_UNNECESSARY_PERSONAL_DATA",
     "SANITIZED_EVIDENCE_ONLY",
     "NON_SENSITIVE_TARGET_LABELS"
   ],
   "limitations": [
-    "Evidence supports package-local validation only.",
-    "Capability runtime validation, enforcement, and maturity remain unassessed."
+    "Runtime evidence supports only the bounded non-production validator endpoint.",
+    "Centralized identity, MFA, OIDC, application RBAC, production validation, and capability maturity remain unassessed."
   ]
 }

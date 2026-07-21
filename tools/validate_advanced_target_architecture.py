@@ -280,16 +280,18 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
                 "package_state": "PRESENT",
                 "phase": "PHASE_1_CURRENT",
                 "implementation_status": "IMPLEMENTED",
-                "validation_status": "LOCAL_VALIDATED",
-                "runtime_validation_status": "NOT_VALIDATED",
+                "validation_status": "RUNTIME_VALIDATED",
+                "runtime_validation_status": "VALIDATED",
+                "runtime_acceptance_status": "ACCEPTED",
+                "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
                 "maturity_status": "UNASSESSED",
                 "phase_2_dependency_status": "OPEN",
-                "roadmap_status": "LOCAL_POLICY_PACKAGE",
+                "roadmap_status": "BOUNDED_RUNTIME_PACKAGE",
             }
             if status != expected_identity_status:
                 result.fail(
                     "roadmap.package-status",
-                    "ZT-ID-001 must remain bounded to implemented/local-validated policy with no runtime or maturity promotion",
+                    "ZT-ID-001 must remain bounded to accepted non-production runtime scope with no centralized, production, or maturity promotion",
                 )
             continue
         implementation = status.get("implementation_status")
@@ -304,7 +306,7 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
             if status != {"implementation_status": "NOT_STARTED", "validation_status": "UNASSESSED", "roadmap_status": "ROADMAP_ONLY"}:
                 result.fail("roadmap.optimal", f"{package_id}: invalid future Optimal status")
     if not _has_failures(result, "roadmap."):
-        result.passed("roadmap", "All phases have gates; ZT-ID-001 remains local-policy-only and roadmap packages remain unimplemented.")
+        result.passed("roadmap", "All phases have gates; ZT-ID-001 remains bounded-runtime-only and roadmap packages remain unimplemented.")
 
 
 def validate_package_data(package: dict[str, Any], result: ValidationResult) -> None:

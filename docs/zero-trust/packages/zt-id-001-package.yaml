@@ -6,24 +6,26 @@
   "package_state": "PRESENT",
   "authority_status": "AUTHORITATIVE",
   "implementation_status": "IMPLEMENTED",
-  "validation_status": "LOCAL_VALIDATED",
-  "runtime_validation_status": "NOT_VALIDATED",
-  "runtime_acceptance_status": "PENDING",
+  "validation_status": "RUNTIME_VALIDATED",
+  "runtime_validation_status": "VALIDATED",
+  "runtime_acceptance_status": "ACCEPTED",
+  "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
   "maturity_status": "UNASSESSED",
   "current_maturity": "UNASSESSED",
   "target_maturity": "ADVANCED",
   "phase_2_dependency": "CENTRALIZED_IDENTITY_AND_ENFORCEMENT",
   "phase_2_dependency_status": "OPEN",
-  "live_identity_changed": false,
+  "live_identity_changed": true,
   "identity_provider_deployed": false,
   "mfa_enforced": false,
   "oidc_deployed": false,
   "rbac_runtime_enforced": false,
-  "runtime_executed": false,
+  "runtime_executed": true,
   "secrets_tracked": false,
-  "policy_version": "1.0.0",
+  "policy_version": "1.1.0",
   "validator": "tools/validate_zt_id_001.py",
-  "execution_record": "docs/evidence/zero-trust/zt-id-001-local-validation.yaml",
+  "execution_record": "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml",
+  "local_validation_record": "docs/evidence/zero-trust/zt-id-001-local-validation.yaml",
   "identity_root": "docs/zero-trust/identity/",
   "capability_ids": [
     "ZT-1.1.1",
@@ -36,10 +38,10 @@
     {
       "id": "ZT-1.1.1",
       "canonical_name_ko": "사용자 인벤토리",
-      "relationship": "DIRECT_LOCAL_POLICY_IMPLEMENTATION",
+      "relationship": "DIRECT_BOUNDED_RUNTIME_IMPLEMENTATION",
       "local_validation": "LOCAL_VALIDATED",
-      "runtime_validation": "NOT_VALIDATED",
-      "limitation": "Synthetic repository fixtures only; no real account inventory was collected."
+      "runtime_validation": "BOUNDED_RUNTIME_VALIDATED",
+      "limitation": "A dedicated package-owned validator identity was inspected and enforced on one non-production endpoint; this is not an enterprise identity inventory."
     },
     {
       "id": "ZT-1.1.2",
@@ -60,18 +62,18 @@
     {
       "id": "ZT-1.4.1",
       "canonical_name_ko": "조건부 사용자 접근",
-      "relationship": "LOCAL_DECISION_POLICY_ONLY",
+      "relationship": "BOUNDED_RUNTIME_DECISION_ENFORCEMENT",
       "local_validation": "LOCAL_VALIDATED",
-      "runtime_validation": "NOT_VALIDATED",
-      "limitation": "Deterministic synthetic decisions are validated; no runtime policy enforcement point exists."
+      "runtime_validation": "BOUNDED_RUNTIME_VALIDATED",
+      "limitation": "The validator endpoint enforces a static operation allowlist and deterministic denial policy only; adaptive or centralized conditional access is absent."
     },
     {
       "id": "ZT-1.4.2",
       "canonical_name_ko": "최소 권한 접근",
-      "relationship": "LOCAL_ROLE_POLICY_ONLY",
+      "relationship": "BOUNDED_RUNTIME_LEAST_PRIVILEGE_ENFORCEMENT",
       "local_validation": "LOCAL_VALIDATED",
-      "runtime_validation": "NOT_VALIDATED",
-      "limitation": "Role and separation-of-duties policy is locally validated without live RBAC enforcement."
+      "runtime_validation": "BOUNDED_RUNTIME_VALIDATED",
+      "limitation": "Least privilege is runtime validated for the dedicated validator endpoint only; application and centralized RBAC remain absent."
     }
   ],
   "excluded_identity_capability_ids": [
@@ -92,10 +94,10 @@
     "docs/zero-trust/target-architecture/operator-interface-contract.md"
   ],
   "limitations": [
-    "The package validates repository-local policy, schemas, synthetic fixtures, and decision logic only.",
-    "No real identity, account, credential, authentication factor, login history, or production identifier was collected.",
-    "No identity provider, MFA provider, OIDC provider, PAM system, runtime RBAC control, or policy enforcement point is deployed.",
-    "No runtime validation or capability maturity is established.",
+    "Runtime acceptance is limited to one dedicated validator identity on one bounded non-production EVE-NG endpoint.",
+    "Sanitized evidence records counts and control outcomes without usernames, addresses, keys, credentials, or raw authentication logs.",
+    "No identity provider, MFA provider, OIDC provider, PAM system, centralized identity, or application RBAC control is deployed.",
+    "Capability maturity remains unassessed and the Phase 2 centralized-identity dependency remains open.",
     "Phase 1 remains PARTIAL, PARTIALLY_VALIDATED, and NOT_COMPLETE."
   ]
 }

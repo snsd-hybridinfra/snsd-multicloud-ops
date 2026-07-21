@@ -179,11 +179,13 @@
       "package_state": "PRESENT",
       "phase": "PHASE_1_CURRENT",
       "implementation_status": "IMPLEMENTED",
-      "validation_status": "LOCAL_VALIDATED",
-      "runtime_validation_status": "NOT_VALIDATED",
+      "validation_status": "RUNTIME_VALIDATED",
+      "runtime_validation_status": "VALIDATED",
+      "runtime_acceptance_status": "ACCEPTED",
+      "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
       "maturity_status": "UNASSESSED",
       "phase_2_dependency_status": "OPEN",
-      "roadmap_status": "LOCAL_POLICY_PACKAGE"
+      "roadmap_status": "BOUNDED_RUNTIME_PACKAGE"
     },
     "ZT-ID-002": {
       "implementation_status": "NOT_STARTED",
@@ -381,7 +383,8 @@
   },
   "constraints": [
     "No package is promoted by architecture documentation.",
-    "ZT-ID-001 is an implemented and locally validated Phase 1 policy package with runtime validation pending; ZT-ID-002 is a separate later Phase 2 roadmap candidate.",
+    "ZT-ID-001 is an implemented and runtime-validated Phase 1 package for one bounded non-production endpoint; ZT-ID-002 is a separate later Phase 2 roadmap candidate.",
+    "ZT-ID-001 runtime acceptance does not establish centralized identity, MFA, OIDC, application RBAC, production validation, maturity, or Phase 1 completion.",
     "ZT-VIS-002 runtime work is protected Phase 2 enabling preparation, remains untracked, and cannot replace ZT-ID-001 or close ZT-VIS-001."
   ]
 }

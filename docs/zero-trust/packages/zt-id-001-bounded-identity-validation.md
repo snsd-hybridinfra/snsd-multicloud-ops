@@ -2,39 +2,42 @@
 
 ## Package Identity
 
-- Action: `P1-ID-001`
+- Actions: `P1-ID-001`, `P1-ID-ENF-001-RETRY`
 - Package: `ZT-ID-001`
 - Type: `IDENTITY_VALIDATION`
 - Phase: `PHASE_1`
-- Policy version: `1.0.0`
+- Policy version: `1.1.0`
 - Authority: `AUTHORITATIVE`
 - Package implementation: `IMPLEMENTED`
-- Package validation: `LOCAL_VALIDATED`
-- Runtime validation: `NOT_VALIDATED`
+- Package validation: `RUNTIME_VALIDATED`
+- Runtime validation: `VALIDATED`
+- Runtime acceptance: `ACCEPTED`
+- Runtime scope: `BOUNDED_NON_PRODUCTION_TARGET`
 - Maturity: `UNASSESSED`
 
 ## Purpose
 
-Implement a bounded, repository-level identity-control model that validates
+Implement a bounded identity-control model that validates
 synthetic subject inventory, roles, authentication requirements, lifecycle
 rules, deterministic authorization decisions, external secret references,
-privacy controls, evidence, and recovery safeguards.
+privacy controls, evidence, and recovery safeguards, and enforces a dedicated
+least-privilege validator boundary on one non-production EVE-NG endpoint.
 
 ## Scope
 
 The package contains JSON-compatible policy documents, JSON Schemas, a
-read-only validator, synthetic fixtures, unit tests, sanitized local evidence,
-and action records. Local implementation means these artifacts exist and pass
-deterministic fixture validation. It does not mean a live identity control is
-deployed.
+read-only validator, synthetic fixtures, unit tests, sanitized local and
+runtime evidence, package-owned forced-command and identity-summary helpers,
+a validator-specific SSH boundary, and a least-privilege sudo allowlist.
+Runtime acceptance is limited to the selected non-production endpoint.
 
 ## Explicit Exclusions
 
 The package does not deploy or inspect Keycloak, LDAP, Active Directory,
 MariaDB, Nginx, an OIDC provider, an MFA provider, PAM, an identity VM, or a
-monitoring VM. It does not enumerate users, query OpenStack, run SSH, change
-sudo or SSH policy, create accounts, rotate credentials, test authentication,
-or modify Grafana, Loki, Alloy, Docker Compose, or ZT-VIS-002 preparation.
+monitoring VM. It does not enumerate unrelated users, query OpenStack, rotate
+credentials, or modify Grafana, Loki, Alloy, Docker Compose, ZT-VIS-002,
+global sudoers content, third-party EVE-NG policy, or unrelated SSH settings.
 
 It is not evidence that MFA, OIDC, runtime RBAC, federation, continuous
 authentication, ICAM, biometric recognition, or a centralized identity service
@@ -44,11 +47,11 @@ is operational. It makes no Phase 1 completion or official maturity claim.
 
 | Capability | Canonical name | Bounded package relationship | Runtime state |
 |---|---|---|---|
-| `ZT-1.1.1` | 사용자 인벤토리 | Direct synthetic inventory contract and local validation | `NOT_VALIDATED` |
+| `ZT-1.1.1` | 사용자 인벤토리 | Dedicated validator identity inventory and enforcement | `BOUNDED_RUNTIME_VALIDATED` |
 | `ZT-1.1.2` | ID 연계 및 사용자 자격 증명 | Federation and credential-lifecycle requirement only | `NOT_VALIDATED` |
 | `ZT-1.2.1` | 다중인증 (MFA) | Privileged-interactive MFA requirement only | `NOT_VALIDATED` |
-| `ZT-1.4.1` | 조건부 사용자 접근 | Local deterministic decision policy only | `NOT_VALIDATED` |
-| `ZT-1.4.2` | 최소 권한 접근 | Local role, approval, and separation policy only | `NOT_VALIDATED` |
+| `ZT-1.4.1` | 조건부 사용자 접근 | Fixed operation allowlist and deterministic denial on the selected endpoint | `BOUNDED_RUNTIME_VALIDATED` |
+| `ZT-1.4.2` | 최소 권한 접근 | Forced command, SSH restrictions, and exact sudo allowlist | `BOUNDED_RUNTIME_VALIDATED` |
 
 `ZT-1.2.2`, `ZT-1.3.1`, and `ZT-1.3.2` remain excluded. `ZT-4.1.1`,
 `ZT-4.2.1`, and `ZT-4.2.2` are related system-control references and are not
@@ -58,8 +61,9 @@ promoted by this package.
 
 The package YAML is authoritative for ZT-ID-001 package state. The capability
 catalog remains authoritative for capability IDs and canonical Korean names.
-Capability current assessment and maturity remain separate. The package does
-not promote any capability to runtime validation or assign maturity.
+Capability current assessment and maturity remain separate. The package records
+only bounded runtime validation for the dedicated endpoint and assigns no
+capability maturity.
 
 Existing ZT-FND-001 evidence records dedicated forced-command validator
 accounts and operator/validator key separation. That evidence is reused only as
@@ -140,12 +144,13 @@ negative fixture set to prove rejection. They are not credentials.
 
 ## Evidence Contract
 
-The accepted record is
-`docs/evidence/zero-trust/zt-id-001-local-validation.yaml`. It uses
-`CODEX_EXECUTED_LOCAL`, `SYNTHETIC_FIXTURE_VALIDATION`, and
-`LOCAL_REPOSITORY_FIXTURES`, with `runtime_executed` and
-`live_identity_changed` both false. Counts, policy and validator versions,
-reason codes, limitations, and synchronization are validated.
+The retained local record is
+`docs/evidence/zero-trust/zt-id-001-local-validation.yaml`. Runtime acceptance
+is recorded in `docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml`
+under `USER_APPROVED_CODEX_EXECUTION` and
+`BOUNDED_NON_PRODUCTION_ENFORCEMENT`. It records sanitized control outcomes,
+20 positive passes, 42 deterministic denials, zero unexpected allowances,
+explicit limitations, and no raw authentication data.
 
 ## Privacy and Data-Minimization Boundary
 
@@ -164,40 +169,45 @@ tokens, client secrets, private keys, MFA seeds, recovery codes, `clouds.yaml`,
 
 ## Lockout Prevention
 
-Future live work requires a non-production target, confirmed break-glass path,
+Live enforcement requires a non-production target, confirmed break-glass path,
 tested recovery, known-good administrative session, bounded roles, session
 timeout, rollback owner, prior-policy backup, and an immediate stop on
 unexpected denial. Bulk disablement, initial factor rotation, production use,
 and removal of the default administrative role are prohibited.
 
+P1-ID-ENF-001-RETRY met these gates with two operator sessions, an independent
+VMware console, target-local backups, and an armed automatic rollback timer.
+
 ## Break-Glass Requirements
 
 The emergency design record must be non-shared, owner-bound, approved,
 time-limited, externally referenced, logged, recoverable, rollback-capable, and
-scope-bounded. These requirements are validated locally; no emergency
-credential or access path is created or exercised.
+scope-bounded. The runtime action exercised the independent recovery-console
+path without creating, exposing, or changing an emergency credential.
 
 ## Failure Handling
 
 Local failures retain the synthetic failing input and reason code. They do not
-authorize a weaker rule or runtime workaround. Any future unexpected live
+authorize a weaker rule or runtime workaround. Any unexpected live
 denial requires an immediate stop, preservation of the known-good session,
 approved recovery, policy restoration, and revalidation.
 
 ## Rollback
 
-Current rollback removes only ZT-ID-001 package-local repository artifacts and
-restores reviewed tracking records. It cannot remove or alter accounts because
-none are created. Future runtime rollback is defined in
-`docs/zero-trust/identity/rollback-and-lockout-safety.md` and requires separate
-approval.
+The runtime action captured every package-owned file and relevant account,
+group, SSH, sudo, and identity-database state before enforcement. An idempotent
+target-local rollback was armed before access-control changes, refreshed during
+testing, and cancelled only after evidence and all safety checks passed. No
+rollback timer or job remains.
 
 ## Runtime Validation Boundary
 
-Future adapters may inspect restricted SSH identity boundaries, Linux accounts
-and sudo policy, OpenStack identity, Keycloak identities and roles, Grafana OIDC
-roles, or certificate identities. Every adapter remains `NOT_IMPLEMENTED`.
-P1-ID-001 performs no network access or live inspection.
+Runtime validation covers one reused dedicated account and group, a
+package-owned forced-command dispatcher, a read-only identity helper, exact
+sudo commands, public-key-only SSH, and denial of interactive shell, PTY,
+SCP/SFTP, forwarding, alternate executables, and arbitrary commands. It does
+not validate OpenStack identity, Keycloak, Grafana OIDC roles, certificates, or
+production identities.
 
 ## Phase 2 Dependency Boundary
 
@@ -208,10 +218,13 @@ evidence nor a prerequisite modified by this action.
 
 ## Known Limitations
 
-- The identity inventory contains synthetic fixtures, not real accounts.
-- Decisions are not consumed by a runtime policy enforcement point.
+- Enterprise identity inventory remains absent; only the dedicated validator
+  identity on one target was inspected.
+- Runtime decisions are limited to a fixed forced-command allowlist and are not
+  a centralized or adaptive policy enforcement point.
 - MFA and OIDC are requirements, not operating controls.
-- No runtime authentication, denial, recovery, or lockout behavior is tested.
+- Application RBAC and centralized identity lifecycle remain absent.
+- Production identity enforcement is not validated.
 - Capability maturity remains `UNASSESSED`.
 - Phase 1 remains `PARTIAL`, `PARTIALLY_VALIDATED`, and `NOT_COMPLETE`.
 
@@ -223,9 +236,15 @@ thirty-four negative cases to be rejected for the expected reason, evidence to
 synchronize, the validator and unit tests to pass, S001-S050 to remain locked,
 S051 to remain absent, and no secret or runtime file to be tracked.
 
-Acceptance sets ZT-ID-001 to `PRESENT`, `IMPLEMENTED`, and `LOCAL_VALIDATED`.
-Runtime validation stays `NOT_VALIDATED`, runtime acceptance stays `PENDING`,
-and maturity stays `UNASSESSED`.
+Runtime acceptance additionally requires at least 20 positive checks, 42
+harmless deterministic denials, zero unexpected allowances, preserved operator
+and console recovery, valid SSH and sudoers configuration, unchanged
+third-party policy, generated sanitized evidence, and no residual rollback job.
+
+Acceptance sets ZT-ID-001 to `PRESENT`, `IMPLEMENTED`, and
+`RUNTIME_VALIDATED`; runtime validation is `VALIDATED`, runtime acceptance is
+`ACCEPTED`, scope is `BOUNDED_NON_PRODUCTION_TARGET`, and maturity stays
+`UNASSESSED`.
 
 ## Related Runbooks
 

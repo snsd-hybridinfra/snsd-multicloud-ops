@@ -7,10 +7,10 @@
   "index": "docs/runbooks/RUNBOOK_INDEX.md",
   "template": "docs/runbooks/RUNBOOK_TEMPLATE.md",
   "validation_status": "VALIDATED_LOCAL",
-  "evidence_authority": "CODEX_EXECUTED_LOCAL",
+  "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
   "last_reviewed": "2026-07-19",
-  "runtime_execution_performed": false,
-  "package_state_changed": false,
+  "runtime_execution_performed": true,
+  "package_state_changed": true,
   "phase_state": {
     "implementation_status": "PARTIAL",
     "validation_status": "PARTIALLY_VALIDATED",
@@ -110,15 +110,15 @@
       "phase": "PHASE_1",
       "related_packages": ["ZT-ID-001"],
       "owner_domain": "IDENTITY_SECURITY",
-      "supported_target_types": ["REPOSITORY_LOCAL_POLICY_VALIDATION"],
-      "procedure_status": "PARTIALLY_IMPLEMENTED",
-      "validation_status": "VALIDATED_LOCAL",
+      "supported_target_types": ["REPOSITORY_LOCAL_POLICY_VALIDATION", "BOUNDED_NON_PRODUCTION_EVE_NG_VALIDATOR"],
+      "procedure_status": "IMPLEMENTED",
+      "validation_status": "VALIDATED_RUNTIME",
       "runtime_required": true,
-      "live_execution_permitted": false,
-      "required_authority": "ZT_ID_001_LOCAL_PACKAGE_AUTHORITY_AND_SEPARATE_RUNTIME_APPROVAL",
-      "evidence_authority": "CODEX_EXECUTED_LOCAL",
+      "live_execution_permitted": true,
+      "required_authority": "EXPLICIT_USER_APPROVAL_FOR_BOUNDED_NON_PRODUCTION_ENFORCEMENT",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
       "last_reviewed": "2026-07-19",
-      "limitations": ["ZT-ID-001 policy, schemas, validator, and synthetic fixtures are locally validated; live identity inspection and enforcement remain not implemented and not validated."]
+      "limitations": ["Runtime acceptance covers one dedicated validator identity on one non-production EVE-NG endpoint; centralized identity, MFA, OIDC, application RBAC, production validation, and maturity remain absent or unassessed."]
     },
     {
       "runbook_id": "RB-P1-007",
@@ -163,12 +163,13 @@
     {
       "package_id": "ZT-ID-001",
       "implementation_status": "IMPLEMENTED",
-      "validation_status": "LOCAL_VALIDATED",
-      "runtime_validation_status": "NOT_VALIDATED",
-      "runtime_acceptance_status": "PENDING",
+      "validation_status": "RUNTIME_VALIDATED",
+      "runtime_validation_status": "VALIDATED",
+      "runtime_acceptance_status": "ACCEPTED",
+      "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
       "maturity_status": "UNASSESSED",
       "authority_status": "AUTHORITATIVE",
-      "evidence_authority": "CODEX_EXECUTED_LOCAL"
+      "evidence_authority": "USER_APPROVED_CODEX_EXECUTION"
     },
     {
       "package_id": "ZT-CV-001",
