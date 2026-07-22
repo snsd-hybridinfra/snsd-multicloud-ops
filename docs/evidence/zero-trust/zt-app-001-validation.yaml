@@ -1,0 +1,20 @@
+{
+  "package_id": "ZT-APP-001", "package_name": "Application and Workload Inventory, Secure Deployment, and Software Supply Chain Validation Foundation", "execution_date": "2026-07-22", "environment": "BOUNDED_NON_PRODUCTION_LAB", "executor": "CODEX", "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+  "scope": "EXISTING_ALLOY_SANITIZED_TELEMETRY_COLLECTOR_PILOT", "pilot_application": "ZTA-APP-OBSERVABILITY-STACK",
+  "applications": {"inventoried": 2, "assessed": 1, "configuration_only": 1}, "workloads": {"inventoried": 4, "running": 3, "assessed": 1, "configuration_only": 1},
+  "source_validation": {"inventory_relationships": "PASS", "compose_parse": "PASS", "secret_scan": "PASS_ZERO_REAL_FINDINGS", "controlled_secret_fixture": "PASS_DETECTED"},
+  "dependency_validation": {"method": "COMPOSE_DIRECT_IMAGE_REFERENCES", "direct_components": 3, "transitive_components": "NOT_ASSESSED"},
+  "sbom": {"format": "CYCLONEDX_1_5_JSON", "status": "PARTIAL", "generated": 1, "components": 3, "malformed_fixture_rejected": true},
+  "artifact_validation": {"version_tags_pinned": true, "digests_verified": false, "signatures_verified": false, "dedicated_vulnerability_scan": false, "status": "PARTIAL"},
+  "container_or_workload_validation": {"pilot_running": true, "privileged_mode": false, "capabilities_dropped": "ALL", "no_new_privileges": true, "read_only_root": true, "resource_limits": true, "health_check": "PASS", "runtime_identity": "ROOT_UID_WITH_COMPENSATING_CONTROLS"},
+  "deployment_gates": {"APP_GATE_0": "PASS", "APP_GATE_1": "PASS", "APP_GATE_2": "PARTIAL", "APP_GATE_3": "PASS_WITH_EXCEPTION", "APP_GATE_4": "PASS_BOUNDED_HEALTH_AND_INGESTION", "APP_GATE_5": "NOT_IMPLEMENTED"},
+  "runtime_validation": {"service_health": "PASS", "sanitized_ingestion": "PASS", "sanitized_input_scan": "PASS", "deployment_performed": false, "workload_restarted": false, "failure_injected": false},
+  "tests": {"unit_tests": 15, "inventory": "PASS", "secure_deployment": "PASS_WITH_WARNINGS", "security_scan": "PASS", "live_wrapper": "PASS"},
+  "results": {"applications_assessed": 1, "workloads_assessed": 1, "sboms_generated": 1, "vulnerabilities": "NOT_ASSESSED", "secret_findings": 0, "policy_failures": 0, "pass": 6, "warn": 4, "fail": 0, "exit_code": 0},
+  "evidence_files": ["docs/zero-trust/application-inventory.yaml", "docs/zero-trust/workload-inventory.yaml", "docs/zero-trust/software-component-inventory.yaml", "docs/evidence/zero-trust/zt-app-001-sbom.cdx.json", "docs/evidence/zero-trust/zt-app-001-validation.yaml"],
+  "sanitization": {"status": "PASS", "raw_runtime": "IGNORED_ONLY", "secrets": 0, "tokens": 0, "personal_data": 0, "dynamic_endpoint_inventory": 0},
+  "capability_mappings": ["ZT-5.1.1", "ZT-5.4.1", "ZT-5.4.2", "ZT-5.5.1", "ZT-5.5.2", "ZT-7.1", "ZT-8.1", "ZT-8.2"],
+  "implementation_status": "IMPLEMENTED", "validation_status": "PARTIALLY_RUNTIME_VALIDATED", "current_maturity": "UNASSESSED", "assessment_confidence": "MEDIUM",
+  "limitations": ["One existing non-critical Alloy workload is the live pilot.", "No external scanner was installed; vulnerability state remains unknown.", "SBOM coverage is limited to direct Compose image references.", "No deployment, restart, image pull, signing, or registry mutation occurred."],
+  "remaining_gaps": ["IMAGE_DIGESTS_UNKNOWN", "ARTIFACT_SIGNATURES_ABSENT", "DEDICATED_VULNERABILITY_SCAN_ABSENT", "TRANSITIVE_SBOM_ABSENT", "ALLOY_NON_ROOT_EXECUTION_UNVERIFIED", "CI_ENFORCEMENT_ABSENT", "CONTINUOUS_REVIEW_ABSENT"]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "package_id", "sbom_status", "collection_timestamp", "components", "limitations"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "package_id": {"const": "ZT-APP-001"},
+    "sbom_status": {"enum": ["COMPLETE_FOR_SCOPE", "PARTIAL", "CONFIGURATION_ONLY", "NOT_AVAILABLE", "UNKNOWN"]},
+    "collection_timestamp": {"type": "string", "format": "date-time"},
+    "components": {"type": "array", "items": {"type": "object", "required": ["application_id", "workload_id", "component_name", "component_version", "component_type", "supplier", "license", "package_url", "source", "dependency_relationship", "vulnerability_state", "evidence_authority", "collection_timestamp", "limitations"], "additionalProperties": false, "properties": {
+      "application_id": {"type": "string"}, "workload_id": {"type": "string"}, "component_name": {"type": "string"},
+      "component_version": {"type": "string"}, "component_type": {"type": "string"}, "supplier": {"type": "string"},
+      "license": {"type": "string"}, "package_url": {"type": "string"}, "source": {"type": "string"},
+      "dependency_relationship": {"enum": ["DIRECT", "TRANSITIVE", "UNKNOWN"]}, "vulnerability_state": {"type": "string"},
+      "evidence_authority": {"type": "string"}, "collection_timestamp": {"type": "string", "format": "date-time"},
+      "limitations": {"type": "array", "items": {"type": "string"}}
+    }}},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

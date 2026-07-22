@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Zero Trust capability acceptance catalog","type":"object","additionalProperties":false,
+  "required":["metadata","capabilities"],
+  "properties":{"metadata":{"type":"object","required":["environment","catalog_version","authority","limitations"]},"capabilities":{"type":"array","minItems":1,"items":{"type":"object","required":["id","canonical_name","applicability","current_maturity","implementation_status","validation_status","evidence_continuity","required_evidence","required_validators","required_workflows","minimum_successful_executions","acceptance_state","confidence","limitations"]}}}
+}

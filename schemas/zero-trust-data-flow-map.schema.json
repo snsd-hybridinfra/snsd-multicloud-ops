@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "package_id", "flows"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "package_id": {"const": "ZT-DATA-001"},
+    "flows": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["flow_id", "source_data_asset_id", "destination_data_asset_id", "source_component", "destination_component", "transport", "protocol", "purpose", "authentication", "authorization", "encryption", "network_boundary", "trust_boundary_crossing", "logging", "retention_impact", "dlp_inspection", "implementation_status", "validation_status", "evidence", "limitations"], "properties": {
+      "flow_id": {"type": "string", "pattern": "^ZTDATA-FLOW-[A-Z0-9-]+$"}, "source_data_asset_id": {"type": "string"}, "destination_data_asset_id": {"type": ["string", "null"]}, "trust_boundary_crossing": {"type": "boolean"}, "evidence": {"type": "array", "items": {"type": "string"}}, "limitations": {"type": "array", "items": {"type": "string"}}
+    }, "additionalProperties": true}}
+  }, "additionalProperties": false
+}

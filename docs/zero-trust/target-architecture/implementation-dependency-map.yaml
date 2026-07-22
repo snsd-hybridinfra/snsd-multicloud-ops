@@ -10,7 +10,12 @@
         "ZT-FND-001",
         "ZT-NET-001",
         "ZT-VIS-001",
-        "ZT-ID-001"
+        "ZT-ID-001",
+        "ZT-DEV-001",
+        "ZT-APP-001",
+        "ZT-DATA-001",
+        "ZT-SYS-001",
+        "ZT-AUTO-001"
       ],
       "candidate_packages": [],
       "packages": [],
@@ -185,6 +190,51 @@
       "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
       "maturity_status": "UNASSESSED",
       "phase_2_dependency_status": "OPEN",
+      "roadmap_status": "BOUNDED_RUNTIME_PACKAGE"
+    },
+    "ZT-DEV-001": {
+      "package_state": "PRESENT",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "runtime_scope": "ONE_MANDATORY_NON_PRODUCTION_VM",
+      "maturity_status": "UNASSESSED",
+      "roadmap_status": "BOUNDED_RUNTIME_PACKAGE"
+    },
+    "ZT-APP-001": {
+      "package_state": "PRESENT",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "runtime_scope": "ONE_EXISTING_NON_CRITICAL_ALLOY_PILOT",
+      "maturity_status": "UNASSESSED",
+      "roadmap_status": "BOUNDED_RUNTIME_PACKAGE"
+    },
+    "ZT-DATA-001": {
+      "package_state": "PRESENT",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "runtime_scope": "SEVEN_METADATA_ASSETS_AND_ONE_SYNTHETIC_RESTORE",
+      "maturity_status": "UNASSESSED",
+      "roadmap_status": "BOUNDED_RUNTIME_PACKAGE"
+    },
+    "ZT-SYS-001": {
+      "package_state": "PRESENT",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "runtime_scope": "SEVEN_SYSTEMS_EXISTING_FIXED_READ_ONLY_VALIDATORS_AND_FIVE_SAFE_CONFIGURATION_HASHES",
+      "maturity_status": "UNASSESSED",
+      "roadmap_status": "BOUNDED_RUNTIME_PACKAGE"
+    },
+    "ZT-AUTO-001": {
+      "package_state": "PRESENT",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "runtime_scope": "SINGLE_WORKSTATION_FIXED_R0_R3_HANDLERS_AND_ONE_PARTIAL_CROSS_DOMAIN_READ_ONLY_EXECUTION",
+      "maturity_status": "UNASSESSED",
       "roadmap_status": "BOUNDED_RUNTIME_PACKAGE"
     },
     "ZT-ID-002": {
@@ -385,6 +435,11 @@
     "No package is promoted by architecture documentation.",
     "ZT-ID-001 is an implemented and runtime-validated Phase 1 package for one bounded non-production endpoint; ZT-ID-002 is a separate later Phase 2 roadmap candidate.",
     "ZT-ID-001 runtime acceptance does not establish centralized identity, MFA, OIDC, application RBAC, production validation, maturity, or Phase 1 completion.",
-    "ZT-VIS-002 runtime work is protected Phase 2 enabling preparation, remains untracked, and cannot replace ZT-ID-001 or close ZT-VIS-001."
+    "ZT-DEV-001 is implemented and partially runtime validated for six classified aliases and one mandatory non-production VM; it does not establish broad endpoint management, EDR/XDR, patch automation, device authorization, maturity, or Phase 1 completion.",
+    "ZT-APP-001 is implemented and partially runtime validated for two applications, four workloads, a partial direct-image SBOM, and one unchanged non-critical Alloy pilot; it does not establish immutable provenance, signing, transitive vulnerability coverage, broad deployment enforcement, maturity, or Phase 1 completion.",
+    "ZT-DATA-001 is implemented and partially runtime validated for seven metadata-only assets, manual labels, detection-only DLP, and one synthetic restore; it does not establish enterprise governance, dynamic access, platform encryption, live backup/restore, blocking DLP, maturity, or Phase 1 completion.",
+    "ZT-SYS-001 is implemented and partially runtime validated for seven bounded systems, five safe matched configuration authorities, and existing fixed read-only validators; OpenStack remains CURRENT_DEGRADED and the package does not establish complete PAM, credential lifecycle, continuous FIM, broad hardening, full system recovery, maturity, or Phase 1 completion.",
+    "ZT-AUTO-001 is implemented and partially runtime validated for fixed R0-R3 handlers, default-deny policy, deterministic planning, proposal-only governance, and one partial cross-domain read-only execution; it does not establish arbitrary execution, mutation authority, external notification, autonomous response, SOAR, repeatability, scheduling, maturity, or Phase 1 completion.",
+    "ZT-VIS-002 runtime work is protected Phase 2 enabling preparation, remains untracked, and does not inherit authority from the separately accepted bounded ZT-VIS-001 runtime package."
   ]
 }

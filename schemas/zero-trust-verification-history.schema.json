@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Zero Trust verification history","type":"object","additionalProperties":false,
+  "required":["metadata","executions"],
+  "properties":{"metadata":{"type":"object","required":["environment","history_version","authority","limitations"]},"executions":{"type":"array","items":{"type":"object","required":["execution_id","package_id","capability_ids","validator_id","validator_version","workflow_id","execution_scope","execution_date","execution_authority","execution_mode","plan_hash","result","pass","warn","fail","evidence_files","evidence_hashes","sanitization_status","freshness_policy_id","freshness_status","scheduled_trigger","limitations"]}}}
+}

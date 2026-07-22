@@ -1,0 +1,14 @@
+{
+  "package_id": "ZT-SYS-001", "execution_date": "2026-07-22", "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME", "restart_performed": false, "configuration_modified": false,
+  "services": [
+    {"service_id": "ZTSYS-SERVICE-OPENSTACK-APIS", "current_state": "DEGRADED", "result": "WARN", "restart_performed": false, "evidence": "Restricted validator: 46 PASS/0 WARN/4 FAIL; APIs and containers available; test-instance path checks failed"},
+    {"service_id": "ZTSYS-SERVICE-EVE", "current_state": "RUNNING", "result": "PASS", "restart_performed": false, "evidence": "Restricted validator: 42 PASS/0 WARN/0 FAIL"},
+    {"service_id": "ZTSYS-SERVICE-ROUTING", "current_state": "RUNNING", "result": "WARN", "restart_performed": false, "evidence": "Restricted validator: 38 PASS/1 WARN/0 FAIL; NAT runtime idle"},
+    {"service_id": "ZTSYS-SERVICE-GRAFANA", "current_state": "RUNNING", "result": "PASS", "restart_performed": false, "evidence": "Current fixed loopback health PASS"},
+    {"service_id": "ZTSYS-SERVICE-LOKI", "current_state": "RUNNING", "result": "PASS", "restart_performed": false, "evidence": "Current health, retention, ingestion, and query PASS"},
+    {"service_id": "ZTSYS-SERVICE-ALLOY", "current_state": "RUNNING", "result": "PASS", "restart_performed": false, "evidence": "Current health and sanitized ingestion PASS"},
+    {"service_id": "ZTSYS-SERVICE-RESTRICTED-VALIDATORS", "current_state": "AVAILABLE", "result": "PASS", "restart_performed": false, "evidence": "OpenStack, EVE, and router fixed commands executed; boundary restrictions remain accepted"}
+  ],
+  "results": {"pass": 5, "warn": 2, "fail": 0},
+  "sanitization": {"credentials": 0, "full_commands": 0, "complete_port_inventory": 0, "complete_address_inventory": 0}
+}

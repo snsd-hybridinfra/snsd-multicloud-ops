@@ -1,6 +1,6 @@
 {
   "manifest_id": "P1-RUN-BASE",
-  "manifest_version": "1.0.0",
+  "manifest_version": "1.1.0",
   "title": "Minimum Phase 1 Operational Runbook Baseline",
   "phase": "PHASE_1",
   "authoritative_root": "docs/runbooks/phase-1/",
@@ -8,7 +8,7 @@
   "template": "docs/runbooks/RUNBOOK_TEMPLATE.md",
   "validation_status": "VALIDATED_LOCAL",
   "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-  "last_reviewed": "2026-07-19",
+  "last_reviewed": "2026-07-22",
   "runtime_execution_performed": true,
   "package_state_changed": true,
   "phase_state": {
@@ -57,7 +57,7 @@
       "path": "docs/runbooks/phase-1/03-evidence-handling-and-sanitization.md",
       "title": "Evidence Handling and Sanitization",
       "phase": "PHASE_1",
-      "related_packages": ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001"],
+      "related_packages": ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001"],
       "owner_domain": "EVIDENCE_GOVERNANCE",
       "supported_target_types": ["REPOSITORY_LOCAL", "NON_PRODUCTION_LAB_EVIDENCE"],
       "procedure_status": "PARTIALLY_IMPLEMENTED",
@@ -77,14 +77,14 @@
       "related_packages": ["ZT-NET-001"],
       "owner_domain": "NETWORK_SECURITY",
       "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_EVE_NG_ROUTER"],
-      "procedure_status": "PARTIALLY_IMPLEMENTED",
-      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "procedure_status": "IMPLEMENTED",
+      "validation_status": "VALIDATED_RUNTIME",
       "runtime_required": true,
       "live_execution_permitted": true,
       "required_authority": "EXPLICIT_OPERATOR_APPROVAL_AND_EXISTING_RESTRICTED_ENDPOINT",
       "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "last_reviewed": "2026-07-19",
-      "limitations": ["Existing bounded router evidence does not prove persistent interface ACL enforcement or complete micro-segmentation."]
+      "last_reviewed": "2026-07-22",
+      "limitations": ["One persistent directional ACL is validated; broader multi-zone segmentation, dynamic policy, encryption, and resilience remain outside the bounded package."]
     },
     {
       "runbook_id": "RB-P1-005",
@@ -93,15 +93,15 @@
       "phase": "PHASE_1",
       "related_packages": ["ZT-VIS-001", "ZT-VIS-002"],
       "owner_domain": "VISIBILITY_AND_ANALYTICS",
-      "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_TELEMETRY_SOURCES"],
-      "procedure_status": "PARTIALLY_IMPLEMENTED",
-      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_TELEMETRY_SOURCES", "BOUNDED_NON_PRODUCTION_MONITORING_VM"],
+      "procedure_status": "IMPLEMENTED",
+      "validation_status": "VALIDATED_RUNTIME",
       "runtime_required": true,
       "live_execution_permitted": true,
       "required_authority": "EXPLICIT_OPERATOR_APPROVAL_FOR_COLLECTION",
       "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "last_reviewed": "2026-07-19",
-      "limitations": ["ZT-VIS-001 has no accepted central monitoring service or persistent storage; ZT-VIS-002 is protected Phase 2 preparation only."]
+      "last_reviewed": "2026-07-22",
+      "limitations": ["ZT-VIS-001 persistent storage accepts only approved sanitized JSONL; host journals, full service logs, external alerting, high availability, behavior analytics, and automated response remain absent. ZT-VIS-002 remains protected Phase 2 preparation only."]
     },
     {
       "runbook_id": "RB-P1-006",
@@ -149,16 +149,16 @@
     {
       "package_id": "ZT-NET-001",
       "implementation_status": "IMPLEMENTED",
-      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "validation_status": "VALIDATED_RUNTIME",
       "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "limitations": ["PERMANENT_ACL_ENFORCEMENT_EVIDENCE_MISSING"]
+      "limitations": ["BOUNDED_DIRECTIONAL_ACL_ONLY"]
     },
     {
       "package_id": "ZT-VIS-001",
       "implementation_status": "IMPLEMENTED",
-      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "validation_status": "VALIDATED_RUNTIME",
       "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "limitations": ["CENTRAL_MONITORING_SERVICE_ABSENT", "PERSISTENT_STORAGE_EVIDENCE_MISSING"]
+      "limitations": ["SANITIZED_INPUT_ONLY", "SINGLE_NODE_NO_EXTERNAL_ALERTING"]
     },
     {
       "package_id": "ZT-ID-001",
@@ -170,6 +170,46 @@
       "maturity_status": "UNASSESSED",
       "authority_status": "AUTHORITATIVE",
       "evidence_authority": "USER_APPROVED_CODEX_EXECUTION"
+    },
+    {
+      "package_id": "ZT-DEV-001",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "authority_status": "AUTHORITATIVE",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "limitations": ["SIX_ALIASES_ONE_MANDATORY_LIVE_VM", "NO_AGENT_AUTOMATION_OR_ENFORCEMENT"]
+    },
+    {
+      "package_id": "ZT-APP-001",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "authority_status": "AUTHORITATIVE",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "limitations": ["TWO_APPLICATIONS_FOUR_WORKLOADS", "PARTIAL_DIRECT_IMAGE_SBOM", "ONE_UNCHANGED_ALLOY_PILOT", "NO_DEPLOYMENT_RESTART_SIGNING_OR_DEDICATED_SCAN"]
+    },
+    {
+      "package_id": "ZT-DATA-001",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "authority_status": "AUTHORITATIVE",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "limitations": ["SEVEN_METADATA_ASSETS", "DETECTION_ONLY_DLP", "ONE_SYNTHETIC_RESTORE", "NO_LIVE_BACKUP_BLOCKING_DLP_KEY_ROTATION_OR_EXTERNAL_TRANSFER"]
+    },
+    {
+      "package_id": "ZT-SYS-001",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "authority_status": "AUTHORITATIVE",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "limitations": ["SEVEN_BOUNDED_SYSTEMS", "OPENSTACK_CURRENT_DEGRADED_46_0_4", "FIVE_SAFE_CONFIGURATION_HASHES", "NO_RESTART_MUTATION_COMPLETE_PAM_CONTINUOUS_FIM_OR_SYSTEM_RESTORE"]
+    },
+    {
+      "package_id": "ZT-AUTO-001",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "authority_status": "AUTHORITATIVE",
+      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "limitations": ["SINGLE_WORKSTATION_FIXED_R0_R3_HANDLERS", "ONE_PARTIAL_CROSS_DOMAIN_READ_ONLY_EXECUTION", "NO_ARBITRARY_EXECUTION_MUTATION_NOTIFICATION_RESPONSE_REPEATABILITY_OR_SCHEDULING"]
     },
     {
       "package_id": "ZT-CV-001",
@@ -251,26 +291,6 @@
     "docs/runbooks/28-troubleshooting.md"
   ],
   "unresolved_gaps": [
-    {
-      "gap_id": "PERMANENT_ACL_ENFORCEMENT_EVIDENCE_MISSING",
-      "owner": "ZT-NET-001",
-      "status": "OPEN"
-    },
-    {
-      "gap_id": "CENTRAL_MONITORING_SERVICE_ABSENT",
-      "owner": "ZT-VIS-001",
-      "status": "OPEN"
-    },
-    {
-      "gap_id": "PERSISTENT_STORAGE_EVIDENCE_MISSING",
-      "owner": "ZT-VIS-001",
-      "status": "OPEN"
-    },
-    {
-      "gap_id": "IDENTITY_RUNTIME_VALIDATION_NOT_IMPLEMENTED",
-      "owner": "ZT-ID-001",
-      "status": "OPEN"
-    },
     {
       "gap_id": "REPEATABLE_AND_CONTINUOUS_PACKAGES_ABSENT",
       "owner": "ZT-CV-001/ZT-RV-001",

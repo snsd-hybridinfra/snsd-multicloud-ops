@@ -1,0 +1,40 @@
+ZT-VIS-001 BOUNDED PERSISTENT CENTRAL TELEMETRY VALIDATION
+Execution date: 2026-07-22
+Environment: dedicated disposable non-production monitoring VM
+Executor: Codex under explicit user-approved VM authority
+
+DEPLOYED BOUNDARY
+- Grafana 13.1.0, Loki 3.7.0, and Alloy 1.18.0 use pinned container tags.
+- Loki stores only approved sanitized JSON Lines with a 14-day retention period.
+- Grafana, Loki, and Alloy publish host ports only on loopback.
+- Anonymous access and self-registration are disabled.
+- The Grafana administrator secret is generated and stored only in a root-owned
+  VM-local file; it is not printed or stored in Git.
+- No Docker socket, host journal, raw validator output, credential file, or
+  broad host filesystem is mounted.
+
+RUNTIME RESULTS
+- Loki container and readiness endpoint: PASS.
+- Alloy container and readiness endpoint: PASS.
+- Grafana container and health endpoint: PASS.
+- Persistent directories and 336-hour retention configuration: PASS.
+- Synthetic sanitized event ingestion and Loki query: PASS.
+- Sanitized input secret-pattern scan: PASS.
+- Pre-restart event query: PASS.
+- Post-restart service health: PASS.
+- Post-restart query of the same event: PASS.
+
+TRANSFER AND CLEANUP
+- Registry-path loss was avoided with a one-time cache on the OpenStack
+  management VM and an internal-subnet transfer protected by a checksum.
+- The temporary transfer server, derived image archive, and exact temporary
+  security-group rule were removed after successful image load.
+- No binary artifact, image archive, runtime secret, or dynamic identifier is
+  tracked in the repository.
+
+LIMITATIONS
+- This is a single-node laboratory service, not an enterprise SIEM or SOC.
+- Only the dedicated sanitized-event directory is collected; host journals,
+  full OpenStack logs, UEBA, external alert delivery, automated blocking, and
+  continuous trust evaluation remain outside this accepted increment.
+- Capability maturity remains UNASSESSED.

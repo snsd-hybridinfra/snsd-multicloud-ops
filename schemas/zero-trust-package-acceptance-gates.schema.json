@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Zero Trust package acceptance gates","type":"object","additionalProperties":false,
+  "required":["metadata","gates"],
+  "properties":{"metadata":{"type":"object","required":["environment","catalog_version","authority","package_ids","limitations"]},"gates":{"type":"array","minItems":1,"items":{"type":"object","required":["id","package_id","depends_on","required_implementation_state","required_validation_state","required_evidence_authority","required_evidence_continuity","mandatory_tests","required_workflows","required_evidence_files","maximum_evidence_age","acceptance_state","limitations"]}}}
+}

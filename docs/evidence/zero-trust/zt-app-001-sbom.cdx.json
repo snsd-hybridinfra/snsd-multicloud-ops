@@ -1,0 +1,9 @@
+{
+  "bomFormat": "CycloneDX", "specVersion": "1.5", "version": 1,
+  "metadata": {"timestamp": "2026-07-22T02:47:10.445385Z", "tools": {"components": [{"type": "application", "name": "snsd-builtin-compose-sbom", "version": "1.0.0"}]}},
+  "components": [
+    {"type": "container", "name": "grafana/alloy", "version": "v1.18.0", "purl": "pkg:docker/grafana/alloy@v1.18.0", "properties": [{"name": "snsd:source", "value": "observability/logging/compose.yaml"}]},
+    {"type": "container", "name": "grafana/grafana", "version": "13.1.0", "purl": "pkg:docker/grafana/grafana@13.1.0", "properties": [{"name": "snsd:source", "value": "observability/logging/compose.yaml"}]},
+    {"type": "container", "name": "grafana/loki", "version": "3.7.0", "purl": "pkg:docker/grafana/loki@3.7.0", "properties": [{"name": "snsd:source", "value": "observability/logging/compose.yaml"}]}
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "package_id": "ZT-AUTO-001",
+  "package_name": "Policy-Based Automation, Orchestration, Approval, Rollback, and Evidence Integration Foundation",
+  "execution_date": "2026-07-22",
+  "environment": "BOUNDED_NON_PRODUCTION_LAB",
+  "executor": "CODEX",
+  "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+  "workflow_catalog_version": "1.0.0",
+  "action_catalog_version": "1.0.0",
+  "policy_version": "1.0.0",
+  "workflows": [
+    {
+      "workflow_id": "ZTA-WF-VAL-001",
+      "execution_id": "ZTA-20260722T041356Z-7e0a658a",
+      "execution_mode": "EXECUTE_READ_ONLY",
+      "plan_hash": "c64b56bfdb0831b91290f051ea385e4c7fefbe53afe665ac340e2545accaba32",
+      "approval": "PREVIOUSLY_ACCEPTED_FIXED_PACKAGE_POLICY",
+      "risk_level": "R3_REMOTE_READ_ONLY",
+      "start_time": "2026-07-22T04:13:56.406129Z",
+      "end_time": "2026-07-22T04:15:33.236582Z",
+      "duration": 96.83,
+      "result": "PARTIAL",
+      "steps": [
+        {"step_id":"validate-governance","outcome":"PASS","exit_code":0},
+        {"step_id":"check-sync","outcome":"PASS","exit_code":0},
+        {"step_id":"validate-system-inventory","outcome":"PASS","exit_code":0},
+        {"step_id":"validate-telemetry-sources","outcome":"WARN","exit_code":0},
+        {"step_id":"check-system-drift","outcome":"WARN","exit_code":0},
+        {"step_id":"validate-service-state","outcome":"WARN","exit_code":0},
+        {"step_id":"validate-live-systems","outcome":"WARN","exit_code":0},
+        {"step_id":"write-summary","outcome":"PASS","exit_code":0}
+      ],
+      "evidence_files": ["docs/evidence/zero-trust/zt-auto-001-live-summary.sanitized.txt"],
+      "sanitization": {"status":"APPLIED","secret_values":0,"raw_command_output_committed":false,"runtime_paths_normalized":true,"authoritative_update_performed":false}
+    }
+  ],
+  "results": {
+    "workflows_attempted": 1,
+    "workflows_completed": 0,
+    "workflows_partial": 1,
+    "workflows_failed": 0,
+    "workflows_blocked": 0,
+    "steps_passed": 4,
+    "steps_warned": 4,
+    "steps_failed": 0,
+    "steps_skipped": 0,
+    "policy_denials": 0,
+    "approval_blocks": 0,
+    "timeout_count": 0,
+    "mutation_actions_executed": 0,
+    "external_notifications_sent": 0,
+    "exit_code": 0
+  },
+  "capability_mappings": ["ZT-7.1", "ZT-7.3", "ZT-8.1", "ZT-8.2", "ZT-8.5", "ZT-8.6"],
+  "implementation_status": "IMPLEMENTED",
+  "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+  "current_maturity": "UNASSESSED",
+  "assessment_confidence": "MEDIUM",
+  "limitations": [
+    "The integrated workflow retained accepted predecessor warnings and therefore did not complete without warnings.",
+    "The package exposes no executable R4 through R8 action and performs no remediation, isolation, blocking, restart, reconfiguration, credential rotation, or recovery.",
+    "Notification and incident workflows create local review proposals only; no external channel is integrated.",
+    "One execution does not establish repeatability, scheduling, continuous operation, SOAR, maturity, or Phase 1 completion."
+  ],
+  "remaining_gaps": [
+    "Resolve or formally accept predecessor-package warning states before a warning-free integrated cycle.",
+    "Add reviewed notification and incident-management integrations only through separate approval.",
+    "Demonstrate repeatable execution through ZT-RV-001 before any execution-confidence promotion.",
+    "Keep configuration, service, network, access, destructive, and automated response actions prohibited until separately governed."
+  ]
+}

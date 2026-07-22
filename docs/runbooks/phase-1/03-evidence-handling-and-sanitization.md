@@ -5,7 +5,7 @@
   "runbook_id": "RB-P1-003",
   "title": "Evidence Handling and Sanitization",
   "phase": "PHASE_1",
-  "related_packages": ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001"],
+  "related_packages": ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001"],
   "owner_domain": "EVIDENCE_GOVERNANCE",
   "supported_target_types": ["REPOSITORY_LOCAL", "NON_PRODUCTION_LAB_EVIDENCE"],
   "procedure_status": "PARTIALLY_IMPLEMENTED",
@@ -35,7 +35,8 @@ Phase 1 evidence governance; it does not establish Phase 1 completion.
 
 ## Related Package or Governance Action
 
-ZT-FND-001, ZT-NET-001, ZT-VIS-001, ADR-0002, and Zero Trust governance.
+ZT-FND-001, ZT-NET-001, ZT-VIS-001, ZT-DEV-001, ZT-APP-001,
+ZT-DATA-001, ZT-SYS-001, ZT-AUTO-001, ADR-0002, and Zero Trust governance.
 
 ## Supported Target Types
 

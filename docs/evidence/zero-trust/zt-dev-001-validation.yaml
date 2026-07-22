@@ -1,0 +1,37 @@
+{
+  "package_id": "ZT-DEV-001",
+  "package_name": "Endpoint Inventory, Compliance, Vulnerability, and Patch Validation Foundation",
+  "execution_date": "2026-07-22",
+  "environment": "BOUNDED_NON_PRODUCTION_LAB",
+  "executor": "CODEX",
+  "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+  "scope": "ONE_MANDATORY_MONITORING_VM_AND_FIVE_CLASSIFIED_LAB_OR_CONTROL_PLANE_ASSETS",
+  "assets": {"inventoried": 6, "mandatory_live": 1, "attempted": 1, "assessed": 1},
+  "inventory": {"result": "PASS", "duplicate_asset_ids": 0, "missing_owners": 0, "unknown_assets": 0},
+  "software_inventory": {"result": "PASS", "operating_system": "UBUNTU_24_04", "package_count": 675, "container_runtime": "DOCKER_29_6_2", "compose_runtime": "COMPOSE_5_3_1", "running_container_count": 3},
+  "compliance": {"result": "PASS_WITH_WARNINGS", "profile": "ZTD-PROFILE-LINUX-WORKLOAD", "freshness": "CURRENT_ACTION"},
+  "vulnerability": {"result": "ASSESSMENT_LIMITED", "method": "NATIVE_SECURITY_UPDATE_PROXY", "security_update_findings": 0, "dedicated_scanner": "NOT_INSTALLED", "exploit_executed": false},
+  "patch_state": {"classification": "REBOOT_REQUIRED", "security_updates_available": 0, "automatic_patching_performed": false, "reboot_performed": false},
+  "endpoint_agent": {"state": "NOT_INSTALLED", "installed_by_package": false, "edr_xdr_claimed": false},
+  "device_trust": {"decision": "LIMITED_ACCESS", "enforcement": "POLICY_DESIGN_ONLY", "reason": "Live inventory is current, but reboot and dedicated vulnerability-assessment gaps remain."},
+  "tests": {"positive_and_negative_unit_tests": 15, "restricted_infrastructure_validator_availability": "OPENSTACK_EVE_ROUTER_AVAILABLE", "monitoring_stack_health": "PASS"},
+  "results": {"assessed_assets": 1, "compliant": 0, "partially_compliant": 1, "noncompliant": 0, "unknown": 0, "pass": 1, "warn": 2, "fail": 0, "exit_code": 0},
+  "evidence_files": [
+    "docs/zero-trust/device/device-inventory.yaml",
+    "docs/zero-trust/device/endpoint-compliance-policy.yaml",
+    "docs/evidence/zero-trust/zt-dev-001-validation.yaml"
+  ],
+  "sanitization": {"status": "PASS", "raw_runtime": "IGNORED_ONLY", "secrets": 0, "personal_data": 0, "mac_addresses": 0, "serial_numbers": 0, "package_names_committed": false},
+  "capability_mappings": ["ZT-2.1.1", "ZT-2.2.1", "ZT-2.3.1", "ZT-2.3.2", "ZT-2.4.1", "ZT-2.4.2"],
+  "implementation_status": "IMPLEMENTED",
+  "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+  "current_maturity": "UNASSESSED",
+  "assessment_confidence": "MEDIUM",
+  "limitations": [
+    "The live assessment covers one mandatory non-production monitoring VM.",
+    "Native security-update state is a bounded vulnerability proxy, not a dedicated vulnerability scan.",
+    "Existing restricted validators classify additional virtual assets but do not expose full package or scanner inventory.",
+    "No patch, reboot, exploit, endpoint-agent installation, or access-enforcement action occurred."
+  ],
+  "remaining_gaps": ["OPERATOR_REVIEWED_REBOOT_PENDING", "DEDICATED_VULNERABILITY_SCANNER_ABSENT", "BROAD_LAB_ENDPOINT_ASSESSMENT_ABSENT", "REAL_TIME_DEVICE_AUTHORIZATION_ABSENT"]
+}

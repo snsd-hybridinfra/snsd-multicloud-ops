@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata", "applications"],
+  "properties": {
+    "metadata": {"type": "object"},
+    "applications": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "display_name", "application_type", "purpose", "owner", "criticality", "lifecycle_state", "deployment_environment", "hosting_model", "workload_ids", "source_location", "deployment_method", "authentication_model", "authorization_model", "exposed_interfaces", "data_classification", "dependency_source", "sbom_status", "image_status", "logging_status", "monitoring_status", "backup_status", "recovery_status", "implementation_status", "validation_status", "evidence_level", "evidence_authority", "limitations"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^ZTA-APP-[A-Z0-9-]+$"},
+          "display_name": {"type": "string"},
+          "application_type": {"enum": ["WEB_APPLICATION", "API", "INFRASTRUCTURE_SERVICE", "OBSERVABILITY_SERVICE", "IDENTITY_SERVICE", "AUTOMATION_SERVICE", "DATABASE_SERVICE", "TEST_APPLICATION", "UNKNOWN"]},
+          "purpose": {"type": "string"}, "owner": {"type": "string", "minLength": 1},
+          "criticality": {"enum": ["LOW", "MODERATE", "HIGH", "CRITICAL", "UNKNOWN"]},
+          "lifecycle_state": {"enum": ["DEVELOPMENT", "TEST", "ACTIVE", "DEPRECATED", "RETIRED", "UNKNOWN"]},
+          "deployment_environment": {"type": "string"}, "hosting_model": {"type": "string"},
+          "workload_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^ZTA-WORKLOAD-[A-Z0-9-]+$"}},
+          "source_location": {"type": "string"}, "deployment_method": {"type": "string"},
+          "authentication_model": {"type": "string"}, "authorization_model": {"type": "string"},
+          "exposed_interfaces": {"type": "array", "items": {"type": "string"}},
+          "data_classification": {"type": "string"}, "dependency_source": {"type": "string"},
+          "sbom_status": {"enum": ["COMPLETE_FOR_SCOPE", "PARTIAL", "CONFIGURATION_ONLY", "NOT_AVAILABLE", "UNKNOWN"]},
+          "image_status": {"type": "string"}, "logging_status": {"type": "string"}, "monitoring_status": {"type": "string"},
+          "backup_status": {"type": "string"}, "recovery_status": {"type": "string"},
+          "implementation_status": {"type": "string"}, "validation_status": {"type": "string"},
+          "evidence_level": {"enum": ["DESIGN", "CONFIGURATION", "RUNTIME"]},
+          "evidence_authority": {"type": "string"},
+          "limitations": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

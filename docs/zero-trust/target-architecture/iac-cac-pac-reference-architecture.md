@@ -94,7 +94,7 @@ Signals cover identity, authentication strength, role, group, service account, n
 | resource_sensitivity | STATIC_SIGNAL | profile and policy metadata only |
 | recent_behavior | FUTURE_SIGNAL | no behavior analytics |
 | active_incident | STATIC_SIGNAL | operator-declared context only |
-| telemetry_freshness | PARTIALLY_VALIDATED_SIGNAL | bounded timestamp checks, no continuous store |
+| telemetry_freshness | PARTIALLY_VALIDATED_SIGNAL | bounded timestamp checks and single-node persistent sanitized storage; no continuous acceptance |
 | policy_version | STATIC_SIGNAL | versioned policy metadata target |
 
 The common event contains event ID, timestamp, source, subject, resource, action, result, identity, authentication strength, network/device/system/application/data context, trust score, risk level, policy ID/version, decision, enforcement point/result, correlation ID, and safe evidence reference. Advanced operation may omit or statically set trust score, use deterministic risk, and use rule-based correlation. Dynamic risk remains future Optimal scope.

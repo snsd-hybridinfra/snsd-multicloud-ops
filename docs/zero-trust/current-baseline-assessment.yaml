@@ -20,13 +20,13 @@
   "summary": {
     "total_capabilities": 52,
     "validated": 0,
-    "partially_validated": 6,
+    "partially_validated": 12,
     "implemented": 0,
-    "mapped": 7,
+    "mapped": 5,
     "planned": 0,
     "unassessed": 52,
     "not_applicable": 0,
-    "gap_identified": 39
+    "gap_identified": 35
   },
   "capabilities": [
     {
@@ -413,7 +413,8 @@
       "confidence": "MEDIUM",
       "evidence": [
         "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
-        "docs/evidence/zero-trust/zt-net-001-validation.yaml"
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-sys-001-validation.yaml"
       ],
       "gaps": [
         "Capability-wide coverage and maturity characteristics remain unassessed."
@@ -424,18 +425,21 @@
       "id": "ZT-4.2.1",
       "current_maturity": "UNASSESSED",
       "target_maturity": "UNASSESSED",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "evidence_authority": [
-        "MISSING"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
-      "confidence": "LOW",
-      "evidence": [],
+      "confidence": "MEDIUM",
+      "evidence": [
+        "docs/evidence/zero-trust/zt-sys-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-sys-001-live-summary.sanitized.txt"
+      ],
       "gaps": [
-        "No direct implementation or runtime evidence."
+        "Only bounded privileged-access models and existing restricted paths are validated; complete PAM, MFA, session brokering, and account lifecycle remain unimplemented."
       ],
-      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+      "next_action": "Retain the bounded model and plan separately approved PAM lifecycle and session controls without inferring maturity."
     },
     {
       "id": "ZT-4.2.2",
@@ -462,12 +466,15 @@
       "validation_status": "PARTIALLY_VALIDATED",
       "evidence_level": "RUNTIME",
       "evidence_authority": [
-        "USER_EXECUTED_RUNTIME"
+        "USER_EXECUTED_RUNTIME",
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
       "confidence": "MEDIUM",
       "evidence": [
         "evidence/L1-foundation/S002-eve-ng-on-prem-routing-validation/",
-        "docs/evidence/zero-trust/zt-net-001-validation.yaml"
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-sys-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-sys-001-live-summary.sanitized.txt"
       ],
       "gaps": [
         "Capability-wide coverage and maturity characteristics remain unassessed."
@@ -479,23 +486,26 @@
       "current_maturity": "UNASSESSED",
       "target_maturity": "UNASSESSED",
       "implementation_status": "MAPPED",
-      "validation_status": "REFERENCE_ONLY",
-      "evidence_level": "DESIGN",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "evidence_authority": [
-        "DESIGN_ONLY"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
-      "confidence": "LOW",
+      "confidence": "MEDIUM",
       "evidence": [
         "scenarios/L4-failure-recovery/S037-security-rule-misconfiguration-validation/",
         "scenarios/L5-governance-intelligent-ops/S041-terraform-drift-detection-validation/",
         "scenarios/L5-governance-intelligent-ops/S042-terraform-drift-remediation-validation/",
         "scenarios/L5-governance-intelligent-ops/S043-policy-as-code-validation/",
-        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/"
+        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/",
+        "docs/evidence/zero-trust/zt-sys-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-sys-001-integrity-validation.yaml",
+        "docs/evidence/zero-trust/zt-sys-001-live-summary.sanitized.txt"
       ],
       "gaps": [
-        "Capability-wide coverage and maturity characteristics remain unassessed."
+        "Only bounded system baselines, safe configuration integrity, and service-state policy are validated; continuous FIM, automatic enforcement, and complete hardening remain absent."
       ],
-      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+      "next_action": "Preserve read-only validation and plan continuous integrity and approved enforcement separately without assigning maturity."
     },
     {
       "id": "ZT-5.1.1",
@@ -625,18 +635,21 @@
       "id": "ZT-6.1.1",
       "current_maturity": "UNASSESSED",
       "target_maturity": "UNASSESSED",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "implementation_status": "PARTIALLY_VALIDATED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "evidence_authority": [
-        "MISSING"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
-      "confidence": "LOW",
-      "evidence": [],
+      "confidence": "MEDIUM",
+      "evidence": [
+        "docs/evidence/zero-trust/zt-data-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-data-001-live-summary.sanitized.txt"
+      ],
       "gaps": [
-        "No direct implementation or runtime evidence."
+        "Bounded seven-asset metadata inventory only; automated and enterprise discovery remain absent."
       ],
-      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+      "next_action": "Expand only through separately approved discovery sources while preserving content-minimization and evidence boundaries."
     },
     {
       "id": "ZT-6.1.2",
@@ -695,18 +708,21 @@
       "id": "ZT-6.4.1",
       "current_maturity": "UNASSESSED",
       "target_maturity": "UNASSESSED",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "implementation_status": "PARTIALLY_VALIDATED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "evidence_authority": [
-        "MISSING"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
-      "confidence": "LOW",
-      "evidence": [],
+      "confidence": "MEDIUM",
+      "evidence": [
+        "docs/evidence/zero-trust/zt-data-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-data-001-live-summary.sanitized.txt"
+      ],
       "gaps": [
-        "No direct implementation or runtime evidence."
+        "Seven bounded assets are manually labeled; automatic and organization-wide classification remain absent."
       ],
-      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+      "next_action": "Preserve manual labels and require separate evidence before any automatic-classification claim."
     },
     {
       "id": "ZT-6.5.1",
@@ -729,18 +745,21 @@
       "id": "ZT-6.5.2",
       "current_maturity": "UNASSESSED",
       "target_maturity": "UNASSESSED",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "implementation_status": "PARTIALLY_VALIDATED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "evidence_authority": [
-        "MISSING"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
-      "confidence": "LOW",
-      "evidence": [],
+      "confidence": "MEDIUM",
+      "evidence": [
+        "docs/evidence/zero-trust/zt-data-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-data-001-live-summary.sanitized.txt"
+      ],
       "gaps": [
-        "No direct implementation or runtime evidence."
+        "Detection-only repository scanning and generated fixtures only; continuous enterprise monitoring is absent."
       ],
-      "next_action": "Define a bounded implementation and evidence plan under the locked scenario set."
+      "next_action": "Keep findings redacted and detection-only until a separately approved enforcement and continuous-analysis design exists."
     },
     {
       "id": "ZT-7.1",
@@ -853,20 +872,23 @@
       "current_maturity": "UNASSESSED",
       "target_maturity": "UNASSESSED",
       "implementation_status": "MAPPED",
-      "validation_status": "REFERENCE_ONLY",
-      "evidence_level": "DESIGN",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "evidence_authority": [
-        "DESIGN_ONLY"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
-      "confidence": "LOW",
+      "confidence": "MEDIUM",
       "evidence": [
         "scenarios/L5-governance-intelligent-ops/S043-policy-as-code-validation/",
-        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/"
+        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/",
+        "docs/zero-trust/packages/zt-auto-001-package.yaml",
+        "docs/evidence/zero-trust/zt-auto-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-auto-001-live-summary.sanitized.txt"
       ],
       "gaps": [
-        "Capability-wide coverage and maturity characteristics remain unassessed."
+        "Only a bounded default-deny fixed-handler policy path is partially runtime validated; enterprise integration, repeatability, response automation, and maturity remain unassessed."
       ],
-      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+      "next_action": "Use ZT-CV-001 to assess acceptance and regression boundaries before any repeatability or maturity proposal."
     },
     {
       "id": "ZT-8.2",
@@ -881,12 +903,15 @@
       "confidence": "MEDIUM",
       "evidence": [
         "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
-        "docs/evidence/zero-trust/zt-net-001-validation.yaml"
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml",
+        "docs/zero-trust/packages/zt-auto-001-package.yaml",
+        "docs/evidence/zero-trust/zt-auto-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-auto-001-live-summary.sanitized.txt"
       ],
       "gaps": [
-        "Capability-wide coverage and maturity characteristics remain unassessed."
+        "The ZT-AUTO-001 integrated cycle is partial and one-time; repeatability, scheduling, continuous operation, autonomous response, and maturity remain unassessed."
       ],
-      "next_action": "Assess the bounded mapping against the capability-specific source maturity table."
+      "next_action": "Use ZT-CV-001 to classify the integrated evidence and define the bounded repeatability candidate."
     },
     {
       "id": "ZT-8.3",

@@ -1,0 +1,35 @@
+ZT-NET-001 PERSISTENT INTER-ZONE ACL VALIDATION
+Execution date: 2026-07-22
+Environment: disposable non-production EVE-NG network laboratory
+Executor: Codex under explicit user-approved VM and virtual-network authority
+
+CHANGE BOUNDARY
+- A named extended ACL is bound inbound on the DMZ router subinterface.
+- DMZ-originated traffic to the Kubernetes subnet is denied and logged.
+- Other DMZ-originated traffic is permitted; spoofed or unmatched input is denied.
+- The ACL and interface binding are present in running and startup configuration.
+- No router reload, branch deletion, secret, credential, or physical-network change occurred.
+
+RUNTIME RESULTS
+- Restricted router validator: 39 PASS, 0 WARN, 0 FAIL.
+- Interface ACL binding: PASS.
+- Fixed OpenStack router path: PASS.
+- Fixed OpenStack floating path: PASS.
+- DMZ gateway permit: PASS, 5 of 5 replies.
+- DMZ to Kubernetes deny: PASS, 0 of 5 replies.
+- DMZ public-path permit: PASS, 5 of 5 replies.
+- ACL deny and permit counters: PASS.
+- Startup persistence: PASS.
+
+SAFETY AND ROLLBACK
+- Two pre-acceptance attempts stopped on conservative test-parser failures.
+- Both attempts removed the interface binding and named ACL before retry.
+- Final acceptance occurred only after allow, deny, counter, restricted-validator,
+  and startup-persistence checks passed.
+
+LIMITATIONS
+- This is one directional inter-zone policy in one non-production lab.
+- It does not establish complete micro-segmentation, SDN policy, traffic
+  encryption, resilience, capability maturity, or enterprise-wide enforcement.
+- Dynamic addresses, MAC addresses, console ports, credentials, and raw router
+  configuration are intentionally absent from this reviewed derivative.

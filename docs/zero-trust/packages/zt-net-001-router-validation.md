@@ -2,15 +2,18 @@
 
 ## Purpose and status
 
-ZT-NET-001 provides a deterministic, read-only path from the local workstation
-to SNSD-R1. The package is IMPLEMENTED and PARTIALLY_VALIDATED. Live execution
-returned 38 PASS, 1 WARN, and 0 FAIL. Current maturity remains UNASSESSED; the
-maximum proposed target is INITIAL.
+ZT-NET-001 provides a deterministic, read-only validation path from the local
+workstation to SNSD-R1 and one explicitly approved persistent directional ACL.
+The package is IMPLEMENTED and VALIDATED for this bounded scope. Final live
+execution returned 39 PASS, 0 WARN, and 0 FAIL. Current maturity remains
+UNASSESSED; the maximum proposed target is INITIAL.
 
-The single warning is material: no persistent interface access-group binding
-exists. VLAN interfaces, routes, NAT/PAT, and fixed OpenStack reachability are
-validated, but segmentation is classified as
-SEGMENTATION_CONFIGURATION_ONLY.
+The named ACL is bound inbound on the DMZ subinterface, denies DMZ-originated
+traffic to the Kubernetes subnet, permits the remaining expected DMZ traffic,
+and denies unmatched or spoofed input. Running and startup persistence,
+allow/deny behavior, counters, and both fixed OpenStack paths passed. The
+classification is `BOUNDED_INTERZONE_ACL_VALIDATED`, not complete
+micro-segmentation.
 
 ## Capability mappings
 
@@ -53,9 +56,10 @@ The caller cannot supply commands or target addresses.
 - Routing: six connected networks and the default route passed.
 - NAT: inside/outside roles, overload rule, ACL reference, statistics, and
   active translations passed.
-- ACL: NAT ACL 10 is readable; no persistent interface ACL binding exists.
-- Segmentation: SEGMENTATION_CONFIGURATION_ONLY; complete micro-segmentation
-  is not claimed.
+- ACL: NAT ACL 10 remains readable; the package-owned directional ACL is bound
+  inbound and persists in startup configuration.
+- Segmentation: BOUNDED_INTERZONE_ACL_VALIDATED; broader multi-zone policy
+  coverage is not claimed.
 - Provider path: fixed router-external and Floating IP targets returned complete
   reachability from the router.
 
@@ -86,13 +90,13 @@ Raw output remains below .runtime/zero-trust/router/ and is ignored by Git. The
 committed record omits runtime addresses, console ports, MAC addresses, hardware
 serials, credentials, and proprietary image details.
 
-## Limitations and remaining gap
+## Limitations and remaining boundary
 
 The legacy IOS platform is a bounded lab component. This package does not
 establish software-defined networking, dynamic policy, continuous adaptive
-access, full resilience, or enterprise-wide Zero Trust. Full policy validation
-requires a separately approved persistent least-privilege ACL design, change,
-rollback plan, and post-change live evidence.
+access, traffic encryption, full resilience, or enterprise-wide Zero Trust.
+Any broader policy coverage still requires a separately approved design,
+change, rollback plan, and post-change live evidence.
 
 Rollback is documented in
 [zt-net-001-rollback.md](zt-net-001-rollback.md).

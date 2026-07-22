@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Zero Trust verification exception policy","type":"object","additionalProperties":false,
+  "required":["metadata","required_fields","rules","exceptions"],
+  "properties":{"metadata":{"type":"object","required":["environment","policy_version","authority","allowed_states","limitations"]},"required_fields":{"type":"array","minItems":1,"items":{"type":"string"}},"rules":{"type":"array","minItems":1},"exceptions":{"type":"array","items":{"type":"object","required":["id","scope","owner","reason","state","expiration","approval_reference","limitations"]}}}
+}

@@ -294,6 +294,86 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
                     "ZT-ID-001 must remain bounded to accepted non-production runtime scope with no centralized, production, or maturity promotion",
                 )
             continue
+        if package_id == "ZT-DEV-001":
+            expected_endpoint_status = {
+                "package_state": "PRESENT",
+                "phase": "PHASE_1_CURRENT",
+                "implementation_status": "IMPLEMENTED",
+                "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+                "runtime_scope": "ONE_MANDATORY_NON_PRODUCTION_VM",
+                "maturity_status": "UNASSESSED",
+                "roadmap_status": "BOUNDED_RUNTIME_PACKAGE",
+            }
+            if status != expected_endpoint_status:
+                result.fail(
+                    "roadmap.package-status",
+                    "ZT-DEV-001 must remain bounded to partial non-production runtime scope without broad management, enforcement, or maturity promotion",
+                )
+            continue
+        if package_id == "ZT-APP-001":
+            expected_application_status = {
+                "package_state": "PRESENT",
+                "phase": "PHASE_1_CURRENT",
+                "implementation_status": "IMPLEMENTED",
+                "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+                "runtime_scope": "ONE_EXISTING_NON_CRITICAL_ALLOY_PILOT",
+                "maturity_status": "UNASSESSED",
+                "roadmap_status": "BOUNDED_RUNTIME_PACKAGE",
+            }
+            if status != expected_application_status:
+                result.fail(
+                    "roadmap.package-status",
+                    "ZT-APP-001 must remain bounded to partial runtime scope without deployment, provenance, vulnerability, enforcement, or maturity promotion",
+                )
+            continue
+        if package_id == "ZT-DATA-001":
+            expected_data_status = {
+                "package_state": "PRESENT",
+                "phase": "PHASE_1_CURRENT",
+                "implementation_status": "IMPLEMENTED",
+                "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+                "runtime_scope": "SEVEN_METADATA_ASSETS_AND_ONE_SYNTHETIC_RESTORE",
+                "maturity_status": "UNASSESSED",
+                "roadmap_status": "BOUNDED_RUNTIME_PACKAGE",
+            }
+            if status != expected_data_status:
+                result.fail(
+                    "roadmap.package-status",
+                    "ZT-DATA-001 must remain bounded to partial metadata, detection-only DLP, synthetic restore, and unassessed maturity scope",
+                )
+            continue
+        if package_id == "ZT-SYS-001":
+            expected_system_status = {
+                "package_state": "PRESENT",
+                "phase": "PHASE_1_CURRENT",
+                "implementation_status": "IMPLEMENTED",
+                "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+                "runtime_scope": "SEVEN_SYSTEMS_EXISTING_FIXED_READ_ONLY_VALIDATORS_AND_FIVE_SAFE_CONFIGURATION_HASHES",
+                "maturity_status": "UNASSESSED",
+                "roadmap_status": "BOUNDED_RUNTIME_PACKAGE",
+            }
+            if status != expected_system_status:
+                result.fail(
+                    "roadmap.package-status",
+                    "ZT-SYS-001 must remain bounded to partial runtime system scope with CURRENT_DEGRADED OpenStack and without complete PAM, FIM, recovery, or maturity promotion",
+                )
+            continue
+        if package_id == "ZT-AUTO-001":
+            expected_automation_status = {
+                "package_state": "PRESENT",
+                "phase": "PHASE_1_CURRENT",
+                "implementation_status": "IMPLEMENTED",
+                "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+                "runtime_scope": "SINGLE_WORKSTATION_FIXED_R0_R3_HANDLERS_AND_ONE_PARTIAL_CROSS_DOMAIN_READ_ONLY_EXECUTION",
+                "maturity_status": "UNASSESSED",
+                "roadmap_status": "BOUNDED_RUNTIME_PACKAGE",
+            }
+            if status != expected_automation_status:
+                result.fail(
+                    "roadmap.package-status",
+                    "ZT-AUTO-001 must remain bounded to partial fixed-handler R0-R3 runtime scope without mutation, response, repeatability, scheduling, SOAR, or maturity promotion",
+                )
+            continue
         implementation = status.get("implementation_status")
         if implementation in {"IMPLEMENTED", "COMPLETED", "VALIDATED"}:
             result.fail("roadmap.package-status", f"{package_id}: roadmap package is improperly marked {implementation}")
@@ -306,7 +386,7 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
             if status != {"implementation_status": "NOT_STARTED", "validation_status": "UNASSESSED", "roadmap_status": "ROADMAP_ONLY"}:
                 result.fail("roadmap.optimal", f"{package_id}: invalid future Optimal status")
     if not _has_failures(result, "roadmap."):
-        result.passed("roadmap", "All phases have gates; ZT-ID-001 remains bounded-runtime-only and roadmap packages remain unimplemented.")
+        result.passed("roadmap", "All phases have gates; ZT-ID-001, ZT-DEV-001, ZT-APP-001, ZT-DATA-001, ZT-SYS-001, and ZT-AUTO-001 remain bounded runtime packages and roadmap packages remain unimplemented.")
 
 
 def validate_package_data(package: dict[str, Any], result: ValidationResult) -> None:

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "package_id", "default_decision", "roles", "policies"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "package_id": {"const": "ZT-DATA-001"}, "default_decision": {"const": "DENY"},
+    "roles": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "policies": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["policy_id", "data_asset_ids", "data_classification", "subject_type", "required_role", "allowed_actions", "prohibited_actions", "authentication_requirement", "mfa_requirement", "device_compliance_requirement", "network_zone_requirement", "session_requirement", "approval_requirement", "enforcement_point", "audit_requirement", "exception_process", "enforcement_status", "implementation_status", "validation_status", "capability_mappings"], "properties": {
+      "policy_id": {"type": "string", "pattern": "^ZTDATA-ACCESS-[A-Z0-9-]+$"}, "data_asset_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "allowed_actions": {"type": "array", "items": {"enum": ["DISCOVER", "READ", "CREATE", "UPDATE", "DELETE", "EXPORT", "BACKUP", "RESTORE", "ADMINISTER"]}}, "prohibited_actions": {"type": "array", "items": {"type": "string"}}, "enforcement_status": {"enum": ["CURRENT", "PLANNED", "REFERENCE_ONLY"]}, "capability_mappings": {"type": "array", "items": {"type": "string", "pattern": "^ZT-[0-9]+(?:\\.[0-9]+){0,2}$"}}
+    }, "additionalProperties": true}}
+  }, "additionalProperties": false
+}

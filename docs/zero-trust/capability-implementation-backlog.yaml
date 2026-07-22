@@ -1300,16 +1300,16 @@
       "enterprise_reference_target": "UNASSESSED",
       "target_rationale": "PAM is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
       "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "priority": "HIGH",
       "dependency_ids": [
         "ZT-1.1.1",
         "ZT-4.2.2"
       ],
       "blocking_gaps": [
-        "No accepted capability-specific implementation or runtime evidence exists."
+        "ZT-SYS-001 validates a bounded privileged-access subset; complete PAM, MFA, session brokering, account lifecycle, and target maturity remain unfulfilled."
       ],
       "candidate_control_patterns": [
         "ZTP-SYS-001"
@@ -1456,8 +1456,8 @@
       "target_rationale": "�ý��� ȯ�濡 ���� ��å ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
       "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
       "implementation_status": "MAPPED",
-      "validation_status": "REFERENCE_ONLY",
-      "evidence_level": "DESIGN",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "priority": "HIGH",
       "dependency_ids": [
         "ZT-4.1.1",
@@ -1465,7 +1465,7 @@
         "ZT-8.1"
       ],
       "blocking_gaps": [
-        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+        "ZT-SYS-001 validates bounded baselines and point-in-time safe configuration integrity; continuous FIM, automatic enforcement, complete hardening, and target maturity remain unfulfilled."
       ],
       "candidate_control_patterns": [
         "ZTP-SYS-001"
@@ -1873,15 +1873,15 @@
       "enterprise_reference_target": "UNASSESSED",
       "target_rationale": "������ īŻ�α� ���� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
       "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "implementation_status": "PARTIALLY_VALIDATED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "priority": "HIGH",
       "dependency_ids": [
         "ZT-5.4.2"
       ],
       "blocking_gaps": [
-        "No accepted capability-specific implementation or runtime evidence exists."
+        "ZT-DATA-001 covers seven bounded metadata assets; automated and enterprise discovery remain absent."
       ],
       "candidate_control_patterns": [
         "ZTP-DATA-001"
@@ -2075,15 +2075,15 @@
       "enterprise_reference_target": "UNASSESSED",
       "target_rationale": "������ �󺧸� �� �±� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
       "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "implementation_status": "PARTIALLY_VALIDATED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "priority": "HIGH",
       "dependency_ids": [
         "ZT-6.1.1"
       ],
       "blocking_gaps": [
-        "No accepted capability-specific implementation or runtime evidence exists."
+        "ZT-DATA-001 manually labels seven bounded assets; automatic and organization-wide classification remain absent."
       ],
       "candidate_control_patterns": [
         "ZTP-DATA-001"
@@ -2173,16 +2173,16 @@
       "enterprise_reference_target": "UNASSESSED",
       "target_rationale": "������ ����͸� �� ���� is targeted at INITIAL for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
       "target_limitations": "Only the explicitly tested subset may be assessed; enterprise lifecycle, population, scale, and continuous operation remain excluded.",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "implementation_status": "PARTIALLY_VALIDATED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "priority": "HIGH",
       "dependency_ids": [
         "ZT-6.1.1",
         "ZT-7.1"
       ],
       "blocking_gaps": [
-        "No accepted capability-specific implementation or runtime evidence exists."
+        "ZT-DATA-001 provides bounded redacted detection-only evidence; continuous enterprise monitoring and blocking remain absent."
       ],
       "candidate_control_patterns": [
         "ZTP-DATA-001"
@@ -2527,15 +2527,15 @@
       "target_rationale": "��å ���� is targeted at ADVANCED for a bounded laboratory implementation with capability-specific evidence and no enterprise extrapolation.",
       "target_limitations": "Target applies only to the declared non-production lab boundary and does not establish enterprise maturity.",
       "implementation_status": "MAPPED",
-      "validation_status": "REFERENCE_ONLY",
-      "evidence_level": "DESIGN",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "priority": "CRITICAL",
       "dependency_ids": [
         "ZT-4.1.1",
         "ZT-7.1"
       ],
       "blocking_gaps": [
-        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+        "ZT-AUTO-001 provides only one partial fixed-handler live cycle; enterprise integration, repeatability, automated response, and proposed target maturity remain unfulfilled."
       ],
       "candidate_control_patterns": [
         "ZTP-AI-001"
@@ -2587,7 +2587,7 @@
         "ZT-8.1"
       ],
       "blocking_gaps": [
-        "Existing evidence is bounded and does not satisfy the proposed target maturity."
+        "Existing scenario and ZT-AUTO-001 evidence remains bounded; the integrated workflow is partial and one-time, so repeatability, scheduling, continuous operation, response automation, and proposed target maturity remain unfulfilled."
       ],
       "candidate_control_patterns": [
         "ZTP-AI-001"

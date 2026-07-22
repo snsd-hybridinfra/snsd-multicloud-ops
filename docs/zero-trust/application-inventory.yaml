@@ -1,0 +1,25 @@
+{
+  "metadata": {"environment": "NON_PRODUCTION_LAB", "assessment_date": "2026-07-22", "authority": "CODEX_EXECUTED_LIVE_RUNTIME", "collection_method": "REPOSITORY_AUDIT_AND_EXISTING_RUNTIME_HEALTH", "limitations": ["Only the bounded monitoring stack and repository Kubernetes sample are classified."]},
+  "applications": [
+    {
+      "id": "ZTA-APP-OBSERVABILITY-STACK", "display_name": "Bounded sanitized observability stack", "application_type": "OBSERVABILITY_SERVICE",
+      "purpose": "Persist and inspect approved sanitized validation events.", "owner": "LAB_PLATFORM_OPERATOR", "criticality": "MODERATE", "lifecycle_state": "ACTIVE",
+      "deployment_environment": "NON_PRODUCTION_LAB", "hosting_model": "SINGLE_VM_DOCKER_COMPOSE", "workload_ids": ["ZTA-WORKLOAD-ALLOY", "ZTA-WORKLOAD-LOKI", "ZTA-WORKLOAD-GRAFANA"],
+      "source_location": "observability/logging/", "deployment_method": "REVIEWED_DOCKER_COMPOSE", "authentication_model": "GRAFANA_LOCAL_SECRET_FILE_ONLY", "authorization_model": "LOOPBACK_ONLY_SERVICE_ENDPOINTS",
+      "exposed_interfaces": ["VM_LOOPBACK_GRAFANA", "VM_LOOPBACK_LOKI", "VM_LOOPBACK_ALLOY"], "data_classification": "SANITIZED_VALIDATION_EVENTS", "dependency_source": "PINNED_IMAGE_TAGS_IN_COMPOSE",
+      "sbom_status": "PARTIAL", "image_status": "TAG_PINNED_DIGEST_UNKNOWN", "logging_status": "CONSOLE_AND_SANITIZED_PIPELINE", "monitoring_status": "HEALTHCHECK_VALIDATED",
+      "backup_status": "CONFIG_BACKUP_ONLY", "recovery_status": "COMPOSE_REDEPLOY_AND_PERSISTENCE_VALIDATED", "implementation_status": "IMPLEMENTED", "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "evidence_level": "RUNTIME", "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME", "limitations": ["Single node; no image signature or dedicated vulnerability scan."]
+    },
+    {
+      "id": "ZTA-APP-KUBERNETES-SAMPLE", "display_name": "Repository Kubernetes sample service", "application_type": "TEST_APPLICATION",
+      "purpose": "Configuration-only manifest validation fixture.", "owner": "REPOSITORY_MAINTAINER", "criticality": "LOW", "lifecycle_state": "TEST",
+      "deployment_environment": "CONFIGURATION_ONLY", "hosting_model": "KUBERNETES_REFERENCE", "workload_ids": ["ZTA-WORKLOAD-KUBERNETES-SAMPLE"],
+      "source_location": "kubernetes/workloads/sample-service/", "deployment_method": "NOT_DEPLOYED", "authentication_model": "NOT_APPLICABLE", "authorization_model": "NOT_IMPLEMENTED",
+      "exposed_interfaces": ["DECLARED_SERVICE_ONLY"], "data_classification": "SYNTHETIC", "dependency_source": "MANIFEST_ONLY", "sbom_status": "NOT_AVAILABLE", "image_status": "REFERENCE_ONLY",
+      "logging_status": "NOT_VALIDATED", "monitoring_status": "NOT_VALIDATED", "backup_status": "NOT_APPLICABLE", "recovery_status": "REAPPLY_MANIFEST_DESIGN_ONLY",
+      "implementation_status": "CONFIGURATION_ONLY", "validation_status": "LOCAL_VALIDATED", "evidence_level": "CONFIGURATION", "evidence_authority": "CODEX_EXECUTED_LOCAL_VALIDATION",
+      "limitations": ["No functional Kubernetes cluster or runtime evidence is available."]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata", "workloads"],
+  "properties": {
+    "metadata": {"type": "object"},
+    "workloads": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "display_name", "workload_type", "application_id", "owner", "environment", "platform", "host_or_cluster", "namespace_or_project", "image_or_artifact", "image_digest", "source_repository", "deployment_method", "runtime_identity", "privilege_model", "network_zone", "exposed_ports", "persistent_storage", "secrets_method", "logging", "monitoring", "health_check", "backup", "recovery", "inventory_state", "implementation_status", "validation_status", "evidence_level", "evidence_authority", "limitations"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^ZTA-WORKLOAD-[A-Z0-9-]+$"},
+          "display_name": {"type": "string"},
+          "workload_type": {"enum": ["VIRTUAL_MACHINE", "CONTAINER", "KUBERNETES_DEPLOYMENT", "KUBERNETES_POD", "SYSTEM_SERVICE", "SERVERLESS_REFERENCE", "UNKNOWN"]},
+          "application_id": {"type": "string", "pattern": "^ZTA-APP-[A-Z0-9-]+$"},
+          "owner": {"type": "string", "minLength": 1}, "environment": {"type": "string"}, "platform": {"type": "string"},
+          "host_or_cluster": {"type": "string"}, "namespace_or_project": {"type": ["string", "null"]},
+          "image_or_artifact": {"type": "string"}, "image_digest": {"type": "string"}, "source_repository": {"type": "string"},
+          "deployment_method": {"type": "string"}, "runtime_identity": {"type": "string"}, "privilege_model": {"type": "string"},
+          "network_zone": {"type": "string"}, "exposed_ports": {"type": "array", "items": {"type": "string"}},
+          "persistent_storage": {"type": "string"}, "secrets_method": {"type": "string"}, "logging": {"type": "string"},
+          "monitoring": {"type": "string"}, "health_check": {"type": "string"}, "backup": {"type": "string"}, "recovery": {"type": "string"},
+          "inventory_state": {"enum": ["CURRENT_RUNNING", "CURRENT_DEPLOYED_NOT_VALIDATED", "CURRENT_CONFIG_ONLY", "PLANNED", "RETIRED", "UNKNOWN"]},
+          "implementation_status": {"type": "string"}, "validation_status": {"type": "string"},
+          "evidence_level": {"enum": ["DESIGN", "CONFIGURATION", "RUNTIME"]}, "evidence_authority": {"type": "string"},
+          "limitations": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

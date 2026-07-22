@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "package_id", "backups"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "package_id": {"const": "ZT-DATA-001"},
+    "backups": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["backup_id", "source_data_asset_id", "backup_type", "tool", "destination_type", "encryption_status", "access_boundary", "schedule", "retention", "integrity_method", "last_backup_evidence", "last_restore_evidence", "recovery_objective", "owner", "implementation_status", "validation_status", "limitations"], "properties": {
+      "backup_id": {"type": "string", "pattern": "^ZTBACKUP-[A-Z0-9-]+$"}, "source_data_asset_id": {"type": "string"}, "last_backup_evidence": {"type": ["string", "null"]}, "last_restore_evidence": {"type": ["string", "null"]}, "validation_status": {"enum": ["CONFIGURATION_ONLY", "BACKUP_CREATED", "INTEGRITY_VALIDATED", "RESTORE_PARTIALLY_VALIDATED", "RESTORE_VALIDATED", "STALE", "UNKNOWN"]}, "limitations": {"type": "array", "items": {"type": "string"}}
+    }, "additionalProperties": true}}
+  }, "additionalProperties": false
+}

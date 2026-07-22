@@ -4,13 +4,13 @@
 
 | Collection | Count | Authority | Current meaning |
 |---|---:|---|---|
-| Phase 1 baseline | 7 | Authoritative for bounded Phase 1 operator procedure | Two repository procedures implemented, four package/evidence procedures partial, one design specification |
+| Phase 1 baseline | 7 | Authoritative for bounded Phase 1 operator procedure | Five procedures implemented, one evidence procedure partial, one design specification |
 | Future-phase numbered designs | 29 | Architecture design authority only | `DESIGN_SPECIFICATION`; no executable implementation is implied |
 | Root `runbooks/` references | 53 Markdown files | Secondary reference only | Scenario-specific material; never overrides this index or the Phase 1 manifest |
 
 `VALIDATED_LOCAL` means the runbook structure and repository-local procedure
-were validated. `PARTIALLY_RUNTIME_VALIDATED` reflects only the bounded package
-evidence cited by the runbook. Neither status establishes Phase 1 completion,
+were validated. `VALIDATED_RUNTIME` reflects only the bounded package evidence
+cited by the runbook. Neither status establishes Phase 1 completion,
 capability-wide validation, compliance, certification, or maturity.
 
 ## Phase 1 authoritative baseline
@@ -19,9 +19,9 @@ capability-wide validation, compliance, certification, or maturity.
 |---|---|---|---|---|
 | RB-P1-001 | [`phase-1/01-phase-1-entry-and-preflight.md`](phase-1/01-phase-1-entry-and-preflight.md) | IMPLEMENTED | VALIDATED_LOCAL | P1-REC-002, P1-HYG-001, P1-RUN-BASE |
 | RB-P1-002 | [`phase-1/02-repository-safe-validation.md`](phase-1/02-repository-safe-validation.md) | IMPLEMENTED | VALIDATED_LOCAL | P1-HYG-001 |
-| RB-P1-003 | [`phase-1/03-evidence-handling-and-sanitization.md`](phase-1/03-evidence-handling-and-sanitization.md) | PARTIALLY_IMPLEMENTED | VALIDATED_LOCAL | ZT-FND-001, ZT-NET-001, ZT-VIS-001 |
-| RB-P1-004 | [`phase-1/04-network-validation-and-gap-management.md`](phase-1/04-network-validation-and-gap-management.md) | PARTIALLY_IMPLEMENTED | PARTIALLY_RUNTIME_VALIDATED | ZT-NET-001 |
-| RB-P1-005 | [`phase-1/05-visibility-validation-and-gap-management.md`](phase-1/05-visibility-validation-and-gap-management.md) | PARTIALLY_IMPLEMENTED | PARTIALLY_RUNTIME_VALIDATED | ZT-VIS-001, ZT-VIS-002 |
+| RB-P1-003 | [`phase-1/03-evidence-handling-and-sanitization.md`](phase-1/03-evidence-handling-and-sanitization.md) | PARTIALLY_IMPLEMENTED | VALIDATED_LOCAL | ZT-FND-001, ZT-NET-001, ZT-VIS-001, ZT-DEV-001, ZT-APP-001, ZT-DATA-001, ZT-SYS-001, ZT-AUTO-001 |
+| RB-P1-004 | [`phase-1/04-network-validation-and-gap-management.md`](phase-1/04-network-validation-and-gap-management.md) | IMPLEMENTED | VALIDATED_RUNTIME | ZT-NET-001 |
+| RB-P1-005 | [`phase-1/05-visibility-validation-and-gap-management.md`](phase-1/05-visibility-validation-and-gap-management.md) | IMPLEMENTED | VALIDATED_RUNTIME | ZT-VIS-001, ZT-VIS-002 |
 | RB-P1-006 | [`phase-1/06-identity-validation-readiness.md`](phase-1/06-identity-validation-readiness.md) | IMPLEMENTED | VALIDATED_RUNTIME | ZT-ID-001 |
 | RB-P1-007 | [`phase-1/07-repeatable-and-scheduled-validation.md`](phase-1/07-repeatable-and-scheduled-validation.md) | DESIGN_SPECIFICATION | VALIDATED_LOCAL | ZT-CV-001, ZT-RV-001, ZT-SCH-001 |
 

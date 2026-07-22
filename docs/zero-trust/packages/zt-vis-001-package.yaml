@@ -2,7 +2,7 @@
   "package_id": "ZT-VIS-001",
   "package_name": "Centralized Telemetry and Security Event Correlation Foundation",
   "implementation_status": "IMPLEMENTED",
-  "validation_status": "PARTIALLY_VALIDATED",
+  "validation_status": "VALIDATED",
   "current_maturity": "UNASSESSED",
   "target_maturity": "INITIAL",
   "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
@@ -10,7 +10,7 @@
   "capability_mappings": ["ZT-7.1", "ZT-7.2", "ZT-7.3", "ZT-8.2", "ZT-8.6"],
   "blockers": [],
   "limitations": [
-    "Collection is a bounded local JSONL pipeline; no central log-storage service is deployed.",
+    "Persistent central storage accepts only the dedicated sanitized JSONL input boundary.",
     "Host journals and full OpenStack service logs are not ingested.",
     "No behavior analytics, automated blocking, SOC operation, or enterprise SIEM capability is claimed."
   ]

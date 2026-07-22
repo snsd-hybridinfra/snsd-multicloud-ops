@@ -25,7 +25,7 @@
         "source_type": {"type": "string", "minLength": 1},
         "source_name": {"type": "string", "pattern": "^[a-z0-9-]+$"},
         "environment": {"const": "NON_PRODUCTION_LAB"},
-        "event_category": {"enum": ["AUTHENTICATION", "AUTHORIZATION", "PRIVILEGE_USE", "VALIDATOR_EXECUTION", "SERVICE_HEALTH", "NETWORK_STATE", "NETWORK_POLICY", "WORKLOAD_STATE", "CONFIGURATION_STATE", "REPOSITORY_VALIDATION", "EVIDENCE_GENERATION"]},
+        "event_category": {"enum": ["AUTHENTICATION", "AUTHORIZATION", "PRIVILEGE_USE", "VALIDATOR_EXECUTION", "SERVICE_HEALTH", "NETWORK_STATE", "NETWORK_POLICY", "WORKLOAD_STATE", "ENDPOINT_STATE", "CONFIGURATION_STATE", "REPOSITORY_VALIDATION", "EVIDENCE_GENERATION", "AUTOMATION_STATE"]},
         "event_type": {"type": "string", "minLength": 1},
         "severity": {"enum": ["INFO", "LOW", "MEDIUM", "HIGH", "CRITICAL"]},
         "action": {"type": ["string", "null"]},

@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Zero Trust maturity reassessment policy","type":"object","additionalProperties":false,
+  "required":["metadata","constraints","rules"],
+  "properties":{"metadata":{"type":"object","required":["environment","policy_version","authority","limitations"]},"constraints":{"type":"array","minItems":1,"items":{"type":"string"}},"rules":{"type":"array","minItems":1,"items":{"type":"object","required":["id","applies_to","source_maturity","candidate_maturity","required_acceptance_state","required_evidence_continuity","minimum_execution_history","decision","capability_mappings"]}}}
+}

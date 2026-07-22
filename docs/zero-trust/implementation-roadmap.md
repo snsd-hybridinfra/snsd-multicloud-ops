@@ -15,13 +15,34 @@ Phase state: `PARTIAL` implementation / `PARTIALLY_VALIDATED` validation /
 `NOT_COMPLETE` completion. `ZT-ID-001` is `PRESENT`, `IMPLEMENTED`, and
 `RUNTIME_VALIDATED`; runtime validation is `VALIDATED` and acceptance is
 `ACCEPTED` for one `BOUNDED_NON_PRODUCTION_TARGET`. Maturity is `UNASSESSED`,
-and the Phase 2 centralized-identity dependency remains open.
+and the Phase 2 centralized-identity dependency remains open. `ZT-DEV-001` is
+`IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for six classified aliases and
+one mandatory live VM; reboot review, dedicated scanning, broad endpoint
+coverage, EDR/XDR, patch automation, and device-based enforcement remain open.
+`ZT-APP-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for two
+applications, four workloads, a partial three-image direct-component SBOM, and
+one unchanged Alloy pilot. Immutable digests, signing, transitive component
+coverage, dedicated vulnerability scanning, application authorization,
+Kubernetes runtime, automated deployment, and maturity remain open.
+`ZT-DATA-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for seven
+metadata-only assets, manual classification, six default-deny policies, five
+flows, redacted detection-only DLP, and one isolated synthetic restore.
+Automatic discovery/classification, enterprise governance, dynamic access,
+platform encryption, key management, live backup/restore, blocking DLP,
+continuous analysis, and maturity remain open.
 
 The boundary covers restricted validation, evidence governance, automation
 safety, repeatable validation, and a scheduled-validation foundation. Actual
-completion evidence is separate: `ZT-FND-001` is validated, while
-`ZT-NET-001` and `ZT-VIS-001` are partially validated. The boundary identifier
+completion evidence is separate: `ZT-FND-001`, `ZT-NET-001`, and
+`ZT-VIS-001` are validated for their bounded package scopes; `ZT-DEV-001` and
+`ZT-APP-001`, and `ZT-DATA-001` are partially runtime validated. The boundary identifier
 is not itself an implementation package result.
+
+`ZT-AUTO-001` and `ZT-CV-001` are implemented and partially runtime validated
+at one-time EC3 boundaries. `ZT-RV-001` campaign tooling is implemented and
+locally validated with zero accepted campaign runs; EC4 requires three
+time-separated successes. `ZT-SCH-001` remains unprepared and blocked by that
+gate, so Phase 1 remains not complete.
 
 ## Phase 2 - Centralized Identity and Visibility
 

@@ -4,7 +4,7 @@
 - ZT-ARC-001 is architecture and local validation only.
 - Capability implementation, validation, evidence authority, and maturity remain separate.
 - The current baseline stays `UNASSESSED` for all 52 capabilities.
-- The monitoring VM base and Docker work under `.runtime` do not establish a validated Grafana/Loki/Alloy stack.
+- ZT-VIS-001 establishes one validated Grafana/Loki/Alloy stack for approved sanitized JSONL; separate `.runtime` ZT-VIS-002 preparation still has no Phase 2 authority.
 - Keycloak, OIDC, MFA, role mapping, and protected Grafana access are not implemented by this task.
 - Existing VM and physical-server adapters do not provision compute or hardware.
 - AWS, Azure, Kubernetes, and additional OpenStack adapters remain roadmap-only.

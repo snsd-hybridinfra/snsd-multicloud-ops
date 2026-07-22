@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/zero-trust-data-inventory.schema.json",
+  "type": "object",
+  "required": ["metadata", "data_assets"],
+  "properties": {
+    "metadata": {"type": "object", "required": ["environment", "assessment_date", "authority", "collection_method", "scope", "limitations"]},
+    "data_assets": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["id", "display_name", "data_type", "purpose", "owner", "custodian", "source_system", "storage_location_type", "application_ids", "workload_ids", "lifecycle_state", "landscape_state", "classification", "label", "sensitivity", "regulatory_relevance", "integrity_requirement", "availability_requirement", "retention", "deletion_method", "access_model", "encryption_at_rest", "encryption_in_transit", "encryption_in_use", "key_management", "backup_status", "restoration_status", "monitoring_status", "dlp_status", "implementation_status", "validation_status", "evidence_level", "evidence_authority", "limitations"], "properties": {
+      "id": {"type": "string", "pattern": "^ZTDATA-[A-Z0-9-]+$"},
+      "data_type": {"enum": ["CONFIGURATION", "APPLICATION_DATA", "DATABASE_DATA", "LOG", "AUDIT_LOG", "METRIC", "TELEMETRY", "EVIDENCE", "BACKUP", "IMAGE", "VOLUME", "SECRET_REFERENCE", "TEST_DATA", "DOCUMENTATION", "UNKNOWN"]},
+      "lifecycle_state": {"enum": ["ACTIVE", "ARCHIVED", "TEMPORARY", "TEST", "RETIRED", "UNKNOWN"]},
+      "landscape_state": {"enum": ["CURRENT_ACTIVE", "CURRENT_ARCHIVED", "CURRENT_TEST_DATA", "CONFIGURATION_ONLY", "PLANNED", "UNKNOWN", "RETIRED"]},
+      "classification": {"enum": ["PUBLIC", "INTERNAL", "SENSITIVE", "RESTRICTED", "SECRET_MATERIAL_REFERENCE", "UNCLASSIFIED"]},
+      "application_ids": {"type": "array", "items": {"type": "string"}}, "workload_ids": {"type": "array", "items": {"type": "string"}}, "limitations": {"type": "array", "items": {"type": "string"}}
+    }, "additionalProperties": true}}
+  },
+  "additionalProperties": false
+}

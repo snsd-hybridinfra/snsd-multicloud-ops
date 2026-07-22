@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Zero Trust capability acceptance result","type":"object","additionalProperties":false,
+  "required":["assessment_type","assessment_time","results","maturity_assigned","authoritative_update_performed"],
+  "properties":{"assessment_type":{"const":"CAPABILITY_ACCEPTANCE"},"assessment_time":{"type":"string","format":"date-time"},"results":{"type":"array","items":{"type":"object","required":["capability_id","assessment_state","evidence_continuity","current_maturity","findings","limitations","authoritative_update_performed"]}},"maturity_assigned":{"const":false},"authoritative_update_performed":{"const":false}}
+}

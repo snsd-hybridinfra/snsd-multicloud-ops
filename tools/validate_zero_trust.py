@@ -36,6 +36,7 @@ ROUTER_REQUIRED_PATHS = (
     Path("tools/live-validation/remote/validate-snsd-r1-readonly.sh.example"),
     Path("tools/live-validation/remote/router-validator-sudoers.example"),
     Path("tools/live-validation/remote/router-validator-authorized-key.example"),
+    Path("docs/evidence/zero-trust/zt-net-001-acl-validation.sanitized.txt"),
 )
 TELEMETRY_PACKAGE_PATH = Path("docs/zero-trust/packages/zt-vis-001-package.yaml")
 TELEMETRY_EXECUTION_PATH = Path("docs/evidence/zero-trust/zt-vis-001-validation.yaml")
@@ -51,6 +52,203 @@ TELEMETRY_REQUIRED_PATHS = (
     Path("tools/telemetry/correlate_events.py"),
     Path("tools/telemetry/validate_telemetry_sources.py"),
     Path("tools/live-validation/collect-telemetry-live.ps1"),
+    Path("tools/live-validation/manage-persistent-telemetry.ps1"),
+    Path("observability/logging/compose.yaml"),
+    Path("observability/logging/loki-config.yaml"),
+    Path("observability/logging/alloy-config.alloy"),
+    Path("observability/logging/grafana-provisioning/datasources/loki.yaml"),
+    Path("docs/evidence/zero-trust/zt-vis-001-persistent-storage-validation.sanitized.txt"),
+)
+ENDPOINT_PACKAGE_PATH = Path("docs/zero-trust/packages/zt-dev-001-package.yaml")
+ENDPOINT_EXECUTION_PATH = Path("docs/evidence/zero-trust/zt-dev-001-validation.yaml")
+ENDPOINT_INVENTORY_PATH = Path("docs/zero-trust/device/device-inventory.yaml")
+ENDPOINT_POLICY_PATH = Path("docs/zero-trust/device/endpoint-compliance-policy.yaml")
+ENDPOINT_INVENTORY_SCHEMA_PATH = Path("schemas/zero-trust-device-inventory.schema.json")
+ENDPOINT_REQUIRED_PATHS = (
+    Path("docs/zero-trust/device/README.md"),
+    Path("docs/zero-trust/device/vulnerability-assessment-plan.yaml"),
+    Path("docs/zero-trust/edr-adoption-decision.md"),
+    Path("docs/zero-trust/device-trust-decision-model.md"),
+    Path("docs/zero-trust/packages/zt-dev-001-endpoint-compliance-foundation.md"),
+    Path("docs/zero-trust/packages/zt-dev-001-rollback.md"),
+    Path("schemas/zero-trust-software-inventory.schema.json"),
+    Path("tools/endpoint/collect_software_inventory.py"),
+    Path("tools/endpoint/validate_endpoint_compliance.py"),
+    Path("tools/live-validation/validate-endpoints-live.ps1"),
+    Path("tests/test_zt_dev_001.py"),
+)
+APPLICATION_PACKAGE_PATH = Path("docs/zero-trust/packages/zt-app-001-package.yaml")
+APPLICATION_EXECUTION_PATH = Path("docs/evidence/zero-trust/zt-app-001-validation.yaml")
+APPLICATION_INVENTORY_PATH = Path("docs/zero-trust/application-inventory.yaml")
+WORKLOAD_INVENTORY_PATH = Path("docs/zero-trust/workload-inventory.yaml")
+APPLICATION_REQUIRED_PATHS = (
+    Path("docs/zero-trust/secure-deployment-policy.yaml"),
+    Path("docs/zero-trust/software-component-inventory.yaml"),
+    Path("docs/zero-trust/software-risk-register.yaml"),
+    Path("docs/zero-trust/artifact-provenance-policy.md"),
+    Path("docs/zero-trust/application-deployment-gates.md"),
+    Path("docs/zero-trust/packages/zt-app-001-secure-workload-foundation.md"),
+    Path("docs/zero-trust/packages/zt-app-001-rollback.md"),
+    Path("docs/evidence/zero-trust/zt-app-001-sbom.cdx.json"),
+    Path("schemas/zero-trust-application-inventory.schema.json"),
+    Path("schemas/zero-trust-workload-inventory.schema.json"),
+    Path("schemas/zero-trust-software-component-inventory.schema.json"),
+    Path("tools/application/validate_application_inventory.py"),
+    Path("tools/application/validate_secure_deployment.py"),
+    Path("tools/application/run_security_scans.py"),
+    Path("tools/live-validation/validate-application-live.ps1"),
+    Path("tests/test_zt_app_001.py"),
+)
+DATA_PACKAGE_PATH = Path("docs/zero-trust/packages/zt-data-001-package.yaml")
+DATA_EXECUTION_PATH = Path("docs/evidence/zero-trust/zt-data-001-validation.yaml")
+DATA_INVENTORY_PATH = Path("docs/zero-trust/data-inventory.yaml")
+DATA_REQUIRED_PATHS = (
+    Path("docs/zero-trust/data-classification-policy.yaml"),
+    Path("docs/zero-trust/data-governance-model.md"),
+    Path("docs/zero-trust/data-access-policy.yaml"),
+    Path("docs/zero-trust/data-flow-map.yaml"),
+    Path("docs/zero-trust/data-encryption-assessment.yaml"),
+    Path("docs/zero-trust/key-and-credential-management.md"),
+    Path("docs/zero-trust/backup-inventory.yaml"),
+    Path("docs/zero-trust/dlp-policy.yaml"),
+    Path("docs/evidence/zero-trust/zt-data-001-backup-assurance.yaml"),
+    Path("docs/zero-trust/packages/zt-data-001-data-protection-foundation.md"),
+    Path("docs/zero-trust/packages/zt-data-001-rollback.md"),
+    Path("schemas/zero-trust-data-inventory.schema.json"),
+    Path("schemas/zero-trust-data-access-policy.schema.json"),
+    Path("schemas/zero-trust-data-flow-map.schema.json"),
+    Path("schemas/zero-trust-backup-inventory.schema.json"),
+    Path("schemas/zero-trust-dlp-policy.schema.json"),
+    Path("tools/data/validate_data_inventory.py"),
+    Path("tools/data/scan_data_policy.py"),
+    Path("tools/data/validate_backup_assurance.py"),
+    Path("tools/live-validation/validate-data-live.ps1"),
+    Path("tests/fixtures/zt-data-001/fixture-catalog.yaml"),
+    Path("tests/test_zt_data_001.py"),
+)
+SYSTEM_PACKAGE_PATH = Path("docs/zero-trust/packages/zt-sys-001-package.yaml")
+SYSTEM_EXECUTION_PATH = Path("docs/evidence/zero-trust/zt-sys-001-validation.yaml")
+SYSTEM_INVENTORY_PATH = Path("docs/zero-trust/system-inventory.yaml")
+SYSTEM_REQUIRED_PATHS = (
+    Path("docs/zero-trust/system-baseline-policy.yaml"),
+    Path("docs/zero-trust/system-configuration-authority.yaml"),
+    Path("docs/zero-trust/system-integrity-policy.yaml"),
+    Path("docs/zero-trust/system-credential-reference-inventory.yaml"),
+    Path("docs/zero-trust/system-service-exposure.yaml"),
+    Path("docs/zero-trust/system-service-policy.yaml"),
+    Path("docs/zero-trust/system-recovery-readiness.yaml"),
+    Path("docs/zero-trust/system-risk-register.yaml"),
+    Path("docs/zero-trust/system-privileged-access-model.md"),
+    Path("docs/zero-trust/system-change-control.md"),
+    Path("docs/zero-trust/packages/zt-sys-001-system-security-foundation.md"),
+    Path("docs/zero-trust/packages/zt-sys-001-rollback.md"),
+    Path("docs/evidence/zero-trust/zt-sys-001-integrity-validation.yaml"),
+    Path("docs/evidence/zero-trust/zt-sys-001-service-state.yaml"),
+    Path("docs/evidence/zero-trust/zt-sys-001-live-summary.sanitized.txt"),
+    Path("schemas/zero-trust-system-inventory.schema.json"),
+    Path("schemas/zero-trust-system-baseline-policy.schema.json"),
+    Path("schemas/zero-trust-system-configuration-authority.schema.json"),
+    Path("schemas/zero-trust-system-integrity-policy.schema.json"),
+    Path("schemas/zero-trust-system-service-policy.schema.json"),
+    Path("tools/system/validate_system_inventory.py"),
+    Path("tools/system/check_configuration_drift.py"),
+    Path("tools/system/validate_service_state.py"),
+    Path("tools/live-validation/validate-systems-live.ps1"),
+    Path("tests/test_zt_sys_001.py"),
+)
+AUTOMATION_PACKAGE_PATH = Path("docs/zero-trust/packages/zt-auto-001-package.yaml")
+AUTOMATION_EXECUTION_PATH = Path("docs/evidence/zero-trust/zt-auto-001-validation.yaml")
+AUTOMATION_INTEGRATION_PATH = Path("docs/zero-trust/automation-integration-inventory.yaml")
+AUTOMATION_ACTION_PATH = Path("docs/zero-trust/automation-action-catalog.yaml")
+AUTOMATION_WORKFLOW_PATH = Path("docs/zero-trust/automation-workflow-catalog.yaml")
+AUTOMATION_POLICY_PATH = Path("docs/zero-trust/automation-approval-policy.yaml")
+AUTOMATION_REQUIRED_PATHS = (
+    Path("docs/zero-trust/automation-governance.md"),
+    Path("docs/zero-trust/packages/zt-auto-001-policy-automation-foundation.md"),
+    Path("docs/zero-trust/packages/zt-auto-001-rollback.md"),
+    Path("docs/evidence/zero-trust/zt-auto-001-live-summary.sanitized.txt"),
+    Path("schemas/zero-trust-automation-integration-inventory.schema.json"),
+    Path("schemas/zero-trust-automation-action-catalog.schema.json"),
+    Path("schemas/zero-trust-automation-workflow-catalog.schema.json"),
+    Path("schemas/zero-trust-automation-approval-policy.schema.json"),
+    Path("schemas/zero-trust-automation-execution-record.schema.json"),
+    Path("schemas/zero-trust-automation-plan.schema.json"),
+    Path("tools/automation/automation_common.py"),
+    Path("tools/automation/validate_automation_catalogs.py"),
+    Path("tools/automation/evaluate_action_policy.py"),
+    Path("tools/automation/plan_workflow.py"),
+    Path("tools/automation/run_workflow.py"),
+    Path("tools/automation/apply_approved_proposal.py"),
+    Path("tools/live-validation/run-automation-foundation.ps1"),
+    Path("tests/fixtures/zt-auto-001/fixture-catalog.yaml"),
+    Path("tests/test_zt_auto_001.py"),
+)
+CONTINUOUS_VERIFICATION_PACKAGE_PATH = Path("docs/zero-trust/packages/zt-cv-001-package.yaml")
+CONTINUOUS_VERIFICATION_EXECUTION_PATH = Path("docs/evidence/zero-trust/zt-cv-001-validation.yaml")
+CONTINUOUS_VERIFICATION_POLICY_PATHS = (
+    Path("docs/zero-trust/continuous-verification-policy.yaml"),
+    Path("docs/zero-trust/evidence-freshness-policy.yaml"),
+    Path("docs/zero-trust/capability-acceptance-catalog.yaml"),
+    Path("docs/zero-trust/package-acceptance-gates.yaml"),
+    Path("docs/zero-trust/verification-regression-policy.yaml"),
+    Path("docs/zero-trust/verification-exception-policy.yaml"),
+    Path("docs/zero-trust/maturity-reassessment-policy.yaml"),
+    Path("docs/zero-trust/verification-history.yaml"),
+)
+CONTINUOUS_VERIFICATION_SCHEMA_PATHS = (
+    Path("schemas/zero-trust-continuous-verification-policy.schema.json"),
+    Path("schemas/zero-trust-evidence-freshness-policy.schema.json"),
+    Path("schemas/zero-trust-capability-acceptance-catalog.schema.json"),
+    Path("schemas/zero-trust-package-acceptance-gates.schema.json"),
+    Path("schemas/zero-trust-verification-regression-policy.schema.json"),
+    Path("schemas/zero-trust-verification-exception-policy.schema.json"),
+    Path("schemas/zero-trust-maturity-reassessment-policy.schema.json"),
+    Path("schemas/zero-trust-verification-history.schema.json"),
+    Path("schemas/zero-trust-capability-acceptance-result.schema.json"),
+    Path("schemas/zero-trust-maturity-reassessment-result.schema.json"),
+)
+CONTINUOUS_VERIFICATION_REQUIRED_PATHS = (
+    Path("docs/zero-trust/continuous-verification-governance.md"),
+    Path("docs/zero-trust/continuous-verification-schedule.md"),
+    Path("docs/zero-trust/integrated-capability-assessment.md"),
+    Path("docs/zero-trust/integrated-capability-assessment.yaml"),
+    Path("docs/zero-trust/packages/zt-cv-001-continuous-verification-foundation.md"),
+    Path("docs/zero-trust/packages/zt-cv-001-rollback.md"),
+    Path("docs/evidence/zero-trust/zt-cv-001-live-summary.sanitized.txt"),
+    Path("tools/continuous_verification/cv_common.py"),
+    Path("tools/continuous_verification/validate_verification_configuration.py"),
+    Path("tools/continuous_verification/evaluate_evidence_freshness.py"),
+    Path("tools/continuous_verification/assess_repeatability.py"),
+    Path("tools/continuous_verification/assess_package_acceptance.py"),
+    Path("tools/continuous_verification/assess_capability_acceptance.py"),
+    Path("tools/continuous_verification/detect_regressions.py"),
+    Path("tools/continuous_verification/reassess_maturity.py"),
+    Path("tools/live-validation/run-continuous-verification.ps1"),
+    Path("tests/fixtures/zt-cv-001/fixture-catalog.yaml"),
+    Path("tests/test_zt_cv_001.py"),
+)
+REPEATABLE_VALIDATION_CAMPAIGN_PATH = Path("docs/zero-trust/repeatable-validation-campaign.yaml")
+REPEATABILITY_ACCEPTANCE_POLICY_PATH = Path("docs/zero-trust/repeatability-acceptance-policy.yaml")
+REPEATABLE_VALIDATION_PACKAGE_PATH = Path("docs/zero-trust/packages/zt-rv-001-package.yaml")
+REPEATABLE_VALIDATION_SCHEMA_PATHS = (
+    Path("schemas/zero-trust-repeatable-validation-campaign.schema.json"),
+    Path("schemas/zero-trust-repeatability-acceptance-policy.schema.json"),
+    Path("schemas/zero-trust-repeatable-execution-record.schema.json"),
+    Path("schemas/zero-trust-repeatability-assessment.schema.json"),
+)
+REPEATABLE_VALIDATION_REQUIRED_PATHS = (
+    Path("docs/zero-trust/integrated-capability-assessment.yaml"),
+    Path("docs/zero-trust/repeatable-validation-schedule-proposal.md"),
+    Path("docs/zero-trust/packages/zt-rv-001-repeatable-runtime-validation-pilot.md"),
+    Path("docs/zero-trust/packages/zt-rv-001-rollback.md"),
+    Path("tools/continuous_verification/rv_common.py"),
+    Path("tools/continuous_verification/run_repeatability_campaign.py"),
+    Path("tools/continuous_verification/append_verified_execution.py"),
+    Path("tools/continuous_verification/create_execution_fingerprint.py"),
+    Path("tools/continuous_verification/verify_sanitized_evidence.py"),
+    Path("tools/live-validation/run-repeatable-validation-pilot.ps1"),
+    Path("tests/fixtures/zt-rv-001/fixture-catalog.yaml"),
+    Path("tests/test_zt_rv_001.py"),
 )
 FOUNDATION_REQUIRED_PATHS = (
     Path("docs/zero-trust/packages/zt-fnd-001-restricted-validation-foundation.md"),
@@ -1084,6 +1282,24 @@ def validate_router_package_data(
                 result.fail(category, "Router live validation requires all forced-command boundary tests.")
         if status == "VALIDATED" and execution.get("validation", {}).get("access_control") != "PASS":
             result.fail(category, "VALIDATED router package requires a passing persistent access-control result.")
+        if status == "VALIDATED":
+            if package.get("segmentation_classification") != "BOUNDED_INTERZONE_ACL_VALIDATED":
+                result.fail(category, "VALIDATED router package requires BOUNDED_INTERZONE_ACL_VALIDATED classification.")
+            persistent = execution.get("persistent_acl", {})
+            required_persistent = {
+                "binding": "PASS",
+                "running_configuration": "PASS",
+                "startup_configuration": "PASS",
+                "dmz_gateway_permit": "PASS_5_OF_5",
+                "dmz_to_kubernetes_deny": "PASS_0_OF_5",
+                "dmz_public_path_permit": "PASS_5_OF_5",
+                "permit_and_deny_counters": "PASS",
+            }
+            for field, expected in required_persistent.items():
+                if persistent.get(field) != expected:
+                    result.fail(category, f"Persistent ACL field {field} must be {expected} for VALIDATED status.")
+            if persistent.get("automatic_rollback_exercised") is not True:
+                result.fail(category, "VALIDATED persistent ACL requires recorded rollback exercise evidence.")
 
     if not any(item.level == "FAIL" and item.category == category for item in result.findings):
         result.passed(category, "ZT-NET-001 status, mappings, runtime evidence, and security boundary are internally consistent.")
@@ -1163,6 +1379,21 @@ def validate_telemetry_package(root: Path, catalog: dict[str, Any], result: Vali
             result.fail("package.zt-vis-001", "Telemetry live-validation status requires exit code 0 and zero failed checks.")
         if package.get("validation_status") == "VALIDATED" and results.get("unavailable_sources", 0) != 0:
             result.fail("package.zt-vis-001", "VALIDATED telemetry package cannot have unavailable mandatory sources.")
+        if package.get("validation_status") == "VALIDATED":
+            persistent = execution.get("persistent_storage", {})
+            required_persistent = {
+                "pinned_images": "PASS",
+                "service_health": "PASS_3_OF_3",
+                "loopback_endpoints": "PASS_3_OF_3",
+                "retention": "PASS_336_HOURS",
+                "sanitized_ingestion_and_query": "PASS",
+                "post_restart_health": "PASS",
+                "post_restart_same_event_query": "PASS",
+                "secret_pattern_scan": "PASS",
+            }
+            for field, expected in required_persistent.items():
+                if persistent.get(field) != expected:
+                    result.fail("package.zt-vis-001.persistence", f"{field} must be {expected} for VALIDATED persistent telemetry.")
 
     sources = inventory.get("sources", [])
     allowed_states = {"CURRENT_RUNNING", "CURRENT_CONFIG_ONLY", "PLANNED", "ABSENT", "UNKNOWN"}
@@ -1189,8 +1420,750 @@ def validate_telemetry_package(root: Path, catalog: dict[str, Any], result: Vali
     for fixed in ("openstack-validator", "eve-validator", "snsd-r1-validator", "BatchMode=yes"):
         if fixed not in wrapper:
             result.fail("package.zt-vis-001.wrapper", f"Telemetry wrapper lacks fixed boundary: {fixed}.")
+    if package.get("validation_status") == "VALIDATED":
+        compose = (root / "observability/logging/compose.yaml").read_text(encoding="utf-8", errors="replace")
+        loki_config = (root / "observability/logging/loki-config.yaml").read_text(encoding="utf-8", errors="replace")
+        manager = (root / "tools/live-validation/manage-persistent-telemetry.ps1").read_text(encoding="utf-8", errors="replace")
+        for pinned in ("grafana/grafana:13.1.0", "grafana/loki:3.7.0", "grafana/alloy:v1.18.0"):
+            if pinned not in compose:
+                result.fail("package.zt-vis-001.persistence", f"Pinned image is missing: {pinned}.")
+        for loopback in ("127.0.0.1:3000:3000", "127.0.0.1:3100:3100", "127.0.0.1:12345:12345"):
+            if loopback not in compose:
+                result.fail("package.zt-vis-001.persistence", f"Loopback-only binding is missing: {loopback}.")
+        if "retention_period: 336h" not in loki_config:
+            result.fail("package.zt-vis-001.persistence", "Loki 336-hour retention is missing.")
+        for forbidden in ("privileged: true", "/var/run/docker.sock", "network_mode: host"):
+            if forbidden in compose:
+                result.fail("package.zt-vis-001.persistence", f"Forbidden telemetry container boundary is present: {forbidden}.")
+        for mode in ("'Check', 'Deploy', 'Validate', 'Persistence'", "PERSISTENT_TELEMETRY_RESTART_VALIDATE=PASS"):
+            if mode not in manager:
+                result.fail("package.zt-vis-001.persistence", f"Persistent telemetry manager contract is missing: {mode}.")
     if not any(item.level == "FAIL" and item.category.startswith("package.zt-vis-001") for item in result.findings):
         result.passed("package.zt-vis-001", "ZT-VIS-001 inventory, schemas, deterministic rules, runtime record, and non-blocking boundary are consistent.")
+
+
+def validate_endpoint_package(root: Path, catalog: dict[str, Any], result: ValidationResult) -> None:
+    category = "package.zt-dev-001"
+    required = (
+        ENDPOINT_PACKAGE_PATH,
+        ENDPOINT_EXECUTION_PATH,
+        ENDPOINT_INVENTORY_PATH,
+        ENDPOINT_POLICY_PATH,
+        ENDPOINT_INVENTORY_SCHEMA_PATH,
+        *ENDPOINT_REQUIRED_PATHS,
+    )
+    missing = [str(path) for path in required if not (root / path).is_file()]
+    if missing:
+        for path in missing:
+            result.fail(f"{category}.files", f"Required endpoint package file is missing: {path}.")
+        return
+    try:
+        package = load_json_yaml(root / ENDPOINT_PACKAGE_PATH)
+        execution = load_json_yaml(root / ENDPOINT_EXECUTION_PATH)
+        inventory = load_json_yaml(root / ENDPOINT_INVENTORY_PATH)
+        policy = load_json_yaml(root / ENDPOINT_POLICY_PATH)
+        inventory_schema = load_schema(root / ENDPOINT_INVENTORY_SCHEMA_PATH)
+        load_schema(root / "schemas/zero-trust-software-inventory.schema.json")
+    except ValueError as exc:
+        result.fail(f"{category}.configuration", str(exc))
+        return
+    if not all(isinstance(item, dict) for item in (package, execution, inventory, policy)):
+        result.fail(f"{category}.configuration", "Endpoint package, execution, inventory, and policy records must be objects.")
+        return
+
+    if package.get("package_id") != "ZT-DEV-001" or execution.get("package_id") != "ZT-DEV-001":
+        result.fail(category, "Package and execution identifiers must be ZT-DEV-001.")
+    if package.get("implementation_status") != "IMPLEMENTED" or package.get("validation_status") != "PARTIALLY_RUNTIME_VALIDATED":
+        result.fail(category, "The accepted bounded endpoint package must remain IMPLEMENTED / PARTIALLY_RUNTIME_VALIDATED.")
+    if package.get("current_maturity") != "UNASSESSED" or package.get("target_maturity") == "OPTIMAL":
+        result.fail(category, "Endpoint maturity must remain UNASSESSED and must not target OPTIMAL.")
+    if package.get("execution_authority") != "CODEX_EXECUTED_LIVE_RUNTIME" or execution.get("execution_authority") != "CODEX_EXECUTED_LIVE_RUNTIME":
+        result.fail(category, "Endpoint runtime claims require actual Codex execution authority.")
+
+    catalog_ids = {item["id"] for item in catalog.get("capabilities", []) if isinstance(item, dict) and isinstance(item.get("id"), str)}
+    mappings = package.get("capability_mappings", [])
+    mapped_ids = [item.get("id") for item in mappings if isinstance(item, dict)]
+    if not mappings or len(mapped_ids) != len(mappings) or any(item not in catalog_ids for item in mapped_ids):
+        result.fail(category, "Endpoint capability mappings are empty, malformed, or non-canonical.")
+    if set(mapped_ids) != {"ZT-2.1.1", "ZT-2.2.1", "ZT-2.3.1", "ZT-2.3.2", "ZT-2.4.1", "ZT-2.4.2"}:
+        result.fail(category, "Endpoint package must explicitly separate all six canonical device-domain capability relationships.")
+
+    schema_errors = validate_schema_instance(inventory, inventory_schema)
+    for error in schema_errors:
+        result.fail(f"{category}.inventory", error)
+    assets = inventory.get("assets", [])
+    asset_ids = [item.get("asset_id") for item in assets if isinstance(item, dict)]
+    if len(asset_ids) != len(set(asset_ids)):
+        result.fail(f"{category}.inventory", "Device inventory asset IDs must be unique.")
+    if any(not item.get("owner_role") for item in assets if isinstance(item, dict)):
+        result.fail(f"{category}.inventory", "Every endpoint asset requires an owner role.")
+    if any(item.get("privileged") is True and not item.get("compliance_profile") for item in assets if isinstance(item, dict)):
+        result.fail(f"{category}.inventory", "Every privileged asset requires a compliance profile.")
+
+    profiles = policy.get("profiles", [])
+    profile_ids = [item.get("profile_id") for item in profiles if isinstance(item, dict)]
+    if len(profile_ids) != len(set(profile_ids)) or not profile_ids:
+        result.fail(f"{category}.policy", "Compliance profile IDs must be present and unique.")
+    if policy.get("mandatory_live_assets") != ["ZTD-ASSET-MONITORING-VM-01"]:
+        result.fail(f"{category}.policy", "Exactly the bounded monitoring VM must be mandatory for this accepted pilot.")
+    for field in ("automatic_remediation", "automatic_patching", "automatic_reboot"):
+        if policy.get(field) is not False or package.get(field) is not False:
+            result.fail(f"{category}.policy", f"{field} must remain false.")
+    if package.get("endpoint_agent_installed") is not False or package.get("edr_decision") != "DEFERRED":
+        result.fail(f"{category}.policy", "EDR must remain deferred and no endpoint agent may be installed by this package.")
+
+    results = execution.get("results", {})
+    if results.get("exit_code") != 0 or results.get("fail") != 0 or results.get("assessed_assets") != 1:
+        result.fail(f"{category}.execution", "Accepted partial runtime evidence requires one assessed asset, exit code zero, and zero failures.")
+    if execution.get("patch_state", {}).get("automatic_patching_performed") is not False or execution.get("patch_state", {}).get("reboot_performed") is not False:
+        result.fail(f"{category}.execution", "Execution evidence must prove that patching and reboot were not performed.")
+    if execution.get("vulnerability", {}).get("exploit_executed") is not False or execution.get("endpoint_agent", {}).get("installed_by_package") is not False:
+        result.fail(f"{category}.execution", "Execution evidence must prove no exploit or endpoint-agent installation occurred.")
+    sanitization = execution.get("sanitization", {})
+    for field in ("secrets", "personal_data", "mac_addresses", "serial_numbers"):
+        if sanitization.get(field) != 0:
+            result.fail(f"{category}.privacy", f"Sanitized endpoint evidence requires {field}=0.")
+
+    gitignore = (root / ".gitignore").read_text(encoding="utf-8", errors="replace")
+    if not any(line.strip().rstrip("/") == ".runtime/zero-trust" for line in gitignore.splitlines()):
+        result.fail(f"{category}.runtime", ".runtime/zero-trust/ must remain ignored.")
+    wrapper = (root / "tools/live-validation/validate-endpoints-live.ps1").read_text(encoding="utf-8", errors="replace")
+    for token in ("ZTD-ASSET-MONITORING-VM-01", "apt list --upgradable", "sudo -n docker ps", "BatchMode=yes", ".runtime/zero-trust/endpoint/latest"):
+        if token not in wrapper:
+            result.fail(f"{category}.wrapper", f"Endpoint wrapper is missing fixed read-only boundary token: {token}.")
+    for forbidden in ("apt-get install", "apt install", "apt upgrade", "systemctl restart", "shutdown /", "Restart-Computer", "Invoke-Expression"):
+        if forbidden.lower() in wrapper.lower():
+            result.fail(f"{category}.wrapper", f"Endpoint wrapper contains prohibited mutating behavior: {forbidden}.")
+
+    committed = json.dumps({"package": package, "execution": execution, "inventory": inventory, "policy": policy}, ensure_ascii=False)
+    if re.search(r"(?i)\b(?:[0-9a-f]{2}[:-]){5}[0-9a-f]{2}\b", committed):
+        result.fail(f"{category}.privacy", "Committed endpoint authority contains a full MAC address.")
+    if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
+        result.passed(category, "ZT-DEV-001 inventory, policy, partial runtime evidence, privacy, and no-mutation boundaries are consistent.")
+
+
+def validate_application_package(root: Path, catalog: dict[str, Any], result: ValidationResult) -> None:
+    category = "package.zt-app-001"
+    required = (APPLICATION_PACKAGE_PATH, APPLICATION_EXECUTION_PATH, APPLICATION_INVENTORY_PATH, WORKLOAD_INVENTORY_PATH, *APPLICATION_REQUIRED_PATHS)
+    missing = [str(path) for path in required if not (root / path).is_file()]
+    if missing:
+        for path in missing:
+            result.fail(f"{category}.files", f"Required application package file is missing: {path}.")
+        return
+    try:
+        package = load_json_yaml(root / APPLICATION_PACKAGE_PATH)
+        execution = load_json_yaml(root / APPLICATION_EXECUTION_PATH)
+        applications = load_json_yaml(root / APPLICATION_INVENTORY_PATH)
+        workloads = load_json_yaml(root / WORKLOAD_INVENTORY_PATH)
+        policy = load_json_yaml(root / "docs/zero-trust/secure-deployment-policy.yaml")
+        components = load_json_yaml(root / "docs/zero-trust/software-component-inventory.yaml")
+        sbom = load_json_yaml(root / "docs/evidence/zero-trust/zt-app-001-sbom.cdx.json")
+        app_schema = load_schema(root / "schemas/zero-trust-application-inventory.schema.json")
+        workload_schema = load_schema(root / "schemas/zero-trust-workload-inventory.schema.json")
+        component_schema = load_schema(root / "schemas/zero-trust-software-component-inventory.schema.json")
+    except ValueError as exc:
+        result.fail(f"{category}.configuration", str(exc))
+        return
+    objects = (package, execution, applications, workloads, policy, components, sbom)
+    if not all(isinstance(item, dict) for item in objects):
+        result.fail(f"{category}.configuration", "Application package authority records must be objects.")
+        return
+    for name, value, schema in (("applications", applications, app_schema), ("workloads", workloads, workload_schema), ("components", components, component_schema)):
+        for error in validate_schema_instance(value, schema):
+            result.fail(f"{category}.{name}", error)
+
+    if package.get("package_id") != "ZT-APP-001" or execution.get("package_id") != "ZT-APP-001":
+        result.fail(category, "Package and execution identifiers must be ZT-APP-001.")
+    if package.get("implementation_status") != "IMPLEMENTED" or package.get("validation_status") != "PARTIALLY_RUNTIME_VALIDATED":
+        result.fail(category, "Application package must remain IMPLEMENTED / PARTIALLY_RUNTIME_VALIDATED.")
+    if package.get("current_maturity") != "UNASSESSED" or package.get("target_maturity") == "OPTIMAL":
+        result.fail(category, "Application maturity must remain UNASSESSED and must not target OPTIMAL.")
+    if package.get("execution_authority") != "CODEX_EXECUTED_LIVE_RUNTIME" or execution.get("execution_authority") != "CODEX_EXECUTED_LIVE_RUNTIME":
+        result.fail(category, "Application runtime evidence requires actual Codex execution authority.")
+
+    catalog_ids = {item["id"] for item in catalog.get("capabilities", []) if isinstance(item, dict) and isinstance(item.get("id"), str)}
+    mappings = package.get("capability_mappings", [])
+    mapped_ids = [item.get("id") for item in mappings if isinstance(item, dict)]
+    expected = {"ZT-5.1.1", "ZT-5.4.1", "ZT-5.4.2", "ZT-5.5.1", "ZT-5.5.2", "ZT-7.1", "ZT-8.1", "ZT-8.2"}
+    if set(mapped_ids) != expected or any(item not in catalog_ids for item in mapped_ids):
+        result.fail(category, "Application capability mappings must use the reviewed canonical bounded set.")
+
+    app_items = applications.get("applications", [])
+    workload_items = workloads.get("workloads", [])
+    app_ids = [item.get("id") for item in app_items if isinstance(item, dict)]
+    workload_ids = [item.get("id") for item in workload_items if isinstance(item, dict)]
+    if len(app_ids) != len(set(app_ids)) or len(workload_ids) != len(set(workload_ids)):
+        result.fail(f"{category}.inventory", "Application and workload IDs must be unique.")
+    if any(item.get("application_id") not in set(app_ids) for item in workload_items if isinstance(item, dict)):
+        result.fail(f"{category}.inventory", "Every workload must reference an inventoried application.")
+    if any(not item.get("owner") for item in app_items + workload_items if isinstance(item, dict)):
+        result.fail(f"{category}.inventory", "Every application and workload requires an owner.")
+
+    if components.get("sbom_status") != "PARTIAL" or len(components.get("components", [])) != 3:
+        result.fail(f"{category}.sbom", "The current Compose-derived component inventory must remain PARTIAL with three direct images.")
+    if sbom.get("bomFormat") != "CycloneDX" or sbom.get("specVersion") != "1.5" or len(sbom.get("components", [])) != 3:
+        result.fail(f"{category}.sbom", "A valid bounded CycloneDX 1.5 direct-image SBOM is required.")
+    if package.get("sbom_status") != "PARTIAL" or package.get("artifact_signed") is not False or package.get("image_digests_verified") is not False or package.get("dedicated_vulnerability_scan") is not False:
+        result.fail(f"{category}.claims", "SBOM, signature, digest, and vulnerability-scan truth boundaries were promoted.")
+    for field in ("automatic_deployment", "workload_restarted"):
+        if package.get(field) is not False:
+            result.fail(f"{category}.mutation", f"{field} must remain false.")
+    if policy.get("automatic_enforcement") is not False or policy.get("automatic_deployment") is not False or policy.get("automatic_restart") is not False:
+        result.fail(f"{category}.mutation", "Secure-deployment policy must not enable automatic mutation.")
+    runtime = execution.get("runtime_validation", {})
+    results = execution.get("results", {})
+    if results.get("exit_code") != 0 or results.get("fail") != 0 or runtime.get("service_health") != "PASS" or runtime.get("sanitized_ingestion") != "PASS":
+        result.fail(f"{category}.execution", "Partial runtime acceptance requires zero failures plus health and sanitized-ingestion PASS.")
+    for field in ("deployment_performed", "workload_restarted", "failure_injected"):
+        if runtime.get(field) is not False:
+            result.fail(f"{category}.mutation", f"Runtime evidence must record {field}=false.")
+    if execution.get("sanitization", {}).get("secrets") != 0 or results.get("secret_findings") != 0:
+        result.fail(f"{category}.security", "Application evidence requires zero secret findings.")
+
+    wrapper = (root / "tools/live-validation/validate-application-live.ps1").read_text(encoding="utf-8", errors="replace")
+    for token in ("run_security_scans.py", "validate_secure_deployment.py", "manage-persistent-telemetry.ps1", ".runtime/zero-trust/application/latest", "workload_restarted = $false"):
+        if token not in wrapper:
+            result.fail(f"{category}.wrapper", f"Application wrapper is missing required no-mutation contract: {token}.")
+    for forbidden in ("docker compose up", "docker compose restart", "docker pull", "kubectl apply", "helm install", "Invoke-Expression"):
+        if forbidden.lower() in wrapper.lower():
+            result.fail(f"{category}.wrapper", f"Application wrapper contains prohibited deployment behavior: {forbidden}.")
+    gitignore = (root / ".gitignore").read_text(encoding="utf-8", errors="replace")
+    if not any(line.strip().rstrip("/") == ".runtime/zero-trust" for line in gitignore.splitlines()):
+        result.fail(f"{category}.runtime", ".runtime/zero-trust/ must remain ignored.")
+    if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
+        result.passed(category, "ZT-APP-001 inventory, partial SBOM, offline scans, bounded runtime health, and no-deployment boundaries are consistent.")
+
+
+def validate_data_package(root: Path, catalog: dict[str, Any], result: ValidationResult) -> None:
+    category = "package.zt-data-001"
+    required = (DATA_PACKAGE_PATH, DATA_EXECUTION_PATH, DATA_INVENTORY_PATH, *DATA_REQUIRED_PATHS)
+    missing = [str(path) for path in required if not (root / path).is_file()]
+    if missing:
+        for path in missing:
+            result.fail(f"{category}.files", f"Required data package file is missing: {path}.")
+        return
+    try:
+        package = load_json_yaml(root / DATA_PACKAGE_PATH)
+        execution = load_json_yaml(root / DATA_EXECUTION_PATH)
+        inventory = load_json_yaml(root / DATA_INVENTORY_PATH)
+        access = load_json_yaml(root / "docs/zero-trust/data-access-policy.yaml")
+        flows = load_json_yaml(root / "docs/zero-trust/data-flow-map.yaml")
+        encryption = load_json_yaml(root / "docs/zero-trust/data-encryption-assessment.yaml")
+        backups = load_json_yaml(root / "docs/zero-trust/backup-inventory.yaml")
+        dlp = load_json_yaml(root / "docs/zero-trust/dlp-policy.yaml")
+        assurance = load_json_yaml(root / "docs/evidence/zero-trust/zt-data-001-backup-assurance.yaml")
+        schemas = (
+            ("inventory", inventory, load_schema(root / "schemas/zero-trust-data-inventory.schema.json")),
+            ("access", access, load_schema(root / "schemas/zero-trust-data-access-policy.schema.json")),
+            ("flows", flows, load_schema(root / "schemas/zero-trust-data-flow-map.schema.json")),
+            ("backups", backups, load_schema(root / "schemas/zero-trust-backup-inventory.schema.json")),
+            ("dlp", dlp, load_schema(root / "schemas/zero-trust-dlp-policy.schema.json")),
+        )
+    except ValueError as exc:
+        result.fail(f"{category}.configuration", str(exc))
+        return
+    objects = (package, execution, inventory, access, flows, encryption, backups, dlp, assurance)
+    if not all(isinstance(item, dict) for item in objects):
+        result.fail(f"{category}.configuration", "Data package authority records must be objects.")
+        return
+    for name, value, schema in schemas:
+        for error in validate_schema_instance(value, schema):
+            result.fail(f"{category}.{name}", error)
+
+    if package.get("package_id") != "ZT-DATA-001" or execution.get("package_id") != "ZT-DATA-001":
+        result.fail(category, "Package and execution identifiers must be ZT-DATA-001.")
+    if package.get("implementation_status") != "IMPLEMENTED" or package.get("validation_status") != "PARTIALLY_RUNTIME_VALIDATED":
+        result.fail(category, "Data package must remain IMPLEMENTED / PARTIALLY_RUNTIME_VALIDATED.")
+    if package.get("current_maturity") != "UNASSESSED" or package.get("target_maturity") != "INITIAL":
+        result.fail(category, "Data maturity must remain UNASSESSED with INITIAL only as the bounded target.")
+    if package.get("execution_authority") != "CODEX_EXECUTED_LIVE_RUNTIME" or execution.get("execution_authority") != "CODEX_EXECUTED_LIVE_RUNTIME":
+        result.fail(category, "Data runtime evidence requires actual Codex execution authority.")
+
+    catalog_ids = {item["id"] for item in catalog.get("capabilities", []) if isinstance(item, dict) and isinstance(item.get("id"), str)}
+    mappings = package.get("capability_mappings", [])
+    mapped_ids = [item.get("id") for item in mappings if isinstance(item, dict)]
+    expected = {"ZT-6.1.1", "ZT-6.2.1", "ZT-6.3.1", "ZT-6.4.1", "ZT-6.5.1", "ZT-6.5.2", "ZT-7.1", "ZT-8.1", "ZT-8.2"}
+    if set(mapped_ids) != expected or any(item not in catalog_ids for item in mapped_ids):
+        result.fail(category, "Data capability mappings must use the reviewed canonical bounded set and exclude enterprise-governance overclaims.")
+
+    assets = inventory.get("data_assets", [])
+    asset_ids = [item.get("id") for item in assets if isinstance(item, dict)]
+    if len(assets) != 7 or len(asset_ids) != len(set(asset_ids)):
+        result.fail(f"{category}.inventory", "The bounded inventory must contain seven unique data assets.")
+    if any(not item.get("owner") or not item.get("custodian") for item in assets if isinstance(item, dict)):
+        result.fail(f"{category}.ownership", "Every bounded data asset requires owner and custodian assignments.")
+    if any(item.get("classification") in {None, "", "UNCLASSIFIED"} for item in assets if isinstance(item, dict)):
+        result.fail(f"{category}.classification", "All bounded assets must be explicitly classified.")
+    policy_ids = {item.get("policy_id") for item in access.get("policies", []) if isinstance(item, dict)}
+    if any(item.get("access_model") not in policy_ids for item in assets if isinstance(item, dict)):
+        result.fail(f"{category}.access", "Every data asset must reference a defined least-privilege access policy.")
+    for policy in access.get("policies", []):
+        if not isinstance(policy, dict):
+            continue
+        values = {str(policy.get("required_role", "")).upper(), *(str(item).upper() for item in policy.get("allowed_actions", []))}
+        if policy.get("data_classification") in {"SENSITIVE", "RESTRICTED"} and values & {"*", "ANY", "ALL", "EVERYONE"}:
+            result.fail(f"{category}.access", f"{policy.get('policy_id')} grants wildcard protected-data access.")
+        if not policy.get("audit_requirement"):
+            result.fail(f"{category}.access", f"{policy.get('policy_id')} lacks an audit requirement.")
+
+    asset_set = set(asset_ids)
+    for flow in flows.get("flows", []):
+        if not isinstance(flow, dict):
+            continue
+        if flow.get("source_data_asset_id") not in asset_set or (flow.get("destination_data_asset_id") is not None and flow.get("destination_data_asset_id") not in asset_set):
+            result.fail(f"{category}.flows", f"{flow.get('flow_id')} has an unresolved data-asset reference.")
+    for item in encryption.get("assessments", []):
+        if not isinstance(item, dict):
+            continue
+        if item.get("state") == "ENCRYPTED" and not item.get("evidence"):
+            result.fail(f"{category}.encryption", f"{item.get('assessment_id')} claims encryption without evidence.")
+        if item.get("plane") == "IN_USE" and item.get("state") not in {"NOT_IMPLEMENTED", "REFERENCE_ONLY", "UNKNOWN"}:
+            result.fail(f"{category}.encryption", "Encryption in use is promoted without confidential-computing evidence.")
+
+    forbidden_actions = {"DELETE", "QUARANTINE", "BLOCK", "MODIFY", "ROTATE"}
+    if dlp.get("mode") != "DETECTION_ONLY" or dlp.get("external_transmission") is not False or dlp.get("source_modification") is not False:
+        result.fail(f"{category}.dlp", "DLP must remain local, detection-only, and non-mutating.")
+    for rule in dlp.get("rules", []):
+        if isinstance(rule, dict) and set(rule.get("actions", [])) & forbidden_actions:
+            result.fail(f"{category}.dlp", f"{rule.get('rule_id')} contains a blocking or mutating action.")
+        if isinstance(rule, dict) and rule.get("redaction") != "REDACT_MATCH":
+            result.fail(f"{category}.dlp", f"{rule.get('rule_id')} does not require redaction.")
+
+    hashes = [assurance.get(name) for name in ("source_sha256", "backup_sha256", "restore_sha256", "source_unchanged_sha256")]
+    if len(set(hashes)) != 1 or any(not isinstance(value, str) or len(value) != 64 for value in hashes):
+        result.fail(f"{category}.backup", "Synthetic source, backup, restore, and unchanged-source SHA-256 evidence must match.")
+    if assurance.get("isolated_restore") is not True or assurance.get("source_overwritten") is not False or assurance.get("external_transmission") is not False:
+        result.fail(f"{category}.backup", "Restore evidence must remain isolated, non-overwriting, and local.")
+    restore_records = [item for item in backups.get("backups", []) if isinstance(item, dict) and item.get("validation_status") == "RESTORE_VALIDATED"]
+    if len(restore_records) != 1 or restore_records[0].get("backup_id") != "ZTBACKUP-SYNTHETIC-PILOT":
+        result.fail(f"{category}.backup", "Only the controlled synthetic pilot may be RESTORE_VALIDATED.")
+
+    results = execution.get("results", {})
+    if results.get("exit_code") != 0 or results.get("fail") != 0 or results.get("data_assets_assessed") != 7 or results.get("restores_validated") != 1 or results.get("dlp_findings") != 0:
+        result.fail(f"{category}.execution", "Partial runtime acceptance requires seven assessed assets, one synthetic restore, zero confirmed DLP findings, and zero failures.")
+    for field in ("blocking_dlp", "live_data_backup", "encryption_in_use", "enterprise_governance", "complete_discovery", "complete_dlp", "external_transmission", "source_data_modified"):
+        if package.get(field) is not False:
+            result.fail(f"{category}.claims", f"{field} must remain false.")
+
+    wrapper = (root / "tools/live-validation/validate-data-live.ps1").read_text(encoding="utf-8", errors="replace")
+    for token in ("validate_data_inventory.py", "scan_data_policy.py", "validate_backup_assurance.py", ".runtime/zero-trust/data", "source_overwritten = $false", "external_transmission = $false", "keys_or_credentials_rotated = $false", "blocking_dlp = $false"):
+        if token not in wrapper:
+            result.fail(f"{category}.wrapper", f"Data wrapper is missing required safety token: {token}.")
+    for forbidden in ("Invoke-WebRequest", "Invoke-RestMethod", "curl ", "aws s3", "az storage", "Remove-Item", "del ", "rm ", "Set-Secret", "DELETE", "QUARANTINE"):
+        if forbidden.lower() in wrapper.lower():
+            result.fail(f"{category}.wrapper", f"Data wrapper contains prohibited external, destructive, or blocking behavior: {forbidden}.")
+    gitignore = (root / ".gitignore").read_text(encoding="utf-8", errors="replace")
+    if not any(line.strip().rstrip("/") == ".runtime/zero-trust" for line in gitignore.splitlines()):
+        result.fail(f"{category}.runtime", ".runtime/zero-trust/ must remain ignored.")
+    if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
+        result.passed(category, "ZT-DATA-001 inventory, classification, access, flow, encryption assessment, detection-only DLP, synthetic restore, privacy, and no-mutation boundaries are consistent.")
+
+
+def validate_system_package(root: Path, catalog: dict[str, Any], result: ValidationResult) -> None:
+    category = "package.zt-sys-001"
+    required = (SYSTEM_PACKAGE_PATH, SYSTEM_EXECUTION_PATH, SYSTEM_INVENTORY_PATH, *SYSTEM_REQUIRED_PATHS)
+    missing = [str(path) for path in required if not (root / path).is_file()]
+    if missing:
+        for path in missing:
+            result.fail(f"{category}.files", f"Required system package file is missing: {path}.")
+        return
+    try:
+        package = load_json_yaml(root / SYSTEM_PACKAGE_PATH)
+        execution = load_json_yaml(root / SYSTEM_EXECUTION_PATH)
+        inventory = load_json_yaml(root / SYSTEM_INVENTORY_PATH)
+        baselines = load_json_yaml(root / "docs/zero-trust/system-baseline-policy.yaml")
+        authority = load_json_yaml(root / "docs/zero-trust/system-configuration-authority.yaml")
+        integrity = load_json_yaml(root / "docs/zero-trust/system-integrity-policy.yaml")
+        credentials = load_json_yaml(root / "docs/zero-trust/system-credential-reference-inventory.yaml")
+        exposures = load_json_yaml(root / "docs/zero-trust/system-service-exposure.yaml")
+        services = load_json_yaml(root / "docs/zero-trust/system-service-policy.yaml")
+        recovery = load_json_yaml(root / "docs/zero-trust/system-recovery-readiness.yaml")
+        integrity_evidence = load_json_yaml(root / "docs/evidence/zero-trust/zt-sys-001-integrity-validation.yaml")
+        service_evidence = load_json_yaml(root / "docs/evidence/zero-trust/zt-sys-001-service-state.yaml")
+        schemas = (
+            ("inventory", inventory, load_schema(root / "schemas/zero-trust-system-inventory.schema.json")),
+            ("baselines", baselines, load_schema(root / "schemas/zero-trust-system-baseline-policy.schema.json")),
+            ("authority", authority, load_schema(root / "schemas/zero-trust-system-configuration-authority.schema.json")),
+            ("integrity", integrity, load_schema(root / "schemas/zero-trust-system-integrity-policy.schema.json")),
+            ("services", services, load_schema(root / "schemas/zero-trust-system-service-policy.schema.json")),
+        )
+    except ValueError as exc:
+        result.fail(f"{category}.configuration", str(exc))
+        return
+    objects = (package, execution, inventory, baselines, authority, integrity, credentials, exposures, services, recovery, integrity_evidence, service_evidence)
+    if not all(isinstance(item, dict) for item in objects):
+        result.fail(f"{category}.configuration", "System package authority records must be objects.")
+        return
+    for name, value, schema in schemas:
+        for error in validate_schema_instance(value, schema):
+            result.fail(f"{category}.{name}", error)
+
+    if package.get("package_id") != "ZT-SYS-001" or execution.get("package_id") != "ZT-SYS-001":
+        result.fail(category, "Package and execution identifiers must be ZT-SYS-001.")
+    if package.get("implementation_status") != "IMPLEMENTED" or package.get("validation_status") != "PARTIALLY_RUNTIME_VALIDATED":
+        result.fail(category, "System package must remain IMPLEMENTED / PARTIALLY_RUNTIME_VALIDATED.")
+    if package.get("current_maturity") != "UNASSESSED" or package.get("target_maturity") != "INITIAL":
+        result.fail(category, "System maturity must remain UNASSESSED with INITIAL only as the bounded target.")
+    if package.get("execution_authority") != "CODEX_EXECUTED_LIVE_RUNTIME" or execution.get("execution_authority") != "CODEX_EXECUTED_LIVE_RUNTIME":
+        result.fail(category, "System runtime evidence requires actual Codex execution authority.")
+
+    catalog_ids = {item["id"] for item in catalog.get("capabilities", []) if isinstance(item, dict) and isinstance(item.get("id"), str)}
+    mappings = package.get("capability_mappings", [])
+    mapped_ids = [item.get("id") for item in mappings if isinstance(item, dict)]
+    expected = {"ZT-4.1.1", "ZT-4.2.1", "ZT-4.2.2", "ZT-4.3.1", "ZT-4.4.1", "ZT-7.1", "ZT-8.1", "ZT-8.2"}
+    if set(mapped_ids) != expected or any(item not in catalog_ids for item in mapped_ids):
+        result.fail(category, "System capability mappings must use the reviewed canonical bounded set.")
+
+    systems = inventory.get("systems", [])
+    profiles = baselines.get("profiles", [])
+    configurations = authority.get("configurations", [])
+    system_ids = [item.get("id") for item in systems if isinstance(item, dict)]
+    profile_ids = {item.get("profile_id") for item in profiles if isinstance(item, dict)}
+    if len(systems) != 7 or len(system_ids) != len(set(system_ids)) or len(profiles) != 6 or len(configurations) != 7:
+        result.fail(f"{category}.inventory", "The bounded authority must retain seven unique systems, six profiles, and seven configuration records.")
+    for item in systems:
+        if not isinstance(item, dict):
+            continue
+        if not item.get("owner") or not item.get("custodian") or not item.get("privileged_access_model"):
+            result.fail(f"{category}.inventory", f"{item.get('id')} lacks ownership or privileged-access metadata.")
+        if item.get("baseline_profile") not in profile_ids:
+            result.fail(f"{category}.inventory", f"{item.get('id')} references an undefined baseline profile.")
+    if inventory.get("metadata", {}).get("authority") != "CODEX_REPOSITORY_AND_RESTRICTED_LIVE_VALIDATION":
+        result.fail(f"{category}.evidence", "System inventory authority must remain explicit and bounded.")
+
+    forbidden_credential_fields = {"value", "password", "token", "private_key", "secret_value", "mfa_seed", "recovery_code"}
+    for reference in credentials.get("references", []):
+        if isinstance(reference, dict) and forbidden_credential_fields & set(reference):
+            result.fail(f"{category}.credentials", f"{reference.get('reference_id')} contains a prohibited credential-value field.")
+    for config in configurations:
+        if not isinstance(config, dict):
+            continue
+        if config.get("sensitive") is True and config.get("approved_sha256") is not None:
+            result.fail(f"{category}.integrity", f"{config.get('configuration_id')} stores a checksum for sensitive content.")
+    integrity_results = integrity_evidence.get("results", {})
+    if integrity_results.get("matched") != 5 or integrity_results.get("drift_findings") != 0 or integrity_results.get("fail") != 0:
+        result.fail(f"{category}.integrity", "System integrity evidence must retain five safe matches, zero drift findings, and zero failures.")
+    if integrity.get("continuous_file_integrity_monitoring") is not False or integrity.get("automatic_restoration") is not False:
+        result.fail(f"{category}.claims", "Continuous FIM or automatic restoration was promoted without evidence.")
+
+    service_results = service_evidence.get("results", {})
+    if service_results != {"pass": 5, "warn": 2, "fail": 0} or service_evidence.get("restart_performed") is not False or services.get("automatic_restart") is not False:
+        result.fail(f"{category}.service", "Service evidence must remain 5 PASS / 2 WARN / 0 FAIL with no restart.")
+    openstack = execution.get("openstack", {})
+    results = execution.get("results", {})
+    if openstack.get("status") != "CURRENT_DEGRADED" or (openstack.get("pass"), openstack.get("warn"), openstack.get("fail")) != (46, 0, 4):
+        result.fail(f"{category}.execution", "OpenStack must retain the exact accepted CURRENT_DEGRADED 46/0/4 boundary.")
+    if results.get("exit_code") != 0 or results.get("fail") != 0 or results.get("systems_assessed") != 7 or results.get("service_failures") != 0 or results.get("drift_findings") != 0:
+        result.fail(f"{category}.execution", "Partial runtime acceptance requires seven assessed systems and zero package, service, and drift failures.")
+    if recovery.get("live_restore_performed") is not False or any(item.get("readiness") == "RESTORE_VALIDATED" and not item.get("last_recovery_evidence") for item in recovery.get("systems", []) if isinstance(item, dict)):
+        result.fail(f"{category}.recovery", "System recovery evidence contains an unsupported live restore or restore-validation claim.")
+
+    for field in ("service_restart_performed", "configuration_modified", "automatic_recovery", "complete_pam", "continuous_file_integrity_monitoring", "complete_hardening", "complete_vulnerability_management", "complete_system_recovery"):
+        if package.get(field) is not False:
+            result.fail(f"{category}.claims", f"{field} must remain false.")
+    wrapper = (root / "tools/live-validation/validate-systems-live.ps1").read_text(encoding="utf-8", errors="replace")
+    for token in ("CURRENT_DEGRADED 46/0/4", "validate_system_inventory.py", "check_configuration_drift.py", "validate_service_state.py", ".runtime/zero-trust/system", "service_restart_performed = $false", "configuration_modified = $false", "automatic_recovery_performed = $false"):
+        if token not in wrapper:
+            result.fail(f"{category}.wrapper", f"System wrapper is missing required bounded token: {token}.")
+    for forbidden in ("Restart-Service", "Stop-Service", "Start-Service", "systemctl restart", "docker compose up", "apt install", "Invoke-Expression", "ssh root@"):
+        if forbidden.lower() in wrapper.lower():
+            result.fail(f"{category}.wrapper", f"System wrapper contains prohibited mutation or unrestricted access behavior: {forbidden}.")
+    gitignore = (root / ".gitignore").read_text(encoding="utf-8", errors="replace")
+    if not any(line.strip().rstrip("/") == ".runtime/zero-trust" for line in gitignore.splitlines()):
+        result.fail(f"{category}.runtime", ".runtime/zero-trust/ must remain ignored.")
+    if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
+        result.passed(category, "ZT-SYS-001 inventory, baselines, privileged boundary, safe configuration integrity, service state, recovery gaps, privacy, and no-mutation contracts are consistent.")
+
+
+def validate_automation_package(root: Path, catalog: dict[str, Any], result: ValidationResult) -> None:
+    category = "package.zt-auto-001"
+    required = (
+        AUTOMATION_PACKAGE_PATH,
+        AUTOMATION_EXECUTION_PATH,
+        AUTOMATION_INTEGRATION_PATH,
+        AUTOMATION_ACTION_PATH,
+        AUTOMATION_WORKFLOW_PATH,
+        AUTOMATION_POLICY_PATH,
+        *AUTOMATION_REQUIRED_PATHS,
+    )
+    missing = [str(path) for path in required if not (root / path).is_file()]
+    if missing:
+        for path in missing:
+            result.fail(f"{category}.files", f"Required automation package file is missing: {path}.")
+        return
+    try:
+        package = load_json_yaml(root / AUTOMATION_PACKAGE_PATH)
+        execution = load_json_yaml(root / AUTOMATION_EXECUTION_PATH)
+        integrations = load_json_yaml(root / AUTOMATION_INTEGRATION_PATH)
+        actions = load_json_yaml(root / AUTOMATION_ACTION_PATH)
+        workflows = load_json_yaml(root / AUTOMATION_WORKFLOW_PATH)
+        policy = load_json_yaml(root / AUTOMATION_POLICY_PATH)
+        schemas = (
+            ("integrations", integrations, load_schema(root / "schemas/zero-trust-automation-integration-inventory.schema.json")),
+            ("actions", actions, load_schema(root / "schemas/zero-trust-automation-action-catalog.schema.json")),
+            ("workflows", workflows, load_schema(root / "schemas/zero-trust-automation-workflow-catalog.schema.json")),
+            ("policy", policy, load_schema(root / "schemas/zero-trust-automation-approval-policy.schema.json")),
+        )
+    except ValueError as exc:
+        result.fail(f"{category}.configuration", str(exc))
+        return
+    if not all(isinstance(item, dict) for item in (package, execution, integrations, actions, workflows, policy)):
+        result.fail(f"{category}.configuration", "Automation package authority records must be objects.")
+        return
+    for name, value, schema in schemas:
+        for error in validate_schema_instance(value, schema):
+            result.fail(f"{category}.{name}", error)
+
+    if package.get("package_id") != "ZT-AUTO-001" or execution.get("package_id") != "ZT-AUTO-001":
+        result.fail(category, "Package and execution identifiers must be ZT-AUTO-001.")
+    if package.get("implementation_status") != "IMPLEMENTED" or package.get("validation_status") != "PARTIALLY_RUNTIME_VALIDATED":
+        result.fail(category, "Automation package must remain IMPLEMENTED / PARTIALLY_RUNTIME_VALIDATED.")
+    if package.get("current_maturity") != "UNASSESSED" or package.get("target_maturity") != "INITIAL":
+        result.fail(category, "Automation maturity must remain UNASSESSED with INITIAL only as the package target.")
+    if package.get("execution_authority") != "CODEX_EXECUTED_LIVE_RUNTIME" or execution.get("execution_authority") != "CODEX_EXECUTED_LIVE_RUNTIME":
+        result.fail(category, "Live automation authority requires an actually executed restricted live workflow.")
+
+    catalog_ids = {item.get("id") for item in catalog.get("capabilities", []) if isinstance(item, dict)}
+    assessed = package.get("capability_assessment", [])
+    assessed_ids = [item.get("id") for item in assessed if isinstance(item, dict)]
+    if set(assessed_ids) != {f"ZT-8.{index}" for index in range(1, 7)} or any(item not in catalog_ids for item in assessed_ids):
+        result.fail(f"{category}.capabilities", "All and only canonical ZT-8.1 through ZT-8.6 capability boundaries must be assessed.")
+    if any(item.get("current_maturity") not in {None, "UNASSESSED"} for item in assessed if isinstance(item, dict)):
+        result.fail(f"{category}.maturity", "Package capability records cannot assign maturity.")
+
+    action_records = actions.get("actions", [])
+    workflow_records = workflows.get("workflows", [])
+    integration_records = integrations.get("integrations", [])
+    if (len(action_records), len(workflow_records), len(integration_records)) != (20, 7, 11):
+        result.fail(f"{category}.inventory", "Automation authority must retain the 13/6 ZT-AUTO-001 baseline plus seven actions and one workflow registered by ZT-CV-001, with 11 integrations.")
+    if actions.get("metadata", {}).get("default_policy") != "DENY_UNREGISTERED" or policy.get("metadata", {}).get("default_decision") != "DENY":
+        result.fail(f"{category}.policy", "Action and approval policy must remain default deny.")
+    if workflows.get("metadata", {}).get("default_execution_mode") != "CHECK":
+        result.fail(f"{category}.policy", "Workflow default execution mode must remain CHECK.")
+
+    forbidden_action_fields = {"command", "executable_path", "remote_target", "remote_command", "ssh_target", "shell"}
+    allowed_executable_risks = {"R0_READ_ONLY", "R1_LOCAL_ARTIFACT_WRITE", "R2_REPOSITORY_STATUS_PROPOSAL", "R3_REMOTE_READ_ONLY"}
+    for action in action_records:
+        if not isinstance(action, dict):
+            continue
+        action_id = action.get("id", "UNKNOWN")
+        if forbidden_action_fields & set(action):
+            result.fail(f"{category}.actions", f"{action_id} contains an arbitrary execution field.")
+        if action.get("executable") is True and action.get("risk_level") not in allowed_executable_risks:
+            result.fail(f"{category}.actions", f"{action_id} enables a prohibited R4-R8 action.")
+        if action.get("executable") is True and action.get("implementation") in {None, "", "NONE"}:
+            result.fail(f"{category}.actions", f"{action_id} has no fixed implementation handler.")
+        if any(capability not in catalog_ids for capability in action.get("capability_mappings", [])):
+            result.fail(f"{category}.actions", f"{action_id} references an unknown capability.")
+        if action.get("retry_policy") not in {"NONE", "FIXED_COUNT_READ_ONLY"}:
+            result.fail(f"{category}.actions", f"{action_id} has an unsupported retry policy.")
+
+    execution_workflows = execution.get("workflows", [])
+    execution_results = execution.get("results", {})
+    if len(execution_workflows) != 1:
+        result.fail(f"{category}.execution", "Exactly one reviewed live cross-domain workflow record is required for this package.")
+    else:
+        live = execution_workflows[0]
+        expected_hash = "c64b56bfdb0831b91290f051ea385e4c7fefbe53afe665ac340e2545accaba32"
+        if live.get("workflow_id") != "ZTA-WF-VAL-001" or live.get("execution_mode") != "EXECUTE_READ_ONLY" or live.get("plan_hash") != expected_hash or live.get("result") != "PARTIAL":
+            result.fail(f"{category}.execution", "Live execution must retain the reviewed workflow, mode, plan hash, and honest PARTIAL result.")
+        steps = live.get("steps", [])
+        counts = Counter(item.get("outcome") for item in steps if isinstance(item, dict))
+        if counts != Counter({"PASS": 4, "WARN": 4}) or any(item.get("exit_code") != 0 for item in steps if isinstance(item, dict)):
+            result.fail(f"{category}.execution", "Live execution must retain 4 PASS / 4 WARN / 0 FAIL and zero child failures.")
+    expected_results = {
+        "workflows_attempted": 1, "workflows_completed": 0, "workflows_partial": 1,
+        "workflows_failed": 0, "workflows_blocked": 0, "steps_passed": 4,
+        "steps_warned": 4, "steps_failed": 0, "steps_skipped": 0,
+        "policy_denials": 0, "approval_blocks": 0, "timeout_count": 0,
+        "mutation_actions_executed": 0, "external_notifications_sent": 0, "exit_code": 0,
+    }
+    if any(execution_results.get(key) != value for key, value in expected_results.items()):
+        result.fail(f"{category}.execution", "Sanitized automation aggregate does not match the accepted partial live execution.")
+
+    tools_text = "\n".join(
+        path.read_text(encoding="utf-8", errors="replace")
+        for path in sorted((root / "tools/automation").glob("*.py"))
+    )
+    for forbidden in ("shell=True", "eval(", "exec(", "Invoke-Expression"):
+        if forbidden in tools_text:
+            result.fail(f"{category}.security", f"Automation code contains prohibited execution behavior: {forbidden}.")
+    runner = (root / "tools/automation/run_workflow.py").read_text(encoding="utf-8", errors="replace")
+    for token in ("command_registry", "subprocess.run", "shell=False", "SAFE_ENV_NAMES", "SINGLE_WORKFLOW_LOCK", "authoritative_update_performed"):
+        if token not in runner and token != "SINGLE_WORKFLOW_LOCK":
+            result.fail(f"{category}.security", f"Restricted runner is missing required boundary token: {token}.")
+    for field in ("arbitrary_execution", "shell_interpolation", "caller_controlled_ssh_target", "mutation_action_executable", "automatic_authoritative_update", "external_notification_integration", "autonomous_remediation", "complete_soar"):
+        if package.get(field) is not False:
+            result.fail(f"{category}.claims", f"{field} must remain false.")
+    gitignore = (root / ".gitignore").read_text(encoding="utf-8", errors="replace")
+    if not any(line.strip().rstrip("/") == ".runtime/zero-trust" for line in gitignore.splitlines()):
+        result.fail(f"{category}.runtime", ".runtime/zero-trust/ must remain ignored.")
+    if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
+        result.passed(category, "ZT-AUTO-001 catalogs, default-deny policy, deterministic plan, fixed-handler live execution, evidence, telemetry, and no-mutation boundaries are consistent.")
+
+
+def validate_continuous_verification_package(root: Path, catalog: dict[str, Any], result: ValidationResult) -> None:
+    category = "package.zt-cv-001"
+    required = (
+        CONTINUOUS_VERIFICATION_PACKAGE_PATH,
+        CONTINUOUS_VERIFICATION_EXECUTION_PATH,
+        *CONTINUOUS_VERIFICATION_POLICY_PATHS,
+        *CONTINUOUS_VERIFICATION_SCHEMA_PATHS,
+        *CONTINUOUS_VERIFICATION_REQUIRED_PATHS,
+    )
+    missing = [str(path) for path in required if not (root / path).is_file()]
+    if missing:
+        for path in missing:
+            result.fail(f"{category}.files", f"Required continuous verification file is missing: {path}.")
+        return
+    try:
+        package = load_json_yaml(root / CONTINUOUS_VERIFICATION_PACKAGE_PATH)
+        execution = load_json_yaml(root / CONTINUOUS_VERIFICATION_EXECUTION_PATH)
+        authorities = [load_json_yaml(root / path) for path in CONTINUOUS_VERIFICATION_POLICY_PATHS]
+        schemas = [load_schema(root / path) for path in CONTINUOUS_VERIFICATION_SCHEMA_PATHS]
+    except ValueError as exc:
+        result.fail(f"{category}.configuration", str(exc))
+        return
+    if not isinstance(package, dict) or not isinstance(execution, dict) or not all(isinstance(item, dict) for item in authorities):
+        result.fail(f"{category}.configuration", "Continuous verification authorities must be objects.")
+        return
+    for name, authority, schema in zip(
+        ("policy", "freshness", "capability-acceptance", "package-gates", "regression", "exceptions", "maturity", "history"),
+        authorities,
+        schemas[:8],
+    ):
+        for error in validate_schema_instance(authority, schema):
+            result.fail(f"{category}.{name}", error)
+
+    policy, freshness, capability_acceptance, gates, regressions, exceptions, maturity, history = authorities
+    if package.get("package_id") != "ZT-CV-001" or execution.get("package_id") != "ZT-CV-001":
+        result.fail(category, "Package and execution identifiers must be ZT-CV-001.")
+    expected_state = ("IMPLEMENTED", "PARTIALLY_RUNTIME_VALIDATED", "PARTIALLY_ACCEPTED", "EC3_ONE_TIME_RUNTIME", "UNASSESSED")
+    actual_state = (
+        package.get("implementation_status"), package.get("validation_status"), package.get("acceptance_state"),
+        package.get("evidence_continuity"), package.get("current_maturity"),
+    )
+    if actual_state != expected_state:
+        result.fail(category, "ZT-CV-001 must remain IMPLEMENTED / PARTIALLY_RUNTIME_VALIDATED / PARTIALLY_ACCEPTED / EC3 / UNASSESSED.")
+    if policy.get("metadata", {}).get("default_decision") != "DENY_ACCEPTANCE_WITHOUT_EVIDENCE":
+        result.fail(f"{category}.policy", "Continuous verification acceptance must default deny.")
+    if len(policy.get("validator_registry", [])) != 10 or len(policy.get("verification_classes", [])) != 10 or len(policy.get("policies", [])) != 10:
+        result.fail(f"{category}.policy", "Policy must retain ten validators, ten verification classes, and ten package policies.")
+    if len(freshness.get("policies", [])) != 4 or len(capability_acceptance.get("capabilities", [])) != 12 or len(gates.get("gates", [])) != 10 or len(regressions.get("regressions", [])) != 11:
+        result.fail(f"{category}.inventory", "CV authorities must retain 4 freshness policies, 12 capability records, 10 gates, and 11 regression classes.")
+    if exceptions.get("exceptions") != []:
+        result.fail(f"{category}.exceptions", "No active exception is accepted in the CV baseline.")
+    if any(item.get("decision") == "UPGRADE_PROPOSED" and "EC4_REPEATABLE_RUNTIME" not in item.get("required_evidence_continuity", []) for item in maturity.get("rules", [])):
+        result.fail(f"{category}.maturity", "A maturity upgrade proposal cannot bypass EC4.")
+
+    catalog_ids = {item.get("id") for item in catalog.get("capabilities", []) if isinstance(item, dict)}
+    assessed = package.get("capability_assessment", [])
+    assessed_ids = {item.get("id") for item in assessed if isinstance(item, dict)}
+    if assessed_ids != {"ZT-7.1", "ZT-8.1", "ZT-8.2"} or any(item not in catalog_ids for item in assessed_ids):
+        result.fail(f"{category}.capabilities", "ZT-CV-001 must assess only its three canonical bounded capability mappings.")
+    if any(item.get("current_maturity") != "UNASSESSED" for item in assessed if isinstance(item, dict)):
+        result.fail(f"{category}.maturity", "CV capability records must remain UNASSESSED.")
+
+    expected_execution_id = "ZTA-20260722T045752Z-eb639d92"
+    expected_hash = "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624"
+    if execution.get("execution_id") != expected_execution_id or execution.get("workflow_id") != "ZT-CV-WF-001" or execution.get("plan_hash") != expected_hash:
+        result.fail(f"{category}.execution", "CV evidence must retain the reviewed execution ID, workflow, and immutable plan hash.")
+    if execution.get("result") != "PARTIAL" or execution.get("results") != {"steps_passed": 8, "steps_warned": 2, "steps_failed": 0, "steps_skipped": 0, "exit_code": 0}:
+        result.fail(f"{category}.execution", "CV evidence must retain the honest PARTIAL 8 PASS / 2 WARN / 0 FAIL result.")
+    history_records = history.get("executions", [])
+    execution_ids = [item.get("execution_id") for item in history_records if isinstance(item, dict)]
+    if len(history_records) < 10 or len(execution_ids) != len(set(execution_ids)):
+        result.fail(f"{category}.history", "Verification history must contain at least ten accepted execution records with unique execution IDs.")
+    live = next((item for item in history_records if item.get("execution_id") == expected_execution_id), None)
+    if not live or live.get("scheduled_trigger") is not False or live.get("result") != "WARN" or (live.get("pass"), live.get("warn"), live.get("fail")) != (8, 2, 0):
+        result.fail(f"{category}.history", "CV history must retain the one manual accepted 8/2/0 record without schedule credit.")
+    for record in history_records:
+        for relative, expected in record.get("evidence_hashes", {}).items():
+            path = root / relative
+            if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                result.fail(f"{category}.regression", f"Tracked evidence hash diverged: {relative}.")
+
+    cv_gate = next((item for item in gates.get("gates", []) if item.get("package_id") == "ZT-CV-001"), None)
+    if not cv_gate or cv_gate.get("acceptance_state") != "PARTIALLY_ACCEPTED" or cv_gate.get("required_evidence_continuity") != "EC3_ONE_TIME_RUNTIME":
+        result.fail(f"{category}.gate", "CV gate must remain partially accepted at EC3.")
+    for field in ("automatic_remediation", "authoritative_status_update", "maturity_assignment", "schedule_installed", "scheduled_operation", "continuous_operation", "phase_1_complete"):
+        if package.get(field) is not False:
+            result.fail(f"{category}.claims", f"{field} must remain false.")
+    wrapper = (root / "tools/live-validation/run-continuous-verification.ps1").read_text(encoding="utf-8", errors="replace")
+    for forbidden in ("Register-ScheduledTask", "Restart-Service", "Invoke-Expression"):
+        if forbidden in wrapper:
+            result.fail(f"{category}.security", f"CV wrapper contains prohibited behavior: {forbidden}.")
+    if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
+        result.passed(category, "ZT-CV-001 policies, schemas, history, manual fixed-handler runtime evidence, EC3 boundary, and no-mutation/no-schedule/no-maturity claims are consistent.")
+
+
+def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], result: ValidationResult) -> None:
+    category = "package.zt-rv-001"
+    required = (
+        REPEATABLE_VALIDATION_CAMPAIGN_PATH, REPEATABILITY_ACCEPTANCE_POLICY_PATH,
+        REPEATABLE_VALIDATION_PACKAGE_PATH, *REPEATABLE_VALIDATION_SCHEMA_PATHS,
+        *REPEATABLE_VALIDATION_REQUIRED_PATHS,
+    )
+    missing = [str(path) for path in required if not (root / path).is_file()]
+    if missing:
+        for path in missing:
+            result.fail(f"{category}.files", f"Required repeatability campaign file is missing: {path}.")
+        return
+    try:
+        campaign = load_json_yaml(root / REPEATABLE_VALIDATION_CAMPAIGN_PATH)
+        policy = load_json_yaml(root / REPEATABILITY_ACCEPTANCE_POLICY_PATH)
+        package = load_json_yaml(root / REPEATABLE_VALIDATION_PACKAGE_PATH)
+        campaign_schema = load_schema(root / REPEATABLE_VALIDATION_SCHEMA_PATHS[0])
+        policy_schema = load_schema(root / REPEATABLE_VALIDATION_SCHEMA_PATHS[1])
+        recommendation = load_json_yaml(root / "docs/zero-trust/integrated-capability-assessment.yaml")
+    except ValueError as exc:
+        result.fail(f"{category}.configuration", str(exc))
+        return
+    for name, value, schema in (("campaign", campaign, campaign_schema), ("policy", policy, policy_schema)):
+        for error in validate_schema_instance(value, schema):
+            result.fail(f"{category}.{name}", error)
+    expected_selection = ("ZT-4.1.1", "ZTCV-VAL-SYS", "ZT-CV-WF-001")
+    recommendation_record = recommendation.get("repeatability_recommendation", {})
+    selected = campaign.get("selection", {})
+    if (recommendation_record.get("capability_id"), recommendation_record.get("validator_id"), recommendation_record.get("workflow_id")) != expected_selection:
+        result.fail(f"{category}.selection", "CV must recommend exactly ZT-4.1.1 / ZTCV-VAL-SYS / ZT-CV-WF-001.")
+    if (selected.get("capability_id"), selected.get("validator_id"), selected.get("workflow_id")) != expected_selection:
+        result.fail(f"{category}.selection", "RV campaign selection must match the exact CV recommendation.")
+    catalog_ids = {item.get("id") for item in catalog.get("capabilities", []) if isinstance(item, dict)}
+    if selected.get("capability_id") not in catalog_ids:
+        result.fail(f"{category}.selection", "Selected capability is not canonical.")
+    requirements = campaign.get("requirements", {})
+    if (requirements.get("evidence_continuity_target"), requirements.get("minimum_successful_executions"), requirements.get("minimum_consecutive_successes"), requirements.get("minimum_execution_separation")) != ("EC4_REPEATABLE_RUNTIME", 3, 3, "PT24H"):
+        result.fail(f"{category}.criteria", "RV campaign must target EC4 with three consecutive successes separated by PT24H.")
+    execution_policy = campaign.get("execution_policy", {})
+    for field in ("automatic_schedule", "automatic_retry", "automatic_remediation", "mutation_allowed", "history_auto_append"):
+        if execution_policy.get(field) is not False:
+            result.fail(f"{category}.security", f"{field} must remain false.")
+    scope = campaign.get("target_scope_definition", {})
+    scope_hash = hashlib.sha256(json.dumps(scope, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")).hexdigest()
+    fingerprints = campaign.get("fingerprints", {})
+    if fingerprints.get("target_scope_fingerprint") != scope_hash:
+        result.fail(f"{category}.fingerprints", "Target-scope fingerprint is not deterministic.")
+    validator_hash = hashlib.sha256((root / "tools/live-validation/validate-systems-live.ps1").read_bytes()).hexdigest()
+    if fingerprints.get("validator_version") != f"1.0.0+sha256:{validator_hash}":
+        result.fail(f"{category}.fingerprints", "Validator version/hash changed without review.")
+    if fingerprints.get("expected_plan_hash") != "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624":
+        result.fail(f"{category}.fingerprints", "Expected deterministic plan hash changed.")
+    if policy.get("metadata", {}).get("default_decision") != "DENY" or policy.get("criteria", {}).get("target_continuity") != "EC4_REPEATABLE_RUNTIME":
+        result.fail(f"{category}.policy", "Repeatability acceptance must default deny and target EC4 only.")
+    if package.get("implementation_status") != "IMPLEMENTED" or package.get("validation_status") != "VALIDATED_LOCAL_CONFIGURATION" or package.get("acceptance_state") != "NOT_STARTED":
+        result.fail(category, "RV tooling must remain IMPLEMENTED / VALIDATED_LOCAL_CONFIGURATION / NOT_STARTED before its first live run.")
+    if package.get("accepted_campaign_executions") != 0 or package.get("current_continuity") != "EC3_ONE_TIME_RUNTIME":
+        result.fail(f"{category}.claims", "No RV campaign execution or EC4 credit exists yet.")
+    for field in ("automatic_schedule", "automatic_retry", "automatic_remediation", "mutation_allowed", "history_auto_append", "authoritative_update_performed", "maturity_assigned", "scheduled_operation", "continuous_operation", "phase_1_complete"):
+        if package.get(field) is not False:
+            result.fail(f"{category}.claims", f"{field} must remain false.")
+    wrapper = (root / "tools/live-validation/run-repeatable-validation-pilot.ps1").read_text(encoding="utf-8", errors="replace")
+    for forbidden in ("Register-ScheduledTask", "Restart-Service", "Invoke-Expression"):
+        if forbidden in wrapper:
+            result.fail(f"{category}.security", f"Repeatability wrapper contains prohibited behavior: {forbidden}.")
+    if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
+        result.passed(category, "ZT-RV-001 single-candidate campaign, EC4 criteria, deterministic fingerprints, explicit history-review boundary, and enforced not-before time are valid; no live campaign execution is claimed.")
 
 
 def run_validation(root: Path, strict: bool = False) -> ValidationResult:
@@ -1213,6 +2186,13 @@ def run_validation(root: Path, strict: bool = False) -> ValidationResult:
     validate_foundation_package(root, catalog, result)
     validate_router_package(root, catalog, result)
     validate_telemetry_package(root, catalog, result)
+    validate_endpoint_package(root, catalog, result)
+    validate_application_package(root, catalog, result)
+    validate_data_package(root, catalog, result)
+    validate_system_package(root, catalog, result)
+    validate_automation_package(root, catalog, result)
+    validate_continuous_verification_package(root, catalog, result)
+    validate_repeatable_validation_package(root, catalog, result)
     if not any(item.level == "FAIL" and item.category.startswith("schema.") for item in result.findings):
         validate_catalog_baseline_sync(catalog, baseline, result)
         validate_maturity(catalog["capabilities"], result, "catalog")

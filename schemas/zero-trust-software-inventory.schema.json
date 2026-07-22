@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://snsd.example/schemas/zero-trust-software-inventory.schema.json",
+  "title": "Sanitized Zero Trust Software Inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "package_id", "asset_id", "collection_time", "source_authority", "operating_system", "software", "patch_state", "vulnerability", "endpoint_agent", "incomplete_data"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "package_id": {"const": "ZT-DEV-001"},
+    "asset_id": {"type": "string", "pattern": "^ZTD-ASSET-[A-Z0-9-]+$"},
+    "collection_time": {"type": "string", "format": "date-time"},
+    "source_authority": {"enum": ["CODEX_EXECUTED_LIVE_RUNTIME", "SYNTHETIC_FIXTURE"]},
+    "operating_system": {
+      "type": "object", "additionalProperties": false,
+      "required": ["family", "release", "kernel"],
+      "properties": {"family": {"type": "string"}, "release": {"type": "string"}, "kernel": {"type": "string"}}
+    },
+    "software": {
+      "type": "object", "additionalProperties": false,
+      "required": ["package_count", "container_runtime", "compose_runtime", "running_container_count"],
+      "properties": {
+        "package_count": {"type": "integer", "minimum": 0},
+        "container_runtime": {"type": "string"},
+        "compose_runtime": {"type": "string"},
+        "running_container_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "patch_state": {
+      "type": "object", "additionalProperties": false,
+      "required": ["classification", "security_updates_available", "reboot_required", "automatic_patching_performed"],
+      "properties": {
+        "classification": {"enum": ["CURRENT", "SECURITY_UPDATES_AVAILABLE", "REBOOT_REQUIRED", "PACKAGE_MANAGER_ERROR", "UNSUPPORTED_OS", "UNKNOWN"]},
+        "security_updates_available": {"type": ["integer", "null"], "minimum": 0},
+        "reboot_required": {"type": "boolean"},
+        "automatic_patching_performed": {"const": false}
+      }
+    },
+    "vulnerability": {
+      "type": "object", "additionalProperties": false,
+      "required": ["assessment_method", "classification", "finding_count", "exploit_executed"],
+      "properties": {
+        "assessment_method": {"enum": ["NATIVE_SECURITY_UPDATE_PROXY", "DEDICATED_SCANNER", "NOT_AVAILABLE"]},
+        "classification": {"enum": ["ASSESSED_NO_BLOCKING_FINDING", "FINDINGS_PRESENT", "ASSESSMENT_LIMITED", "NOT_ASSESSED"]},
+        "finding_count": {"type": ["integer", "null"], "minimum": 0},
+        "exploit_executed": {"const": false}
+      }
+    },
+    "endpoint_agent": {
+      "type": "object", "additionalProperties": false,
+      "required": ["state", "installed_by_package"],
+      "properties": {"state": {"enum": ["NOT_INSTALLED", "EXISTING_HEALTHY", "EXISTING_UNHEALTHY", "UNKNOWN"]}, "installed_by_package": {"const": false}}
+    },
+    "incomplete_data": {"type": "array", "items": {"type": "string"}}
+  }
+}

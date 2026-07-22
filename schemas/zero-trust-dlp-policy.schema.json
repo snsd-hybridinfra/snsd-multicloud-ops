@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "package_id", "mode", "external_transmission", "rules", "false_positive_process", "allowlisted_contexts"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "package_id": {"const": "ZT-DATA-001"}, "mode": {"const": "DETECTION_ONLY"}, "external_transmission": {"const": false},
+    "source_modification": {"const": false},
+    "approved_actions": {"type": "array", "items": {"enum": ["LOG", "ALERT", "CREATE_EVIDENCE", "REQUIRE_REVIEW"]}},
+    "prohibited_actions": {"type": "array", "items": {"enum": ["DELETE", "QUARANTINE", "BLOCK", "MODIFY", "ROTATE"]}},
+    "approved_scan_roots": {"type": "array", "items": {"type": "string"}},
+    "excluded_paths": {"type": "array", "items": {"type": "string"}},
+    "rules": {"type": "array", "minItems": 11, "items": {"type": "object", "required": ["rule_id", "category", "detector", "actions", "redaction", "fixture_handling", "severity"], "properties": {
+      "rule_id": {"type": "string", "pattern": "^ZTDLP-[A-Z0-9-]+$"}, "actions": {"type": "array", "minItems": 1, "items": {"enum": ["LOG", "ALERT", "CREATE_EVIDENCE", "REQUIRE_REVIEW"]}}, "redaction": {"const": "REDACT_MATCH"}, "fixture_handling": {"const": "MARK_TEST_FIXTURE_NON_ACTIONABLE"}
+    }, "additionalProperties": true}},
+    "allowlisted_contexts": {"type": "array", "items": {"type": "string"}},
+    "false_positive_process": {"type": "string"},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }, "additionalProperties": false
+}

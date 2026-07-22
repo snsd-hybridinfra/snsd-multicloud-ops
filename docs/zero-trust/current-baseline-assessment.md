@@ -23,12 +23,21 @@ independent.
 - User-executed sanitized EVE-NG runtime evidence under S002
 - User-executed sanitized OpenStack AIO runtime evidence under S005
 - Codex-executed restricted live read-only S005 validation evidence
+- Codex-executed bounded ZT-NET-001 persistent ACL and ZT-VIS-001 persistent
+  telemetry evidence
 - Scenario definitions and repository tracking matrices
 - Local repository structure and quality validators
 
 ## Current Implementation Boundary
 
-Runtime evidence supports bounded macro-segmentation and inter-zone policy in EVE-NG, a limited OpenStack AIO provider/tenant data path, restricted read-only control-plane validation, and sanitized evidence capture. It does not establish micro-segmentation, continuous identity verification, endpoint compliance, PAM, EDR/XDR, DLP, centralized security event management, dynamic policy, automated response, complete data governance, or organization-wide operation.
+Runtime evidence supports bounded macro-segmentation, one persistent directional
+inter-zone policy in EVE-NG, a limited OpenStack AIO provider/tenant data path,
+restricted read-only control-plane validation, sanitized evidence capture, and
+single-node persistent storage for approved sanitized telemetry. It does not
+establish complete micro-segmentation, continuous identity verification,
+endpoint compliance, PAM, EDR/XDR, DLP, enterprise security event management,
+dynamic policy, automated response, complete data governance, or
+organization-wide operation.
 
 ## Capability Coverage Summary
 
@@ -40,11 +49,11 @@ These dimensions overlap; validation, maturity, and evidence are reported separa
 | Validation status | Count |
 |---|---:|
 | VALIDATED | 0 |
-| PARTIALLY_VALIDATED | 6 |
+| PARTIALLY_VALIDATED | 12 |
 | IMPLEMENTED | 0 |
-| REFERENCE_ONLY | 7 |
+| REFERENCE_ONLY | 5 |
 | PLANNED | 0 |
-| GAP_IDENTIFIED | 39 |
+| GAP_IDENTIFIED | 35 |
 | NOT_APPLICABLE | 0 |
 
 | Maturity | Count |
@@ -58,10 +67,10 @@ These dimensions overlap; validation, maturity, and evidence are reported separa
 
 | Evidence level | Count |
 |---|---:|
-| NONE | 39 |
-| DESIGN | 7 |
+| NONE | 35 |
+| DESIGN | 5 |
 | CONFIGURATION | 0 |
-| RUNTIME | 6 |
+| RUNTIME | 12 |
 | CONTINUOUS | 0 |
 
 | Domain | Capabilities |
@@ -119,15 +128,18 @@ All 52 capabilities have `current_maturity: UNASSESSED`. 39 capabilities have no
 
 1. Implement and validate bounded identity access controls without claiming continuous authentication.
 2. Add endpoint inventory/posture evidence before mapping device capabilities.
-3. Extend network evidence from macro-segmentation toward explicit policy coverage without relabeling VLANs as micro-segmentation.
+3. Preserve the bounded directional ACL and expand policy coverage only through separately approved designs without relabeling VLANs as micro-segmentation.
 4. Implement application/workload authorization and secure-deployment evidence under existing scenarios.
 5. Establish data ownership, classification, access-control, and encryption scope before data-pillar assessment.
-6. Add security-relevant telemetry coverage and retention before assessing visibility/analytics.
+6. Add any new security-relevant telemetry source only with least-privilege collection, minimization, retention, and availability evidence.
 7. Assess one bounded capability against its detailed Chapter 3 maturity table; do not calculate a repository-wide score.
 
 ## ZT-NET-001 bounded evidence update
 
-The 2026-07-17 ZT-NET-001 execution adds bounded router evidence (38 PASS,
-1 WARN, 0 FAIL) for the network path and restricted validation workflow. It
-does not promote any capability-wide status or maturity. The missing persistent
-interface ACL binding remains an explicit gap.
+The 2026-07-22 ZT-NET-001 execution adds one persistent directional ACL with
+39 PASS, 0 WARN, 0 FAIL, 5/5 gateway allow, 0/5 Kubernetes deny, 5/5 public
+allow, counter evidence, and startup persistence. The 2026-07-22 ZT-VIS-001
+increment adds pinned single-node Grafana/Loki/Alloy storage with 336-hour
+retention and post-restart query evidence for approved sanitized JSONL. These
+bounded package validations do not promote any capability-wide status or
+maturity; broader network and visibility gaps remain explicit.

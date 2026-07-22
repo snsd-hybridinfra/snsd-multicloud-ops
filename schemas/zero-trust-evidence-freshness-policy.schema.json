@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Zero Trust evidence freshness policy","type":"object","additionalProperties":false,
+  "required":["metadata","policies"],
+  "properties":{"metadata":{"type":"object","required":["environment","policy_version","authority","states","limitations"]},"policies":{"type":"array","minItems":1,"items":{"type":"object","required":["id","evidence_type","freshness_window","grace_period","expiration_window","expiration_behavior","acceptance_impact","reassessment_impact"]}}}
+}

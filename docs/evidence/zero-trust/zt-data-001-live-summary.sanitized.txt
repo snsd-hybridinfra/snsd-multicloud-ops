@@ -1,0 +1,14 @@
+ZT-DATA-001 SANITIZED LIVE EXECUTION SUMMARY
+execution_authority=CODEX_EXECUTED_LIVE_RUNTIME
+scope=repository-generated evidence, sanitized telemetry metadata, synthetic backup fixture
+command=powershell -NoProfile -ExecutionPolicy Bypass -File tools/live-validation/validate-data-live.ps1
+[PASS] inventory, classification, ownership, access-policy, and data-flow validation
+[PASS] detection-only DLP scan; confirmed findings=0; controlled fixtures=8; matches redacted=true
+[PASS] synthetic backup and isolated restore SHA-256 equality; source overwritten=false
+[PASS] external transmission=false; blocking DLP=false; key rotation=false
+[WARN] monitoring and OpenStack backup/restore states remain UNKNOWN
+exit_code=0
+secrets=0
+personal_records=0
+full_file_contents=0
+runtime_paths=normalized

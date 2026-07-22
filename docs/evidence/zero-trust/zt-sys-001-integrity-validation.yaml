@@ -1,0 +1,14 @@
+{
+  "package_id": "ZT-SYS-001", "execution_date": "2026-07-22", "execution_authority": "CODEX_EXECUTED_LOCAL", "comparison_scope": "SAFE_NON_SECRET_REPOSITORY_CONFIGURATION_AND_METADATA_ONLY_HOST_RECORDS", "continuous_monitoring": false, "automatic_restoration": false,
+  "records": [
+    {"configuration_id": "ZTSYS-CONFIG-OBSERVABILITY-COMPOSE", "state": "MATCHED", "actual_sha256": "8dadcca12ba0afcf6d70c1a843e202d3234cb6ed1ca0aa174c09b38506bb3fc5", "owner_match": true, "mode_match": true, "syntax_result": "PASS", "evidence": "Current repository file and runtime service health"},
+    {"configuration_id": "ZTSYS-CONFIG-RUNTIME-IGNORE", "state": "MATCHED", "actual_sha256": "8454e5f6b0d33f4fe89803ac552d3da0480fb61a7abf8456a3f0312676687240", "owner_match": true, "mode_match": true, "syntax_result": "PASS", "evidence": "Current repository file and git ignore behavior"},
+    {"configuration_id": "ZTSYS-CONFIG-OPENSTACK-WRAPPER", "state": "MATCHED", "actual_sha256": "6203916178ad1ebf77134cf526b6be432f90e5c73985bd77f09ada2058a94cc1", "owner_match": true, "mode_match": true, "syntax_result": "PASS", "evidence": "Current wrapper executed the fixed OpenStack validator command"},
+    {"configuration_id": "ZTSYS-CONFIG-EVE-WRAPPER", "state": "MATCHED", "actual_sha256": "c5dc6a9eadae08d740251200426dcfab6b1fbb702f9b4cf4e0ebcd2714f5714b", "owner_match": true, "mode_match": true, "syntax_result": "PASS", "evidence": "Current wrapper executed the fixed EVE validator command"},
+    {"configuration_id": "ZTSYS-CONFIG-ROUTER-WRAPPER", "state": "MATCHED", "actual_sha256": "44ebe1b9498bbf11beccdba620994a6a3975b758909df14a2dd25c69b8145bd1", "owner_match": true, "mode_match": true, "syntax_result": "PASS", "evidence": "Current wrapper executed the fixed router validator command"},
+    {"configuration_id": "ZTSYS-CONFIG-RESTRICTED-ENDPOINTS", "state": "CONFIGURATION_ONLY", "actual_sha256": null, "owner_match": true, "mode_match": true, "syntax_result": "PASS", "evidence": "Current allowed commands execute and prior exact allow/deny/metadata evidence remains accepted; secret-bearing content not hashed"},
+    {"configuration_id": "ZTSYS-CONFIG-KOLLA-GENERATED", "state": "NOT_ASSESSED", "actual_sha256": null, "owner_match": false, "mode_match": false, "syntax_result": "NOT_ASSESSED", "evidence": "Current API and container-health summary only; generated secret-bearing content excluded"}
+  ],
+  "results": {"matched": 5, "configuration_only": 1, "not_assessed": 1, "drift_findings": 0, "fail": 0},
+  "sanitization": {"secret_values": 0, "secret_hashes": 0, "file_contents": 0, "paths_normalized": true}
+}

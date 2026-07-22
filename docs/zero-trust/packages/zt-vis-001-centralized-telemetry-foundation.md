@@ -4,7 +4,7 @@
 
 ZT-VIS-001 centralizes selected sanitized validator and repository-validation
 summaries into one local JSONL event model and applies deterministic correlation.
-It is IMPLEMENTED and PARTIALLY_VALIDATED. Current maturity is UNASSESSED and
+It is IMPLEMENTED and VALIDATED for the bounded package scope. Current maturity is UNASSESSED and
 the bounded target is INITIAL.
 
 The package maps conservatively to ZT-7.1, ZT-7.2, ZT-7.3, ZT-8.2, and ZT-8.6.
@@ -12,16 +12,11 @@ ZT-7.4 is excluded because no user/device behavior analysis exists.
 
 ## Current-state audit and architecture decision
 
-Prometheus and Grafana artifacts are configuration examples only. No running
-Prometheus, Grafana, Loki, Promtail, Alloy, Elasticsearch, OpenSearch, Logstash,
-Filebeat, Fluent Bit, or central syslog service was evidenced. Host capacity
-also requires staged VM execution.
-
-The selected architecture is therefore a repository-controlled local JSONL
-pipeline over the existing restricted validators. Loki/Alloy/Grafana is the
-future user-installed candidate for persistent centralized storage and
-dashboarding. Multiple competing stacks, Wazuh, and commercial SIEM products
-were rejected.
+The first execution established the repository-controlled local JSONL pipeline
+over the existing restricted validators. The accepted persistent increment now
+runs pinned Grafana, Loki, and Alloy containers on the dedicated monitoring VM.
+Multiple competing stacks, Wazuh, and commercial SIEM products remain outside
+this package.
 
 ~~~mermaid
 flowchart LR
@@ -29,7 +24,10 @@ flowchart LR
   E["EVE validator"] --> C
   R["Router validator"] --> C
   G["Repository validator"] --> C
-  C --> J["Ignored sanitized runtime JSONL"]
+  C --> J["Approved sanitized runtime JSONL"]
+  J --> A["Alloy"]
+  A --> L["Persistent Loki"]
+  L --> G["Loopback Grafana"]
 ~~~
 
 ## Event and correlation model
@@ -58,9 +56,11 @@ policy.
 Collection invokes only existing forced-command endpoints with BatchMode.
 There is no direct administrator credential, SSH restriction bypass, remote
 host change, broad filesystem scan, Docker socket mount, or personal workstation
-collection. Raw runtime is stored only under .runtime/zero-trust/telemetry/ and
-is ignored. Reviewed summaries contain no usernames, addresses, UUIDs, tokens,
-MAC addresses, or private paths.
+collection. Raw validator runtime is stored only under
+.runtime/zero-trust/telemetry/ and is ignored. Only approved sanitized JSONL is
+copied to the dedicated VM input directory. Loki retains it for 14 days;
+Grafana and Loki data survive container restart. Reviewed summaries contain no
+usernames, addresses, UUIDs, tokens, MAC addresses, or private paths.
 
 Operational monitoring reports health and validator state. Security analytics
 is limited to normalized, deterministic correlation. Neither is described as a
@@ -81,12 +81,15 @@ flowchart LR
 Four running sources produced 164 normalized events with zero rejections.
 Live correlation produced no finding, while the controlled validator-failure
 fixture produced one expected finding. The package returned 8 PASS, 0 WARN,
-0 FAIL, and exit code 0.
+0 FAIL, and exit code 0. The persistent increment then passed three service
+health checks, three loopback endpoint checks, 336-hour retention, sanitized
+event ingestion/query, secret-pattern scanning, and pre/post-restart retrieval
+of the same event.
 
 ## Limitations and remaining gaps
 
-No persistent central storage, dashboard, host journal ingestion, alert
-delivery, behavior analytics, or automated response is implemented. A Monitoring
-VM plus user-installed Docker/Compose, Grafana, Loki, and Alloy is required for
-the next persistent-storage increment. Rollback is documented in
+Persistent single-node storage and a loopback dashboard are implemented. Host
+journal ingestion, full OpenStack log ingestion, external alert delivery,
+behavior analytics, high availability, and automated response remain absent.
+Rollback is documented in
 [zt-vis-001-rollback.md](zt-vis-001-rollback.md).

@@ -1,30 +1,32 @@
 {
   "package_id": "ZT-VIS-001",
   "package_name": "Centralized Telemetry and Security Event Correlation Foundation",
-  "execution_date": "2026-07-17",
+  "execution_date": "2026-07-22",
   "environment": "disposable non-production laboratory",
   "executor": "Codex",
   "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-  "telemetry_architecture": "local bounded JSONL normalization and deterministic correlation pipeline",
+  "telemetry_architecture": "bounded JSONL normalization and deterministic correlation plus a single-node persistent Grafana, Loki, and Alloy stack",
   "sources": [
     {"name": "openstack-validator", "state": "CURRENT_RUNNING", "result": "PASS"},
     {"name": "eve-validator", "state": "CURRENT_RUNNING", "result": "PASS"},
     {"name": "router-validator", "state": "CURRENT_RUNNING", "result": "PASS"},
     {"name": "repository-validator", "state": "CURRENT_RUNNING", "result": "PASS"},
-    {"name": "central-log-service", "state": "ABSENT", "result": "NOT_AVAILABLE"}
+    {"name": "central-log-service", "state": "CURRENT_RUNNING", "result": "PASS_BOUNDED_PERSISTENT_STORAGE"}
   ],
   "normalization": {"tool": "tools/telemetry/normalize_events.py", "result": "PASS"},
   "schema_validation": {"event_schema": "PASS", "finding_schema": "PASS"},
   "correlation_rules": {"loaded": 7, "live_findings": 0, "controlled_fixture_findings": 1, "result": "PASS"},
   "commands": [
     "powershell -ExecutionPolicy Bypass -File tools/live-validation/collect-telemetry-live.ps1",
-    "python tools/telemetry/validate_telemetry_sources.py"
+    "python tools/telemetry/validate_telemetry_sources.py",
+    "powershell -ExecutionPolicy Bypass -File tools/live-validation/manage-persistent-telemetry.ps1 -Mode Validate",
+    "powershell -ExecutionPolicy Bypass -File tools/live-validation/manage-persistent-telemetry.ps1 -Mode Persistence"
   ],
   "results": {
     "source_count": 5,
     "running_sources": 4,
     "configuration_only_sources": 0,
-    "unavailable_sources": 1,
+    "unavailable_sources": 0,
     "normalized_events": 164,
     "rejected_events": 0,
     "findings": 0,
@@ -34,21 +36,35 @@
     "fail": 0,
     "exit_code": 0
   },
-  "evidence_files": ["docs/evidence/zero-trust/zt-vis-001-live-summary.sanitized.txt"],
+  "persistent_storage": {
+    "stack": "GRAFANA_LOKI_ALLOY",
+    "pinned_images": "PASS",
+    "service_health": "PASS_3_OF_3",
+    "loopback_endpoints": "PASS_3_OF_3",
+    "retention": "PASS_336_HOURS",
+    "sanitized_ingestion_and_query": "PASS",
+    "post_restart_health": "PASS",
+    "post_restart_same_event_query": "PASS",
+    "secret_pattern_scan": "PASS"
+  },
+  "evidence_files": [
+    "docs/evidence/zero-trust/zt-vis-001-live-summary.sanitized.txt",
+    "docs/evidence/zero-trust/zt-vis-001-persistent-storage-validation.sanitized.txt"
+  ],
   "sanitization": {"status": "PASS", "raw_runtime_ignored": true, "credentials_collected": false},
-  "retention": "raw runtime is ephemeral and ignored; reviewed summaries are retained in Git",
+  "retention": "approved sanitized Loki data is retained for 336 hours; raw validator runtime remains ephemeral and ignored; reviewed summaries are retained in Git",
   "capability_mappings": ["ZT-7.1", "ZT-7.2", "ZT-7.3", "ZT-8.2", "ZT-8.6"],
   "implementation_status": "IMPLEMENTED",
-  "validation_status": "PARTIALLY_VALIDATED",
+  "validation_status": "VALIDATED",
   "current_maturity": "UNASSESSED",
   "assessment_confidence": "HIGH",
   "limitations": [
-    "No persistent central log storage or deployed dashboard exists.",
-    "The package is operational monitoring plus deterministic security-event correlation, not a complete SIEM.",
+    "The persistent single-node stack is bounded to approved sanitized JSONL and is not a complete SIEM.",
+    "Host journals, full OpenStack service logs, external alert delivery, and high-availability storage are not onboarded.",
     "ZT-7.4 behavior analytics is not mapped because no behavior-analysis logic exists."
   ],
   "remaining_gaps": [
-    "Deploy the user-approved Monitoring VM and bounded Grafana/Loki/Alloy stack before claiming persistent centralized storage.",
-    "Add approved host-journal sources with least-privilege collection and retention evidence."
+    "Add any new source only through separately approved least-privilege collection, minimization, and retention evidence.",
+    "Design high availability, external alerting, and broader monitoring as later packages without promoting current capability maturity."
   ]
 }

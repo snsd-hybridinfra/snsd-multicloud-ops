@@ -1031,15 +1031,15 @@
         "RUNTIME",
         "CONTINUOUS"
       ],
-      "repository_status": "GAP_IDENTIFIED",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "repository_status": "MAPPED",
+      "implementation_status": "MAPPED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "current_maturity": "UNASSESSED",
-      "assessment_confidence": "LOW",
-      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "assessment_confidence": "MEDIUM",
+      "notes": "ZT-SYS-001 validates only bounded privileged-access models and existing restricted paths; complete PAM, MFA, session brokering, and account lifecycle remain unimplemented and maturity remains unassessed.",
       "evidence_authority": [
-        "MISSING"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ]
     },
     {
@@ -1129,7 +1129,8 @@
       "assessment_confidence": "MEDIUM",
       "notes": "Limited evidence validates only the repository-bounded aspect described in the scenario matrix; capability-wide implementation and maturity remain unassessed.",
       "evidence_authority": [
-        "USER_EXECUTED_RUNTIME"
+        "USER_EXECUTED_RUNTIME",
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ]
     },
     {
@@ -1168,13 +1169,13 @@
       ],
       "repository_status": "MAPPED",
       "implementation_status": "MAPPED",
-      "validation_status": "REFERENCE_ONLY",
-      "evidence_level": "DESIGN",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "current_maturity": "UNASSESSED",
-      "assessment_confidence": "LOW",
-      "notes": "Scenario content provides conceptual alignment only; implementation, runtime validation, and maturity are not established.",
+      "assessment_confidence": "MEDIUM",
+      "notes": "ZT-SYS-001 validates bounded system baselines, safe configuration integrity, and service-state policy only; continuous FIM, automatic enforcement, complete hardening, and maturity remain unassessed.",
       "evidence_authority": [
-        "DESIGN_ONLY"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ]
     },
     {
@@ -1526,15 +1527,15 @@
         "RUNTIME",
         "CONTINUOUS"
       ],
-      "repository_status": "GAP_IDENTIFIED",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "repository_status": "PARTIALLY_VALIDATED",
+      "implementation_status": "PARTIALLY_VALIDATED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "current_maturity": "UNASSESSED",
-      "assessment_confidence": "LOW",
-      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "assessment_confidence": "MEDIUM",
+      "notes": "ZT-DATA-001 provides a bounded seven-asset metadata inventory and runtime-validated synthetic assurance; automated or enterprise discovery and maturity remain absent.",
       "evidence_authority": [
-        "MISSING"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ]
     },
     {
@@ -1706,15 +1707,15 @@
         "RUNTIME",
         "CONTINUOUS"
       ],
-      "repository_status": "GAP_IDENTIFIED",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "repository_status": "PARTIALLY_VALIDATED",
+      "implementation_status": "PARTIALLY_VALIDATED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "current_maturity": "UNASSESSED",
-      "assessment_confidence": "LOW",
-      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "assessment_confidence": "MEDIUM",
+      "notes": "ZT-DATA-001 manually labels seven bounded assets and validates negative classification cases; automatic or organization-wide classification and maturity remain absent.",
       "evidence_authority": [
-        "MISSING"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ]
     },
     {
@@ -1796,15 +1797,15 @@
         "RUNTIME",
         "CONTINUOUS"
       ],
-      "repository_status": "GAP_IDENTIFIED",
-      "implementation_status": "GAP_IDENTIFIED",
-      "validation_status": "GAP_IDENTIFIED",
-      "evidence_level": "NONE",
+      "repository_status": "PARTIALLY_VALIDATED",
+      "implementation_status": "PARTIALLY_VALIDATED",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "current_maturity": "UNASSESSED",
-      "assessment_confidence": "LOW",
-      "notes": "No direct repository implementation or runtime evidence currently supports this capability.",
+      "assessment_confidence": "MEDIUM",
+      "notes": "ZT-DATA-001 validates redacted detection-only monitoring on approved repository paths and generated fixtures; continuous enterprise analysis, blocking, and maturity remain absent.",
       "evidence_authority": [
-        "MISSING"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ]
     },
     {
@@ -2114,13 +2115,13 @@
       ],
       "repository_status": "MAPPED",
       "implementation_status": "MAPPED",
-      "validation_status": "REFERENCE_ONLY",
-      "evidence_level": "DESIGN",
+      "validation_status": "PARTIALLY_VALIDATED",
+      "evidence_level": "RUNTIME",
       "current_maturity": "UNASSESSED",
-      "assessment_confidence": "LOW",
-      "notes": "Scenario content provides conceptual alignment only; implementation, runtime validation, and maturity are not established.",
+      "assessment_confidence": "MEDIUM",
+      "notes": "ZT-AUTO-001 validates a bounded default-deny policy evaluator, immutable plan hash, and fixed-handler cross-domain runtime path; enterprise policy integration, repeatability, response automation, and maturity remain unassessed.",
       "evidence_authority": [
-        "DESIGN_ONLY"
+        "CODEX_EXECUTED_LIVE_RUNTIME"
       ]
     },
     {
@@ -2163,7 +2164,7 @@
       "evidence_level": "RUNTIME",
       "current_maturity": "UNASSESSED",
       "assessment_confidence": "MEDIUM",
-      "notes": "Limited evidence validates only the repository-bounded aspect described in the scenario matrix; capability-wide implementation and maturity remain unassessed.",
+      "notes": "Existing scenario and package evidence plus ZT-AUTO-001 validate bounded fixed read-only automation; the accepted automation cycle is partial and does not establish repeatability, scheduling, continuous operation, autonomous response, or maturity.",
       "evidence_authority": [
         "CODEX_EXECUTED_LIVE_RUNTIME"
       ]

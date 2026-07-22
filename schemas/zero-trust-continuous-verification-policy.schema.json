@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Zero Trust continuous verification policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata", "evidence_continuity_levels", "validator_registry", "verification_classes", "policies"],
+  "properties": {
+    "metadata": {"type":"object","required":["environment","policy_version","authority","default_decision","limitations"]},
+    "evidence_continuity_levels": {"type":"array","minItems":8,"maxItems":8,"items":{"type":"object","required":["id","runtime","requirement"]}},
+    "validator_registry": {"type":"array","minItems":1,"items":{"type":"object","required":["id","implementation","version","live","mutation"]}},
+    "verification_classes": {"type":"array","minItems":1,"items":{"type":"object","required":["id","allowed_evidence_levels","execution_authority","approval_level","destructive_risk","freshness_window"]}},
+    "policies": {"type":"array","minItems":1,"items":{"type":"object","required":["id","scope_id","required_validators","required_workflows","freshness_window","minimum_successful_executions","consecutive_success_requirement","acceptance_gate"]}}
+  }
+}

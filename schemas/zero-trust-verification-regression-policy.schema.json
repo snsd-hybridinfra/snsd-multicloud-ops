@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Zero Trust verification regression policy","type":"object","additionalProperties":false,
+  "required":["metadata","regressions"],
+  "properties":{"metadata":{"type":"object","required":["environment","policy_version","authority","limitations"]},"regressions":{"type":"array","minItems":1,"items":{"type":"object","required":["id","type","trigger","severity","affected_acceptance_state","affected_maturity_assessment","escalation","required_verification","recovery_evidence","closure_criteria"]}}}
+}

@@ -1,0 +1,22 @@
+{
+  "package_id": "ZT-DATA-001",
+  "backup_id": "ZTBACKUP-SYNTHETIC-PILOT",
+  "execution_timestamp": "2026-07-22T03:11:47Z",
+  "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+  "dataset_classification": "INTERNAL_TEST_FIXTURE",
+  "source_sha256": "c0d4d01e3228c8e444159f310cd372a1e552893d887a4fa11a6da79b3b2ecc55",
+  "backup_sha256": "c0d4d01e3228c8e444159f310cd372a1e552893d887a4fa11a6da79b3b2ecc55",
+  "restore_sha256": "c0d4d01e3228c8e444159f310cd372a1e552893d887a4fa11a6da79b3b2ecc55",
+  "source_unchanged_sha256": "c0d4d01e3228c8e444159f310cd372a1e552893d887a4fa11a6da79b3b2ecc55",
+  "hash_match": true,
+  "isolated_restore": true,
+  "source_overwritten": false,
+  "encryption_status": "NOT_ENCRYPTED",
+  "external_transmission": false,
+  "source_contains_real_data": false,
+  "cleanup_performed": false,
+  "cleanup_boundary": "OPERATOR_REVIEWED_RUNTIME_CLEANUP",
+  "runtime_root": ".runtime/zero-trust/data/backup-test/<run-id>",
+  "sanitization": {"content_values": "EXCLUDED", "paths": "NORMALIZED", "secrets": 0, "personal_data": 0},
+  "limitations": ["Synthetic data only.", "No encryption, service recovery, live source backup, RTO, RPO, or platform restore is claimed."]
+}

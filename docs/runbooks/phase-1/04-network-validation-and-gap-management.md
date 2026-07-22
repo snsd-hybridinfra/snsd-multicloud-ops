@@ -8,32 +8,31 @@
   "related_packages": ["ZT-NET-001"],
   "owner_domain": "NETWORK_SECURITY",
   "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_EVE_NG_ROUTER"],
-  "procedure_status": "PARTIALLY_IMPLEMENTED",
-  "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+  "procedure_status": "IMPLEMENTED",
+  "validation_status": "VALIDATED_RUNTIME",
   "runtime_required": true,
   "live_execution_permitted": true,
   "required_authority": "EXPLICIT_OPERATOR_APPROVAL_AND_EXISTING_RESTRICTED_ENDPOINT",
   "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-  "last_reviewed": "2026-07-19",
-  "limitations": ["Existing bounded router evidence does not prove persistent interface ACL enforcement or complete micro-segmentation."]
+  "last_reviewed": "2026-07-22",
+  "limitations": ["One persistent directional ACL is validated; broader multi-zone segmentation, dynamic policy, encryption, and resilience remain outside the bounded package."]
 }
 ```
 
 ## Purpose
 
-Revalidate the bounded ZT-NET-001 network evidence safely and manage its
-permanent ACL enforcement gap without changing router policy.
+Revalidate the accepted bounded ZT-NET-001 network evidence safely without
+changing the accepted router policy.
 
 ## Scope
 
 Existing forced-command read-only router validation, static package checks,
-evidence review, and gap acceptance planning. Configuration and remediation are
-outside this runbook.
+evidence review, and accepted ACL-state verification. Configuration and
+remediation remain outside this revalidation runbook.
 
 ## Related Phase
 
-Phase 1; ZT-NET-001 remains implemented as recorded and partially runtime
-validated.
+Phase 1; ZT-NET-001 is implemented and runtime validated for its bounded scope.
 
 ## Related Package or Governance Action
 
@@ -46,12 +45,11 @@ non-production EVE-NG router restricted endpoint.
 
 ## Current Procedure Status
 
-`PARTIALLY_IMPLEMENTED`: read-only validation exists; persistent ACL
-implementation and its acceptance evidence do not.
+`IMPLEMENTED`: read-only validation and accepted persistent ACL evidence exist.
 
 ## Current Validation Status
 
-`PARTIALLY_RUNTIME_VALIDATED` from existing bounded evidence only.
+`VALIDATED_RUNTIME` for the bounded package; capability maturity is unchanged.
 
 ## Evidence Authority
 
@@ -66,13 +64,14 @@ Any configuration change requires a separate mutating action and rollback plan.
 
 ## User-Performed Physical or Approval Steps
 
-Approve any future live revalidation and separately approve any proposed
-persistent ACL change after reviewing blast radius and rollback.
+Approve any future live revalidation and separately approve any change to the
+accepted ACL after reviewing blast radius and rollback.
 
 ## Codex or Automation-Managed Steps
 
 Validate package records locally, invoke only the approved fixed read-only
-command when separately authorized, sanitize output, and preserve the gap.
+command when separately authorized, sanitize output, and preserve the accepted
+policy boundary.
 
 ## Prerequisites
 
@@ -102,16 +101,16 @@ configuration commands, and arbitrary ping. Weakening that boundary is a stop.
 
 ## Preflight Checks
 
-Confirm package state `IMPLEMENTED` / `PARTIALLY_VALIDATED`, current maturity
+Confirm package state `IMPLEMENTED` / `VALIDATED`, current maturity
 `UNASSESSED`, fixed alias/command, BatchMode, existing rollback record,
-sanitized destination, and the unresolved gap
-`PERMANENT_ACL_ENFORCEMENT_EVIDENCE_MISSING`.
+sanitized destination, and accepted classification
+`BOUNDED_INTERZONE_ACL_VALIDATED`.
 
 ## Procedure
 
 1. Validate ZT-NET-001 machine records and references locally.
-2. Review the prior bounded results: identity, interfaces, routing, and NAT
-   evidence; access control remains partial without interface binding.
+2. Review the accepted bounded results: identity, interfaces, routing, NAT,
+   persistent interface ACL binding, allow/deny behavior, and startup state.
 3. If a separately approved live revalidation exists, invoke only this command.
 
 ```json command-metadata
@@ -128,17 +127,18 @@ sanitized destination, and the unresolved gap
 ```
 
 4. Preserve segmentation classification as
-   `SEGMENTATION_CONFIGURATION_ONLY` and access control as
-   `PARTIAL_NO_INTERFACE_BINDING` unless new accepted evidence proves otherwise.
-5. Keep the permanent ACL gap open. Do not enter configuration mode, bind an
-   ACL, change a rule, or test arbitrary targets.
+   `BOUNDED_INTERZONE_ACL_VALIDATED` unless new accepted evidence proves
+   otherwise.
+5. Do not enter configuration mode, change the accepted ACL, or test arbitrary
+   targets during read-only revalidation.
 6. Record only sanitized evidence under RB-P1-003.
 
 ## Expected Output
 
 Package/reference status, bounded read-only check categories, sanitized
 counters when a separately authorized run occurs, unchanged limitations, and
-the open permanent ACL gap. No fictional execution result is produced here.
+the accepted persistent ACL boundary. No fictional execution result is
+produced here.
 
 ## Validation
 
@@ -149,8 +149,8 @@ and must confirm the security boundary as well as routing results.
 ## Pass Criteria
 
 Existing package facts remain consistent; restricted endpoint controls hold;
-no configuration change occurs; evidence is sanitized; the ACL gap remains
-explicit until its own acceptance criteria are met.
+no configuration change occurs during revalidation; evidence is sanitized; the
+accepted ACL binding remains present.
 
 ## Stop Conditions
 
@@ -162,8 +162,8 @@ to equate bounded macro separation with comprehensive per-workload enforcement.
 ## Failure Handling
 
 Do not retry by broadening access. Classify transport, wrapper, router check,
-sanitization, and evidence failures separately and keep package validation
-partial.
+sanitization, and evidence failures separately; downgrade current-run evidence
+without rewriting the accepted historical result.
 
 ## Rollback
 
@@ -184,10 +184,9 @@ failure, unknown router state, or request for broader access.
 
 ## Known Limitations
 
-Future gap closure requires approved least-privilege ACL design, persistent
-interface binding, before/after reachability results for fixed flows, denial
-evidence for prohibited flows, configuration persistence evidence, security
-boundary revalidation, and tested rollback. Until then the gap remains open.
+The accepted scope covers one directional DMZ-to-Kubernetes policy only.
+Broader micro-segmentation, SDN policy, encryption, and resilience require new
+package approval, fixed-flow tests, persistence evidence, and tested rollback.
 
 ## Related Architecture
 

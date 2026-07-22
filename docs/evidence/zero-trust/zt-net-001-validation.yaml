@@ -1,11 +1,11 @@
 {
   "package_id": "ZT-NET-001",
   "package_name": "Restricted Router Validation and Network Policy Evidence",
-  "execution_date": "2026-07-17",
+  "execution_date": "2026-07-22",
   "environment": "disposable non-production EVE-NG and OpenStack laboratory",
   "executor": "Codex",
   "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-  "transport": "dedicated forced-command SSH endpoint to a root-owned fixed EVE-NG console wrapper",
+  "transport": "dedicated forced-command SSH validation endpoint plus an explicitly approved EVE operator console change with automatic rollback",
   "router": {"platform": "Cisco 3725 virtual router", "hostname": "SNSD-R1", "software_family": "Cisco IOS"},
   "commands": [
     "ssh -o BatchMode=yes snsd-r1-validator validate-routing",
@@ -19,11 +19,21 @@
     "interfaces": "PASS",
     "routing": "PASS",
     "nat": "PASS_RUNTIME_ACTIVE",
-    "access_control": "PARTIAL_NO_INTERFACE_BINDING",
-    "segmentation": "SEGMENTATION_CONFIGURATION_ONLY",
+    "access_control": "PASS",
+    "segmentation": "BOUNDED_INTERZONE_ACL_VALIDATED",
     "provider_path": "PASS_FIXED_TARGETS"
   },
-  "results": {"exit_code": 0, "pass": 38, "warn": 1, "fail": 0},
+  "results": {"exit_code": 0, "pass": 39, "warn": 0, "fail": 0},
+  "persistent_acl": {
+    "binding": "PASS",
+    "running_configuration": "PASS",
+    "startup_configuration": "PASS",
+    "dmz_gateway_permit": "PASS_5_OF_5",
+    "dmz_to_kubernetes_deny": "PASS_0_OF_5",
+    "dmz_public_path_permit": "PASS_5_OF_5",
+    "permit_and_deny_counters": "PASS",
+    "automatic_rollback_exercised": true
+  },
   "security_boundary": {
     "interactive_shell_blocked": true,
     "arbitrary_command_blocked": true,
@@ -32,15 +42,16 @@
   },
   "evidence_files": [
     "docs/evidence/zero-trust/zt-net-001-router-validation.sanitized.txt",
-    "docs/evidence/zero-trust/zt-net-001-security-boundary.sanitized.txt"
+    "docs/evidence/zero-trust/zt-net-001-security-boundary.sanitized.txt",
+    "docs/evidence/zero-trust/zt-net-001-acl-validation.sanitized.txt"
   ],
   "sanitization": {"raw_runtime_ignored": true, "dynamic_addresses_redacted": true, "mac_addresses_redacted": true, "credentials_present": false},
   "capability_mappings": ["ZT-3.1.1", "ZT-3.4.1", "ZT-4.1.1", "ZT-4.3.1", "ZT-7.1", "ZT-8.2"],
   "limitations": [
-    "No persistent interface ACL binding is present.",
-    "The current result supports macro network separation evidence, not complete micro-segmentation.",
+    "One persistent directional inter-zone ACL is validated; the result is not complete micro-segmentation.",
+    "Traffic encryption, dynamic policy, SDN enforcement, and resilience remain outside this package.",
     "Tenant Internet egress is cross-referenced to OpenStack evidence and is not claimed from router-only output."
   ],
   "assessment_confidence": "HIGH",
-  "remaining_gaps": ["Approve, implement, and revalidate a persistent least-privilege inter-zone ACL if full network-policy validation is required."]
+  "remaining_gaps": ["Expand policy coverage only through separately approved capability-specific designs; do not generalize this single directional ACL to enterprise-wide network enforcement."]
 }

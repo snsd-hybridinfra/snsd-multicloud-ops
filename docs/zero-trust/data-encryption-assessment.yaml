@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "ZT-DATA-001",
+  "assessment_date": "2026-07-22",
+  "claims_require_evidence": true,
+  "assessments": [
+    {"assessment_id": "ZTENC-REPOSITORY-REST", "asset_id": "ZTDATA-REPOSITORY-GOVERNANCE", "plane": "AT_REST", "state": "UNKNOWN", "mechanism": "NOT_INSPECTED", "evidence": [], "limitations": ["No workstation filesystem-encryption evidence was collected."]},
+    {"assessment_id": "ZTENC-REPOSITORY-TRANSIT", "asset_id": "ZTDATA-REPOSITORY-GOVERNANCE", "plane": "IN_TRANSIT", "state": "ENCRYPTED", "mechanism": "GIT_REMOTE_HTTPS", "evidence": ["Git remote protocol metadata observed without credential content."], "limitations": ["Remote platform internal storage and backup are outside scope."]},
+    {"assessment_id": "ZTENC-TELEMETRY-REST", "asset_id": "ZTDATA-SANITIZED-TELEMETRY", "plane": "AT_REST", "state": "UNKNOWN", "mechanism": "SINGLE_NODE_LOCAL_VOLUME", "evidence": ["docs/evidence/zero-trust/zt-vis-001-validation.yaml"], "limitations": ["Persistent storage is evidenced; volume encryption is not."]},
+    {"assessment_id": "ZTENC-TELEMETRY-TRANSIT", "asset_id": "ZTDATA-SANITIZED-TELEMETRY", "plane": "IN_TRANSIT", "state": "NOT_ENCRYPTED", "mechanism": "LOOPBACK_HTTP", "evidence": ["docs/evidence/zero-trust/zt-vis-001-validation.yaml"], "limitations": ["Traffic is loopback-only; this is not a TLS claim."]},
+    {"assessment_id": "ZTENC-OPENSTACK-REST", "asset_id": "ZTDATA-OPENSTACK-IMAGE-METADATA", "plane": "AT_REST", "state": "UNKNOWN", "mechanism": "NOT_INSPECTED", "evidence": ["docs/evidence/zero-trust/zt-fnd-001-validation.yaml"], "limitations": ["Service health is evidenced; image, volume, and ephemeral-disk encryption are not."]},
+    {"assessment_id": "ZTENC-OPENSTACK-TRANSIT", "asset_id": "ZTDATA-OPENSTACK-IMAGE-METADATA", "plane": "IN_TRANSIT", "state": "UNKNOWN", "mechanism": "NOT_INSPECTED", "evidence": [], "limitations": ["No API TLS configuration content was inspected."]},
+    {"assessment_id": "ZTENC-SYNTHETIC-BACKUP-REST", "asset_id": "ZTDATA-SYNTHETIC-BACKUP-ARTIFACT", "plane": "AT_REST", "state": "NOT_ENCRYPTED", "mechanism": "LOCAL_COPY_SYNTHETIC_ONLY", "evidence": ["docs/evidence/zero-trust/zt-data-001-backup-assurance.yaml"], "limitations": ["No approved encryption tool or key boundary was introduced."]},
+    {"assessment_id": "ZTENC-IN-USE", "asset_id": "ZTDATA-SYNTHETIC-BACKUP-SOURCE", "plane": "IN_USE", "state": "NOT_IMPLEMENTED", "mechanism": "NONE", "evidence": [], "limitations": ["No confidential computing or equivalent control exists in scope."]}
+  ]
+}

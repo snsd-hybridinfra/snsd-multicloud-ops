@@ -59,4 +59,67 @@ Package-level evidence is tracked separately from the locked S001-S050 rows.
 ZT-NET-001 contributes Codex-executed sanitized router runtime evidence for
 ZT-3.1.1, ZT-3.4.1, ZT-4.1.1, ZT-4.3.1, ZT-7.1, and ZT-8.2 through
 `docs/evidence/zero-trust/zt-net-001-validation.yaml`. It is
-PARTIALLY_VALIDATED because no persistent interface ACL binding exists.
+VALIDATED for one bounded directional ACL after running/startup persistence,
+allow/deny, counter, fixed-path, and restricted-endpoint checks. This does not
+promote capability-wide validation or maturity.
+
+ZT-VIS-001 contributes Codex-executed bounded pipeline and persistent-storage
+evidence through `docs/evidence/zero-trust/zt-vis-001-validation.yaml`. It is
+VALIDATED for approved sanitized JSONL on one monitoring VM after health,
+336-hour retention, ingestion/query, secret-scan, and restart-retrieval checks.
+Broader source coverage, high availability, behavior analytics, and maturity
+remain unassessed or absent.
+
+ZT-DEV-001 contributes Codex-executed bounded endpoint runtime evidence through
+`docs/evidence/zero-trust/zt-dev-001-validation.yaml`. It classifies six stable
+aliases and live-assesses one mandatory monitoring VM for inventory, software,
+patch, vulnerability-proxy, and endpoint-agent state. The package is
+`PARTIALLY_RUNTIME_VALIDATED`; reboot maintenance, a dedicated scanner,
+broader asset assessment, access enforcement, endpoint agents, and maturity
+remain open or absent.
+
+ZT-APP-001 contributes Codex-executed bounded application/workload evidence
+through `docs/evidence/zero-trust/zt-app-001-validation.yaml` and a
+three-direct-image partial CycloneDX record. Two applications and four
+workloads are inventoried; the existing non-critical Alloy pilot passed
+dependency-free secret/configuration checks, service health, and sanitized
+ingestion without deployment or restart. The package is
+`PARTIALLY_RUNTIME_VALIDATED`; immutable digests, signing, transitive SBOM,
+dedicated vulnerability scanning, Kubernetes runtime, authorization, broad
+enforcement, scenario status, and maturity remain open or unchanged.
+
+ZT-DATA-001 contributes Codex-executed bounded data evidence through
+`docs/evidence/zero-trust/zt-data-001-validation.yaml`, the sanitized live
+summary, and a SHA-256 backup-assurance record. Seven metadata-only assets are
+owner/custodian assigned and classified; six access policies and five flows
+validate; eight generated DLP fixtures are redacted with zero confirmed
+repository findings; and one synthetic backup restores to an isolated ignored
+path without overwriting its source. The package is
+`PARTIALLY_RUNTIME_VALIDATED`; only ZT-6.1.1, ZT-6.4.1, and ZT-6.5.2 gain
+bounded `PARTIALLY_VALIDATED` capability evidence. Enterprise governance,
+dynamic enforcement, platform encryption, live backup/restore, blocking DLP,
+continuous analysis, scenario status, and maturity remain open or unchanged.
+
+ZT-SYS-001 contributes Codex-executed bounded system evidence through
+`docs/evidence/zero-trust/zt-sys-001-validation.yaml`, its sanitized live
+summary, safe configuration-integrity record, and service-state record. Seven
+systems and six profiles are assessed; five safe repository configuration
+hashes match; EVE, router, endpoint, and persistent telemetry checks execute;
+and OpenStack remains explicitly `CURRENT_DEGRADED` at 46/0/4. The package is
+`PARTIALLY_RUNTIME_VALIDATED`; only ZT-4.2.1 and ZT-4.4.1 gain new bounded
+`PARTIALLY_VALIDATED` capability evidence. Credential lifecycle, complete PAM,
+continuous FIM, complete hardening, system restore, scenario status, and
+maturity remain open or unchanged.
+
+ZT-AUTO-001 contributes Codex-executed bounded policy and orchestration evidence
+through `docs/evidence/zero-trust/zt-auto-001-validation.yaml` and its sanitized
+live summary. Eleven integrations, thirteen fixed actions, six workflows,
+default-deny policy evaluation, deterministic planning, plan hashing, timeout,
+local locking, failure propagation, and proposal-only governance are validated.
+One cross-domain `EXECUTE_READ_ONLY` workflow completed `PARTIAL` at 4 PASS,
+4 WARN, and 0 FAIL through existing fixed live validators. The package is
+`PARTIALLY_RUNTIME_VALIDATED`; only ZT-8.1 gains new bounded
+`PARTIALLY_VALIDATED` capability evidence and ZT-8.2 gains corroborating
+runtime evidence. Arbitrary execution, R4-R8 mutation, external notification,
+automatic response, repeatability, scheduling, scenario status, and maturity
+remain absent or unchanged.

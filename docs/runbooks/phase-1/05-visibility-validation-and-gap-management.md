@@ -7,27 +7,28 @@
   "phase": "PHASE_1",
   "related_packages": ["ZT-VIS-001", "ZT-VIS-002"],
   "owner_domain": "VISIBILITY_AND_ANALYTICS",
-  "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_TELEMETRY_SOURCES"],
-  "procedure_status": "PARTIALLY_IMPLEMENTED",
-  "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+  "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_TELEMETRY_SOURCES", "BOUNDED_NON_PRODUCTION_MONITORING_VM"],
+  "procedure_status": "IMPLEMENTED",
+  "validation_status": "VALIDATED_RUNTIME",
   "runtime_required": true,
   "live_execution_permitted": true,
   "required_authority": "EXPLICIT_OPERATOR_APPROVAL_FOR_COLLECTION",
   "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-  "last_reviewed": "2026-07-19",
-  "limitations": ["ZT-VIS-001 has no accepted central monitoring service or persistent storage; ZT-VIS-002 is protected Phase 2 preparation only."]
+  "last_reviewed": "2026-07-22",
+  "limitations": ["ZT-VIS-001 persistent storage accepts only approved sanitized JSONL; host journals, full service logs, external alerting, high availability, behavior analytics, and automated response remain absent. ZT-VIS-002 remains protected Phase 2 preparation only."]
 }
 ```
 
 ## Purpose
 
-Validate the existing bounded telemetry pipeline and manage visibility gaps
-without deploying or changing monitoring services.
+Validate the existing bounded telemetry pipeline and accepted persistent
+monitoring service without changing its approved scope.
 
 ## Scope
 
 Static source/schema/rule validation, separately authorized bounded collection,
-evidence sanitization, ZT-VIS-001 gap preservation, and ZT-VIS-002 protection.
+evidence sanitization, persistent-stack health and retention validation, and
+ZT-VIS-002 protection.
 
 ## Related Phase
 
@@ -39,17 +40,17 @@ ZT-VIS-001 package and evidence records; P1-REC-002 protection for ZT-VIS-002.
 
 ## Supported Target Types
 
-Repository-local telemetry assets and the four existing bounded validator
-sources. No central log service is an available target.
+Repository-local telemetry assets, the four existing bounded validator sources,
+and the dedicated non-production monitoring VM.
 
 ## Current Procedure Status
 
-`PARTIALLY_IMPLEMENTED`: local normalization and deterministic correlation
-exist; centralized service and persistent retention do not.
+`IMPLEMENTED`: local normalization, deterministic correlation, and bounded
+persistent Grafana/Loki/Alloy storage exist.
 
 ## Current Validation Status
 
-`PARTIALLY_RUNTIME_VALIDATED` from the existing bounded ZT-VIS-001 run only.
+`VALIDATED_RUNTIME` for the bounded ZT-VIS-001 scope.
 
 ## Evidence Authority
 
@@ -64,13 +65,15 @@ identity integration, or service changes require a separate package action.
 
 ## User-Performed Physical or Approval Steps
 
-Approve future bounded collection and separately approve any monitoring VM,
-service, storage, retention, network, or identity design before implementation.
+Approve future bounded collection, restart-based persistence tests, and any
+change to monitoring sources, service, storage, retention, network, or identity
+design before implementation.
 
 ## Codex or Automation-Managed Steps
 
-Validate inventory, schemas, rules, controlled fixtures, and sanitized records;
-collect only through the existing bounded workflow when separately approved.
+Validate inventory, schemas, rules, controlled fixtures, sanitized records,
+service health, retention, and query behavior; collect only through the
+existing bounded workflow when separately approved.
 
 ## Prerequisites
 
@@ -101,9 +104,8 @@ least privilege, raw-data isolation, and sanitization are mandatory.
 
 ## Preflight Checks
 
-Confirm ZT-VIS-001 remains `IMPLEMENTED` / `PARTIALLY_VALIDATED`; central log
-source is absent; gaps `CENTRAL_MONITORING_SERVICE_ABSENT` and
-`PERSISTENT_STORAGE_EVIDENCE_MISSING` remain open; ZT-VIS-002 is
+Confirm ZT-VIS-001 remains `IMPLEMENTED` / `VALIDATED`; the bounded central log
+source is healthy and persistent-storage evidence remains accepted; ZT-VIS-002 is
 `PREPARATION_TRACES_ONLY`, Phase 2, not deployed, `NOT_VALIDATED`, and not
 evidence authority.
 
@@ -141,29 +143,47 @@ evidence authority.
 }
 ```
 
-3. Preserve unavailable central-log-service state and the two named gaps.
-4. Use controlled fixture findings only to validate rule behavior; never
+3. Validate the accepted stack without changing its scope.
+
+```json command-metadata
+{
+  "command": "powershell -ExecutionPolicy Bypass -File tools/live-validation/manage-persistent-telemetry.ps1 -Mode Validate",
+  "command_status": "AVAILABLE_MUTATING_APPROVAL_REQUIRED",
+  "execution_owner": "CODEX_OR_AUTOMATION",
+  "approval_required": true,
+  "runtime_target": "BOUNDED_NON_PRODUCTION_MONITORING_VM",
+  "expected_effect": "Validate pinned healthy services, loopback endpoints, retention, and one synthetic sanitized event ingestion/query.",
+  "evidence_output": "Ignored runtime output and a separately reviewed sanitized derivative.",
+  "rollback_reference": "docs/zero-trust/packages/zt-vis-001-rollback.md"
+}
+```
+
+4. Use `-Mode Persistence` only under explicit restart approval; it restarts
+   the exact Compose project and proves pre/post-restart retrieval.
+5. Use controlled fixture findings only to validate rule behavior; never
    present them as live findings.
-5. Do not read, hash, copy, modify, deploy, or accept ZT-VIS-002 preparation
+6. Do not read, hash, copy, modify, deploy, or accept ZT-VIS-002 preparation
    traces in this action.
 
 ## Expected Output
 
 Static validation findings and, only after separate approval, bounded source
 counters with sanitization and limitations. The output must distinguish live
-findings from controlled fixtures and retain absent central storage.
+findings from controlled fixtures and bounded persistent storage from a
+complete SIEM.
 
 ## Validation
 
 Validate inventory, event/finding schemas, deterministic rules, source counts,
-raw ignore state, sanitized references, and package claims. No dashboard or
-persistent retention is inferred.
+raw ignore state, sanitized references, pinned services, loopback endpoints,
+retention, restart retrieval, and package claims.
 
 ## Pass Criteria
 
 Static validator succeeds; approved sources remain bounded; raw output stays
-ignored; controlled fixture is labeled; gaps remain explicit; no monitoring or
-identity service changes occur.
+ignored; controlled fixture is labeled; health, retention, ingestion, query,
+and restart persistence pass; no unapproved monitoring or identity change
+occurs.
 
 ## Stop Conditions
 
@@ -196,10 +216,9 @@ dependency, protected-file access, or request to promote package status.
 
 ## Known Limitations
 
-Future closure needs an approved central service design, least-privilege source
-onboarding, persistent storage and retention evidence, availability/recovery
-testing, protected access, query/dashboards acceptance, data minimization, and
-rollback. None is implemented here.
+Future expansion needs separately approved least-privilege source onboarding,
+availability design, external alerting, broader dashboards, data minimization,
+and rollback. Current acceptance remains single-node and sanitized-input only.
 
 ## Related Architecture
 
