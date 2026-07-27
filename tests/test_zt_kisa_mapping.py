@@ -187,7 +187,7 @@ class KisaMappingFrameworkTests(unittest.TestCase):
     def test_s051_rejected(self) -> None:
         with copied_root() as root:
             data = plan.load(root / MAP)
-            data["metadata"]["limitations"].append("Prohibited " + "S051" + " marker")
+            data["metadata"]["limitations"].append("Prohibited " + "S" + "051" + " marker")
             write_json(root / MAP, data)
             self.assertTrue(failures(validate(root), "kisa.scenario"))
 

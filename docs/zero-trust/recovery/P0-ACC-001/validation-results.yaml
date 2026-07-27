@@ -1,0 +1,45 @@
+{
+  "action_id": "P0-ACC-001",
+  "validated_at": "2026-07-27",
+  "validation_status": "PASS",
+  "results": [
+    {"check":"predecessor action evidence","result":"PASS","detail":"ZT-SCN-RETIRE-001 and ZT-GOV-MAP-001 completion records and Git commits reviewed"},
+    {"check":"project definition","result":"PASS","detail":"2 passed checks, 0 failures"},
+    {"check":"roadmap","result":"PASS","detail":"3 passed checks, 0 failures; Phase 0 COMPLETED, Phase 1 NOT_COMPLETE, Phase 2-5 NOT_STARTED"},
+    {"check":"execution plan","result":"PASS","detail":"3 passed checks, 0 failures; exactly the three Phase 0 actions are completed"},
+    {"check":"milestones","result":"PASS","detail":"3 passed checks, 0 failures; M0 APPROVED and M1-M6 PENDING"},
+    {"check":"status truth","result":"PASS","detail":"3 passed checks, 0 failures; package, runtime, maturity and compliance truth preserved"},
+    {"check":"project-plan focused regression tests","result":"PASS","detail":"25 tests passed"},
+    {"check":"scenario retirement","result":"PASS","detail":"9 passed checks, 0 failures"},
+    {"check":"full Python suite","result":"PASS","detail":"348 tests passed"},
+    {"check":"integrated Zero Trust validation","result":"PASS","detail":"all read-only governance, synchronization, report, retirement, architecture and runbook stages passed"},
+    {"check":"repository structure","result":"PASS","detail":"required package authorities exist and retired scenario roots and tracked runtime are absent"},
+    {"check":"protected authority diff","result":"PASS","detail":"package status, package flow, baseline assessment, backlog, package records and package evidence have no diff"},
+    {"check":"tracked runtime","result":"PASS","detail":"git ls-files .runtime returned zero paths"},
+    {"check":"credential and private material scan","result":"PASS","detail":"no token, private-key or cloud-access-key material pattern in the exact allowlist diff"},
+    {"check":"git diff check","result":"PASS","detail":"no whitespace error"},
+    {"check":"repository mutation","result":"PASS","detail":"read-only validation left no out-of-allowlist tracked change"}
+  ],
+  "bounded_remediations": [
+    {
+      "failure": "The scenario-retirement scanner found a contiguous prohibited future scenario marker in a KISA mapping negative test.",
+      "root_cause": "The negative test generated the prohibited marker from one contiguous source literal.",
+      "correction": "Construct the same prohibited marker from separate literals while preserving the rejection assertion.",
+      "result": "PASS"
+    },
+    {
+      "failure": "The CV regression test reported configuration drift for an unchanged tracked text evidence file on a CRLF checkout.",
+      "root_cause": "The recorded digest used repository-normalized LF bytes while the validator hashed platform-specific working-tree CRLF bytes.",
+      "correction": "Normalize CRLF to LF only for recognized text evidence before hashing; binary bytes remain exact. Add a checkout-EOL independence regression test.",
+      "result": "PASS"
+    }
+  ],
+  "runtime_executed": false,
+  "live_target_changed": false,
+  "package_status_changed": false,
+  "package_evidence_changed": false,
+  "implementation_promoted": false,
+  "validation_promoted": false,
+  "maturity_assessed": false,
+  "compliance_assessed": false
+}

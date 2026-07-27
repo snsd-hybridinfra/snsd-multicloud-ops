@@ -1,0 +1,39 @@
+{
+  "action_id": "P0-ACC-001",
+  "baseline": "189af1c76a223ed5c2c1a7e6cd9038260e982f5d",
+  "policy": "Stage only the exact governance, validator-remediation, regression-test and action-record paths below.",
+  "allowed_paths": [
+    "docs/zero-trust/final-execution-plan.md",
+    "docs/zero-trust/final-execution-plan.yaml",
+    "docs/zero-trust/final-roadmap.md",
+    "docs/zero-trust/final-roadmap.yaml",
+    "docs/zero-trust/milestones-and-gates.md",
+    "docs/zero-trust/milestones-and-gates.yaml",
+    "docs/zero-trust/recovery/P0-ACC-001/README.md",
+    "docs/zero-trust/recovery/P0-ACC-001/acceptance-decision.yaml",
+    "docs/zero-trust/recovery/P0-ACC-001/authority-audit.yaml",
+    "docs/zero-trust/recovery/P0-ACC-001/completion-report.md",
+    "docs/zero-trust/recovery/P0-ACC-001/staging-allowlist.yaml",
+    "docs/zero-trust/recovery/P0-ACC-001/validation-results.yaml",
+    "schemas/zt-milestones-and-gates.schema.json",
+    "schemas/zt-roadmap.schema.json",
+    "tests/test_zt_cv_001.py",
+    "tests/test_zt_kisa_mapping.py",
+    "tests/test_zt_project_plan.py",
+    "tools/continuous_verification/cv_common.py",
+    "tools/zt_project_plan_common.py"
+  ],
+  "prohibited_patterns": [
+    ".runtime/**",
+    "tmp/**",
+    "*.pdf",
+    "*.png",
+    "*secret*",
+    "*credential*",
+    "docs/evidence/zero-trust/**",
+    "docs/zero-trust/packages/**"
+  ],
+  "runtime_staged": false,
+  "package_evidence_staged": false,
+  "live_target_changed": false
+}

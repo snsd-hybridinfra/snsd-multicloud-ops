@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import subprocess
 import sys
+import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -15,7 +16,7 @@ sys.path.insert(0, str(CV))
 from cv_common import (  # noqa: E402
     PATHS, capability_acceptance_results, execution_success, freshness_results,
     load, maturity_results, package_acceptance_results, parse_duration,
-    parse_time, regression_results, repeatability_results,
+    parse_time, regression_results, repeatability_results, sha256_file,
 )
 from validate_verification_configuration import validate  # noqa: E402
 
@@ -88,6 +89,11 @@ class ZtCv001Tests(unittest.TestCase):
     def test_no_maturity_upgrade(self):
         c=capability_acceptance_results(load(PATHS["capabilities"]),self.history,self.fresh(),self.repeat()); self.assertTrue(all(x["source_maturity"]==x["candidate_maturity"] for x in maturity_results(c)))
     def test_current_hashes_have_no_regression(self): self.assertEqual([],regression_results(self.history,self.fresh()))
+    def test_text_evidence_hash_is_checkout_eol_independent(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); lf = root / "lf.yaml"; crlf = root / "crlf.yaml"
+            lf.write_bytes(b'{"result":"PASS"}\n'); crlf.write_bytes(b'{"result":"PASS"}\r\n')
+            self.assertEqual(sha256_file(lf), sha256_file(crlf))
     def test_hash_change_detected(self):
         h={"executions":[self.record()]}; key=next(iter(h["executions"][0]["evidence_hashes"])); h["executions"][0]["evidence_hashes"][key]="0"*64; self.assertTrue(regression_results(h,self.fresh(h)))
     def test_fixture_catalog_is_inert(self):

@@ -1,0 +1,43 @@
+{
+  "action_id": "P0-ACC-001",
+  "audit_date": "2026-07-27",
+  "baseline_commit": "189af1c76a223ed5c2c1a7e6cd9038260e982f5d",
+  "predecessors": [
+    {
+      "action_id": "ZT-SCN-RETIRE-001",
+      "commit": "4723cf584049e60acf5c841e179e5faebe079078",
+      "record": "docs/zero-trust/recovery/ZT-SCN-RETIRE-001/validation-results.yaml",
+      "decision": "ACCEPTED_AS_COMPLETE",
+      "validation": "PASS"
+    },
+    {
+      "action_id": "ZT-GOV-MAP-001",
+      "commit": "189af1c76a223ed5c2c1a7e6cd9038260e982f5d",
+      "record": "docs/zero-trust/recovery/ZT-GOV-MAP-001/validation-results.yaml",
+      "decision": "ACCEPTED_AS_COMPLETE",
+      "validation": "PASS"
+    }
+  ],
+  "authority_checks": [
+    {"check":"official Korean, English and portfolio titles synchronized","result":"PASS","authority":["README.md","docs/project-definition.md"]},
+    {"check":"package-oriented hierarchy is the active execution model","result":"PASS","authority":["docs/project-definition.md","docs/zero-trust/package-flow.yaml"]},
+    {"check":"actual project target remains L3_ADVANCED","result":"PASS","authority":["docs/project-definition.md","docs/zero-trust/final-roadmap.yaml"]},
+    {"check":"L4_OPTIMAL remains ROADMAP_ONLY and NOT_CLAIMED","result":"PASS","authority":["docs/zero-trust/final-roadmap.yaml","docs/zero-trust/maturity-target.yaml"]},
+    {"check":"KISA mapping is a technical reference, not compliance or certification evidence","result":"PASS","authority":["docs/zero-trust/mappings/zt-kisa-scope-and-limitations.md","docs/zero-trust/mappings/zt-kisa-technical-control-map.yaml"]},
+    {"check":"Phase 0 acceptance promotes no package or live state","result":"PASS","authority":["docs/zero-trust/package-status.yaml","docs/zero-trust/current-baseline-assessment.yaml"]}
+  ],
+  "protected_authority_baseline_blobs": {
+    "docs/zero-trust/package-status.yaml": "e3a31d5a81647538dc87f336c4a9f74a9bd034d8",
+    "docs/zero-trust/package-flow.yaml": "a3ab720ce9d1bf1c6a73b72c565f1226aa498cb7",
+    "docs/zero-trust/current-baseline-assessment.yaml": "39f048c95920f2741e234dd093e320d6958f7176",
+    "docs/zero-trust/capability-implementation-backlog.yaml": "bc88292c3f9826379392f3917407b06c5b97868f"
+  },
+  "protected_authority_diff": [],
+  "tracked_runtime_count": 0,
+  "runtime_executed": false,
+  "live_target_changed": false,
+  "package_status_changed": false,
+  "package_evidence_changed": false,
+  "maturity_assessed": false,
+  "compliance_assessed": false
+}

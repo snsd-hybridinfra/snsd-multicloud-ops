@@ -150,13 +150,33 @@ class ProjectPlanTests(unittest.TestCase):
 
     def test_invalid_milestone_gate_rejected(self) -> None:
         data = copy.deepcopy(self.milestones)
-        data["milestones"][0]["approval_decision"] = "APPROVED"
+        data["milestones"][1]["approval_decision"] = "APPROVED"
         paths = [plan.AUTHORITIES["milestones"][0], plan.AUTHORITIES["milestones"][1], Path("docs/zero-trust/milestones-and-gates.md"), plan.AUTHORITIES["execution_plan"][0]]
         with copied_root(paths) as root:
             write_json(root / plan.AUTHORITIES["milestones"][0], data)
             result = plan.Result()
             plan.validate_milestones(root, result)
             self.assertTrue(failures(result, "milestones.claim"))
+
+    def test_pending_phase_0_gate_rejected(self) -> None:
+        data = copy.deepcopy(self.milestones)
+        data["milestones"][0]["approval_decision"] = "PENDING"
+        paths = [plan.AUTHORITIES["milestones"][0], plan.AUTHORITIES["milestones"][1], Path("docs/zero-trust/milestones-and-gates.md"), plan.AUTHORITIES["execution_plan"][0]]
+        with copied_root(paths) as root:
+            write_json(root / plan.AUTHORITIES["milestones"][0], data)
+            result = plan.Result()
+            plan.validate_milestones(root, result)
+            self.assertTrue(failures(result, "milestones.claim"))
+
+    def test_incomplete_phase_0_roadmap_rejected(self) -> None:
+        data = copy.deepcopy(self.roadmap)
+        data["phases"][0]["current_status"] = "IN_PROGRESS"
+        paths = [plan.AUTHORITIES["roadmap"][0], plan.AUTHORITIES["roadmap"][1], Path("docs/zero-trust/final-roadmap.md")]
+        with copied_root(paths) as root:
+            write_json(root / plan.AUTHORITIES["roadmap"][0], data)
+            result = plan.Result()
+            plan.validate_roadmap(root, result)
+            self.assertTrue(failures(result, "roadmap.claim"))
 
     def test_numbered_scenario_authority_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

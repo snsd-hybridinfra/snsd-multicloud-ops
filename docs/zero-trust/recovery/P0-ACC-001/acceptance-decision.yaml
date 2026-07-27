@@ -1,0 +1,50 @@
+{
+  "action_id": "P0-ACC-001",
+  "decision_date": "2026-07-27",
+  "decision": "APPROVED",
+  "decision_scope": "PHASE_0_GOVERNANCE_ONLY",
+  "phase": {
+    "phase_id": "PHASE_0",
+    "prior_status": "IN_PROGRESS",
+    "accepted_status": "COMPLETED"
+  },
+  "milestone": {
+    "milestone_id": "M0",
+    "prior_decision": "PENDING",
+    "accepted_decision": "APPROVED",
+    "remaining_blocking_gaps": []
+  },
+  "accepted_statements": [
+    "The package-oriented project structure is the active governance model.",
+    "The official project titles and the L3_ADVANCED delivery target are synchronized.",
+    "L4_OPTIMAL remains ROADMAP_ONLY, NOT_VALIDATED and NOT_CLAIMED.",
+    "ZT-SCN-RETIRE-001 and ZT-GOV-MAP-001 are accepted as completed predecessor governance actions.",
+    "No implementation, validation, evidence, acceptance, maturity or compliance state is promoted by this decision."
+  ],
+  "explicitly_not_accepted": [
+    "Phase 1 completion",
+    "P1-ID-ENF-001-RETRY execution",
+    "any live-target or infrastructure change",
+    "any package-state or package-evidence promotion",
+    "L3 maturity achievement",
+    "L4 implementation or maturity",
+    "KISA compliance or certification"
+  ],
+  "exactly_one_next_action": {
+    "action_id": "P1-ID-ENF-001-RETRY",
+    "current_status": "NOT_STARTED",
+    "executed_by_this_decision": false,
+    "separate_authorization_required": true,
+    "prerequisites": [
+      "P0 accepted",
+      "Independent administrator recovery",
+      "Target preflight and backup"
+    ],
+    "protected_scope": [
+      "Primary administrator access",
+      "Unrelated SSH configuration",
+      "Production"
+    ]
+  },
+  "rollback_decision": "Revert the governance-only acceptance commit and restore P0-ACC-001, Phase 0 and M0 to their prior open states if an authority, title, target-boundary or state-preservation check is later shown to be invalid."
+}

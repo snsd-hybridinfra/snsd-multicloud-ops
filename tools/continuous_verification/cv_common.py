@@ -69,7 +69,10 @@ def parse_duration(value: str) -> timedelta:
 
 
 def sha256_file(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    data = path.read_bytes()
+    if path.suffix.lower() in {".json", ".md", ".txt", ".yaml", ".yml"}:
+        data = data.replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
 
 
 def freshness_results(history: dict[str, Any], policy: dict[str, Any], assessment_time: datetime) -> list[dict[str, Any]]:

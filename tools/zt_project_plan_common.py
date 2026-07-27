@@ -183,6 +183,11 @@ def validate_roadmap(root: Path, result: Result) -> None:
     phases = data["phases"]
     if [phase["id"] for phase in phases] != PHASE_ORDER:
         result.fail("roadmap.order", "Phase order must be PHASE_0 through PHASE_5.")
+    phase_states = {phase["id"]: phase["current_status"] for phase in phases}
+    if phase_states.get("PHASE_0") != "COMPLETED":
+        result.fail("roadmap.claim", "Phase 0 must be COMPLETED after P0-ACC-001 approval.")
+    if phase_states.get("PHASE_1") != "NOT_COMPLETE":
+        result.fail("roadmap.claim", "Phase 1 must remain NOT_COMPLETE until its independent acceptance decision.")
     if any(phase["id"] in {"PHASE_2", "PHASE_3", "PHASE_4", "PHASE_5"} and phase["current_status"] != "NOT_STARTED" for phase in phases):
         result.fail("roadmap.claim", "Future implementation phases must remain NOT_STARTED.")
     markdown = (root / "docs/zero-trust/final-roadmap.md").read_text(encoding="utf-8")
@@ -251,7 +256,7 @@ def validate_execution_plan(root: Path, result: Result, dependencies_only: bool 
     if set(data["critical_path"]) - set(actions):
         result.fail("execution.critical-path", "Critical path contains unknown action IDs.")
     completed = {item["action_id"] for item in data["actions"] if item["current_status"] == "COMPLETED"}
-    expected_completed = {"ZT-SCN-RETIRE-001", "ZT-GOV-MAP-001"}
+    expected_completed = {"ZT-SCN-RETIRE-001", "ZT-GOV-MAP-001", "P0-ACC-001"}
     if completed != expected_completed:
         result.fail("execution.current-state", f"Verified Phase 0 completed actions must be {sorted(expected_completed)}, got {sorted(completed)}")
     plan_ids = [item["action_id"] for item in data["actions"]]
@@ -283,14 +288,19 @@ def validate_milestones(root: Path, result: Result) -> None:
         unknown = set(item["required_actions"]) - plan_ids
         if unknown:
             result.fail("milestones.actions", f"{item['milestone_id']}: unknown actions {sorted(unknown)}")
-        if item["approval_decision"] != "PENDING":
-            result.fail("milestones.claim", f"{item['milestone_id']} must remain PENDING during planning")
+        expected_decision = "APPROVED" if item["milestone_id"] == "M0" else "PENDING"
+        if item["approval_decision"] != expected_decision:
+            result.fail("milestones.claim", f"{item['milestone_id']} must be {expected_decision} at the accepted Phase 0 baseline")
+        if item["milestone_id"] == "M0" and item["blocking_gaps"]:
+            result.fail("milestones.claim", "M0 cannot retain blocking gaps after approval.")
     markdown = (root / "docs/zero-trust/milestones-and-gates.md").read_text(encoding="utf-8")
     for milestone_id in data["milestone_order"]:
         if milestone_id not in markdown:
             result.fail("milestones.sync", f"Markdown is missing {milestone_id}")
+    if "| M0 | Package governance normalized | APPROVED |" not in markdown:
+        result.fail("milestones.sync", "Markdown must show M0 as APPROVED.")
     if not any(item.level == "FAIL" and item.category.startswith("milestones.") for item in result.findings):
-        result.passed("milestones", "M0-M6 gates are complete, synchronized and pending evidence-based approval.")
+        result.passed("milestones", "M0 is approved; M1-M6 remain synchronized and pending evidence-based approval.")
 
 
 def validate_risk_register(root: Path, result: Result) -> None:
