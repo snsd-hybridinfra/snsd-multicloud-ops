@@ -256,7 +256,10 @@ def validate_execution_plan(root: Path, result: Result, dependencies_only: bool 
     if set(data["critical_path"]) - set(actions):
         result.fail("execution.critical-path", "Critical path contains unknown action IDs.")
     completed = {item["action_id"] for item in data["actions"] if item["current_status"] == "COMPLETED"}
-    expected_completed = {"ZT-SCN-RETIRE-001", "ZT-GOV-MAP-001", "P0-ACC-001", "P1-ID-ENF-001-RETRY"}
+    expected_completed = {
+        "ZT-SCN-RETIRE-001", "ZT-GOV-MAP-001", "P0-ACC-001",
+        "P1-ID-ENF-001-RETRY", "P1-NET-CLOSE",
+    }
     if completed != expected_completed:
         result.fail("execution.current-state", f"Evidence-backed completed actions must be {sorted(expected_completed)}, got {sorted(completed)}")
     plan_ids = [item["action_id"] for item in data["actions"]]

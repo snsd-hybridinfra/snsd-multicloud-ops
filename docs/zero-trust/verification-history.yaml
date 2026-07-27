@@ -77,14 +77,14 @@
         "docs/evidence/zero-trust/zt-net-001-validation.yaml"
       ],
       "evidence_hashes": {
-        "docs/evidence/zero-trust/zt-net-001-validation.yaml": "71ab00d757991450db8f107ee0b3723381304c2d216ea1e7e3185d4642498f14"
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml": "cea85fe4e672e407f3376359881bd4f17f259b88bfda32f3c7afc6b9a75b4157"
       },
       "sanitization_status": "PASS",
       "freshness_policy_id": "ZTCV-FRESH-LIVE",
       "freshness_status": "FRESH",
       "scheduled_trigger": false,
       "limitations": [
-        "One history record for this exact group."
+        "The original accepted ACL event remains dated 2026-07-22; its evidence was revalidated on 2026-07-27 without network configuration writes and remains one-time evidence, not a new CV execution, repeatability result, or scheduled trigger."
       ]
     },
     {

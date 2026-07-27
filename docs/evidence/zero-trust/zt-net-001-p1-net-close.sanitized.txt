@@ -1,0 +1,31 @@
+ZT-NET-001 P1-NET-CLOSE SANITIZED REVALIDATION
+Execution timestamp: 2026-07-27T11:28:48Z
+Environment: bounded non-production EVE-NG and OpenStack laboratory
+Execution authority: user-approved Codex live revalidation
+
+PRE-CHANGE AND RECOVERY
+- Required router, switch, DMZ test node, and fixed OpenStack test instance were stopped.
+- Independent operator and VMware recovery paths were available.
+- The accepted package ACL and rollback records were present.
+- No ACL, switch, route, security-group, or repository runtime configuration was changed.
+
+RUNTIME RESULTS
+- Fixed router validator: 39 PASS, 0 WARN, 0 FAIL.
+- DMZ gateway allow: 5 of 5 replies.
+- DMZ-to-Kubernetes deny: 5 of 5 attempts explicitly prohibited.
+- DMZ provider-path allow: 5 of 5 replies.
+- Empty, arbitrary-command, configuration-command, and caller-controlled-ping requests were denied with nonzero exit status.
+- ACL binding remained present after a stopped-to-running boot, confirming the accepted startup-persistence boundary.
+- The router recorded the expected denial event.
+
+ROLLBACK
+- The DMZ test node, switch, router, and fixed OpenStack test instance were stopped in reverse order.
+- Final EVE test-node process counts were zero.
+- The fixed OpenStack test instance returned to SHUTOFF with no pending task.
+- No rollback residue or target configuration write remained.
+
+LIMITATIONS
+- Acceptance remains one directional inter-zone ACL in one non-production lab.
+- Broader micro-segmentation, protocol-specific enterprise policy, encryption, SDN, resilience, and maturity are not claimed.
+- OpenStack remains CURRENT_DEGRADED at 46 PASS, 0 WARN, and 4 FAIL; this separate system state is not promoted.
+- Dynamic addresses, MAC addresses, console ports, credentials, raw configurations, and raw output are omitted.

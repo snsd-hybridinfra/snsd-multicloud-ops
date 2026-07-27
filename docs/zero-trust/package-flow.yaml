@@ -43,10 +43,10 @@
     {
       "package_id": "ZT-NET-001",
       "purpose": "Bounded network allow, deny, persistence, source, destination, and rollback validation.",
-      "implementation_status": "IMPLEMENTED_AS_RECORDED",
+      "implementation_status": "IMPLEMENTED",
       "local_validation_status": "LOCAL_VALIDATED",
-      "runtime_validation_status": "PARTIALLY_VALIDATED",
-      "runtime_acceptance_status": "PARTIALLY_ACCEPTED",
+      "runtime_validation_status": "VALIDATED",
+      "runtime_acceptance_status": "ACCEPTED",
       "maturity_status": "UNASSESSED",
       "predecessor": "ZT-FND-001"
     },

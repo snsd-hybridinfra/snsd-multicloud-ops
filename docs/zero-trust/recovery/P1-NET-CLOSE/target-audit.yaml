@@ -1,0 +1,42 @@
+{
+  "action_id": "P1-NET-CLOSE",
+  "package_id": "ZT-NET-001",
+  "target_environment": "BOUNDED_NON_PRODUCTION_LAB",
+  "target_class": "EVE_NG_ROUTER_DIRECTIONAL_ACL",
+  "approval": "USER_APPROVED_LIVE_REVALIDATION",
+  "operator_access_status": "PASS",
+  "independent_recovery_path": "PASS",
+  "pre_change_state": {
+    "router_node": "STOPPED",
+    "switch_node": "STOPPED",
+    "dmz_test_node": "STOPPED",
+    "fixed_openstack_test_instance": "SHUTOFF",
+    "tracked_runtime_files": 0
+  },
+  "discovery": {
+    "router_dependency": "SINGLE_MATCH",
+    "switch_dependency": "SINGLE_MATCH",
+    "dmz_probe_dependency": "SINGLE_MATCH",
+    "provider_virtual_network_mapping": "MATCHED",
+    "initial_connection_failure_class": "STOPPED_ROUTER_NODE",
+    "initial_provider_failure_class": "STOPPED_INTERMEDIATE_SWITCH_AND_TEST_INSTANCE"
+  },
+  "protected_scope": {
+    "acl_configuration_written": false,
+    "switch_configuration_written": false,
+    "openstack_network_configuration_written": false,
+    "unrelated_routes_changed": false,
+    "production_touched": false
+  },
+  "final_runtime_state": {
+    "router_node": "STOPPED",
+    "switch_node": "STOPPED",
+    "dmz_test_node": "STOPPED",
+    "fixed_openstack_test_instance": "SHUTOFF",
+    "pending_openstack_task": false,
+    "residual_test_node_processes": 0
+  },
+  "secret_findings": 0,
+  "privacy_findings": 0,
+  "result": "PASS"
+}

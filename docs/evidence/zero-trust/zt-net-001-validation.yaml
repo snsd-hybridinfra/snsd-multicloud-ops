@@ -40,17 +40,39 @@
     "configuration_command_blocked": true,
     "arbitrary_ping_blocked": true
   },
+  "revalidation": {
+    "action_id": "P1-NET-CLOSE",
+    "timestamp": "2026-07-27T11:28:48Z",
+    "mode": "APPROVED_BOUNDED_LIVE_REVALIDATION",
+    "pre_change_dependency_state": "REQUIRED_LAB_NODES_AND_FIXED_TEST_INSTANCE_STOPPED",
+    "dependency_restoration": "PASS",
+    "fixed_validator": {"exit_code": 0, "pass": 39, "warn": 0, "fail": 0},
+    "dmz_gateway_permit": "PASS_5_OF_5",
+    "dmz_to_kubernetes_deny": "PASS_5_OF_5_EXPLICITLY_PROHIBITED",
+    "dmz_provider_path_permit": "PASS_5_OF_5",
+    "restricted_endpoint_denials": {"empty": 1, "arbitrary_command": 1, "configuration_command": 1, "arbitrary_ping": 1},
+    "startup_persistence": "PASS_AFTER_STOPPED_TO_RUNNING_BOOT",
+    "acl_configuration_written": false,
+    "switch_configuration_written": false,
+    "runtime_power_state_rollback": "PASS_ORIGINAL_STOPPED_STATE_RESTORED",
+    "openstack_dependency_observation": "CURRENT_DEGRADED_46_PASS_0_WARN_4_FAIL",
+    "secret_findings": 0,
+    "privacy_findings": 0,
+    "result": "PASS"
+  },
   "evidence_files": [
     "docs/evidence/zero-trust/zt-net-001-router-validation.sanitized.txt",
     "docs/evidence/zero-trust/zt-net-001-security-boundary.sanitized.txt",
-    "docs/evidence/zero-trust/zt-net-001-acl-validation.sanitized.txt"
+    "docs/evidence/zero-trust/zt-net-001-acl-validation.sanitized.txt",
+    "docs/evidence/zero-trust/zt-net-001-p1-net-close.sanitized.txt"
   ],
   "sanitization": {"raw_runtime_ignored": true, "dynamic_addresses_redacted": true, "mac_addresses_redacted": true, "credentials_present": false},
   "capability_mappings": ["ZT-3.1.1", "ZT-3.4.1", "ZT-4.1.1", "ZT-4.3.1", "ZT-7.1", "ZT-8.2"],
   "limitations": [
     "One persistent directional inter-zone ACL is validated; the result is not complete micro-segmentation.",
     "Traffic encryption, dynamic policy, SDN enforcement, and resilience remain outside this package.",
-    "Tenant Internet egress is cross-referenced to OpenStack evidence and is not claimed from router-only output."
+    "Tenant Internet egress is cross-referenced to OpenStack evidence and is not claimed from router-only output.",
+    "The current OpenStack dependency remains CURRENT_DEGRADED at 46 PASS, 0 WARN, and 4 FAIL; P1-NET-CLOSE does not promote that separate system state."
   ],
   "assessment_confidence": "HIGH",
   "remaining_gaps": ["Expand policy coverage only through separately approved capability-specific designs; do not generalize this single directional ACL to enterprise-wide network enforcement."]

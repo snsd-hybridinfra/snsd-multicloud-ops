@@ -1,0 +1,61 @@
+{
+  "action_id": "P1-NET-CLOSE",
+  "package_id": "ZT-NET-001",
+  "revalidation_timestamp": "2026-07-27T11:28:48Z",
+  "evidence_categories": {
+    "source_metadata": "PASS_EXISTING_PACKAGE_AND_ACCEPTED_ACL_AUTHORITY",
+    "pre_change_state": "PASS_STOPPED_DEPENDENCIES_RECORDED",
+    "backup_state": "PASS_ACCEPTED_STARTUP_AND_ROLLBACK_AUTHORITY_PRESENT",
+    "applied_change": "RUNTIME_DEPENDENCIES_STARTED_ONLY_NO_NETWORK_CONFIGURATION_WRITE",
+    "positive_result": "PASS_GATEWAY_5_OF_5_AND_PROVIDER_5_OF_5",
+    "negative_result": "PASS_PROTECTED_SUBNET_5_OF_5_EXPLICITLY_DENIED",
+    "bypass_result": "PASS_FOUR_RESTRICTED_ENDPOINT_BYPASSES_DENIED",
+    "persistence_result": "PASS_ACL_BINDING_PRESENT_AFTER_STOPPED_TO_RUNNING_BOOT",
+    "rollback_result": "PASS_ALL_TEMPORARY_RUNTIME_POWER_STATES_RESTORED",
+    "log_result": "PASS_EXPECTED_ACL_DENIAL_EVENT_RECORDED",
+    "validator_result": "PASS_39_PASS_0_WARN_0_FAIL",
+    "final_decision": "COMPLETED_RUNTIME_ACCEPTED"
+  },
+  "fixed_router_validator": {"exit_code": 0, "pass": 39, "warn": 0, "fail": 0},
+  "security_boundary": {
+    "empty_request_exit": 1,
+    "arbitrary_command_exit": 1,
+    "configuration_command_exit": 1,
+    "arbitrary_ping_exit": 1,
+    "unexpected_allowances": 0
+  },
+  "flow_validation": {
+    "dmz_gateway": "PASS_5_OF_5",
+    "dmz_to_kubernetes": "PASS_5_OF_5_EXPLICITLY_PROHIBITED",
+    "dmz_provider_path": "PASS_5_OF_5",
+    "acl_denial_log": "PASS"
+  },
+  "persistence_and_rollback": {
+    "startup_persistence": "PASS",
+    "historical_automatic_acl_rollback": "PASS_ALREADY_ACCEPTED",
+    "current_acl_mutation": false,
+    "runtime_power_state_rollback": "PASS",
+    "rollback_residue": 0
+  },
+  "dependency_observation": {
+    "openstack_validator": {"pass": 46, "warn": 0, "fail": 4},
+    "classification": "CURRENT_DEGRADED",
+    "status_promoted": false
+  },
+  "sanitization": {
+    "raw_runtime_ignored": true,
+    "dynamic_addresses_omitted": true,
+    "mac_addresses_omitted": true,
+    "credentials_present": false,
+    "secret_findings": 0,
+    "privacy_findings": 0
+  },
+  "phase_1_state": {
+    "implementation": "PARTIAL",
+    "validation": "PARTIALLY_VALIDATED",
+    "completion": "NOT_COMPLETE",
+    "boundary": "ZT-SCH-001"
+  },
+  "next_action": "P1-VIS-CLOSE",
+  "result": "PASS"
+}

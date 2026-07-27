@@ -6,7 +6,7 @@
     "status_promoted": true,
     "maturity_assessed": false,
     "compliance_assessed": false,
-    "source_rule": "Package metadata and accepted package evidence remain authoritative; ZT-ID-001 is promoted only to its evidence-backed bounded runtime state."
+    "source_rule": "Package metadata and accepted package evidence remain authoritative; ZT-ID-001 and ZT-NET-001 are promoted only to their evidence-backed bounded runtime states."
   },
   "dimensions": [
     "planning_status", "architecture_status", "mapping_status", "implementation_status",
@@ -16,7 +16,7 @@
   "packages": [
     {"package_id":"ZT-ARC-001","planning_status":"ACTIVE_AUTHORITY","architecture_status":"LOCALLY_VALIDATED","mapping_status":"NOT_YET_ASSESSED","implementation_status":"DESIGN_ONLY","local_validation_status":"LOCAL_VALIDATED","runtime_validation_status":"NOT_VALIDATED","runtime_acceptance_status":"PENDING","evidence_status":"DESIGN_DOCUMENTED","maturity_status":"UNASSESSED","compliance_status":"NOT_ASSESSED"},
     {"package_id":"ZT-FND-001","planning_status":"PRESERVED","architecture_status":"LOCALLY_VALIDATED","mapping_status":"NOT_YET_ASSESSED","implementation_status":"IMPLEMENTED","local_validation_status":"LOCAL_VALIDATED","runtime_validation_status":"VALIDATED","runtime_acceptance_status":"BOUNDED_ACCEPTED","evidence_status":"RUNTIME_RECORDED","maturity_status":"UNASSESSED","compliance_status":"NOT_ASSESSED"},
-    {"package_id":"ZT-NET-001","planning_status":"PRESERVED","architecture_status":"LOCALLY_VALIDATED","mapping_status":"NOT_YET_ASSESSED","implementation_status":"IMPLEMENTED_AS_RECORDED","local_validation_status":"LOCAL_VALIDATED","runtime_validation_status":"PARTIALLY_VALIDATED","runtime_acceptance_status":"PARTIALLY_ACCEPTED","evidence_status":"PARTIAL_RUNTIME_RECORDED","maturity_status":"UNASSESSED","compliance_status":"NOT_ASSESSED"},
+    {"package_id":"ZT-NET-001","planning_status":"PRESERVED","architecture_status":"LOCALLY_VALIDATED","mapping_status":"NOT_YET_ASSESSED","implementation_status":"IMPLEMENTED","local_validation_status":"LOCAL_VALIDATED","runtime_validation_status":"VALIDATED","runtime_acceptance_status":"ACCEPTED","evidence_status":"RUNTIME_RECORDED","maturity_status":"UNASSESSED","compliance_status":"NOT_ASSESSED"},
     {"package_id":"ZT-VIS-001","planning_status":"PRESERVED","architecture_status":"LOCALLY_VALIDATED","mapping_status":"NOT_YET_ASSESSED","implementation_status":"IMPLEMENTED","local_validation_status":"LOCAL_VALIDATED","runtime_validation_status":"PARTIALLY_VALIDATED","runtime_acceptance_status":"PARTIALLY_ACCEPTED","evidence_status":"PARTIAL_RUNTIME_RECORDED","maturity_status":"UNASSESSED","compliance_status":"NOT_ASSESSED"},
     {"package_id":"ZT-ID-001","planning_status":"PRESERVED","architecture_status":"LOCALLY_VALIDATED","mapping_status":"NOT_YET_ASSESSED","implementation_status":"IMPLEMENTED","local_validation_status":"LOCAL_VALIDATED","runtime_validation_status":"VALIDATED","runtime_acceptance_status":"ACCEPTED","evidence_status":"RUNTIME_RECORDED","maturity_status":"UNASSESSED","compliance_status":"NOT_ASSESSED"},
     {"package_id":"ZT-CV-001","planning_status":"PLANNED","architecture_status":"DESIGN_ONLY","mapping_status":"NOT_YET_ASSESSED","implementation_status":"NOT_IMPLEMENTED","local_validation_status":"NOT_VALIDATED","runtime_validation_status":"NOT_VALIDATED","runtime_acceptance_status":"PENDING","evidence_status":"NONE","maturity_status":"UNASSESSED","compliance_status":"NOT_ASSESSED"},

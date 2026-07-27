@@ -1224,16 +1224,21 @@ def validate_router_package_data(
         result.fail(category, ".runtime/zero-trust/ must be ignored by Git.")
 
     status = package.get("validation_status")
+    live_statuses = {
+        "VALIDATED", "PARTIALLY_VALIDATED",
+        "RUNTIME_VALIDATED", "PARTIALLY_RUNTIME_VALIDATED",
+    }
+    accepted_statuses = {"VALIDATED", "RUNTIME_VALIDATED"}
     live_authorities = {"CODEX_EXECUTED_LIVE_RUNTIME", "USER_EXECUTED_RUNTIME"}
     if execution is None:
-        if status in {"VALIDATED", "PARTIALLY_VALIDATED"} or authority in live_authorities:
+        if status in live_statuses or authority in live_authorities:
             result.fail(category, "A router live-validation claim requires a machine-readable execution record.")
     else:
         if execution.get("execution_authority") not in live_authorities:
             result.fail(category, "Router execution authority must identify actual live runtime execution.")
         if execution.get("execution_authority") == "CODEX_EXECUTED_LIVE_RUNTIME" and not execution.get("commands"):
             result.fail(category, "Codex router runtime authority requires recorded commands.")
-        if status in {"VALIDATED", "PARTIALLY_VALIDATED"}:
+        if status in live_statuses:
             results = execution.get("results")
             if not isinstance(results, dict) or results.get("exit_code") != 0 or results.get("fail") != 0:
                 result.fail(category, "A live router validation status requires exit code 0 and zero failed checks.")
@@ -1241,9 +1246,9 @@ def validate_router_package_data(
             required = ("interactive_shell_blocked", "arbitrary_command_blocked", "configuration_command_blocked", "arbitrary_ping_blocked")
             if not isinstance(boundary, dict) or any(boundary.get(field) is not True for field in required):
                 result.fail(category, "Router live validation requires all forced-command boundary tests.")
-        if status == "VALIDATED" and execution.get("validation", {}).get("access_control") != "PASS":
+        if status in accepted_statuses and execution.get("validation", {}).get("access_control") != "PASS":
             result.fail(category, "VALIDATED router package requires a passing persistent access-control result.")
-        if status == "VALIDATED":
+        if status in accepted_statuses:
             if package.get("segmentation_classification") != "BOUNDED_INTERZONE_ACL_VALIDATED":
                 result.fail(category, "VALIDATED router package requires BOUNDED_INTERZONE_ACL_VALIDATED classification.")
             persistent = execution.get("persistent_acl", {})

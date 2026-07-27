@@ -311,6 +311,26 @@ class ZeroTrustValidationTests(unittest.TestCase):
         validator.validate_router_package_data(package, self._catalog_ids(), execution, True, result)
         self.assert_has_failure(result, "package.zt-net-001")
 
+    def test_router_runtime_validated_with_failed_checks_fails(self) -> None:
+        package = self._router_package()
+        package["validation_status"] = "RUNTIME_VALIDATED"
+        package["evidence_authority"] = "CODEX_EXECUTED_LIVE_RUNTIME"
+        execution = {
+            "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+            "commands": ["validate-routing"],
+            "results": {"exit_code": 1, "fail": 1},
+            "validation": {"access_control": "FAIL"},
+            "security_boundary": {
+                "interactive_shell_blocked": True,
+                "arbitrary_command_blocked": True,
+                "configuration_command_blocked": True,
+                "arbitrary_ping_blocked": True,
+            },
+        }
+        result = validator.ValidationResult()
+        validator.validate_router_package_data(package, self._catalog_ids(), execution, True, result)
+        self.assert_has_failure(result, "package.zt-net-001")
+
     def test_router_optimal_target_fails(self) -> None:
         package = self._router_package()
         package["target_maturity"] = "OPTIMAL"

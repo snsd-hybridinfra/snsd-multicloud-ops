@@ -9,12 +9,12 @@
   "owner_domain": "NETWORK_SECURITY",
   "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_EVE_NG_ROUTER"],
   "procedure_status": "IMPLEMENTED",
-  "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+  "validation_status": "RUNTIME_VALIDATED",
   "runtime_required": true,
   "live_execution_permitted": true,
   "required_authority": "EXPLICIT_OPERATOR_APPROVAL_AND_EXISTING_RESTRICTED_ENDPOINT",
   "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-  "last_reviewed": "2026-07-22",
+  "last_reviewed": "2026-07-27",
   "limitations": ["One persistent directional ACL is validated; broader multi-zone segmentation, dynamic policy, encryption, and resilience remain outside the bounded package."]
 }
 ```
@@ -32,7 +32,7 @@ remediation remain outside this revalidation runbook.
 
 ## Related Phase
 
-Phase 1; ZT-NET-001 is implemented as recorded and partially runtime validated for its bounded scope.
+Phase 1; ZT-NET-001 is implemented, runtime validated, and accepted for its bounded directional inter-zone ACL scope.
 
 ## Related Package or Governance Action
 
@@ -49,7 +49,7 @@ non-production EVE-NG router restricted endpoint.
 
 ## Current Validation Status
 
-`PARTIALLY_RUNTIME_VALIDATED` for the bounded package; capability maturity is unchanged.
+`RUNTIME_VALIDATED` for the bounded package; runtime validation is `VALIDATED`, acceptance is `ACCEPTED`, and capability maturity is unchanged.
 
 ## Evidence Authority
 
@@ -76,8 +76,9 @@ policy boundary.
 ## Prerequisites
 
 RB-P1-001 ready; ZT-FND-001 restricted endpoint boundary intact; ZT-NET-001
-records consistent; fixed alias available; source evidence and sanitization
-path approved.
+records consistent; fixed alias available; required EVE router and switch nodes
+and the fixed OpenStack test path may be started only for an approved run;
+source evidence and sanitization path approved.
 
 ## Inputs
 
@@ -101,9 +102,9 @@ configuration commands, and arbitrary ping. Weakening that boundary is a stop.
 
 ## Preflight Checks
 
-Confirm package state `IMPLEMENTED` / `VALIDATED`, current maturity
-`UNASSESSED`, fixed alias/command, BatchMode, existing rollback record,
-sanitized destination, and accepted classification
+Confirm package state `IMPLEMENTED` / `RUNTIME_VALIDATED`, runtime validation
+`VALIDATED`, current maturity `UNASSESSED`, fixed alias/command, BatchMode,
+existing rollback record, sanitized destination, and accepted classification
 `BOUNDED_INTERZONE_ACL_VALIDATED`.
 
 ## Procedure
@@ -145,6 +146,13 @@ produced here.
 Static validation checks package consistency and restricted wrapper semantics.
 Runtime validation, when separately approved, must use the exact fixed command
 and must confirm the security boundary as well as routing results.
+
+The 2026-07-27 approved revalidation started only the existing bounded router,
+switch, DMZ test node, and fixed OpenStack test instance. It returned 39 PASS,
+0 WARN, and 0 FAIL; reproduced 5/5 gateway allow, 5/5 explicit Kubernetes
+denial, and 5/5 provider-path allow; denied four endpoint bypass requests; and
+restored every temporary runtime power state. No ACL or switch configuration
+was written.
 
 ## Pass Criteria
 
