@@ -1,0 +1,30 @@
+{
+  "action_id": "ZT-GOV-MAP-001",
+  "audit_status": "SOURCE_VERIFIED",
+  "verified_at": "2026-07-27",
+  "zero_trust_authority": {
+    "document": "제로트러스트 가이드라인 2.0",
+    "role": "PRIMARY_CAPABILITY_ARCHITECTURE_AND_MATURITY_AUTHORITY",
+    "canonical_capability_authority": "docs/zero-trust/capability-catalog.yaml",
+    "capability_ids_changed": false,
+    "taxonomy_fingerprint_changed": false
+  },
+  "kisa_authority": {
+    "reference_id": "KISA-CRITICAL-INFRASTRUCTURE-2026",
+    "document_title": "2026 주요정보통신기반시설 기술적 취약점 분석·평가 방법 상세가이드",
+    "edition": "2026",
+    "publisher": "한국인터넷진흥원",
+    "source_authority": "과학기술정보통신부",
+    "sha256": "44fe393981b244147be6af7423d99dc15633c089fad0bcb296cbe2371dde812d",
+    "page_count": 873,
+    "copies_compared": 3,
+    "copies_identical": true,
+    "verification_methods": ["cover visual inspection", "table-of-contents visual inspection", "item-page visual inspection", "text extraction", "page count", "SHA-256 comparison"],
+    "verified_item_pages": {"U-21":48,"U-23":50,"U-65":164,"U-66":166,"U-67":171},
+    "asset_domain_count": 12,
+    "raw_pdf_tracked": false,
+    "private_source_path_tracked": false
+  },
+  "stop_conditions_triggered": [],
+  "source_codes_guessed": false
+}

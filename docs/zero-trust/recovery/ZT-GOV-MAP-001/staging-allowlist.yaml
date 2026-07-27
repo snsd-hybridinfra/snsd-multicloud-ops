@@ -1,0 +1,30 @@
+{
+  "action_id": "ZT-GOV-MAP-001",
+  "baseline": "e0b2d2d21ed1740aef3a730598d49da917769d4a",
+  "policy": "Stage only the exact paths below; raw PDF, runtime and temporary render files are prohibited.",
+  "allowed_paths": [
+    "AGENTS.md",
+    "docs/references/kisa-2026-critical-infrastructure-guide.yaml",
+    "docs/scope-lock.md",
+    "docs/zero-trust/final-execution-plan.md",
+    "docs/zero-trust/final-execution-plan.yaml",
+    "docs/zero-trust/governance/scenario-framework-retirement.md",
+    "docs/zero-trust/mappings/README.md",
+    "docs/zero-trust/mappings/zt-kisa-mapping-methodology.md",
+    "docs/zero-trust/mappings/zt-kisa-scope-and-limitations.md",
+    "docs/zero-trust/mappings/zt-kisa-technical-control-map.md",
+    "docs/zero-trust/mappings/zt-kisa-technical-control-map.yaml",
+    "docs/zero-trust/recovery/ZT-GOV-MAP-001/README.md",
+    "docs/zero-trust/recovery/ZT-GOV-MAP-001/completion-report.md",
+    "docs/zero-trust/recovery/ZT-GOV-MAP-001/mapping-audit.yaml",
+    "docs/zero-trust/recovery/ZT-GOV-MAP-001/source-audit.yaml",
+    "docs/zero-trust/recovery/ZT-GOV-MAP-001/staging-allowlist.yaml",
+    "docs/zero-trust/recovery/ZT-GOV-MAP-001/validation-results.yaml",
+    "schemas/zt-kisa-technical-control-mapping.schema.json",
+    "tests/test_zt_kisa_mapping.py",
+    "tools/zt_project_plan_common.py"
+  ],
+  "prohibited_patterns": [".runtime/**", "tmp/**", "*.pdf", "*.png", "*secret*", "*credential*"],
+  "raw_pdf_staged": false,
+  "runtime_staged": false
+}

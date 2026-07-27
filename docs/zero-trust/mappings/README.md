@@ -1,11 +1,25 @@
 # Zero Trust - KISA 기술통제 매핑
 
-이 디렉터리는 제로트러스트 역량, ZT 패키지, 2026 KISA 기술 항목, 자산, 수용 사례와 증거 상태를 연결한다.
+이 디렉터리는 `ZT-GOV-MAP-001`에서 수용된 제로트러스트 역량·패키지·KISA 2026 기술 항목·대상 자산·검증·예외 프레임워크다.
 
 - 원문 메타데이터: `docs/references/kisa-2026-critical-infrastructure-guide.yaml`
 - 기계 매핑 권위: `zt-kisa-technical-control-map.yaml`
-- 검토용 표: `zt-kisa-technical-control-map.md`
-- 방법: `zt-kisa-mapping-methodology.md`
+- 검토용 표현: `zt-kisa-technical-control-map.md`
+- 판단 방법: `zt-kisa-mapping-methodology.md`
 - 범위와 제한: `zt-kisa-scope-and-limitations.md`
+- 엄격 스키마: `schemas/zt-kisa-technical-control-mapping.schema.json`
+- 읽기 전용 검증기: `tools/validate_zt_kisa_mapping.py`
 
-현재 항목은 인증된 원문에서 코드·명칭·중요도를 확인한 계획 seed다. 모든 record는 `REFERENCED_ONLY / NOT_VALIDATED / SOURCE_METADATA_ONLY`; 매핑은 구현, 런타임 수용, KISA 준수 또는 인증의 증거가 아니다. 전체 적용성 평가는 후속 `ZT-GOV-MAP-001`의 수용 게이트를 통과해야 한다.
+프레임워크는 42개 record로 구성된다. 39개는 인증된 원문의 정확한 코드·명칭·중요도·페이지를 갖고, 3개는 CV/RV/SCH용 `GOVERNANCE_ONLY` record로 KISA 코드를 의도적으로 비워 둔다.
+
+모든 KISA item 매핑 상태는 `REFERENCED_ONLY / NOT_VALIDATED / SOURCE_METADATA_ONLY / UNASSESSED / NOT_ASSESSED`다. 패키지 상태는 `docs/zero-trust/package-status.yaml`의 독립 권위이며 이 프레임워크가 구현, 런타임 수용, 성숙도, 컴플라이언스 또는 인증 상태를 승격하지 않는다.
+
+```mermaid
+flowchart LR
+  subgraph ARC["ZT-ARC-001: architecture authority"]
+    FND["ZT-FND-001"] --> NET["ZT-NET-001"] --> VIS["ZT-VIS-001"] --> ID["ZT-ID-001"]
+    ID --> CV["ZT-CV-001"] --> RV["ZT-RV-001"] --> SCH["ZT-SCH-001"] --> ACC["P1-ACC-001"]
+  end
+  CAP["Zero Trust capability"] --> KISA["KISA technical control"] --> TARGET["Target implementation"]
+  TARGET --> TEST["Runtime tests"] --> EVID["Sanitized evidence"] --> DECIDE["Separated status decision"]
+```

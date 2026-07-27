@@ -1,0 +1,29 @@
+{
+  "action_id": "ZT-GOV-MAP-001",
+  "mapping_authority": "docs/zero-trust/mappings/zt-kisa-technical-control-map.yaml",
+  "schema_version": "2.0.0",
+  "mapping_status": "SOURCE_VERIFIED_FRAMEWORK_ACCEPTED",
+  "record_counts": {"total":42,"exact_item":39,"governance_only":3,"direct":3,"supporting":28,"partial":0,"future_scope":8,"not_applicable":0},
+  "unique_verified_kisa_item_count": 34,
+  "package_summary_count": 12,
+  "target_class_count": 16,
+  "phase_1_mapping_packages": ["ZT-FND-001","ZT-NET-001","ZT-VIS-001","ZT-ID-001","ZT-CV-001","ZT-RV-001","ZT-SCH-001"],
+  "mandatory_new_exact_items": ["U-17","U-21","U-23","U-64","U-65","U-66","U-67"],
+  "governance_only_mappings": ["MAP-ZT-CV-001-GOVERNANCE","MAP-ZT-RV-001-GOVERNANCE","MAP-ZT-SCH-001-GOVERNANCE"],
+  "unmapped_package_scopes": ["ZT-DEV-001 product-specific controls","ZT-SYS-001 OS/version-specific controls","ZT-AUTO-001 direct target controls"],
+  "status_truth": {
+    "implementation_promoted": false,
+    "local_validation_promoted": false,
+    "runtime_validation_promoted": false,
+    "evidence_promoted": false,
+    "maturity_assessed": false,
+    "compliance_assessed": false,
+    "package_status_changed": false,
+    "live_target_changed": false
+  },
+  "limitations": [
+    "Package evidence is not inherited as KISA-item acceptance.",
+    "GOVERNANCE_ONLY records intentionally contain no KISA code.",
+    "Product and version applicability remains a future target-specific decision."
+  ]
+}

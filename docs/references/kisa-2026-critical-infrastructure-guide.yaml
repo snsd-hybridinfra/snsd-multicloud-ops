@@ -1,32 +1,46 @@
 {
+  "schema_version": "2.0.0",
   "reference_id": "KISA-CRITICAL-INFRASTRUCTURE-2026",
-  "title_ko": "2026 주요정보통신기반시설 기술적 취약점 분석·평가 방법 상세가이드",
-  "title_en": "2026 Detailed Guide for Technical Vulnerability Analysis and Assessment of Critical Information Infrastructure",
+  "document_title": "2026 주요정보통신기반시설 기술적 취약점 분석·평가 방법 상세가이드",
+  "document_title_en": "2026 Detailed Guide for Technical Vulnerability Analysis and Assessment of Critical Information Infrastructure",
+  "edition": "2026",
   "publication_year": 2026,
   "publisher": "한국인터넷진흥원",
-  "issuing_authority": "과학기술정보통신부",
-  "page_count": 873,
+  "source_authority": "과학기술정보통신부",
   "sha256": "44fe393981b244147be6af7423d99dc15633c089fad0bcb296cbe2371dde812d",
+  "page_count": 873,
+  "usage_role": "TECHNICAL_INSPECTION_AND_HARDENING_REFERENCE",
+  "authority_level": "SECONDARY_TECHNICAL_REFERENCE",
+  "interpretation_policy": "Zero Trust Guideline 2.0 defines the required security property; this guide supplies target-specific inspection and hardening references. Applicability, implementation, runtime validation, maturity and compliance remain separate decisions.",
+  "local_source_available": true,
+  "tracked_binary": false,
+  "verified_at": "2026-07-27",
   "source_authentication": {
     "status": "VERIFIED",
-    "method": ["cover visual inspection", "publisher mark inspection", "table-of-contents inspection", "PDF page count", "SHA-256 comparison across three user-owned copies"],
-    "verified_date": "2026-07-27",
+    "methods": [
+      "cover visual inspection",
+      "publisher mark inspection",
+      "table-of-contents visual inspection",
+      "item-page visual inspection",
+      "PDF page-count verification",
+      "SHA-256 comparison across three user-owned copies"
+    ],
     "copies_compared": 3,
     "copies_identical": true
   },
   "asset_domains": [
-    {"id": "UNIX_SERVER", "label_ko": "Unix 서버", "code_family": "U"},
-    {"id": "WINDOWS_SERVER", "label_ko": "Windows 서버", "code_family": "W"},
-    {"id": "WEB_SERVICE", "label_ko": "웹 서비스", "code_family": "WEB"},
-    {"id": "SECURITY_DEVICE", "label_ko": "보안 장비", "code_family": "S"},
-    {"id": "NETWORK_DEVICE", "label_ko": "네트워크 장비", "code_family": "N"},
-    {"id": "CONTROL_SYSTEM", "label_ko": "제어시스템", "code_family": "SC"},
-    {"id": "PC", "label_ko": "PC", "code_family": "PC"},
-    {"id": "DBMS", "label_ko": "DBMS", "code_family": "D"},
-    {"id": "MOBILE_COMMUNICATION", "label_ko": "이동통신", "code_family": "M"},
-    {"id": "WEB_APPLICATION", "label_ko": "Web Application(웹)", "code_family": "VARIABLE_TWO_LETTER"},
-    {"id": "VIRTUALIZATION", "label_ko": "가상화 장비", "code_family": "HV"},
-    {"id": "CLOUD", "label_ko": "클라우드", "code_family": "CA"}
+    {"id":"UNIX_SERVER","section_name":"Unix 서버","code_family":"U","page_start":7,"page_end":171},
+    {"id":"WINDOWS_SERVER","section_name":"Windows 서버","code_family":"W","page_start":172,"page_end":270},
+    {"id":"WEB_SERVICE","section_name":"웹 서비스","code_family":"WEB","page_start":271,"page_end":352},
+    {"id":"SECURITY_DEVICE","section_name":"보안 장비","code_family":"S","page_start":353,"page_end":386},
+    {"id":"NETWORK_DEVICE","section_name":"네트워크 장비","code_family":"N","page_start":387,"page_end":466},
+    {"id":"CONTROL_SYSTEM","section_name":"제어시스템","code_family":"SC","page_start":467,"page_end":551},
+    {"id":"PC_ENDPOINT","section_name":"PC","code_family":"PC","page_start":552,"page_end":592},
+    {"id":"DBMS","section_name":"DBMS","code_family":"D","page_start":593,"page_end":669},
+    {"id":"MOBILE_TELECOMMUNICATION","section_name":"이동통신","code_family":"M","page_start":670,"page_end":675},
+    {"id":"WEB_APPLICATION","section_name":"Web Application(웹)","code_family":"VARIABLE_TWO_LETTER","page_start":676,"page_end":786},
+    {"id":"VIRTUALIZATION_PLATFORM","section_name":"가상화 장비","code_family":"HV","page_start":787,"page_end":850},
+    {"id":"CLOUD","section_name":"클라우드","code_family":"CA","page_start":851,"page_end":873}
   ],
   "handling": {
     "raw_pdf_tracked": false,
@@ -36,8 +50,9 @@
     "implementation_or_compliance_proof": false
   },
   "limitations": [
-    "The guide is an inspection and hardening reference, not implementation evidence or certification.",
-    "Applicability depends on exact product version, environment, service impact, exception, and rollback review.",
-    "Item codes must be copied only from the authenticated source."
+    "The guide is an inspection and hardening reference, not implementation evidence, legal advice, certification or a compliance decision.",
+    "Applicability depends on the exact asset, product version, patch level, vendor behavior, operational policy, service impact, exception and rollback review.",
+    "A technically different but equivalent secure configuration requires target-specific evidence and explicit acceptance.",
+    "Item codes and names may be recorded only after verification against the authenticated source."
   ]
 }

@@ -38,33 +38,55 @@ AUTHORITIES = {
 }
 
 KISA_ITEMS = {
-    "U-01": ("root 계정 원격 접속 제한", "HIGH", "UNIX_SERVER"),
-    "U-05": ("root 이외의 UID가 ‘0’ 금지", "HIGH", "UNIX_SERVER"),
-    "U-06": ("사용자 계정 su 기능 제한", "HIGH", "UNIX_SERVER"),
-    "U-07": ("불필요한 계정 제거", "LOW", "UNIX_SERVER"),
-    "U-08": ("관리자 그룹에 최소한의 계정 포함", "MEDIUM", "UNIX_SERVER"),
-    "U-10": ("동일한 UID 금지", "MEDIUM", "UNIX_SERVER"),
-    "U-11": ("사용자 Shell 점검", "LOW", "UNIX_SERVER"),
-    "U-12": ("세션 종료 시간 설정", "LOW", "UNIX_SERVER"),
-    "U-16": ("/etc/passwd 파일 소유자 및 권한 설정", "HIGH", "UNIX_SERVER"),
-    "U-18": ("/etc/shadow 파일 소유자 및 권한 설정", "HIGH", "UNIX_SERVER"),
-    "U-28": ("접속 IP 및 포트 제한", "HIGH", "UNIX_SERVER"),
-    "U-63": ("sudo 명령어 접근 관리", "HIGH", "UNIX_SERVER"),
-    "W-06": ("관리자 그룹에 최소한의 사용자 포함", "HIGH", "WINDOWS_SERVER"),
-    "WEB-06": ("웹 서비스 상위 디렉터리 접근 제한 설정", "HIGH", "WEB_SERVICE"),
-    "S-06": ("보안장비 원격 관리 접근 통제", "HIGH", "SECURITY_DEVICE"),
-    "S-10": ("보안장비 로그 설정", "MEDIUM", "SECURITY_DEVICE"),
-    "N-06": ("VTY 접근(ACL) 설정", "HIGH", "NETWORK_DEVICE"),
-    "N-14": ("정책에 따른 로깅 설정", "MEDIUM", "NETWORK_DEVICE"),
-    "D-04": ("데이터베이스 관리자 권한을 꼭 필요한 계정 및 그룹에 대해서만 허용", "HIGH", "DBMS"),
-    "D-10": ("원격에서 DB 서버로의 접속 제한", "HIGH", "DBMS"),
-    "CI": ("코드 인젝션 (Code Injection)", "HIGH", "WEB_APPLICATION"),
-    "IA": ("불충분한 인증 절차", "HIGH", "WEB_APPLICATION"),
-    "HV-04": ("가상화 장비 계정 권한 관리", "HIGH", "VIRTUALIZATION"),
-    "HV-15": ("시스템 주요 이벤트 로그 설정", "HIGH", "VIRTUALIZATION"),
-    "CA-03": ("MFA(Multi-Factor Authentication) 설정", "HIGH", "CLOUD"),
-    "CA-06": ("네트워크 서비스 정책 관리", "HIGH", "CLOUD"),
-    "CA-13": ("클라우드 서비스 사용자 계정 로깅 설정", "HIGH", "CLOUD"),
+    "U-01": ("root 계정 원격 접속 제한", "HIGH", "UNIX_SERVER", 12),
+    "U-05": ("root 이외의 UID가 ‘0’ 금지", "HIGH", "UNIX_SERVER", 27),
+    "U-06": ("사용자 계정 su 기능 제한", "HIGH", "UNIX_SERVER", 29),
+    "U-07": ("불필요한 계정 제거", "LOW", "UNIX_SERVER", 31),
+    "U-08": ("관리자 그룹에 최소한의 계정 포함", "MEDIUM", "UNIX_SERVER", 32),
+    "U-10": ("동일한 UID 금지", "MEDIUM", "UNIX_SERVER", 34),
+    "U-11": ("사용자 Shell 점검", "LOW", "UNIX_SERVER", 35),
+    "U-12": ("세션 종료 시간 설정", "LOW", "UNIX_SERVER", 36),
+    "U-16": ("/etc/passwd 파일 소유자 및 권한 설정", "HIGH", "UNIX_SERVER", 41),
+    "U-17": ("시스템 시작 스크립트 권한 설정", "HIGH", "UNIX_SERVER", 42),
+    "U-18": ("/etc/shadow 파일 소유자 및 권한 설정", "HIGH", "UNIX_SERVER", 44),
+    "U-21": ("/etc/(r)syslog.conf 파일 소유자 및 권한 설정", "HIGH", "UNIX_SERVER", 48),
+    "U-23": ("SUID, SGID, Sticky bit 설정 파일 점검", "HIGH", "UNIX_SERVER", 50),
+    "U-28": ("접속 IP 및 포트 제한", "HIGH", "UNIX_SERVER", 56),
+    "U-63": ("sudo 명령어 접근 관리", "HIGH", "UNIX_SERVER", 159),
+    "U-64": ("주기적 보안 패치 및 벤더 권고사항 적용", "HIGH", "UNIX_SERVER", 160),
+    "U-65": ("NTP 및 시각 동기화 설정", "MEDIUM", "UNIX_SERVER", 164),
+    "U-66": ("정책에 따른 시스템 로깅 설정", "MEDIUM", "UNIX_SERVER", 166),
+    "U-67": ("로그 디렉터리 소유자 및 권한 설정", "MEDIUM", "UNIX_SERVER", 171),
+    "W-06": ("관리자 그룹에 최소한의 사용자 포함", "HIGH", "WINDOWS_SERVER", 182),
+    "WEB-06": ("웹 서비스 상위 디렉터리 접근 제한 설정", "HIGH", "WEB_SERVICE", 286),
+    "S-06": ("보안장비 원격 관리 접근 통제", "HIGH", "SECURITY_DEVICE", 363),
+    "S-10": ("보안장비 로그 설정", "MEDIUM", "SECURITY_DEVICE", 368),
+    "N-06": ("VTY 접근(ACL) 설정", "HIGH", "NETWORK_DEVICE", 406),
+    "N-14": ("정책에 따른 로깅 설정", "MEDIUM", "NETWORK_DEVICE", 426),
+    "D-04": ("데이터베이스 관리자 권한을 꼭 필요한 계정 및 그룹에 대해서만 허용", "HIGH", "DBMS", 608),
+    "D-10": ("원격에서 DB 서버로의 접속 제한", "HIGH", "DBMS", 628),
+    "CI": ("코드 인젝션 (Code Injection)", "HIGH", "WEB_APPLICATION", 679),
+    "IA": ("불충분한 인증 절차", "HIGH", "WEB_APPLICATION", 729),
+    "HV-04": ("가상화 장비 계정 권한 관리", "HIGH", "VIRTUALIZATION_PLATFORM", 798),
+    "HV-15": ("시스템 주요 이벤트 로그 설정", "HIGH", "VIRTUALIZATION_PLATFORM", 833),
+    "CA-03": ("MFA(Multi-Factor Authentication) 설정", "HIGH", "CLOUD", 856),
+    "CA-06": ("네트워크 서비스 정책 관리", "HIGH", "CLOUD", 859),
+    "CA-13": ("클라우드 서비스 사용자 계정 로깅 설정", "HIGH", "CLOUD", 866),
+}
+
+KISA_DOMAINS = {
+    "UNIX_SERVER": ("Unix 서버", "U", 7, 171),
+    "WINDOWS_SERVER": ("Windows 서버", "W", 172, 270),
+    "WEB_SERVICE": ("웹 서비스", "WEB", 271, 352),
+    "SECURITY_DEVICE": ("보안 장비", "S", 353, 386),
+    "NETWORK_DEVICE": ("네트워크 장비", "N", 387, 466),
+    "CONTROL_SYSTEM": ("제어시스템", "SC", 467, 551),
+    "PC_ENDPOINT": ("PC", "PC", 552, 592),
+    "DBMS": ("DBMS", "D", 593, 669),
+    "MOBILE_TELECOMMUNICATION": ("이동통신", "M", 670, 675),
+    "WEB_APPLICATION": ("Web Application(웹)", "VARIABLE_TWO_LETTER", 676, 786),
+    "VIRTUALIZATION_PLATFORM": ("가상화 장비", "HV", 787, 850),
+    "CLOUD": ("클라우드", "CA", 851, 873),
 }
 
 
@@ -229,8 +251,9 @@ def validate_execution_plan(root: Path, result: Result, dependencies_only: bool 
     if set(data["critical_path"]) - set(actions):
         result.fail("execution.critical-path", "Critical path contains unknown action IDs.")
     completed = {item["action_id"] for item in data["actions"] if item["current_status"] == "COMPLETED"}
-    if completed != {"ZT-SCN-RETIRE-001"}:
-        result.fail("execution.current-state", f"Only verified retirement may be COMPLETED, got {sorted(completed)}")
+    expected_completed = {"ZT-SCN-RETIRE-001", "ZT-GOV-MAP-001"}
+    if completed != expected_completed:
+        result.fail("execution.current-state", f"Verified Phase 0 completed actions must be {sorted(expected_completed)}, got {sorted(completed)}")
     plan_ids = [item["action_id"] for item in data["actions"]]
     roadmap = load(root / AUTHORITIES["roadmap"][0])
     roadmap_ids = [action for phase in roadmap["phases"] for action in phase["actions"]]
@@ -330,43 +353,110 @@ def validate_kisa_mapping(root: Path, result: Result) -> None:
     if data is None:
         return
     source = load(root / "docs/references/kisa-2026-critical-infrastructure-guide.yaml")
-    if source.get("sha256") != KISA_SHA256 or source.get("page_count") != 873 or source.get("publication_year") != 2026:
+    if source.get("sha256") != KISA_SHA256 or source.get("page_count") != 873 or source.get("publication_year") != 2026 or source.get("edition") != "2026":
         result.fail("kisa.source", "KISA source metadata does not match the authenticated 2026, 873-page source.")
-    if source.get("handling", {}).get("raw_pdf_tracked") is not False or source.get("handling", {}).get("private_absolute_path_recorded") is not False:
+    if source.get("usage_role") != "TECHNICAL_INSPECTION_AND_HARDENING_REFERENCE" or source.get("authority_level") != "SECONDARY_TECHNICAL_REFERENCE":
+        result.fail("kisa.source", "KISA source role or authority level is incorrect.")
+    if source.get("tracked_binary") is not False or source.get("handling", {}).get("raw_pdf_tracked") is not False or source.get("handling", {}).get("private_absolute_path_recorded") is not False:
         result.fail("kisa.handling", "Raw PDF and private absolute path must not be tracked.")
-    if data["metadata"]["guide_sha256"] != source["sha256"]:
+    source_domains = {
+        item.get("id"): (item.get("section_name"), item.get("code_family"), item.get("page_start"), item.get("page_end"))
+        for item in source.get("asset_domains", [])
+    }
+    if source_domains != KISA_DOMAINS:
+        result.fail("kisa.domains", "KISA asset domains or exact source page ranges differ from the verified table of contents.")
+    if data["metadata"]["guide_sha256"] != source.get("sha256"):
         result.fail("kisa.source", "Mapping and source SHA-256 differ.")
+    expected_titles = (PROJECT_TITLE_KO, PROJECT_TITLE_EN, PORTFOLIO_TITLE)
+    actual_titles = (data["metadata"]["project_title_ko"], data["metadata"]["project_title_en"], data["metadata"]["portfolio_title"])
+    if actual_titles != expected_titles:
+        result.fail("kisa.title", "Mapping project titles differ from the official project definition.")
+    if data["package_flow"]["sequence"] != PACKAGE_SEQUENCE[:-1] or data["package_flow"]["terminal"] != "P1-ACC-001" or data["package_flow"]["architecture_authority"] != "ZT-ARC-001":
+        result.fail("kisa.flow", "Mapping package flow must be ZT-FND-001 through ZT-SCH-001 with surrounding ZT-ARC-001 and P1-ACC-001 terminal.")
+    layer_ids = [item["layer_id"] for item in data["framework_layers"]]
+    if layer_ids != ["LAYER_1_ZERO_TRUST", "LAYER_2_KISA_REFERENCE", "LAYER_3_IMPLEMENTATION_PACKAGE", "LAYER_4_AUTOMATED_VALIDATION"]:
+        result.fail("kisa.layers", "Four-layer authority order is invalid.")
     records = data["mappings"]
     if data["metadata"]["mapping_count"] != len(records):
         result.fail("kisa.count", "mapping_count does not equal mapping records.")
+    exact_records = [item for item in records if item["kisa_item_code"] is not None]
+    governance_records = [item for item in records if item["mapping_type"] == "GOVERNANCE_ONLY"]
+    if data["metadata"]["exact_item_mapping_count"] != len(exact_records) or data["metadata"]["governance_mapping_count"] != len(governance_records):
+        result.fail("kisa.count", "Exact-item or governance-only mapping count differs from metadata.")
     ids = [item["mapping_id"] for item in records]
     if len(ids) != len(set(ids)):
         result.fail("kisa.ids", "Mapping IDs must be unique.")
     catalog = load(root / "docs/zero-trust/capability-catalog.yaml")
     capability_ids = {item["id"] for item in catalog["capabilities"]}
     domains: set[str] = set()
+    direct_by_code: dict[str, list[dict[str, Any]]] = {}
     for item in records:
-        expected = KISA_ITEMS.get(item["kisa_item_code"])
-        actual = (item["kisa_item_name"], item["kisa_severity"], item["kisa_asset_domain"])
-        if expected is None:
-            result.fail("kisa.guessed", f"{item['mapping_id']}: unverified or unknown KISA item {item['kisa_item_code']}")
-        elif actual != expected:
-            result.fail("kisa.item", f"{item['mapping_id']}: item metadata differs from authenticated source")
+        code = item["kisa_item_code"]
+        if item["mapping_type"] == "GOVERNANCE_ONLY":
+            if any(item[field] is not None for field in ("kisa_asset_domain", "kisa_item_code", "kisa_item_name", "source_page")):
+                result.fail("kisa.governance", f"{item['mapping_id']}: governance-only mapping must not fabricate KISA metadata")
+        else:
+            expected = KISA_ITEMS.get(code)
+            actual = (item["kisa_item_name"], item["kisa_severity"], item["kisa_asset_domain"], item["source_page"])
+            if expected is None:
+                result.fail("kisa.guessed", f"{item['mapping_id']}: unverified or unknown KISA item {code}")
+            elif actual != expected:
+                result.fail("kisa.item", f"{item['mapping_id']}: item name, severity, domain or page differs from the authenticated source")
+            domains.add(item["kisa_asset_domain"])
+            if item["mapping_type"] == "DIRECT":
+                direct_by_code.setdefault(code, []).append(item)
         unknown = set(item["zt_capability_ids"]) - capability_ids
         if unknown:
             result.fail("kisa.capability", f"{item['mapping_id']}: unknown capabilities {sorted(unknown)}")
-        if item["implementation_status"] != "REFERENCED_ONLY" or item["runtime_validation_status"] != "NOT_VALIDATED" or item["evidence_status"] != "SOURCE_METADATA_ONLY":
+        if item["implementation_status"] != "REFERENCED_ONLY" or item["local_validation_status"] != "NOT_VALIDATED" or item["runtime_validation_status"] != "NOT_VALIDATED" or item["evidence_status"] != "SOURCE_METADATA_ONLY":
             result.fail("kisa.overclaim", f"{item['mapping_id']}: planning mapping overclaims implementation or runtime evidence")
-        domains.add(item["kisa_asset_domain"])
-    required_domains = {"UNIX_SERVER","WINDOWS_SERVER","WEB_SERVICE","WEB_APPLICATION","SECURITY_DEVICE","NETWORK_DEVICE","DBMS","VIRTUALIZATION","CLOUD"}
+        if item["maturity_status"] != "UNASSESSED" or item["compliance_status"] != "NOT_ASSESSED":
+            result.fail("kisa.overclaim", f"{item['mapping_id']}: mapping overclaims maturity or compliance")
+        if not item["operational_impact"] or not item["version_constraints"] or not item["exception_policy"] or not item["compensating_control_policy"] or not item["source_reference"]:
+            result.fail("kisa.completeness", f"{item['mapping_id']}: impact, version, exception, compensating control and source are mandatory")
+    for code, duplicates in direct_by_code.items():
+        if len(duplicates) > 1 and any(not item["duplicate_mapping_rationale"] for item in duplicates):
+            result.fail("kisa.duplicate-direct", f"{code}: duplicate DIRECT mappings require rationale on every record")
+    required_domains = {"UNIX_SERVER","WINDOWS_SERVER","WEB_SERVICE","WEB_APPLICATION","SECURITY_DEVICE","NETWORK_DEVICE","DBMS","VIRTUALIZATION_PLATFORM","CLOUD"}
     if not required_domains.issubset(domains):
-        result.fail("kisa.coverage", f"Seed misses required evaluated domains: {sorted(required_domains-domains)}")
+        result.fail("kisa.coverage", f"Framework misses required evaluated domains: {sorted(required_domains-domains)}")
+    package_summaries = data["package_summaries"]
+    if [item["package_id"] for item in package_summaries] != TECHNICAL_PACKAGE_IDS:
+        result.fail("kisa.packages", "Package summaries must cover all twelve technical packages in canonical order.")
+    expected_targets = ["EVE_NG","OPENSTACK_AIO","OPENSTACK_VM","LINUX_HOST","WINDOWS_HOST","NETWORK_SECURITY_APPLIANCE","KUBERNETES_NODE","KUBERNETES_WORKLOAD","DATABASE","WEB_SERVICE","MONITORING_PLATFORM","IDENTITY_PLATFORM","VIRTUALIZATION_PLATFORM","PUBLIC_CLOUD_ACCOUNT","PUBLIC_CLOUD_NETWORK","PUBLIC_CLOUD_COMPUTE"]
+    if [item["target_class"] for item in data["target_classes"]] != expected_targets:
+        result.fail("kisa.targets", "Target-class model must cover the sixteen approved current and planned classes in canonical order.")
+    exception = data["exception_policy"]
+    if exception["exception_status"] != "NOT_REQUESTED" or not exception["exception_reason"] or not exception["evidence_requirements"] or not exception["compensating_controls"]:
+        result.fail("kisa.exception", "Framework exception model must be non-personal, evidence-backed and inactive by default.")
     markdown = (root / "docs/zero-trust/mappings/zt-kisa-technical-control-map.md").read_text(encoding="utf-8")
-    for package in sorted({item["zt_package_id"] for item in records}):
+    for package in TECHNICAL_PACKAGE_IDS:
         if package not in markdown:
             result.fail("kisa.sync", f"Mapping Markdown is missing {package}")
+    for token in (str(len(records)), str(len(exact_records)), str(len(governance_records)), "P1-ACC-001"):
+        if token not in markdown:
+            result.fail("kisa.sync", f"Mapping Markdown is missing synchronized token {token}")
+    tracked = subprocess.run(["git", "ls-files", ".runtime"], cwd=root, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if tracked.returncode != 0:
+        result.fail("kisa.git", "Unable to inspect tracked runtime.", integrity=True)
+    elif tracked.stdout.strip():
+        result.fail("kisa.runtime", "Tracked .runtime files are prohibited.")
+    mapping_corpus = json.dumps(data, ensure_ascii=False)
+    prohibited_scenario_id = "S" + "051"
+    if prohibited_scenario_id in mapping_corpus:
+        result.fail("kisa.scenario", f"{prohibited_scenario_id} is prohibited.")
+    forbidden_fields = {"password", "token", "private_key", "mfa_seed", "recovery_code", "approver_name", "approver_email"}
+    def field_names(value: Any) -> set[str]:
+        if isinstance(value, dict):
+            return set(value) | {name for child in value.values() for name in field_names(child)}
+        if isinstance(value, list):
+            return {name for child in value for name in field_names(child)}
+        return set()
+    unsafe_fields = field_names(data) & forbidden_fields
+    if unsafe_fields:
+        result.fail("kisa.safety", f"Mapping contains prohibited secret or personal-data fields: {sorted(unsafe_fields)}")
     if not any(item.level == "FAIL" and item.category.startswith("kisa.") for item in result.findings):
-        result.passed("kisa", f"{len(records)} exact source-verified planning mappings cover the required asset domains without implementation or compliance claims.")
+        result.passed("kisa", f"{len(records)} mappings ({len(exact_records)} exact-item, {len(governance_records)} governance-only) form a source-verified framework without implementation, runtime, maturity or compliance promotion.")
 
 
 def validate_acceptance_cases(root: Path, result: Result) -> None:

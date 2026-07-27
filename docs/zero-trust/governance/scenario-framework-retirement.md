@@ -59,3 +59,7 @@ Existing reusable configuration examples may retain general test-case language, 
 ## 12. Next action
 
 ZT-GOV-MAP-001 is the next separately authorized action. It may complete and accept the integrated Zero Trust Guideline 2.0 and authenticated KISA 2026 technical-control mapping framework; this retirement record does not execute it.
+
+## Subsequent closure
+
+`ZT-GOV-MAP-001` was later completed as a separate action. Its current authority is `docs/zero-trust/mappings/zt-kisa-technical-control-map.yaml`; `P0-ACC-001` is the next execution-plan action. This note does not rewrite the retirement action's historical scope or evidence.

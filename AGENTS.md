@@ -28,7 +28,7 @@ Package removal or status promotion requires matching implementation and evidenc
 ## Source governance
 
 - The local **제로트러스트 가이드라인 2.0** PDF is the primary authority for canonical terminology, capability numbering, architecture, and maturity characteristics.
-- The authenticated 2026 KISA critical-infrastructure technical vulnerability guide is registered as a secondary planning reference. Comprehensive mapping review and acceptance remain ZT-GOV-MAP-001 work.
+- The authenticated 2026 KISA critical-infrastructure technical vulnerability guide is a secondary technical inspection and hardening reference. `ZT-GOV-MAP-001` owns the accepted source-verified mapping framework.
 - Mapping is not implementation, runtime validation, maturity, compliance, or certification.
 
 ## File safety
