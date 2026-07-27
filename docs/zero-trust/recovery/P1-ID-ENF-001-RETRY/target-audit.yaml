@@ -30,6 +30,15 @@
   "disk_capacity": "PASS",
   "clock_usable": true,
   "privacy_findings": 0,
-  "secret_findings": 0
+  "secret_findings": 0,
+  "revalidation": {
+    "timestamp": "2026-07-27T08:20:03Z",
+    "mode": "READ_ONLY_CONTROL_AND_ACCESS_REVALIDATION",
+    "target_package_files_rewritten": false,
+    "backup_and_rollback_revalidated": true,
+    "residual_rollback_jobs": 0,
+    "base_validator": {"pass": 40, "warn": 2, "fail": 0},
+    "warning_scope": ["NO_RUNNING_DYNAMIPS_NODE_PROCESS", "NO_RUNNING_QEMU_NODE_PROCESS"],
+    "result": "PASS"
+  }
 }
-

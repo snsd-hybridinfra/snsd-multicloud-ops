@@ -5,10 +5,11 @@
   "phase": "PHASE_1",
   "authority_status": "AUTHORITATIVE",
   "implementation_status": "IMPLEMENTED",
-  "validation_status": "LOCAL_VALIDATED",
+  "validation_status": "RUNTIME_VALIDATED",
   "local_validation_status": "LOCAL_VALIDATED",
-  "runtime_validation_status": "NOT_VALIDATED",
-  "runtime_acceptance_status": "PENDING",
+  "runtime_validation_status": "VALIDATED",
+  "runtime_acceptance_status": "ACCEPTED",
+  "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
   "maturity_status": "UNASSESSED",
   "current_maturity": "UNASSESSED",
   "validator": "tools/validate_zt_id_001.py",
@@ -18,11 +19,13 @@
   "mfa_enforced": false,
   "oidc_deployed": false,
   "centralized_rbac_enforced": false,
-  "action_runtime_executed": false,
-  "action_live_identity_changed": false,
+  "action_runtime_executed": true,
+  "action_live_identity_changed": true,
+  "execution_record": "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml",
   "limitations": [
-    "Local validation does not establish current accepted runtime enforcement.",
+    "Runtime acceptance is limited to one bounded non-production EVE-NG validator endpoint.",
     "Centralized identity, MFA, federation, PAM, and application RBAC remain outside the accepted boundary.",
-    "P1-ID-ENF-001-RETRY is not executed by scenario retirement."
+    "The current EVE base validator has no failures and two non-blocking warnings because no Dynamips or QEMU node process is running.",
+    "Phase 1 remains PARTIAL, PARTIALLY_VALIDATED, and NOT_COMPLETE at ZT-SCH-001."
   ]
 }

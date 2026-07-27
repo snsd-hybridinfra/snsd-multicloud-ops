@@ -21,7 +21,8 @@
     "compliance_assessed": false,
     "limitations": [
       "A mapping records technical relevance, not implementation or KISA-item acceptance.",
-      "Every mapped KISA item remains REFERENCED_ONLY / NOT_VALIDATED / SOURCE_METADATA_ONLY until package-owned target evidence is accepted.",
+      "Every mapped KISA item remains REFERENCED_ONLY / NOT_VALIDATED / SOURCE_METADATA_ONLY until that exact KISA item receives separate target-specific acceptance; bounded package acceptance is not inherited by a mapping.",
+      "Per-entry implementation and validation fields describe mapping status and do not override the current package-status authority, including ZT-ID-001 bounded runtime acceptance.",
       "Applicability requires exact asset, product version, patch level, service impact, exception and rollback review.",
       "The framework makes no compliance, certification, production-readiness or Zero Trust maturity claim."
     ]

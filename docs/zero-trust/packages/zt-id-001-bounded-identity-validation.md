@@ -232,7 +232,7 @@ evidence nor a prerequisite modified by this action.
 
 Package acceptance requires all schemas to parse, all models to satisfy schema
 and semantic rules, nine positive cases to match expected decisions,
-thirty-four negative cases to be rejected for the expected reason, evidence to
+thirty-three negative cases to be rejected for the expected reason, evidence to
 synchronize, the validator and unit tests to pass, retired numbered scenario framework to remain locked,
 successor numbered scenario to remain absent, and no secret or runtime file to be tracked.
 

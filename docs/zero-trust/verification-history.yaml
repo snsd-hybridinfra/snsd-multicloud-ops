@@ -146,14 +146,14 @@
         "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml"
       ],
       "evidence_hashes": {
-        "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml": "8bf81d12fc4db22343f1e041d6c015f64be6924e6ee35f7cd9bb67edc8b220ed"
+        "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml": "d89fbadee2f673099249b069ee249089bd00952e99bdb1d7c8f16326ab82010a"
       },
       "sanitization_status": "PASS",
       "freshness_policy_id": "ZTCV-FRESH-LIVE",
       "freshness_status": "FRESH",
       "scheduled_trigger": false,
       "limitations": [
-        "One approved enforcement event is historical evidence, not CV mutation authority or repeatability."
+        "The original accepted enforcement event remains dated 2026-07-19; its evidence was revalidated on 2026-07-27 without target policy writes and remains one-time evidence, not a new CV execution, mutation authority, or repeatability."
       ]
     },
     {

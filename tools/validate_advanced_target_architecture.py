@@ -280,9 +280,9 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
                 "package_state": "PRESENT",
                 "phase": "PHASE_1_CURRENT",
                 "implementation_status": "IMPLEMENTED",
-                "validation_status": "LOCAL_VALIDATED",
-                "runtime_validation_status": "NOT_VALIDATED",
-                "runtime_acceptance_status": "PENDING",
+                "validation_status": "RUNTIME_VALIDATED",
+                "runtime_validation_status": "VALIDATED",
+                "runtime_acceptance_status": "ACCEPTED",
                 "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
                 "maturity_status": "UNASSESSED",
                 "phase_2_dependency_status": "OPEN",
@@ -291,7 +291,7 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
             if status != expected_identity_status:
                 result.fail(
                     "roadmap.package-status",
-                    "ZT-ID-001 must remain locally validated with runtime acceptance pending and no centralized, production, or maturity promotion",
+                    "ZT-ID-001 must remain bounded-runtime accepted without centralized, production, or maturity promotion",
                 )
             continue
         if package_id == "ZT-DEV-001":

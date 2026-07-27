@@ -29,6 +29,16 @@
   "package_metadata": "PASS",
   "third_party_files_changed": false,
   "protected_state_mutations": "PACKAGE_OWNED_CONFIGURATION_ONLY",
-  "live_identity_changed": true
+  "live_identity_changed": true,
+  "revalidation": {
+    "timestamp": "2026-07-27T08:20:03Z",
+    "package_owned_files_matched_reviewed_state": true,
+    "package_owned_changes_this_revalidation": [],
+    "live_identity_changed_this_revalidation": false,
+    "ssh_reload_after_syntax_validation": "PASS",
+    "positive_checks": {"passed": 20, "total": 20},
+    "negative_checks": {"denied": 42, "total": 42},
+    "unexpected_allowances": 0,
+    "result": "PASS"
+  }
 }
-

@@ -27,7 +27,7 @@ EXPECTED_PACKAGE_STATES = {
     "ZT-FND-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
     "ZT-NET-001": ("IMPLEMENTED_AS_RECORDED", "PARTIALLY_RUNTIME_VALIDATED"),
     "ZT-VIS-001": ("IMPLEMENTED", "PARTIALLY_RUNTIME_VALIDATED"),
-    "ZT-ID-001": ("IMPLEMENTED", "LOCAL_VALIDATED"),
+    "ZT-ID-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
     "ZT-CV-001": ("NOT_IMPLEMENTED", "NOT_VALIDATED"),
     "ZT-RV-001": ("NOT_IMPLEMENTED", "NOT_VALIDATED"),
     "ZT-SCH-001": ("NOT_IMPLEMENTED", "NOT_VALIDATED"),
@@ -131,17 +131,35 @@ def validate_package_truth(root: Path, result: Result) -> None:
                 f"{package_id}: expected {implementation}/{validation}, "
                 f"found {record.get('implementation_status')}/{record.get('validation_status')}"
             )
-        if package_id in {"ZT-ID-001", "ZT-ARC-001"}:
-            expected_runtime = "NOT_VALIDATED"
-            if record.get("runtime_validation_status") != expected_runtime or record.get("maturity_status") != "UNASSESSED":
+        if package_id == "ZT-ARC-001":
+            if record.get("runtime_validation_status") != "NOT_VALIDATED" or record.get("maturity_status") != "UNASSESSED":
                 errors.append(f"{package_id}: runtime or maturity boundary changed")
-        if package_id == "ZT-ID-001" and record.get("runtime_acceptance_status") != "PENDING":
-            errors.append("ZT-ID-001: runtime acceptance must remain PENDING")
+        if package_id == "ZT-ID-001":
+            if (
+                record.get("runtime_validation_status") != "VALIDATED"
+                or record.get("runtime_acceptance_status") != "ACCEPTED"
+                or record.get("runtime_scope") != "BOUNDED_NON_PRODUCTION_TARGET"
+                or record.get("maturity_status") != "UNASSESSED"
+            ):
+                errors.append("ZT-ID-001: bounded runtime acceptance or maturity boundary changed")
+            evidence_path = root / "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml"
+            try:
+                evidence = core.load_json_yaml(evidence_path)
+            except ValueError as exc:
+                errors.append(str(exc))
+            else:
+                if (
+                    evidence.get("result") != "PASS"
+                    or evidence.get("runtime_validation_status") != "VALIDATED"
+                    or evidence.get("runtime_acceptance_status") != "ACCEPTED"
+                    or evidence.get("maturity_status") != "UNASSESSED"
+                ):
+                    errors.append("ZT-ID-001: accepted state lacks matching sanitized runtime evidence")
     if errors:
         for error in errors:
             result.fail("package.truth", error)
     else:
-        result.passed("package.truth", "Canonical package states preserve implementation and validation truth.")
+        result.passed("package.truth", "Canonical package states preserve evidence-backed implementation and validation truth.")
 
 
 def validate_retired_paths(root: Path, result: Result) -> None:

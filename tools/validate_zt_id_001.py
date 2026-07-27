@@ -373,10 +373,14 @@ def validate_package_document(
         "phase": "PHASE_1",
         "authority_status": "AUTHORITATIVE",
         "implementation_status": "IMPLEMENTED",
-        "validation_status": "LOCAL_VALIDATED",
+        "validation_status": "RUNTIME_VALIDATED",
         "local_validation_status": "LOCAL_VALIDATED",
-        "runtime_validation_status": "NOT_VALIDATED",
-        "runtime_acceptance_status": "PENDING",
+        "runtime_validation_status": "VALIDATED",
+        "runtime_acceptance_status": "ACCEPTED",
+        "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
+        "action_runtime_executed": True,
+        "action_live_identity_changed": True,
+        "execution_record": "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml",
         "maturity_status": "UNASSESSED",
         "current_maturity": "UNASSESSED",
     }
@@ -398,8 +402,6 @@ def validate_package_document(
         "mfa_enforced",
         "oidc_deployed",
         "centralized_rbac_enforced",
-        "action_runtime_executed",
-        "action_live_identity_changed",
     }
     if any(package.get(field) is not False for field in false_fields):
         codes.add("UNSUPPORTED_RUNTIME_CLAIM")

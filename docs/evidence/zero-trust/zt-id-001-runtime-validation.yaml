@@ -50,6 +50,7 @@
     "Acceptance is limited to one bounded non-production EVE-NG validator endpoint.",
     "The dedicated account, group, SSH boundary, forced command, and least-privilege sudo policy do not establish centralized identity.",
     "No identity provider, MFA, OIDC, application RBAC, production identity, or capability maturity was deployed or validated.",
+    "The current EVE base validator reports 40 PASS, 2 WARN, and 0 FAIL; both warnings are limited to absent running Dynamips and QEMU node processes.",
     "Phase 1 remains PARTIAL, PARTIALLY_VALIDATED, and NOT_COMPLETE at the ZT-SCH-001 boundary."
   ],
   "evidence_freshness": "CURRENT_ACTION",
@@ -62,5 +63,5 @@
   "validator_version": "1.1.0",
   "policy_version": "1.1.0",
   "result": "PASS",
-  "timestamp": "2026-07-19T05:06:07Z"
+  "timestamp": "2026-07-27T08:20:03Z"
 }

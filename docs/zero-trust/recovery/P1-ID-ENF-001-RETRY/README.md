@@ -14,6 +14,14 @@ bounded identity-enforcement retry on `NONPROD_VALIDATOR_TARGET_01`.
 - Protected mutation: `PACKAGE_OWNED_CONFIGURATION_ONLY`
 - Rollback: armed, verified, then cancelled after acceptance
 - Residual jobs: `0`
+- Current revalidation: `2026-07-27T08:20:03Z`
+- Current base validator: `40 PASS / 2 WARN / 0 FAIL`
+- Revalidation target writes: `0`
+
+The two current base-validator warnings record that no Dynamips or QEMU node
+process is running. They do not indicate an identity-control failure. The
+accepted package-owned files matched the reviewed candidate state, so this
+revalidation did not reinstall or rewrite the identity boundary.
 
 Raw target output, addresses, usernames, keys, SSH source data, complete audit
 logs, and backup contents remain outside Git under ignored runtime or
@@ -21,3 +29,5 @@ target-local restrictive storage. This record does not claim centralized
 identity, MFA, OIDC, application RBAC, production validation, maturity, or
 Phase 1 completion.
 
+The exactly-one next execution-plan action is `P1-NET-CLOSE`; it is not
+executed by this record.

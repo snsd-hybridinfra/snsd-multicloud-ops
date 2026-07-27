@@ -24,4 +24,4 @@
 
 ## Current planning truth
 
-`ZT-SCN-RETIRE-001`, `ZT-GOV-MAP-001`, and `P0-ACC-001` are recorded as completed from reviewed Git and action evidence. Phase 0 governance is accepted and `COMPLETED`; every infrastructure implementation action remains `NOT_STARTED`. Exactly one next action is `P1-ID-ENF-001-RETRY`. L3 remains a target and L4 remains roadmap-only.
+`ZT-SCN-RETIRE-001`, `ZT-GOV-MAP-001`, `P0-ACC-001`, and `P1-ID-ENF-001-RETRY` are recorded as completed from reviewed Git and action evidence. ZT-ID-001 is accepted only for one bounded non-production validator endpoint. Exactly one next action is `P1-NET-CLOSE`; it remains `NOT_STARTED`. Phase 1 remains `PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE`, L3 remains a target, and L4 remains roadmap-only.

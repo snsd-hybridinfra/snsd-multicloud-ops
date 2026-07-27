@@ -212,10 +212,10 @@ class ProjectPlanTests(unittest.TestCase):
         paths.extend(Path("docs/zero-trust/packages") / f"{package.lower()}-package.yaml" for package in ("ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001"))
         return copied_root(paths)
 
-    def test_runtime_status_promotion_rejected(self) -> None:
+    def test_runtime_status_divergence_rejected(self) -> None:
         with self._status_root() as root:
             data = plan.load(root / plan.AUTHORITIES["package_status"][0])
-            next(item for item in data["packages"] if item["package_id"] == "ZT-ID-001")["runtime_validation_status"] = "VALIDATED"
+            next(item for item in data["packages"] if item["package_id"] == "ZT-ID-001")["runtime_validation_status"] = "NOT_VALIDATED"
             write_json(root / plan.AUTHORITIES["package_status"][0], data)
             subprocess.run(["git", "init", "-q"], cwd=root, check=True)
             result = plan.Result()
