@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "authority": "ZT_FINAL_PROJECT_ROADMAP",
+    "action_id": "ZT-PROJECT-PLAN-001",
+    "actual_target_maturity": "L3_ADVANCED",
+    "future_roadmap_target": "L4_OPTIMAL",
+    "l4_status": "ROADMAP_ONLY",
+    "implementation_promoted": false,
+    "maturity_assessed": false
+  },
+  "phase_order": ["PHASE_0", "PHASE_1", "PHASE_2", "PHASE_3", "PHASE_4", "PHASE_5"],
+  "phases": [
+    {
+      "id": "PHASE_0",
+      "title": "Governance and structural normalization",
+      "current_status": "IN_PROGRESS",
+      "actions": ["ZT-SCN-RETIRE-001", "ZT-GOV-MAP-001", "P0-ACC-001"],
+      "completion_condition": "Package model is the only active authority, verified mappings and planning validators pass, and no implementation state is promoted."
+    },
+    {
+      "id": "PHASE_1",
+      "title": "Core control validation",
+      "current_status": "NOT_COMPLETE",
+      "actions": ["P1-ID-ENF-001-RETRY", "P1-NET-CLOSE", "P1-VIS-CLOSE", "P1-CV-001", "P1-RV-001", "P1-SCH-001", "P1-ACC-001"],
+      "completion_condition": "Core identity, network, visibility, cross-validation, repeatability, scheduling, and evidence gates are accepted in the bounded non-production environment."
+    },
+    {
+      "id": "PHASE_2",
+      "title": "Central identity and visibility",
+      "current_status": "NOT_STARTED",
+      "actions": ["P2-VIS-001", "P2-ID-001", "P2-OIDC-001", "P2-MFA-001", "P2-RBAC-001", "P2-CV-001", "P2-ACC-001"],
+      "completion_condition": "Central identity, MFA, federation, RBAC, central logging, and correlated audit decisions are runtime accepted."
+    },
+    {
+      "id": "PHASE_3",
+      "title": "Multi-environment control expansion",
+      "current_status": "NOT_STARTED",
+      "actions": ["P3-ASSET-001", "P3-WID-001", "P3-NET-SEG-001", "P3-APP-001", "P3-DATA-001", "P3-BKP-001", "P3-CV-001", "P3-ACC-001"],
+      "completion_condition": "At least two genuinely different deployed environments have connected identity, network, application, data, and recovery evidence."
+    },
+    {
+      "id": "PHASE_4",
+      "title": "Policy as Code and continuous validation",
+      "current_status": "NOT_STARTED",
+      "actions": ["P4-PAC-001", "P4-DRIFT-001", "P4-CI-001", "P4-RESP-001", "P4-DASH-001", "P4-ACC-001"],
+      "completion_condition": "Versioned policy, pre-deployment checks, drift detection, approval-based response, rollback, and authoritative dashboards are accepted."
+    },
+    {
+      "id": "PHASE_5",
+      "title": "L3 assessment and portfolio completion",
+      "current_status": "NOT_STARTED",
+      "actions": ["P5-METRIC-001", "P5-MAT-001", "P5-PORT-001", "P5-DEMO-001", "P5-ACC-001"],
+      "completion_condition": "Independent evidence assessment returns either L3_ADVANCED_SUPPORTED_BY_EVIDENCE or L3_NOT_YET_ACHIEVED without forcing success."
+    }
+  ],
+  "l4_roadmap": {
+    "status": "ROADMAP_ONLY",
+    "runtime_validation_status": "NOT_VALIDATED",
+    "maturity_claim": "NOT_CLAIMED",
+    "themes": [
+      "continuous trust evaluation", "device and workload risk scoring", "real-time policy recalculation",
+      "automated response", "automated policy optimization", "behavioral analytics",
+      "organization-wide governance integration", "long-term effectiveness measurement"
+    ]
+  }
+}

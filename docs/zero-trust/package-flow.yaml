@@ -1,7 +1,7 @@
 {
   "metadata": {
     "authority": "PHASE_1_PACKAGE_FLOW",
-    "action_id": "ZT-SCN-RETIRE-001",
+    "action_id": "ZT-PROJECT-PLAN-001",
     "model": "PACKAGE_CAPABILITY_VALIDATION",
     "effective_date": "2026-07-27",
     "scenario_authority": "NONE",
@@ -27,7 +27,7 @@
     "ZT-CV-001",
     "ZT-RV-001",
     "ZT-SCH-001",
-    "PHASE_1_ACCEPTANCE"
+    "P1-ACC-001"
   ],
   "packages": [
     {

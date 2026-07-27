@@ -7,7 +7,7 @@
       "docs/zero-trust/gap-register.md",
       "docs/zero-trust/target-architecture/capability-selection.yaml"
     ],
-    "scope": "Planning-only capability implementation backlog for the non-production SNSD laboratory; locked scenarios retired numbered scenario framework remain unchanged.",
+    "scope": "Planning-only capability implementation backlog for the non-production SNSD laboratory under the package-oriented authority model.",
     "environment": "Disposable portfolio laboratory with validated EVE-NG network and one OpenStack AIO network path.",
     "status": "PLANNED",
     "limitations": [
@@ -418,7 +418,7 @@
         "Documented limitation"
       ],
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
-      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "limitations": "Reference planning only; no package or runtime implementation is authorized.",
       "target_wave": null,
       "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 58, Table 3-13; capability relationship also in Table 3-10, pp. 54-55."
@@ -464,7 +464,7 @@
         "Documented limitation"
       ],
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
-      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "limitations": "Reference planning only; no package or runtime implementation is authorized.",
       "target_wave": null,
       "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 58, Table 3-13; capability relationship also in Table 3-10, pp. 54-55."
@@ -770,7 +770,7 @@
         "Documented limitation"
       ],
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
-      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "limitations": "Reference planning only; no package or runtime implementation is authorized.",
       "target_wave": null,
       "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 62, Table 3-17; capability relationship also in Table 3-10, pp. 54-55."
@@ -816,7 +816,7 @@
         "Documented limitation"
       ],
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
-      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "limitations": "Reference planning only; no package or runtime implementation is authorized.",
       "target_wave": null,
       "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 63, Table 3-18; capability relationship also in Table 3-10, pp. 54-55."
@@ -1954,7 +1954,7 @@
         "Documented limitation"
       ],
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
-      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "limitations": "Reference planning only; no package or runtime implementation is authorized.",
       "target_wave": null,
       "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 79, Table 3-33; capability relationship also in Table 3-10, pp. 54-55."
@@ -2157,7 +2157,7 @@
         "Documented limitation"
       ],
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
-      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "limitations": "Reference planning only; no package or runtime implementation is authorized.",
       "target_wave": null,
       "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 83, Table 3-37; capability relationship also in Table 3-10, pp. 54-55."
@@ -2306,7 +2306,7 @@
         "Documented limitation"
       ],
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
-      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "limitations": "Reference planning only; no package or runtime implementation is authorized.",
       "target_wave": null,
       "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
@@ -2457,7 +2457,7 @@
         "Documented limitation"
       ],
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
-      "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
+      "limitations": "Reference planning only; no package or runtime implementation is authorized.",
       "target_wave": null,
       "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
@@ -2587,7 +2587,7 @@
         "ZT-8.1"
       ],
       "blocking_gaps": [
-        "Existing scenario and ZT-AUTO-001 evidence remains bounded; the integrated workflow is partial and one-time, so repeatability, scheduling, continuous operation, response automation, and proposed target maturity remain unfulfilled."
+        "Existing package and ZT-AUTO-001 evidence remains bounded; the integrated workflow is partial and one-time, so repeatability, scheduling, continuous operation, response automation, and proposed target maturity remain unfulfilled."
       ],
       "candidate_control_patterns": [
         "ZTP-AI-001"

@@ -19,9 +19,16 @@ from validate_zero_trust import (
 
 FLOW_PATH = Path("docs/zero-trust/package-flow.yaml")
 PACKAGE_ROOT = Path("docs/zero-trust/packages")
+PROJECT_AUTHORITIES = {
+    "roadmap": Path("docs/zero-trust/final-roadmap.yaml"),
+    "execution_plan": Path("docs/zero-trust/final-execution-plan.yaml"),
+    "maturity_target": Path("docs/zero-trust/maturity-target.yaml"),
+    "package_status": Path("docs/zero-trust/package-status.yaml"),
+    "acceptance_cases": Path("docs/zero-trust/package-acceptance-cases.yaml"),
+}
 EXPECTED_FLOW = [
     "ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001",
-    "ZT-CV-001", "ZT-RV-001", "ZT-SCH-001", "PHASE_1_ACCEPTANCE",
+    "ZT-CV-001", "ZT-RV-001", "ZT-SCH-001", "P1-ACC-001",
 ]
 
 
@@ -33,6 +40,7 @@ def run_sync(root: Path) -> tuple[list[str], list[str]]:
         baseline = load_json_yaml(root / BASELINE_PATH)
         backlog = load_json_yaml(root / BACKLOG_PATH)
         flow = load_json_yaml(root / FLOW_PATH)
+        project = {name: load_json_yaml(root / path) for name, path in PROJECT_AUTHORITIES.items()}
     except ValueError as exc:
         return [], [str(exc)]
 
@@ -103,6 +111,30 @@ def run_sync(root: Path) -> tuple[list[str], list[str]]:
         passes.append("Phase 1 remains partial, partially validated, and not complete at ZT-SCH-001.")
     else:
         failures.append("Phase 1 acceptance state differs from the conservative authority.")
+
+    roadmap_ids = [action_id for phase in project["roadmap"].get("phases", []) for action_id in phase.get("actions", [])]
+    execution_ids = [item.get("action_id") for item in project["execution_plan"].get("actions", [])]
+    if roadmap_ids == execution_ids and len(execution_ids) == len(set(execution_ids)):
+        passes.append("Roadmap and execution-plan action IDs are ordered, unique, and synchronized.")
+    else:
+        failures.append("Roadmap and execution-plan action IDs differ or contain duplicates.")
+
+    if (
+        project["maturity_target"].get("actual_project_target") == "L3_ADVANCED"
+        and project["maturity_target"].get("future_roadmap_target") == "L4_OPTIMAL"
+        and project["maturity_target"].get("l3_completion_decision") == "NOT_YET_ASSESSED"
+    ):
+        passes.append("L3 is a target without a completion decision and L4 remains future roadmap scope.")
+    else:
+        failures.append("Maturity target authority overclaims L3 or does not preserve the L4 roadmap boundary.")
+
+    status_ids = {item.get("package_id") for item in project["package_status"].get("packages", [])}
+    case_ids = {item.get("package_id") for item in project["acceptance_cases"].get("packages", [])}
+    expected_status_ids = set(package_ids) | {"ZT-ARC-001", "ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001"}
+    if case_ids == expected_status_ids - {"ZT-ARC-001"} and status_ids == expected_status_ids:
+        passes.append("Package status and all technical-package acceptance-case coverage are synchronized.")
+    else:
+        failures.append("Package status and acceptance-case package coverage is not synchronized.")
 
     report_ok, report_message = run_report_check(root, write=False)
     (passes if report_ok else failures).append(report_message.removeprefix("[PASS] ").removeprefix("[FAIL] "))

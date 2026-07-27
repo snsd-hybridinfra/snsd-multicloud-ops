@@ -1,0 +1,24 @@
+{
+  "action_id": "ZT-PROJECT-PLAN-001",
+  "source_id": "KISA-CRITICAL-INFRASTRUCTURE-2026",
+  "verification_status": "VERIFIED",
+  "title": "2026 주요정보통신기반시설 기술적 취약점 분석·평가 방법 상세가이드",
+  "publication_year": 2026,
+  "publisher": "한국인터넷진흥원",
+  "issuing_authority": "과학기술정보통신부",
+  "sha256": "44fe393981b244147be6af7423d99dc15633c089fad0bcb296cbe2371dde812d",
+  "page_count": 873,
+  "copies_compared": 3,
+  "copies_identical": true,
+  "major_asset_domains": [
+    "UNIX_SERVER", "WINDOWS_SERVER", "WEB_SERVICE", "SECURITY_DEVICE",
+    "NETWORK_DEVICE", "CONTROL_SYSTEM", "PC", "DBMS", "MOBILE_COMMUNICATION",
+    "WEB_APPLICATION", "VIRTUALIZATION", "CLOUD"
+  ],
+  "raw_pdf_tracked": false,
+  "private_absolute_path_recorded": false,
+  "codes_guessed": false,
+  "mapping_scope": "SOURCE_VERIFIED_PLANNING_SEED",
+  "implementation_claimed": false,
+  "compliance_claimed": false
+}

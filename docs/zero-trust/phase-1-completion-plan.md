@@ -7,7 +7,7 @@ The package flow in `docs/zero-trust/package-flow.yaml` is authoritative. ZT-ARC
 ```text
 ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001
            -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001
-           -> PHASE_1_ACCEPTANCE
+           -> P1-ACC-001
 ```
 
 ## Current state

@@ -1,32 +1,42 @@
-# Zero Trust Governance and Package Model
+# Zero Trust 패키지 권위
 
-## Authorities
+## 권위 순서
 
-1. The local **제로트러스트 가이드라인 2.0** PDF is the external authority for canonical terminology, capability numbering, architecture, and maturity.
-2. `capability-catalog.yaml` is the repository taxonomy authority.
-3. `current-baseline-assessment.yaml` is the current capability authority.
-4. `capability-implementation-backlog.yaml` is the planning authority.
-5. `package-flow.yaml`, package metadata, validators, and package evidence establish package flow and implementation truth.
-6. Markdown is a reviewed presentation layer.
+1. 제로트러스트 가이드라인 2.0: 역량·아키텍처·성숙도 의미
+2. 2026 주요정보통신기반시설 기술적 취약점 분석·평가 방법 상세가이드: 자산별 점검·하드닝 참조
+3. `capability-catalog.yaml`: 역량 분류 권위
+4. `package-flow.yaml`, 패키지 메타데이터와 `package-status.yaml`: 흐름·현재 상태 권위
+5. `package-acceptance-cases.yaml`: 행동 검증 계약
+6. 패키지 validator와 정제 증적: 실제 결과 권위
+7. Markdown: 검토용 표현 계층
 
-The KISA 2026 technical guide is not yet a registered mapping authority. ZT-GOV-MAP-001 is the sole next action authorized to authenticate and integrate it.
+KISA 매핑은 구현·검증·컴플라이언스의 증거가 아니다.
 
 ## Phase 1
 
+`ZT-ARC-001`이 다음 흐름 전체를 둘러싼다.
+
+```text
 ZT-ARC-001 surrounds:
+ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001
+           -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001
+           -> P1-ACC-001
+```
 
-`ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001 -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001 -> PHASE_1_ACCEPTANCE`
+Phase 1은 `PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE`이며 경계는 `ZT-SCH-001`이다.
 
-Phase 1 remains PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE at ZT-SCH-001.
+```mermaid
+flowchart LR
+  subgraph ARC["ZT-ARC-001 - architecture authority"]
+    FND["ZT-FND-001"] --> NET["ZT-NET-001"] --> VIS["ZT-VIS-001"] --> ID["ZT-ID-001"]
+    ID --> CV["ZT-CV-001"] --> RV["ZT-RV-001"] --> SCH["ZT-SCH-001"] --> ACC["P1-ACC-001"]
+  end
+```
 
-## Governance boundaries
+## 경계
 
-- Capability mapping, package implementation, local validation, runtime validation, evidence, acceptance, and maturity are separate.
-- No mapping proves implementation.
-- No one-time laboratory result proves continuous operation or enterprise maturity.
-- No compliance, certification, production-readiness, or repository-wide maturity claim is permitted.
-- The retired numbered scenario model has no active authority and no successor series.
-
-## Validation
-
-Run the read-only validator set documented in the repository README. Correct machine-readable authority before presentation views.
+- 번호형 시나리오 권위와 후속 번호 체계는 없다.
+- 문서·매핑·계획은 구현이나 런타임 상태를 승격하지 않는다.
+- L3는 목표이지 현재 성숙도 주장이 아니다.
+- L4는 `ROADMAP_ONLY`다.
+- KISA 준수, 인증, 생산 준비 또는 전사 검증을 주장하지 않는다.

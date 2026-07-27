@@ -1,0 +1,144 @@
+{
+  "metadata": {
+    "authority": "PACKAGE_OWNED_ACCEPTANCE_CASES",
+    "action_id": "ZT-PROJECT-PLAN-001",
+    "numbered_scenario_authority": "NONE",
+    "case_id_policy": "DESCRIPTIVE_PACKAGE_SCOPED",
+    "status_promoted": false
+  },
+  "case_types": ["positive", "negative", "bypass", "persistence", "rollback", "evidence_integrity"],
+  "packages": [
+    {
+      "package_id": "ZT-FND-001",
+      "acceptance_cases": {
+        "positive": {"applicable":true,"rationale":"Approved read-only validators must execute inside the declared boundary.","cases":[{"case_id":"ZT-FND-001-ALLOW-REGISTERED-VALIDATOR","expected":"Registered read-only validation succeeds."}]},
+        "negative": {"applicable":true,"rationale":"Unregistered mutation must be denied.","cases":[{"case_id":"ZT-FND-001-DENY-UNREGISTERED-MUTATION","expected":"Unregistered mutation is denied."}]},
+        "bypass": {"applicable":true,"rationale":"Alternate command and evidence paths must not evade safety controls.","cases":[{"case_id":"ZT-FND-001-DENY-BOUNDARY-BYPASS","expected":"Boundary bypass is denied."}]},
+        "persistence": {"applicable":true,"rationale":"Repository and evidence safety must survive repeated execution.","cases":[{"case_id":"ZT-FND-001-VERIFY-REPEATED-SAFETY","expected":"Repeated execution leaves safety controls intact."}]},
+        "rollback": {"applicable":true,"rationale":"Temporary validation state must be removable.","cases":[{"case_id":"ZT-FND-001-VERIFY-TEMPORARY-CLEANUP","expected":"Temporary state is removed without tracked residue."}]},
+        "evidence_integrity": {"applicable":true,"rationale":"Result, source, time and status must agree.","cases":[{"case_id":"ZT-FND-001-VERIFY-EVIDENCE-CONTRACT","expected":"Evidence contract and actual result agree."}]}
+      }
+    },
+    {
+      "package_id": "ZT-NET-001",
+      "acceptance_cases": {
+        "positive":{"applicable":true,"rationale":"Declared flows must work.","cases":[{"case_id":"ZT-NET-001-ALLOW-AUTHORIZED-FLOW","expected":"Authorized source, destination, protocol and port succeed."}]},
+        "negative":{"applicable":true,"rationale":"Unauthorized flows must fail.","cases":[{"case_id":"ZT-NET-001-DENY-UNAUTHORIZED-SOURCE","expected":"Unauthorized source is denied."}]},
+        "bypass":{"applicable":true,"rationale":"Alternate routes and malformed paths must not evade policy.","cases":[{"case_id":"ZT-NET-001-DENY-ALTERNATE-PATH","expected":"Alternate path cannot bypass enforcement."}]},
+        "persistence":{"applicable":true,"rationale":"Rules must survive approved reload.","cases":[{"case_id":"ZT-NET-001-VERIFY-RELOAD-PERSISTENCE","expected":"Decision remains after reload."}]},
+        "rollback":{"applicable":true,"rationale":"Network lockout risk requires tested restoration.","cases":[{"case_id":"ZT-NET-001-VERIFY-SAFE-ROLLBACK","expected":"Prior safe network state is restored."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Probe, device decision and record must agree.","cases":[{"case_id":"ZT-NET-001-VERIFY-FLOW-EVIDENCE","expected":"Probe result and network evidence agree."}]}
+      }
+    },
+    {
+      "package_id": "ZT-VIS-001",
+      "acceptance_cases": {
+        "positive":{"applicable":true,"rationale":"Expected events must be visible.","cases":[{"case_id":"ZT-VIS-001-VERIFY-AUTHORIZED-EVENT","expected":"Authorized activity produces a attributable event."}]},
+        "negative":{"applicable":true,"rationale":"Denied behavior must also be visible.","cases":[{"case_id":"ZT-VIS-001-VERIFY-DENIAL-EVENT","expected":"Denied activity produces a denial event."}]},
+        "bypass":{"applicable":true,"rationale":"Alternate event paths must not silently evade the declared visibility boundary.","cases":[{"case_id":"ZT-VIS-001-DETECT-UNATTRIBUTED-EVENT","expected":"Unattributed or malformed events fail integrity checks."}]},
+        "persistence":{"applicable":true,"rationale":"Logging and permissions must survive reload or restart where approved.","cases":[{"case_id":"ZT-VIS-001-VERIFY-LOGGING-PERSISTENCE","expected":"Visibility configuration remains effective."}]},
+        "rollback":{"applicable":true,"rationale":"Collector and permission changes require restoration.","cases":[{"case_id":"ZT-VIS-001-VERIFY-VISIBILITY-ROLLBACK","expected":"Prior safe visibility state is restored."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Timestamps, source identity, ownership and recorded status must agree.","cases":[{"case_id":"ZT-VIS-001-VERIFY-SOURCE-TIME-INTEGRITY","expected":"Event time, source and status agree."}]}
+      }
+    },
+    {
+      "package_id": "ZT-ID-001",
+      "acceptance_cases": {
+        "positive":{"applicable":true,"rationale":"Dedicated identity must run the approved command.","cases":[{"case_id":"ZT-ID-001-ALLOW-VALIDATOR-COMMAND","expected":"Dedicated validator identity executes only the approved command."}]},
+        "negative":{"applicable":true,"rationale":"Unrestricted access must be denied.","cases":[{"case_id":"ZT-ID-001-DENY-INTERACTIVE-SHELL","expected":"Interactive shell and arbitrary command are denied."}]},
+        "bypass":{"applicable":true,"rationale":"Forwarding and command substitution must not evade forced-command enforcement.","cases":[{"case_id":"ZT-ID-001-DENY-FORWARDING-BYPASS","expected":"Forwarding and alternate command paths are denied."}]},
+        "persistence":{"applicable":true,"rationale":"Identity restrictions must survive approved service reload.","cases":[{"case_id":"ZT-ID-001-VERIFY-RELOAD-PERSISTENCE","expected":"Identity restrictions remain effective after reload."}]},
+        "rollback":{"applicable":true,"rationale":"Administrator access loss requires independent restoration.","cases":[{"case_id":"ZT-ID-001-VERIFY-OPERATOR-RECOVERY","expected":"Independent operator recovery restores the prior safe state."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Identity, command decision, event and status must agree.","cases":[{"case_id":"ZT-ID-001-VERIFY-IDENTITY-EVIDENCE","expected":"Identity decision and evidence agree."}]}
+      }
+    },
+    {
+      "package_id":"ZT-CV-001",
+      "acceptance_cases":{
+        "positive":{"applicable":true,"rationale":"The integrated authorized chain must pass.","cases":[{"case_id":"ZT-CV-001-VERIFY-AUTHORIZED-CHAIN","expected":"Identity, allowed path, action, log and evidence agree."}]},
+        "negative":{"applicable":true,"rationale":"The integrated unauthorized chain must deny.","cases":[{"case_id":"ZT-CV-001-VERIFY-DENIED-CHAIN","expected":"Denied action, denial log and evidence agree."}]},
+        "bypass":{"applicable":true,"rationale":"Cross-package disagreement can reveal a bypass.","cases":[{"case_id":"ZT-CV-001-DETECT-CROSS-PACKAGE-DIVERGENCE","expected":"A divergent package result blocks acceptance."}]},
+        "persistence":{"applicable":false,"rationale":"Cross-validation does not own control persistence; RV evaluates repeated stability.","cases":[]},
+        "rollback":{"applicable":false,"rationale":"The cross-validator is read-only and owns no target change to roll back.","cases":[]},
+        "evidence_integrity":{"applicable":true,"rationale":"All package sources and decisions must agree.","cases":[{"case_id":"ZT-CV-001-VERIFY-EVIDENCE-CONSISTENCY","expected":"Package results and evidence sources agree."}]}
+      }
+    },
+    {
+      "package_id":"ZT-RV-001",
+      "acceptance_cases":{
+        "positive":{"applicable":true,"rationale":"Three controlled repetitions must produce consistent decisions.","cases":[{"case_id":"ZT-RV-001-VERIFY-DETERMINISTIC-RESULT","expected":"Controlled runs produce consistent decisions."}]},
+        "negative":{"applicable":true,"rationale":"Unexplained divergence must fail.","cases":[{"case_id":"ZT-RV-001-REJECT-UNEXPLAINED-DIVERGENCE","expected":"Unexplained result divergence is rejected."}]},
+        "bypass":{"applicable":false,"rationale":"RV compares fixed validators and does not own an enforcement path.","cases":[]},
+        "persistence":{"applicable":true,"rationale":"Repeated execution is the package purpose.","cases":[{"case_id":"ZT-RV-001-VERIFY-THREE-RUN-STABILITY","expected":"At least three runs remain stable."}]},
+        "rollback":{"applicable":true,"rationale":"Temporary run state must be cleaned.","cases":[{"case_id":"ZT-RV-001-VERIFY-RUN-CLEANUP","expected":"Temporary state and residue are removed."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Nondeterministic fields and fingerprints must be explained.","cases":[{"case_id":"ZT-RV-001-VERIFY-RESULT-FINGERPRINT","expected":"Stable fields and documented variable fields agree."}]}
+      }
+    },
+    {
+      "package_id":"ZT-SCH-001",
+      "acceptance_cases":{
+        "positive":{"applicable":true,"rationale":"Approved validators must run on schedule.","cases":[{"case_id":"ZT-SCH-001-EXECUTE-APPROVED-SCHEDULE","expected":"Approved validators execute and record last success."}]},
+        "negative":{"applicable":true,"rationale":"Failures and timeouts must be detected.","cases":[{"case_id":"ZT-SCH-001-DETECT-FAILED-EXECUTION","expected":"Non-zero exit, failure and timeout are detected."}]},
+        "bypass":{"applicable":true,"rationale":"Concurrency and secret boundaries must not be bypassed.","cases":[{"case_id":"ZT-SCH-001-DENY-CONCURRENT-EXECUTION","expected":"Concurrency lock blocks overlapping execution."}]},
+        "persistence":{"applicable":true,"rationale":"Schedule and freshness checks must survive approved service restart.","cases":[{"case_id":"ZT-SCH-001-VERIFY-SCHEDULE-PERSISTENCE","expected":"Schedule remains registered and safe."}]},
+        "rollback":{"applicable":true,"rationale":"The schedule must be removable without target residue.","cases":[{"case_id":"ZT-SCH-001-VERIFY-SCHEDULE-REMOVAL","expected":"Schedule and temporary state are safely removed."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Run time, last success, freshness and output must agree.","cases":[{"case_id":"ZT-SCH-001-VERIFY-FRESHNESS-EVIDENCE","expected":"Schedule record and evidence freshness agree."}]}
+      }
+    },
+    {
+      "package_id":"ZT-DEV-001",
+      "acceptance_cases":{
+        "positive":{"applicable":true,"rationale":"A compliant managed endpoint must receive the declared access decision.","cases":[{"case_id":"ZT-DEV-001-ALLOW-COMPLIANT-ENDPOINT","expected":"A compliant endpoint is accepted within the package boundary."}]},
+        "negative":{"applicable":true,"rationale":"A non-compliant endpoint must be identified and denied where enforcement is declared.","cases":[{"case_id":"ZT-DEV-001-DENY-NONCOMPLIANT-ENDPOINT","expected":"A non-compliant endpoint does not receive the protected decision."}]},
+        "bypass":{"applicable":true,"rationale":"Alternate execution or inventory paths must not evade endpoint policy.","cases":[{"case_id":"ZT-DEV-001-DENY-ALTERNATE-ENDPOINT-PATH","expected":"Alternate endpoint paths cannot bypass the declared control."}]},
+        "persistence":{"applicable":true,"rationale":"Endpoint policy must survive the approved restart boundary.","cases":[{"case_id":"ZT-DEV-001-VERIFY-RESTART-PERSISTENCE","expected":"The accepted endpoint decision remains after restart."}]},
+        "rollback":{"applicable":true,"rationale":"Endpoint controls require a safe restoration path.","cases":[{"case_id":"ZT-DEV-001-VERIFY-ENDPOINT-ROLLBACK","expected":"The previous safe endpoint state is restored."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Inventory, endpoint identity, decision and status must agree.","cases":[{"case_id":"ZT-DEV-001-VERIFY-ENDPOINT-EVIDENCE","expected":"Endpoint facts, decision and evidence agree."}]}
+      }
+    },
+    {
+      "package_id":"ZT-APP-001",
+      "acceptance_cases":{
+        "positive":{"applicable":true,"rationale":"An authorized request must reach the protected application path.","cases":[{"case_id":"ZT-APP-001-ALLOW-AUTHORIZED-REQUEST","expected":"An authorized request succeeds through the declared boundary."}]},
+        "negative":{"applicable":true,"rationale":"An unauthorized request must be denied.","cases":[{"case_id":"ZT-APP-001-DENY-UNAUTHORIZED-REQUEST","expected":"An unauthorized request cannot invoke the protected action."}]},
+        "bypass":{"applicable":true,"rationale":"Direct-service and alternate-route access must not evade application controls.","cases":[{"case_id":"ZT-APP-001-DENY-DIRECT-SERVICE-BYPASS","expected":"Direct service access cannot bypass the protected entry point."}]},
+        "persistence":{"applicable":true,"rationale":"Application policy must survive an approved reload.","cases":[{"case_id":"ZT-APP-001-VERIFY-POLICY-RELOAD","expected":"Application authorization remains after reload."}]},
+        "rollback":{"applicable":true,"rationale":"Proxy and authorization changes require safe restoration.","cases":[{"case_id":"ZT-APP-001-VERIFY-APPLICATION-ROLLBACK","expected":"The previous safe application path is restored."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Request identity, decision, application event and status must agree.","cases":[{"case_id":"ZT-APP-001-VERIFY-REQUEST-EVIDENCE","expected":"Request decision and application evidence agree."}]}
+      }
+    },
+    {
+      "package_id":"ZT-DATA-001",
+      "acceptance_cases":{
+        "positive":{"applicable":true,"rationale":"An authorized data identity must receive only the approved access.","cases":[{"case_id":"ZT-DATA-001-ALLOW-AUTHORIZED-DATA-ACCESS","expected":"Authorized least-privilege data access succeeds."}]},
+        "negative":{"applicable":true,"rationale":"Unauthorized or excessive data privilege must be denied.","cases":[{"case_id":"ZT-DATA-001-DENY-EXCESSIVE-PRIVILEGE","expected":"Excessive data privilege does not grant protected access."}]},
+        "bypass":{"applicable":true,"rationale":"Alternate accounts and unapproved paths must not evade data policy.","cases":[{"case_id":"ZT-DATA-001-DENY-ALTERNATE-ACCOUNT-BYPASS","expected":"An alternate account cannot bypass data authorization."}]},
+        "persistence":{"applicable":true,"rationale":"Data access policy must survive the approved service restart.","cases":[{"case_id":"ZT-DATA-001-VERIFY-POLICY-PERSISTENCE","expected":"Data authorization remains after restart."}]},
+        "rollback":{"applicable":true,"rationale":"Access and protection changes require non-destructive restoration.","cases":[{"case_id":"ZT-DATA-001-VERIFY-DATA-CONTROL-ROLLBACK","expected":"The previous safe access policy is restored without data loss."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Classification, identity, access decision and log must agree.","cases":[{"case_id":"ZT-DATA-001-VERIFY-ACCESS-EVIDENCE","expected":"Data classification, decision and evidence agree."}]}
+      }
+    },
+    {
+      "package_id":"ZT-SYS-001",
+      "acceptance_cases":{
+        "positive":{"applicable":true,"rationale":"An approved system identity must perform only the declared privileged action.","cases":[{"case_id":"ZT-SYS-001-ALLOW-APPROVED-PRIVILEGE","expected":"The approved bounded privileged action succeeds."}]},
+        "negative":{"applicable":true,"rationale":"Unapproved privilege must be denied.","cases":[{"case_id":"ZT-SYS-001-DENY-UNAPPROVED-PRIVILEGE","expected":"Unapproved privilege escalation is denied."}]},
+        "bypass":{"applicable":true,"rationale":"Alternate executables and command paths must not evade the system boundary.","cases":[{"case_id":"ZT-SYS-001-DENY-ALTERNATE-COMMAND-BYPASS","expected":"Alternate command paths cannot obtain protected privilege."}]},
+        "persistence":{"applicable":true,"rationale":"System policy must survive an approved service restart.","cases":[{"case_id":"ZT-SYS-001-VERIFY-SYSTEM-PERSISTENCE","expected":"The system privilege boundary remains after restart."}]},
+        "rollback":{"applicable":true,"rationale":"System hardening requires operator recovery and configuration restoration.","cases":[{"case_id":"ZT-SYS-001-VERIFY-SYSTEM-ROLLBACK","expected":"The previous safe system state is restored."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Identity, command, privilege decision and event must agree.","cases":[{"case_id":"ZT-SYS-001-VERIFY-PRIVILEGE-EVIDENCE","expected":"System privilege decision and evidence agree."}]}
+      }
+    },
+    {
+      "package_id":"ZT-AUTO-001",
+      "acceptance_cases":{
+        "positive":{"applicable":true,"rationale":"An approved fixed proposal may execute inside its bounded handler.","cases":[{"case_id":"ZT-AUTO-001-ALLOW-APPROVED-PROPOSAL","expected":"An approved bounded proposal executes as declared."}]},
+        "negative":{"applicable":true,"rationale":"An unapproved proposal must not execute.","cases":[{"case_id":"ZT-AUTO-001-DENY-UNAPPROVED-ACTION","expected":"An unapproved action is denied without target mutation."}]},
+        "bypass":{"applicable":true,"rationale":"Alternate handlers and payload mutation must not evade approval policy.","cases":[{"case_id":"ZT-AUTO-001-DENY-HANDLER-BYPASS","expected":"Unregistered handler and payload changes are denied."}]},
+        "persistence":{"applicable":true,"rationale":"Policy decisions must remain stable across controlled repeated evaluation.","cases":[{"case_id":"ZT-AUTO-001-VERIFY-REPEATED-POLICY","expected":"Repeated policy evaluation returns the same bounded decision."}]},
+        "rollback":{"applicable":true,"rationale":"Every approved mutating handler requires a tested inverse or independent recovery.","cases":[{"case_id":"ZT-AUTO-001-VERIFY-ACTION-ROLLBACK","expected":"The approved action is safely reversed or independently recovered."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Proposal, approval, action, result and status must agree.","cases":[{"case_id":"ZT-AUTO-001-VERIFY-AUTOMATION-EVIDENCE","expected":"Approval and actual action evidence agree."}]}
+      }
+    }
+  ]
+}

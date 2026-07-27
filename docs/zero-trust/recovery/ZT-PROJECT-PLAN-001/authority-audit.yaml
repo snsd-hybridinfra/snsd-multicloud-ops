@@ -1,0 +1,30 @@
+{
+  "action_id": "ZT-PROJECT-PLAN-001",
+  "result": "AUTHORITIES_NORMALIZED",
+  "hierarchy": [
+    {"order": 1, "authority": "ZERO_TRUST_GUIDELINE_2_0", "purpose": "capability and maturity taxonomy"},
+    {"order": 2, "authority": "KISA_CRITICAL_INFRASTRUCTURE_2026", "purpose": "technical inspection and hardening reference"},
+    {"order": 3, "authority": "ZT_PACKAGE", "purpose": "implementation authority"},
+    {"order": 4, "authority": "PACKAGE_ACCEPTANCE_CASE", "purpose": "behavioral validation authority"},
+    {"order": 5, "authority": "RUNTIME_EVIDENCE", "purpose": "actual-result authority"},
+    {"order": 6, "authority": "STATUS_AND_MATURITY_DECISION", "purpose": "evidence-based decision authority"}
+  ],
+  "machine_authorities": [
+    "docs/zero-trust/capability-catalog.yaml",
+    "docs/zero-trust/current-baseline-assessment.yaml",
+    "docs/zero-trust/package-flow.yaml",
+    "docs/zero-trust/package-status.yaml",
+    "docs/zero-trust/package-acceptance-cases.yaml",
+    "docs/zero-trust/final-roadmap.yaml",
+    "docs/zero-trust/final-execution-plan.yaml",
+    "docs/zero-trust/milestones-and-gates.yaml",
+    "docs/zero-trust/risk-register.yaml",
+    "docs/zero-trust/evidence-plan.yaml",
+    "docs/zero-trust/maturity-target.yaml",
+    "docs/zero-trust/mappings/zt-kisa-technical-control-map.yaml"
+  ],
+  "duplicate_current_authority_created": false,
+  "status_promoted": false,
+  "maturity_assessed": false,
+  "compliance_assessed": false
+}

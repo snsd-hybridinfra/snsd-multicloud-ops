@@ -1,0 +1,43 @@
+{
+  "reference_id": "KISA-CRITICAL-INFRASTRUCTURE-2026",
+  "title_ko": "2026 주요정보통신기반시설 기술적 취약점 분석·평가 방법 상세가이드",
+  "title_en": "2026 Detailed Guide for Technical Vulnerability Analysis and Assessment of Critical Information Infrastructure",
+  "publication_year": 2026,
+  "publisher": "한국인터넷진흥원",
+  "issuing_authority": "과학기술정보통신부",
+  "page_count": 873,
+  "sha256": "44fe393981b244147be6af7423d99dc15633c089fad0bcb296cbe2371dde812d",
+  "source_authentication": {
+    "status": "VERIFIED",
+    "method": ["cover visual inspection", "publisher mark inspection", "table-of-contents inspection", "PDF page count", "SHA-256 comparison across three user-owned copies"],
+    "verified_date": "2026-07-27",
+    "copies_compared": 3,
+    "copies_identical": true
+  },
+  "asset_domains": [
+    {"id": "UNIX_SERVER", "label_ko": "Unix 서버", "code_family": "U"},
+    {"id": "WINDOWS_SERVER", "label_ko": "Windows 서버", "code_family": "W"},
+    {"id": "WEB_SERVICE", "label_ko": "웹 서비스", "code_family": "WEB"},
+    {"id": "SECURITY_DEVICE", "label_ko": "보안 장비", "code_family": "S"},
+    {"id": "NETWORK_DEVICE", "label_ko": "네트워크 장비", "code_family": "N"},
+    {"id": "CONTROL_SYSTEM", "label_ko": "제어시스템", "code_family": "SC"},
+    {"id": "PC", "label_ko": "PC", "code_family": "PC"},
+    {"id": "DBMS", "label_ko": "DBMS", "code_family": "D"},
+    {"id": "MOBILE_COMMUNICATION", "label_ko": "이동통신", "code_family": "M"},
+    {"id": "WEB_APPLICATION", "label_ko": "Web Application(웹)", "code_family": "VARIABLE_TWO_LETTER"},
+    {"id": "VIRTUALIZATION", "label_ko": "가상화 장비", "code_family": "HV"},
+    {"id": "CLOUD", "label_ko": "클라우드", "code_family": "CA"}
+  ],
+  "handling": {
+    "raw_pdf_tracked": false,
+    "raw_pdf_storage": "USER_OWNED_REFERENCE_OUTSIDE_GIT",
+    "private_absolute_path_recorded": false,
+    "technical_reference_only": true,
+    "implementation_or_compliance_proof": false
+  },
+  "limitations": [
+    "The guide is an inspection and hardening reference, not implementation evidence or certification.",
+    "Applicability depends on exact product version, environment, service impact, exception, and rollback review.",
+    "Item codes must be copied only from the authenticated source."
+  ]
+}

@@ -18,10 +18,22 @@ if ($pythonCommand.Name -eq "py.exe" -or $pythonCommand.Name -eq "py") {
 }
 
 $stages = @(
+    @{ Name = "Project definition"; Script = "tools/validate_zt_project_definition.py"; Arguments = @("--strict") },
+    @{ Name = "Final roadmap"; Script = "tools/validate_zt_roadmap.py"; Arguments = @("--strict") },
+    @{ Name = "Final execution plan"; Script = "tools/validate_zt_execution_plan.py"; Arguments = @("--strict") },
+    @{ Name = "Dependency graph"; Script = "tools/validate_zt_dependency_graph.py"; Arguments = @("--strict") },
+    @{ Name = "Milestones and gates"; Script = "tools/validate_zt_milestones.py"; Arguments = @("--strict") },
+    @{ Name = "Risk register"; Script = "tools/validate_zt_risk_register.py"; Arguments = @("--strict") },
+    @{ Name = "Evidence plan"; Script = "tools/validate_zt_evidence_plan.py"; Arguments = @("--strict") },
+    @{ Name = "Maturity target"; Script = "tools/validate_zt_maturity_target.py"; Arguments = @("--strict") },
+    @{ Name = "KISA mapping"; Script = "tools/validate_zt_kisa_mapping.py"; Arguments = @("--strict") },
+    @{ Name = "Package acceptance cases"; Script = "tools/validate_zt_package_acceptance_cases.py"; Arguments = @("--strict") },
+    @{ Name = "Status truth"; Script = "tools/validate_zt_status_truth.py"; Arguments = @("--strict") },
     @{ Name = "Zero Trust governance"; Script = "tools/validate_zero_trust.py"; Arguments = @() },
     @{ Name = "Zero Trust synchronization"; Script = "tools/check_zero_trust_sync.py"; Arguments = @() },
     @{ Name = "Zero Trust generated report"; Script = "tools/generate_zero_trust_reports.py"; Arguments = @("--check") },
     @{ Name = "Numbered scenario retirement"; Script = "tools/validate_scenario_retirement.py"; Arguments = @() },
+    @{ Name = "Advanced target architecture"; Script = "tools/validate_advanced_target_architecture.py"; Arguments = @("--strict") },
     @{ Name = "Phase 1 package runbooks"; Script = "tools/validate_phase1_runbook_baseline.py"; Arguments = @() }
 )
 

@@ -21,14 +21,14 @@ This file defines working rules for Codex and repository automation.
 
 `ZT-ARC-001` surrounds, but is not a sequential member of, this flow:
 
-`ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001 -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001 -> PHASE_1_ACCEPTANCE`
+`ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001 -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001 -> P1-ACC-001`
 
 Package removal or status promotion requires matching implementation and evidence authority. Phase 1 remains PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE until all accepted prerequisites pass.
 
 ## Source governance
 
 - The local **제로트러스트 가이드라인 2.0** PDF is the primary authority for canonical terminology, capability numbering, architecture, and maturity characteristics.
-- The authenticated 2026 KISA critical-infrastructure technical vulnerability guide may be registered only by ZT-GOV-MAP-001 as a secondary inspection and hardening reference.
+- The authenticated 2026 KISA critical-infrastructure technical vulnerability guide is registered as a secondary planning reference. Comprehensive mapping review and acceptance remain ZT-GOV-MAP-001 work.
 - Mapping is not implementation, runtime validation, maturity, compliance, or certification.
 
 ## File safety

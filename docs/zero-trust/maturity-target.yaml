@@ -1,0 +1,69 @@
+{
+  "metadata": {
+    "authority": "ZT_PROJECT_MATURITY_TARGET",
+    "action_id": "ZT-PROJECT-PLAN-001",
+    "assessment_performed": false,
+    "current_project_maturity": "UNASSESSED",
+    "limitations": [
+      "A target is not a current maturity claim.",
+      "L3 requires evidence-backed acceptance of every mandatory blocker.",
+      "L4 remains roadmap-only until independently implemented and validated."
+    ]
+  },
+  "actual_project_target": "L3_ADVANCED",
+  "future_roadmap_target": "L4_OPTIMAL",
+  "l3_completion_decision": "NOT_YET_ASSESSED",
+  "allowed_dimension_states": [
+    "NOT_STARTED", "DESIGN_ONLY", "PARTIALLY_IMPLEMENTED", "IMPLEMENTED",
+    "PARTIALLY_VALIDATED", "RUNTIME_VALIDATED", "ACCEPTED", "BLOCKED"
+  ],
+  "mandatory_dimensions": [
+    "identity", "network", "visibility", "application", "data", "automation",
+    "governance", "evidence", "multi_environment_consistency", "continuous_validation"
+  ],
+  "l3_requirements": [
+    "centralized identity", "MFA", "OIDC or equivalent federation", "role-based access control",
+    "least privilege", "network segmentation", "centralized visibility",
+    "multi-environment enforcement consistency", "positive validation", "negative validation",
+    "bypass resistance", "persistence", "rollback", "repeatability", "scheduled validation",
+    "evidence freshness", "sanitized evidence", "documented exceptions", "documented residual risks",
+    "partial Policy as Code or drift detection where actually implemented"
+  ],
+  "l3_decision_rules": {
+    "average_score_sufficient": false,
+    "mandatory_controls_must_be_accepted": true,
+    "critical_blockers_must_be_closed": true,
+    "exceptions_must_be_documented": true,
+    "compensating_controls_require_evidence": true,
+    "central_identity_and_visibility_required": true,
+    "multiple_environments_required": true,
+    "scheduled_validation_required": true,
+    "status_overclaim_prohibited": true,
+    "tracked_runtime_prohibited": true
+  },
+  "dimensions": [
+    {"id": "identity", "status": "NOT_STARTED", "acceptance_authority": "P5-MAT-001", "blocking_requirements": ["central identity", "MFA", "federation", "RBAC", "least privilege"]},
+    {"id": "network", "status": "NOT_STARTED", "acceptance_authority": "P5-MAT-001", "blocking_requirements": ["segmentation", "allow and deny evidence", "bypass resistance"]},
+    {"id": "visibility", "status": "NOT_STARTED", "acceptance_authority": "P5-MAT-001", "blocking_requirements": ["central visibility", "time and source correlation"]},
+    {"id": "application", "status": "NOT_STARTED", "acceptance_authority": "P5-MAT-001", "blocking_requirements": ["application authorization", "attack-path validation"]},
+    {"id": "data", "status": "NOT_STARTED", "acceptance_authority": "P5-MAT-001", "blocking_requirements": ["classification", "least-privilege data access", "recovery"]},
+    {"id": "automation", "status": "NOT_STARTED", "acceptance_authority": "P5-MAT-001", "blocking_requirements": ["approval-based response", "safe rollback"]},
+    {"id": "governance", "status": "NOT_STARTED", "acceptance_authority": "P5-MAT-001", "blocking_requirements": ["policy ownership", "exceptions", "residual risks"]},
+    {"id": "evidence", "status": "NOT_STARTED", "acceptance_authority": "P5-MAT-001", "blocking_requirements": ["sanitization", "freshness", "traceability"]},
+    {"id": "multi_environment_consistency", "status": "NOT_STARTED", "acceptance_authority": "P5-MAT-001", "blocking_requirements": ["two genuinely different deployed environments"]},
+    {"id": "continuous_validation", "status": "NOT_STARTED", "acceptance_authority": "P5-MAT-001", "blocking_requirements": ["repeatability", "scheduling", "drift detection"]}
+  ],
+  "l4_roadmap": [
+    {"theme": "continuous user trust evaluation", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"},
+    {"theme": "continuous device trust evaluation", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"},
+    {"theme": "workload risk evaluation", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"},
+    {"theme": "contextual policy decisions", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"},
+    {"theme": "behavioral analytics", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"},
+    {"theme": "real-time risk scoring", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"},
+    {"theme": "automatic session termination", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"},
+    {"theme": "automatic network isolation", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"},
+    {"theme": "policy optimization", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"},
+    {"theme": "organization-wide governance", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"},
+    {"theme": "long-term control-effectiveness metrics", "implementation_status": "ROADMAP_ONLY", "runtime_validation_status": "NOT_VALIDATED", "maturity_claim": "NOT_CLAIMED"}
+  ]
+}

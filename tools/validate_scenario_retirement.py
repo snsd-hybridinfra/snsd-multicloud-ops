@@ -21,7 +21,7 @@ MIGRATION_DOC = Path("docs/zero-trust/governance/scenario-framework-retirement.m
 
 EXPECTED_SEQUENCE = [
     "ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001",
-    "ZT-CV-001", "ZT-RV-001", "ZT-SCH-001", "PHASE_1_ACCEPTANCE",
+    "ZT-CV-001", "ZT-RV-001", "ZT-SCH-001", "P1-ACC-001",
 ]
 EXPECTED_PACKAGE_STATES = {
     "ZT-FND-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
@@ -45,6 +45,7 @@ RETIRED_PATHS = [
 NUMBERED_ID = re.compile(r"\bS(?:00[1-9]|0[1-4][0-9]|050|051)\b")
 NUMBERED_PATH = re.compile(r"(?:^|[\\/])S(?:00[1-9]|0[1-4][0-9]|050)(?:[-\\/]|$)")
 TEXT_SUFFIXES = {".md", ".yaml", ".yml", ".json", ".py", ".ps1", ".txt", ".example", ".tf", ".j2"}
+RETIRED_AGGREGATE_TOOL = re.compile(r"(?i)(?:scenario.*aggregate|aggregate.*scenario)")
 
 
 @dataclass
@@ -145,6 +146,13 @@ def validate_package_truth(root: Path, result: Result) -> None:
 
 def validate_retired_paths(root: Path, result: Result) -> None:
     present = [str(path) for path in RETIRED_PATHS if (root / path).exists()]
+    tools_root = root / "tools"
+    if tools_root.is_dir():
+        present.extend(
+            str(path.relative_to(root))
+            for path in tools_root.rglob("*")
+            if path.is_file() and RETIRED_AGGREGATE_TOOL.search(path.name)
+        )
     if present:
         result.fail("retirement.paths", "Retired paths remain: " + ", ".join(present))
     else:

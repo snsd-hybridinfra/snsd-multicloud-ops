@@ -9,7 +9,7 @@ The repository is locked to a package-oriented Zero Trust implementation and val
 - The Phase 1 flow defined in `docs/zero-trust/package-flow.yaml`.
 - Read-only local validators, negative tests, package synchronization, and report checks.
 - Sanitized text evidence under reviewed package evidence authorities.
-- Future KISA technical-control mapping only through the separately authorized ZT-GOV-MAP-001 action.
+- Authenticated KISA 2026 source metadata and a planning-only seed map; comprehensive mapping review and acceptance remain separately authorized ZT-GOV-MAP-001 work.
 
 ## Retired scope
 

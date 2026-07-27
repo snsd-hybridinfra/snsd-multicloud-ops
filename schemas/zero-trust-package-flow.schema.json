@@ -12,7 +12,7 @@
       "required": ["authority", "action_id", "model", "effective_date", "scenario_authority", "limitations"],
       "properties": {
         "authority": {"const": "PHASE_1_PACKAGE_FLOW"},
-        "action_id": {"const": "ZT-SCN-RETIRE-001"},
+        "action_id": {"const": "ZT-PROJECT-PLAN-001"},
         "model": {"const": "PACKAGE_CAPABILITY_VALIDATION"},
         "effective_date": {"type": "string", "format": "date"},
         "scenario_authority": {"const": "NONE"},
@@ -25,7 +25,7 @@
       "prefixItems": [
         {"const": "ZT-FND-001"}, {"const": "ZT-NET-001"}, {"const": "ZT-VIS-001"},
         {"const": "ZT-ID-001"}, {"const": "ZT-CV-001"}, {"const": "ZT-RV-001"},
-        {"const": "ZT-SCH-001"}, {"const": "PHASE_1_ACCEPTANCE"}
+        {"const": "ZT-SCH-001"}, {"const": "P1-ACC-001"}
       ],
       "items": false,
       "minItems": 8,

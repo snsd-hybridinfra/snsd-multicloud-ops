@@ -1,0 +1,18 @@
+{
+  "action_id": "ZT-PROJECT-PLAN-001",
+  "prior_retirement_action": "ZT-SCN-RETIRE-001",
+  "retirement_status": "COMPLETED_BEFORE_THIS_ACTION",
+  "active_numbered_scenario_authority": false,
+  "scenario_aggregate_present": false,
+  "fixed_scenario_count_authority": false,
+  "successor_numbered_series_created": false,
+  "classification": {
+    "legacy_numbered_scenario": "ABSENT_FROM_ACTIVE_AUTHORITY",
+    "package_acceptance_case": "ACTIVE_BEHAVIORAL_VALIDATION_AUTHORITY",
+    "general_security_test_language": "RETAINED_WHERE_REUSABLE",
+    "historical_record": "RETAINED_ONLY_IN_GIT_OR_EXPLICIT_RECOVERY_RECORD"
+  },
+  "package_evidence_preserved": true,
+  "git_history_recovery_confirmed": true,
+  "next_action_if_plan_published": "ZT-GOV-MAP-001"
+}

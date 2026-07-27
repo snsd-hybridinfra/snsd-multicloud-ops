@@ -25,7 +25,7 @@ ZT-ARC-001 surrounds:
 ```text
 ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001
            -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001
-           -> PHASE_1_ACCEPTANCE
+           -> P1-ACC-001
 ```
 
 ## 5. Package flow
@@ -54,8 +54,8 @@ This decision does not establish implementation, runtime validation, Phase 1 com
 
 ## 11. Known limitations
 
-Existing reusable configuration examples may retain general test-case language, but they have no numbered-scenario authority. KISA mapping remains future ZT-GOV-MAP-001 work.
+Existing reusable configuration examples may retain general test-case language, but they have no numbered-scenario authority. Package-owned acceptance cases replace numbered-scenario execution authority. The authenticated KISA seed map is planning-only; complete technical-control review and acceptance remain ZT-GOV-MAP-001 work.
 
 ## 12. Next action
 
-ZT-GOV-MAP-001 may establish the integrated Zero Trust Guideline 2.0 and authenticated KISA 2026 technical-control mapping framework after this retirement is merged.
+ZT-GOV-MAP-001 is the next separately authorized action. It may complete and accept the integrated Zero Trust Guideline 2.0 and authenticated KISA 2026 technical-control mapping framework; this retirement record does not execute it.
