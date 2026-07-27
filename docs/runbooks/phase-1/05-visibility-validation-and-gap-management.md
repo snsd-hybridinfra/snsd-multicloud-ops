@@ -9,13 +9,13 @@
   "owner_domain": "VISIBILITY_AND_ANALYTICS",
   "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_TELEMETRY_SOURCES", "BOUNDED_NON_PRODUCTION_MONITORING_VM"],
   "procedure_status": "IMPLEMENTED",
-  "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+  "validation_status": "RUNTIME_VALIDATED",
   "runtime_required": true,
   "live_execution_permitted": true,
   "required_authority": "EXPLICIT_OPERATOR_APPROVAL_FOR_COLLECTION",
   "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-  "last_reviewed": "2026-07-22",
-  "limitations": ["ZT-VIS-001 persistent storage accepts only approved sanitized JSONL; host journals, full service logs, external alerting, high availability, behavior analytics, and automated response remain absent. ZT-VIS-002 remains protected Phase 2 preparation only."]
+  "last_reviewed": "2026-07-27",
+  "limitations": ["ZT-VIS-001 is accepted only for four sanitized summary sources and one single-node local stack. External NTP UDP/123 replies were unavailable during P1-VIS-CLOSE, so persistent NTP synchronization is not claimed. Host journals, full service logs, external alerting, high availability, behavior analytics, automated response, central visibility, and ZT-VIS-002 remain outside this boundary."]
 }
 ```
 
@@ -50,7 +50,8 @@ persistent Grafana/Loki/Alloy storage exist.
 
 ## Current Validation Status
 
-`PARTIALLY_RUNTIME_VALIDATED` for the bounded ZT-VIS-001 scope.
+`RUNTIME_VALIDATED` for the bounded four-source and single-node local
+ZT-VIS-001 scope. Evidence continuity remains EC3, not continuous observation.
 
 ## Evidence Authority
 
@@ -94,8 +95,10 @@ unnecessary identifiers.
 ## Service Impact
 
 Static validation has none. Bounded collection reads current source outputs and
-writes ignored raw files; no monitoring service or target configuration may
-change.
+writes ignored raw files. `Validate` creates and removes one sanitized synthetic
+event; `Persistence` restarts only the exact Compose project under separate
+approval. Neither mode changes source, port, volume, retention, identity, or
+logging configuration.
 
 ## Security Impact
 
@@ -104,8 +107,9 @@ least privilege, raw-data isolation, and sanitization are mandatory.
 
 ## Preflight Checks
 
-Confirm ZT-VIS-001 remains `IMPLEMENTED` / `VALIDATED`; the bounded central log
-source is healthy and persistent-storage evidence remains accepted; ZT-VIS-002 is
+Confirm ZT-VIS-001 remains `IMPLEMENTED` / `RUNTIME_VALIDATED` with bounded
+runtime validation `VALIDATED` and acceptance `ACCEPTED`; the local log source
+is healthy and persistent-storage evidence remains accepted; ZT-VIS-002 is
 `PREPARATION_TRACES_ONLY`, Phase 2, not deployed, `NOT_VALIDATED`, and not
 evidence authority.
 
@@ -174,16 +178,18 @@ complete SIEM.
 
 ## Validation
 
-Validate inventory, event/finding schemas, deterministic rules, source counts,
-raw ignore state, sanitized references, pinned services, loopback endpoints,
-retention, restart retrieval, and package claims.
+Validate inventory, event/finding schemas, deterministic rules, source
+attribution, event freshness, raw ignore state, sanitized references, UTC/time
+source, ownership and permissions, pinned services, runtime loopback listeners,
+retention, restart retrieval, dependency rollback, and package claims.
 
 ## Pass Criteria
 
-Static validator succeeds; approved sources remain bounded; raw output stays
-ignored; controlled fixture is labeled; health, retention, ingestion, query,
-and restart persistence pass; no unapproved monitoring or identity change
-occurs.
+Static validator succeeds; approved sources remain bounded and attributable;
+diagnostic failures remain failures; raw output stays ignored; controlled
+fixture is labeled; freshness, local time alignment, permissions, health,
+loopback exposure, retention, ingestion, query, restart persistence, and
+power-state rollback pass; no unapproved monitoring or identity change occurs.
 
 ## Stop Conditions
 
@@ -194,14 +200,17 @@ storage claim without accepted evidence.
 
 ## Failure Handling
 
-Separate source, schema, rule, fixture, sanitization, and availability failures.
-Do not bypass a failed source or convert it to success; retain partial status.
+Separate source transport failure from a successfully collected negative
+diagnostic payload. Do not bypass or relabel either. A future accepted-boundary
+regression requires review and new evidence; it does not create an automatic
+status update.
 
 ## Rollback
 
-Static validation needs none. A separately approved collection may remove only
-its bounded ignored temporary output. No service rollback applies because this
-runbook does not deploy services.
+Static validation needs none. A separately approved collection keeps raw output
+ignored. Restore only temporary dependency power states to their recorded
+preflight values. `Persistence` must leave the exact Compose project healthy;
+it does not delete services, data, secrets, configuration, or the monitoring VM.
 
 ## Evidence
 

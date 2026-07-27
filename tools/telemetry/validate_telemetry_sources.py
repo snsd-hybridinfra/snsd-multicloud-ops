@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import json
 import sys
 from pathlib import Path
@@ -13,12 +14,38 @@ from correlate_events import ALLOWED_ACTIONS, load_events, load_rules
 SOURCE_STATES = {"CURRENT_RUNNING", "CURRENT_CONFIG_ONLY", "PLANNED", "ABSENT", "UNKNOWN"}
 
 
+def newest_event_age_seconds(events: list[dict], now: dt.datetime | None = None) -> int:
+    """Return newest received-event age while rejecting ambiguous or future time."""
+    timestamps: list[dt.datetime] = []
+    for event in events:
+        value = event.get("received_timestamp")
+        if not isinstance(value, str):
+            raise ValueError("normalized event received_timestamp is missing")
+        try:
+            parsed = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
+        except ValueError as exc:
+            raise ValueError("normalized event received_timestamp is invalid") from exc
+        if parsed.tzinfo is None:
+            raise ValueError("normalized event received_timestamp lacks a timezone")
+        timestamps.append(parsed.astimezone(dt.timezone.utc))
+    if not timestamps:
+        raise ValueError("no normalized event timestamps")
+    reference = now or dt.datetime.now(dt.timezone.utc)
+    if reference.tzinfo is None:
+        raise ValueError("freshness reference lacks a timezone")
+    age = (reference.astimezone(dt.timezone.utc) - max(timestamps)).total_seconds()
+    if age < -30:
+        raise ValueError("newest normalized event is more than 30 seconds in the future")
+    return max(0, int(age))
+
+
 def main() -> int:
     root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--inventory", type=Path, default=root / "docs/zero-trust/telemetry-source-inventory.yaml")
     parser.add_argument("--rules", type=Path, default=root / "docs/zero-trust/correlation-rule-catalog.yaml")
     parser.add_argument("--events", type=Path)
+    parser.add_argument("--maximum-age-seconds", type=int, default=900)
     args = parser.parse_args()
     passed = warnings = failed = 0
 
@@ -48,11 +75,17 @@ def main() -> int:
             json.loads(schema.read_text(encoding="utf-8"))
         result("PASS", "Telemetry and finding schemas are valid JSON")
         if args.events:
+            if args.maximum_age_seconds <= 0:
+                raise ValueError("maximum event age must be positive")
             events = load_events(args.events)
-            running_names = {source["name"].lower().replace(" ", "-") for source in sources if source["current_state"] == "CURRENT_RUNNING"}
             observed = {event["source_name"] for event in events}
             result("PASS" if events else "FAIL", f"Normalized event storage contains {len(events)} records")
             result("PASS" if observed else "FAIL", "At least one current source has normalized events")
+            age = newest_event_age_seconds(events)
+            result(
+                "PASS" if age <= args.maximum_age_seconds else "FAIL",
+                f"Newest normalized event age is {age} seconds (maximum {args.maximum_age_seconds})",
+            )
         else:
             result("WARN", "Live event freshness was not requested")
         retention_ok = all(source.get("retention") for source in sources)

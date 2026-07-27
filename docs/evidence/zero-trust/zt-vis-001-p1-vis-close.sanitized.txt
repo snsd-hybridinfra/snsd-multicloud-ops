@@ -1,0 +1,62 @@
+ZT-VIS-001 P1-VIS-CLOSE BOUNDED LOCAL VISIBILITY REVALIDATION
+Execution date: 2026-07-27
+Environment: bounded non-production EVE-NG and OpenStack laboratory
+Execution authority: CODEX_EXECUTED_LIVE_RUNTIME under explicit operator approval
+
+PREFLIGHT AND DEPENDENCIES
+- The three required EVE lab nodes, fixed OpenStack test instance, and monitoring
+  instance were initially stopped.
+- The first collection retained the expected stopped-dependency failures and did
+  not convert them to successful source results.
+- Only those five existing runtime dependencies were started; no network,
+  logging, retention, port, volume, identity, or source configuration was written.
+
+EVENT AND SOURCE RESULTS
+- All four approved summary transports produced sanitized normalized events.
+- Source attribution: PASS for OpenStack, EVE-NG, router, and repository sources.
+- Normalized events: 170; rejected events: 0.
+- Outcomes: 166 PASS, 0 WARN, 4 FAIL.
+- The four OpenStack diagnostic failures remained visible and produced two live
+  deterministic findings; they were not relabeled as passes.
+- The controlled failure fixture produced one separately labeled finding.
+- Newest-event freshness: PASS within the approved 900-second window.
+
+PERSISTENT STACK RESULTS
+- Loki, Alloy, and Grafana service health: PASS 3 of 3.
+- Loopback readiness endpoints: PASS 3 of 3.
+- Runtime listeners: PASS, three loopback and zero non-loopback listeners.
+- Retention: PASS, 336 hours.
+- Synthetic sanitized event ingestion and query: PASS.
+- Sanitized input secret-pattern scan: PASS.
+- Same-event query before and after exact Compose-project restart: PASS.
+
+TIME, OWNERSHIP, AND PERMISSION RESULTS
+- Guest timezone and event timestamps use UTC.
+- systemd-timesyncd was active with an identified NTP source, but external
+  UDP/123 replies timed out at the physical-network boundary.
+- One no-configuration timesyncd restart retried synchronization and returned
+  the service to its original active state.
+- KVM RTC alignment to the OpenStack control host: PASS within a three-second
+  sequential-measurement bound. Persistent NTP synchronization is not claimed.
+- Configuration directory: monitoring-operator-only 0700.
+- Sanitized input and service data: role-owned 0750.
+- VM-local administrator secret: root-owned 0600; content was not read.
+- No ownership or permission was changed.
+
+NEGATIVE, BYPASS, PERSISTENCE, AND ROLLBACK
+- Source failure events were retained; controlled failure correlation passed.
+- Malformed-event and unsanitized-input rejection tests passed.
+- Correlation actions remained non-blocking and no telemetry port was externally
+  bound.
+- Restart persistence passed for services and the same sanitized event.
+- Both OpenStack instances returned to SHUTOFF with no pending task.
+- EVE lab runtime process count returned to zero.
+
+DECISION AND LIMITATIONS
+- ZT-VIS-001 is runtime validated and accepted only for bounded local visibility:
+  four sanitized summary sources plus one single-node Grafana/Loki/Alloy stack.
+- This is EC3 one-time runtime evidence, not continuous observation, scheduling,
+  enterprise central visibility, a complete SIEM, SOC operation, behavior
+  analytics, automated response, KISA U-65 acceptance, or a maturity assessment.
+- ZT-VIS-002 and all Phase 2 visibility work remain unimplemented and protected.
+- Secret findings: 0. Privacy findings: 0. Tracked runtime files: 0.

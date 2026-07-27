@@ -1,0 +1,19 @@
+{
+  "action_id": "P1-VIS-CLOSE",
+  "validation_date": "2026-07-27",
+  "checks": [
+    {"check":"approved source transport and attribution","result":"PASS","detail":"four fixed sources produced 170 attributed sanitized events"},
+    {"check":"negative visibility","result":"PASS","detail":"four diagnostic failures remained failures and produced two live findings"},
+    {"check":"controlled failure correlation","result":"PASS","detail":"one controlled fixture produced one labeled finding"},
+    {"check":"freshness","result":"PASS","detail":"newest event was within the 900-second action window"},
+    {"check":"persistent stack","result":"PASS","detail":"three services, three loopback endpoints, 336-hour retention, ingestion, and query passed"},
+    {"check":"persistence","result":"PASS","detail":"same event remained queryable after exact project restart"},
+    {"check":"permissions","result":"PASS","detail":"operator, role, and root ownership boundaries retained without change"},
+    {"check":"time alignment","result":"PASS_WITH_LIMITATION","detail":"KVM RTC aligned within sequential bound; external NTP replies unavailable and not claimed"},
+    {"check":"bypass boundary","result":"PASS","detail":"zero non-loopback telemetry listeners and non-blocking rules only"},
+    {"check":"rollback","result":"PASS","detail":"all five temporary power states returned to stopped with no residue"},
+    {"check":"secret and privacy scan","result":"PASS","detail":"zero findings; raw runtime remains ignored"}
+  ],
+  "blocking_failures": 0,
+  "next_action": "P1-CV-001"
+}

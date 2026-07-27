@@ -1,0 +1,27 @@
+{
+  "action_id": "P1-VIS-CLOSE",
+  "audit_date": "2026-07-27",
+  "target_scope": "BOUNDED_NON_PRODUCTION_TELEMETRY_SOURCES_AND_MONITORING_VM",
+  "operator_access_status": "PASS",
+  "recovery_path_status": "PASS",
+  "pre_change_state": {
+    "eve_required_lab_nodes": "STOPPED_3_OF_3",
+    "fixed_openstack_test_instance": "SHUTOFF",
+    "monitoring_instance": "SHUTOFF",
+    "tracked_runtime_files": 0
+  },
+  "protected_scope": {
+    "logging_configuration_written": false,
+    "logging_permissions_changed": false,
+    "new_source_added": false,
+    "zt_vis_002_accessed": false,
+    "production_touched": false
+  },
+  "final_runtime_state": {
+    "eve_required_lab_processes": 0,
+    "fixed_openstack_test_instance": "SHUTOFF_NO_PENDING_TASK",
+    "monitoring_instance": "SHUTOFF_NO_PENDING_TASK"
+  },
+  "secret_findings": 0,
+  "privacy_findings": 0
+}

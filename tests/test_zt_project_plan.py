@@ -148,9 +148,9 @@ class ProjectPlanTests(unittest.TestCase):
         schema = plan.load(ROOT / plan.AUTHORITIES["execution_plan"][1])
         self.assertTrue(core.validate_schema_instance(data, schema))
 
-    def test_invalid_milestone_gate_rejected(self) -> None:
+    def test_completed_milestone_cannot_return_to_pending(self) -> None:
         data = copy.deepcopy(self.milestones)
-        data["milestones"][1]["approval_decision"] = "APPROVED"
+        data["milestones"][1]["approval_decision"] = "PENDING"
         paths = [plan.AUTHORITIES["milestones"][0], plan.AUTHORITIES["milestones"][1], Path("docs/zero-trust/milestones-and-gates.md"), plan.AUTHORITIES["execution_plan"][0]]
         with copied_root(paths) as root:
             write_json(root / plan.AUTHORITIES["milestones"][0], data)

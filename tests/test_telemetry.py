@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import datetime as dt
 import json
 import sys
 import tempfile
@@ -12,6 +13,7 @@ sys.path.insert(0, str(ROOT / "tools/telemetry"))
 
 import correlate_events  # noqa: E402
 import normalize_events  # noqa: E402
+import validate_telemetry_sources  # noqa: E402
 
 
 class TelemetryToolTests(unittest.TestCase):
@@ -46,6 +48,17 @@ class TelemetryToolTests(unittest.TestCase):
             path.write_text("[PASS] endpoint 203.0.113.10 validated\n", encoding="utf-8")
             with self.assertRaises(ValueError):
                 normalize_events.normalize(path, "validator-summary", "test-validator", "<runtime>")
+
+    def test_event_freshness_uses_received_timestamp(self) -> None:
+        now = dt.datetime(2026, 7, 27, 12, 0, tzinfo=dt.timezone.utc)
+        events = [{"received_timestamp": "2026-07-27T11:59:30Z"}]
+        self.assertEqual(30, validate_telemetry_sources.newest_event_age_seconds(events, now))
+
+    def test_future_event_freshness_is_rejected(self) -> None:
+        now = dt.datetime(2026, 7, 27, 12, 0, tzinfo=dt.timezone.utc)
+        events = [{"received_timestamp": "2026-07-27T12:01:00Z"}]
+        with self.assertRaises(ValueError):
+            validate_telemetry_sources.newest_event_age_seconds(events, now)
 
 
 if __name__ == "__main__":

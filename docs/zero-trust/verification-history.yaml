@@ -110,14 +110,14 @@
         "docs/evidence/zero-trust/zt-vis-001-validation.yaml"
       ],
       "evidence_hashes": {
-        "docs/evidence/zero-trust/zt-vis-001-validation.yaml": "e36f7c16b928b0f979bbf4bdc6bc7c14789c59285a5f900d86f8a1bc012374cc"
+        "docs/evidence/zero-trust/zt-vis-001-validation.yaml": "c7c7e3d7f1d18112d4e706ffc3f053ec765593e454e2c9f3e8708ab29f6badb8"
       },
       "sanitization_status": "PASS",
       "freshness_policy_id": "ZTCV-FRESH-LIVE",
       "freshness_status": "FRESH",
       "scheduled_trigger": false,
       "limitations": [
-        "Persistent service does not establish EC6 without time-separated freshness and failure history."
+        "The original accepted persistent-stack event remains dated 2026-07-22; P1-VIS-CLOSE revalidated the bounded stack, source attribution, freshness, permissions, restart persistence, and rollback on 2026-07-27. This remains EC3 one-time evidence, external NTP synchronization is not claimed, and no new CV execution, repeatability result, or scheduled trigger was created."
       ]
     },
     {

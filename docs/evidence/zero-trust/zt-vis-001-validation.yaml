@@ -47,9 +47,82 @@
     "post_restart_same_event_query": "PASS",
     "secret_pattern_scan": "PASS"
   },
+  "runtime_revalidation": {
+    "action_id": "P1-VIS-CLOSE",
+    "timestamp": "2026-07-27T12:08:54Z",
+    "mode": "APPROVED_BOUNDED_LIVE_REVALIDATION",
+    "pre_change_dependency_state": "REQUIRED_LAB_NODES_AND_FIXED_TEST_AND_MONITORING_INSTANCES_STOPPED",
+    "stack_validation": {
+      "service_health": "PASS_3_OF_3",
+      "loopback_endpoints": "PASS_3_OF_3",
+      "runtime_loopback_listeners": "PASS_3_LOOPBACK_0_NON_LOOPBACK",
+      "retention": "PASS_336_HOURS",
+      "sanitized_ingestion_and_query": "PASS",
+      "sanitized_input_secret_scan": "PASS",
+      "post_restart_health": "PASS",
+      "post_restart_same_event_query": "PASS"
+    },
+    "event_validation": {
+      "source_transport": "PASS_4_OF_4",
+      "source_attribution": "PASS_4_OF_4",
+      "normalized_events": 170,
+      "rejected_events": 0,
+      "outcomes": {"pass": 166, "warn": 0, "fail": 4},
+      "live_findings": 2,
+      "controlled_fixture_findings": 1,
+      "event_freshness": "PASS_WITHIN_900_SECONDS",
+      "observed_newest_event_age_seconds": 362,
+      "openstack_diagnostic_payload": "CURRENT_DEGRADED_46_PASS_0_WARN_4_FAIL",
+      "diagnostic_interpretation": "The source transport and attribution passed; four source diagnostic failures were retained as negative visibility events and were not converted to success."
+    },
+    "time_validation": {
+      "timezone": "UTC",
+      "virtual_clock_source": "KVM_RTC",
+      "timesync_service": "ACTIVE",
+      "timesync_service_restart": "PASS_ACTIVE_TO_ACTIVE_NO_CONFIGURATION_CHANGE",
+      "ntp_configured": true,
+      "ntp_synchronized": false,
+      "ntp_observation": "EXTERNAL_UDP_123_REPLY_TIMEOUT",
+      "control_to_guest_utc_delta_seconds": 3,
+      "local_time_alignment": "PASS_WITHIN_SEQUENTIAL_MEASUREMENT_BOUND",
+      "continuous_ntp_claimed": false
+    },
+    "permission_validation": {
+      "configuration_directory": "PASS_MONITORING_OPERATOR_ONLY_0700",
+      "sanitized_input_directory": "PASS_ROOT_OWNED_0750",
+      "service_data_directories": "PASS_ROLE_OWNED_0750",
+      "vm_local_secret_file": "PASS_ROOT_OWNED_0600",
+      "permissions_changed": false
+    },
+    "negative_and_bypass_validation": {
+      "source_failure_events_preserved": "PASS_4_EVENTS",
+      "controlled_failure_correlation": "PASS_1_FINDING",
+      "malformed_event_rejection": "PASS_LOCAL_TEST",
+      "unsanitized_input_rejection": "PASS_LOCAL_TEST",
+      "non_blocking_rule_boundary": "PASS",
+      "non_loopback_listener_count": 0
+    },
+    "rollback": {
+      "monitoring_instance": "PASS_SHUTOFF_NO_PENDING_TASK",
+      "fixed_test_instance": "PASS_SHUTOFF_NO_PENDING_TASK",
+      "eve_lab_runtime_processes": "PASS_ZERO",
+      "logging_configuration_written": false,
+      "logging_permissions_changed": false,
+      "timesync_service": "PASS_ACTIVE_ORIGINAL_STATE_RESTORED",
+      "temporary_event_removed": true,
+      "runtime_power_state_rollback": "PASS_ORIGINAL_STOPPED_STATE_RESTORED"
+    },
+    "decision": "ACCEPTED_BOUNDED_LOCAL_VISIBILITY",
+    "evidence_continuity": "EC3_ONE_TIME_RUNTIME",
+    "central_visibility_claimed": false,
+    "maturity_assessed": false,
+    "secret_findings": 0,
+    "privacy_findings": 0
+  },
   "evidence_files": [
     "docs/evidence/zero-trust/zt-vis-001-live-summary.sanitized.txt",
-    "docs/evidence/zero-trust/zt-vis-001-persistent-storage-validation.sanitized.txt"
+    "docs/evidence/zero-trust/zt-vis-001-persistent-storage-validation.sanitized.txt",
+    "docs/evidence/zero-trust/zt-vis-001-p1-vis-close.sanitized.txt"
   ],
   "sanitization": {"status": "PASS", "raw_runtime_ignored": true, "credentials_collected": false},
   "retention": "approved sanitized Loki data is retained for 336 hours; raw validator runtime remains ephemeral and ignored; reviewed summaries are retained in Git",
@@ -60,10 +133,13 @@
   "assessment_confidence": "HIGH",
   "limitations": [
     "The persistent single-node stack is bounded to approved sanitized JSONL and is not a complete SIEM.",
+    "The OpenStack validator remained CURRENT_DEGRADED at 46 PASS, 0 WARN, and 4 FAIL after its stopped dependency was started; those failures were captured as attributed negative events rather than hidden or remediated.",
+    "External NTP UDP/123 replies were unavailable; KVM RTC alignment passed, but persistent NTP synchronization and KISA U-65 acceptance are not claimed.",
     "Host journals, full OpenStack service logs, external alert delivery, and high-availability storage are not onboarded.",
     "ZT-7.4 behavior analytics is not mapped because no behavior-analysis logic exists."
   ],
   "remaining_gaps": [
+    "Have the physical-network operator review outbound NTP UDP/123 or approve an authoritative local time source before claiming persistent protocol-level synchronization.",
     "Add any new source only through separately approved least-privilege collection, minimization, and retention evidence.",
     "Design high availability, external alerting, and broader monitoring as later packages without promoting current capability maturity."
   ]

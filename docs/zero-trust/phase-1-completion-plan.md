@@ -16,7 +16,7 @@ ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001
 |---|---|---|---|
 | ZT-FND-001 | IMPLEMENTED | VALIDATED | BOUNDED_ACCEPTED |
 | ZT-NET-001 | IMPLEMENTED | VALIDATED | ACCEPTED |
-| ZT-VIS-001 | IMPLEMENTED | PARTIALLY_VALIDATED | PARTIALLY_ACCEPTED |
+| ZT-VIS-001 | IMPLEMENTED | VALIDATED | ACCEPTED |
 | ZT-ID-001 | IMPLEMENTED | VALIDATED | ACCEPTED |
 | ZT-CV-001 | NOT_IMPLEMENTED | NOT_VALIDATED | PENDING |
 | ZT-RV-001 | NOT_IMPLEMENTED | NOT_VALIDATED | PENDING |
@@ -37,4 +37,4 @@ ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001
 - Completion: NOT_COMPLETE
 - Boundary: ZT-SCH-001
 
-ZT-NET-001 acceptance is limited to one bounded directional inter-zone ACL, and ZT-ID-001 acceptance is limited to one bounded non-production validator endpoint. Broader segmentation, centralized identity, MFA, OIDC, application RBAC, production enforcement, and maturity remain open. Retiring the scenario framework does not satisfy a package gate, create runtime evidence, assign maturity, or authorize a live target.
+ZT-NET-001 acceptance is limited to one bounded directional inter-zone ACL, ZT-VIS-001 acceptance is limited to four sanitized summary sources and one single-node local telemetry stack, and ZT-ID-001 acceptance is limited to one bounded non-production validator endpoint. Persistent NTP synchronization, central visibility, broader segmentation, centralized identity, MFA, OIDC, application RBAC, production enforcement, and maturity remain open. Retiring the scenario framework does not satisfy a package gate, create runtime evidence, assign maturity, or authorize a live target.

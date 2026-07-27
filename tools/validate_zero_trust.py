@@ -1330,6 +1330,17 @@ def validate_telemetry_package(root: Path, catalog: dict[str, Any], result: Vali
     mappings = package.get("capability_mappings", [])
     if not mappings or set(mappings) - catalog_ids:
         result.fail("package.zt-vis-001", "Telemetry package capability mappings are missing or invalid.")
+    expected_state = (
+        "IMPLEMENTED", "RUNTIME_VALIDATED", "LOCAL_VALIDATED", "VALIDATED", "ACCEPTED",
+        "BOUNDED_SINGLE_NODE_SANITIZED_LOCAL_TELEMETRY", "UNASSESSED", "UNASSESSED", "INITIAL",
+    )
+    actual_state = (
+        package.get("implementation_status"), package.get("validation_status"), package.get("local_validation_status"),
+        package.get("runtime_validation_status"), package.get("runtime_acceptance_status"), package.get("runtime_scope"),
+        package.get("maturity_status"), package.get("current_maturity"), package.get("target_maturity"),
+    )
+    if actual_state != expected_state:
+        result.fail("package.zt-vis-001", "ZT-VIS-001 must retain its bounded runtime-validated, accepted, and unassessed state.")
     if package.get("current_maturity") in {"ADVANCED", "OPTIMAL"} or package.get("target_maturity") == "OPTIMAL":
         result.fail("package.zt-vis-001", "The bounded telemetry package must not claim current ADVANCED/OPTIMAL or target OPTIMAL maturity.")
     authority = package.get("evidence_authority")
@@ -1341,11 +1352,12 @@ def validate_telemetry_package(root: Path, catalog: dict[str, Any], result: Vali
         if execution.get("execution_authority") == "CODEX_EXECUTED_LIVE_RUNTIME" and not execution.get("commands"):
             result.fail("package.zt-vis-001", "Codex telemetry execution requires recorded commands.")
         results = execution.get("results", {})
-        if package.get("validation_status") in {"VALIDATED", "PARTIALLY_VALIDATED"} and (results.get("exit_code") != 0 or results.get("fail") != 0):
+        accepted_statuses = {"VALIDATED", "RUNTIME_VALIDATED"}
+        if package.get("validation_status") in accepted_statuses | {"PARTIALLY_VALIDATED"} and (results.get("exit_code") != 0 or results.get("fail") != 0):
             result.fail("package.zt-vis-001", "Telemetry live-validation status requires exit code 0 and zero failed checks.")
-        if package.get("validation_status") == "VALIDATED" and results.get("unavailable_sources", 0) != 0:
+        if package.get("validation_status") in accepted_statuses and results.get("unavailable_sources", 0) != 0:
             result.fail("package.zt-vis-001", "VALIDATED telemetry package cannot have unavailable mandatory sources.")
-        if package.get("validation_status") == "VALIDATED":
+        if package.get("validation_status") in accepted_statuses:
             persistent = execution.get("persistent_storage", {})
             required_persistent = {
                 "pinned_images": "PASS",
@@ -1360,6 +1372,47 @@ def validate_telemetry_package(root: Path, catalog: dict[str, Any], result: Vali
             for field, expected in required_persistent.items():
                 if persistent.get(field) != expected:
                     result.fail("package.zt-vis-001.persistence", f"{field} must be {expected} for VALIDATED persistent telemetry.")
+            revalidation = execution.get("runtime_revalidation", {})
+            required_revalidation = {
+                "action_id": "P1-VIS-CLOSE",
+                "decision": "ACCEPTED_BOUNDED_LOCAL_VISIBILITY",
+                "evidence_continuity": "EC3_ONE_TIME_RUNTIME",
+                "central_visibility_claimed": False,
+                "maturity_assessed": False,
+                "secret_findings": 0,
+                "privacy_findings": 0,
+            }
+            for field, expected in required_revalidation.items():
+                if revalidation.get(field) != expected:
+                    result.fail("package.zt-vis-001.revalidation", f"{field} must be {expected!r} for bounded runtime acceptance.")
+            event_validation = revalidation.get("event_validation", {})
+            if (
+                event_validation.get("source_transport") != "PASS_4_OF_4"
+                or event_validation.get("source_attribution") != "PASS_4_OF_4"
+                or event_validation.get("event_freshness") != "PASS_WITHIN_900_SECONDS"
+                or event_validation.get("rejected_events") != 0
+            ):
+                result.fail("package.zt-vis-001.revalidation", "Runtime acceptance requires four-source transport, attribution, freshness, and zero rejected normalized events.")
+            time_validation = revalidation.get("time_validation", {})
+            if (
+                time_validation.get("local_time_alignment") != "PASS_WITHIN_SEQUENTIAL_MEASUREMENT_BOUND"
+                or time_validation.get("continuous_ntp_claimed") is not False
+            ):
+                result.fail("package.zt-vis-001.revalidation", "Local time alignment must pass without claiming unavailable continuous NTP synchronization.")
+            permissions = revalidation.get("permission_validation", {})
+            if permissions.get("permissions_changed") is not False or not all(
+                str(permissions.get(field, "")).startswith("PASS_")
+                for field in ("configuration_directory", "sanitized_input_directory", "service_data_directories", "vm_local_secret_file")
+            ):
+                result.fail("package.zt-vis-001.revalidation", "Reviewed telemetry ownership and permission boundaries must pass without mutation.")
+            rollback = revalidation.get("rollback", {})
+            if (
+                rollback.get("runtime_power_state_rollback") != "PASS_ORIGINAL_STOPPED_STATE_RESTORED"
+                or rollback.get("logging_configuration_written") is not False
+                or rollback.get("logging_permissions_changed") is not False
+                or rollback.get("timesync_service") != "PASS_ACTIVE_ORIGINAL_STATE_RESTORED"
+            ):
+                result.fail("package.zt-vis-001.revalidation", "Runtime power state must be restored without logging configuration or permission writes.")
 
     sources = inventory.get("sources", [])
     allowed_states = {"CURRENT_RUNNING", "CURRENT_CONFIG_ONLY", "PLANNED", "ABSENT", "UNKNOWN"}
@@ -1386,7 +1439,7 @@ def validate_telemetry_package(root: Path, catalog: dict[str, Any], result: Vali
     for fixed in ("openstack-validator", "eve-validator", "snsd-r1-validator", "BatchMode=yes"):
         if fixed not in wrapper:
             result.fail("package.zt-vis-001.wrapper", f"Telemetry wrapper lacks fixed boundary: {fixed}.")
-    if package.get("validation_status") == "VALIDATED":
+    if package.get("validation_status") in {"VALIDATED", "RUNTIME_VALIDATED"}:
         compose = (root / "observability/logging/compose.yaml").read_text(encoding="utf-8", errors="replace")
         loki_config = (root / "observability/logging/loki-config.yaml").read_text(encoding="utf-8", errors="replace")
         manager = (root / "tools/live-validation/manage-persistent-telemetry.ps1").read_text(encoding="utf-8", errors="replace")

@@ -4,8 +4,9 @@
 
 ZT-VIS-001 centralizes selected sanitized validator and repository-validation
 summaries into one local JSONL event model and applies deterministic correlation.
-It is IMPLEMENTED and VALIDATED for the bounded package scope. Current maturity is UNASSESSED and
-the bounded target is INITIAL.
+It is IMPLEMENTED and RUNTIME_VALIDATED, with bounded runtime validation
+VALIDATED and acceptance ACCEPTED. Current maturity is UNASSESSED and the
+bounded target is INITIAL.
 
 The package maps conservatively to ZT-7.1, ZT-7.2, ZT-7.3, ZT-8.2, and ZT-8.6.
 ZT-7.4 is excluded because no user/device behavior analysis exists.
@@ -86,10 +87,20 @@ health checks, three loopback endpoint checks, 336-hour retention, sanitized
 event ingestion/query, secret-pattern scanning, and pre/post-restart retrieval
 of the same event.
 
+P1-VIS-CLOSE revalidated the current boundary on 2026-07-27. Four fixed source
+transports produced 170 attributed sanitized events: 166 PASS and four retained
+OpenStack diagnostic FAIL events. Those failures produced two live findings and
+were not relabeled. Service health, runtime loopback listeners, retention,
+ingestion, ownership and permissions, freshness, restart persistence, and
+power-state rollback passed. KVM RTC alignment passed within the sequential
+measurement bound; external NTP UDP/123 replies were unavailable, so persistent
+NTP synchronization is not claimed.
+
 ## Limitations and remaining gaps
 
 Persistent single-node storage and a loopback dashboard are implemented. Host
 journal ingestion, full OpenStack log ingestion, external alert delivery,
-behavior analytics, high availability, and automated response remain absent.
+behavior analytics, high availability, persistent NTP synchronization,
+continuous operation, central visibility, and automated response remain absent.
 Rollback is documented in
 [zt-vis-001-rollback.md](zt-vis-001-rollback.md).

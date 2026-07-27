@@ -26,7 +26,7 @@ EXPECTED_SEQUENCE = [
 EXPECTED_PACKAGE_STATES = {
     "ZT-FND-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
     "ZT-NET-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
-    "ZT-VIS-001": ("IMPLEMENTED", "PARTIALLY_RUNTIME_VALIDATED"),
+    "ZT-VIS-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
     "ZT-ID-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
     "ZT-CV-001": ("NOT_IMPLEMENTED", "NOT_VALIDATED"),
     "ZT-RV-001": ("NOT_IMPLEMENTED", "NOT_VALIDATED"),
@@ -179,6 +179,34 @@ def validate_package_truth(root: Path, result: Result) -> None:
                     or persistent.get("automatic_rollback_exercised") is not True
                 ):
                     errors.append("ZT-NET-001: accepted state lacks matching sanitized runtime evidence")
+        if package_id == "ZT-VIS-001":
+            if (
+                record.get("runtime_validation_status") != "VALIDATED"
+                or record.get("runtime_acceptance_status") != "ACCEPTED"
+                or record.get("runtime_scope") != "BOUNDED_SINGLE_NODE_SANITIZED_LOCAL_TELEMETRY"
+                or record.get("maturity_status") != "UNASSESSED"
+            ):
+                errors.append("ZT-VIS-001: bounded runtime acceptance or maturity boundary changed")
+            evidence_path = root / "docs/evidence/zero-trust/zt-vis-001-validation.yaml"
+            try:
+                evidence = core.load_json_yaml(evidence_path)
+            except ValueError as exc:
+                errors.append(str(exc))
+            else:
+                revalidation = evidence.get("runtime_revalidation", {})
+                event_validation = revalidation.get("event_validation", {})
+                rollback = revalidation.get("rollback", {})
+                if (
+                    evidence.get("results", {}).get("fail") != 0
+                    or evidence.get("persistent_storage", {}).get("post_restart_same_event_query") != "PASS"
+                    or revalidation.get("decision") != "ACCEPTED_BOUNDED_LOCAL_VISIBILITY"
+                    or event_validation.get("source_attribution") != "PASS_4_OF_4"
+                    or event_validation.get("event_freshness") != "PASS_WITHIN_900_SECONDS"
+                    or rollback.get("runtime_power_state_rollback") != "PASS_ORIGINAL_STOPPED_STATE_RESTORED"
+                    or revalidation.get("central_visibility_claimed") is not False
+                    or revalidation.get("maturity_assessed") is not False
+                ):
+                    errors.append("ZT-VIS-001: accepted state lacks matching sanitized runtime evidence")
     if errors:
         for error in errors:
             result.fail("package.truth", error)

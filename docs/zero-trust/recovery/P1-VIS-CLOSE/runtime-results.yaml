@@ -1,0 +1,27 @@
+{
+  "action_id": "P1-VIS-CLOSE",
+  "package_id": "ZT-VIS-001",
+  "timestamp": "2026-07-27T12:08:54Z",
+  "results": {
+    "source_transport": "PASS_4_OF_4",
+    "source_attribution": "PASS_4_OF_4",
+    "normalized_events": 170,
+    "rejected_events": 0,
+    "event_outcomes": "166_PASS_0_WARN_4_FAIL_RETAINED",
+    "event_freshness": "PASS_WITHIN_900_SECONDS",
+    "stack_health": "PASS_3_OF_3",
+    "loopback_boundary": "PASS_3_LOOPBACK_0_NON_LOOPBACK",
+    "retention": "PASS_336_HOURS",
+    "sanitized_ingestion": "PASS",
+    "restart_persistence": "PASS",
+    "permission_boundary": "PASS",
+    "kvm_rtc_alignment": "PASS_WITHIN_3_SECOND_SEQUENTIAL_BOUND",
+    "external_ntp_sync": "OPEN_UDP_123_REPLY_TIMEOUT",
+    "timesync_service_rollback": "PASS_ACTIVE_ORIGINAL_STATE_RESTORED",
+    "runtime_rollback": "PASS"
+  },
+  "decision": "ACCEPTED_BOUNDED_LOCAL_VISIBILITY",
+  "continuity": "EC3_ONE_TIME_RUNTIME",
+  "central_visibility_claimed": false,
+  "maturity_assessed": false
+}

@@ -55,8 +55,8 @@
       "purpose": "Bounded visibility, timestamp, log integrity, evidence generation, ownership, and permission validation.",
       "implementation_status": "IMPLEMENTED",
       "local_validation_status": "LOCAL_VALIDATED",
-      "runtime_validation_status": "PARTIALLY_VALIDATED",
-      "runtime_acceptance_status": "PARTIALLY_ACCEPTED",
+      "runtime_validation_status": "VALIDATED",
+      "runtime_acceptance_status": "ACCEPTED",
       "maturity_status": "UNASSESSED",
       "predecessor": "ZT-NET-001"
     },

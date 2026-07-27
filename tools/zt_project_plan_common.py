@@ -258,7 +258,7 @@ def validate_execution_plan(root: Path, result: Result, dependencies_only: bool 
     completed = {item["action_id"] for item in data["actions"] if item["current_status"] == "COMPLETED"}
     expected_completed = {
         "ZT-SCN-RETIRE-001", "ZT-GOV-MAP-001", "P0-ACC-001",
-        "P1-ID-ENF-001-RETRY", "P1-NET-CLOSE",
+        "P1-ID-ENF-001-RETRY", "P1-NET-CLOSE", "P1-VIS-CLOSE",
     }
     if completed != expected_completed:
         result.fail("execution.current-state", f"Evidence-backed completed actions must be {sorted(expected_completed)}, got {sorted(completed)}")
@@ -291,19 +291,21 @@ def validate_milestones(root: Path, result: Result) -> None:
         unknown = set(item["required_actions"]) - plan_ids
         if unknown:
             result.fail("milestones.actions", f"{item['milestone_id']}: unknown actions {sorted(unknown)}")
-        expected_decision = "APPROVED" if item["milestone_id"] == "M0" else "PENDING"
+        expected_decision = "APPROVED" if item["milestone_id"] in {"M0", "M1"} else "PENDING"
         if item["approval_decision"] != expected_decision:
             result.fail("milestones.claim", f"{item['milestone_id']} must be {expected_decision} at the accepted Phase 0 baseline")
-        if item["milestone_id"] == "M0" and item["blocking_gaps"]:
-            result.fail("milestones.claim", "M0 cannot retain blocking gaps after approval.")
+        if item["milestone_id"] in {"M0", "M1"} and item["blocking_gaps"]:
+            result.fail("milestones.claim", f"{item['milestone_id']} cannot retain blocking gaps after approval.")
     markdown = (root / "docs/zero-trust/milestones-and-gates.md").read_text(encoding="utf-8")
     for milestone_id in data["milestone_order"]:
         if milestone_id not in markdown:
             result.fail("milestones.sync", f"Markdown is missing {milestone_id}")
     if "| M0 | Package governance normalized | APPROVED |" not in markdown:
         result.fail("milestones.sync", "Markdown must show M0 as APPROVED.")
+    if "| M1 | Core identity, network and local visibility validated | APPROVED |" not in markdown:
+        result.fail("milestones.sync", "Markdown must show M1 as APPROVED.")
     if not any(item.level == "FAIL" and item.category.startswith("milestones.") for item in result.findings):
-        result.passed("milestones", "M0 is approved; M1-M6 remain synchronized and pending evidence-based approval.")
+        result.passed("milestones", "M0 and bounded core-control M1 are approved; M2-M6 remain pending evidence-based approval.")
 
 
 def validate_risk_register(root: Path, result: Result) -> None:
