@@ -7,7 +7,7 @@
       "docs/zero-trust/gap-register.md",
       "docs/zero-trust/target-architecture/capability-selection.yaml"
     ],
-    "scope": "Planning-only capability implementation backlog for the non-production SNSD laboratory; locked scenarios S001-S050 remain unchanged.",
+    "scope": "Planning-only capability implementation backlog for the non-production SNSD laboratory; locked scenarios retired numbered scenario framework remain unchanged.",
     "environment": "Disposable portfolio laboratory with validated EVE-NG network and one OpenStack AIO network path.",
     "status": "PLANNED",
     "limitations": [
@@ -217,7 +217,7 @@
       "success_criteria": "The bounded ����� �κ��丮 control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W0",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 56, Table 3-11; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -269,7 +269,7 @@
       "success_criteria": "The bounded ID ���� �� ����� �ڰ� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 56, Table 3-11; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -321,7 +321,7 @@
       "success_criteria": "The bounded �������� (MFA) control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 57, Table 3-12; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -373,7 +373,7 @@
       "success_criteria": "The bounded ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 57, Table 3-12; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -420,7 +420,7 @@
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
       "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
       "target_wave": null,
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 58, Table 3-13; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -466,7 +466,7 @@
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
       "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
       "target_wave": null,
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 58, Table 3-13; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -521,7 +521,7 @@
       "success_criteria": "The bounded ���Ǻ� ����� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 59, Table 3-14; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -573,7 +573,7 @@
       "success_criteria": "The bounded �ּ� ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 59, Table 3-14; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -625,7 +625,7 @@
       "success_criteria": "The bounded ��� ���� �� ���� �ؼ� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 60, Table 3-15; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -678,7 +678,7 @@
       "success_criteria": "The bounded �ǽð� �˻縦 ���� ��� ���� �ο� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 61, Table 3-16; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -727,7 +727,7 @@
       "success_criteria": "The bounded ��� �κ��丮 control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W0",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 62, Table 3-17; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -772,7 +772,7 @@
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
       "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
       "target_wave": null,
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 62, Table 3-17; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -818,7 +818,7 @@
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
       "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
       "target_wave": null,
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 63, Table 3-18; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -870,7 +870,7 @@
       "success_criteria": "The bounded �ڻ�, ��༺ �� ��ġ ���� �ڵ�ȭ control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 63, Table 3-18; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -921,7 +921,7 @@
       "success_criteria": "The bounded ��ũ�� ���׸����̼� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 64-65, Table 3-19; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -975,7 +975,7 @@
       "success_criteria": "The bounded ����ũ�� ���׸����̼� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 64-65, Table 3-19; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1026,7 +1026,7 @@
       "success_criteria": "The bounded ����Ʈ���� ���� ��Ʈ��ŷ control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 64-65, Table 3-19; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1078,7 +1078,7 @@
       "success_criteria": "The bounded ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W4",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 66, Table 3-20; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1130,7 +1130,7 @@
       "success_criteria": "The bounded Ʈ���� ��ȣȭ control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W3",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 67, Table 3-21; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1182,7 +1182,7 @@
       "success_criteria": "The bounded ������ �帧 ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 68, Table 3-22; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1234,7 +1234,7 @@
       "success_criteria": "The bounded ��Ʈ��ũ ȸ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 69, Table 3-23; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1286,7 +1286,7 @@
       "success_criteria": "The bounded �������� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 70, Table 3-24; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1338,7 +1338,7 @@
       "success_criteria": "The bounded PAM control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 71, Table 3-25; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1389,7 +1389,7 @@
       "success_criteria": "The bounded �ڰ� ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 71, Table 3-25; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1441,7 +1441,7 @@
       "success_criteria": "The bounded ��Ʈ��ũ ����ȭ �� �׷� �� �̵� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 72, Table 3-26; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1494,7 +1494,7 @@
       "success_criteria": "The bounded �ý��� ȯ�濡 ���� ��å ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 73, Table 3-27; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1547,7 +1547,7 @@
       "success_criteria": "The bounded ���ҽ� ���� �ο� �� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 74, Table 3-28; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1599,7 +1599,7 @@
       "success_criteria": "The bounded �������� ����͸� �� ���� ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 75, Table 3-29; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1651,7 +1651,7 @@
       "success_criteria": "The bounded ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 76, Table 3-30; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1703,7 +1703,7 @@
       "success_criteria": "The bounded ������ ���ø����̼� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W3",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 77, Table 3-31; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1754,7 +1754,7 @@
       "success_criteria": "The bounded ���ø����̼� �κ��丮 control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W2",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 77, Table 3-31; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1807,7 +1807,7 @@
       "success_criteria": "The bounded ������ ����Ʈ������ø����̼� ���� �� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W3",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 78, Table 3-32; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1859,7 +1859,7 @@
       "success_criteria": "The bounded ����Ʈ���� ��� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W3",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 78, Table 3-32; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1910,7 +1910,7 @@
       "success_criteria": "The bounded ������ īŻ�α� ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W3",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 79, Table 3-33; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -1956,7 +1956,7 @@
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
       "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
       "target_wave": null,
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 79, Table 3-33; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2009,7 +2009,7 @@
       "success_criteria": "The bounded ������ �������� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W3",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 80, Table 3-34; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2061,7 +2061,7 @@
       "success_criteria": "The bounded ������ ��ȣȭ �� ���� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W3",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 81, Table 3-35; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2112,7 +2112,7 @@
       "success_criteria": "The bounded ������ �󺧸� �� �±� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W3",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 82, Table 3-36; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2159,7 +2159,7 @@
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
       "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
       "target_wave": null,
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 83, Table 3-37; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2211,7 +2211,7 @@
       "success_criteria": "The bounded ������ ����͸� �� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W3",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 83, Table 3-37; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2262,7 +2262,7 @@
       "success_criteria": "The bounded ��� ���� Ȱ�� ��� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W0",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2308,7 +2308,7 @@
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
       "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
       "target_wave": null,
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2360,7 +2360,7 @@
       "success_criteria": "The bounded ���� ���� �м� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W4",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2413,7 +2413,7 @@
       "success_criteria": "The bounded ����� �� ��� ���� �м� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W4",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2459,7 +2459,7 @@
       "success_criteria": "Reference decision remains source-traceable and makes no implementation or maturity claim.",
       "limitations": "Reference planning only; no scenario or runtime implementation is authorized.",
       "target_wave": null,
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2512,7 +2512,7 @@
       "success_criteria": "The bounded �ڵ�ȭ�� ���� ��å control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W5",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 84-86, Table 3-38; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2564,7 +2564,7 @@
       "success_criteria": "The bounded ��å ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2616,7 +2616,7 @@
       "success_criteria": "The bounded �߿� ���μ��� �ڵ�ȭ control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W1",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2668,7 +2668,7 @@
       "success_criteria": "The bounded �ΰ����� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W4",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2722,7 +2722,7 @@
       "success_criteria": "The bounded ���� ����, �ڵ�ȭ �� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W4",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2773,7 +2773,7 @@
       "success_criteria": "The bounded ������ ��ȯ ǥ��ȭ control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W0",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
     },
     {
@@ -2827,7 +2827,7 @@
       "success_criteria": "The bounded ���� � ���� �� ��� ���� control passes approved checks, evidence resolves, and limitations remain explicit.",
       "limitations": "Disposable single-lab scope; no compliance, production, organization-wide, or continuous-operation inference.",
       "target_wave": "W4",
-      "future_scenario_boundary": "Backlog item only. Any operational scenario requires separate scope, dependency, validation, evidence, and rollback approval; no scenario ID is assigned here.",
+      "future_package_test_boundary": "Backlog item only. Any package validation test requires approved scope, dependency, validation, evidence, and rollback authority; no test is activated here.",
       "notes": "Source: ����Ʈ����Ʈ ���̵���� 2.0, printed page 87-89, Table 3-39; capability relationship also in Table 3-10, pp. 54-55."
     }
   ]

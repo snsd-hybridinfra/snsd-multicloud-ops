@@ -50,7 +50,7 @@
       "validation_status": "VALIDATED_LOCAL",
       "related_packages": ["P1-HYG-001"],
       "normalized": true,
-      "limitation": "Existing scenario gaps remain 30 failures; live S021 remains excluded."
+      "limitation": "Existing scenario gaps remain 30 failures; live retired-numbered-case remains excluded."
     },
     {
       "runbook_id": "RB-P1-003",
@@ -106,7 +106,7 @@
   "protected_files": [
     ".runtime/**",
     "evidence/**",
-    "scenarios/**",
+    "retired-framework/**",
     "docs/zero-trust/packages/**",
     "docs/evidence/**",
     "observability/**",

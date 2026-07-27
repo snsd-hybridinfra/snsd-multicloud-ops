@@ -18,15 +18,15 @@ NON-PRODUCTION EXAMPLE: this policy documents expected behavior without real dom
 
 - Bastion and management hostname resolution rule: control-plane and bastion aliases resolve only within the approved management context.
 - Database hostname resolution rule: application dependencies use `db-primary-01` or `db-replica-01` aliases, never embedded addresses.
-- Kubernetes node hostname resolution rule: node aliases use `<kubernetes-domain-placeholder>`; service and ingress routing remain outside S009.
+- Kubernetes node hostname resolution rule: node aliases use `<kubernetes-domain-placeholder>`; service and ingress routing remain outside retired-numbered-case.
 - Monitoring hostname resolution rule: monitoring, Prometheus, and Grafana aliases remain internal-only.
 - Cloud service node hostname placeholder rule: provider nodes use `<aws-domain-placeholder>`, `<azure-domain-placeholder>`, or `<openstack-domain-placeholder>` without public DNS publication.
 
 ## Failure and Evidence
 
 - Failure condition for unresolved hostnames: record `FAIL` or `BLOCKED` in the relevant future execution scenario; do not substitute an undocumented address.
-- Evidence capture model: retain sanitized command references, validation judgment, and placeholder mapping without real resolver output in S009.
+- Evidence capture model: retain sanitized command references, validation judgment, and placeholder mapping without real resolver output in retired-numbered-case.
 
 ## Boundary
 
-S009 validates this repository model only. It does not query DNS, modify resolvers, connect to hosts, or authenticate to cloud providers.
+retired-numbered-case validates this repository model only. It does not query DNS, modify resolvers, connect to hosts, or authenticate to cloud providers.

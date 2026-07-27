@@ -10,4 +10,4 @@ NON-PRODUCTION placeholders only:
 - `nginx_up{instance="<load-balancer-instance-placeholder>"}`
 - `nginx_http_response_5xx_total{instance="<load-balancer-instance-placeholder>"}`
 
-S040 does not query Prometheus in Static mode and stores no real target, URL, label, address, datasource, or credential.
+retired-numbered-case does not query Prometheus in Static mode and stores no real target, URL, label, address, datasource, or credential.

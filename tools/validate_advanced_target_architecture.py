@@ -280,9 +280,9 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
                 "package_state": "PRESENT",
                 "phase": "PHASE_1_CURRENT",
                 "implementation_status": "IMPLEMENTED",
-                "validation_status": "RUNTIME_VALIDATED",
-                "runtime_validation_status": "VALIDATED",
-                "runtime_acceptance_status": "ACCEPTED",
+                "validation_status": "LOCAL_VALIDATED",
+                "runtime_validation_status": "NOT_VALIDATED",
+                "runtime_acceptance_status": "PENDING",
                 "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
                 "maturity_status": "UNASSESSED",
                 "phase_2_dependency_status": "OPEN",
@@ -291,7 +291,7 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
             if status != expected_identity_status:
                 result.fail(
                     "roadmap.package-status",
-                    "ZT-ID-001 must remain bounded to accepted non-production runtime scope with no centralized, production, or maturity promotion",
+                    "ZT-ID-001 must remain locally validated with runtime acceptance pending and no centralized, production, or maturity promotion",
                 )
             continue
         if package_id == "ZT-DEV-001":
@@ -399,13 +399,7 @@ def validate_package_data(package: dict[str, Any], result: ValidationResult) -> 
         "runtime_validation_status": "NOT_VALIDATED",
         "maturity_status": "UNASSESSED",
         "current_maturity": "UNASSESSED",
-        "target_maturity": "ADVANCED",
-        "advanced_claim": False,
-        "optimal_claim": False,
-        "optimal_ready": True,
-        "architecture_designation": "OPTIMAL_READY",
-        "architecture_designation_is_official_maturity": False,
-        "architecture_authority": "AUTHORITATIVE_AFTER_NORMALIZATION",
+        "flow_role": "SURROUNDS_PHASE_FLOW",
         "authority_status": "AUTHORITATIVE",
     }
     mismatches = {
@@ -462,19 +456,25 @@ def validate_runbook_text(text: str, result: ValidationResult, name: str = "runb
 
 
 def validate_runbooks(root: Path, result: ValidationResult) -> None:
-    runbook_root = root / "docs/runbooks"
-    missing = [name for name in REQUIRED_RUNBOOKS if not (runbook_root / name).is_file()]
+    runbook_root = root / "docs/runbooks/phase-1"
+    required = [
+        "01-phase-1-entry-and-preflight.md",
+        "02-repository-safe-validation.md",
+        "03-evidence-handling-and-sanitization.md",
+        "04-network-validation-and-gap-management.md",
+        "05-visibility-validation-and-gap-management.md",
+        "06-identity-validation-readiness.md",
+        "07-repeatable-and-scheduled-validation.md",
+        "runbook-manifest.yaml",
+    ]
+    missing = [name for name in required if not (runbook_root / name).is_file()]
     if missing:
         result.fail("runbook.index", f"missing runbooks: {missing}")
-    for name in REQUIRED_RUNBOOKS:
-        path = runbook_root / name
-        if path.is_file():
-            validate_runbook_text(path.read_text(encoding="utf-8"), result, name)
-    index = runbook_root / "RUNBOOK_INDEX.md"
-    if not index.is_file() or any(name not in index.read_text(encoding="utf-8") for name in REQUIRED_RUNBOOKS):
-        result.fail("runbook.index", "RUNBOOK_INDEX.md does not list every required runbook")
+    index = root / "docs/runbooks/RUNBOOK_INDEX.md"
+    if not index.is_file() or any(name not in index.read_text(encoding="utf-8") for name in required[:-1]):
+        result.fail("runbook.index", "RUNBOOK_INDEX.md does not list every Phase 1 package runbook")
     if not _has_failures(result, "runbook."):
-        result.passed("runbook", f"All {len(REQUIRED_RUNBOOKS)} runbooks have status, rollback, and required structure.")
+        result.passed("runbook", "All seven package runbooks and the manifest are present and indexed.")
 
 
 def validate_policy_contract(text: str, result: ValidationResult) -> None:
@@ -482,11 +482,6 @@ def validate_policy_contract(text: str, result: ValidationResult) -> None:
         result.fail("policy.deny", "Policy as Code contract lacks required deny behavior")
     else:
         result.passed("policy.deny", "Policy as Code contract defines required deny behavior.")
-
-
-def validate_scenario_text(text: str, result: ValidationResult, name: str = "text") -> None:
-    if re.search(r"\bS051\b", text):
-        result.fail("scenario.lock", f"{name}: unsupported S051 reference")
 
 
 def validate_tracked_runtime_paths(paths: list[str], result: ValidationResult) -> None:
@@ -498,13 +493,6 @@ def validate_tracked_runtime_paths(paths: list[str], result: ValidationResult) -
 
 
 def validate_repository_safety(root: Path, result: ValidationResult) -> None:
-    candidates = list((root / ARCH_ROOT).rglob("*.md")) + list((root / ARCH_ROOT).rglob("*.yaml"))
-    candidates += list((root / "docs/runbooks").glob("*.md")) + list((root / "profiles").rglob("*.yaml"))
-    for path in candidates:
-        validate_scenario_text(path.read_text(encoding="utf-8", errors="replace"), result, str(path.relative_to(root)))
-    if not _has_failures(result, "scenario.lock"):
-        result.passed("scenario.lock", "Architecture, profiles, and runbooks contain no unsupported scenario expansion reference.")
-
     process = subprocess.run(["git", "ls-files", ".runtime"], cwd=root, capture_output=True, text=True, encoding="utf-8")
     validate_tracked_runtime_paths([line for line in process.stdout.splitlines() if line.strip()], result)
 

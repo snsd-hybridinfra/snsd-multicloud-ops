@@ -2458,7 +2458,7 @@
     "Git reported LF-to-CRLF working-copy warnings for the eleven tracked modifications; no whitespace error was reported.",
     "docs/runbooks/ overlaps the tracked runbooks/ authority and remains nonauthoritative pending approval.",
     "ZT-ARC-001 passed local static validation but remains recovered, untracked, design-only, and nonauthoritative.",
-    "S051 strings occur only in negative tests or explicit prohibition statements; no S051 scenario exists."
+    "successor numbered scenario strings occur only in negative tests or explicit prohibition statements; no successor numbered scenario scenario exists."
   ],
   "stop_conditions_triggered": []
 }

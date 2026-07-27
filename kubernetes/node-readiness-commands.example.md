@@ -10,5 +10,4 @@ kubectl get node <node-name> -o jsonpath='{.status.conditions}'
 kubectl get --raw='/readyz?verbose'
 ```
 
-S021 optional live mode deliberately uses only `kubectl get nodes --no-headers`; the broader commands above are documentation references and are not executed by the validator.
-
+retired-numbered-case optional live mode deliberately uses only `kubectl get nodes --no-headers`; the broader commands above are documentation references and are not executed by the validator.

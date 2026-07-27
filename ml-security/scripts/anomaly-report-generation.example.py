@@ -17,9 +17,9 @@ report_id: `<report-id-placeholder>`
 ## Executive Summary
 anomalies: {anomalies}; warnings: {warnings}; review-required: {reviews}
 ## Dataset Reference
-S047
+retired-numbered-case
 ## Detection Run Reference
-S048
+retired-numbered-case
 ## Anomaly Summary
 Synthetic metric-only summary.
 ## Top Anomaly Candidates
@@ -37,11 +37,11 @@ No automated blocking; no LLM final decision.
 ## Evidence References
 `<evidence-path>`
 ## Scenario Mapping
-S047 / S048 / S050
+retired-numbered-case / retired-numbered-case / retired-numbered-case
 ## Final Report Judgment
 final_judgment: REPORT_READY
 """
     a.output.write_text(report,encoding="utf-8")
-    if a.summary_output:a.summary_output.write_text(json.dumps({"report_id":"<report-id-placeholder>","dataset_source_scenario":"S047","anomaly_detection_scenario":"S048","final_evidence_report_scenario":"S050","anomaly_count":anomalies,"warning_count":warnings,"review_required_count":reviews,"final_judgment":"REPORT_READY","evidence_reference":"<evidence-path>"},indent=2),encoding="utf-8")
+    if a.summary_output:a.summary_output.write_text(json.dumps({"report_id":"<report-id-placeholder>","dataset_source_scenario":"retired-numbered-case","anomaly_detection_scenario":"retired-numbered-case","final_evidence_report_scenario":"retired-numbered-case","anomaly_count":anomalies,"warning_count":warnings,"review_required_count":reviews,"final_judgment":"REPORT_READY","evidence_reference":"<evidence-path>"},indent=2),encoding="utf-8")
     print(f"anomalies={anomalies} warnings={warnings} review_required={reviews}");return 0
 if __name__=="__main__":sys.exit(main())

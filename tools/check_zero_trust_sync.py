@@ -1,134 +1,111 @@
 #!/usr/bin/env python3
-"""Read-only synchronization checks for Zero Trust YAML and Markdown views."""
+"""Read-only synchronization checks for capability and package authorities."""
 
 from __future__ import annotations
 
 import argparse
-import re
 import sys
-from collections import Counter, defaultdict
 from pathlib import Path
 
 from generate_zero_trust_reports import run as run_report_check
 from validate_zero_trust import (
+    BACKLOG_PATH,
     BASELINE_PATH,
     CATALOG_PATH,
-    _markdown_table,
     calculate_summary,
     load_json_yaml,
     repository_root,
 )
 
-
-def _capability_set(value: str) -> set[str]:
-    return set(re.findall(r"ZT-(?:[1-6]\.\d+\.\d+|[78]\.\d+)", value))
-
-
-def _scenario_set(value: str) -> set[str]:
-    return set(re.findall(r"S\d{3}", value))
+FLOW_PATH = Path("docs/zero-trust/package-flow.yaml")
+PACKAGE_ROOT = Path("docs/zero-trust/packages")
+EXPECTED_FLOW = [
+    "ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001",
+    "ZT-CV-001", "ZT-RV-001", "ZT-SCH-001", "PHASE_1_ACCEPTANCE",
+]
 
 
 def run_sync(root: Path) -> tuple[list[str], list[str]]:
-    failures: list[str] = []
     passes: list[str] = []
+    failures: list[str] = []
     try:
         catalog = load_json_yaml(root / CATALOG_PATH)
         baseline = load_json_yaml(root / BASELINE_PATH)
+        backlog = load_json_yaml(root / BACKLOG_PATH)
+        flow = load_json_yaml(root / FLOW_PATH)
     except ValueError as exc:
         return [], [str(exc)]
-    catalog_by_id = {item["id"]: item for item in catalog["capabilities"]}
-    baseline_by_id = {item["id"]: item for item in baseline["capabilities"]}
-    catalog_ids = set(catalog_by_id)
 
-    taxonomy_text = (root / "docs/zero-trust/capability-taxonomy.md").read_text(encoding="utf-8")
-    taxonomy_ids = _capability_set(taxonomy_text)
-    if taxonomy_ids == catalog_ids:
-        passes.append("Capability taxonomy contains exactly the catalog capability IDs.")
+    catalog_by_id = {item["id"]: item for item in catalog.get("capabilities", [])}
+    baseline_by_id = {item["id"]: item for item in baseline.get("capabilities", [])}
+    backlog_by_id = {item["id"]: item for item in backlog.get("capabilities", [])}
+    canonical_ids = set(catalog_by_id)
+    if len(canonical_ids) == 52 and canonical_ids == set(baseline_by_id) == set(backlog_by_id):
+        passes.append("Catalog, baseline, and backlog contain the same 52 unique capability IDs.")
     else:
-        failures.append(f"Capability taxonomy IDs differ: missing={sorted(catalog_ids-taxonomy_ids)}, extra={sorted(taxonomy_ids-catalog_ids)}")
+        failures.append("Capability IDs are not synchronized across catalog, baseline, and backlog.")
 
-    control_rows = _markdown_table(root / "docs/zero-trust/control-coverage-matrix.md")
-    control_by_id = {row.get("Capability", ""): row for row in control_rows}
-    if set(control_by_id) != catalog_ids or len(control_rows) != 52:
-        failures.append("Control coverage matrix must contain one row for every catalog capability.")
-    else:
-        mismatches: list[str] = []
-        fields = {
-            "Korean name": "capability_ko",
-            "Pillar": "pillar",
-            "Function": "function",
-            "Implementation": "implementation_status",
-            "Validation": "validation_status",
-            "Evidence": "evidence_level",
-        }
-        for capability_id, item in catalog_by_id.items():
-            row = control_by_id[capability_id]
-            for markdown_key, catalog_key in fields.items():
-                if row.get(markdown_key) != item[catalog_key]:
-                    mismatches.append(f"{capability_id}:{markdown_key}")
-            if set(part.strip() for part in row.get("Authority", "").split(";") if part.strip()) != set(item["evidence_authority"]):
-                mismatches.append(f"{capability_id}:Authority")
-        if mismatches:
-            failures.append("Control coverage matrix differs from catalog: " + ", ".join(mismatches))
-        else:
-            passes.append("Control coverage matrix fields match the catalog.")
-
-    scenario_rows = _markdown_table(root / "docs/zero-trust/scenario-capability-matrix.md")
-    evidence_rows = _markdown_table(root / "docs/zero-trust/evidence-coverage-matrix.md")
-    scenario_by_id = {row.get("Scenario", ""): row for row in scenario_rows}
-    evidence_by_id = {row.get("Scenario", ""): row for row in evidence_rows}
-    expected_scenarios = {f"S{number:03d}" for number in range(1, 51)}
-    if set(scenario_by_id) != expected_scenarios or set(evidence_by_id) != expected_scenarios:
-        failures.append("Scenario and evidence coverage matrices must each contain S001-S050 exactly once.")
-    else:
-        mapping_errors: list[str] = []
-        inverse: dict[str, set[str]] = defaultdict(set)
-        for scenario_id in sorted(expected_scenarios):
-            scenario_caps = _capability_set(scenario_by_id[scenario_id].get("Capability IDs", ""))
-            evidence_caps = _capability_set(evidence_by_id[scenario_id].get("Capability IDs", ""))
-            if scenario_caps != evidence_caps:
-                mapping_errors.append(f"{scenario_id}:capabilities")
-            if scenario_by_id[scenario_id].get("Evidence") != evidence_by_id[scenario_id].get("Quality"):
-                mapping_errors.append(f"{scenario_id}:evidence-level")
-            for capability_id in scenario_caps:
-                inverse[capability_id].add(scenario_id)
-        for capability_id, row in control_by_id.items():
-            if _scenario_set(row.get("Mapped scenarios", "")) != inverse.get(capability_id, set()):
-                mapping_errors.append(f"{capability_id}:mapped-scenarios")
-        if mapping_errors:
-            failures.append("Scenario mapping views differ: " + ", ".join(mapping_errors))
-        else:
-            passes.append("Scenario, evidence, and control mapping views agree.")
-
-    machine_errors: list[str] = []
-    if set(baseline_by_id) != catalog_ids:
-        machine_errors.append("capability ID set")
-    for capability_id in sorted(catalog_ids & set(baseline_by_id)):
+    comparable = (
+        ("implementation_status", "implementation_status"),
+        ("validation_status", "validation_status"),
+        ("evidence_level", "evidence_level"),
+        ("current_maturity", "current_maturity"),
+    )
+    mismatches: list[str] = []
+    for capability_id in canonical_ids & set(baseline_by_id) & set(backlog_by_id):
         catalog_item = catalog_by_id[capability_id]
         baseline_item = baseline_by_id[capability_id]
-        comparisons = [
-            ("implementation_status", "implementation_status"),
-            ("validation_status", "validation_status"),
-            ("evidence_level", "evidence_level"),
-            ("current_maturity", "current_maturity"),
-            ("assessment_confidence", "confidence"),
-            ("evidence_authority", "evidence_authority"),
-        ]
-        for left, right in comparisons:
-            if catalog_item[left] != baseline_item[right]:
-                machine_errors.append(f"{capability_id}:{left}")
-    if baseline["summary"] != calculate_summary(baseline["capabilities"]):
-        machine_errors.append("summary counts")
-    if machine_errors:
-        failures.append("Catalog/baseline machine-readable data differ: " + ", ".join(machine_errors))
+        backlog_item = backlog_by_id[capability_id]
+        for left, right in comparable:
+            if catalog_item[left] != baseline_item[right] or catalog_item[left] != backlog_item[right]:
+                mismatches.append(f"{capability_id}:{left}")
+    if mismatches:
+        failures.append("Capability status authorities differ: " + ", ".join(mismatches))
     else:
-        passes.append("Catalog, baseline records, and baseline summary counts agree.")
+        passes.append("Capability implementation, validation, evidence, and maturity states agree.")
+
+    if baseline.get("summary") == calculate_summary(baseline.get("capabilities", [])):
+        passes.append("Baseline summary counts match capability records.")
+    else:
+        failures.append("Baseline summary counts do not match capability records.")
+
+    sequence = flow.get("phase_1_sequence", [])
+    package_rows = flow.get("packages", [])
+    package_ids = [item.get("package_id") for item in package_rows]
+    if sequence == EXPECTED_FLOW and package_ids == EXPECTED_FLOW[:-1] and len(package_ids) == len(set(package_ids)):
+        passes.append("Phase 1 package flow and package IDs are canonical and unique.")
+    else:
+        failures.append(f"Invalid Phase 1 package flow: sequence={sequence}, packages={package_ids}")
+
+    predecessor_errors: list[str] = []
+    for index, row in enumerate(package_rows):
+        expected = None if index == 0 else package_ids[index - 1]
+        if row.get("predecessor") != expected:
+            predecessor_errors.append(f"{row.get('package_id')}->{row.get('predecessor')}")
+        package_id = row.get("package_id", "")
+        package_path = root / PACKAGE_ROOT / f"{package_id.lower()}-package.yaml"
+        if not package_path.is_file():
+            predecessor_errors.append(f"missing:{package_path.relative_to(root)}")
+    if predecessor_errors:
+        failures.append("Package predecessor/file synchronization failed: " + ", ".join(predecessor_errors))
+    else:
+        passes.append("Package predecessor links and package authority files are synchronized.")
+
+    acceptance = flow.get("phase_1_acceptance", {})
+    expected_acceptance = {
+        "implementation_status": "PARTIAL",
+        "validation_status": "PARTIALLY_VALIDATED",
+        "completion_status": "NOT_COMPLETE",
+        "scope_boundary": "ZT-SCH-001",
+        "requires_all_predecessors_accepted": True,
+    }
+    if acceptance == expected_acceptance:
+        passes.append("Phase 1 remains partial, partially validated, and not complete at ZT-SCH-001.")
+    else:
+        failures.append("Phase 1 acceptance state differs from the conservative authority.")
 
     report_ok, report_message = run_report_check(root, write=False)
-    if report_ok:
-        passes.append(report_message.removeprefix("[PASS] "))
-    else:
-        failures.append(report_message.removeprefix("[FAIL] "))
+    (passes if report_ok else failures).append(report_message.removeprefix("[PASS] ").removeprefix("[FAIL] "))
     return passes, failures
 
 

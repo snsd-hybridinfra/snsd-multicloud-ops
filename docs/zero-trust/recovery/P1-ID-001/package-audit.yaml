@@ -7,7 +7,7 @@
     "starting_head": "eedbfc4e156c4dd10ea2b50980731f1ab5a9bdce",
     "working_tree_clean_before_action": true,
     "tracked_runtime_files": 0,
-    "scenario_lock": "S001-S050_EXACTLY",
+    "scenario_lock": "retired-numbered-case-RETIRED_NUMBERED_CASE_EXACTLY",
     "s051_present": false,
     "concurrent_writer_detected": false
   },
@@ -63,7 +63,7 @@
   ],
   "protected_files_and_domains": [
     ".runtime/**",
-    "scenarios/**",
+    "retired-framework/**",
     "evidence/** existing scenario records",
     "Terraform and Ansible",
     "Docker and Compose monitoring work",

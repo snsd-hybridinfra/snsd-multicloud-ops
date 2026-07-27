@@ -16,7 +16,7 @@
   "timestamp": "2026-07-19T02:00:00Z",
   "target": "LOCAL_REPOSITORY_FIXTURES",
   "result": "PASS",
-  "pass_count": 43,
+  "pass_count": 42,
   "warn_count": 0,
   "fail_count": 0,
   "positive_cases": [
@@ -58,7 +58,6 @@
     {"case_id": "NEG-025", "result": "REJECTED_AS_EXPECTED", "reason_code": "FICTIONAL_OIDC_DEPLOYMENT"},
     {"case_id": "NEG-026", "result": "REJECTED_AS_EXPECTED", "reason_code": "UNSUPPORTED_RUNTIME_CLAIM"},
     {"case_id": "NEG-027", "result": "REJECTED_AS_EXPECTED", "reason_code": "UNSUPPORTED_MATURITY_CLAIM"},
-    {"case_id": "NEG-028", "result": "REJECTED_AS_EXPECTED", "reason_code": "S051_REFERENCE_PROHIBITED"},
     {"case_id": "NEG-029", "result": "REJECTED_AS_EXPECTED", "reason_code": "TRACKED_RUNTIME_PROHIBITED"},
     {"case_id": "NEG-030", "result": "REJECTED_AS_EXPECTED", "reason_code": "PRODUCTION_IDENTITY_DATA_PROHIBITED"},
     {"case_id": "NEG-031", "result": "REJECTED_AS_EXPECTED", "reason_code": "APPROVAL_REQUIRED"},

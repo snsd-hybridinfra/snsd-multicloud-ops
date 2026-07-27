@@ -684,8 +684,8 @@
         "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
       "current_evidence": [
-        "evidence/L1-foundation/S002-eve-ng-on-prem-routing-validation/",
-        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
+        "retired-framework-evidence/retired-numbered-case-eve-ng-on-prem-routing-validation/",
+        "retired-framework-evidence/retired-numbered-case-openstack-network-provisioning-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml"
       ],
       "evidence_requirements": [
@@ -825,7 +825,7 @@
         "DESIGN_ONLY"
       ],
       "current_evidence": [
-        "scenarios/L4-failure-recovery/S037-security-rule-misconfiguration-validation/"
+        "retired-framework/L4-failure-recovery/retired-numbered-case-security-rule-misconfiguration-validation/"
       ],
       "evidence_requirements": [
         "CONFIGURATION_ONLY mapping to versioned desired state",
@@ -924,8 +924,8 @@
         "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
       "current_evidence": [
-        "evidence/L1-foundation/S002-eve-ng-on-prem-routing-validation/",
-        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
+        "retired-framework-evidence/retired-numbered-case-eve-ng-on-prem-routing-validation/",
+        "retired-framework-evidence/retired-numbered-case-openstack-network-provisioning-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml"
       ],
       "evidence_requirements": [
@@ -976,7 +976,7 @@
         "DESIGN_ONLY"
       ],
       "current_evidence": [
-        "scenarios/L4-failure-recovery/S035-load-balancer-failure-validation/"
+        "retired-framework/L4-failure-recovery/retired-numbered-case-load-balancer-failure-validation/"
       ],
       "evidence_requirements": [
         "CONFIGURATION_ONLY mapping to versioned desired state",
@@ -1026,7 +1026,7 @@
         "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
       "current_evidence": [
-        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
+        "retired-framework-evidence/retired-numbered-case-openstack-network-provisioning-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml"
       ],
       "evidence_requirements": [
@@ -1172,7 +1172,7 @@
         "USER_EXECUTED_RUNTIME"
       ],
       "current_evidence": [
-        "evidence/L1-foundation/S002-eve-ng-on-prem-routing-validation/",
+        "retired-framework-evidence/retired-numbered-case-eve-ng-on-prem-routing-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml"
       ],
       "evidence_requirements": [
@@ -1224,11 +1224,11 @@
         "DESIGN_ONLY"
       ],
       "current_evidence": [
-        "scenarios/L4-failure-recovery/S037-security-rule-misconfiguration-validation/",
-        "scenarios/L5-governance-intelligent-ops/S041-terraform-drift-detection-validation/",
-        "scenarios/L5-governance-intelligent-ops/S042-terraform-drift-remediation-validation/",
-        "scenarios/L5-governance-intelligent-ops/S043-policy-as-code-validation/",
-        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/"
+        "retired-framework/L4-failure-recovery/retired-numbered-case-security-rule-misconfiguration-validation/",
+        "retired-framework/L5-governance-intelligent-ops/retired-numbered-case-terraform-drift-detection-validation/",
+        "retired-framework/L5-governance-intelligent-ops/retired-numbered-case-terraform-drift-remediation-validation/",
+        "retired-framework/L5-governance-intelligent-ops/retired-numbered-case-policy-as-code-validation/",
+        "retired-framework/L5-governance-intelligent-ops/retired-numbered-case-kubernetes-manifest-policy-validation/"
       ],
       "evidence_requirements": [
         "CONFIGURATION_ONLY mapping to versioned desired state",
@@ -1279,8 +1279,8 @@
         "DESIGN_ONLY"
       ],
       "current_evidence": [
-        "scenarios/L2-security-baseline/S018-kubernetes-rbac-validation/",
-        "scenarios/L2-security-baseline/S020-grafana-anonymous-access-denial-validation/"
+        "retired-framework/L2-security-baseline/retired-numbered-case-kubernetes-rbac-validation/",
+        "retired-framework/L2-security-baseline/retired-numbered-case-grafana-anonymous-access-denial-validation/"
       ],
       "evidence_requirements": [
         "CONFIGURATION_ONLY mapping to versioned desired state",
@@ -1426,7 +1426,7 @@
         "DESIGN_ONLY"
       ],
       "current_evidence": [
-        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/"
+        "retired-framework/L5-governance-intelligent-ops/retired-numbered-case-kubernetes-manifest-policy-validation/"
       ],
       "evidence_requirements": [
         "CONFIGURATION_ONLY mapping to versioned desired state",
@@ -1706,7 +1706,7 @@
         "DESIGN_ONLY"
       ],
       "current_evidence": [
-        "scenarios/L2-security-baseline/S017-mariadb-access-control-validation/"
+        "retired-framework/L2-security-baseline/retired-numbered-case-mariadb-access-control-validation/"
       ],
       "evidence_requirements": [
         "CONFIGURATION_ONLY mapping to versioned desired state",
@@ -1945,7 +1945,7 @@
         "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
       "current_evidence": [
-        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
+        "retired-framework-evidence/retired-numbered-case-openstack-network-provisioning-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml"
       ],
       "evidence_requirements": [
@@ -2226,8 +2226,8 @@
         "DESIGN_ONLY"
       ],
       "current_evidence": [
-        "scenarios/L5-governance-intelligent-ops/S043-policy-as-code-validation/",
-        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/"
+        "retired-framework/L5-governance-intelligent-ops/retired-numbered-case-policy-as-code-validation/",
+        "retired-framework/L5-governance-intelligent-ops/retired-numbered-case-kubernetes-manifest-policy-validation/"
       ],
       "evidence_requirements": [
         "CONFIGURATION_ONLY mapping to versioned desired state",
@@ -2277,7 +2277,7 @@
         "CODEX_EXECUTED_LIVE_RUNTIME"
       ],
       "current_evidence": [
-        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
+        "retired-framework-evidence/retired-numbered-case-openstack-network-provisioning-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml"
       ],
       "evidence_requirements": [

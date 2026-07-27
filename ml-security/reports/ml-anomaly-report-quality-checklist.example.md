@@ -1,9 +1,9 @@
 # ML Anomaly Report Quality Checklist — SAMPLE / NON-PRODUCTION
 
 - Report metadata present
-- S047 reference present
-- S048 reference present
-- S050 reference present
+- retired-numbered-case reference present
+- retired-numbered-case reference present
+- retired-numbered-case reference present
 - Anomaly count present
 - Warning count present
 - Review-required count present

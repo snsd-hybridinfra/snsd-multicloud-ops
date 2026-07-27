@@ -24,7 +24,7 @@ evidence of an internal routed topology.
 | `pnet8`, `pnet9` | Unassigned placeholders | No carrier and no attached physical interface | Not ready for Cloud attachment |
 
 Runtime addresses, networks, gateways, MAC addresses, and bridge identifiers
-are retained only in sanitized form under S002 evidence.
+are retained only in sanitized form under retired-numbered-case evidence.
 
 ## Implemented Network Foundation
 
@@ -41,7 +41,7 @@ are retained only in sanitized form under S002 evidence.
 | ACL | Pre-ACL DMZ-to-Kubernetes allow, post-ACL deny, reverse permit, and gateway/internet preservation evidenced | Explicit deny responses and post-removal restoration are retained; a directional ACL counter was not required or retained |
 
 The implementation record and E001-E014 sanitized evidence chain are complete.
-S002 is `VALIDATED` with evidence readiness `READY`.
+retired-numbered-case is `VALIDATED` with evidence readiness `READY`.
 
 ## Zone Model
 
@@ -54,7 +54,7 @@ S002 is `VALIDATED` with evidence readiness `READY`.
 | Monitoring | `10.10.50.0/24` | Observability stack | Scrape, dashboard, and probe traffic | VLAN/gateway implemented; monitoring VM not started |
 | Backup | `10.10.60.0/24` | Backup role | Backup repository and restore staging | VLAN/gateway implemented; backup VM not started |
 | OpenStack Provider | `10.10.70.0/24` | EVE-NG / OpenStack | Flat provider network and Floating IP path | VLAN gateway, `physnet1`, `br-ex`, router external interface, and reachability validated |
-| OpenStack Tenant | `10.20.10.0/24` | OpenStack | Private-cloud instance validation | Tenant network, DHCP, router path, one instance, and outbound connectivity validated; Security Group policy remains S016 |
+| OpenStack Tenant | `10.20.10.0/24` | OpenStack | Private-cloud instance validation | Tenant network, DHCP, router path, one instance, and outbound connectivity validated; Security Group policy remains retired-numbered-case |
 | AWS | `10.30.0.0/16` | AWS Terraform environment | Minimum public-cloud validation | SG-controlled; temporary resources only |
 | Azure | `10.40.0.0/16` | Azure Terraform environment | Minimum public-cloud validation | NSG-controlled; temporary resources only |
 | Optional Overlay | `10.255.0.0/16` | Connectivity owner | Optional WireGuard transit | Disabled unless separately approved |
@@ -84,16 +84,16 @@ commit.
 
 1. Retain bootstrap connectivity while adding the service NIC.
 2. Validate gateway, return route, DNS, and ACL policy.
-3. Revalidate S008, S017, S023, S024, and S025 on the service path.
+3. Revalidate retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, and retired-numbered-case on the service path.
 4. Update monitoring and backup targets.
 5. Remove or restrict bootstrap service traffic only after rollback is proven.
 
-S021 and S022 do not require full repetition solely for address normalization
+retired-numbered-case and retired-numbered-case do not require full repetition solely for address normalization
 unless node or workload runtime configuration changes.
 
 ## Non-Production Disclaimer
 
-The EVE-NG VLAN/gateway topology (S002) and one OpenStack AIO provider/tenant
-network path (S005) are validated from operator-executed results. Planned
+The EVE-NG VLAN/gateway topology (retired-numbered-case) and one OpenStack AIO provider/tenant
+network path (retired-numbered-case) are validated from operator-executed results. Planned
 service flows do not prove that Kubernetes, database, monitoring, backup,
 public-cloud, HA, storage, or production security controls exist.

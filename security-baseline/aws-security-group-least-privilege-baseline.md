@@ -20,5 +20,5 @@ Egress must be documented and justified. The example matrix permits only a revie
 
 ## Evidence Collection Model
 
-- Record matrix parsing, dangerous-port checks, Terraform placeholder checks, sensitive-content checks, and execution boundaries at `<evidence-path>` through S014 evidence.
+- Record matrix parsing, dangerous-port checks, Terraform placeholder checks, sensitive-content checks, and execution boundaries at `<evidence-path>` through retired-numbered-case evidence.
 - Do not capture AWS account IDs, credentials, real addresses, live Security Group output, state, or plans.

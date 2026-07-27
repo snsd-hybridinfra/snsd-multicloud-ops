@@ -28,7 +28,7 @@ service-zone migration.
    (OpenStack), `10.30.0.0/16` (AWS), `10.40.0.0/16` (Azure), and optional
    `10.255.0.0/16` (WireGuard).
 8. The OpenStack provider/external CIDR must be discovered from the lab rather
-   than invented. The S005 run established the approved VLAN 70 provider
+   than invented. The retired-numbered-case run established the approved VLAN 70 provider
    subnet while dynamic router and Floating IP values remain masked.
 9. Actual bootstrap runtime CIDR/host addresses and the external address remain
    masked under repository policy.
@@ -52,19 +52,19 @@ service-zone migration.
 - AWS/Azure resource counts and prohibited services are explicit.
 - Planned CIDRs are non-overlapping, while bootstrap/provider conflicts remain
   explicit local/discovery checks.
-- S008, S017, S023, S024, and S025 are planned for network-path revalidation
+- retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, and retired-numbered-case are planned for network-path revalidation
   after service-zone migration.
-- S021/S022 are not repeated solely for renumbering unless runtime configuration
+- retired-numbered-case/retired-numbered-case are not repeated solely for renumbering unless runtime configuration
   changes.
-- No scenario status changes merely because this ADR is accepted; S002 and
-  S005 advance only through their separate evidence packages.
+- No scenario status changes merely because this ADR is accepted; retired-numbered-case and
+  retired-numbered-case advance only through their separate evidence packages.
 
 ## Validation and Review
 
 Review the architecture documents for internal consistency, run repository
 validators, and repeat CIDR conflict checks before any apply. This ADR remains
 a decision record, not implementation evidence; runtime evidence is held by
-S002 and S005.
+retired-numbered-case and retired-numbered-case.
 
 ## Non-Production Disclaimer
 

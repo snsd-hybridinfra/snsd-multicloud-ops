@@ -1,6 +1,6 @@
 # Authoritative Lab IP Address and Reservation Plan
 
-**Status: EVE-NG gateways (S002) and the OpenStack provider/tenant path (S005)
+**Status: EVE-NG gateways (retired-numbered-case) and the OpenStack provider/tenant path (retired-numbered-case)
 VALIDATED; other service hosts and cloud integrations remain planned.**
 
 ## Status and Safety Rule
@@ -42,7 +42,7 @@ masked under repository policy.
 
 This observed bootstrap posture is separate from the implemented router
 subinterfaces below. Router, NAT/PAT, and ACL outcomes are represented by the
-sanitized S002 execution evidence; runtime WAN and management values remain
+sanitized retired-numbered-case execution evidence; runtime WAN and management values remain
 masked.
 
 ## On-Prem Service-Zone Reservations

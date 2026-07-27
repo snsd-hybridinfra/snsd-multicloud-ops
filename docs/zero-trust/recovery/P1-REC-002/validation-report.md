@@ -65,7 +65,7 @@ Identity references remain architecture, roadmap, dependency, or runbook design 
 
 ## 16. Scenario Lock
 
-Exactly S001 through S050 remain present. No S051 scenario or renumbering exists, and no adopted document authorizes expansion.
+Exactly retired-numbered-case through retired-numbered-case remain present. No successor numbered scenario scenario or renumbering exists, and no adopted document authorizes expansion.
 
 ## 17. Secret and Runtime Hygiene
 
@@ -83,7 +83,7 @@ Tracked secret findings: 0. Tracked runtime files: 0. Runtime content remained u
 | `python tools/validate_advanced_target_architecture.py --verbose` | 28 | 0 | 0 | 0 |
 | `python -m unittest discover -s tests -v` | 62 | 0 | 0 | 0 |
 
-The full suite ran 62 tests. Validator execution produced no working-tree hash change. The mutating aggregate scenario validator and live/mutating S021 validation were skipped.
+The full suite ran 62 tests. Validator execution produced no working-tree hash change. The mutating aggregate scenario validator and live/mutating retired-numbered-case validation were skipped.
 
 ## 19. Git Integrity
 
@@ -95,7 +95,7 @@ No P1-REC-001 disposition decision remains unresolved. Executing the selected ne
 
 ## 21. Exactly One Next Action
 
-`P1-HYG-001`: repair the aggregate validator mutation behavior and S021 Count defect with read-only regression coverage. It is selected because the validator-hygiene blocker precedes new implementation and can be resolved without live infrastructure. It is not executed here.
+`P1-HYG-001`: repair the aggregate validator mutation behavior and retired-numbered-case Count defect with read-only regression coverage. It is selected because the validator-hygiene blocker precedes new implementation and can be resolved without live infrastructure. It is not executed here.
 
 ## 22. Changed Files
 

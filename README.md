@@ -1,147 +1,69 @@
-# SNSD Hybrid and Multicloud-Ready Secure Operations Platform
+# SNSD Zero Trust Package Validation Platform
 
-## Current Repository Truth State
+This repository implements and validates bounded Zero Trust controls in a non-production EVE-NG and OpenStack laboratory. It is organized around capabilities, packages, validators, sanitized evidence, and explicit status decisions.
 
-- Status: **EVE-NG NETWORK FOUNDATION AND OPENSTACK AIO NETWORK PATH VALIDATED**
-- The EVE-NG host, one router, one Layer-2 switch, six VLAN gateways,
-  Router-on-a-Stick, NAT/PAT, and a temporary directional ACL test are
-  operator-confirmed implemented.
-- A non-production Kolla-Ansible OpenStack AIO control plane and one
-  provider/tenant/Floating-IP path are operator-validated under S005.
-- S002 and S005 have `READY` sanitized evidence; Kubernetes, MariaDB,
-  monitoring, backup, AWS, Azure, Terraform reproduction, HA, and persistent
-  storage remain unvalidated.
-- Local repository/document validators check structure and safety only. Their
-  success is not infrastructure or scenario validation.
+It is not a scenario catalog, a simple infrastructure build, a product-installation exercise, or proof of complete compliance or maturity.
 
-**한국어 제목:** SNSD 시나리오 기반 멀티클라우드 보안 운영 검증 플랫폼
+## Authoritative model
 
-Scenario-based portfolio repository for a non-production multi-cloud secure
-operations validation platform. It records planned criteria and sanitized
-operator-executed lab evidence without storing credentials or raw runtime data.
-
-## Zero Trust Guideline 2.0 Positioning
-
-This repository is designed to align hybrid and multicloud operational
-capabilities with the Korean Zero Trust Guideline 2.0. Capability alignment,
-implementation status, runtime validation, evidence level, and maturity
-assessment are tracked separately. This is not a claim of full compliance,
-complete implementation, certification, or organization-wide maturity.
-
-See the [Zero Trust Guideline 2.0 framework](docs/zero-trust/README.md).
-
-## Post-Phase-1 Target Architecture
-
-The authoritative target is an **IaC, Configuration as Code, and Policy as
-Code-driven Advanced Zero Trust Secure Operations Platform with an
-Optimal-Ready Extension Architecture**. `OPTIMAL_READY` is a repository-local
-design designation, not an official maturity level and not evidence of
-`OPTIMAL` maturity.
-
-See [ZT-ARC-001](docs/zero-trust/target-architecture/README.md). The package is
-`DESIGN_ONLY` / `LOCAL_VALIDATED`; it deploys no service, promotes no current
-capability status, and leaves all capability maturity values `UNASSESSED`.
-AWS and Azure adapters remain roadmap-only, so the public positioning remains
-**Hybrid and Multicloud-Ready Secure Operations Platform**.
-The [authoritative operational runbook index](docs/runbooks/RUNBOOK_INDEX.md)
-contains design specifications only until a package records stronger evidence.
-
-## Validation Model
-
-`Scenario → Validation Criteria → Evidence Output → Runbook/Rollback where applicable`
-
-The locked model contains exactly 50 scenarios across five levels:
-
-- **L1 Foundation Validation** — control-plane, network, inventory, and repository foundations
-- **L2 Security Baseline Validation** — access, least privilege, service, and platform baselines
-- **L3 Service Operations Validation** — Kubernetes, traffic, database, and observability operations
-- **L4 Failure Recovery Validation** — controlled failure, rollback, backup, restore, and recovery evidence
-- **L5 Governance Intelligent Ops** — drift, policy, cost, cleanup, ML-assisted metric analysis, and final reporting
-
-The canonical scenario list is maintained in [docs/scenario-model.md](docs/scenario-model.md).
-
-## Repository Layout
-
-- `scenarios/` — scenario definitions grouped by validation level
-- `evidence/` — matching commands, validation records, logs, screenshots, and configs
-- `tools/` — local PowerShell generators and validators
-- `runbooks/`, `policy/`, `security-baseline/`, `cost-governance/` — non-production operational references
-- `terraform/`, `ansible/`, `kubernetes/`, `eve-ng/`, `observability/`, `ml-security/` — locked platform implementation and example areas
-- `docs/` — scope, naming, tracking, risk, and architecture records
-
-## Run Local Validation
-
-```powershell
-powershell -ExecutionPolicy Bypass -File tools\validate-repo-structure.ps1
-powershell -ExecutionPolicy Bypass -File tools\validate-scenario-quality.ps1
-powershell -ExecutionPolicy Bypass -File tools\validate-all-scenarios.ps1
-powershell -ExecutionPolicy Bypass -File tools\generate-final-evidence-report.ps1
-powershell -ExecutionPolicy Bypass -File tools\validate-final-evidence-report.ps1
+```text
+ZT-ARC-001 surrounds
+ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001
+           -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001
+           -> PHASE_1_ACCEPTANCE
 ```
 
-These local PowerShell commands validate repository/document structure only.
-They do not produce authoritative scenario evidence and do not run Terraform,
-kubectl, cloud CLIs, or live infrastructure queries.
+- `ZT-ARC-001`: cross-phase architecture authority
+- `ZT-FND-001`: validation and evidence foundation
+- `ZT-NET-001`: bounded network-control validation
+- `ZT-VIS-001`: bounded visibility and evidence integrity
+- `ZT-ID-001`: bounded identity-control validation
+- `ZT-CV-001`: cross-capability validation
+- `ZT-RV-001`: repeatability and deterministic-result validation
+- `ZT-SCH-001`: scheduled execution, freshness, failure detection, and automated evidence production
 
-`validate-all-scenarios.ps1` is read-only by default. It snapshots the current
-tracked, untracked, and staged working-tree state, runs all scenario validators
-against an isolated operating-system temporary copy, removes that temporary
-copy, and fails if the source repository state changed. A clean working tree is
-not required. Pre-existing recovery changes are accepted only when their Git
-state, size, timestamp, and SHA-256 hash remain identical before and after.
+The canonical machine-readable flow is [docs/zero-trust/package-flow.yaml](docs/zero-trust/package-flow.yaml).
 
-Repository report generation is a separate, explicitly mutating operation:
+## External authorities
+
+1. **제로트러스트 가이드라인 2.0** defines capability, architecture, and maturity semantics.
+2. The **2026 KISA critical-infrastructure technical vulnerability guide** is intended as a secondary asset-specific inspection and hardening reference after ZT-GOV-MAP-001 authenticates and maps it.
+3. Package metadata and evidence establish repository implementation truth.
+
+No mapping alone establishes implementation, validation, compliance, certification, production readiness, or maturity.
+
+## Scenario retirement
+
+The former numbered scenario framework and its dedicated evidence placeholders and aggregate tools were removed by ZT-SCN-RETIRE-001. Git history is the recovery authority. No successor numbered scenario series was created.
+
+## Current boundary
+
+- Current infrastructure: bounded EVE-NG and OpenStack non-production laboratory
+- Live target mutation in this change: none
+- Tracked runtime: prohibited
+- Phase 1: PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE
+- Scope boundary: ZT-SCH-001
+
+## Key documents
+
+- [Scope lock](docs/scope-lock.md)
+- [Excluded scope](docs/excluded-scope.md)
+- [Package flow](docs/zero-trust/package-flow.yaml)
+- [Progress](docs/progress-tracker.md)
+- [Evidence model](docs/evidence-model.md)
+- [Zero Trust governance](docs/zero-trust/governance.md)
+- [Scenario retirement decision](docs/zero-trust/governance/scenario-framework-retirement.md)
+- [Phase 1 runbooks](docs/runbooks/README.md)
+
+## Read-only validation
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools\validate-all-scenarios.ps1 -GenerateReports
+python tools/validate_scenario_retirement.py --verbose --strict
+python tools/validate_zero_trust.py --verbose
+python tools/check_zero_trust_sync.py
+python tools/generate_zero_trust_reports.py --check
+python tools/validate_phase1_runbook_baseline.py --strict
+python tools/validate_advanced_target_architecture.py --strict
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/validate-repo-structure.ps1
+python -m unittest discover -s tests
 ```
-
-Generation mode writes scenario validator outputs and the S050 repository-wide
-log and summary, so it requires separate review and is not part of ordinary
-validation. Exit `0` means all checks passed, exit `1` means one or more
-validation checks failed, and exit `2` means wrapper configuration, temporary
-workspace cleanup, or the repository immutability guarantee failed. The
-repository-wide wrapper always enforces static-only child execution; it never
-enables S021 `-LiveKubectl` or another live-runtime mode.
-
-## Current OpenStack Result
-
-- Kolla-Ansible single-node AIO deployment: operator-validated.
-- Core services, Nova compute, hypervisor, and Neutron agents: healthy in the supplied results.
-- EVE-NG VLAN 70 -> `physnet1` -> `br-ex` -> Neutron router -> Floating IP -> tenant instance: validated.
-- Tenant instance gateway and outbound public IPv4 reachability: validated.
-- Scope: disposable non-production single-node lab; no HA, persistent storage, production hardening, Terraform reproduction, or automated cleanup claim.
-
-See [S005](scenarios/L1-foundation/S005-openstack-network-provisioning-validation/README.md)
-and its [validation record](evidence/L1-foundation/S005-openstack-network-provisioning-validation/validation.md).
-
-## Authoritative Lab Architecture References
-
-The non-production multi-cloud lab baseline is defined in:
-
-- [Multi-cloud architecture baseline](docs/lab-reference-architecture.md)
-- [Authoritative phase plan](docs/lab-build-order.md)
-- [IP address and reservation plan](docs/lab-ip-plan.md)
-- [Network zone plan](docs/lab-network-zone-plan.md)
-- [Platform responsibility matrix](docs/platform-responsibility-matrix.md)
-- [Cloud cost guardrails](docs/cloud-cost-guardrails.md)
-- [Resource lifecycle policy](docs/resource-lifecycle-policy.md)
-- [External address policy](docs/external-address-policy.md)
-- [Host capacity baseline](docs/host-capacity-baseline.md)
-- [VM resource allocation plan](docs/vm-resource-allocation-plan.md)
-- [Lab execution profiles](docs/lab-execution-profiles.md)
-- [Storage and snapshot policy](docs/storage-and-snapshot-policy.md)
-- [ADR-0001](docs/adr/ADR-0001-multicloud-network-and-platform-baseline.md)
-- [ADR-0002 runtime evidence boundary](docs/adr/0002-non-production-runtime-evidence-boundary.md)
-- [Evidence collection guide](docs/lab-evidence-collection-guide.md)
-- [Evidence sanitization rules](docs/lab-sanitization-rules.md)
-
-These documents prepare later sanitized evidence collection; they do not provision or query live infrastructure, authorize cloud spend, or change scenario status.
-
-## Scope and Safety
-
-This repository uses sanitized examples and placeholders. Do not add credentials, secrets, private keys, generated state, kubeconfig, cloud account values, production identifiers, packet captures, malware samples, or real billing/monitoring exports.
-
-Major excluded capabilities include production-grade HA/DR, automatic cross-cloud failover, SIEM/Wazuh/EDR/SOAR, threat hunting, packet payload analysis, malware detection, real-time blocking, formal compliance certification, and unapproved platform integrations. See [docs/scope-lock.md](docs/scope-lock.md) and [docs/excluded-scope.md](docs/excluded-scope.md) for the authoritative boundaries.
-
-Agent working rules are defined in [AGENTS.md](AGENTS.md).

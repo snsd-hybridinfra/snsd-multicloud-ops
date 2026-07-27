@@ -36,7 +36,7 @@
     {"validation": "ZT_ID_001_STRICT_VALIDATOR", "status": "PASS", "pass": 20, "warn": 0, "fail": 0},
     {"validation": "PHASE_1_RUNBOOK_VALIDATOR", "status": "PASS", "pass": 18, "warn": 0, "fail": 0},
     {"validation": "REPOSITORY_SAFETY_REGRESSION", "status": "PASS", "passed": 8, "failed": 0},
-    {"validation": "S021_STRICT_PARSER", "status": "PASS", "passed": 9, "failed": 0},
+    {"validation": "RETIRED_NUMBERED_CASE_STRICT_PARSER", "status": "PASS", "passed": 9, "failed": 0},
     {"validation": "ZERO_TRUST", "status": "PASS", "pass": 34, "warn": 0, "fail": 0},
     {"validation": "ZERO_TRUST_SYNC", "status": "PASS", "passed": 5, "failed": 0},
     {"validation": "GENERATED_REPORT_CHECK", "status": "PASS"},
@@ -47,7 +47,7 @@
     {"validation": "SECRET_SCAN", "status": "PASS", "findings": 0},
     {"validation": "PRIVACY_SCAN", "status": "PASS", "findings": 0},
     {"validation": "TRACKED_RUNTIME", "status": "PASS", "tracked_files": 0},
-    {"validation": "SCENARIO_LOCK", "status": "PASS", "range": "S001-S050", "s051": "ABSENT"},
+    {"validation": "SCENARIO_LOCK", "status": "PASS", "range": "retired numbered scenario framework", "s051": "ABSENT"},
     {"validation": "REPOSITORY_MUTATION", "status": "PASS", "unexplained_mutations": 0}
   ],
   "result": "PASS"

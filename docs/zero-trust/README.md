@@ -1,91 +1,32 @@
-# Korean Zero Trust Guideline 2.0 Alignment
+# Zero Trust Governance and Package Model
 
-## Purpose
+## Authorities
 
-This framework maps the SNSD lab and its locked S001-S050 validation model to selected capabilities from the Korean Zero Trust Guideline 2.0.
+1. The local **제로트러스트 가이드라인 2.0** PDF is the external authority for canonical terminology, capability numbering, architecture, and maturity.
+2. `capability-catalog.yaml` is the repository taxonomy authority.
+3. `current-baseline-assessment.yaml` is the current capability authority.
+4. `capability-implementation-backlog.yaml` is the planning authority.
+5. `package-flow.yaml`, package metadata, validators, and package evidence establish package flow and implementation truth.
+6. Markdown is a reviewed presentation layer.
 
-Repository positioning: **Hybrid and Multicloud Secure Operations Platform aligned with the Korean Zero Trust Guideline 2.0.** Alignment means traceable mapping and evidence-based assessment. It does not mean full compliance, complete implementation, certification, or organization-wide maturity.
+The KISA 2026 technical guide is not yet a registered mapping authority. ZT-GOV-MAP-001 is the sole next action authorized to authenticate and integrate it.
 
-The post-Phase-1 target positioning is **IaC, Configuration as Code, and Policy
-as Code-driven Advanced Zero Trust Secure Operations Platform with an
-Optimal-Ready Extension Architecture**. The conservative public title is
-**Hybrid and Multicloud-Ready Secure Operations Platform**. Configuration as
-Code is the meaning of CaC throughout the target architecture; CaC does not
-mean Compliance as Code here.
+## Phase 1
 
-## Scope and Boundaries
+ZT-ARC-001 surrounds:
 
-- The authoritative source defines terminology, architecture, maturity, capabilities, adoption, and assessment concepts.
-- Repository scenario status, capability implementation status, evidence level, validation result, and maturity are separate dimensions.
-- S002 and S005 have scenario-level runtime validation. That fact does not make any complete Zero Trust capability validated or establish a maturity level.
-- All capability maturity values remain `UNASSESSED` until capability-specific evidence is evaluated.
-- Planned AWS, Azure, Kubernetes, database, observability, recovery, ML, and policy scenarios remain unimplemented unless their existing tracking records say otherwise.
+`ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001 -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001 -> PHASE_1_ACCEPTANCE`
 
-## Document Index
+Phase 1 remains PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE at ZT-SCH-001.
 
-- [Authoritative source](authoritative-source.md)
-- [Reference architecture](zero-trust-reference-architecture.md)
-- [Capability taxonomy](capability-taxonomy.md)
-- [Machine-readable capability catalog](capability-catalog.yaml)
-- [Maturity model](maturity-model.md)
-- [Adoption lifecycle](adoption-lifecycle.md)
-- [Scenario-capability matrix](scenario-capability-matrix.md)
-- [Control coverage matrix](control-coverage-matrix.md)
-- [Evidence coverage matrix](evidence-coverage-matrix.md)
-- [Maturity assessment method](maturity-assessment-method.md)
-- [Gap register](gap-register.md)
-- [Implementation roadmap](implementation-roadmap.md)
-- [Validation checklist](validation-checklist.md)
-- [Current baseline assessment](current-baseline-assessment.md)
-- [Machine-readable current baseline](current-baseline-assessment.yaml)
-- [Machine-readable implementation backlog](capability-implementation-backlog.yaml)
-- [Laboratory implementation blueprint](implementation-blueprint.md)
-- [Control-pattern catalog](control-pattern-catalog.md)
-- [Reference laboratory architecture](reference-lab-architecture.md)
-- [Capability verification plan](capability-verification-plan.md)
-- [Phase gates](phase-gates.md)
-- [Prioritized implementation queue](prioritized-implementation-queue.md)
-- [Future scenario governance](future-scenario-governance.md)
-- [Governance rules](governance.md)
-- [Maintenance workflow](maintenance-workflow.md)
-- [ZT-ARC-001 target architecture](target-architecture/README.md)
-- [Advanced target selection](target-architecture/capability-selection.yaml)
-- [Advanced acceptance model](target-architecture/advanced-maturity-acceptance-model.yaml)
-- [Target phase roadmap](target-architecture/phase-roadmap.md)
-- [Authoritative operational runbook index](../runbooks/RUNBOOK_INDEX.md)
-- [ZT-FND-001 package](packages/zt-fnd-001-restricted-validation-foundation.md)
-- [ZT-FND-001 rollback](packages/zt-fnd-001-rollback.md)
-- [ZT-ID-001 package](packages/zt-id-001-bounded-identity-validation.md)
-- [ZT-ID-001 policy models](identity/README.md)
-- [ZT-ID-001 local evidence](../evidence/zero-trust/zt-id-001-local-validation.yaml)
-- [ZT-ARC-001 package](packages/zt-arc-001-advanced-target-architecture.md)
+## Governance boundaries
 
-## Machine Validation
+- Capability mapping, package implementation, local validation, runtime validation, evidence, acceptance, and maturity are separate.
+- No mapping proves implementation.
+- No one-time laboratory result proves continuous operation or enterprise maturity.
+- No compliance, certification, production-readiness, or repository-wide maturity claim is permitted.
+- The retired numbered scenario model has no active authority and no successor series.
 
-The catalog, baseline, and capability backlog YAML files are the repository machine-readable taxonomy, current-assessment, and planning authorities respectively. Markdown matrices are presentation views and must remain synchronized. The backlog cannot promote current implementation, validation, evidence, or maturity state.
+## Validation
 
-```powershell
-python tools/validate_zero_trust.py --verbose
-python tools/check_zero_trust_sync.py
-python tools/generate_zero_trust_reports.py --check
-python tools/validate_advanced_target_architecture.py --verbose
-python tools/validate_zt_id_001.py --verbose --strict
-powershell -ExecutionPolicy Bypass -File tools/validate-zero-trust.ps1
-python -m unittest discover -s tests -v
-```
-
-Validation is read-only by default. Only `generate_zero_trust_reports.py --write` can write, and it is restricted to reviewed generated markers.
-
-## Current Boundary
-
-Current runtime evidence supports a limited network foundation, one OpenStack AIO provider/tenant path, and a restricted read-only validation workflow. It does not prove micro-segmentation, continuous identity verification, endpoint compliance, PAM, EDR/XDR, DLP, complete DevSecOps, AI-driven policy, full data governance, or Optimal maturity.
-
-The second-pass baseline records 0 fully validated capabilities, 6 partially
-validated capabilities within the bounded lab scope, 7 mapped-only
-capabilities, and 39 identified capability gaps. All 52 maturity values remain
-`UNASSESSED`.
-
-ZT-ARC-001 classifies 21 capabilities as Advanced primary targets, 15 as
-Advanced supporting targets, 4 as Initial targets, 5 as design-only, and 7 as
-future Optimal-roadmap items. These are target-selection judgments only. The
-architecture package does not change the current counts above.
+Run the read-only validator set documented in the repository README. Correct machine-readable authority before presentation views.

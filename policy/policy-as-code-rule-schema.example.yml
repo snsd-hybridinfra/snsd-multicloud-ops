@@ -17,5 +17,5 @@ exception_required_fields:
   - approval_id
   - rollback_condition
   - evidence_reference
-related_scenarios: [S041, S042, S044, S045, S046]
+related_scenarios: [retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case]
 final_judgment_values: [POLICY_PASS, POLICY_FAIL, POLICY_WARNING, POLICY_EXCEPTION_APPROVED, POLICY_EVIDENCE_INCOMPLETE, POLICY_REVIEW_REQUIRED]

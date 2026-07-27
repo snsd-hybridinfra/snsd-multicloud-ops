@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "authority": "PHASE_1_PACKAGE_FLOW",
+    "action_id": "ZT-SCN-RETIRE-001",
+    "model": "PACKAGE_CAPABILITY_VALIDATION",
+    "effective_date": "2026-07-27",
+    "scenario_authority": "NONE",
+    "limitations": [
+      "Package order does not prove implementation or acceptance.",
+      "ZT-ARC-001 surrounds the flow and is not a sequential Phase 1 package.",
+      "No package or maturity state is promoted by scenario retirement."
+    ]
+  },
+  "architecture_context": {
+    "package_id": "ZT-ARC-001",
+    "role": "SURROUNDS_PHASE_FLOW",
+    "implementation_status": "DESIGN_ONLY",
+    "local_validation_status": "LOCAL_VALIDATED",
+    "runtime_validation_status": "NOT_VALIDATED",
+    "maturity_status": "UNASSESSED"
+  },
+  "phase_1_sequence": [
+    "ZT-FND-001",
+    "ZT-NET-001",
+    "ZT-VIS-001",
+    "ZT-ID-001",
+    "ZT-CV-001",
+    "ZT-RV-001",
+    "ZT-SCH-001",
+    "PHASE_1_ACCEPTANCE"
+  ],
+  "packages": [
+    {
+      "package_id": "ZT-FND-001",
+      "purpose": "Validation safety, evidence rules, repository integrity, execution authority, rollback, and secret boundaries.",
+      "implementation_status": "IMPLEMENTED",
+      "local_validation_status": "LOCAL_VALIDATED",
+      "runtime_validation_status": "VALIDATED",
+      "runtime_acceptance_status": "BOUNDED_ACCEPTED",
+      "maturity_status": "UNASSESSED",
+      "predecessor": null
+    },
+    {
+      "package_id": "ZT-NET-001",
+      "purpose": "Bounded network allow, deny, persistence, source, destination, and rollback validation.",
+      "implementation_status": "IMPLEMENTED_AS_RECORDED",
+      "local_validation_status": "LOCAL_VALIDATED",
+      "runtime_validation_status": "PARTIALLY_VALIDATED",
+      "runtime_acceptance_status": "PARTIALLY_ACCEPTED",
+      "maturity_status": "UNASSESSED",
+      "predecessor": "ZT-FND-001"
+    },
+    {
+      "package_id": "ZT-VIS-001",
+      "purpose": "Bounded visibility, timestamp, log integrity, evidence generation, ownership, and permission validation.",
+      "implementation_status": "IMPLEMENTED",
+      "local_validation_status": "LOCAL_VALIDATED",
+      "runtime_validation_status": "PARTIALLY_VALIDATED",
+      "runtime_acceptance_status": "PARTIALLY_ACCEPTED",
+      "maturity_status": "UNASSESSED",
+      "predecessor": "ZT-NET-001"
+    },
+    {
+      "package_id": "ZT-ID-001",
+      "purpose": "Dedicated identity, least privilege, forced-command, authorization, and positive and negative decision validation.",
+      "implementation_status": "IMPLEMENTED",
+      "local_validation_status": "LOCAL_VALIDATED",
+      "runtime_validation_status": "NOT_VALIDATED",
+      "runtime_acceptance_status": "PENDING",
+      "maturity_status": "UNASSESSED",
+      "predecessor": "ZT-VIS-001"
+    },
+    {
+      "package_id": "ZT-CV-001",
+      "purpose": "Cross-capability validation of FND, NET, VIS, and ID.",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "local_validation_status": "NOT_VALIDATED",
+      "runtime_validation_status": "NOT_VALIDATED",
+      "runtime_acceptance_status": "PENDING",
+      "maturity_status": "UNASSESSED",
+      "predecessor": "ZT-ID-001"
+    },
+    {
+      "package_id": "ZT-RV-001",
+      "purpose": "Repeated execution, deterministic outcomes, and evidence consistency.",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "local_validation_status": "NOT_VALIDATED",
+      "runtime_validation_status": "NOT_VALIDATED",
+      "runtime_acceptance_status": "PENDING",
+      "maturity_status": "UNASSESSED",
+      "predecessor": "ZT-CV-001"
+    },
+    {
+      "package_id": "ZT-SCH-001",
+      "purpose": "Scheduled execution, freshness, failure detection, and automated sanitized evidence production.",
+      "implementation_status": "NOT_IMPLEMENTED",
+      "local_validation_status": "NOT_VALIDATED",
+      "runtime_validation_status": "NOT_VALIDATED",
+      "runtime_acceptance_status": "PENDING",
+      "maturity_status": "UNASSESSED",
+      "predecessor": "ZT-RV-001"
+    }
+  ],
+  "phase_1_acceptance": {
+    "implementation_status": "PARTIAL",
+    "validation_status": "PARTIALLY_VALIDATED",
+    "completion_status": "NOT_COMPLETE",
+    "scope_boundary": "ZT-SCH-001",
+    "requires_all_predecessors_accepted": true
+  }
+}

@@ -7,4 +7,4 @@ NON-PRODUCTION placeholders only:
 - `mysql_slave_status_slave_io_running{instance="<db-replica-instance-placeholder>"}`
 - `mysql_slave_status_seconds_behind_master{instance="<db-replica-instance-placeholder>"}`
 
-S034 does not query Prometheus and includes no real target, address, datasource, or credential.
+retired-numbered-case does not query Prometheus and includes no real target, address, datasource, or credential.

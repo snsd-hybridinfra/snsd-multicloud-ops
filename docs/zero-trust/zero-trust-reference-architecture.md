@@ -32,7 +32,7 @@ Core pillars are 식별자·신원, 기기 및 엔드포인트, 네트워크, �
 | PA | Approved automation and orchestration workflow | Restricted validators exist; no enterprise PA |
 | PEP | ACL, Security Group/NSG plans, RBAC, ingress, bastion and forced-command boundaries | Only limited EVE/OpenStack lab paths have runtime evidence |
 | Control plane | Git governance, policy, validators, evidence review | Repository and one restricted OpenStack validator |
-| Data plane | EVE zones, provider/tenant paths, future services | S002 and S005 only are runtime validated |
+| Data plane | EVE zones, provider/tenant paths, future services | retired-numbered-case and retired-numbered-case only are runtime validated |
 
 ```mermaid
 flowchart TB
@@ -49,4 +49,3 @@ flowchart TB
 ## Current-State Limitations
 
 There is no claim of a complete PDP/PE/PA/PEP/PIP architecture, continuous identity risk evaluation, endpoint posture enforcement, cross-cloud policy plane, automated blocking, or organization-wide Zero Trust operation. The mapping is intended to guide later implementation and evidence collection.
-

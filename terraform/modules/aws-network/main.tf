@@ -71,7 +71,7 @@ resource "aws_route_table_association" "private" {
 
 resource "aws_security_group" "network_baseline" {
   name                   = var.security_group_name
-  description            = "S003 placeholder security group without traffic rules"
+  description            = "retired-numbered-case placeholder security group without traffic rules"
   vpc_id                 = aws_vpc.this.id
   revoke_rules_on_delete = true
 

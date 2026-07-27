@@ -35,12 +35,12 @@ remains `PARTIAL` / `PARTIALLY_VALIDATED` / `NOT_COMPLETE` at the design-only
 - 63 targeted ZT-ID-001 tests pass.
 - The strict ZT-ID-001 validator reports 18 PASS / 0 WARN / 0 FAIL.
 - The Phase 1 runbook validator reports 18 PASS / 0 WARN / 0 FAIL.
-- Repository safety reports 8/8 and S021 parsing reports 9/9.
+- Repository safety reports 8/8 and retired-numbered-case parsing reports 9/9.
 - Zero Trust validation reports 34 PASS / 0 WARN / 0 FAIL; synchronization
   reports 5/5; generated report check passes.
 - Architecture validation reports 28 PASS / 0 WARN / 0 FAIL.
-- Repository structure retains 50 scenario and 50 evidence directories.
-- ReadOnlyIsolated aggregate validation retains 15 PASS / 5 WARN / 30 FAIL,
+- Repository structure retains 50 scenario and retired numbered evidence directories.
+- ReadOnlyIsolated aggregate validation retains retired aggregate result distribution,
   zero integration failures, and expected exit 1.
 - The complete unit suite reports 159/159.
 - Repository validation causes no unexplained source mutation.
@@ -53,7 +53,7 @@ or runtime output is stored. Controlled negative fixtures use synthetic sentinel
 values and forbidden field names solely to prove rejection. External secret
 references are never dereferenced.
 
-No `.runtime` file is tracked, S001-S050 remain exact, and S051 is absent. No
+No `.runtime` file is tracked, retired numbered scenario framework remain exact, and successor numbered scenario is absent. No
 live account, SSH endpoint, sudo policy, production identity, monitoring file,
 Docker/Compose configuration, or ZT-VIS-002 preparation trace was changed.
 
@@ -102,7 +102,7 @@ Docker/Compose configuration, or ZT-VIS-002 preparation trace was changed.
   data required; any secret must enter Git; a live account or privilege must be
   created, disabled, rotated, or changed; Keycloak/IdP/monitoring deployment is
   required; the command cannot remain read-only; break-glass, rollback,
-  recovery, sanitization, or lockout protection is unavailable; S051 or a
+  recovery, sanitization, or lockout protection is unavailable; successor numbered scenario or a
   package/maturity overclaim would be required.
 
 P1-ID-RT-001 is selected only and was not executed.

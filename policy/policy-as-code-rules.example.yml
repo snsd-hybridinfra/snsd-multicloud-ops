@@ -1,14 +1,14 @@
 sample_notice: SAMPLE / NON-PRODUCTION
 policy_domains: [terraform, security, backup, restore, cost, kubernetes-placeholder]
 rules:
-  - {policy_id: <admin-access-policy-placeholder>, rule: Admin access must not be unrestricted, related: S014/S015/S016/S037}
-  - {policy_id: <database-port-policy-placeholder>, rule: Database ports must not be public, related: S017/S037}
-  - {policy_id: <public-exposure-policy-placeholder>, rule: Public exposure requires explicit approval, related: S037}
-  - {policy_id: <drift-remediation-policy-placeholder>, rule: Terraform drift remediation must reference S041 and S042 evidence, related: S041/S042}
-  - {policy_id: <critical-drift-policy-placeholder>, rule: Critical drift requires approval, related: S042}
-  - {policy_id: <state-file-policy-placeholder>, rule: Terraform state files must not be committed, related: S041}
-  - {policy_id: <variable-secret-policy-placeholder>, rule: Terraform variable files containing secrets must not be committed, related: S043}
-  - {policy_id: <backup-artifact-policy-placeholder>, rule: Backup evidence must not include real backup artifacts, related: S038}
-  - {policy_id: <restore-data-policy-placeholder>, rule: Restore evidence must not include real restored data, related: S039}
-  - {policy_id: <cost-policy-placeholder>, rule: Cost-impacting changes require S045 cost guardrail mapping, related: S045/S046}
-  - {policy_id: <kubernetes-policy-placeholder>, rule: Kubernetes manifest policy is handled in S044, related: S044}
+  - {policy_id: <admin-access-policy-placeholder>, rule: Admin access must not be unrestricted, related: retired-numbered-case/retired-numbered-case/retired-numbered-case/retired-numbered-case}
+  - {policy_id: <database-port-policy-placeholder>, rule: Database ports must not be public, related: retired-numbered-case/retired-numbered-case}
+  - {policy_id: <public-exposure-policy-placeholder>, rule: Public exposure requires explicit approval, related: retired-numbered-case}
+  - {policy_id: <drift-remediation-policy-placeholder>, rule: Terraform drift remediation must reference retired-numbered-case and retired-numbered-case evidence, related: retired-numbered-case/retired-numbered-case}
+  - {policy_id: <critical-drift-policy-placeholder>, rule: Critical drift requires approval, related: retired-numbered-case}
+  - {policy_id: <state-file-policy-placeholder>, rule: Terraform state files must not be committed, related: retired-numbered-case}
+  - {policy_id: <variable-secret-policy-placeholder>, rule: Terraform variable files containing secrets must not be committed, related: retired-numbered-case}
+  - {policy_id: <backup-artifact-policy-placeholder>, rule: Backup evidence must not include real backup artifacts, related: retired-numbered-case}
+  - {policy_id: <restore-data-policy-placeholder>, rule: Restore evidence must not include real restored data, related: retired-numbered-case}
+  - {policy_id: <cost-policy-placeholder>, rule: Cost-impacting changes require retired-numbered-case cost guardrail mapping, related: retired-numbered-case/retired-numbered-case}
+  - {policy_id: <kubernetes-policy-placeholder>, rule: Kubernetes manifest policy is handled in retired-numbered-case, related: retired-numbered-case}

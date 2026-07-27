@@ -20,7 +20,7 @@ def main() -> int:
         elif score >= .6: decision="REVIEW_REQUIRED"; reviews+=1
         elif score >= .5: decision="WARNING"; warnings+=1
         else: decision="NORMAL"
-        out.append({"detection_run_id":"<detection-run-id-placeholder>","dataset_id":row["dataset_id"],"metric_timestamp":row["metric_timestamp"],"feature_group":row["feature_group"],"feature_name":row["feature_name"],"metric_name":row["metric_name"],"metric_value":value,"normalized_value":score,"baseline_value_placeholder":"<baseline-placeholder>","anomaly_score":score,"threshold_reference":"<threshold-profile-placeholder>","anomaly_decision":decision,"review_required":str(decision != "NORMAL").lower(),"related_scenario":"S048","evidence_reference":row["evidence_reference"]})
+        out.append({"detection_run_id":"<detection-run-id-placeholder>","dataset_id":row["dataset_id"],"metric_timestamp":row["metric_timestamp"],"feature_group":row["feature_group"],"feature_name":row["feature_name"],"metric_name":row["metric_name"],"metric_value":value,"normalized_value":score,"baseline_value_placeholder":"<baseline-placeholder>","anomaly_score":score,"threshold_reference":"<threshold-profile-placeholder>","anomaly_decision":decision,"review_required":str(decision != "NORMAL").lower(),"related_scenario":"retired-numbered-case","evidence_reference":row["evidence_reference"]})
     with a.output.open("w", newline="", encoding="utf-8") as f: w=csv.DictWriter(f, fieldnames=FIELDS); w.writeheader(); w.writerows(out)
     print(f"rows processed={len(out)} anomaly count={anomalies} warning count={warnings} review required count={reviews}")
     return 0

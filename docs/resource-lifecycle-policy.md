@@ -46,7 +46,7 @@ validation does not justify extending public exposure or bypassing cost limits.
 
 ## Relationship to Governance Scenarios
 
-S041-S046 own drift, remediation decisions, policy, cost, and cleanup validation.
+retired-numbered-case-retired-numbered-case own drift, remediation decisions, policy, cost, and cleanup validation.
 This policy defines the lab lifecycle but does not automatically change their
 statuses or claim automated enforcement.
 

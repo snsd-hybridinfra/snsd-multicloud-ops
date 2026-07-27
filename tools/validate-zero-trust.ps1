@@ -20,7 +20,9 @@ if ($pythonCommand.Name -eq "py.exe" -or $pythonCommand.Name -eq "py") {
 $stages = @(
     @{ Name = "Zero Trust governance"; Script = "tools/validate_zero_trust.py"; Arguments = @() },
     @{ Name = "Zero Trust synchronization"; Script = "tools/check_zero_trust_sync.py"; Arguments = @() },
-    @{ Name = "Zero Trust generated report"; Script = "tools/generate_zero_trust_reports.py"; Arguments = @("--check") }
+    @{ Name = "Zero Trust generated report"; Script = "tools/generate_zero_trust_reports.py"; Arguments = @("--check") },
+    @{ Name = "Numbered scenario retirement"; Script = "tools/validate_scenario_retirement.py"; Arguments = @() },
+    @{ Name = "Phase 1 package runbooks"; Script = "tools/validate_phase1_runbook_baseline.py"; Arguments = @() }
 )
 
 $failure = 0

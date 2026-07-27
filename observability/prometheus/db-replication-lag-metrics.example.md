@@ -9,4 +9,4 @@ NON-PRODUCTION METRIC EXAMPLES. Names may vary by exporter version and must be v
 
 Use only symbolic labels such as `<db-replica-host>` and `<replication-channel>`. This file contains no Prometheus URL, scrape target, database connection, credential, or production label.
 
-Live Prometheus target discovery is handled in S028. Grafana dashboard validation is handled in S029. S027 performs no Prometheus or Grafana query.
+Live Prometheus target discovery is handled in retired-numbered-case. Grafana dashboard validation is handled in retired-numbered-case. retired-numbered-case performs no Prometheus or Grafana query.

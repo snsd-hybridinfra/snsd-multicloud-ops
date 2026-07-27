@@ -1,16 +1,15 @@
 {
   "manifest_id": "P1-RUN-BASE",
-  "manifest_version": "1.1.0",
-  "title": "Minimum Phase 1 Operational Runbook Baseline",
+  "manifest_version": "2.0.0",
+  "title": "Minimum Phase 1 Package-Oriented Runbook Baseline",
   "phase": "PHASE_1",
   "authoritative_root": "docs/runbooks/phase-1/",
   "index": "docs/runbooks/RUNBOOK_INDEX.md",
   "template": "docs/runbooks/RUNBOOK_TEMPLATE.md",
   "validation_status": "VALIDATED_LOCAL",
-  "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-  "last_reviewed": "2026-07-22",
-  "runtime_execution_performed": true,
-  "package_state_changed": true,
+  "last_reviewed": "2026-07-27",
+  "runtime_execution_performed": false,
+  "package_status_promoted": false,
   "phase_state": {
     "implementation_status": "PARTIAL",
     "validation_status": "PARTIALLY_VALIDATED",
@@ -18,294 +17,19 @@
     "boundary": "ZT-SCH-001"
   },
   "runbooks": [
-    {
-      "runbook_id": "RB-P1-001",
-      "path": "docs/runbooks/phase-1/01-phase-1-entry-and-preflight.md",
-      "title": "Phase 1 Entry and Preflight",
-      "phase": "PHASE_1",
-      "related_packages": ["P1-REC-002", "P1-HYG-001", "P1-RUN-BASE"],
-      "owner_domain": "REPOSITORY_GOVERNANCE",
-      "supported_target_types": ["REPOSITORY_LOCAL"],
-      "procedure_status": "IMPLEMENTED",
-      "validation_status": "VALIDATED_LOCAL",
-      "runtime_required": false,
-      "live_execution_permitted": false,
-      "required_authority": "CODEX_REPOSITORY_READ_ONLY",
-      "evidence_authority": "CODEX_EXECUTED_LOCAL",
-      "last_reviewed": "2026-07-19",
-      "limitations": ["Readiness describes repository safety only and does not validate a Phase 1 runtime package."]
-    },
-    {
-      "runbook_id": "RB-P1-002",
-      "path": "docs/runbooks/phase-1/02-repository-safe-validation.md",
-      "title": "Repository-Safe Validation",
-      "phase": "PHASE_1",
-      "related_packages": ["P1-HYG-001"],
-      "owner_domain": "VALIDATION_HYGIENE",
-      "supported_target_types": ["REPOSITORY_LOCAL", "ISOLATED_TEMPORARY_COPY"],
-      "procedure_status": "IMPLEMENTED",
-      "validation_status": "VALIDATED_LOCAL",
-      "runtime_required": false,
-      "live_execution_permitted": false,
-      "required_authority": "CODEX_REPOSITORY_READ_ONLY",
-      "evidence_authority": "CODEX_EXECUTED_LOCAL",
-      "last_reviewed": "2026-07-19",
-      "limitations": ["Scenario failures remain authoritative content gaps; the wrapper does not convert them to passes."]
-    },
-    {
-      "runbook_id": "RB-P1-003",
-      "path": "docs/runbooks/phase-1/03-evidence-handling-and-sanitization.md",
-      "title": "Evidence Handling and Sanitization",
-      "phase": "PHASE_1",
-      "related_packages": ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001"],
-      "owner_domain": "EVIDENCE_GOVERNANCE",
-      "supported_target_types": ["REPOSITORY_LOCAL", "NON_PRODUCTION_LAB_EVIDENCE"],
-      "procedure_status": "PARTIALLY_IMPLEMENTED",
-      "validation_status": "VALIDATED_LOCAL",
-      "runtime_required": false,
-      "live_execution_permitted": false,
-      "required_authority": "REVIEWED_SANITIZATION_AND_PACKAGE_EVIDENCE_AUTHORITY",
-      "evidence_authority": "CODEX_EXECUTED_LOCAL",
-      "last_reviewed": "2026-07-19",
-      "limitations": ["The handling contract is locally validated; this action captured no new runtime evidence."]
-    },
-    {
-      "runbook_id": "RB-P1-004",
-      "path": "docs/runbooks/phase-1/04-network-validation-and-gap-management.md",
-      "title": "Network Validation and Gap Management",
-      "phase": "PHASE_1",
-      "related_packages": ["ZT-NET-001"],
-      "owner_domain": "NETWORK_SECURITY",
-      "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_EVE_NG_ROUTER"],
-      "procedure_status": "IMPLEMENTED",
-      "validation_status": "VALIDATED_RUNTIME",
-      "runtime_required": true,
-      "live_execution_permitted": true,
-      "required_authority": "EXPLICIT_OPERATOR_APPROVAL_AND_EXISTING_RESTRICTED_ENDPOINT",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "last_reviewed": "2026-07-22",
-      "limitations": ["One persistent directional ACL is validated; broader multi-zone segmentation, dynamic policy, encryption, and resilience remain outside the bounded package."]
-    },
-    {
-      "runbook_id": "RB-P1-005",
-      "path": "docs/runbooks/phase-1/05-visibility-validation-and-gap-management.md",
-      "title": "Visibility Validation and Gap Management",
-      "phase": "PHASE_1",
-      "related_packages": ["ZT-VIS-001", "ZT-VIS-002"],
-      "owner_domain": "VISIBILITY_AND_ANALYTICS",
-      "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_TELEMETRY_SOURCES", "BOUNDED_NON_PRODUCTION_MONITORING_VM"],
-      "procedure_status": "IMPLEMENTED",
-      "validation_status": "VALIDATED_RUNTIME",
-      "runtime_required": true,
-      "live_execution_permitted": true,
-      "required_authority": "EXPLICIT_OPERATOR_APPROVAL_FOR_COLLECTION",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "last_reviewed": "2026-07-22",
-      "limitations": ["ZT-VIS-001 persistent storage accepts only approved sanitized JSONL; host journals, full service logs, external alerting, high availability, behavior analytics, and automated response remain absent. ZT-VIS-002 remains protected Phase 2 preparation only."]
-    },
-    {
-      "runbook_id": "RB-P1-006",
-      "path": "docs/runbooks/phase-1/06-identity-validation-readiness.md",
-      "title": "Identity Validation Readiness",
-      "phase": "PHASE_1",
-      "related_packages": ["ZT-ID-001"],
-      "owner_domain": "IDENTITY_SECURITY",
-      "supported_target_types": ["REPOSITORY_LOCAL_POLICY_VALIDATION", "BOUNDED_NON_PRODUCTION_EVE_NG_VALIDATOR"],
-      "procedure_status": "IMPLEMENTED",
-      "validation_status": "VALIDATED_RUNTIME",
-      "runtime_required": true,
-      "live_execution_permitted": true,
-      "required_authority": "EXPLICIT_USER_APPROVAL_FOR_BOUNDED_NON_PRODUCTION_ENFORCEMENT",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "last_reviewed": "2026-07-19",
-      "limitations": ["Runtime acceptance covers one dedicated validator identity on one non-production EVE-NG endpoint; centralized identity, MFA, OIDC, application RBAC, production validation, and maturity remain absent or unassessed."]
-    },
-    {
-      "runbook_id": "RB-P1-007",
-      "path": "docs/runbooks/phase-1/07-repeatable-and-scheduled-validation.md",
-      "title": "Repeatable and Scheduled Validation",
-      "phase": "PHASE_1",
-      "related_packages": ["ZT-CV-001", "ZT-RV-001", "ZT-SCH-001"],
-      "owner_domain": "VALIDATION_OPERATIONS",
-      "supported_target_types": ["REPOSITORY_LOCAL_DESIGN_REVIEW"],
-      "procedure_status": "DESIGN_SPECIFICATION",
-      "validation_status": "VALIDATED_LOCAL",
-      "runtime_required": true,
-      "live_execution_permitted": false,
-      "required_authority": "FUTURE_PACKAGE_AND_SCHEDULER_APPROVAL",
-      "evidence_authority": "NONE",
-      "last_reviewed": "2026-07-19",
-      "limitations": ["No continuous-validation, repeatable-validation, or scheduler package, job, service, or runtime evidence exists."]
-    }
+    {"runbook_id":"RB-P1-001","path":"docs/runbooks/phase-1/01-phase-1-entry-and-preflight.md","related_packages":["ZT-FND-001"],"procedure_status":"IMPLEMENTED","validation_status":"VALIDATED_LOCAL","live_execution_permitted":false},
+    {"runbook_id":"RB-P1-002","path":"docs/runbooks/phase-1/02-repository-safe-validation.md","related_packages":["ZT-FND-001"],"procedure_status":"IMPLEMENTED","validation_status":"VALIDATED_LOCAL","live_execution_permitted":false},
+    {"runbook_id":"RB-P1-003","path":"docs/runbooks/phase-1/03-evidence-handling-and-sanitization.md","related_packages":["ZT-FND-001","ZT-NET-001","ZT-VIS-001","ZT-ID-001"],"procedure_status":"PARTIALLY_IMPLEMENTED","validation_status":"VALIDATED_LOCAL","live_execution_permitted":false},
+    {"runbook_id":"RB-P1-004","path":"docs/runbooks/phase-1/04-network-validation-and-gap-management.md","related_packages":["ZT-NET-001"],"procedure_status":"IMPLEMENTED","validation_status":"PARTIALLY_RUNTIME_VALIDATED","live_execution_permitted":true},
+    {"runbook_id":"RB-P1-005","path":"docs/runbooks/phase-1/05-visibility-validation-and-gap-management.md","related_packages":["ZT-VIS-001"],"procedure_status":"IMPLEMENTED","validation_status":"PARTIALLY_RUNTIME_VALIDATED","live_execution_permitted":true},
+    {"runbook_id":"RB-P1-006","path":"docs/runbooks/phase-1/06-identity-validation-readiness.md","related_packages":["ZT-ID-001"],"procedure_status":"IMPLEMENTED","validation_status":"LOCAL_VALIDATED","live_execution_permitted":true},
+    {"runbook_id":"RB-P1-007","path":"docs/runbooks/phase-1/07-repeatable-and-scheduled-validation.md","related_packages":["ZT-CV-001","ZT-RV-001","ZT-SCH-001"],"procedure_status":"DESIGN_SPECIFICATION","validation_status":"NOT_VALIDATED","live_execution_permitted":false}
   ],
-  "package_boundaries": [
-    {
-      "package_id": "ZT-FND-001",
-      "implementation_status": "IMPLEMENTED",
-      "validation_status": "VALIDATED_RUNTIME",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "limitations": ["Bounded non-production restricted endpoints only."]
-    },
-    {
-      "package_id": "ZT-NET-001",
-      "implementation_status": "IMPLEMENTED",
-      "validation_status": "VALIDATED_RUNTIME",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "limitations": ["BOUNDED_DIRECTIONAL_ACL_ONLY"]
-    },
-    {
-      "package_id": "ZT-VIS-001",
-      "implementation_status": "IMPLEMENTED",
-      "validation_status": "VALIDATED_RUNTIME",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "limitations": ["SANITIZED_INPUT_ONLY", "SINGLE_NODE_NO_EXTERNAL_ALERTING"]
-    },
-    {
-      "package_id": "ZT-ID-001",
-      "implementation_status": "IMPLEMENTED",
-      "validation_status": "RUNTIME_VALIDATED",
-      "runtime_validation_status": "VALIDATED",
-      "runtime_acceptance_status": "ACCEPTED",
-      "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
-      "maturity_status": "UNASSESSED",
-      "authority_status": "AUTHORITATIVE",
-      "evidence_authority": "USER_APPROVED_CODEX_EXECUTION"
-    },
-    {
-      "package_id": "ZT-DEV-001",
-      "implementation_status": "IMPLEMENTED",
-      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
-      "authority_status": "AUTHORITATIVE",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "limitations": ["SIX_ALIASES_ONE_MANDATORY_LIVE_VM", "NO_AGENT_AUTOMATION_OR_ENFORCEMENT"]
-    },
-    {
-      "package_id": "ZT-APP-001",
-      "implementation_status": "IMPLEMENTED",
-      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
-      "authority_status": "AUTHORITATIVE",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "limitations": ["TWO_APPLICATIONS_FOUR_WORKLOADS", "PARTIAL_DIRECT_IMAGE_SBOM", "ONE_UNCHANGED_ALLOY_PILOT", "NO_DEPLOYMENT_RESTART_SIGNING_OR_DEDICATED_SCAN"]
-    },
-    {
-      "package_id": "ZT-DATA-001",
-      "implementation_status": "IMPLEMENTED",
-      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
-      "authority_status": "AUTHORITATIVE",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "limitations": ["SEVEN_METADATA_ASSETS", "DETECTION_ONLY_DLP", "ONE_SYNTHETIC_RESTORE", "NO_LIVE_BACKUP_BLOCKING_DLP_KEY_ROTATION_OR_EXTERNAL_TRANSFER"]
-    },
-    {
-      "package_id": "ZT-SYS-001",
-      "implementation_status": "IMPLEMENTED",
-      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
-      "authority_status": "AUTHORITATIVE",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "limitations": ["SEVEN_BOUNDED_SYSTEMS", "OPENSTACK_CURRENT_DEGRADED_46_0_4", "FIVE_SAFE_CONFIGURATION_HASHES", "NO_RESTART_MUTATION_COMPLETE_PAM_CONTINUOUS_FIM_OR_SYSTEM_RESTORE"]
-    },
-    {
-      "package_id": "ZT-AUTO-001",
-      "implementation_status": "IMPLEMENTED",
-      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
-      "authority_status": "AUTHORITATIVE",
-      "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
-      "limitations": ["SINGLE_WORKSTATION_FIXED_R0_R3_HANDLERS", "ONE_PARTIAL_CROSS_DOMAIN_READ_ONLY_EXECUTION", "NO_ARBITRARY_EXECUTION_MUTATION_NOTIFICATION_RESPONSE_REPEATABILITY_OR_SCHEDULING"]
-    },
-    {
-      "package_id": "ZT-CV-001",
-      "implementation_status": "NOT_IMPLEMENTED",
-      "validation_status": "NOT_VALIDATED",
-      "authority_status": "ABSENT",
-      "evidence_authority": "NONE"
-    },
-    {
-      "package_id": "ZT-RV-001",
-      "implementation_status": "NOT_IMPLEMENTED",
-      "validation_status": "NOT_VALIDATED",
-      "authority_status": "ABSENT",
-      "evidence_authority": "NONE"
-    },
-    {
-      "package_id": "ZT-SCH-001",
-      "implementation_status": "DESIGN_ONLY",
-      "validation_status": "NOT_VALIDATED",
-      "authority_status": "REFERENCED_ONLY",
-      "evidence_authority": "NONE"
-    },
-    {
-      "package_id": "ZT-VIS-002",
-      "phase": "PHASE_2",
-      "implementation_status": "PREPARATION_TRACES_ONLY",
-      "validation_status": "NOT_VALIDATED",
-      "authority_status": "PROTECTED_NON_EVIDENCE",
-      "evidence_authority": "NONE"
-    },
-    {
-      "package_id": "ZT-ARC-001",
-      "implementation_status": "DESIGN_ONLY",
-      "validation_status": "VALIDATED_LOCAL",
-      "runtime_validation_status": "NOT_VALIDATED",
-      "authority_status": "AUTHORITATIVE",
-      "maturity_status": "UNASSESSED",
-      "evidence_authority": "CODEX_EXECUTED_LOCAL"
-    }
-  ],
-  "legacy_references": [
-    {
-      "path": "runbooks/",
-      "markdown_file_count": 53,
-      "authority_status": "SECONDARY_REFERENCE_ONLY",
-      "authoritative": false,
-      "limitation": "Scenario-specific references cannot override docs/runbooks, package, scenario, or Zero Trust authorities."
-    }
-  ],
-  "future_phase_runbooks": [
-    "docs/runbooks/00-platform-overview.md",
-    "docs/runbooks/01-prerequisites.md",
-    "docs/runbooks/02-target-selection.md",
-    "docs/runbooks/03-openstack-vm-onboarding.md",
-    "docs/runbooks/04-existing-vm-onboarding.md",
-    "docs/runbooks/05-physical-server-onboarding.md",
-    "docs/runbooks/06-environment-profile.md",
-    "docs/runbooks/07-secret-preparation.md",
-    "docs/runbooks/08-preflight-validation.md",
-    "docs/runbooks/09-iac-plan.md",
-    "docs/runbooks/10-policy-evaluation.md",
-    "docs/runbooks/11-deployment-approval.md",
-    "docs/runbooks/12-platform-deployment.md",
-    "docs/runbooks/13-runtime-validation.md",
-    "docs/runbooks/14-platform-status.md",
-    "docs/runbooks/15-drift-detection.md",
-    "docs/runbooks/16-reconciliation.md",
-    "docs/runbooks/17-backup.md",
-    "docs/runbooks/18-restore.md",
-    "docs/runbooks/19-rollback.md",
-    "docs/runbooks/20-upgrade.md",
-    "docs/runbooks/21-secret-rotation.md",
-    "docs/runbooks/22-certificate-rotation.md",
-    "docs/runbooks/23-incident-response.md",
-    "docs/runbooks/24-target-replacement.md",
-    "docs/runbooks/25-decommission.md",
-    "docs/runbooks/26-evidence-handling.md",
-    "docs/runbooks/27-operator-handoff.md",
-    "docs/runbooks/28-troubleshooting.md"
-  ],
+  "package_flow_authority": "docs/zero-trust/package-flow.yaml",
   "unresolved_gaps": [
-    {
-      "gap_id": "REPEATABLE_AND_CONTINUOUS_PACKAGES_ABSENT",
-      "owner": "ZT-CV-001/ZT-RV-001",
-      "status": "OPEN"
-    },
-    {
-      "gap_id": "SCHEDULED_VALIDATION_NOT_IMPLEMENTED",
-      "owner": "ZT-SCH-001",
-      "status": "OPEN"
-    },
-    {
-      "gap_id": "SCENARIO_VALIDATION_FAILURES_REMAIN",
-      "owner": "S001-S050",
-      "status": "OPEN",
-      "current_result": "15_PASS_5_WARN_30_FAIL_0_INTEGRATION_FAILURE_EXIT_1"
-    }
+    {"gap_id":"IDENTITY_RUNTIME_ACCEPTANCE_PENDING","owner":"ZT-ID-001","status":"OPEN"},
+    {"gap_id":"CROSS_CAPABILITY_VALIDATION_NOT_IMPLEMENTED","owner":"ZT-CV-001","status":"OPEN"},
+    {"gap_id":"REPEATABILITY_NOT_IMPLEMENTED","owner":"ZT-RV-001","status":"OPEN"},
+    {"gap_id":"SCHEDULED_VALIDATION_NOT_IMPLEMENTED","owner":"ZT-SCH-001","status":"OPEN"}
   ]
 }

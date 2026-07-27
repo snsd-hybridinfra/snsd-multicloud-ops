@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/zero-trust-package-flow.schema.json",
+  "title": "Zero Trust Phase 1 package flow",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata", "architecture_context", "phase_1_sequence", "packages", "phase_1_acceptance"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "action_id", "model", "effective_date", "scenario_authority", "limitations"],
+      "properties": {
+        "authority": {"const": "PHASE_1_PACKAGE_FLOW"},
+        "action_id": {"const": "ZT-SCN-RETIRE-001"},
+        "model": {"const": "PACKAGE_CAPABILITY_VALIDATION"},
+        "effective_date": {"type": "string", "format": "date"},
+        "scenario_authority": {"const": "NONE"},
+        "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "architecture_context": {"$ref": "#/$defs/architecture"},
+    "phase_1_sequence": {
+      "type": "array",
+      "prefixItems": [
+        {"const": "ZT-FND-001"}, {"const": "ZT-NET-001"}, {"const": "ZT-VIS-001"},
+        {"const": "ZT-ID-001"}, {"const": "ZT-CV-001"}, {"const": "ZT-RV-001"},
+        {"const": "ZT-SCH-001"}, {"const": "PHASE_1_ACCEPTANCE"}
+      ],
+      "items": false,
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "packages": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {"$ref": "#/$defs/package"}
+    },
+    "phase_1_acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["implementation_status", "validation_status", "completion_status", "scope_boundary", "requires_all_predecessors_accepted"],
+      "properties": {
+        "implementation_status": {"const": "PARTIAL"},
+        "validation_status": {"const": "PARTIALLY_VALIDATED"},
+        "completion_status": {"const": "NOT_COMPLETE"},
+        "scope_boundary": {"const": "ZT-SCH-001"},
+        "requires_all_predecessors_accepted": {"const": true}
+      }
+    }
+  },
+  "$defs": {
+    "architecture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package_id", "role", "implementation_status", "local_validation_status", "runtime_validation_status", "maturity_status"],
+      "properties": {
+        "package_id": {"const": "ZT-ARC-001"},
+        "role": {"const": "SURROUNDS_PHASE_FLOW"},
+        "implementation_status": {"const": "DESIGN_ONLY"},
+        "local_validation_status": {"const": "LOCAL_VALIDATED"},
+        "runtime_validation_status": {"const": "NOT_VALIDATED"},
+        "maturity_status": {"const": "UNASSESSED"}
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package_id", "purpose", "implementation_status", "local_validation_status", "runtime_validation_status", "runtime_acceptance_status", "maturity_status", "predecessor"],
+      "properties": {
+        "package_id": {"pattern": "^ZT-[A-Z]+-[0-9]{3}$"},
+        "purpose": {"type": "string", "minLength": 1},
+        "implementation_status": {"enum": ["NOT_IMPLEMENTED", "IMPLEMENTED", "IMPLEMENTED_AS_RECORDED"]},
+        "local_validation_status": {"enum": ["NOT_VALIDATED", "LOCAL_VALIDATED"]},
+        "runtime_validation_status": {"enum": ["NOT_VALIDATED", "PARTIALLY_VALIDATED", "VALIDATED"]},
+        "runtime_acceptance_status": {"enum": ["PENDING", "PARTIALLY_ACCEPTED", "BOUNDED_ACCEPTED"]},
+        "maturity_status": {"const": "UNASSESSED"},
+        "predecessor": {"type": ["string", "null"], "pattern": "^ZT-[A-Z]+-[0-9]{3}$"}
+      }
+    }
+  }
+}

@@ -26,7 +26,7 @@ This matrix prevents overlap and inflated claims across the lab platforms.
   a change record and explicit cleanup steps.
 - Cloud providers remain validation environments; local Kubernetes and MariaDB
   remain the application and data runtime axes.
-- Cross-platform evidence must still be stored under the owning S001-S050
+- Cross-platform evidence must still be stored under the owning retired numbered scenario framework
   scenario rather than a new scenario.
 
 ## Non-Production Disclaimer

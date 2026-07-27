@@ -1,10 +1,10 @@
 # SAMPLE / NON-PRODUCTION — not a trained model binary
 profile_id: <threshold-profile-placeholder>
 profile_type: static_threshold_profile
-dataset_source_scenario: S047
-detection_scenario: S048
-report_scenario: S049
-final_evidence_report_scenario: S050
+dataset_source_scenario: retired-numbered-case
+detection_scenario: retired-numbered-case
+report_scenario: retired-numbered-case
+final_evidence_report_scenario: retired-numbered-case
 supported_feature_groups: [target_availability, probe_success, http_health, api_latency, load_balancer_health, workload_readiness, restart_count, cpu_utilization, memory_utilization, disk_utilization, database_availability, replication_lag, recovery_health]
 scoring_method: [z_score_placeholder, static_threshold_placeholder, rolling_baseline_placeholder]
 threshold_rules:

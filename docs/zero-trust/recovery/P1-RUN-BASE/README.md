@@ -5,10 +5,10 @@ baseline under `docs/runbooks/phase-1/`. Seven runbooks, a JSON-compatible YAML
 manifest, a read-only standard-library validator, and 29 isolated regression
 tests were added.
 
-This action is governance and local validation only. It did not run live S021,
+This action is governance and local validation only. It did not run live retired-numbered-case,
 generate scenario reports, change an ACL, deploy monitoring or identity,
 create a scheduler, modify package/scenario/evidence state, or create runtime
-evidence. The current scenario aggregate remains 15 PASS, 5 WARN, 30 FAIL,
+evidence. The current scenario aggregate remains retired aggregate outcome,
 zero integration failures, exit 1; those content gaps are not converted to
 success.
 

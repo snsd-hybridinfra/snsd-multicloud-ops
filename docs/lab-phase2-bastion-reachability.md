@@ -14,10 +14,10 @@ Lab Phase 1 prepares a safe, repeatable workflow for collecting sanitized Bastio
 
 | Scenario | Lab Phase 1 Relationship |
 |---|---|
-| S001 Control Plane Toolchain Validation | Confirms the host workstation has Git, PowerShell, SSH, and Python available before collection |
-| S008 Bastion Reachability Validation | Owns the SSH path, Bastion access boundary, and sanitized reachability result |
-| S009 DNS / Hostname Resolution Validation | Owns hostname and optional resolution evidence |
-| S010 Evidence Directory Structure Validation | Confirms collected artifacts use the matching evidence paths and required directory model |
+| retired-numbered-case Control Plane Toolchain Validation | Confirms the host workstation has Git, PowerShell, SSH, and Python available before collection |
+| retired-numbered-case Bastion Reachability Validation | Owns the SSH path, Bastion access boundary, and sanitized reachability result |
+| retired-numbered-case DNS / Hostname Resolution Validation | Owns hostname and optional resolution evidence |
+| retired-numbered-case Evidence Directory Structure Validation | Confirms collected artifacts use the matching evidence paths and required directory model |
 
 ## Bastion VM Role
 
@@ -86,7 +86,7 @@ If `ss` is unavailable, use the read-only fallback:
 netstat -tulpen
 ```
 
-For S009 hostname/resolution evidence:
+For retired-numbered-case hostname/resolution evidence:
 
 ```bash
 hostname
@@ -122,11 +122,11 @@ The Bastion host key must already be trusted through a separately reviewed manua
 
 | Evidence | Owning Scenario | Destination after Sanitization |
 |---|---|---|
-| Host-side SSH client and connection result | S001, S008 | `evidence/L1-foundation/S008-bastion-reachability-validation/logs/` |
-| Bastion hostname, user, uptime, interface, SSH service, and listening sockets | S008 | `evidence/L1-foundation/S008-bastion-reachability-validation/logs/` |
-| Hostname and optional resolution output | S009 | `evidence/L1-foundation/S009-dns-hostname-resolution-validation/logs/` |
-| Updated command/result mapping | S008, S009 | Each scenario's `commands.md` and `validation.md` |
-| Directory and filename conformance result | S010 | S010 validation output and the matching `<evidence-path>` |
+| Host-side SSH client and connection result | retired-numbered-case, retired-numbered-case | `retired-framework-evidence/retired-numbered-case-bastion-reachability-validation/logs/` |
+| Bastion hostname, user, uptime, interface, SSH service, and listening sockets | retired-numbered-case | `retired-framework-evidence/retired-numbered-case-bastion-reachability-validation/logs/` |
+| Hostname and optional resolution output | retired-numbered-case | `retired-framework-evidence/retired-numbered-case-dns-hostname-resolution-validation/logs/` |
+| Updated command/result mapping | retired-numbered-case, retired-numbered-case | Each scenario's `commands.md` and `validation.md` |
+| Directory and filename conformance result | retired-numbered-case | retired-numbered-case validation output and the matching `<evidence-path>` |
 
 Only `.sanitized.txt` output may be copied into an evidence directory. Keep `.raw.txt` outside the repository and delete it securely after review according to the local lab procedure.
 
@@ -144,14 +144,14 @@ Only `.sanitized.txt` output may be copied into an evidence directory. Keep `.ra
 
 The Bastion evidence portion of Lab Phase 1 is complete only when:
 
-- S001 confirms the Host PC SSH tool is available;
+- retired-numbered-case confirms the Host PC SSH tool is available;
 - the Host PC can connect to the Bastion through the approved lab SSH path;
 - the Bastion returns hostname, user, and uptime evidence;
 - the SSH service reports active;
-- S009 hostname and applicable resolution evidence are collected;
+- retired-numbered-case hostname and applicable resolution evidence are collected;
 - actual addresses, usernames, and hostnames are replaced by approved mask placeholders;
-- sanitized files exist under the correct S008/S009 evidence paths;
-- S010 and repository validators confirm directory and safety rules;
+- sanitized files exist under the correct retired-numbered-case/retired-numbered-case evidence paths;
+- retired-numbered-case and repository validators confirm directory and safety rules;
 - raw evidence, credentials, private keys, tokens, and infrastructure identifiers remain outside the repository.
 
 ## Non-Production Disclaimer

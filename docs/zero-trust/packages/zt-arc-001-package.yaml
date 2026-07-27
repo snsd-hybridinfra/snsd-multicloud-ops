@@ -1,28 +1,20 @@
 {
   "package_id": "ZT-ARC-001",
-  "package_name": "Advanced-Maturity IaC, Configuration as Code, and Policy as Code Target Architecture with Optimal-Ready Extension Design",
+  "package_name": "Zero Trust Target Architecture Authority",
   "package_type": "ARCHITECTURE_GOVERNANCE",
   "phase": "CROSS_PHASE_GOVERNANCE",
+  "authority_status": "AUTHORITATIVE",
+  "flow_role": "SURROUNDS_PHASE_FLOW",
   "implementation_status": "DESIGN_ONLY",
   "validation_status": "LOCAL_VALIDATED",
+  "local_validation_status": "LOCAL_VALIDATED",
   "runtime_validation_status": "NOT_VALIDATED",
   "maturity_status": "UNASSESSED",
   "current_maturity": "UNASSESSED",
-  "target_maturity": "ADVANCED",
-  "advanced_claim": false,
-  "optimal_claim": false,
-  "optimal_ready": true,
-  "architecture_designation": "OPTIMAL_READY",
-  "architecture_designation_is_official_maturity": false,
-  "architecture_authority": "AUTHORITATIVE_AFTER_NORMALIZATION",
-  "authority_status": "AUTHORITATIVE",
-  "evidence_authority": "CODEX_EXECUTED_LOCAL",
-  "architecture_root": "docs/zero-trust/target-architecture/",
   "validator": "tools/validate_advanced_target_architecture.py",
+  "architecture_root": "docs/zero-trust/target-architecture/",
   "limitations": [
-    "No infrastructure or service is deployed.",
-    "No capability current state or maturity is promoted.",
-    "No future Optimal component is implemented.",
-    "Active monitoring runtime work is not modified or accepted by this package."
+    "Architecture is not a sequential Phase 1 package.",
+    "No infrastructure, service, runtime control, or maturity is established by this design."
   ]
 }

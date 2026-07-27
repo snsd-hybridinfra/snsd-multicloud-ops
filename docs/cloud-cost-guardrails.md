@@ -6,7 +6,7 @@ Floating IP path were operator-validated; AWS and Azure remain not started.**
 ## Purpose
 
 AWS and Azure are minimum, credit-bounded validation environments. OpenStack is
-the private-cloud validation axis. S005 proves only the supplied single-node
+the private-cloud validation axis. retired-numbered-case proves only the supplied single-node
 lab result; this document does not authorize provider spend or additional
 resource creation.
 

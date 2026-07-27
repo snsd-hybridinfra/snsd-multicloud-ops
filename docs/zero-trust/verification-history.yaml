@@ -1,15 +1,377 @@
 {
-  "metadata": {"environment":"BOUNDED_NON_PRODUCTION_LAB","history_version":"1.0.0","authority":"REVIEWED_EXISTING_EXECUTION_RECORDS","workflow_reference_semantics":"workflow_id binds the historical evidence to the registered CV evaluator; it does not assert that ZT-CV-WF-001 executed the predecessor package run","limitations":["Only executions with resolvable tracked evidence are included.","The predecessor source workflow identifier was not recorded except for ZT-AUTO-001; no missing source identifier is fabricated.","Date-only records use the documented UTC date boundary and do not fabricate a more precise time.","Each validator/workflow/scope group has one accepted history record, so continuity is at most EC3.","No entry is a scheduled trigger."]},
+  "metadata": {
+    "environment": "BOUNDED_NON_PRODUCTION_LAB",
+    "history_version": "1.0.0",
+    "authority": "REVIEWED_EXISTING_EXECUTION_RECORDS",
+    "workflow_reference_semantics": "workflow_id binds the historical evidence to the registered CV evaluator; it does not assert that ZT-CV-WF-001 executed the predecessor package run",
+    "limitations": [
+      "Only executions with resolvable tracked evidence are included.",
+      "The predecessor source workflow identifier was not recorded except for ZT-AUTO-001; no missing source identifier is fabricated.",
+      "Date-only records use the documented UTC date boundary and do not fabricate a more precise time.",
+      "Each validator/workflow/scope group has one accepted history record, so continuity is at most EC3.",
+      "No entry is a scheduled trigger."
+    ]
+  },
   "executions": [
-    {"execution_id":"ZTCV-HIST-FND-20260717-001","package_id":"ZT-FND-001","capability_ids":["ZT-3.1.1","ZT-3.4.1","ZT-4.1.1","ZT-4.3.1","ZT-7.1","ZT-8.2"],"validator_id":"ZTCV-VAL-FND","validator_version":"1.0.0","workflow_id":"ZT-CV-WF-001","execution_scope":"ZT_FND_001_BOUNDED_RESTRICTED_ENDPOINTS","execution_date":"2026-07-17T00:00:00Z","execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"MANUAL_LIVE_READ_ONLY","plan_hash":"NOT_RECORDED","result":"PASS","pass":92,"warn":0,"fail":0,"evidence_files":["docs/evidence/zero-trust/zt-fnd-001-validation.yaml"],"evidence_hashes":{"docs/evidence/zero-trust/zt-fnd-001-validation.yaml":"89fe954b5edf5b17977087e88d7920adf7c5e7dec30ded26ee384b207666934a"},"sanitization_status":"PASS","freshness_policy_id":"ZTCV-FRESH-LIVE","freshness_status":"FRESH","scheduled_trigger":false,"limitations":["One history record for this exact group."]},
-    {"execution_id":"ZTCV-HIST-NET-20260722-001","package_id":"ZT-NET-001","capability_ids":["ZT-3.1.1","ZT-3.4.1","ZT-4.1.1","ZT-4.3.1","ZT-7.1","ZT-8.2"],"validator_id":"ZTCV-VAL-NET","validator_version":"1.0.0","workflow_id":"ZT-CV-WF-001","execution_scope":"ZT_NET_001_PERSISTENT_DIRECTIONAL_ACL","execution_date":"2026-07-22T00:00:00Z","execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"MANUAL_LIVE_READ_ONLY","plan_hash":"NOT_RECORDED","result":"PASS","pass":39,"warn":0,"fail":0,"evidence_files":["docs/evidence/zero-trust/zt-net-001-validation.yaml"],"evidence_hashes":{"docs/evidence/zero-trust/zt-net-001-validation.yaml":"71ab00d757991450db8f107ee0b3723381304c2d216ea1e7e3185d4642498f14"},"sanitization_status":"PASS","freshness_policy_id":"ZTCV-FRESH-LIVE","freshness_status":"FRESH","scheduled_trigger":false,"limitations":["One history record for this exact group."]},
-    {"execution_id":"ZTCV-HIST-VIS-20260722-001","package_id":"ZT-VIS-001","capability_ids":["ZT-7.1","ZT-8.2"],"validator_id":"ZTCV-VAL-VIS","validator_version":"1.0.0","workflow_id":"ZT-CV-WF-001","execution_scope":"ZT_VIS_001_SANITIZED_PERSISTENT_STACK","execution_date":"2026-07-22T00:00:00Z","execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"MANUAL_LIVE_READ_ONLY","plan_hash":"NOT_RECORDED","result":"PASS","pass":8,"warn":0,"fail":0,"evidence_files":["docs/evidence/zero-trust/zt-vis-001-validation.yaml"],"evidence_hashes":{"docs/evidence/zero-trust/zt-vis-001-validation.yaml":"e36f7c16b928b0f979bbf4bdc6bc7c14789c59285a5f900d86f8a1bc012374cc"},"sanitization_status":"PASS","freshness_policy_id":"ZTCV-FRESH-LIVE","freshness_status":"FRESH","scheduled_trigger":false,"limitations":["Persistent service does not establish EC6 without time-separated freshness and failure history."]},
-    {"execution_id":"P1-ID-ENF-001-RETRY","package_id":"ZT-ID-001","capability_ids":["ZT-1.1.1","ZT-1.1.2","ZT-1.2.1","ZT-1.4.1","ZT-1.4.2"],"validator_id":"ZTCV-VAL-ID","validator_version":"1.1.0","workflow_id":"ZT-CV-WF-001","execution_scope":"ZT_ID_001_BOUNDED_NONPRODUCTION_ENDPOINT","execution_date":"2026-07-19T05:06:07Z","execution_authority":"USER_APPROVED_CODEX_EXECUTION","execution_mode":"MANUAL_BOUNDED_ENFORCEMENT","plan_hash":"NOT_RECORDED","result":"PASS","pass":62,"warn":0,"fail":0,"evidence_files":["docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml"],"evidence_hashes":{"docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml":"8bf81d12fc4db22343f1e041d6c015f64be6924e6ee35f7cd9bb67edc8b220ed"},"sanitization_status":"PASS","freshness_policy_id":"ZTCV-FRESH-LIVE","freshness_status":"FRESH","scheduled_trigger":false,"limitations":["One approved enforcement event is historical evidence, not CV mutation authority or repeatability."]},
-    {"execution_id":"ZTCV-HIST-DEV-20260722-001","package_id":"ZT-DEV-001","capability_ids":["ZT-2.1.1","ZT-2.3.1","ZT-2.4.2"],"validator_id":"ZTCV-VAL-DEV","validator_version":"1.0.0","workflow_id":"ZT-CV-WF-001","execution_scope":"ZT_DEV_001_ONE_MANDATORY_MONITORING_VM","execution_date":"2026-07-22T00:00:00Z","execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"MANUAL_LIVE_READ_ONLY","plan_hash":"NOT_RECORDED","result":"WARN","pass":1,"warn":2,"fail":0,"evidence_files":["docs/evidence/zero-trust/zt-dev-001-validation.yaml"],"evidence_hashes":{"docs/evidence/zero-trust/zt-dev-001-validation.yaml":"5020901c68f6d1000969a50cf1d1e95da954e18aa50b46284836edbb9d79166e"},"sanitization_status":"PASS","freshness_policy_id":"ZTCV-FRESH-LIVE","freshness_status":"FRESH","scheduled_trigger":false,"limitations":["Accepted predecessor warnings remain explicit."]},
-    {"execution_id":"ZTCV-HIST-APP-20260722-001","package_id":"ZT-APP-001","capability_ids":["ZT-5.4.1","ZT-5.4.2","ZT-5.5.1","ZT-5.5.2"],"validator_id":"ZTCV-VAL-APP","validator_version":"1.0.0","workflow_id":"ZT-CV-WF-001","execution_scope":"ZT_APP_001_UNCHANGED_ALLOY_PILOT","execution_date":"2026-07-22T00:00:00Z","execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"MANUAL_LIVE_READ_ONLY","plan_hash":"NOT_RECORDED","result":"WARN","pass":6,"warn":4,"fail":0,"evidence_files":["docs/evidence/zero-trust/zt-app-001-validation.yaml"],"evidence_hashes":{"docs/evidence/zero-trust/zt-app-001-validation.yaml":"3aaafe4ac32ea0d3e07d521f3ac1600ddbe7a470d5dadaedf46aba4046c7a1b9"},"sanitization_status":"PASS","freshness_policy_id":"ZTCV-FRESH-LIVE","freshness_status":"FRESH","scheduled_trigger":false,"limitations":["Accepted predecessor warnings remain explicit."]},
-    {"execution_id":"ZTCV-HIST-DATA-20260722-001","package_id":"ZT-DATA-001","capability_ids":["ZT-6.1.1","ZT-6.2.1","ZT-6.3.1","ZT-6.4.1","ZT-6.5.2"],"validator_id":"ZTCV-VAL-DATA","validator_version":"1.0.0","workflow_id":"ZT-CV-WF-001","execution_scope":"ZT_DATA_001_METADATA_AND_SYNTHETIC_RESTORE","execution_date":"2026-07-22T00:00:00Z","execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"MANUAL_LIVE_READ_ONLY","plan_hash":"NOT_RECORDED","result":"WARN","pass":6,"warn":1,"fail":0,"evidence_files":["docs/evidence/zero-trust/zt-data-001-validation.yaml"],"evidence_hashes":{"docs/evidence/zero-trust/zt-data-001-validation.yaml":"212259f4e5338c219ab47afdd5db6318083cfacc02519f9198e9f882c600fc7f"},"sanitization_status":"PASS","freshness_policy_id":"ZTCV-FRESH-LIVE","freshness_status":"FRESH","scheduled_trigger":false,"limitations":["Synthetic restore and detection-only DLP only."]},
-    {"execution_id":"ZTCV-HIST-SYS-20260722-001","package_id":"ZT-SYS-001","capability_ids":["ZT-4.1.1","ZT-4.2.1","ZT-4.2.2","ZT-4.3.1","ZT-4.4.1","ZT-7.1","ZT-8.1","ZT-8.2"],"validator_id":"ZTCV-VAL-SYS","validator_version":"1.0.0","workflow_id":"ZT-CV-WF-001","execution_scope":"ZT_SYS_001_SEVEN_SYSTEMS_FIXED_VALIDATORS","execution_date":"2026-07-22T03:47:12Z","execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"MANUAL_LIVE_READ_ONLY","plan_hash":"NOT_RECORDED","result":"WARN","pass":8,"warn":5,"fail":0,"evidence_files":["docs/evidence/zero-trust/zt-sys-001-validation.yaml"],"evidence_hashes":{"docs/evidence/zero-trust/zt-sys-001-validation.yaml":"9528f53d6da9b20200227fb4db266f2855391995e9a8f9b9a0048cc8f5d12575"},"sanitization_status":"PASS","freshness_policy_id":"ZTCV-FRESH-LIVE","freshness_status":"FRESH","scheduled_trigger":false,"limitations":["OpenStack CURRENT_DEGRADED and other accepted gaps remain explicit."]},
-    {"execution_id":"ZTA-20260722T041356Z-7e0a658a","package_id":"ZT-AUTO-001","capability_ids":["ZT-7.1","ZT-7.3","ZT-8.1","ZT-8.2","ZT-8.5","ZT-8.6"],"validator_id":"ZTCV-VAL-AUTO","validator_version":"1.0.0","workflow_id":"ZT-CV-WF-001","execution_scope":"ZT_AUTO_001_FIXED_R0_R3_CROSS_DOMAIN","execution_date":"2026-07-22T04:13:56.406129Z","execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"MANUAL_LIVE_READ_ONLY","plan_hash":"c64b56bfdb0831b91290f051ea385e4c7fefbe53afe665ac340e2545accaba32","result":"WARN","pass":4,"warn":4,"fail":0,"evidence_files":["docs/evidence/zero-trust/zt-auto-001-validation.yaml"],"evidence_hashes":{"docs/evidence/zero-trust/zt-auto-001-validation.yaml":"55f93e06798d57fc7f0d743a594461585d4ccc0e74ea516d6982f29810ef3a43"},"sanitization_status":"PASS","freshness_policy_id":"ZTCV-FRESH-LIVE","freshness_status":"FRESH","scheduled_trigger":false,"limitations":["One partial fixed-handler execution; no repeatability or schedule."]},
-    {"execution_id":"ZTA-20260722T045752Z-eb639d92","package_id":"ZT-CV-001","capability_ids":["ZT-7.1","ZT-8.1","ZT-8.2"],"validator_id":"ZTCV-VAL-CV-CONFIG","validator_version":"1.0.0","workflow_id":"ZT-CV-WF-001","execution_scope":"ZT_CV_001_BOUNDED_MANUAL_READ_ONLY_CROSS_DOMAIN","execution_date":"2026-07-22T04:57:52.159854Z","execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"EXECUTE_READ_ONLY","plan_hash":"72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624","result":"WARN","pass":8,"warn":2,"fail":0,"evidence_files":["docs/evidence/zero-trust/zt-cv-001-validation.yaml","docs/evidence/zero-trust/zt-cv-001-live-summary.sanitized.txt"],"evidence_hashes":{"docs/evidence/zero-trust/zt-cv-001-validation.yaml":"2124e28b7705dd897efe7f6a89c9da7597b40a0294f64906bf83d6290e030686","docs/evidence/zero-trust/zt-cv-001-live-summary.sanitized.txt":"c8c09060a359ecaadf79211a8770958ec38b7cacb7c1a341086497e217e3fc02"},"sanitization_status":"PASS","freshness_policy_id":"ZTCV-FRESH-LIVE","freshness_status":"FRESH","scheduled_trigger":false,"limitations":["One manual PARTIAL cycle is EC3 only; warnings retain reference-frequency and OpenStack CURRENT_DEGRADED boundaries."]}
+    {
+      "execution_id": "ZTCV-HIST-FND-20260717-001",
+      "package_id": "ZT-FND-001",
+      "capability_ids": [
+        "ZT-3.1.1",
+        "ZT-3.4.1",
+        "ZT-4.1.1",
+        "ZT-4.3.1",
+        "ZT-7.1",
+        "ZT-8.2"
+      ],
+      "validator_id": "ZTCV-VAL-FND",
+      "validator_version": "1.0.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_FND_001_BOUNDED_RESTRICTED_ENDPOINTS",
+      "execution_date": "2026-07-17T00:00:00Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "MANUAL_LIVE_READ_ONLY",
+      "plan_hash": "NOT_RECORDED",
+      "result": "PASS",
+      "pass": 92,
+      "warn": 0,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-fnd-001-validation.yaml"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-fnd-001-validation.yaml": "d18632ad465daa142167ea6d9a4c7baf8fdb28af7ae68ec12d6c016633d87990"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "One history record for this exact group."
+      ]
+    },
+    {
+      "execution_id": "ZTCV-HIST-NET-20260722-001",
+      "package_id": "ZT-NET-001",
+      "capability_ids": [
+        "ZT-3.1.1",
+        "ZT-3.4.1",
+        "ZT-4.1.1",
+        "ZT-4.3.1",
+        "ZT-7.1",
+        "ZT-8.2"
+      ],
+      "validator_id": "ZTCV-VAL-NET",
+      "validator_version": "1.0.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_NET_001_PERSISTENT_DIRECTIONAL_ACL",
+      "execution_date": "2026-07-22T00:00:00Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "MANUAL_LIVE_READ_ONLY",
+      "plan_hash": "NOT_RECORDED",
+      "result": "PASS",
+      "pass": 39,
+      "warn": 0,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-net-001-validation.yaml": "71ab00d757991450db8f107ee0b3723381304c2d216ea1e7e3185d4642498f14"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "One history record for this exact group."
+      ]
+    },
+    {
+      "execution_id": "ZTCV-HIST-VIS-20260722-001",
+      "package_id": "ZT-VIS-001",
+      "capability_ids": [
+        "ZT-7.1",
+        "ZT-8.2"
+      ],
+      "validator_id": "ZTCV-VAL-VIS",
+      "validator_version": "1.0.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_VIS_001_SANITIZED_PERSISTENT_STACK",
+      "execution_date": "2026-07-22T00:00:00Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "MANUAL_LIVE_READ_ONLY",
+      "plan_hash": "NOT_RECORDED",
+      "result": "PASS",
+      "pass": 8,
+      "warn": 0,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-vis-001-validation.yaml"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-vis-001-validation.yaml": "e36f7c16b928b0f979bbf4bdc6bc7c14789c59285a5f900d86f8a1bc012374cc"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "Persistent service does not establish EC6 without time-separated freshness and failure history."
+      ]
+    },
+    {
+      "execution_id": "P1-ID-ENF-001-RETRY",
+      "package_id": "ZT-ID-001",
+      "capability_ids": [
+        "ZT-1.1.1",
+        "ZT-1.1.2",
+        "ZT-1.2.1",
+        "ZT-1.4.1",
+        "ZT-1.4.2"
+      ],
+      "validator_id": "ZTCV-VAL-ID",
+      "validator_version": "1.1.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_ID_001_BOUNDED_NONPRODUCTION_ENDPOINT",
+      "execution_date": "2026-07-19T05:06:07Z",
+      "execution_authority": "USER_APPROVED_CODEX_EXECUTION",
+      "execution_mode": "MANUAL_BOUNDED_ENFORCEMENT",
+      "plan_hash": "NOT_RECORDED",
+      "result": "PASS",
+      "pass": 62,
+      "warn": 0,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml": "8bf81d12fc4db22343f1e041d6c015f64be6924e6ee35f7cd9bb67edc8b220ed"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "One approved enforcement event is historical evidence, not CV mutation authority or repeatability."
+      ]
+    },
+    {
+      "execution_id": "ZTCV-HIST-DEV-20260722-001",
+      "package_id": "ZT-DEV-001",
+      "capability_ids": [
+        "ZT-2.1.1",
+        "ZT-2.3.1",
+        "ZT-2.4.2"
+      ],
+      "validator_id": "ZTCV-VAL-DEV",
+      "validator_version": "1.0.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_DEV_001_ONE_MANDATORY_MONITORING_VM",
+      "execution_date": "2026-07-22T00:00:00Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "MANUAL_LIVE_READ_ONLY",
+      "plan_hash": "NOT_RECORDED",
+      "result": "WARN",
+      "pass": 1,
+      "warn": 2,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-dev-001-validation.yaml"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-dev-001-validation.yaml": "5020901c68f6d1000969a50cf1d1e95da954e18aa50b46284836edbb9d79166e"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "Accepted predecessor warnings remain explicit."
+      ]
+    },
+    {
+      "execution_id": "ZTCV-HIST-APP-20260722-001",
+      "package_id": "ZT-APP-001",
+      "capability_ids": [
+        "ZT-5.4.1",
+        "ZT-5.4.2",
+        "ZT-5.5.1",
+        "ZT-5.5.2"
+      ],
+      "validator_id": "ZTCV-VAL-APP",
+      "validator_version": "1.0.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_APP_001_UNCHANGED_ALLOY_PILOT",
+      "execution_date": "2026-07-22T00:00:00Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "MANUAL_LIVE_READ_ONLY",
+      "plan_hash": "NOT_RECORDED",
+      "result": "WARN",
+      "pass": 6,
+      "warn": 4,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-app-001-validation.yaml"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-app-001-validation.yaml": "3aaafe4ac32ea0d3e07d521f3ac1600ddbe7a470d5dadaedf46aba4046c7a1b9"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "Accepted predecessor warnings remain explicit."
+      ]
+    },
+    {
+      "execution_id": "ZTCV-HIST-DATA-20260722-001",
+      "package_id": "ZT-DATA-001",
+      "capability_ids": [
+        "ZT-6.1.1",
+        "ZT-6.2.1",
+        "ZT-6.3.1",
+        "ZT-6.4.1",
+        "ZT-6.5.2"
+      ],
+      "validator_id": "ZTCV-VAL-DATA",
+      "validator_version": "1.0.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_DATA_001_METADATA_AND_SYNTHETIC_RESTORE",
+      "execution_date": "2026-07-22T00:00:00Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "MANUAL_LIVE_READ_ONLY",
+      "plan_hash": "NOT_RECORDED",
+      "result": "WARN",
+      "pass": 6,
+      "warn": 1,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-data-001-validation.yaml"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-data-001-validation.yaml": "212259f4e5338c219ab47afdd5db6318083cfacc02519f9198e9f882c600fc7f"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "Synthetic restore and detection-only DLP only."
+      ]
+    },
+    {
+      "execution_id": "ZTCV-HIST-SYS-20260722-001",
+      "package_id": "ZT-SYS-001",
+      "capability_ids": [
+        "ZT-4.1.1",
+        "ZT-4.2.1",
+        "ZT-4.2.2",
+        "ZT-4.3.1",
+        "ZT-4.4.1",
+        "ZT-7.1",
+        "ZT-8.1",
+        "ZT-8.2"
+      ],
+      "validator_id": "ZTCV-VAL-SYS",
+      "validator_version": "1.0.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_SYS_001_SEVEN_SYSTEMS_FIXED_VALIDATORS",
+      "execution_date": "2026-07-22T03:47:12Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "MANUAL_LIVE_READ_ONLY",
+      "plan_hash": "NOT_RECORDED",
+      "result": "WARN",
+      "pass": 8,
+      "warn": 5,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-sys-001-validation.yaml"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-sys-001-validation.yaml": "9528f53d6da9b20200227fb4db266f2855391995e9a8f9b9a0048cc8f5d12575"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "OpenStack CURRENT_DEGRADED and other accepted gaps remain explicit."
+      ]
+    },
+    {
+      "execution_id": "ZTA-20260722T041356Z-7e0a658a",
+      "package_id": "ZT-AUTO-001",
+      "capability_ids": [
+        "ZT-7.1",
+        "ZT-7.3",
+        "ZT-8.1",
+        "ZT-8.2",
+        "ZT-8.5",
+        "ZT-8.6"
+      ],
+      "validator_id": "ZTCV-VAL-AUTO",
+      "validator_version": "1.0.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_AUTO_001_FIXED_R0_R3_CROSS_DOMAIN",
+      "execution_date": "2026-07-22T04:13:56.406129Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "MANUAL_LIVE_READ_ONLY",
+      "plan_hash": "c64b56bfdb0831b91290f051ea385e4c7fefbe53afe665ac340e2545accaba32",
+      "result": "WARN",
+      "pass": 4,
+      "warn": 4,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-auto-001-validation.yaml"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-auto-001-validation.yaml": "55f93e06798d57fc7f0d743a594461585d4ccc0e74ea516d6982f29810ef3a43"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "One partial fixed-handler execution; no repeatability or schedule."
+      ]
+    },
+    {
+      "execution_id": "ZTA-20260722T045752Z-eb639d92",
+      "package_id": "ZT-CV-001",
+      "capability_ids": [
+        "ZT-7.1",
+        "ZT-8.1",
+        "ZT-8.2"
+      ],
+      "validator_id": "ZTCV-VAL-CV-CONFIG",
+      "validator_version": "1.0.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_CV_001_BOUNDED_MANUAL_READ_ONLY_CROSS_DOMAIN",
+      "execution_date": "2026-07-22T04:57:52.159854Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "EXECUTE_READ_ONLY",
+      "plan_hash": "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624",
+      "result": "WARN",
+      "pass": 8,
+      "warn": 2,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-cv-001-validation.yaml",
+        "docs/evidence/zero-trust/zt-cv-001-live-summary.sanitized.txt"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-cv-001-validation.yaml": "2124e28b7705dd897efe7f6a89c9da7597b40a0294f64906bf83d6290e030686",
+        "docs/evidence/zero-trust/zt-cv-001-live-summary.sanitized.txt": "c8c09060a359ecaadf79211a8770958ec38b7cacb7c1a341086497e217e3fc02"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "One manual PARTIAL cycle is EC3 only; warnings retain reference-frequency and OpenStack CURRENT_DEGRADED boundaries."
+      ]
+    }
   ]
 }

@@ -6,7 +6,7 @@
 - HEAD/origin: `593f1f2c270a6338043d57cda5a4cea1d43f9342`
 - Opening working tree: 13 tracked modifications, 105 untracked files, zero staged files
 - Runtime: zero tracked files; 50 ignored `.runtime/zero-trust/` files
-- Scenarios: S001-S050 exactly; no later scenario ID
+- Scenarios: retired numbered scenario framework exactly; no later scenario ID
 - Concurrent writer/Git operation: none; five-second rescan stable
 - Handoff fingerprint: `f96168169dc67a6280566cf2d64650737de4b6a8fa5bc02cc63943c4a6c7e5ff`
 - Repository guard observation: `7df4af7d017ee1d72d6adac4048dbcb7408d0e5fa9db55486e7606bd9dfdca67`
@@ -38,13 +38,13 @@ future-phase design records; root `runbooks/` remains secondary.
 - Runbook validator: 18 PASS / 0 WARN / 0 FAIL, strict exit 0
 - Targeted runbook tests: 29/29 PASS
 - Repository guard regression: 8/8 PASS
-- S021 strict parser regression: 9/9 PASS; live S021 not run
+- retired-numbered-case strict parser regression: 9/9 PASS; live retired-numbered-case not run
 - Zero Trust: 34/34 PASS
 - Synchronization: 5/5 PASS
 - Generated report check: PASS; generation mode not run
 - Architecture: 28/28 PASS
 - Repository structure: PASS
-- Scenario aggregate: 50 evaluated; 15 PASS / 5 WARN / 30 FAIL; zero integration failures; exit 1; source unchanged
+- Scenario aggregate: 50 evaluated; retired aggregate result distribution; zero integration failures; exit 1; source unchanged
 - Full Python suite: 95/95 PASS
 - Secret/runtime/scenario lock: PASS
 

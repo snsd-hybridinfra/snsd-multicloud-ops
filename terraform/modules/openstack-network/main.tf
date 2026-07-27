@@ -30,7 +30,7 @@ resource "openstack_networking_router_interface_v2" "private" {
 
 resource "openstack_networking_secgroup_v2" "baseline" {
   name        = var.security_group_name
-  description = "Non-production S005 baseline security group placeholder"
+  description = "Non-production retired-numbered-case baseline security group placeholder"
   tags        = var.tags
 }
 

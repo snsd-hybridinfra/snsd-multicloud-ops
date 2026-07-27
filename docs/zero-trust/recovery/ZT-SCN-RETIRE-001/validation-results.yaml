@@ -1,0 +1,31 @@
+{
+  "action_id": "ZT-SCN-RETIRE-001",
+  "status": "COMPLETE",
+  "validation_date": "2026-07-27",
+  "runtime_executed": false,
+  "live_target_changed": false,
+  "package_status_promoted": false,
+  "maturity_assessed": false,
+  "compliance_assessed": false,
+  "results": [
+    {"gate": "yaml_and_json_parsing", "result": "PASS", "details": "173 JSON-compatible YAML, JSON, schema, evidence, and fixture authorities parsed; no failures"},
+    {"gate": "json_schema_validation", "result": "PASS", "details": "catalog, baseline, backlog, package-flow, identity, architecture, profile, policy, and evidence schemas passed"},
+    {"gate": "package_flow_tests", "result": "PASS", "details": "canonical order, uniqueness, predecessor, and Phase 1 boundary tests passed"},
+    {"gate": "scenario_retirement_tests", "result": "PASS", "details": "retirement validator 9/9 checks and regression tests passed"},
+    {"gate": "zero_trust_validator", "result": "PASS", "details": "39 passed, 0 warnings, 0 failures"},
+    {"gate": "zero_trust_synchronization", "result": "PASS", "details": "7 passed, 0 failures"},
+    {"gate": "report_check_mode", "result": "PASS", "details": "generated current-baseline view synchronized"},
+    {"gate": "architecture_validator", "result": "PASS", "details": "27 passed, 0 warnings, 0 failures"},
+    {"gate": "phase_1_runbook_validator", "result": "PASS", "details": "4 passed, 0 failures"},
+    {"gate": "repository_structure_validator", "result": "PASS", "details": "package authorities present; retired authorities absent"},
+    {"gate": "package_specific_validators", "result": "PASS", "details": "consolidated package validators passed; ZT-ID-001 19 passed, 0 warnings, 0 failures"},
+    {"gate": "python_test_suite", "result": "PASS", "details": "299 tests passed"},
+    {"gate": "powershell_syntax", "result": "PASS", "details": "19 retained scripts parsed with 0 errors"},
+    {"gate": "secret_and_privacy", "result": "PASS", "details": "0 secret, private-key, credential, MAC inventory, or UUID collection findings"},
+    {"gate": "tracked_runtime", "result": "PASS", "details": "0 tracked runtime files"},
+    {"gate": "stale_numbered_reference", "result": "PASS", "details": "0 active numbered references outside the retirement action and migration document"},
+    {"gate": "deleted_path_existence", "result": "PASS", "details": "numbered definitions, dedicated evidence roots, root runbooks, aggregate tools, and scenario-only helpers absent"},
+    {"gate": "git_diff_check", "result": "PASS", "details": "no whitespace errors"},
+    {"gate": "repository_mutation", "result": "PASS", "details": "read-only validation fingerprints remained unchanged"}
+  ]
+}

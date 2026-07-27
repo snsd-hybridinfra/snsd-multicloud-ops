@@ -13,4 +13,4 @@ networking, and operator access until a separate deletion approval exists.
 Temporary image-transfer infrastructure was already removed after deployment.
 
 Preserve OpenStack, EVE-NG, router configuration, all existing validators,
-operator access, unrelated Docker images or volumes, and S001-S050.
+operator access, unrelated Docker images or volumes, and retired numbered scenario framework.

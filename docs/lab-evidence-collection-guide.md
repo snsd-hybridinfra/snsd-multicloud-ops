@@ -1,11 +1,11 @@
 # Lab Evidence Collection Guide
 
-**Status: ACTIVE — S002 has READY authoritative sanitized runtime evidence;
+**Status: ACTIVE — retired-numbered-case has READY authoritative sanitized runtime evidence;
 all other scenario evidence remains subject to the truth-state reset.**
 
 ## Purpose
 
-This guide defines how evidence from the disposable reference lab is collected, sanitized, named, and mapped to the existing S001-S050 directories. Collection must follow the owning scenario's validation plan and the rules in `docs/lab-sanitization-rules.md`.
+This guide defines how evidence from the disposable reference lab is collected, sanitized, named, and mapped to the existing retired numbered scenario framework directories. Collection must follow the owning scenario's validation plan and the rules in `docs/lab-sanitization-rules.md`.
 
 ## Collection Workflow
 
@@ -34,7 +34,7 @@ YYYYMMDD-HHMM-<scenario-id>-<evidence-type>.txt
 Example with placeholders:
 
 ```text
-YYYYMMDD-HHMM-S021-node-readiness.txt
+YYYYMMDD-HHMM-retired-numbered-case-node-readiness.txt
 ```
 
 ## Screenshots
@@ -72,7 +72,7 @@ Use the actual text format when YAML is not appropriate, while preserving the sa
 - Keep the exit code, PASS/WARN/FAIL summary, and mapped check IDs.
 - Do not turn a static or sample result into a claim of live validation.
 - If a live lab step was performed manually, label the sanitized evidence mode explicitly and retain the rollback/post-check result where applicable.
-- Repository-wide results belong under S050; scenario-specific results remain under their owning scenario.
+- Repository-wide results belong under retired-numbered-case; scenario-specific results remain under their owning scenario.
 
 ## Evidence Path Mapping
 

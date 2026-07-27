@@ -1,6 +1,6 @@
 # Sample Service Ingress
 
-NON-PRODUCTION EXAMPLE for S023 static routing validation.
+NON-PRODUCTION EXAMPLE for retired-numbered-case static routing validation.
 
 - Namespace: `snsd-example`
 - Host: `app.example.internal`, reserved for local documentation
@@ -11,4 +11,3 @@ NON-PRODUCTION EXAMPLE for S023 static routing validation.
 - No wildcard host, endpoint URL, public IP, certificate, or private key
 
 Do not apply this example without a separate implementation review.
-

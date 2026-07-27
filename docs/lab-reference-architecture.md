@@ -94,15 +94,15 @@ occurred.
 
 ## Evidence State
 
-- S002 contains the validated EVE-NG routing/NAT/ACL foundation evidence.
-- S005 contains operator-executed OpenStack AIO control-plane and end-to-end
+- retired-numbered-case contains the validated EVE-NG routing/NAT/ACL foundation evidence.
+- retired-numbered-case contains operator-executed OpenStack AIO control-plane and end-to-end
   provider/tenant/Floating-IP evidence normalized by Codex.
 - Kubernetes, MariaDB, monitoring, backup/recovery, AWS, and Azure remain
   unvalidated.
 - Previous static, sample, synthetic, or provenance-uncertain artifacts remain
   quarantined as non-evidence.
 
-This baseline does not create S051 or imply completion of unrelated scenarios.
+This baseline does not create successor numbered scenario or imply completion of unrelated scenarios.
 
 ## Non-Production Disclaimer
 

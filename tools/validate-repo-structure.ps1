@@ -1,314 +1,86 @@
 $ErrorActionPreference = "Stop"
+Set-StrictMode -Version Latest
 
-function Write-Pass {
-    param([string] $Message)
-    Write-Host "[PASS] $Message"
-}
+$repositoryRoot = Split-Path -Parent $PSScriptRoot
+$failures = [System.Collections.Generic.List[string]]::new()
 
-function Write-Fail {
-    param([string] $Message)
-    Write-Host "[FAIL] $Message"
-}
-
-function Add-MissingPath {
-    param(
-        [System.Collections.Generic.List[string]] $Missing,
-        [string] $Path,
-        [string] $Type
-    )
-
-    $Missing.Add("$Type missing: $Path") | Out-Null
-}
-
-function Test-FileContains {
-    param(
-        [System.Collections.Generic.List[string]] $Missing,
-        [string] $Path,
-        [string[]] $RequiredText,
-        [string] $Description
-    )
-
-    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
-        Write-Fail "Tracking validation skipped; file missing: $Path"
-        $Missing.Add("tracking validation skipped; file missing: $Path") | Out-Null
-        return
-    }
-
-    $content = Get-Content -LiteralPath $Path -Raw
-    $missingText = @()
-
-    foreach ($text in $RequiredText) {
-        if ($content -notlike "*$text*") {
-            $missingText += $text
-        }
-    }
-
-    if ($missingText.Count -eq 0) {
-        Write-Pass "Tracking document validation passed: $Description"
-    }
-    else {
-        Write-Fail "Tracking document validation failed: $Description"
-        foreach ($text in $missingText) {
-            $Missing.Add("content missing in ${Path}: $text") | Out-Null
-        }
-    }
-}
-
-$repoRootMarkers = @("README.md", "AGENTS.md", ".gitignore", "docs", "scenarios", "evidence", "tools")
-$rootMarkerFailures = @()
-
-foreach ($marker in $repoRootMarkers) {
-    if (-not (Test-Path -LiteralPath $marker)) {
-        $rootMarkerFailures += $marker
-    }
-}
-
-if ($rootMarkerFailures.Count -gt 0) {
-    Write-Fail "Script must be run from the repository root."
-    Write-Host "Missing repository root markers:"
-    foreach ($marker in $rootMarkerFailures) {
-        Write-Host "  - $marker"
-    }
-    exit 1
-}
-
-$missing = [System.Collections.Generic.List[string]]::new()
-
-$requiredTopLevelFiles = @(
+$requiredFiles = @(
     "README.md",
     "AGENTS.md",
-    ".gitignore"
-)
-
-$requiredDocs = @(
     "docs/scope-lock.md",
     "docs/excluded-scope.md",
-    "docs/scenario-model.md",
     "docs/evidence-model.md",
-    "docs/naming-rules.md",
-    "docs/codex-workflow.md",
-    "docs/scenario-template.md",
     "docs/progress-tracker.md",
-    "docs/scenario-status-matrix.md",
-    "docs/evidence-status-matrix.md",
-    "docs/validation-checklist.md",
-    "docs/implementation-log.md",
-    "docs/risk-register.md"
+    "docs/zero-trust/package-flow.yaml",
+    "schemas/zero-trust-package-flow.schema.json",
+    "tools/validate_scenario_retirement.py",
+    "tools/validate_zero_trust.py",
+    "tools/check_zero_trust_sync.py",
+    "tools/validate_phase1_runbook_baseline.py",
+    "docs/runbooks/phase-1/runbook-manifest.yaml"
 )
 
-$requiredTopLevelDirs = @(
-    "docs",
+$packageIds = @("zt-fnd-001", "zt-net-001", "zt-vis-001", "zt-id-001", "zt-cv-001", "zt-rv-001", "zt-sch-001", "zt-arc-001")
+foreach ($packageId in $packageIds) {
+    $requiredFiles += "docs/zero-trust/packages/$packageId-package.yaml"
+}
+
+$retiredPaths = @(
     "scenarios",
-    "evidence",
-    "terraform",
-    "ansible",
-    "kubernetes",
-    "eve-ng",
-    "observability",
-    "ml-security",
-    "security-baseline",
-    "traffic-management",
-    "policy",
-    "runbooks",
-    "cost-governance",
-    "tools"
-)
-
-$requiredScenarioLevels = @(
-    "scenarios/L1-foundation",
-    "scenarios/L2-security-baseline",
-    "scenarios/L3-service-operations",
-    "scenarios/L4-failure-recovery",
-    "scenarios/L5-governance-intelligent-ops"
-)
-
-$requiredEvidenceLevels = @(
     "evidence/L1-foundation",
     "evidence/L2-security-baseline",
     "evidence/L3-service-operations",
     "evidence/L4-failure-recovery",
-    "evidence/L5-governance-intelligent-ops"
+    "evidence/L5-governance-intelligent-ops",
+    "runbooks",
+    "tools/validate-all-scenarios.ps1",
+    "tools/validate-scenario-quality.ps1",
+    "tools/generate-final-evidence-report.ps1"
 )
 
-$requiredScenarioFiles = @(
-    "README.md",
-    "objective.md",
-    "scope.md",
-    "architecture.md",
-    "prerequisites.md",
-    "execution-plan.md",
-    "validation-plan.md",
-    "expected-result.md",
-    "failure-condition.md",
-    "rollback-plan.md",
-    "evidence-map.md"
-)
-
-$requiredEvidencePaths = @(
-    "commands.md",
-    "validation.md",
-    "logs/.gitkeep",
-    "screenshots/.gitkeep",
-    "configs/.gitkeep"
-)
-
-foreach ($path in $requiredTopLevelFiles) {
-    if (Test-Path -LiteralPath $path -PathType Leaf) {
-        Write-Pass "Required file exists: $path"
-    }
-    else {
-        Write-Fail "Required file missing: $path"
-        Add-MissingPath -Missing $missing -Path $path -Type "file"
-    }
-}
-
-foreach ($path in $requiredDocs) {
-    if (Test-Path -LiteralPath $path -PathType Leaf) {
-        Write-Pass "Required doc exists: $path"
-    }
-    else {
-        Write-Fail "Required doc missing: $path"
-        Add-MissingPath -Missing $missing -Path $path -Type "file"
-    }
-}
-
-foreach ($path in $requiredTopLevelDirs) {
-    if (Test-Path -LiteralPath $path -PathType Container) {
-        Write-Pass "Required directory exists: $path"
-    }
-    else {
-        Write-Fail "Required directory missing: $path"
-        Add-MissingPath -Missing $missing -Path $path -Type "directory"
-    }
-}
-
-foreach ($path in $requiredScenarioLevels) {
-    if (Test-Path -LiteralPath $path -PathType Container) {
-        Write-Pass "Scenario level exists: $path"
-    }
-    else {
-        Write-Fail "Scenario level missing: $path"
-        Add-MissingPath -Missing $missing -Path $path -Type "directory"
-    }
-}
-
-foreach ($path in $requiredEvidenceLevels) {
-    if (Test-Path -LiteralPath $path -PathType Container) {
-        Write-Pass "Evidence level exists: $path"
-    }
-    else {
-        Write-Fail "Evidence level missing: $path"
-        Add-MissingPath -Missing $missing -Path $path -Type "directory"
-    }
-}
-
-$scenarioDirs = @()
-if (Test-Path -LiteralPath "scenarios" -PathType Container) {
-    $scenarioDirs = @(Get-ChildItem -LiteralPath "scenarios" -Directory -Recurse | Where-Object { $_.Name -match "^S\d{3}-.+" })
-}
-
-$evidenceDirs = @()
-if (Test-Path -LiteralPath "evidence" -PathType Container) {
-    $evidenceDirs = @(Get-ChildItem -LiteralPath "evidence" -Directory -Recurse | Where-Object { $_.Name -match "^S\d{3}-.+" })
-}
-
-Write-Host "Scenario directory count: $($scenarioDirs.Count)"
-Write-Host "Evidence directory count: $($evidenceDirs.Count)"
-
-if ($scenarioDirs.Count -eq 50) {
-    Write-Pass "Scenario directory count is 50."
-}
-else {
-    Write-Fail "Scenario directory count is $($scenarioDirs.Count); expected 50."
-    $missing.Add("count mismatch: scenarios expected 50, found $($scenarioDirs.Count)") | Out-Null
-}
-
-if ($evidenceDirs.Count -eq 50) {
-    Write-Pass "Evidence directory count is 50."
-}
-else {
-    Write-Fail "Evidence directory count is $($evidenceDirs.Count); expected 50."
-    $missing.Add("count mismatch: evidence expected 50, found $($evidenceDirs.Count)") | Out-Null
-}
-
-foreach ($dir in $scenarioDirs) {
-    foreach ($file in $requiredScenarioFiles) {
-        $path = Join-Path -Path $dir.FullName -ChildPath $file
+Push-Location $repositoryRoot
+try {
+    foreach ($path in $requiredFiles) {
         if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
-            $relativePath = Join-Path -Path $dir.FullName.Substring((Get-Location).Path.Length + 1) -ChildPath $file
-            Write-Fail "Scenario file missing: $relativePath"
-            Add-MissingPath -Missing $missing -Path $relativePath -Type "file"
+            $failures.Add("required file missing: $path") | Out-Null
         }
     }
-}
-
-foreach ($dir in $evidenceDirs) {
-    foreach ($item in $requiredEvidencePaths) {
-        $path = Join-Path -Path $dir.FullName -ChildPath $item
-        if (-not (Test-Path -LiteralPath $path)) {
-            $relativePath = Join-Path -Path $dir.FullName.Substring((Get-Location).Path.Length + 1) -ChildPath $item
-            Write-Fail "Evidence path missing: $relativePath"
-            Add-MissingPath -Missing $missing -Path $relativePath -Type "path"
+    foreach ($path in $retiredPaths) {
+        if (Test-Path -LiteralPath $path) {
+            $failures.Add("retired authority remains: $path") | Out-Null
         }
     }
+
+    $flow = Get-Content -LiteralPath "docs/zero-trust/package-flow.yaml" -Raw | ConvertFrom-Json
+    $expectedFlow = @("ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001", "ZT-CV-001", "ZT-RV-001", "ZT-SCH-001", "PHASE_1_ACCEPTANCE")
+    if (@(Compare-Object -ReferenceObject $expectedFlow -DifferenceObject @($flow.phase_1_sequence) -SyncWindow 0).Count -ne 0) {
+        $failures.Add("canonical package flow differs") | Out-Null
+    }
+    if ($flow.phase_1_acceptance.completion_status -ne "NOT_COMPLETE" -or $flow.phase_1_acceptance.scope_boundary -ne "ZT-SCH-001") {
+        $failures.Add("Phase 1 acceptance boundary differs") | Out-Null
+    }
+
+    $trackedRuntime = @(git ls-files .runtime)
+    if ($LASTEXITCODE -ne 0) {
+        $failures.Add("git ls-files .runtime failed") | Out-Null
+    }
+    elseif ($trackedRuntime.Count -ne 0) {
+        $failures.Add("tracked runtime files found: $($trackedRuntime -join ', ')") | Out-Null
+    }
+}
+finally {
+    Pop-Location
 }
 
-Write-Host "Tracking document validation result:"
-
-Test-FileContains `
-    -Missing $missing `
-    -Path "docs/scenario-status-matrix.md" `
-    -RequiredText @("S001", "S050") `
-    -Description "scenario status matrix contains S001 and S050"
-
-Test-FileContains `
-    -Missing $missing `
-    -Path "docs/evidence-status-matrix.md" `
-    -RequiredText @("S001", "S050") `
-    -Description "evidence status matrix contains S001 and S050"
-
-Test-FileContains `
-    -Missing $missing `
-    -Path "docs/progress-tracker.md" `
-    -RequiredText @("L1", "L2", "L3", "L4", "L5") `
-    -Description "progress tracker contains L1 through L5"
-
-Test-FileContains `
-    -Missing $missing `
-    -Path "docs/risk-register.md" `
-    -RequiredText @("OneDrive sync conflict") `
-    -Description "risk register contains OneDrive sync conflict"
-
-Test-FileContains `
-    -Missing $missing `
-    -Path "AGENTS.md" `
-    -RequiredText @("Tracking File Update Rule") `
-    -Description "AGENTS.md contains Tracking File Update Rule"
-
-Write-Host "Zero Trust governance validation result:"
-$powerShellExecutable = (Get-Process -Id $PID).Path
-$zeroTrustValidator = Join-Path -Path $PSScriptRoot -ChildPath "validate-zero-trust.ps1"
-$zeroTrustOutput = @(& $powerShellExecutable -NoProfile -ExecutionPolicy Bypass -File $zeroTrustValidator 2>&1)
-foreach ($line in $zeroTrustOutput) {
-    Write-Host $line
-}
-if ($LASTEXITCODE -eq 0) {
-    Write-Pass "Zero Trust governance validation passed."
-}
-else {
-    Write-Fail "Zero Trust governance validation failed with exit code $LASTEXITCODE."
-    $missing.Add("Zero Trust governance validation failed") | Out-Null
+if ($failures.Count -gt 0) {
+    foreach ($failure in $failures) {
+        Write-Host "[FAIL] $failure"
+    }
+    Write-Host "Repository structure summary: failed=$($failures.Count)"
+    exit 1
 }
 
-if ($missing.Count -eq 0) {
-    Write-Pass "Repository structure validation passed."
-    exit 0
-}
-
-Write-Fail "Repository structure validation failed."
-Write-Host "Missing paths and validation errors:"
-foreach ($item in $missing) {
-    Write-Host "  - $item"
-}
-
-exit 1
+Write-Host "[PASS] Required package authorities, schemas, validators, evidence contracts, and runbooks are present."
+Write-Host "[PASS] Retired numbered-scenario authorities and tracked runtime are absent."
+Write-Host "Repository structure summary: failed=0"
+exit 0

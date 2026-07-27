@@ -15,6 +15,6 @@ This document defines a non-production repository baseline. It contains no real 
 
 ## Evidence Collection Model
 
-- Record repository directive, policy, root-password safety, private-key safety, and execution-boundary results at `<evidence-path>` through the S013 generated evidence.
+- Record repository directive, policy, root-password safety, private-key safety, and execution-boundary results at `<evidence-path>` through the retired-numbered-case generated evidence.
 - Do not capture usernames, root-login attempts, passwords, keys, credentials, private paths, or live authentication output.
-- Key authentication and password-login denial remain in S011 and S012.
+- Key authentication and password-login denial remain in retired-numbered-case and retired-numbered-case.

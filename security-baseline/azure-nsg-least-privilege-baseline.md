@@ -21,7 +21,7 @@ Egress must be documented and justified. A broad egress destination is not impli
 
 ## Terraform Boundary
 
-The existing `azurerm_network_security_group` and `azurerm_subnet_network_security_group_association` resources are safe structural placeholders. An `azurerm_network_security_rule` is documented as a future implementation placeholder only; S015 does not add or apply deployable rules.
+The existing `azurerm_network_security_group` and `azurerm_subnet_network_security_group_association` resources are safe structural placeholders. An `azurerm_network_security_rule` is documented as a future implementation placeholder only; retired-numbered-case does not add or apply deployable rules.
 
 ## Evidence Collection Model
 
@@ -29,4 +29,3 @@ The existing `azurerm_network_security_group` and `azurerm_subnet_network_securi
 - Store the generated log and summary below `<evidence-path>`.
 - Record every check by stable check ID.
 - Reject real credentials, identity values, state, variable values, public addresses, and secret material.
-

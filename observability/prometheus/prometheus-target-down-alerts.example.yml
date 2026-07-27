@@ -8,7 +8,7 @@ groups:
         for: 2m
         labels:
           severity: warning
-          scenario: S036
+          scenario: retired-numbered-case
         annotations:
           summary: "Target down placeholder"
           description: "A symbolic target is down for the placeholder duration."

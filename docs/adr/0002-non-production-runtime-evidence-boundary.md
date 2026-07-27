@@ -8,7 +8,7 @@
 
 The foundation scope prohibited repository-driven access to real cloud
 resources, while the scenario model also requires reviewable evidence from an
-operator-authorized disposable lab. S005 now has real OpenStack AIO execution
+operator-authorized disposable lab. retired-numbered-case now has real OpenStack AIO execution
 results supplied by the operator, but the repository must not retain raw
 terminal output, credentials, generated authentication files, state, or unique
 environment identifiers.
@@ -19,7 +19,7 @@ environment identifiers.
    separately authorized.
 2. An operator may supply results from an observed non-production lab run.
 3. The repository may store only normalized, text-only, sanitized evidence
-   mapped to an existing S001-S050 scenario.
+   mapped to an existing retired numbered scenario framework scenario.
 4. Tokens, passwords, authentication files, UUIDs, MAC addresses, dynamic IPs,
    account identifiers, private keys, and raw output are prohibited.
 5. Planned Terraform reproduction, teardown, HA, backup, monitoring, security
@@ -28,11 +28,11 @@ environment identifiers.
 
 ## Consequences
 
-- S005 may record the verified Kolla-Ansible AIO control-plane and end-to-end
+- retired-numbered-case may record the verified Kolla-Ansible AIO control-plane and end-to-end
   Neutron network results without adding cloud credentials or provisioning
   automation.
-- The existing S001-S050 list does not change.
-- S006, S016, S038-S042, and other related scenarios retain their own
+- The existing retired numbered scenario framework list does not change.
+- retired-numbered-case, retired-numbered-case, retired-numbered-case-retired-numbered-case, and other related scenarios retain their own
   acceptance criteria and statuses.
 - Reviewers can distinguish operator-supplied runtime evidence from repository
   structure checks and from planned implementation.

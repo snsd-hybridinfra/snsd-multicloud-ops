@@ -6,4 +6,4 @@
   tasks:
     - name: Explain the sanitized restore evidence contract
       ansible.builtin.debug:
-        msg: "Validate manifest reference, checksum, disposable target, metadata, consistency, rollback, and S040 linkage only."
+        msg: "Validate manifest reference, checksum, disposable target, metadata, consistency, rollback, and retired-numbered-case linkage only."

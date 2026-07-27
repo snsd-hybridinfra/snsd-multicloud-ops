@@ -12,7 +12,7 @@ As of 2026-07-17, the evidenced runtime boundary is limited to:
 
 - EVE-NG network foundation: VLAN segmentation, router-on-a-stick routing, NAT/PAT, and directional ACL behavior.
 - OpenStack all-in-one networking: provider and tenant paths, Neutron routing, floating-IP DNAT, and instance outbound connectivity.
-- Repository governance: the locked S001-S050 model, evidence conventions, Zero Trust catalog/baseline synchronization, schemas, and repeatable local validators.
+- Repository governance: the locked retired numbered scenario framework model, evidence conventions, Zero Trust catalog/baseline synchronization, schemas, and repeatable local validators.
 
 The following are not currently established as operating Zero Trust controls: enterprise identity lifecycle, MFA, PAM, endpoint management, Kubernetes workload controls, MariaDB controls, centralized monitoring/correlation, DLP, automated response, AWS/Azure integration, and continuous trust evaluation. Existing example files and planned architecture are not runtime evidence.
 
@@ -69,7 +69,7 @@ The complete acyclic dependency graph is encoded in the backlog. Documentation o
 ### Wave 0 — Governance and Evidence Foundation
 
 - **Objectives:** preserve source traceability; normalize telemetry/evidence; define policy integration and reversible automation boundaries.
-- **Prerequisites:** locked S001-S050 set, catalog and baseline schemas, current repository validators.
+- **Prerequisites:** locked retired numbered scenario framework set, catalog and baseline schemas, current repository validators.
 - **Included capabilities:** ZT-1.1.1, ZT-2.3.1, ZT-7.1, ZT-8.5.
 - **Implementation deliverables:** evidence contracts, policy-input schema, automation approval/rollback rules, normalized exchange format.
 - **Validation deliverables:** schema, synchronization, overclaim, secret, link, scenario-lock, and repeatability checks.
@@ -170,4 +170,4 @@ Evidence acceptance requires source, timestamp or run identifier, sanitized cont
 
 ## Future scenario boundary
 
-The backlog uses capability IDs and control-pattern IDs only. A future operational scenario may be proposed only after its dependencies, scope, implementation plan, validation plan, evidence authority, and rollback plan pass the relevant phase gate. This task does not assign or reserve any scenario identifier beyond the locked S001-S050 set. See [future scenario governance](future-scenario-governance.md).
+The backlog uses capability IDs and package test IDs only. A future package test may be activated only after its dependencies, scope, implementation plan, validation plan, evidence authority, and rollback plan pass the relevant phase gate. See [package flow](package-flow.yaml) and [retirement governance](governance/scenario-framework-retirement.md).

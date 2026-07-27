@@ -3,8 +3,8 @@
 | Evaluation Result | Example Evidence | Operational Meaning | Required Action | ML Pipeline Impact | Final Judgment |
 |---|---|---|---|---|---|
 | Dataset schema valid | `<evidence-path>` | Schema accepted | Continue review | Eligible | DATASET_READY |
-| Dataset ready for S048 | `<evidence-path>` | Quality and mappings pass | Hand off reference | Eligible | DATASET_READY |
-| Dataset has missing values | `<evidence-path>` | Completeness reduced | Review/impute outside S047 | Hold | DATASET_WARNING |
+| Dataset ready for retired-numbered-case | `<evidence-path>` | Quality and mappings pass | Hand off reference | Eligible | DATASET_READY |
+| Dataset has missing values | `<evidence-path>` | Completeness reduced | Review/impute outside retired-numbered-case | Hold | DATASET_WARNING |
 | Dataset has invalid labels | `<evidence-path>` | Label constraint failed | Correct sample | Stop | DATASET_INVALID |
 | Dataset has non-numeric metric values | `<evidence-path>` | Numeric constraint failed | Correct sample | Stop | DATASET_INVALID |
 | Dataset has duplicate rows | `<evidence-path>` | Duplicate handling needed | Review | Hold | DATASET_REVIEW_REQUIRED |

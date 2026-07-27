@@ -1,8 +1,8 @@
 # SAMPLE / NON-PRODUCTION
 report_id: <report-id-placeholder>
-dataset_source_scenario: S047
-anomaly_detection_scenario: S048
-final_evidence_report_scenario: S050
+dataset_source_scenario: retired-numbered-case
+anomaly_detection_scenario: retired-numbered-case
+final_evidence_report_scenario: retired-numbered-case
 dataset_id: <dataset-id-placeholder>
 detection_run_id: <detection-run-id-placeholder>
 anomaly_count: 5

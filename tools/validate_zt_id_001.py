@@ -371,17 +371,14 @@ def validate_package_document(
         "package_id": "ZT-ID-001",
         "package_type": "IDENTITY_VALIDATION",
         "phase": "PHASE_1",
-        "package_state": "PRESENT",
         "authority_status": "AUTHORITATIVE",
         "implementation_status": "IMPLEMENTED",
-        "validation_status": "RUNTIME_VALIDATED",
-        "runtime_validation_status": "VALIDATED",
-        "runtime_acceptance_status": "ACCEPTED",
-        "runtime_scope": "BOUNDED_NON_PRODUCTION_TARGET",
+        "validation_status": "LOCAL_VALIDATED",
+        "local_validation_status": "LOCAL_VALIDATED",
+        "runtime_validation_status": "NOT_VALIDATED",
+        "runtime_acceptance_status": "PENDING",
         "maturity_status": "UNASSESSED",
-        "target_maturity": "ADVANCED",
-        "phase_2_dependency": "CENTRALIZED_IDENTITY_AND_ENFORCEMENT",
-        "phase_2_dependency_status": "OPEN",
+        "current_maturity": "UNASSESSED",
     }
     for field, value in expected.items():
         if package.get(field) != value:
@@ -400,8 +397,9 @@ def validate_package_document(
         "identity_provider_deployed",
         "mfa_enforced",
         "oidc_deployed",
-        "rbac_runtime_enforced",
-        "secrets_tracked",
+        "centralized_rbac_enforced",
+        "action_runtime_executed",
+        "action_live_identity_changed",
     }
     if any(package.get(field) is not False for field in false_fields):
         codes.add("UNSUPPORTED_RUNTIME_CLAIM")
@@ -411,32 +409,6 @@ def validate_package_document(
         codes.add("DUPLICATE_CAPABILITY_MAPPING")
     if set(capability_ids) != DIRECT_CAPABILITY_IDS:
         codes.add("MISSING_CAPABILITY_MAPPING")
-    if set(package.get("excluded_identity_capability_ids", [])) != EXCLUDED_IDENTITY_CAPABILITY_IDS:
-        codes.add("INVALID_EXCLUDED_CAPABILITY_MAPPING")
-
-    if package.get("runtime_executed") is not True or package.get("live_identity_changed") is not True:
-        codes.add("UNSUPPORTED_RUNTIME_CLAIM")
-
-    mapping_rows = package.get("capability_mappings", [])
-    row_ids = {row.get("id") for row in mapping_rows if isinstance(row, dict)}
-    if row_ids != DIRECT_CAPABILITY_IDS:
-        codes.add("MISSING_CAPABILITY_MAPPING")
-    for row in mapping_rows:
-        if not isinstance(row, dict):
-            codes.add("INVALID_CAPABILITY_MAPPING")
-            continue
-        if CANONICAL_NAMES.get(row.get("id")) != row.get("canonical_name_ko"):
-            codes.add("INVALID_CAPABILITY_MAPPING")
-        expected_runtime = {
-            "ZT-1.1.1": "BOUNDED_RUNTIME_VALIDATED",
-            "ZT-1.1.2": "NOT_VALIDATED",
-            "ZT-1.2.1": "NOT_VALIDATED",
-            "ZT-1.4.1": "BOUNDED_RUNTIME_VALIDATED",
-            "ZT-1.4.2": "BOUNDED_RUNTIME_VALIDATED",
-        }.get(row.get("id"))
-        if row.get("runtime_validation") != expected_runtime:
-            codes.add("UNSUPPORTED_RUNTIME_CLAIM")
-
     if catalog is not None:
         catalog_rows = {
             row.get("id"): row
@@ -450,8 +422,6 @@ def validate_package_document(
                 codes.add("INVALID_CAPABILITY_MAPPING")
 
     for key, value in _walk_values(package):
-        if key == "scenario_reference" and value == "S051":
-            codes.add("S051_REFERENCE_PROHIBITED")
         if key == "runtime_tracking_path" or (
             isinstance(value, str) and value.startswith(".runtime/") and key != "limitations"
         ):
@@ -1083,19 +1053,6 @@ def _validate_repository_integrity(root: Path, results: Results) -> None:
         results.fail("repository.runtime", "Tracked runtime paths exist.")
     else:
         results.pass_("repository.runtime", "No runtime file is tracked.")
-
-    scenario_root = root / "scenarios"
-    ids = {
-        path.name[:4]
-        for path in scenario_root.rglob("S???-*")
-        if path.is_dir() and re.match(r"^S\d{3}-", path.name)
-    }
-    expected = {f"S{number:03d}" for number in range(1, 51)}
-    if ids != expected:
-        results.fail("repository.scenarios", "Scenario directories are not exactly S001-S050.")
-    else:
-        results.pass_("repository.scenarios", "Scenario directories remain exactly S001-S050; S051 is absent.")
-
 
 def validate(root: Path = ROOT, strict: bool = False) -> dict[str, Any]:
     root = root.resolve()

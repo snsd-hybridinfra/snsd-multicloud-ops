@@ -9,7 +9,7 @@
   "owner_domain": "NETWORK_SECURITY",
   "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_EVE_NG_ROUTER"],
   "procedure_status": "IMPLEMENTED",
-  "validation_status": "VALIDATED_RUNTIME",
+  "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
   "runtime_required": true,
   "live_execution_permitted": true,
   "required_authority": "EXPLICIT_OPERATOR_APPROVAL_AND_EXISTING_RESTRICTED_ENDPOINT",
@@ -32,7 +32,7 @@ remediation remain outside this revalidation runbook.
 
 ## Related Phase
 
-Phase 1; ZT-NET-001 is implemented and runtime validated for its bounded scope.
+Phase 1; ZT-NET-001 is implemented as recorded and partially runtime validated for its bounded scope.
 
 ## Related Package or Governance Action
 
@@ -49,7 +49,7 @@ non-production EVE-NG router restricted endpoint.
 
 ## Current Validation Status
 
-`VALIDATED_RUNTIME` for the bounded package; capability maturity is unchanged.
+`PARTIALLY_RUNTIME_VALIDATED` for the bounded package; capability maturity is unchanged.
 
 ## Evidence Authority
 

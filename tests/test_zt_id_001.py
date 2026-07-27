@@ -372,9 +372,6 @@ class ZtId001TestCase(unittest.TestCase):
 
     # Repository integrity
 
-    def test_s051_reference_rejected(self) -> None:
-        self._assert_negative("NEG-028", "S051_REFERENCE_PROHIBITED")
-
     def test_tracked_runtime_reference_rejected(self) -> None:
         self._assert_negative("NEG-029", "TRACKED_RUNTIME_PROHIBITED")
 

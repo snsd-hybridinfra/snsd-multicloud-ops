@@ -112,7 +112,7 @@
       "result": "PASS"
     },
     {
-      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/validate-all-scenarios.ps1",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File retired aggregate validator available in Git history",
       "purpose": "Run the repaired default isolated read-only aggregate.",
       "exit_code": 1,
       "pass_count": 15,

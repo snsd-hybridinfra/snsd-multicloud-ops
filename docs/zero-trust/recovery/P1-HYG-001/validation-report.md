@@ -3,7 +3,7 @@
 ## Executive Summary
 
 P1-HYG-001 repaired repository validation hygiene only. Default aggregate
-scenario validation is read-only, the S021 strict-mode collection failure is
+scenario validation is read-only, the retired-numbered-case strict-mode collection failure is
 fixed, and no package, maturity, scenario, runtime, monitoring, or identity
 state changed.
 
@@ -16,7 +16,7 @@ state changed.
 - Staged files: 0
 - Tracked runtime files: 0
 - Ignored `.runtime/zero-trust/` files: 50
-- Scenarios: S001-S050 exactly; S051 absent
+- Scenarios: retired numbered scenario framework exactly; successor numbered scenario absent
 - Opening fingerprint: `9ded7512022c4b864e8bfa36ba3050bf925eaa329af823a5eb4b5025fbb7cd1d`
 - Five-second concurrent-writer check: stable
 
@@ -25,16 +25,16 @@ checks passed before modification.
 
 ## Validator Discovery
 
-`validate-all-scenarios.ps1` called two repository validators and discovered
+`retired aggregate validator` called two repository validators and discovered
 scenario validators through `tools/validate-*.ps1`. The repaired exclusion set
 removes the non-scenario `validate-zero-trust.ps1`, leaving exactly 50 scenario
 validators. All 50 scenario validators contain a repository-writing command.
-S021 is `tools/validate-kubernetes-node-readiness.ps1`; no prior PowerShell
+retired-numbered-case is `tools/validate-kubernetes-node-readiness.ps1`; no prior PowerShell
 regression test covered its collection shapes.
 
-## validate-all-scenarios Root Cause
+## Retired Aggregate Validator Root Cause
 
-The no-argument command created S050 directories, ran repository-writing child
+The no-argument command created retired-numbered-case directories, ran repository-writing child
 validators in the source tree, and unconditionally wrote its own log and
 summary. `SNSD_REPO_WIDE_STATIC_ONLY=1` prevented live behavior but did not
 prevent `New-Item` or `Set-Content`. P1-0 recorded 21 generated untracked files
@@ -42,7 +42,7 @@ before restoring its captured state. Exact removed names were not retained, so
 this report records the authoritative path families rather than inventing a
 list.
 
-## S021 Root Cause
+## retired-numbered-case Root Cause
 
 The original conditional assignment returned `$null` for zero rows and could
 return one `PSCustomObject` for one row; only multiple rows reliably returned
@@ -57,7 +57,7 @@ return one `PSCustomObject` for one row; only multiple rows reliably returned
 - Explicit `-GenerateReports` preserves reviewed mutating behavior and was not run.
 - Exactly 50 scenario validators are evaluated.
 - Exit 0/1/2 distinguish pass, validation failure, and wrapper/immutability failure.
-- S021 uses a typed parser and `Generic.List[object]` before count or iteration.
+- retired-numbered-case uses a typed parser and `Generic.List[object]` before count or iteration.
 - Malformed input is a failure, not an empty success.
 
 ## Repository Immutability Guard
@@ -74,7 +74,7 @@ new files, changed hashes, and staged state are detected.
 - Changed PowerShell parser checks: 6 files, zero errors
 - Mutation fixtures ran only in OS temporary Git repositories
 
-## S021 Strict-Mode Tests
+## retired-numbered-case Strict-Mode Tests
 
 Nine cases passed: null, empty, scalar one, multiple, missing status column,
 invalid status, embedded null, expected valid fixture, and repository
@@ -124,13 +124,13 @@ operation was run.
 
 ## Scenario Lock
 
-S001-S050 remain exactly present. S051 is absent. No scenario content,
+retired numbered scenario framework remain exactly present. successor numbered scenario is absent. No scenario content,
 identifier, semantics, evidence record, or status was regenerated or changed.
 
 ## Remaining Limitations
 
 - Aggregate validation correctly remains exit 1 because 30 scenario validators fail existing criteria.
-- S021 lacks its tracked authoritative sample and remains `NOT_STARTED` / not runtime validated.
+- retired-numbered-case lacks its tracked authoritative sample and remains `NOT_STARTED` / not runtime validated.
 - Child validators still write reports internally; read-only aggregate mode confines those writes to a disposable temporary copy.
 - The immutability fingerprint covers Git candidates; protected ignored runtime is checked separately by ignore/tracking metadata.
 
@@ -152,10 +152,10 @@ The action is selected only and was not executed.
 ## Changed Files
 
 - `README.md`
-- `tools/validate-all-scenarios.ps1`
+- `retired aggregate validator available in Git history`
 - `tools/validate-kubernetes-node-readiness.ps1`
-- `tools/modules/RepositoryValidationSafety.psm1`
-- `tools/modules/NodeReadinessParser.psm1`
+- `retired aggregate safety module available in Git history`
+- `retired parser module available in Git history`
 - `tests/powershell/test-repository-validation-safety.ps1`
 - `tests/powershell/test-s021-node-status-parser.ps1`
 - `tests/test_repository_validation_hygiene.py`

@@ -12,5 +12,4 @@ kubectl describe deployment <deployment-name> -n <namespace>
 kubectl rollout status deployment/<deployment-name> -n <namespace>
 ```
 
-S022 optional live mode executes only the two `get` commands. Dry-run, describe, and rollout commands are documentation examples and are not invoked by the validator.
-
+retired-numbered-case optional live mode executes only the two `get` commands. Dry-run, describe, and rollout commands are documentation examples and are not invoked by the validator.

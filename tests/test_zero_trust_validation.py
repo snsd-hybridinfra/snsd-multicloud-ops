@@ -80,30 +80,6 @@ class ZeroTrustValidationTests(unittest.TestCase):
         validator.validate_maturity([item], result, "test")
         self.assert_has_failure(result, "maturity.test")
 
-    def _copy_scenario_fixture(self, destination: Path) -> None:
-        shutil.copytree(ROOT / "docs/zero-trust", destination / "docs/zero-trust")
-        for scenario in (ROOT / "scenarios").glob("L*/S???-*"):
-            (destination / "scenarios" / scenario.parent.name / scenario.name).mkdir(parents=True)
-
-    def test_missing_scenario_fails(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            self._copy_scenario_fixture(root)
-            missing = next((root / "scenarios").glob("L*/S050-*"))
-            missing.rmdir()
-            result = validator.ValidationResult()
-            validator.validate_scenarios(root, result)
-            self.assert_has_failure(result, "scenario.lock")
-
-    def test_unauthorized_s051_reference_fails(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            self._copy_scenario_fixture(root)
-            (root / "docs/zero-trust/unapproved.md").write_text("Unapproved scenario S051.\n", encoding="utf-8")
-            result = validator.ValidationResult()
-            validator.validate_scenarios(root, result)
-            self.assert_has_failure(result, "scenario.references")
-
     def test_broken_evidence_path_fails(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             valid, reason = validator._safe_relative_reference(Path(directory), "evidence/missing/result.txt")
@@ -204,12 +180,12 @@ class ZeroTrustValidationTests(unittest.TestCase):
         validator.validate_backlog(backlog, self.backlog_schema, self.catalog, result)
         self.assert_has_failure(result, "backlog.status")
 
-    def test_unauthorized_s051_backlog_assignment_fails(self) -> None:
+    def test_empty_package_test_boundary_fails(self) -> None:
         backlog = copy.deepcopy(self.backlog)
-        backlog["capabilities"][0]["future_scenario_boundary"] = "Assign S051 now."
+        backlog["capabilities"][0]["future_package_test_boundary"] = ""
         result = validator.ValidationResult()
         validator.validate_backlog(backlog, self.backlog_schema, self.catalog, result)
-        self.assert_has_failure(result, "backlog.scenarios")
+        self.assert_has_failure(result, "schema.backlog")
 
     def _foundation_package(self) -> dict:
         return {

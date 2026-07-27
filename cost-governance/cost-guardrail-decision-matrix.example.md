@@ -12,5 +12,5 @@
 | Missing owner | incomplete | No accountability | Reject | Reject | COST_REVIEW_REQUIRED |
 | Missing expiry | incomplete | Unbounded | Reject | Reject | COST_REVIEW_REQUIRED |
 | Missing approval | incomplete | Unauthorized | Reject | Reject | COST_GUARDRAIL_FAIL |
-| Missing cleanup mapping | incomplete | Orphan risk | Map S046 | None | COST_REVIEW_REQUIRED |
+| Missing cleanup mapping | incomplete | Orphan risk | Map retired-numbered-case | None | COST_REVIEW_REQUIRED |
 | Cost input malformed | parse failure | Cannot judge | Correct | None | COST_EVIDENCE_INCOMPLETE |

@@ -39,14 +39,14 @@ if ($resolvedOutputRoot.Equals($repositoryRoot, [System.StringComparison]::Ordin
 
 $sshCommand = Get-Command -Name "ssh" -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
 if ($null -eq $sshCommand) {
-    throw "The local SSH client is unavailable. Validate S001 before collecting Bastion evidence."
+    throw "The local SSH client is unavailable. Validate retired-numbered-case before collecting Bastion evidence."
 }
 
 New-Item -ItemType Directory -Force -Path $resolvedOutputRoot | Out-Null
 
 $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
-$rawPath = Join-Path $resolvedOutputRoot "$timestamp-S008-bastion-reachability.raw.txt"
-$sanitizedPath = Join-Path $resolvedOutputRoot "$timestamp-S008-bastion-reachability.sanitized.txt"
+$rawPath = Join-Path $resolvedOutputRoot "$timestamp-retired-numbered-case-bastion-reachability.raw.txt"
+$sanitizedPath = Join-Path $resolvedOutputRoot "$timestamp-retired-numbered-case-bastion-reachability.sanitized.txt"
 
 $remoteCommand = @'
 printf '__HOSTNAME__\n'

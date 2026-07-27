@@ -17,5 +17,4 @@ Manual HTTP example only; the validator never executes curl:
 curl -H "Host: <host-placeholder>" http://<ingress-address-placeholder>/
 ```
 
-S023 optional live mode executes only the four read-only kubectl Ingress, Service, and Endpoints queries.
-
+retired-numbered-case optional live mode executes only the four read-only kubectl Ingress, Service, and Endpoints queries.

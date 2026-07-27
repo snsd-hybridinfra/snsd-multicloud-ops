@@ -38,11 +38,11 @@ weaken target policy.
 
 Repository acceptance also passed 67 targeted identity tests, the strict
 identity validator at 20 PASS / 0 WARN / 0 FAIL, the Phase 1 runbook validator
-at 18/0/0, repository safety at 8/8, S021 parsing at 9/9, Zero Trust governance
+at 18/0/0, repository safety at 8/8, retired-numbered-case parsing at 9/9, Zero Trust governance
 at 34/0/0 with 5/5 synchronization, generated-report check mode, advanced
 architecture at 28/0/0, repository structure at 50 scenario and 50 evidence
 directories, and all 163 Python tests. The isolated scenario aggregate retained
-the expected 15 PASS / 5 WARN / 30 FAIL with zero integration failures and exit
+the expected retired aggregate result distribution with zero integration failures and exit
 code 1. Secret and privacy findings remained zero.
 
 ## Accepted package state

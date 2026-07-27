@@ -14,7 +14,7 @@
     {"validation": "ZT_ID_001_VALIDATOR_STRICT", "status": "PASS", "passed": 18, "warnings": 0, "failed": 0},
     {"validation": "PHASE_1_RUNBOOK_VALIDATOR", "status": "PASS", "passed": 18, "warnings": 0, "failed": 0},
     {"validation": "P1_HYG_REPOSITORY_SAFETY", "status": "PASS", "passed": 8, "failed": 0},
-    {"validation": "S021_STRICT_PARSER", "status": "PASS", "passed": 9, "failed": 0},
+    {"validation": "RETIRED_NUMBERED_CASE_STRICT_PARSER", "status": "PASS", "passed": 9, "failed": 0},
     {"validation": "ZERO_TRUST_VALIDATOR", "status": "PASS", "passed": 34, "warnings": 0, "failed": 0},
     {"validation": "ZERO_TRUST_SYNCHRONIZATION", "status": "PASS", "passed": 5, "failed": 0},
     {"validation": "ZERO_TRUST_REPORT_CHECK", "status": "PASS", "failed": 0},

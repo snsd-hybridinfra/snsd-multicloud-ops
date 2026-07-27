@@ -1,6 +1,6 @@
 # Multi-Cloud Inventory Schema
 
-This schema describes the non-production repository inventory used by S007. It does not describe live host discovery or authentication.
+This schema describes the non-production repository inventory used by retired-numbered-case. It does not describe live host discovery or authentication.
 
 ## Required Fields
 
@@ -13,7 +13,7 @@ This schema describes the non-production repository inventory used by S007. It d
 | `environment` | Must identify the entry as a non-production example. |
 | `management_path_placeholder` | Symbolic management route; never a real path, key, or endpoint. |
 | `validation_scope` | Declares repository-only validation. |
-| `evidence_reference` | Scenario evidence reference, such as `S007`. |
+| `evidence_reference` | Scenario evidence reference, such as `retired-numbered-case`. |
 
 `ansible_host` is required in the example inventory and must remain an angle-bracket placeholder such as `<aws-service-node-ip>`.
 
@@ -39,4 +39,4 @@ This schema describes the non-production repository inventory used by S007. It d
 
 - Do not store real IP addresses, instance identifiers, account identifiers, usernames, credentials, key paths, tokens, vault values, or private paths.
 - Do not create a live or production inventory in this repository.
-- Host existence, reachability, DNS resolution, and cloud resource discovery are outside S007.
+- Host existence, reachability, DNS resolution, and cloud resource discovery are outside retired-numbered-case.

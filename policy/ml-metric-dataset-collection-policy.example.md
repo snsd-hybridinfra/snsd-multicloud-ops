@@ -7,6 +7,6 @@
 - Production identifiers, credentials, and secrets must not be included.
 - The dataset schema must be validated before anomaly detection.
 - Feature catalog mapping is required.
-- S048 owns ML anomaly detection, S049 owns ML anomaly report generation, and S050 owns final evidence reporting.
+- retired-numbered-case owns ML anomaly detection, retired-numbered-case owns ML anomaly report generation, and retired-numbered-case owns final evidence reporting.
 
 This example contains placeholders only and no real monitoring or security telemetry.

@@ -9,7 +9,7 @@
   "owner_domain": "VISIBILITY_AND_ANALYTICS",
   "supported_target_types": ["REPOSITORY_LOCAL", "BOUNDED_NON_PRODUCTION_TELEMETRY_SOURCES", "BOUNDED_NON_PRODUCTION_MONITORING_VM"],
   "procedure_status": "IMPLEMENTED",
-  "validation_status": "VALIDATED_RUNTIME",
+  "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
   "runtime_required": true,
   "live_execution_permitted": true,
   "required_authority": "EXPLICIT_OPERATOR_APPROVAL_FOR_COLLECTION",
@@ -50,7 +50,7 @@ persistent Grafana/Loki/Alloy storage exist.
 
 ## Current Validation Status
 
-`VALIDATED_RUNTIME` for the bounded ZT-VIS-001 scope.
+`PARTIALLY_RUNTIME_VALIDATED` for the bounded ZT-VIS-001 scope.
 
 ## Evidence Authority
 

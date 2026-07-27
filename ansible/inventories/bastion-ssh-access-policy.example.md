@@ -19,4 +19,4 @@ NON-PRODUCTION EXAMPLE: this policy defines expected control statements without 
 
 ## Validation Boundary
 
-S008 verifies that these statements exist. Enforcement and live authentication are validated separately in S011, S012, and S013. Network least-privilege controls are validated in S014, S015, and S016.
+retired-numbered-case verifies that these statements exist. Enforcement and live authentication are validated separately in retired-numbered-case, retired-numbered-case, and retired-numbered-case. Network least-privilege controls are validated in retired-numbered-case, retired-numbered-case, and retired-numbered-case.

@@ -7,10 +7,10 @@ report_id: `<report-id-placeholder>`; dataset_id: `<dataset-id-placeholder>`; de
 Synthetic metric anomalies require human review before operational action.
 
 ## Dataset Reference
-S047 synthetic dataset evidence.
+retired-numbered-case synthetic dataset evidence.
 
 ## Detection Run Reference
-S048 deterministic sample detection.
+retired-numbered-case deterministic sample detection.
 
 ## Anomaly Summary
 Anomalies: 5; warnings: 1; review-required: 1.
@@ -37,7 +37,7 @@ No automated blocking or SOC incident creation is performed.
 `<evidence-path>`
 
 ## Scenario Mapping
-Dataset S047; detection S048; final evidence report S050.
+Dataset retired-numbered-case; detection retired-numbered-case; final evidence report retired-numbered-case.
 
 ## Final Report Judgment
 final_judgment: REPORT_READY

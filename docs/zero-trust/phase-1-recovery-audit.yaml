@@ -14,7 +14,7 @@
     "current_git_status_entry_count": 95,
     "staged_file_count": 0,
     "task_created_file_count": 2,
-    "scenario_lock": "PASS_S001_THROUGH_S050_ONLY",
+    "scenario_lock": "PASS_RETIRED_NUMBERED_CASE_THROUGH_RETIRED_NUMBERED_CASE_ONLY",
     "tracked_runtime_files": 0,
     "ignored_runtime_files": 50,
     "ignored_runtime_bytes": 249232,
@@ -431,7 +431,7 @@
       "limitations": "Untracked test suite; local evidence only."
     },
     {
-      "path": "tools/validate-all-scenarios.ps1",
+      "path": "retired aggregate validator available in Git history",
       "purpose": "Aggregate 50 scenario validators",
       "dependencies": ["PowerShell", "scenario validators"],
       "safe_to_run": false,
@@ -442,7 +442,7 @@
     },
     {
       "path": "tools/validate-kubernetes-node-readiness.ps1",
-      "purpose": "S021 node-readiness model and evidence validation",
+      "purpose": "retired-numbered-case node-readiness model and evidence validation",
       "dependencies": ["PowerShell"],
       "safe_to_run": true,
       "mutates_files": false,
@@ -540,7 +540,7 @@
       "gap_id": "P1G-007",
       "related_package": "AGGREGATE_VALIDATOR",
       "gap_type": "UNSAFE_MUTATION_AND_LOGIC_DEFECT",
-      "description": "Static aggregate execution generated 21 files and stopped at the S021 strict-mode Count error.",
+      "description": "Static aggregate execution generated 21 files and stopped at the retired-numbered-case strict-mode Count error.",
       "blocking": true,
       "dependency": "Validator repair approval",
       "physical_prerequisite": null,
@@ -602,7 +602,7 @@
     "docs/zero-trust/prioritized-implementation-queue.md"
   ],
   "protected_files": [
-    "scenarios/**",
+    "retired-framework/**",
     "evidence/**",
     "docs/zero-trust/packages/**",
     "docs/evidence/zero-trust/**",

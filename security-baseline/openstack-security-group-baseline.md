@@ -21,7 +21,7 @@ Egress must be documented and justified. A broad egress destination requires a n
 
 ## Terraform Boundary
 
-The existing `openstack_networking_secgroup_v2` and management-scoped `openstack_networking_secgroup_rule_v2` resources are safe structural placeholders. S016 does not add broad rules or run Terraform.
+The existing `openstack_networking_secgroup_v2` and management-scoped `openstack_networking_secgroup_rule_v2` resources are safe structural placeholders. retired-numbered-case does not add broad rules or run Terraform.
 
 ## Evidence Collection Model
 
@@ -29,4 +29,3 @@ The existing `openstack_networking_secgroup_v2` and management-scoped `openstack
 - Store the generated log and summary below `<evidence-path>`.
 - Record every check by stable check ID.
 - Reject credentials, identity values, state, real variables, public addresses, and secret material.
-

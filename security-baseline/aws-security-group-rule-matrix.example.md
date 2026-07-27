@@ -4,19 +4,19 @@ NON-PRODUCTION EXAMPLE: these rows are policy placeholders and do not create AWS
 
 | Security Group | Direction | Protocol | Port | Source/Destination | Purpose | Public Exposure | Least Privilege Judgment | Evidence Reference |
 |---|---|---|---:|---|---|---|---|---|
-| aws-public-web-sg | ingress | tcp | 80 | 0.0.0.0/0 | Public HTTP for public web tier placeholder | yes-public-web-only | PASS | S014-V010 |
-| aws-public-web-sg | ingress | tcp | 443 | 0.0.0.0/0 | Public HTTPS for public web tier placeholder | yes-public-web-only | PASS | S014-V010 |
-| aws-bastion-sg | ingress | tcp | 22 | `<management-cidr>` | Administrative SSH from approved management source | no | PASS | S014-V009 |
-| aws-bastion-sg | ingress | tcp | 3389 | `<management-cidr>` | RDP placeholder restricted to approved management source | no | PASS | S014-V009 |
-| aws-private-service-sg | ingress | tcp | `<internal-service-port>` | `<public-web-security-group>` | Public tier to private service tier | no | PASS | S014-V009 |
-| aws-database-sg | ingress | tcp | 3306 | `<private-service-security-group>` | MariaDB access from private service tier | no | PASS | S014-V009 |
-| aws-database-sg | ingress | tcp | 5432 | `<private-service-security-group>` | PostgreSQL placeholder from private service tier | no | PASS | S014-V009 |
-| aws-database-sg | ingress | tcp | 6379 | `<private-service-security-group>` | Redis placeholder from private service tier | no | PASS | S014-V009 |
-| aws-monitoring-sg | ingress | tcp | 9200 | `<private-service-security-group>` | Metrics/search placeholder from private service tier | no | PASS | S014-V009 |
-| aws-monitoring-sg | ingress | tcp | 5601 | `<management-cidr>` | Dashboard placeholder from management source | no | PASS | S014-V009 |
-| aws-monitoring-sg | ingress | tcp | 9090 | `<management-cidr>` | Prometheus placeholder from management source | no | PASS | S014-V009 |
-| aws-monitoring-sg | ingress | tcp | 3000 | `<management-cidr>` | Grafana placeholder from management source | no | PASS | S014-V009 |
-| aws-private-service-sg | egress | tcp | 443 | 0.0.0.0/0 | Justified HTTPS update path placeholder | egress-only | REVIEW_REQUIRED | S014-V011 |
+| aws-public-web-sg | ingress | tcp | 80 | 0.0.0.0/0 | Public HTTP for public web tier placeholder | yes-public-web-only | PASS | retired-numbered-case |
+| aws-public-web-sg | ingress | tcp | 443 | 0.0.0.0/0 | Public HTTPS for public web tier placeholder | yes-public-web-only | PASS | retired-numbered-case |
+| aws-bastion-sg | ingress | tcp | 22 | `<management-cidr>` | Administrative SSH from approved management source | no | PASS | retired-numbered-case |
+| aws-bastion-sg | ingress | tcp | 3389 | `<management-cidr>` | RDP placeholder restricted to approved management source | no | PASS | retired-numbered-case |
+| aws-private-service-sg | ingress | tcp | `<internal-service-port>` | `<public-web-security-group>` | Public tier to private service tier | no | PASS | retired-numbered-case |
+| aws-database-sg | ingress | tcp | 3306 | `<private-service-security-group>` | MariaDB access from private service tier | no | PASS | retired-numbered-case |
+| aws-database-sg | ingress | tcp | 5432 | `<private-service-security-group>` | PostgreSQL placeholder from private service tier | no | PASS | retired-numbered-case |
+| aws-database-sg | ingress | tcp | 6379 | `<private-service-security-group>` | Redis placeholder from private service tier | no | PASS | retired-numbered-case |
+| aws-monitoring-sg | ingress | tcp | 9200 | `<private-service-security-group>` | Metrics/search placeholder from private service tier | no | PASS | retired-numbered-case |
+| aws-monitoring-sg | ingress | tcp | 5601 | `<management-cidr>` | Dashboard placeholder from management source | no | PASS | retired-numbered-case |
+| aws-monitoring-sg | ingress | tcp | 9090 | `<management-cidr>` | Prometheus placeholder from management source | no | PASS | retired-numbered-case |
+| aws-monitoring-sg | ingress | tcp | 3000 | `<management-cidr>` | Grafana placeholder from management source | no | PASS | retired-numbered-case |
+| aws-private-service-sg | egress | tcp | 443 | 0.0.0.0/0 | Justified HTTPS update path placeholder | egress-only | REVIEW_REQUIRED | retired-numbered-case |
 
 ## Required Denial Expectations
 

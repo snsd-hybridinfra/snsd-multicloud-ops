@@ -5,12 +5,12 @@ This directory demonstrates how the local `aws-network` module may be wired with
 ## Review Workflow
 
 1. Review `terraform.tfvars.example`; do not copy real values into the repository.
-2. Run the repository validator from S003.
+2. Run the repository validator from retired-numbered-case.
 3. If Terraform is installed, the validator may run `terraform fmt -check` only.
 
 ## Safety Boundary
 
 - No AWS provider or remote backend is configured.
 - No real `terraform.tfvars`, tfstate, lock file, credentials, or account identifiers are stored.
-- S003 does not execute `terraform init`, `validate`, `plan`, `apply`, or `destroy` because provider initialization is outside this scenario.
+- retired-numbered-case does not execute `terraform init`, `validate`, `plan`, `apply`, or `destroy` because provider initialization is outside this scenario.
 - AWS authentication and resource creation are not part of this environment.

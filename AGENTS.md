@@ -1,69 +1,43 @@
 # AGENTS.md
 
-This file defines working rules for Codex and other automation agents in this repository.
+This file defines working rules for Codex and repository automation.
 
-## Operating Principles
+## Operating model
 
-- Treat scenario-based validation as the main repository method.
-- Keep changes small, reviewable, and aligned with the locked scope.
-- Prefer documentation and skeletal structure until a scenario explicitly requires implementation.
-- Do not introduce real cloud resources, credentials, secrets, keys, tfstate, kubeconfig files, or account-specific files.
-- Do not add technologies outside the locked scope without updating the scope documents through an ADR.
-- Do not generate binary files.
+- Use the hierarchy Zero Trust architecture -> package -> capability -> control -> validator -> sanitized evidence -> status decision.
+- The numbered scenario framework has been retired from the active tree. Do not create a successor scenario series.
+- Treat package metadata, capability authorities, validators, and evidence records as independent authorities.
+- Keep changes bounded, reviewable, deterministic, and evidence-based.
 
-## Required Workflow
+## Required workflow
 
-1. Read `docs/scope-lock.md`, `docs/excluded-scope.md`, and the relevant scenario before changing files.
-2. Keep scenario definitions under `scenarios/<level>/`.
-3. Keep validation outputs under `evidence/<level>/<scenario-id>/`.
-4. Update documentation when conventions, naming, or evidence requirements change.
-5. Use `docs/adr/` for meaningful architecture or scope decisions.
+1. Read `docs/scope-lock.md`, `docs/excluded-scope.md`, relevant package metadata, and applicable governance before editing.
+2. Use an existing package ID or obtain explicit approval for a new package. Do not invent an unrelated numbering system.
+3. Run positive, negative, bypass, persistence, and rollback checks when appropriate to the package.
+4. Store only sanitized evidence under reviewed package evidence authorities.
+5. Use `docs/adr/` for architecture or scope decisions.
 
-## Tracking File Update Rule
+## Phase 1 authority
 
-When modifying or implementing a scenario, update:
+`ZT-ARC-001` surrounds, but is not a sequential member of, this flow:
 
-- `docs/progress-tracker.md`
-- `docs/scenario-status-matrix.md`
-- `docs/evidence-status-matrix.md`
-- `docs/implementation-log.md`
+`ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001 -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001 -> PHASE_1_ACCEPTANCE`
 
-If scenario work is blocked or introduces a risk, update `docs/risk-register.md`.
+Package removal or status promotion requires matching implementation and evidence authority. Phase 1 remains PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE until all accepted prerequisites pass.
 
-## File Safety
+## Source governance
 
-- Never commit secrets, credentials, private keys, generated state, kubeconfigs, or local environment files.
-- Keep placeholders text-only.
-- Use `.gitkeep` only to preserve intentionally empty directories.
-- Do not overwrite user work unless the task explicitly requires it.
+- The local **제로트러스트 가이드라인 2.0** PDF is the primary authority for canonical terminology, capability numbering, architecture, and maturity characteristics.
+- The authenticated 2026 KISA critical-infrastructure technical vulnerability guide may be registered only by ZT-GOV-MAP-001 as a secondary inspection and hardening reference.
+- Mapping is not implementation, runtime validation, maturity, compliance, or certification.
 
-## Scenario Expectations
+## File safety
 
-Each scenario should include an ID, title, objective, scope, prerequisites, validation steps, evidence requirements, and pass criteria.
+- Never commit credentials, keys, secrets, state, kubeconfigs, local runtime files, account values, personal data, or raw live output.
+- Do not execute a live validator without separate explicit authorization.
+- Do not weaken validators, change the capability fingerprint, add dependencies, or add CI automation without review.
+- Preserve package evidence and Git history. The removed scenario framework is recoverable only from Git history.
 
-## Zero Trust Governance
+## Validation
 
-- Treat the local **제로트러스트 가이드라인 2.0** PDF as the authority for
-  canonical Korean terminology, capability numbering, architecture, and
-  maturity characteristics.
-- Use capability IDs exactly as `ZT-<source-number>`, such as `ZT-3.1.1`.
-- Keep canonical Korean display names separate from stable English slugs.
-- Do not assign maturity without capability-specific evidence and a reference
-  to the corresponding source maturity table.
-- Keep alignment, implementation, validation, evidence level, and maturity as
-  separate fields. Documentation or mapping alone is not implementation.
-- Do not claim full compliance, certification, complete implementation,
-  enterprise-wide validation, or repository-wide Optimal maturity.
-- Do not create or renumber scenarios outside locked S001-S050 without scope
-  approval and the required architecture decision.
-
-### Zero Trust Validation Workflow
-
-- Treat `docs/zero-trust/capability-catalog.yaml` as the repository taxonomy authority, `docs/zero-trust/current-baseline-assessment.yaml` as the current-assessment authority, and `docs/zero-trust/capability-implementation-backlog.yaml` as the planning authority. Markdown matrices are presentation views.
-- Never use backlog applicability, target maturity, wave, queue position, or planned tasks to promote current implementation, validation, evidence, or maturity state.
-- Backlog records use capability IDs and control-pattern IDs only. Do not assign a future scenario identifier until scenario creation is explicitly approved.
-- Before changing Zero Trust governance data, read `docs/zero-trust/governance.md` and `docs/zero-trust/maintenance-workflow.md`.
-- Run `python tools/validate_zero_trust.py --verbose`, `python tools/check_zero_trust_sync.py`, and `python tools/generate_zero_trust_reports.py --check`.
-- Run the combined read-only entry point with `powershell -ExecutionPolicy Bypass -File tools/validate-zero-trust.ps1`.
-- The report generator may write only when `--write` is explicitly requested and only inside reviewed generated markers.
-- Do not weaken validation, add dependencies, change the canonical taxonomy fingerprint, or add CI automation without review.
+After governance changes, run the read-only package-flow, retirement, Zero Trust, synchronization, report-check, architecture, runbook, repository-structure, and unit-test validators. Confirm no tracked `.runtime/**`, secret, personal data, active numbered scenario path, or scenario aggregate executable exists.

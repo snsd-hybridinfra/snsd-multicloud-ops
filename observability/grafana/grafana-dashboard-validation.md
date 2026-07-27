@@ -17,4 +17,4 @@ The required dashboard covers infrastructure/Prometheus targets, Kubernetes node
 
 Static validation parses the datasource YAML, dashboard JSON, rule matrix, commands, and sanitized samples. Optional LiveGrafana validation runs only with `-LiveGrafana -GrafanaUrl`, queries unauthenticated search/datasource endpoints, and retains only the requested placeholder title, panel-count judgment, known datasource name, and timestamp.
 
-S020 owns anonymous-access denial. A live 401/403 is WARN. S028 owns Prometheus target discovery; S029 validates only dashboard definitions and visibility coverage.
+retired-numbered-case owns anonymous-access denial. A live 401/403 is WARN. retired-numbered-case owns Prometheus target discovery; retired-numbered-case validates only dashboard definitions and visibility coverage.

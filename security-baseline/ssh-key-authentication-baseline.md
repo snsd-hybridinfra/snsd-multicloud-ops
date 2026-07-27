@@ -16,6 +16,6 @@ This document defines a non-production repository baseline. It is not a live SSH
 
 ## Evidence Collection Model
 
-- Record repository-baseline checks in the S011 generated log and summary.
+- Record repository-baseline checks in the retired-numbered-case generated log and summary.
 - Do not capture key contents, usernames, passwords, private paths, or live authentication output.
-- Live enforcement for password and root login denial remains in S012 and S013.
+- Live enforcement for password and root login denial remains in retired-numbered-case and retired-numbered-case.

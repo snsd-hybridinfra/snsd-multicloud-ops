@@ -158,11 +158,6 @@ class AdvancedTargetArchitectureTests(unittest.TestCase):
         validator.validate_package_data(value, result)
         self.assert_failure(result, "package.metadata")
 
-    def test_s051_reference(self) -> None:
-        result = validator.ValidationResult()
-        validator.validate_scenario_text("Create S051 now.", result)
-        self.assert_failure(result, "scenario.lock")
-
     def test_tracked_runtime_file(self) -> None:
         result = validator.ValidationResult()
         validator.validate_tracked_runtime_paths([".runtime/zero-trust/result.txt"], result)

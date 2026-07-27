@@ -1,0 +1,72 @@
+{
+  "action_id": "ZT-SCN-RETIRE-001",
+  "baseline": "9a706d229df088735aa5c5d22d3a6e3b79e9b49d",
+  "classification_policy": {
+    "legacy_numbered_scenario_framework": "REMOVE",
+    "general_test_case_or_attack_scenario_language": "RETAIN_WHEN_REUSABLE",
+    "historical_git_record": "GIT_HISTORY_ONLY",
+    "current_package_acceptance_case": "RETAIN"
+  },
+  "inventory": [
+    {
+      "path": "scenarios/**",
+      "reference_type": "NUMBERED_DEFINITION",
+      "scenario_authority": true,
+      "remove_file": true,
+      "remove_reference": true,
+      "replace_reference": true,
+      "replacement_authority": "docs/zero-trust/package-flow.yaml",
+      "reason": "Numbered definitions are retired."
+    },
+    {
+      "path": "evidence/L1-foundation/** through evidence/L5-governance-intelligent-ops/**",
+      "reference_type": "DEDICATED_SCENARIO_EVIDENCE",
+      "scenario_authority": true,
+      "remove_file": true,
+      "remove_reference": true,
+      "replace_reference": true,
+      "replacement_authority": "docs/evidence/zero-trust/**",
+      "reason": "Package evidence replaces active scenario evidence authority."
+    },
+    {
+      "path": "tools/validate-*.ps1 scenario validator set",
+      "reference_type": "SCENARIO_VALIDATOR",
+      "scenario_authority": true,
+      "remove_file": true,
+      "remove_reference": true,
+      "replace_reference": true,
+      "replacement_authority": "package and repository validators",
+      "reason": "The validators were discovered exclusively by the scenario aggregate."
+    },
+    {
+      "path": "docs scenario matrices and scenario governance",
+      "reference_type": "SCENARIO_TRACKING_AUTHORITY",
+      "scenario_authority": true,
+      "remove_file": true,
+      "remove_reference": true,
+      "replace_reference": true,
+      "replacement_authority": "docs/zero-trust/package-flow.yaml",
+      "reason": "Progress and acceptance are package-based."
+    },
+    {
+      "path": "docs/evidence/zero-trust/** and docs/zero-trust/packages/**",
+      "reference_type": "PACKAGE_EVIDENCE_AND_AUTHORITY",
+      "scenario_authority": false,
+      "remove_file": false,
+      "remove_reference": true,
+      "replace_reference": true,
+      "replacement_authority": "same package authority",
+      "reason": "Protected package evidence is retained while stale numbered references are removed."
+    },
+    {
+      "path": "generic infrastructure, policy, runbook, and test-case artifacts",
+      "reference_type": "REUSABLE_IMPLEMENTATION_SUPPORT",
+      "scenario_authority": false,
+      "remove_file": false,
+      "remove_reference": true,
+      "replace_reference": true,
+      "replacement_authority": "package ownership or general reusable control",
+      "reason": "Reusable control content is not deleted merely for using general scenario language."
+    }
+  ]
+}

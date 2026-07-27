@@ -1,6 +1,6 @@
 {
   "assessment": {
-    "scope": "Capability-level Zero Trust baseline for the locked S001-S050 repository.",
+    "scope": "Capability-level Zero Trust baseline for the locked retired numbered scenario framework repository.",
     "environment": "Non-production SNSD portfolio lab and repository governance artifacts.",
     "date": "2026-07-17",
     "evaluator": "Codex second-pass documentation QA",
@@ -40,7 +40,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -57,7 +59,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -74,7 +78,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -91,7 +97,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -108,7 +116,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -125,7 +135,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -142,7 +154,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -159,7 +173,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -176,7 +192,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -193,7 +211,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -210,7 +230,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -227,7 +249,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -244,7 +268,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -261,7 +287,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -280,8 +308,6 @@
       ],
       "confidence": "MEDIUM",
       "evidence": [
-        "evidence/L1-foundation/S002-eve-ng-on-prem-routing-validation/",
-        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml"
       ],
       "gaps": [
@@ -300,7 +326,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -317,7 +345,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -335,7 +365,7 @@
       ],
       "confidence": "LOW",
       "evidence": [
-        "scenarios/L4-failure-recovery/S037-security-rule-misconfiguration-validation/"
+        "docs/zero-trust/packages/zt-net-001-router-validation.md"
       ],
       "gaps": [
         "Capability-wide coverage and maturity characteristics remain unassessed."
@@ -353,7 +383,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -372,8 +404,6 @@
       ],
       "confidence": "MEDIUM",
       "evidence": [
-        "evidence/L1-foundation/S002-eve-ng-on-prem-routing-validation/",
-        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml"
       ],
       "gaps": [
@@ -393,7 +423,7 @@
       ],
       "confidence": "LOW",
       "evidence": [
-        "scenarios/L4-failure-recovery/S035-load-balancer-failure-validation/"
+        "docs/zero-trust/packages/zt-net-001-router-validation.md"
       ],
       "gaps": [
         "Capability-wide coverage and maturity characteristics remain unassessed."
@@ -412,7 +442,6 @@
       ],
       "confidence": "MEDIUM",
       "evidence": [
-        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml",
         "docs/evidence/zero-trust/zt-sys-001-validation.yaml"
       ],
@@ -452,7 +481,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -471,7 +502,6 @@
       ],
       "confidence": "MEDIUM",
       "evidence": [
-        "evidence/L1-foundation/S002-eve-ng-on-prem-routing-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml",
         "docs/evidence/zero-trust/zt-sys-001-validation.yaml",
         "docs/evidence/zero-trust/zt-sys-001-live-summary.sanitized.txt"
@@ -493,11 +523,6 @@
       ],
       "confidence": "MEDIUM",
       "evidence": [
-        "scenarios/L4-failure-recovery/S037-security-rule-misconfiguration-validation/",
-        "scenarios/L5-governance-intelligent-ops/S041-terraform-drift-detection-validation/",
-        "scenarios/L5-governance-intelligent-ops/S042-terraform-drift-remediation-validation/",
-        "scenarios/L5-governance-intelligent-ops/S043-policy-as-code-validation/",
-        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/",
         "docs/evidence/zero-trust/zt-sys-001-validation.yaml",
         "docs/evidence/zero-trust/zt-sys-001-integrity-validation.yaml",
         "docs/evidence/zero-trust/zt-sys-001-live-summary.sanitized.txt"
@@ -519,8 +544,7 @@
       ],
       "confidence": "LOW",
       "evidence": [
-        "scenarios/L2-security-baseline/S018-kubernetes-rbac-validation/",
-        "scenarios/L2-security-baseline/S020-grafana-anonymous-access-denial-validation/"
+        "docs/zero-trust/packages/zt-id-001-bounded-identity-validation.md"
       ],
       "gaps": [
         "Capability-wide coverage and maturity characteristics remain unassessed."
@@ -538,7 +562,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -555,7 +581,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -573,7 +601,7 @@
       ],
       "confidence": "LOW",
       "evidence": [
-        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/"
+        "docs/zero-trust/packages/zt-app-001-secure-workload-foundation.md"
       ],
       "gaps": [
         "Capability-wide coverage and maturity characteristics remain unassessed."
@@ -591,7 +619,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -608,7 +638,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -625,7 +657,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -662,7 +696,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -680,7 +716,7 @@
       ],
       "confidence": "LOW",
       "evidence": [
-        "scenarios/L2-security-baseline/S017-mariadb-access-control-validation/"
+        "docs/zero-trust/packages/zt-data-001-data-protection-foundation.md"
       ],
       "gaps": [
         "Capability-wide coverage and maturity characteristics remain unassessed."
@@ -698,7 +734,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -735,7 +773,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -774,7 +814,6 @@
       ],
       "confidence": "MEDIUM",
       "evidence": [
-        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml"
       ],
       "gaps": [
@@ -793,7 +832,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -810,7 +851,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -827,7 +870,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -844,7 +889,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -861,7 +908,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -879,8 +928,6 @@
       ],
       "confidence": "MEDIUM",
       "evidence": [
-        "scenarios/L5-governance-intelligent-ops/S043-policy-as-code-validation/",
-        "scenarios/L5-governance-intelligent-ops/S044-kubernetes-manifest-policy-validation/",
         "docs/zero-trust/packages/zt-auto-001-package.yaml",
         "docs/evidence/zero-trust/zt-auto-001-validation.yaml",
         "docs/evidence/zero-trust/zt-auto-001-live-summary.sanitized.txt"
@@ -902,7 +949,6 @@
       ],
       "confidence": "MEDIUM",
       "evidence": [
-        "evidence/L1-foundation/S005-openstack-network-provisioning-validation/",
         "docs/evidence/zero-trust/zt-net-001-validation.yaml",
         "docs/zero-trust/packages/zt-auto-001-package.yaml",
         "docs/evidence/zero-trust/zt-auto-001-validation.yaml",
@@ -924,7 +970,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -941,7 +989,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -958,7 +1008,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],
@@ -975,7 +1027,9 @@
         "MISSING"
       ],
       "confidence": "LOW",
-      "evidence": [],
+      "evidence": [
+        "docs/zero-trust/governance/scenario-framework-retirement.md"
+      ],
       "gaps": [
         "No direct implementation or runtime evidence."
       ],

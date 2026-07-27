@@ -20,7 +20,7 @@ The model requires an `upstream` block for `<upstream-name>`, a `server` block f
 - Document `<backend-health-path>` for later, explicitly approved HTTP validation.
 - Use `<reverse-proxy-host>` only as an operator-supplied placeholder; never commit its resolved value.
 
-Nginx response security headers are owned by S019 and are not revalidated here.
+Nginx response security headers are owned by retired-numbered-case and are not revalidated here.
 
 ## Placeholder Contract
 
@@ -44,4 +44,3 @@ Optional live HTTP validation runs only when both `-LiveHttp` and an operator-su
 
 - **Static config validation:** default; does not run Nginx, curl, or any network request.
 - **Optional live HTTP validation:** explicit `LiveHttp` mode; performs one safe HEAD request and does not modify or reload Nginx.
-

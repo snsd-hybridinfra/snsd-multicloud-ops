@@ -72,7 +72,7 @@
         "blocking_gaps", "candidate_control_patterns", "required_components",
         "implementation_tasks", "validation_tasks", "evidence_requirements",
         "success_criteria", "limitations", "target_wave",
-        "future_scenario_boundary", "notes"
+        "future_package_test_boundary", "notes"
       ],
       "properties": {
         "id": { "$ref": "#/$defs/capabilityId" },
@@ -99,7 +99,7 @@
         "success_criteria": { "type": "string", "minLength": 1 },
         "limitations": { "type": "string", "minLength": 1 },
         "target_wave": { "type": ["string", "null"], "enum": ["W0", "W1", "W2", "W3", "W4", "W5", null] },
-        "future_scenario_boundary": { "type": "string", "minLength": 1 },
+        "future_package_test_boundary": { "type": "string", "minLength": 1 },
         "notes": { "type": "string", "minLength": 1 }
       },
       "additionalProperties": false

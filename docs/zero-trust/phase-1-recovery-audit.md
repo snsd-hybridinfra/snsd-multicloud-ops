@@ -49,7 +49,7 @@ This audit does not begin that action.
 | Tracked `.runtime` files | 0 |
 | Ignored `.runtime/zero-trust` files | 50 files, 249,232 bytes |
 | Latest ignored runtime write | 2026-07-17 23:41:22 +09:00 |
-| Scenario directories | 50 unique IDs, exactly S001-S050 |
+| Scenario directories | 50 unique IDs, exactly retired numbered scenario framework |
 | `infrastructure/` | Absent |
 | `terraform/`, `ansible/`, `observability/` | Present; mainly examples, models, and validators |
 
@@ -93,7 +93,7 @@ runtime contains 50 files;
 Git confirms `.gitignore` line 96 ignores `.runtime/zero-trust/`. No file below
 that runtime root is tracked.
 
-The aggregate script `tools/validate-all-scenarios.ps1` was expected to run in
+The aggregate script `retired aggregate validator available in Git history` was expected to run in
 static mode but generated 21 untracked scenario summary files before failing.
 Those 21 files were confirmed absent from the opening snapshot and were
 removed immediately to restore the pre-command state. No pre-existing
@@ -202,15 +202,15 @@ but their continued existence does not replace the tracked sanitized records.
 | `tools/check_zero_trust_sync.py` | Catalog/baseline/matrix synchronization | PASS: 5, FAIL: 0 | 0 | Read-only |
 | `tools/generate_zero_trust_reports.py --check` | Generated summary freshness | PASS | 0 | `--write` was not used |
 | `tools/validate-zero-trust.ps1` | Combined Zero Trust validation | PASS | 0 | Read-only wrapper |
-| `tools/validate-repo-structure.ps1` | Required paths and S001-S050 structure | PASS | 0 | Does not prove runtime state |
+| `tools/validate-repo-structure.ps1` | Required paths and retired numbered scenario framework structure | PASS | 0 | Does not prove runtime state |
 | `tools/validate-scenario-quality.ps1` | Scenario/evidence completeness and secret filename checks | PASS, 0 warnings | 0 | Static quality only |
 | `python -m unittest discover -s tests -v` | Zero Trust and telemetry regression tests | 40 tests PASS | 0 | Temporary test data only |
 | `tools/telemetry/validate_telemetry_sources.py` | Inventory, rules, schemas, retention | PASS: 8, WARN: 1 | 0 | No event file supplied; freshness not tested |
 | Same validator with 2026-07-17 event file | Event-load and source observation | PASS: 10, WARN: 0 | 0 | Point-in-time, not continuous |
 | `tools/validate_advanced_target_architecture.py --verbose` | Recovered design schemas, 52 selections, profiles, runbooks, policies, diagrams, package boundary | PASS: 28, WARN: 0, FAIL: 0 | 0 | Untracked local validation; does not approve or implement the package |
 | `tests/test_advanced_target_architecture.py` | Recovered architecture negative and repository tests | 21 tests PASS | 0 | Untracked test suite; local evidence only |
-| `tools/validate-all-scenarios.ps1` | Aggregate scenario validation | FAIL | 1 | Generated 21 files and stopped at a strict-mode child error; rolled back |
-| `tools/validate-kubernetes-node-readiness.ps1` | S021 static/readiness evidence | FAIL | 1 | Missing sample evidence and a `.Count` strict-mode bug |
+| `retired aggregate validator available in Git history` | Aggregate scenario validation | FAIL | 1 | Generated 21 files and stopped at a strict-mode child error; rolled back |
+| `tools/validate-kubernetes-node-readiness.ps1` | retired-numbered-case static/readiness evidence | FAIL | 1 | Missing sample evidence and a `.Count` strict-mode bug |
 
 The repository has 64 tracked PowerShell files and 12 tracked Python files;
 all pass parser-level syntax checks. The aggregate suite discovers 50
@@ -265,7 +265,7 @@ model, but they do not constitute an integrated identity stack. Identity is
 
 ## 12. Scenario Lock Status
 
-`S001` through `S050` exist exactly once in both scenario and evidence
+`retired-numbered-case` through `retired-numbered-case` exist exactly once in both scenario and evidence
 structures. No `S05&#49;` directory, tracked reference, or approved roadmap
 assignment exists. Test fixtures contain deliberate negative `S05&#49;` strings;
 they are not scenario proposals. No scenario was renumbered and no package
@@ -299,7 +299,7 @@ but it is not currently a package and cannot mark Phase 1 complete.
 | `P1G-007` | `ZT-NET-001` | Missing enforcement evidence | No | HIGH | Require approved persistent ACL allow/deny and rollback evidence for stronger validation |
 | `P1G-008` | `ZT-VIS-001/002` | Missing persistent monitoring | No | HIGH | Preserve current work; validate deployment only after an approved package exists |
 | `P1G-009` | Package evidence | Missing metadata | No | MEDIUM | Add configuration version, validator version, and target profile in a reviewed evidence update |
-| `P1G-010` | Aggregate validator | Unsafe mutation / logic defect | Yes for full-suite audit | HIGH | Repair static mode and S021 `.Count` handling before rerun |
+| `P1G-010` | Aggregate validator | Unsafe mutation / logic defect | Yes for full-suite audit | HIGH | Repair static mode and retired-numbered-case `.Count` handling before rerun |
 | `P1G-011` | Architecture/runbooks | Authority conflict | Yes | HIGH | Adjudicate untracked `ZT-ARC-001`, ADRs, target architecture, and `docs/runbooks/` before adoption |
 | `P1G-012` | Quarantine JSON | Encoding warning | No | LOW | Review UTF-8 BOM only if the quarantined file is ever promoted |
 
@@ -308,7 +308,7 @@ but it is not currently a package and cannot mark Phase 1 complete.
 The following must not be changed by subsequent Phase 1 recovery without an
 explicit, reviewed action:
 
-- `scenarios/` and `evidence/` S001-S050 structures.
+- `retired-framework/` and `evidence/` retired numbered scenario framework structures.
 - `docs/zero-trust/packages/` and `docs/evidence/zero-trust/`.
 - `docs/zero-trust/capability-catalog.yaml`,
   `current-baseline-assessment.yaml`, and
@@ -373,9 +373,9 @@ or modified by P1-0.
 
 | Result | Checks |
 |---|---|
-| PASS | Zero Trust validator 34/34; sync 5/5; generated report check; repository structure; scenario quality; 40 tracked tests; recovered architecture validator 28/28 and 21 recovered tests; telemetry event validation; S001-S050 lock; tracked runtime count zero; tracked secret scan |
+| PASS | Zero Trust validator 34/34; sync 5/5; generated report check; repository structure; scenario quality; 40 tracked tests; recovered architecture validator 28/28 and 21 recovered tests; telemetry event validation; retired numbered scenario framework lock; tracked runtime count zero; tracked secret scan |
 | WARN | 11 recovered tracked modifications; 82 recovered untracked files; 50 ignored runtime files; 8 ignored PDF page artifacts; missing evidence version/profile fields; no schedule implementation |
-| FAIL | Aggregate scenario validator exit 1; S021 node-readiness validator exit 1 |
+| FAIL | Aggregate scenario validator exit 1; retired-numbered-case node-readiness validator exit 1 |
 
 P1-0 outcome: `COMPLETE_WITH_WARNINGS`. Validator failures are recorded as
 existing recovery gaps and do not authorize repair in this task.

@@ -22,6 +22,6 @@ This document defines a non-production repository baseline. It contains no real 
 
 ## Evidence Collection Model
 
-- Record repository directive, policy, password-value safety, private-key safety, and execution-boundary results in the S012 generated log and summary.
+- Record repository directive, policy, password-value safety, private-key safety, and execution-boundary results in the retired-numbered-case generated log and summary.
 - Do not capture usernames, password attempts, credentials, private paths, keys, or live authentication output.
-- SSH key authentication is validated separately in S011; root-login denial remains in S013.
+- SSH key authentication is validated separately in retired-numbered-case; root-login denial remains in retired-numbered-case.

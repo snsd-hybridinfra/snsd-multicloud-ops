@@ -764,7 +764,7 @@
     },
     {
       "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/validate-repo-structure.ps1",
-      "purpose": "Repository and S001-S050 structure",
+      "purpose": "Repository and retired numbered scenario framework structure",
       "exit_code": 0,
       "pass": 1,
       "warn": 0,
@@ -793,7 +793,7 @@
   "security": {
     "tracked_runtime_files": 0,
     "tracked_secret_findings": 0,
-    "scenario_lock": "PASS_S001_THROUGH_S050_EXACTLY",
+    "scenario_lock": "PASS_RETIRED_NUMBERED_CASE_THROUGH_RETIRED_NUMBERED_CASE_EXACTLY",
     "s051_present": false,
     "final_diff_check": "PASS",
     "staged_files": 0,
@@ -803,15 +803,15 @@
   },
   "next_action": {
     "action_id": "P1-HYG-001",
-    "objective": "Repair the repository validation hygiene blocker so aggregate scenario validation is provably read-only and the S021 strict-mode Count defect is covered by regression tests.",
+    "objective": "Repair the repository validation hygiene blocker so aggregate scenario validation is provably read-only and the retired-numbered-case strict-mode Count defect is covered by regression tests.",
     "rationale": "An unresolved validator mutation/logic blocker precedes new package implementation, affects every later audit, requires no live infrastructure, and offers high closure value with minimal rework.",
     "prerequisites": [
       "Revalidate the P1-REC-002 Git baseline and protected paths.",
       "Capture exact pre-change hashes of the two validators.",
-      "Keep all validation execution static and local; do not run live S021."
+      "Keep all validation execution static and local; do not run live retired-numbered-case."
     ],
     "authorized_files": [
-      "tools/validate-all-scenarios.ps1",
+      "retired aggregate validator available in Git history",
       "tools/validate-kubernetes-node-readiness.ps1",
       "tests/ (only validator-hygiene regression coverage)",
       "docs/risk-register.md",
@@ -820,7 +820,7 @@
     ],
     "protected_files": [
       ".runtime/zero-trust/**",
-      "scenarios/**",
+      "retired-framework/**",
       "evidence/**",
       "docs/zero-trust/packages/**",
       "docs/evidence/zero-trust/**",
@@ -829,7 +829,7 @@
     ],
     "expected_outputs": [
       "A static aggregate validation mode that creates no repository files.",
-      "A corrected S021 collection/count path with regression coverage.",
+      "A corrected retired-numbered-case collection/count path with regression coverage.",
       "A before/after mutation check and hygiene validation report."
     ],
     "validation": [

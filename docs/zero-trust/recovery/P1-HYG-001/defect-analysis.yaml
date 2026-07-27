@@ -1,7 +1,7 @@
 {
   "recovery_action": {
     "id": "P1-HYG-001",
-    "name": "Repository-Safe Scenario Validation and S021 Strict-Mode Regression Repair",
+    "name": "Repository-Safe Scenario Validation and retired-numbered-case Strict-Mode Regression Repair",
     "timestamp": "2026-07-19T00:13:15+09:00",
     "repository": "C:/Users/swfco/OneDrive/바탕 화면/github/snsd-multicloud-ops",
     "branch": "main",
@@ -11,19 +11,19 @@
   "validator_discovery": [
     {
       "validator_id": "REPOSITORY_AGGREGATE",
-      "path": "tools/validate-all-scenarios.ps1",
-      "entry_point": "powershell -ExecutionPolicy Bypass -File tools/validate-all-scenarios.ps1",
+      "path": "retired aggregate validator available in Git history",
+      "entry_point": "powershell -ExecutionPolicy Bypass -File retired aggregate validator available in Git history",
       "called_helpers": [
         "tools/validate-repo-structure.ps1",
         "tools/validate-scenario-quality.ps1",
         "50 scenario-specific validate-*.ps1 files",
-        "tools/modules/RepositoryValidationSafety.psm1"
+        "retired aggregate safety module available in Git history"
       ],
       "generated_outputs": [
         "evidence/**/logs/*-validation.log",
         "evidence/**/configs/*-summary.md",
-        "evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/logs/repo-wide-validation.log",
-        "evidence/L5-governance-intelligent-ops/S050-final-evidence-report-generation-validation/configs/repo-wide-validation-summary.md"
+        "retired-framework-evidence/retired-numbered-case-final-evidence-report-generation-validation/logs/repo-wide-validation.log",
+        "retired-framework-evidence/retired-numbered-case-final-evidence-report-generation-validation/configs/repo-wide-validation-summary.md"
       ],
       "current_parameters": ["-GenerateReports (explicit mutating mode)"],
       "default_mode": "READ_ONLY_ISOLATED",
@@ -32,13 +32,13 @@
       "test_coverage": "Repository state guard, source contract, actual dirty-tree execution, and full unit suite."
     },
     {
-      "validator_id": "S021",
+      "validator_id": "retired-numbered-case",
       "path": "tools/validate-kubernetes-node-readiness.ps1",
       "entry_point": "Static by default; -LiveKubectl remains explicit and was not executed.",
-      "called_helpers": ["tools/modules/NodeReadinessParser.psm1"],
+      "called_helpers": ["retired parser module available in Git history"],
       "generated_outputs": [
-        "evidence/L3-service-operations/S021-kubernetes-node-readiness-validation/logs/kubernetes-node-readiness-validation.log",
-        "evidence/L3-service-operations/S021-kubernetes-node-readiness-validation/configs/kubernetes-node-readiness-summary.md"
+        "retired-framework-evidence/retired-numbered-case-kubernetes-node-readiness-validation/logs/kubernetes-node-readiness-validation.log",
+        "retired-framework-evidence/retired-numbered-case-kubernetes-node-readiness-validation/configs/kubernetes-node-readiness-summary.md"
       ],
       "current_parameters": ["-LiveKubectl"],
       "default_mode": "STATIC",
@@ -48,17 +48,17 @@
     }
   ],
   "validate_all_scenarios": {
-    "path": "tools/validate-all-scenarios.ps1",
-    "root_cause": "The wrapper created S050 output directories, ran all child validators from the source repository, and unconditionally wrote its own log and summary. Every one of the 50 scenario validators contains a repository-writing command, so static-only runtime selection did not imply repository immutability.",
+    "path": "retired aggregate validator available in Git history",
+    "root_cause": "The wrapper created retired-numbered-case output directories, ran all child validators from the source repository, and unconditionally wrote its own log and summary. Every one of the 50 scenario validators contains a repository-writing command, so static-only runtime selection did not imply repository immutability.",
     "mutation_paths": [
       "The authoritative P1-0 audit records 21 generated untracked scenario summary/log files.",
       "Exact deleted path names were not retained after the P1-0 byte-exact rollback; this action does not invent them.",
-      "Current code analysis identifies the affected path families as evidence/**/logs and evidence/**/configs plus the two S050 aggregate outputs."
+      "Current code analysis identifies the affected path families as evidence/**/logs and evidence/**/configs plus the two retired-numbered-case aggregate outputs."
     ],
     "implicit_generators": [
       "New-Item at the aggregate entry point",
       "all 50 scenario-specific validators using New-Item and/or Set-Content",
-      "unconditional aggregate Set-Content calls for the S050 log and summary"
+      "unconditional aggregate Set-Content calls for the retired-numbered-case log and summary"
     ],
     "prior_behavior": "No-argument execution modified the working tree, mixed validation with report generation, and discovered a non-scenario Zero Trust wrapper as a 51st scenario validator.",
     "repaired_behavior": "No-argument execution snapshots the dirty source tree, copies repository inputs except .git and .runtime to an OS temporary directory, executes exactly 50 scenario validators there, suppresses aggregate report generation, removes the temporary directory, and fails if source state differs.",
@@ -80,17 +80,17 @@
     "malformed_input_behavior": "Returns IsValid false with sanitized line number and reason; malformed data is not converted to an empty success.",
     "repaired_behavior": "A dedicated parser returns typed arrays and counts, while the validator copies parsed nodes into Generic.List[object] before counting or iterating.",
     "limitations": [
-      "The authoritative S021 sample file remains absent, so static S021 exits 1 with V003, V006, and V007 failures.",
+      "The authoritative retired-numbered-case sample file remains absent, so static retired-numbered-case exits 1 with V003, V006, and V007 failures.",
       "No live kubectl command was run and no Kubernetes runtime state was validated.",
-      "Parser success is repository logic validation, not S021 runtime evidence."
+      "Parser success is repository logic validation, not retired-numbered-case runtime evidence."
     ]
   },
   "files_modified": [
     "README.md",
-    "tools/validate-all-scenarios.ps1",
+    "retired aggregate validator available in Git history",
     "tools/validate-kubernetes-node-readiness.ps1",
-    "tools/modules/RepositoryValidationSafety.psm1",
-    "tools/modules/NodeReadinessParser.psm1",
+    "retired aggregate safety module available in Git history",
+    "retired parser module available in Git history",
     "tests/powershell/test-repository-validation-safety.ps1",
     "tests/powershell/test-s021-node-status-parser.ps1",
     "tests/test_repository_validation_hygiene.py",
@@ -106,7 +106,7 @@
     "docs/zero-trust/target-architecture/**",
     "docs/runbooks/**",
     "observability/**",
-    "scenarios/**",
+    "retired-framework/**",
     "evidence/** (source content unchanged)",
     "identity and monitoring configuration",
     "P1-REC-001 and P1-REC-002 records"

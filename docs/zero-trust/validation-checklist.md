@@ -26,8 +26,8 @@ python -m unittest discover -s tests -v
 - [x] Existing and new Mermaid flowchart blocks pass the available static syntax checks where tooling exists.
 - [x] Relative Markdown links resolve.
 - [x] No unsupported implementation, validation, maturity, full-compliance, certification, or enterprise-wide claim exists.
-- [x] S001-S050 remain canonical and unchanged.
-- [x] No scenario directory outside the locked S001-S050 range was created.
+- [x] retired numbered scenario framework remain canonical and unchanged.
+- [x] No scenario directory outside the locked retired numbered scenario framework range was created.
 - [x] Scenario completion counts did not change.
 - [x] Design, configuration, runtime, and continuous evidence remain distinct.
 - [x] Validation authority is stated for runtime evidence.

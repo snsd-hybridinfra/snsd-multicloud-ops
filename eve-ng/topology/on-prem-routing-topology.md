@@ -36,4 +36,4 @@ Management Zone (<management-cidr>)
 
 ## Validation Boundary
 
-S002 validates this topology document and the matching example router configurations as repository artifacts. It does not authenticate to EVE-NG, connect to network devices, test live reachability, or validate cloud connectivity.
+retired-numbered-case validates this topology document and the matching example router configurations as repository artifacts. It does not authenticate to EVE-NG, connect to network devices, test live reachability, or validate cloud connectivity.

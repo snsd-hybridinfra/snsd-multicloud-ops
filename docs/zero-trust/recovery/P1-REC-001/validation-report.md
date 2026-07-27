@@ -70,7 +70,7 @@ The repository validator reported no private keys, tokens, credential assignment
 
 ## 11. Scenario Lock
 
-Exactly 50 scenario IDs, S001 through S050, remain present. No S051 scenario exists and no renumbering occurred. S051 text appears only in negative tests or explicit prohibition statements. No recovered file proposes S051 as approved.
+Exactly 50 scenario IDs, retired-numbered-case through retired-numbered-case, remain present. No successor numbered scenario scenario exists and no renumbering occurred. successor numbered scenario text appears only in negative tests or explicit prohibition statements. No recovered file proposes successor numbered scenario as approved.
 
 ## 12. Syntax and Schema Validation
 
@@ -87,7 +87,7 @@ Exactly 50 scenario IDs, S001 through S050, remain present. No S051 scenario exi
 | Recovered architecture validator | 28 pass, 0 warn, 0 fail |
 | Full unit tests | 61 pass |
 
-Terraform formatting, Compose configuration, and Mermaid external parsing were skipped because no recovery candidate required a safe executable check beyond the recovered validator. Ignored runtime PowerShell scripts were not parsed because their protected content boundary was metadata-only. The mutating aggregate scenario validator and S021 validation were not run.
+Terraform formatting, Compose configuration, and Mermaid external parsing were skipped because no recovery candidate required a safe executable check beyond the recovered validator. Ignored runtime PowerShell scripts were not parsed because their protected content boundary was metadata-only. The mutating aggregate scenario validator and retired-numbered-case validation were not run.
 
 ## 13. Disposition Summary
 

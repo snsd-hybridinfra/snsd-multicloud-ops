@@ -311,7 +311,6 @@ PACKAGE_EVIDENCE_AUTHORITIES = {
     "CODEX_EXECUTED_LIVE_RUNTIME",
     "USER_EXECUTED_RUNTIME",
 }
-SCENARIO_ID_RE = re.compile(r"\bS(\d{3})\b")
 CAPABILITY_ID_RE = re.compile(r"^ZT-(?:[1-6]\.[1-9]\d*\.[1-9]\d*|[78]\.[1-9]\d*)$")
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
@@ -430,11 +429,15 @@ def _type_matches(value: Any, expected: str | list[str]) -> bool:
 
 def validate_schema_instance(
     value: Any,
-    schema: dict[str, Any],
+    schema: dict[str, Any] | bool,
     root_schema: dict[str, Any] | None = None,
     path: str = "$",
 ) -> list[str]:
     """Validate the JSON Schema subset used by the repository schemas."""
+    if schema is True:
+        return []
+    if schema is False:
+        return [f"{path}: value is not permitted by schema"]
     root_schema = root_schema or schema
     if "$ref" in schema:
         return validate_schema_instance(value, _resolve_ref(root_schema, schema["$ref"]), root_schema, path)
@@ -472,8 +475,12 @@ def validate_schema_instance(
             serialized = [json.dumps(item, ensure_ascii=False, sort_keys=True) for item in value]
             if len(serialized) != len(set(serialized)):
                 errors.append(f"{path}: array items are not unique")
+        prefix_items = schema.get("prefixItems", [])
+        for index, item_schema in enumerate(prefix_items):
+            if index < len(value):
+                errors.extend(validate_schema_instance(value[index], item_schema, root_schema, f"{path}[{index}]"))
         if "items" in schema:
-            for index, item in enumerate(value):
+            for index, item in enumerate(value[len(prefix_items):], len(prefix_items)):
                 errors.extend(validate_schema_instance(item, schema["items"], root_schema, f"{path}[{index}]"))
 
     if isinstance(value, dict):
@@ -687,7 +694,7 @@ def validate_backlog(
 
     status_errors: list[str] = []
     applicability_errors: list[str] = []
-    scenario_errors: list[str] = []
+    package_test_errors: list[str] = []
     dependency_errors: list[str] = []
     graph: dict[str, list[str]] = {}
     for item in records:
@@ -709,8 +716,9 @@ def validate_backlog(
                 applicability_errors.append(f"{capability_id}: OPTIMAL target lacks continuous-evidence justification")
         if item["validation_status"] == "VALIDATED" and item["evidence_level"] in {"NONE", "DESIGN"}:
             status_errors.append(f"{capability_id}: VALIDATED lacks supporting evidence")
-        if SCENARIO_ID_RE.search(item["future_scenario_boundary"]):
-            scenario_errors.append(f"{capability_id}: future scenario boundary assigns or embeds a scenario ID")
+        boundary = item["future_package_test_boundary"]
+        if not boundary.strip():
+            package_test_errors.append(f"{capability_id}: package test boundary is empty")
         graph[capability_id] = list(item["dependency_ids"])
         for dependency in item["dependency_ids"]:
             if dependency not in catalog_by_id:
@@ -727,13 +735,11 @@ def validate_backlog(
             result.fail("backlog.applicability", error)
     else:
         result.passed("backlog.applicability", "Applicability and proposed lab targets obey conservative target rules.")
-    if scenario_errors:
-        for error in scenario_errors:
-            result.fail("backlog.scenarios", error)
-    elif re.search(r"\bS(?:0(?:5[1-9]|[6-9]\d)|1(?:[0-4]\d|50))\b", json.dumps(backlog, ensure_ascii=False)):
-        result.fail("backlog.scenarios", "Backlog contains an unauthorized future scenario ID.")
+    if package_test_errors:
+        for error in package_test_errors:
+            result.fail("backlog.package-tests", error)
     else:
-        result.passed("backlog.scenarios", "Backlog assigns no future scenario ID and leaves scenario creation approval-gated.")
+        result.passed("backlog.package-tests", "Backlog records an explicit package-test activation boundary for every capability.")
 
     wave_by_id = {wave["id"]: wave for wave in backlog["waves"]}
     expected_waves = {f"W{number}" for number in range(6)}
@@ -845,62 +851,6 @@ def _markdown_table(path: Path) -> list[dict[str, str]]:
     return []
 
 
-def _scenario_directories(root: Path) -> dict[str, Path]:
-    result: dict[str, Path] = {}
-    for path in (root / "scenarios").glob("L*/S???-*"):
-        if path.is_dir():
-            scenario_id = path.name[:4]
-            if scenario_id in result:
-                result[scenario_id] = Path("<duplicate>")
-            else:
-                result[scenario_id] = path
-    return result
-
-
-def validate_scenarios(root: Path, result: ValidationResult) -> None:
-    scenarios = _scenario_directories(root)
-    expected = {f"S{number:03d}" for number in range(1, 51)}
-    if set(scenarios) == expected and all(path != Path("<duplicate>") for path in scenarios.values()):
-        result.passed("scenario.lock", "Exactly the locked S001-S050 scenario directories exist.")
-    else:
-        result.fail("scenario.lock", f"Scenario set differs; missing={sorted(expected-set(scenarios))}, extra={sorted(set(scenarios)-expected)}.")
-
-    zero_trust_dir = root / "docs/zero-trust"
-    bad_refs: list[str] = []
-    for path in sorted(zero_trust_dir.glob("*")):
-        if path.suffix.lower() not in {".md", ".yaml", ".yml"}:
-            continue
-        for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-            for match in SCENARIO_ID_RE.finditer(line):
-                number = int(match.group(1))
-                if 1 <= number <= 50:
-                    if f"S{number:03d}" not in scenarios:
-                        bad_refs.append(f"{path.relative_to(root)}:{line_number}: missing {match.group(0)}")
-                elif 51 <= number <= 150:
-                    allowed = path.name == "implementation-roadmap.md" and re.search(r"(?i)future|roadmap|planned|not created|not approved", line)
-                    if not allowed:
-                        bad_refs.append(f"{path.relative_to(root)}:{line_number}: unauthorized {match.group(0)}")
-                else:
-                    bad_refs.append(f"{path.relative_to(root)}:{line_number}: invalid {match.group(0)}")
-    matrix_path = zero_trust_dir / "scenario-capability-matrix.md"
-    rows = _markdown_table(matrix_path)
-    seen: list[str] = []
-    for row in rows:
-        scenario_id = row.get("Scenario", "")
-        seen.append(scenario_id)
-        actual = scenarios.get(scenario_id)
-        expected_name = actual.name[5:] if actual and actual != Path("<duplicate>") else None
-        if expected_name and row.get("Name") != expected_name:
-            bad_refs.append(f"{matrix_path.relative_to(root)}: {scenario_id} name does not match {expected_name}")
-    if len(rows) != 50 or len(set(seen)) != 50:
-        bad_refs.append("scenario-capability-matrix.md must contain exactly one row for each S001-S050")
-    if bad_refs:
-        for error in bad_refs:
-            result.fail("scenario.references", error)
-    else:
-        result.passed("scenario.references", "Scenario references, names, roadmap ranges, and matrix rows are valid.")
-
-
 def _safe_relative_reference(root: Path, reference: str) -> tuple[bool, str]:
     cleaned = reference.strip().strip("`").replace("\\", "/")
     if not cleaned or re.match(r"^[A-Za-z]:/", cleaned) or cleaned.startswith("/"):
@@ -930,6 +880,17 @@ def _has_live_execution_record(root: Path, references: list[str]) -> bool:
             text = path.read_text(encoding="utf-8", errors="replace")
         except OSError:
             continue
+        if path.suffix.lower() in {".yaml", ".yml", ".json"}:
+            try:
+                record = json.loads(text)
+            except json.JSONDecodeError:
+                record = None
+            if isinstance(record, dict):
+                authority = str(record.get("execution_authority", ""))
+                results = record.get("results", {})
+                exit_code = results.get("exit_code") if isinstance(results, dict) else None
+                if "LIVE_RUNTIME" in authority and exit_code == 0 and "PASS" in text:
+                    return True
         if "[PASS]" in text and re.search(r"(?i)execut(?:ed|ion)|exit\s*(?:code|status)?\s*[:=]?\s*0", text):
             return True
     return False
@@ -2004,6 +1965,28 @@ def validate_automation_package(root: Path, catalog: dict[str, Any], result: Val
 
 def validate_continuous_verification_package(root: Path, catalog: dict[str, Any], result: ValidationResult) -> None:
     category = "package.zt-cv-001"
+    del catalog
+    try:
+        package = load_json_yaml(root / CONTINUOUS_VERIFICATION_PACKAGE_PATH)
+    except ValueError as exc:
+        result.fail(f"{category}.configuration", str(exc))
+        return
+    expected = {
+        "package_id": "ZT-CV-001",
+        "implementation_status": "NOT_IMPLEMENTED",
+        "validation_status": "NOT_VALIDATED",
+        "runtime_validation_status": "NOT_VALIDATED",
+        "runtime_acceptance_status": "PENDING",
+        "maturity_status": "UNASSESSED",
+    }
+    mismatches = {key: (value, package.get(key)) for key, value in expected.items() if package.get(key) != value}
+    if mismatches:
+        result.fail(category, f"ZT-CV-001 conservative package state differs: {mismatches}")
+    elif any(package.get(field) is True for field in ("automatic_remediation", "schedule_installed", "continuous_operation", "phase_1_complete")):
+        result.fail(f"{category}.claims", "Unimplemented ZT-CV-001 cannot claim automation, scheduling, continuity, or phase completion.")
+    else:
+        result.passed(category, "ZT-CV-001 remains NOT_IMPLEMENTED / NOT_VALIDATED / PENDING / UNASSESSED.")
+    return
     required = (
         CONTINUOUS_VERIFICATION_PACKAGE_PATH,
         CONTINUOUS_VERIFICATION_EXECUTION_PATH,
@@ -2099,6 +2082,28 @@ def validate_continuous_verification_package(root: Path, catalog: dict[str, Any]
 
 def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], result: ValidationResult) -> None:
     category = "package.zt-rv-001"
+    del catalog
+    try:
+        package = load_json_yaml(root / REPEATABLE_VALIDATION_PACKAGE_PATH)
+    except ValueError as exc:
+        result.fail(f"{category}.configuration", str(exc))
+        return
+    expected = {
+        "package_id": "ZT-RV-001",
+        "implementation_status": "NOT_IMPLEMENTED",
+        "validation_status": "NOT_VALIDATED",
+        "runtime_validation_status": "NOT_VALIDATED",
+        "runtime_acceptance_status": "PENDING",
+        "maturity_status": "UNASSESSED",
+    }
+    mismatches = {key: (value, package.get(key)) for key, value in expected.items() if package.get(key) != value}
+    if mismatches:
+        result.fail(category, f"ZT-RV-001 conservative package state differs: {mismatches}")
+    elif any(package.get(field) is True for field in ("automatic_schedule", "automatic_retry", "automatic_remediation", "scheduled_operation", "continuous_operation", "phase_1_complete")):
+        result.fail(f"{category}.claims", "Unimplemented ZT-RV-001 cannot claim repeatability, scheduling, automation, or phase completion.")
+    else:
+        result.passed(category, "ZT-RV-001 remains NOT_IMPLEMENTED / NOT_VALIDATED / PENDING / UNASSESSED.")
+    return
     required = (
         REPEATABLE_VALIDATION_CAMPAIGN_PATH, REPEATABILITY_ACCEPTANCE_POLICY_PATH,
         REPEATABLE_VALIDATION_PACKAGE_PATH, *REPEATABLE_VALIDATION_SCHEMA_PATHS,
@@ -2198,7 +2203,6 @@ def run_validation(root: Path, strict: bool = False) -> ValidationResult:
         validate_maturity(catalog["capabilities"], result, "catalog")
         validate_maturity(baseline["capabilities"], result, "baseline")
         validate_evidence(root, baseline, result)
-    validate_scenarios(root, result)
     validate_overclaims(root, result)
     validate_sensitive_data(root, result)
     validate_markdown_links(root, result)

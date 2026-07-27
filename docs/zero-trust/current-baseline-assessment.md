@@ -5,7 +5,7 @@
 - Assessment date: 2026-07-17
 - Environment: non-production SNSD portfolio lab and repository governance artifacts
 - Source: 제로트러스트 가이드라인 2.0, December 2024
-- Scenario boundary: locked S001-S050 only
+- Scenario boundary: locked retired numbered scenario framework only
 - Evaluator: Codex second-pass documentation QA
 
 This is an evidence-based, capability-level baseline. It is not a compliance assessment, certification, enterprise-wide assessment, or overall maturity score.
@@ -20,9 +20,9 @@ independent.
 
 ## Evidence Sources
 
-- User-executed sanitized EVE-NG runtime evidence under S002
-- User-executed sanitized OpenStack AIO runtime evidence under S005
-- Codex-executed restricted live read-only S005 validation evidence
+- User-executed sanitized EVE-NG runtime evidence under retired-numbered-case
+- User-executed sanitized OpenStack AIO runtime evidence under retired-numbered-case
+- Codex-executed restricted live read-only retired-numbered-case validation evidence
 - Codex-executed bounded ZT-NET-001 persistent ACL and ZT-VIS-001 persistent
   telemetry evidence
 - Scenario definitions and repository tracking matrices
@@ -93,24 +93,24 @@ None. Scenario-level validation does not establish full capability validation.
 
 | Capability | Korean name | Evidence scenarios | Evidence level | Confidence |
 |---|---|---|---|---|
-| ZT-3.1.1 | 매크로 세그멘테이션 | S002, S003, S004, S005, S014, S015, S016 | RUNTIME | MEDIUM |
-| ZT-3.4.1 | 데이터 흐름 매핑 | S002, S003, S004, S005, S023, S024 | RUNTIME | MEDIUM |
-| ZT-4.1.1 | 접근통제 | S005, S011, S012, S013, S014, S015, S016, S017, S018, S020 | RUNTIME | MEDIUM |
-| ZT-4.3.1 | 네트워크 세분화 및 그룹 간 이동 | S002, S003, S004, S014, S015, S016 | RUNTIME | MEDIUM |
-| ZT-7.1 | 모든 관련 활동 기록 | S005, S036 | RUNTIME | MEDIUM |
-| ZT-8.2 | 중요 프로세스 자동화 | S005 | RUNTIME | MEDIUM |
+| ZT-3.1.1 | 매크로 세그멘테이션 | retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case | RUNTIME | MEDIUM |
+| ZT-3.4.1 | 데이터 흐름 매핑 | retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case | RUNTIME | MEDIUM |
+| ZT-4.1.1 | 접근통제 | retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case | RUNTIME | MEDIUM |
+| ZT-4.3.1 | 네트워크 세분화 및 그룹 간 이동 | retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case | RUNTIME | MEDIUM |
+| ZT-7.1 | 모든 관련 활동 기록 | retired-numbered-case, retired-numbered-case | RUNTIME | MEDIUM |
+| ZT-8.2 | 중요 프로세스 자동화 | retired-numbered-case | RUNTIME | MEDIUM |
 
 ## Mapped-Only Capabilities
 
 | Capability | Korean name | Scenario references | Authority |
 |---|---|---|---|
-| ZT-3.2.1 | 위협 대응 | S037 | DESIGN_ONLY |
-| ZT-3.5.1 | 네트워크 회복성 | S035 | DESIGN_ONLY |
-| ZT-4.4.1 | 시스템 환경에 따른 정책 관리 | S037, S041, S042, S043, S044 | DESIGN_ONLY |
-| ZT-5.1.1 | 리소스 권한 부여 및 통합 | S018, S020 | DESIGN_ONLY |
-| ZT-5.4.1 | 안전한 애플리케이션 배포 | S044 | DESIGN_ONLY |
-| ZT-6.2.1 | 데이터 접근제어 | S017 | DESIGN_ONLY |
-| ZT-8.1 | 정책 통합 | S043, S044 | DESIGN_ONLY |
+| ZT-3.2.1 | 위협 대응 | retired-numbered-case | DESIGN_ONLY |
+| ZT-3.5.1 | 네트워크 회복성 | retired-numbered-case | DESIGN_ONLY |
+| ZT-4.4.1 | 시스템 환경에 따른 정책 관리 | retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case, retired-numbered-case | DESIGN_ONLY |
+| ZT-5.1.1 | 리소스 권한 부여 및 통합 | retired-numbered-case, retired-numbered-case | DESIGN_ONLY |
+| ZT-5.4.1 | 안전한 애플리케이션 배포 | retired-numbered-case | DESIGN_ONLY |
+| ZT-6.2.1 | 데이터 접근제어 | retired-numbered-case | DESIGN_ONLY |
+| ZT-8.1 | 정책 통합 | retired-numbered-case, retired-numbered-case | DESIGN_ONLY |
 
 ## Unassessed Capabilities and Gaps
 

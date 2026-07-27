@@ -136,7 +136,7 @@ missing owners, shared privilege, missing MFA requirement, expiry, revocation,
 suspension, unregistered access, read-only mutation, interactive automation,
 invalid service scope, incomplete break-glass controls, synthetic secret-field
 injection, separation conflicts, invalid role/lifecycle/authentication values,
-fictional deployment and maturity claims, S051 and runtime tracking, production
+fictional deployment and maturity claims, successor numbered scenario and runtime tracking, production
 data markers, missing approval, and unrestricted emergency scope.
 
 Controlled secret-field names and synthetic sentinel values exist only in the
@@ -233,8 +233,8 @@ evidence nor a prerequisite modified by this action.
 Package acceptance requires all schemas to parse, all models to satisfy schema
 and semantic rules, nine positive cases to match expected decisions,
 thirty-four negative cases to be rejected for the expected reason, evidence to
-synchronize, the validator and unit tests to pass, S001-S050 to remain locked,
-S051 to remain absent, and no secret or runtime file to be tracked.
+synchronize, the validator and unit tests to pass, retired numbered scenario framework to remain locked,
+successor numbered scenario to remain absent, and no secret or runtime file to be tracked.
 
 Runtime acceptance additionally requires at least 20 positive checks, 42
 harmless deterministic denials, zero unexpected allowances, preserved operator

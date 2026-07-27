@@ -1,59 +1,44 @@
+"""Repository-safety regression tests for package-oriented validation."""
+
+from __future__ import annotations
+
+import hashlib
 import subprocess
+import sys
 import unittest
 from pathlib import Path
 
-
-REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
-POWERSHELL_TEST_ROOT = REPOSITORY_ROOT / "tests" / "powershell"
+ROOT = Path(__file__).resolve().parents[1]
 
 
-def run_powershell_test(name: str) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(
-        [
-            "powershell.exe",
-            "-NoProfile",
-            "-ExecutionPolicy",
-            "Bypass",
-            "-File",
-            str(POWERSHELL_TEST_ROOT / name),
-        ],
-        cwd=REPOSITORY_ROOT,
-        check=False,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-    )
+def fingerprint() -> str:
+    digest = hashlib.sha256()
+    for path in sorted(path for path in ROOT.rglob("*") if path.is_file() and ".git" not in path.parts):
+        if "__pycache__" in path.parts:
+            continue
+        digest.update(path.relative_to(ROOT).as_posix().encode())
+        digest.update(path.read_bytes())
+    return digest.hexdigest()
 
 
 class RepositoryValidationHygieneTests(unittest.TestCase):
-    def test_s021_strict_mode_fixture_regressions(self) -> None:
-        result = run_powershell_test("test-s021-node-status-parser.ps1")
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertIn("passed=9 failed=0", result.stdout)
+    def test_retirement_validator_is_read_only(self) -> None:
+        before = fingerprint()
+        result = subprocess.run(
+            [sys.executable, "tools/validate_scenario_retirement.py"], cwd=ROOT,
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
+        )
+        after = fingerprint()
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        self.assertEqual(before, after)
 
-    def test_repository_state_guard_regressions(self) -> None:
-        result = run_powershell_test("test-repository-validation-safety.ps1")
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertIn("passed=8 failed=0", result.stdout)
-
-    def test_validate_all_defaults_to_isolated_read_only_mode(self) -> None:
-        source = (REPOSITORY_ROOT / "tools" / "validate-all-scenarios.ps1").read_text(encoding="utf-8")
-        self.assertIn("[switch] $GenerateReports", source)
-        self.assertIn('validationMode = "ReadOnlyIsolated"', source)
-        self.assertIn("Report generation: SKIPPED (read-only isolated mode).", source)
-        self.assertIn("Scenario results: PASS=", source)
-        self.assertIn("Get-RepositoryStateSnapshot", source)
-        self.assertIn("Compare-RepositoryStateSnapshot", source)
-        self.assertIn('"validate-zero-trust.ps1"', source)
-        self.assertLess(source.index("if ($GenerateReports) {", source.index("$validatorPassCount")), source.index("Set-Content -LiteralPath $logPath"))
-
-    def test_s021_uses_normalized_parser_without_weakening_strict_mode(self) -> None:
-        source = (REPOSITORY_ROOT / "tools" / "validate-kubernetes-node-readiness.ps1").read_text(encoding="utf-8")
-        self.assertIn("Set-StrictMode -Version Latest", source)
-        self.assertIn("NodeReadinessParser.psm1", source)
-        self.assertIn("ConvertFrom-NodeStatusEvidence", source)
-        self.assertNotIn("function Get-NodeStatusEvidence", source)
+    def test_package_flow_has_no_duplicate_ids(self) -> None:
+        import json
+        flow = json.loads((ROOT / "docs/zero-trust/package-flow.yaml").read_text(encoding="utf-8"))
+        package_ids = [item["package_id"] for item in flow["packages"]]
+        self.assertEqual(len(package_ids), len(set(package_ids)))
+        self.assertEqual("ZT-SCH-001", flow["phase_1_acceptance"]["scope_boundary"])
+        self.assertEqual("NOT_COMPLETE", flow["phase_1_acceptance"]["completion_status"])
 
 
 if __name__ == "__main__":

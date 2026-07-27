@@ -41,8 +41,6 @@
     "eve_restricted_endpoint": true
   },
   "evidence_files": [
-    "evidence/L1-foundation/S005-openstack-network-provisioning-validation/logs/20260716-S005-codex-restricted-live-validation.sanitized.txt",
-    "evidence/L1-foundation/S005-openstack-network-provisioning-validation/configs/20260716-S005-restricted-endpoint-security-summary.md",
     "docs/evidence/zero-trust/zt-fnd-001-openstack-validation.sanitized.txt",
     "docs/evidence/zero-trust/zt-fnd-001-eve-validation.sanitized.txt",
     "docs/evidence/zero-trust/zt-fnd-001-security-boundary.sanitized.txt"

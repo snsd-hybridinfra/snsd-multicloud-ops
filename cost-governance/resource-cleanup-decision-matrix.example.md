@@ -12,5 +12,5 @@
 | Approved temporary exception | complete exception | Retain temporarily | Track expiry | Complete | CLEANUP_EXCEPTION_APPROVED |
 | Missing owner | incomplete | Review | Identify | None | CLEANUP_REVIEW_REQUIRED |
 | Missing retention class | incomplete | Review | Classify | None | CLEANUP_REVIEW_REQUIRED |
-| Missing cost mapping | incomplete | Cannot judge | Map S045 | None | CLEANUP_EVIDENCE_INCOMPLETE |
+| Missing cost mapping | incomplete | Cannot judge | Map retired-numbered-case | None | CLEANUP_EVIDENCE_INCOMPLETE |
 | Candidate evidence malformed | parse failure | Cannot judge | Correct | None | CLEANUP_EVIDENCE_INCOMPLETE |
