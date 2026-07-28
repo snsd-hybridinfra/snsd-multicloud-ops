@@ -1,0 +1,17 @@
+{
+  "action_id": "P1-CV-001",
+  "audit_date": "2026-07-27",
+  "authorized_scope": "BOUNDED_READ_ONLY_INTEGRATED_VALIDATION",
+  "targets": [
+    {"alias":"OPENSTACK_TEST_INSTANCE","required_for":"FND_NET_VIS_READ_ONLY_VALIDATION","initial_state":"SHUTOFF","final_state":"SHUTOFF","pending_task_final":false},
+    {"alias":"OPENSTACK_MONITORING_INSTANCE","required_for":"VIS_READ_ONLY_VALIDATION","initial_state":"SHUTOFF","final_state":"SHUTOFF","pending_task_final":false},
+    {"alias":"EVE_PHASE_1_LAB","required_for":"NET_FND_READ_ONLY_VALIDATION","initial_process_counts":{"DYNAMIPS":0,"QEMU":0,"VPCS":0},"final_process_counts":{"DYNAMIPS":0,"QEMU":0,"VPCS":0}}
+  ],
+  "configuration_modified": false,
+  "acl_modified": false,
+  "identity_policy_modified": false,
+  "logging_configuration_modified": false,
+  "schedule_installed": false,
+  "raw_endpoint_values_recorded": false,
+  "decision": "ROLLBACK_VERIFIED"
+}

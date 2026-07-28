@@ -1,0 +1,26 @@
+ZT-FND-001 P1-CV-001 FRESHNESS REFRESH SUMMARY
+execution_id: ZTFND-20260727T125219Z-7e484762
+execution_date: 2026-07-27T12:52:19.6763583Z
+execution_authority: CODEX_EXECUTED_LIVE_RUNTIME
+execution_mode: MANUAL_LIVE_READ_ONLY
+validator_id: ZTCV-VAL-FND
+validator_version: 1.1.0
+execution_scope: ZT_FND_001_BOUNDED_RESTRICTED_ENDPOINTS
+result: WARN
+validator_pass: 2
+validator_warn: 1
+validator_fail: 0
+openstack: CURRENT_DEGRADED_46_PASS_0_WARN_4_FAIL
+eve: PASS
+router: PASS_WITH_IDLE_NAT_WARNING_38_PASS_1_WARN_0_FAIL
+interactive_and_arbitrary_boundary_denials: 6_OF_6
+security_boundary: VERIFIED_SEPARATELY
+sanitization_status: PASS
+secret_values: 0
+raw_runtime_committed: false
+configuration_modified: false
+automatic_remediation_performed: false
+scheduled_trigger: false
+maturity_assigned: false
+phase_1_complete: false
+limitations: OpenStack diagnostic failures remain explicit and were normalized only as one package-level warning; this record refreshes FND runtime freshness but does not establish repeatability, scheduling, continuous operation, compliance, certification, or maturity.

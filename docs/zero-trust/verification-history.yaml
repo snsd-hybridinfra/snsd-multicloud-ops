@@ -8,7 +8,7 @@
       "Only executions with resolvable tracked evidence are included.",
       "The predecessor source workflow identifier was not recorded except for ZT-AUTO-001; no missing source identifier is fabricated.",
       "Date-only records use the documented UTC date boundary and do not fabricate a more precise time.",
-      "Each validator/workflow/scope group has one accepted history record, so continuity is at most EC3.",
+      "Historical records are preserved when a validator stream is refreshed; continuity still requires unique successful records, a stable recorded plan, freshness, and the configured separation rules, and no current group has EC4.",
       "No entry is a scheduled trigger."
     ]
   },
@@ -47,7 +47,45 @@
       "freshness_status": "FRESH",
       "scheduled_trigger": false,
       "limitations": [
-        "One history record for this exact group."
+        "This 2026-07-17 validator-version 1.0 record is preserved and is superseded for current freshness assessment by the reviewed 2026-07-27 validator-version 1.1 record; it receives no repeatability or schedule credit."
+      ]
+    },
+    {
+      "execution_id": "ZTFND-20260727T125219Z-7e484762",
+      "package_id": "ZT-FND-001",
+      "capability_ids": [
+        "ZT-3.1.1",
+        "ZT-3.4.1",
+        "ZT-4.1.1",
+        "ZT-4.3.1",
+        "ZT-7.1",
+        "ZT-8.2"
+      ],
+      "validator_id": "ZTCV-VAL-FND",
+      "validator_version": "1.1.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_FND_001_BOUNDED_RESTRICTED_ENDPOINTS",
+      "execution_date": "2026-07-27T12:52:19.6763583Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "MANUAL_LIVE_READ_ONLY",
+      "plan_hash": "NOT_RECORDED",
+      "result": "WARN",
+      "pass": 2,
+      "warn": 1,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-fnd-001-p1-cv-refresh.sanitized.txt"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-fnd-001-p1-cv-refresh.sanitized.txt": "aa32d74484bf2ff0586a7fac7105e7f04a4452d2876c193be86078490348820a"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "The current OpenStack 46 PASS / 0 WARN / 4 FAIL diagnostic is retained as one validator-level warning; FND gate warning tolerance remains zero, so this refresh restores freshness but does not restore package acceptance.",
+        "This manual refresh receives no repeatability, scheduling, continuous-operation, maturity, compliance, or certification credit."
       ]
     },
     {

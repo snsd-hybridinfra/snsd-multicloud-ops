@@ -13,5 +13,6 @@
 Each milestone retains explicit entry criteria, required actions, exit criteria,
 blocking gaps, evidence requirements, and a decision in
 `milestones-and-gates.yaml`. M0 and the bounded core-control M1 are approved
-from action evidence. M2 through M6 remain `PENDING`; neither approval assigns
-maturity nor proves compliance.
+from action evidence. M2 through M6 remain `PENDING`; M2 is currently blocked
+before RV by the ZT-FND-001 zero-warning acceptance gate exposed during
+P1-CV-001. Neither approval assigns maturity nor proves compliance.

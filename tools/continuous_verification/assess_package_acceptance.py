@@ -9,5 +9,5 @@ def main() -> int:
     write_json(a.output,{"assessment_type":"PACKAGE_ACCEPTANCE","assessment_time":iso(now),"results":results,"accepted_or_partial":sum(x["assessment_state"] in {"ACCEPTED","PARTIALLY_ACCEPTED"} for x in results),"authoritative_update_performed":False})
     if a.verbose:
         for item in results: print(f"[{item['assessment_state']}] {item['package_id']} continuity={item['evidence_continuity']}")
-    blocked=sum(x["assessment_state"] in {"NOT_ACCEPTED","BLOCKED","ACCEPTANCE_EXPIRED"} for x in results); print(f"[{'WARN' if blocked else 'PASS'}] package gates={len(results)} blocked={blocked} output={a.output}"); return 0
+    blocked=sum(x["assessment_state"] in {"NOT_ACCEPTED","BLOCKED","ACCEPTANCE_EXPIRED"} for x in results); review=sum(x["assessment_state"] == "REVIEW_REQUIRED" for x in results); print(f"[{'WARN' if blocked or review else 'PASS'}] package gates={len(results)} blocked={blocked} review_required={review} output={a.output}"); return 0
 if __name__=="__main__": raise SystemExit(main())

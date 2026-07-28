@@ -4,16 +4,52 @@
   "package_type": "CROSS_CAPABILITY_VALIDATION",
   "phase": "PHASE_1",
   "authority_status": "AUTHORITATIVE",
-  "implementation_status": "NOT_IMPLEMENTED",
-  "validation_status": "NOT_VALIDATED",
-  "local_validation_status": "NOT_VALIDATED",
-  "runtime_validation_status": "NOT_VALIDATED",
-  "runtime_acceptance_status": "PENDING",
+  "implementation_status": "IMPLEMENTED",
+  "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+  "local_validation_status": "LOCAL_VALIDATED",
+  "runtime_validation_status": "PARTIALLY_VALIDATED",
+  "runtime_acceptance_status": "BLOCKED",
   "maturity_status": "UNASSESSED",
   "predecessors": ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001"],
   "purpose": "Validate that the foundation, network, visibility, and identity controls operate together and expose conflicts or missing controls.",
+  "acceptance_state": "BLOCKED",
+  "evidence_continuity": "EC3_ONE_TIME_RUNTIME",
+  "current_maturity": "UNASSESSED",
+  "capability_assessment": [
+    {"id":"ZT-7.1","relationship":"BOUNDED_RUNTIME_OBSERVATION","validation":"PARTIALLY_RUNTIME_VALIDATED","current_maturity":"UNASSESSED"},
+    {"id":"ZT-8.1","relationship":"CHECK_ONLY_GOVERNANCE","validation":"LOCAL_VALIDATED","current_maturity":"UNASSESSED"},
+    {"id":"ZT-8.2","relationship":"READ_ONLY_VALIDATION_AUTOMATION","validation":"PARTIALLY_RUNTIME_VALIDATED","current_maturity":"UNASSESSED"}
+  ],
+  "latest_execution": {
+    "execution_id": "ZTA-20260727T125822Z-519fe693",
+    "workflow_id": "ZT-CV-WF-001",
+    "plan_hash": "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624",
+    "result": "PARTIAL",
+    "steps_passed": 8,
+    "steps_warned": 2,
+    "steps_failed": 0,
+    "decision": "BLOCKED",
+    "blocking_gate": "ZTCV-GATE-FND",
+    "blocking_finding": "WARNING_BUDGET_EXCEEDED"
+  },
+  "evidence_files": [
+    "docs/evidence/zero-trust/zt-cv-001-validation.yaml",
+    "docs/evidence/zero-trust/zt-cv-001-live-summary.sanitized.txt",
+    "docs/evidence/zero-trust/zt-cv-001-p1-cv-001-blocked.sanitized.txt",
+    "docs/zero-trust/recovery/P1-CV-001/runtime-results.yaml",
+    "docs/zero-trust/recovery/P1-CV-001/validation-results.yaml"
+  ],
+  "automatic_remediation": false,
+  "authoritative_status_update": false,
+  "maturity_assignment": false,
+  "schedule_installed": false,
+  "scheduled_operation": false,
+  "continuous_operation": false,
+  "phase_1_complete": false,
   "limitations": [
-    "Existing preparation or one-time records do not establish accepted package implementation under the normalized flow.",
-    "No live execution is performed by scenario retirement."
+    "The normalized-flow execution completed 8 PASS, 2 WARN, and 0 FAIL, but ZT-FND-001 remains REVIEW_REQUIRED because one current validator warning exceeds its zero-warning gate budget.",
+    "The transient 503 attempt and the superseded freshness-warning attempt receive no acceptance or continuity credit.",
+    "The package is implemented and partially runtime validated but is not accepted; P1-RV-001 remains blocked.",
+    "No schedule, automatic remediation, continuous operation, maturity, compliance, certification, or Phase 1 completion is claimed."
   ]
 }

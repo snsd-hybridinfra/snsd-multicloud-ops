@@ -261,14 +261,26 @@ def regression_results(history: dict[str, Any], freshness: list[dict[str, Any]])
     freshness_map = {item["execution_id"]: item["freshness_status"] for item in freshness}
     findings: list[dict[str, Any]] = []
     seen: set[str] = set()
-    for record in history.get("executions", []):
+    records = history.get("executions", [])
+    latest_by_stream: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for record in records:
+        key = (
+            str(record.get("package_id")),
+            str(record.get("validator_id")),
+            str(record.get("execution_scope")),
+        )
+        previous = latest_by_stream.get(key)
+        if previous is None or str(record.get("execution_date", "")) > str(previous.get("execution_date", "")):
+            latest_by_stream[key] = record
+    current_ids = {str(record.get("execution_id")) for record in latest_by_stream.values()}
+    for record in records:
         execution_id = str(record.get("execution_id"))
         if execution_id in seen:
             findings.append({"type":"DEPENDENCY_REGRESSION","execution_id":execution_id,"severity":"HIGH","reason":"DUPLICATE_EXECUTION_ID"})
         seen.add(execution_id)
         if not execution_success(record):
             findings.append({"type":"VALIDATION_REGRESSION","execution_id":execution_id,"severity":"HIGH","reason":"FAILED_OR_UNSANITIZED_EXECUTION"})
-        if freshness_map.get(execution_id) in {"STALE", "EXPIRED", "UNKNOWN"}:
+        if execution_id in current_ids and freshness_map.get(execution_id) in {"STALE", "EXPIRED", "UNKNOWN"}:
             findings.append({"type":"EVIDENCE_FRESHNESS_REGRESSION","execution_id":execution_id,"severity":"HIGH","reason":freshness_map.get(execution_id)})
         for relative, expected in record.get("evidence_hashes", {}).items():
             path = ROOT / relative

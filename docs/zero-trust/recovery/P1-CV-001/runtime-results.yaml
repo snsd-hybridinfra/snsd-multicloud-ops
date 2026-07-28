@@ -1,0 +1,37 @@
+{
+  "action_id": "P1-CV-001",
+  "package_id": "ZT-CV-001",
+  "timestamp": "2026-07-27T12:59:31.678726Z",
+  "execution": {
+    "execution_id": "ZTA-20260727T125822Z-519fe693",
+    "workflow_id": "ZT-CV-WF-001",
+    "execution_mode": "EXECUTE_READ_ONLY",
+    "plan_hash": "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624",
+    "start_time": "2026-07-27T12:58:22.774403Z",
+    "end_time": "2026-07-27T12:59:31.678726Z",
+    "duration_seconds": 68.904,
+    "result": "PARTIAL",
+    "steps": {"pass":8,"warn":2,"fail":0,"skipped":0}
+  },
+  "freshness": {"fresh":9,"aging":1,"stale_preserved_superseded":1,"expired":0,"unknown":0},
+  "regressions": 0,
+  "package_acceptance": {
+    "blocking_package": "ZT-FND-001",
+    "gate_id": "ZTCV-GATE-FND",
+    "assessment_state": "REVIEW_REQUIRED",
+    "finding": "WARNING_BUDGET_EXCEEDED",
+    "latest_execution_id": "ZTFND-20260727T125219Z-7e484762",
+    "latest_result": {"pass":2,"warn":1,"fail":0},
+    "allowed_warnings": 0
+  },
+  "decision": "BLOCKED",
+  "continuity": "EC3_ONE_TIME_RUNTIME",
+  "runtime_rollback": "PASS",
+  "sanitization": "PASS",
+  "secret_values": 0,
+  "accepted_cv_cycle_recorded": false,
+  "repeatability_credit": false,
+  "scheduled_trigger": false,
+  "maturity_assessed": false,
+  "phase_1_complete": false
+}

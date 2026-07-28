@@ -1,8 +1,8 @@
 {
-  "metadata": {"package_id":"ZT-CV-001","assessment_version":"1.0.0","environment":"BOUNDED_NON_PRODUCTION_LAB","authority":"REVIEWED_ZT_CV_001_RESULT","assessment_time":"2026-07-22T04:59:23.279092Z","limitations":["This assessment selects one repeatability pilot only; it does not assign maturity, EC4, scheduled operation, or Phase 1 completion."]},
-  "summary": {"history_records":10,"fresh_records":10,"regression_findings":0,"capabilities_assessed":12,"maturity_upgrades":0,"maturity_downgrades":0,"current_continuity":"EC3_ONE_TIME_RUNTIME"},
+  "metadata": {"package_id":"ZT-CV-001","assessment_version":"1.1.0","environment":"BOUNDED_NON_PRODUCTION_LAB","authority":"REVIEWED_ZT_CV_001_RESULT","assessment_time":"2026-07-27T12:59:31.678726Z","limitations":["The current normalized-flow action is blocked and does not authorize RV.","The historical candidate is retained for traceability only; this assessment does not assign maturity, EC4, scheduled operation, or Phase 1 completion."]},
+  "summary": {"history_records":11,"fresh_records":9,"aging_records":1,"preserved_superseded_stale_records":1,"regression_findings":0,"capabilities_assessed":12,"maturity_upgrades":0,"maturity_downgrades":0,"current_continuity":"EC3_ONE_TIME_RUNTIME","current_decision":"BLOCKED","blocking_gate":"ZTCV-GATE-FND","blocking_finding":"WARNING_BUDGET_EXCEEDED"},
   "repeatability_recommendation": {
-    "decision": "EXACTLY_ONE_CANDIDATE_RECOMMENDED",
+    "decision": "HISTORICAL_CANDIDATE_SUSPENDED_P1_CV_BLOCKED",
     "capability_id": "ZT-4.1.1",
     "canonical_name": "접근통제",
     "source_package_id": "ZT-SYS-001",
@@ -20,7 +20,7 @@
       "The accepted OpenStack degraded state and other warnings are explicit and can be compared without mutation."
     ],
     "campaign_requirements": {"minimum_successful_independent_executions":3,"minimum_consecutive_successes":3,"minimum_execution_separation":"PT24H","maximum_evidence_age":"P7D","maximum_blocking_failures":0,"allowed_warnings":5,"target_continuity":"EC4_REPEATABLE_RUNTIME"},
-    "next_package": "ZT-RV-001"
+    "next_package": "P1-CV-001"
   },
   "rejected_candidates": [
     {"capability_id":"ZT-8.1","validator_id":"ZTCV-VAL-AUTO","reason":"Lower queue position and broader automation-policy scope than the selected access-control candidate."},

@@ -1,32 +1,31 @@
-# Integrated Capability Assessment after ZT-CV-001
+# Integrated Capability Assessment after P1-CV-001
 
-The accepted CV cycle evaluated 12 capability records at a bounded laboratory
-scope. Each retained `UNASSESSED` maturity. The package adds evidence-processing
-support for `ZT-7.1`, `ZT-8.1`, and `ZT-8.2`; it does not implement every mapped
-control or promote any capability to a repository-wide maturity state.
+## Current decision
 
-All nine predecessor execution records were fresh at the cycle assessment
-time. The history contained one accepted execution per exact group, so all
-groups remained EC3 and none reached EC4 or EC5. The regression scan found no
-tracked evidence-hash drift, failed accepted record, expired evidence, or
-sanitization failure.
+The 2026-07-27 normalized-flow cycle assessed the bounded FND, NET, VIS, and
+ID chain with the fixed ZT-CV-001 workflow. It completed 8 PASS / 2 WARN /
+0 FAIL and found no current regression, but it is not an accepted CV cycle.
 
-FND, NET, VIS, and ID passed their configured bounded gates. DEV, APP, DATA,
-SYS, AUTO, and CV remain partially accepted or partially runtime validated
-with their recorded limitations. This assessment is a reviewed presentation
-of machine authorities, not an independent implementation, certification, or
-Phase 1 completion claim.
+The refreshed FND execution retained one package-level warning while
+`ZTCV-GATE-FND` permits zero. The package assessment is therefore
+`REVIEW_REQUIRED / WARNING_BUDGET_EXCEEDED`, and P1-CV-001 is `BLOCKED`.
+ZT-RV-001 is not authorized to start from this assessment.
 
-## Repeatability recommendation
+The freshness view contained 9 fresh records, 1 aging record, and 1 preserved
+superseded stale record. The stale historical FND record is retained for
+integrity but is not treated as a current-stream regression because the same
+validator and scope have a newer fresh record. All maturity fields remain
+`UNASSESSED`.
 
-Exactly one candidate is recommended for `ZT-RV-001`: `ZT-4.1.1` 접근통제,
-using `ZTCV-VAL-SYS` through `ZT-CV-WF-001` at the unchanged
-`ZT_SYS_001_SEVEN_SYSTEMS_FIXED_VALIDATORS` scope. It is the highest-ranked
-dependency-ready EC3 capability whose existing acceptance record already binds
-the fixed read-only validator and workflow. The campaign must retain at most
-five accepted warning categories, require zero blocking failures, and collect
-three consecutive independent successes at least 24 hours apart.
+## Historical assessment boundary
 
-`ZT-8.1`, `ZT-8.2`, `ZT-7.1`, and `ZT-3.1.1` remain valid future candidates,
-but were not selected because they are lower in the current overlay or would
-blur the narrow EC4 pilot with automation or continuous-observation objectives.
+The 2026-07-22 assessment evaluated 12 capability records and recommended one
+possible repeatability candidate, `ZT-4.1.1` through `ZTCV-VAL-SYS`. That
+recommendation is historical and suspended while P1-CV-001 is blocked. It did
+not assign EC4, schedule operation, maturity, certification, or Phase 1
+completion.
+
+Any future RV campaign still requires accepted CV, the exact stable validator,
+workflow, scope, plan, sanitization, zero blocking failures, and three
+independent consecutive successes separated by at least 24 hours. P1-CV-001
+must first be rerun after separately authorized resolution of the FND blocker.

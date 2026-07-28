@@ -8,7 +8,7 @@
 | ZT-NET-001 | PARTIALLY_MAPPED | U-28, S-06, N-06, CA-06 | - | 벤더·가상화 네트워크 적용성 |
 | ZT-VIS-001 | PARTIALLY_MAPPED | U-21, U-65, U-66, U-67, S-10, N-14, HV-15, CA-13 | - | 중앙·지속 가시성 |
 | ZT-ID-001 | MAPPED | U-01, U-05, U-06, U-07, U-08, U-10, U-11, U-12, U-16, U-18, U-23, U-63, W-06, HV-04, CA-03 | - | 런타임 수용, 중앙 ID/MFA |
-| ZT-CV-001 | MAPPED | - | MAP-ZT-CV-001-GOVERNANCE | 교차검증 실행 없음 |
+| ZT-CV-001 | MAPPED | - | MAP-ZT-CV-001-GOVERNANCE | 교차검증 구현 및 부분 실행, FND 경고 예산으로 BLOCKED; KISA 기술항목 수용 주장은 없음 |
 | ZT-RV-001 | MAPPED | - | MAP-ZT-RV-001-GOVERNANCE | 3회 반복 실행 없음 |
 | ZT-SCH-001 | MAPPED | - | MAP-ZT-SCH-001-GOVERNANCE | scheduler 설치 없음 |
 | ZT-DEV-001 | UNMAPPED | - | - | 제품·OS별 적용성 검토 필요 |

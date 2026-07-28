@@ -1,0 +1,20 @@
+{
+  "action_id": "P1-CV-001",
+  "validation_date": "2026-07-27",
+  "checks": [
+    {"check":"immutable plan","result":"PASS","detail":"the reviewed plan hash remained unchanged"},
+    {"check":"positive integrated path","result":"PASS_WITH_OPEN_GAPS","detail":"fixed FND, NET, VIS and ID validators completed without workflow failure"},
+    {"check":"negative and bypass boundary","result":"PASS","detail":"six interactive, arbitrary, and configuration-changing FND invocations were denied"},
+    {"check":"freshness","result":"PASS","detail":"latest stream records were current; the one stale record is preserved historical evidence superseded by a fresh same-stream record"},
+    {"check":"regression detection","result":"PASS","detail":"zero current regressions and zero tracked evidence-hash mismatches"},
+    {"check":"package acceptance","result":"BLOCKED","detail":"ZT-FND-001 is REVIEW_REQUIRED because one warning exceeds its zero-warning budget"},
+    {"check":"persistence","result":"PASS","detail":"fixed workflow, validator registry, evidence hashes, and decision remained deterministic across the final assessment"},
+    {"check":"rollback","result":"PASS","detail":"two required OpenStack instances and all EVE node process types returned to their original stopped state"},
+    {"check":"evidence integrity","result":"PASS","detail":"sanitized tracked records contain no raw endpoints, secrets, personal data, or live runtime files"}
+  ],
+  "blocking_failures": 1,
+  "blocking_gate": "ZTCV-GATE-FND",
+  "decision": "BLOCKED",
+  "next_action": "P1-CV-001",
+  "p1_rv_started": false
+}

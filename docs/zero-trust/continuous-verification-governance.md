@@ -22,3 +22,8 @@ enforcement evidence beyond this package.
 Maturity reassessment is proposal-only and capability-specific. Target
 maturity, backlog position, reference frequency, package acceptance, and one
 lab execution cannot assign current maturity or repository-wide compliance.
+
+The 2026-07-27 normalized-flow cycle is intentionally recorded as `BLOCKED`:
+the latest FND execution has one warning while its gate allows zero. This is a
+successful detection of a prerequisite conflict, not an accepted CV result.
+No RV or scheduled execution may inherit credit from that cycle.
