@@ -39,12 +39,12 @@ completion evidence is separate: `ZT-FND-001`, `ZT-NET-001`, and
 is not itself an implementation package result.
 
 `ZT-AUTO-001` and `ZT-CV-001` are implemented and partially runtime validated
-at one-time EC3 boundaries. ZT-CV-001 is not accepted: its current FND
-assessment is `REVIEW_REQUIRED / WARNING_BUDGET_EXCEEDED`, so P1-CV-001
-remains blocked. `ZT-RV-001` campaign tooling is preserved but no campaign may
-begin and zero runs are accepted; EC4 still requires three time-separated
-successes after CV acceptance. `ZT-SCH-001` remains unprepared and blocked by
-that gate, so Phase 1 remains not complete.
+at one-time EC3 boundaries. ZT-CV-001 is bounded `PARTIALLY_ACCEPTED` after the
+clean FND remediation and the 8/2/0 integrated cycle. `ZT-RV-001` is
+implemented and in progress with one accepted independent execution; EC4
+still requires two additional consecutive successes separated by at least 24
+hours. `ZT-SCH-001` remains unimplemented and blocked by RV acceptance, so
+Phase 1 remains not complete.
 
 ## Phase 2 - Centralized Identity and Visibility
 

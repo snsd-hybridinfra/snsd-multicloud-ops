@@ -1,0 +1,18 @@
+{
+  "action_id": "P1-CV-001-REMEDIATION",
+  "validation_date": "2026-07-28",
+  "checks": [
+    {"check":"immutable plan","result":"PASS","detail":"reviewed plan hash remained unchanged"},
+    {"check":"positive integrated path","result":"PASS_WITH_OPEN_GAPS","detail":"all fixed runtime validators completed without a blocking package gate"},
+    {"check":"negative and bypass boundary","result":"PASS","detail":"restricted endpoint boundary remained deny by default"},
+    {"check":"freshness","result":"PASS","detail":"current streams were fresh or aging; one stale item is preserved superseded history"},
+    {"check":"regression detection","result":"PASS","detail":"zero current regressions"},
+    {"check":"package acceptance","result":"PASS","detail":"10 gates, 0 blocked, 0 review required; bounded gaps remain explicit"},
+    {"check":"rollback","result":"PASS","detail":"three OpenStack instances are SHUTOFF and EVE validation node processes are zero"},
+    {"check":"evidence integrity","result":"PASS","detail":"tracked evidence is sanitized and contains no runtime credentials or raw output"}
+  ],
+  "blocking_failures": 0,
+  "decision": "PASS_WITH_OPEN_GAPS",
+  "next_action": "P1-RV-001",
+  "p1_rv_authorized": true
+}

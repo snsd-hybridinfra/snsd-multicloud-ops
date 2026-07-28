@@ -1,8 +1,8 @@
 {
-  "metadata": {"package_id":"ZT-CV-001","assessment_version":"1.1.0","environment":"BOUNDED_NON_PRODUCTION_LAB","authority":"REVIEWED_ZT_CV_001_RESULT","assessment_time":"2026-07-27T12:59:31.678726Z","limitations":["The current normalized-flow action is blocked and does not authorize RV.","The historical candidate is retained for traceability only; this assessment does not assign maturity, EC4, scheduled operation, or Phase 1 completion."]},
-  "summary": {"history_records":11,"fresh_records":9,"aging_records":1,"preserved_superseded_stale_records":1,"regression_findings":0,"capabilities_assessed":12,"maturity_upgrades":0,"maturity_downgrades":0,"current_continuity":"EC3_ONE_TIME_RUNTIME","current_decision":"BLOCKED","blocking_gate":"ZTCV-GATE-FND","blocking_finding":"WARNING_BUDGET_EXCEEDED"},
+  "metadata": {"package_id":"ZT-CV-001","assessment_version":"1.2.0","environment":"BOUNDED_NON_PRODUCTION_LAB","authority":"REVIEWED_ZT_CV_001_RESULT","assessment_time":"2026-07-28T08:31:00Z","limitations":["The bounded CV chain is partially accepted at EC3 and authorizes only the governed RV campaign.","One RV execution does not assign EC4, maturity, scheduled operation, or Phase 1 completion."]},
+  "summary": {"history_records":14,"fresh_records":12,"aging_records":1,"preserved_superseded_stale_records":1,"regression_findings":0,"capabilities_assessed":12,"maturity_upgrades":0,"maturity_downgrades":0,"current_continuity":"EC3_ONE_TIME_RUNTIME","current_decision":"PARTIALLY_ACCEPTED","blocking_gate":null,"blocking_finding":null},
   "repeatability_recommendation": {
-    "decision": "HISTORICAL_CANDIDATE_SUSPENDED_P1_CV_BLOCKED",
+    "decision": "ACTIVE_IN_PROGRESS_ONE_OF_THREE",
     "capability_id": "ZT-4.1.1",
     "canonical_name": "접근통제",
     "source_package_id": "ZT-SYS-001",
@@ -12,15 +12,16 @@
     "workflow_id": "ZT-CV-WF-001",
     "target_scope": "ZT_SYS_001_SEVEN_SYSTEMS_FIXED_VALIDATORS",
     "current_evidence_continuity": "EC3_ONE_TIME_RUNTIME",
-    "current_execution_id": "ZTCV-HIST-SYS-20260722-001",
+    "current_execution_id": "ZTRV-20260728T082825Z-f22b1052",
     "selection_rationale": [
       "ZT-4.1.1 is the highest-ranked dependency-ready capability among the bounded EC3 candidates in the current queue overlay.",
       "The capability acceptance catalog already binds it to ZTCV-VAL-SYS and ZT-CV-WF-001.",
       "The validator is a fixed read-only implementation with a stable seven-system scope, sanitized output, and no unresolved critical security-boundary failure.",
-      "The accepted OpenStack degraded state and other warnings are explicit and can be compared without mutation."
+      "Current runtime validators produced OpenStack 50/0/0, EVE 42/0/0, and router 39/0/0 while remaining read-only.",
+      "The first eligible RV execution passed its sanitization and nine negative security-boundary checks."
     ],
     "campaign_requirements": {"minimum_successful_independent_executions":3,"minimum_consecutive_successes":3,"minimum_execution_separation":"PT24H","maximum_evidence_age":"P7D","maximum_blocking_failures":0,"allowed_warnings":5,"target_continuity":"EC4_REPEATABLE_RUNTIME"},
-    "next_package": "P1-CV-001"
+    "next_package": "P1-RV-001"
   },
   "rejected_candidates": [
     {"capability_id":"ZT-8.1","validator_id":"ZTCV-VAL-AUTO","reason":"Lower queue position and broader automation-policy scope than the selected access-control candidate."},

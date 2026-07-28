@@ -1,0 +1,10 @@
+{
+  "action_id": "P1-CV-001-REMEDIATION",
+  "environment": "BOUNDED_NON_PRODUCTION_LAB",
+  "authorized_targets": ["FND_VALIDATION_CANDIDATE","MONITORING_VM","EVE_TENANT_0_R1","EVE_TENANT_0_SW1"],
+  "protected_targets": ["ORIGINAL_OPENSTACK_TEST_VM","REPOSITORY_AUTHORITIES","UNRELATED_EVE_NODES"],
+  "pre_state": {"validation_candidate":"SHUTOFF","monitoring_vm":"SHUTOFF","original_vm":"SHUTOFF","eve_node_processes":0},
+  "post_state": {"validation_candidate":"SHUTOFF","monitoring_vm":"SHUTOFF","original_vm":"SHUTOFF","eve_node_processes":0},
+  "configuration_mutation_during_final_cycle": false,
+  "rollback_status": "PASS"
+}

@@ -2031,6 +2031,7 @@ def validate_continuous_verification_package(root: Path, catalog: dict[str, Any]
         runtime_path,
         blocked_evidence_path,
         Path("docs/evidence/zero-trust/zt-fnd-001-p1-cv-refresh.sanitized.txt"),
+        Path("docs/evidence/zero-trust/zt-fnd-001-remediation-refresh.sanitized.txt"),
         Path("docs/zero-trust/verification-history.yaml"),
         Path("docs/zero-trust/package-acceptance-gates.yaml"),
         Path("tools/live-validation/run-continuous-verification.ps1"),
@@ -2054,47 +2055,61 @@ def validate_continuous_verification_package(root: Path, catalog: dict[str, Any]
         "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
         "local_validation_status": "LOCAL_VALIDATED",
         "runtime_validation_status": "PARTIALLY_VALIDATED",
-        "runtime_acceptance_status": "BLOCKED",
-        "acceptance_state": "BLOCKED",
+        "runtime_acceptance_status": "PARTIALLY_ACCEPTED",
+        "acceptance_state": "PARTIALLY_ACCEPTED",
         "evidence_continuity": "EC3_ONE_TIME_RUNTIME",
         "maturity_status": "UNASSESSED",
         "current_maturity": "UNASSESSED",
     }
     mismatches = {key: (value, package.get(key)) for key, value in expected.items() if package.get(key) != value}
     if mismatches:
-        result.fail(category, f"ZT-CV-001 blocked package state differs: {mismatches}")
+        result.fail(category, f"ZT-CV-001 bounded accepted package state differs: {mismatches}")
 
-    execution = runtime.get("execution", {})
-    package_assessment = runtime.get("package_acceptance", {})
+    historical_execution = runtime.get("execution", {})
+    historical_assessment = runtime.get("package_acceptance", {})
+    execution = package.get("latest_execution", {})
     expected_hash = "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624"
+    if (
+        execution.get("workflow_id") != "ZT-CV-WF-001"
+        or execution.get("plan_hash") != expected_hash
+        or execution.get("result") != "PARTIAL"
+        or execution.get("steps_failed") != 0
+        or execution.get("steps_passed", 0) + execution.get("steps_warned", 0) != 10
+        or execution.get("steps_passed", 0) < 7
+        or execution.get("steps_warned", 0) > 3
+        or execution.get("decision") != "PASS_WITH_OPEN_GAPS"
+        or execution.get("blocking_gate") is not None
+        or execution.get("blocking_finding") is not None
+    ):
+        result.fail(f"{category}.execution", "P1-CV-001 must retain a reviewed 7/3/0 or 8/2/0 bounded result with the immutable plan hash and no blocking finding.")
+
+    # The 2026-07-27 blocked cycle remains immutable historical evidence. It is
+    # not the authority for the current package decision after FND remediation.
     if (
         runtime.get("action_id") != "P1-CV-001"
         or runtime.get("package_id") != "ZT-CV-001"
         or runtime.get("decision") != "BLOCKED"
-        or execution.get("execution_id") != "ZTA-20260727T125822Z-519fe693"
-        or execution.get("workflow_id") != "ZT-CV-WF-001"
-        or execution.get("plan_hash") != expected_hash
-        or execution.get("result") != "PARTIAL"
-        or execution.get("steps") != {"pass": 8, "warn": 2, "fail": 0, "skipped": 0}
+        or historical_execution.get("execution_id") != "ZTA-20260727T125822Z-519fe693"
+        or historical_execution.get("workflow_id") != "ZT-CV-WF-001"
+        or historical_execution.get("plan_hash") != expected_hash
+        or historical_execution.get("result") != "PARTIAL"
+        or historical_execution.get("steps") != {"pass": 8, "warn": 2, "fail": 0, "skipped": 0}
+        or historical_assessment.get("gate_id") != "ZTCV-GATE-FND"
+        or historical_assessment.get("finding") != "WARNING_BUDGET_EXCEEDED"
     ):
-        result.fail(f"{category}.execution", "P1-CV-001 must retain the reviewed blocked 8/2/0 execution and immutable plan hash.")
-    if (
-        package_assessment.get("blocking_package") != "ZT-FND-001"
-        or package_assessment.get("gate_id") != "ZTCV-GATE-FND"
-        or package_assessment.get("assessment_state") != "REVIEW_REQUIRED"
-        or package_assessment.get("finding") != "WARNING_BUDGET_EXCEEDED"
-        or package_assessment.get("latest_execution_id") != "ZTFND-20260727T125219Z-7e484762"
-        or package_assessment.get("latest_result") != {"pass": 2, "warn": 1, "fail": 0}
-        or package_assessment.get("allowed_warnings") != 0
-    ):
-        result.fail(f"{category}.gate", "P1-CV-001 must retain the exact current FND warning-budget blocker.")
+        result.fail(f"{category}.history", "The superseded blocked P1-CV-001 cycle must remain intact as historical evidence.")
 
     cv_gate = next((item for item in gates.get("gates", []) if item.get("package_id") == "ZT-CV-001"), None)
     fnd_gate = next((item for item in gates.get("gates", []) if item.get("package_id") == "ZT-FND-001"), None)
-    if not cv_gate or cv_gate.get("acceptance_state") != "BLOCKED" or cv_gate.get("blocking_failures") != ["ZTCV-GATE-FND:WARNING_BUDGET_EXCEEDED"]:
-        result.fail(f"{category}.gate", "CV gate must remain BLOCKED by the exact FND finding.")
-    if not fnd_gate or fnd_gate.get("allowed_warnings") != 0:
-        result.fail(f"{category}.gate", "FND warning tolerance must remain zero; validation cannot relax the gate.")
+    if not cv_gate or cv_gate.get("acceptance_state") != "PARTIALLY_ACCEPTED" or cv_gate.get("blocking_failures"):
+        result.fail(f"{category}.gate", "CV gate must retain the reviewed PARTIALLY_ACCEPTED state with no current blocking finding.")
+    if (
+        not fnd_gate
+        or fnd_gate.get("acceptance_state") != "ACCEPTED"
+        or fnd_gate.get("allowed_warnings") != 0
+        or "docs/evidence/zero-trust/zt-fnd-001-remediation-refresh.sanitized.txt" not in fnd_gate.get("required_evidence_files", [])
+    ):
+        result.fail(f"{category}.gate", "FND must remain accepted at the unrelaxed zero-warning gate with the remediation evidence required.")
 
     history_records = history.get("executions", [])
     fnd_refresh = next((item for item in history_records if item.get("execution_id") == "ZTFND-20260727T125219Z-7e484762"), None)
@@ -2102,18 +2117,31 @@ def validate_continuous_verification_package(root: Path, catalog: dict[str, Any]
         result.fail(f"{category}.history", "Verification history must retain the fresh FND 2/1/0 record.")
     elif fnd_refresh.get("evidence_hashes", {}).get("docs/evidence/zero-trust/zt-fnd-001-p1-cv-refresh.sanitized.txt") != "aa32d74484bf2ff0586a7fac7105e7f04a4452d2876c193be86078490348820a":
         result.fail(f"{category}.history", "FND refresh evidence hash authority differs.")
+    fnd_remediation = next((item for item in history_records if item.get("execution_id") == "ZTFND-20260728T075027Z-10d7a74e"), None)
+    if not fnd_remediation or fnd_remediation.get("result") != "PASS" or (fnd_remediation.get("pass"), fnd_remediation.get("warn"), fnd_remediation.get("fail")) != (3, 0, 0):
+        result.fail(f"{category}.history", "Verification history must retain the clean FND remediation 3/0/0 record.")
+    elif fnd_remediation.get("evidence_hashes", {}).get("docs/evidence/zero-trust/zt-fnd-001-remediation-refresh.sanitized.txt") != "3cf8bf67cc5b7b886bfa86fefedea32f4c09b2cf8303806e9d53ad26ab483192":
+        result.fail(f"{category}.history", "FND remediation evidence hash authority differs.")
+    cv_final = next((item for item in history_records if item.get("execution_id") == "ZTA-20260728T082622Z-594aed64"), None)
+    if not cv_final or cv_final.get("result") != "WARN" or (cv_final.get("pass"), cv_final.get("warn"), cv_final.get("fail")) != (8, 2, 0) or cv_final.get("plan_hash") != expected_hash:
+        result.fail(f"{category}.history", "Verification history must retain the final accepted bounded CV 8/2/0 record.")
+    elif cv_final.get("evidence_hashes") != {
+        "docs/evidence/zero-trust/zt-cv-001-p1-cv-001-remediated-validation.yaml": "066a3b85a5b7a6b6f51cc05e54390c97fa66a40705c77aee3a58c43e2c18404d",
+        "docs/evidence/zero-trust/zt-cv-001-p1-cv-001-remediated.sanitized.txt": "648a5f3a0b5181292a95273f4d35537cdf7ffcfc4f5fbf518c96944d7da6fdfd",
+    }:
+        result.fail(f"{category}.history", "Final CV remediation evidence hash authority differs.")
 
     for field in ("automatic_remediation", "authoritative_status_update", "maturity_assignment", "schedule_installed", "scheduled_operation", "continuous_operation", "phase_1_complete"):
         if package.get(field) is not False:
             result.fail(f"{category}.claims", f"{field} must remain false.")
     if runtime.get("runtime_rollback") != "PASS" or runtime.get("accepted_cv_cycle_recorded") is not False or runtime.get("repeatability_credit") is not False or runtime.get("scheduled_trigger") is not False:
-        result.fail(f"{category}.boundary", "Blocked CV evidence must retain rollback and no-acceptance/no-repeatability/no-schedule boundaries.")
+        result.fail(f"{category}.boundary", "Historical blocked CV evidence must retain rollback and no-acceptance/no-repeatability/no-schedule boundaries.")
     wrapper = (root / "tools/live-validation/run-continuous-verification.ps1").read_text(encoding="utf-8", errors="replace")
     for forbidden in ("Register-ScheduledTask", "Restart-Service", "Invoke-Expression"):
         if forbidden in wrapper:
             result.fail(f"{category}.security", f"CV wrapper contains prohibited behavior: {forbidden}.")
     if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
-        result.passed(category, "ZT-CV-001 is implemented and partially runtime validated, but P1-CV-001 remains blocked by the unrelaxed FND warning budget with rollback and no successor credit.")
+        result.passed(category, "ZT-CV-001 is implemented and partially accepted at EC3 after clean FND remediation; historical blocked evidence is retained and no maturity, schedule, or Phase 1 completion is claimed.")
     return
     required = (
         CONTINUOUS_VERIFICATION_PACKAGE_PATH,
@@ -2211,26 +2239,88 @@ def validate_continuous_verification_package(root: Path, catalog: dict[str, Any]
 def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], result: ValidationResult) -> None:
     category = "package.zt-rv-001"
     del catalog
+    required = (
+        REPEATABLE_VALIDATION_PACKAGE_PATH,
+        REPEATABLE_VALIDATION_CAMPAIGN_PATH,
+        REPEATABILITY_ACCEPTANCE_POLICY_PATH,
+        Path("docs/evidence/zero-trust/zt-rv-001-run-01.sanitized.txt"),
+        Path("docs/zero-trust/verification-history.yaml"),
+        Path("tools/continuous_verification/run_repeatability_campaign.py"),
+    )
+    missing = [str(path) for path in required if not (root / path).is_file()]
+    if missing:
+        for path in missing:
+            result.fail(f"{category}.files", f"Required repeatability file is missing: {path}.")
+        return
     try:
         package = load_json_yaml(root / REPEATABLE_VALIDATION_PACKAGE_PATH)
+        campaign = load_json_yaml(root / REPEATABLE_VALIDATION_CAMPAIGN_PATH)
+        history = load_json_yaml(root / "docs/zero-trust/verification-history.yaml")
     except ValueError as exc:
         result.fail(f"{category}.configuration", str(exc))
         return
     expected = {
         "package_id": "ZT-RV-001",
-        "implementation_status": "NOT_IMPLEMENTED",
-        "validation_status": "NOT_VALIDATED",
-        "runtime_validation_status": "NOT_VALIDATED",
+        "implementation_status": "IMPLEMENTED",
+        "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+        "local_validation_status": "LOCAL_VALIDATED",
+        "runtime_validation_status": "PARTIALLY_VALIDATED",
         "runtime_acceptance_status": "PENDING",
+        "acceptance_state": "IN_PROGRESS",
+        "current_continuity": "EC3_ONE_TIME_RUNTIME",
+        "target_continuity": "EC4_REPEATABLE_RUNTIME",
+        "accepted_campaign_executions": 1,
+        "required_campaign_executions": 3,
+        "consecutive_successes": 1,
+        "minimum_execution_separation": "PT24H",
+        "latest_execution_id": "ZTRV-20260728T082825Z-f22b1052",
+        "next_eligible_execution": "2026-07-29T08:28:25.829099Z",
         "maturity_status": "UNASSESSED",
     }
     mismatches = {key: (value, package.get(key)) for key, value in expected.items() if package.get(key) != value}
     if mismatches:
-        result.fail(category, f"ZT-RV-001 conservative package state differs: {mismatches}")
-    elif any(package.get(field) is True for field in ("automatic_schedule", "automatic_retry", "automatic_remediation", "scheduled_operation", "continuous_operation", "phase_1_complete")):
-        result.fail(f"{category}.claims", "Unimplemented ZT-RV-001 cannot claim repeatability, scheduling, automation, or phase completion.")
+        result.fail(category, f"ZT-RV-001 in-progress package state differs: {mismatches}")
+
+    acceptance = campaign.get("acceptance", {})
+    if (
+        acceptance.get("current_state") != "IN_PROGRESS"
+        or acceptance.get("current_continuity") != "EC3_ONE_TIME_RUNTIME"
+        or acceptance.get("successful_independent_executions") != 1
+        or acceptance.get("consecutive_successes") != 1
+        or acceptance.get("blocking_regressions") != 0
+        or acceptance.get("acceptance_decision") != "IN_PROGRESS"
+    ):
+        result.fail(f"{category}.campaign", "RV campaign authority must retain exactly one accepted execution and remain IN_PROGRESS at EC3.")
+
+    records = [item for item in history.get("executions", []) if item.get("campaign_id") == "ZT-RV-001"]
+    if len(records) != 1:
+        result.fail(f"{category}.history", "Exactly one ZT-RV-001 campaign execution must be recorded before the second eligible run.")
     else:
-        result.passed(category, "ZT-RV-001 remains NOT_IMPLEMENTED / NOT_VALIDATED / PENDING / UNASSESSED.")
+        record = records[0]
+        if (
+            record.get("execution_id") != "ZTRV-20260728T082825Z-f22b1052"
+            or record.get("execution_date") != "2026-07-28T08:28:25.829099Z"
+            or (record.get("pass"), record.get("warn"), record.get("fail")) != (8, 2, 0)
+            or record.get("plan_hash") != "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624"
+            or record.get("sanitization_status") != "PASS"
+            or record.get("scheduled_trigger") is not False
+            or record.get("security_boundary", {}).get("status") != "PASS"
+            or record.get("warning_categories") != ["ENDPOINT_SCANNER_GAP", "CONFIGURATION_ONLY_RECORDS", "SERVICE_DEGRADED"]
+        ):
+            result.fail(f"{category}.history", "The first RV execution authority differs from the reviewed 8/2/0 candidate.")
+        evidence = "docs/evidence/zero-trust/zt-rv-001-run-01.sanitized.txt"
+        if record.get("evidence_hashes", {}).get(evidence) != "90e607e67d4b1603f80fdf13d78bcd6fb61f2ed7e088cb521b893cd6e6b4f362":
+            result.fail(f"{category}.history", "The first RV sanitized evidence hash differs.")
+
+    for field in ("automatic_schedule", "automatic_retry", "automatic_remediation", "mutation_allowed", "history_auto_append", "authoritative_auto_update_performed", "maturity_assigned", "scheduled_operation", "continuous_operation", "phase_1_complete"):
+        if package.get(field) is not False:
+            result.fail(f"{category}.claims", f"{field} must remain false while RV is in progress.")
+    runner = (root / "tools/continuous_verification/run_repeatability_campaign.py").read_text(encoding="utf-8", errors="replace")
+    for token in ("observed_warning_categories", "MINIMUM_SEPARATION", "verify_security_boundary"):
+        if token not in runner:
+            result.fail(f"{category}.runner", f"RV runner is missing required reviewed behavior: {token}.")
+    if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
+        result.passed(category, "ZT-RV-001 is implemented and in progress with one eligible independent 8/2/0 execution; EC4, schedule, maturity, and Phase 1 completion remain unclaimed.")
     return
     required = (
         REPEATABLE_VALIDATION_CAMPAIGN_PATH, REPEATABILITY_ACCEPTANCE_POLICY_PATH,

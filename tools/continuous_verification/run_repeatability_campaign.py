@@ -24,6 +24,20 @@ def verify_security_boundary(campaign:dict)->dict:
    checks.append({"alias":alias,"check":name,"blocked":blocked})
  return {"status":"PASS" if all(x["blocked"] for x in checks) else "FAIL","batch_mode_allowed_command":"VALIDATED_BY_FIXED_WORKFLOW","negative_checks":checks,"limitations":["Only harmless denied requests were used; no protected content was captured."]}
 
+def observed_warning_categories(execution_root:Path)->list[str]:
+ path=execution_root/"validate-live-systems.stdout.sanitized.txt"
+ text=path.read_text(encoding="utf-8",errors="replace") if path.is_file() else ""
+ observed=[]
+ for category,markers in (
+  ("OPENSTACK_CURRENT_DEGRADED",("CURRENT_DEGRADED",)),
+  ("ENDPOINT_REBOOT_REQUIRED",("reboot is required","reboot required")),
+  ("ENDPOINT_SCANNER_GAP",("has no dedicated scanner evidence",)),
+  ("CONFIGURATION_ONLY_RECORDS",("drift.unassessed",)),
+  ("SERVICE_DEGRADED",("service.degraded",)),
+ ):
+  if any(marker.lower() in text.lower() for marker in markers): observed.append(category)
+ return observed
+
 def execute(campaign:dict,verbose:bool)->int:
  now=utcnow(); not_before=parse_time(campaign["execution_policy"]["not_before"]); prior=latest_candidates()
  if prior:
@@ -43,7 +57,7 @@ def execute(campaign:dict,verbose:bool)->int:
   counts={state:sum(x.get("outcome")==state for x in auto.get("steps",[])) for state in ("PASS","WARN","FAIL")}
   security=verify_security_boundary(campaign)
   if completed.returncode!=0 or counts["FAIL"]: security["status"]="FAIL"
-  f=campaign["fingerprints"]; record={"campaign_id":"ZT-RV-001","execution_id":execution_id,"execution_timestamp":iso(now),"execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"EXECUTE_READ_ONLY","capability_id":"ZT-4.1.1","package_id":"ZT-RV-001","validator_id":"ZTCV-VAL-SYS","workflow_id":"ZT-CV-WF-001","validator_version":f["validator_version"],"action_catalog_version":f["action_catalog_version"],"workflow_catalog_version":f["workflow_catalog_version"],"policy_version":f["policy_version"],"plan_hash":f["expected_plan_hash"],"target_scope_fingerprint":f["target_scope_fingerprint"],"raw_evidence_reference":str(raw.relative_to(ROOT)).replace('\\','/'),"sanitized_evidence_reference":str(safe.relative_to(ROOT)).replace('\\','/'),"raw_evidence_hash":sha(raw),"sanitized_evidence_hash":sha(safe),"sanitization_status":"FAIL" if bad else "PASS","pass":counts["PASS"],"warn":counts["WARN"],"fail":counts["FAIL"],"exit_code":completed.returncode,"warning_categories":["OPENSTACK_CURRENT_DEGRADED","ENDPOINT_REBOOT_REQUIRED","ENDPOINT_SCANNER_GAP","CONFIGURATION_ONLY_RECORDS","SERVICE_DEGRADED"] if counts["WARN"] else [],"security_boundary":security,"limitations":["Manual campaign run; no schedule or authoritative update."],"source_automation_execution_id":automation_id}
+  f=campaign["fingerprints"]; record={"campaign_id":"ZT-RV-001","execution_id":execution_id,"execution_timestamp":iso(now),"execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"EXECUTE_READ_ONLY","capability_id":"ZT-4.1.1","package_id":"ZT-RV-001","validator_id":"ZTCV-VAL-SYS","workflow_id":"ZT-CV-WF-001","validator_version":f["validator_version"],"action_catalog_version":f["action_catalog_version"],"workflow_catalog_version":f["workflow_catalog_version"],"policy_version":f["policy_version"],"plan_hash":f["expected_plan_hash"],"target_scope_fingerprint":f["target_scope_fingerprint"],"raw_evidence_reference":str(raw.relative_to(ROOT)).replace('\\','/'),"sanitized_evidence_reference":str(safe.relative_to(ROOT)).replace('\\','/'),"raw_evidence_hash":sha(raw),"sanitized_evidence_hash":sha(safe),"sanitization_status":"FAIL" if bad else "PASS","pass":counts["PASS"],"warn":counts["WARN"],"fail":counts["FAIL"],"exit_code":completed.returncode,"warning_categories":observed_warning_categories(source.parent) if counts["WARN"] else [],"security_boundary":security,"limitations":["Manual campaign run; no schedule or authoritative update."],"source_automation_execution_id":automation_id}
   record["execution_fingerprint"]=execution_fingerprint(record); write(root/"execution-record.json",record); print(f"[{'PASS' if completed.returncode==0 and not bad else 'FAIL'}] execution_id={execution_id} pass={counts['PASS']} warn={counts['WARN']} fail={counts['FAIL']} candidate={root/'execution-record.json'}")
   return 0 if completed.returncode==0 and not bad else 1
  finally:

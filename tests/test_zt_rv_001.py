@@ -1,10 +1,11 @@
 """Regression tests for the manual ZT-RV-001 evidence-continuity campaign."""
 from __future__ import annotations
-import copy,subprocess,sys,unittest
+import copy,subprocess,sys,tempfile,unittest
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]; RV=ROOT/"tools/continuous_verification"; sys.path.insert(0,str(RV))
-from rv_common import CAMPAIGN,POLICY,assess,canonical_hash,execution_fingerprint,expected_plan,load,validate_configuration  # noqa:E402
+from rv_common import CAMPAIGN,POLICY,assess,canonical_hash,execution_fingerprint,expected_plan,load,sha,validate_configuration  # noqa:E402
+from run_repeatability_campaign import observed_warning_categories  # noqa:E402
 from verify_sanitized_evidence import findings  # noqa:E402
 
 class ZtRv001Tests(unittest.TestCase):
@@ -54,6 +55,18 @@ class ZtRv001Tests(unittest.TestCase):
  def test_password_pattern_detected(self): self.assertIn("PASSWORD",findings("password=TEST_FIXTURE"))
  def test_private_key_pattern_detected(self): self.assertIn("PRIVATE_KEY",findings("-----BEGIN PRIVATE KEY-----"))
  def test_sanitized_text_passes(self): self.assertEqual([],findings("[PASS] fixed validator completed"))
+ def test_evidence_hash_is_checkout_eol_independent(self):
+  with tempfile.TemporaryDirectory() as directory:
+   root=Path(directory); lf=root/"lf.txt"; crlf=root/"crlf.txt"; lf.write_bytes(b"PASS\n"); crlf.write_bytes(b"PASS\r\n")
+   self.assertEqual(sha(lf),sha(crlf))
+ def test_observed_warning_categories_do_not_copy_unseen_allowlist_values(self):
+  with tempfile.TemporaryDirectory() as directory:
+   root=Path(directory); (root/"validate-live-systems.stdout.sanitized.txt").write_text("[WARN] evidence.vulnerability: has no dedicated scanner evidence.\n[WARN] drift.unassessed: metadata only.\n[WARN] service.degraded: reviewed.\n",encoding="utf-8")
+   self.assertEqual(["ENDPOINT_SCANNER_GAP","CONFIGURATION_ONLY_RECORDS","SERVICE_DEGRADED"],observed_warning_categories(root))
+ def test_observed_warning_categories_detect_current_openstack_only_when_present(self):
+  with tempfile.TemporaryDirectory() as directory:
+   root=Path(directory); (root/"validate-live-systems.stdout.sanitized.txt").write_text("OPENSTACK CURRENT_DEGRADED\n",encoding="utf-8")
+   self.assertEqual(["OPENSTACK_CURRENT_DEGRADED"],observed_warning_categories(root))
  def test_wrapper_has_no_schedule_install(self):
   text=(ROOT/"tools/live-validation/run-repeatable-validation-pilot.ps1").read_text(encoding="utf-8"); self.assertNotIn("Register-ScheduledTask",text); self.assertNotIn("schtasks",text.lower())
  def test_runtime_is_ignored(self):

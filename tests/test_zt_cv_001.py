@@ -23,7 +23,7 @@ from validate_verification_configuration import validate  # noqa: E402
 
 class ZtCv001Tests(unittest.TestCase):
     def setUp(self) -> None:
-        self.now = datetime(2026, 7, 27, 13, 0, tzinfo=timezone.utc)
+        self.now = datetime(2026, 7, 28, 8, 31, tzinfo=timezone.utc)
         self.history = load(PATHS["history"])
         self.freshness_policy = load(PATHS["freshness"])
 
@@ -40,7 +40,7 @@ class ZtCv001Tests(unittest.TestCase):
     def test_timezone_required(self): self.assertRaises(ValueError, parse_time, "2026-07-22T00:00:00")
     def test_current_history_retains_truthful_freshness_counts(self):
         states=[x["freshness_status"] for x in self.fresh()]
-        self.assertEqual({"FRESH":9,"AGING":1,"STALE":1},{state:states.count(state) for state in {"FRESH","AGING","STALE"}})
+        self.assertEqual({"FRESH":12,"AGING":1,"STALE":1},{state:states.count(state) for state in {"FRESH","AGING","STALE"}})
     def test_future_timestamp_unknown(self):
         h={"executions":[self.record()]}; h["executions"][0]["execution_date"]="2099-01-01T00:00:00Z"; self.assertEqual("UNKNOWN",self.fresh(h)[0]["freshness_status"])
     def test_aging_classification(self):
@@ -84,10 +84,10 @@ class ZtCv001Tests(unittest.TestCase):
     def test_capability_acceptance_count(self): self.assertEqual(12,len(load(PATHS["capabilities"])["capabilities"]))
     def test_package_results_are_non_authoritative(self):
         r=package_acceptance_results(load(PATHS["gates"]),self.history,self.fresh(),self.repeat()); self.assertTrue(all(x["authoritative_update_performed"] is False for x in r))
-    def test_current_fnd_gate_requires_review(self):
-        r=package_acceptance_results(load(PATHS["gates"]),self.history,self.fresh(),self.repeat()); fnd=next(x for x in r if x["package_id"]=="ZT-FND-001"); self.assertEqual("REVIEW_REQUIRED",fnd["assessment_state"]); self.assertIn("WARNING_BUDGET_EXCEEDED",fnd["findings"])
-    def test_current_cv_gate_is_blocked(self):
-        r=package_acceptance_results(load(PATHS["gates"]),self.history,self.fresh(),self.repeat()); cv=next(x for x in r if x["package_id"]=="ZT-CV-001"); self.assertEqual("BLOCKED",cv["assessment_state"])
+    def test_current_fnd_gate_is_accepted(self):
+        r=package_acceptance_results(load(PATHS["gates"]),self.history,self.fresh(),self.repeat()); fnd=next(x for x in r if x["package_id"]=="ZT-FND-001"); self.assertEqual("ACCEPTED",fnd["assessment_state"]); self.assertEqual([],fnd["findings"])
+    def test_current_cv_gate_is_partially_accepted(self):
+        r=package_acceptance_results(load(PATHS["gates"]),self.history,self.fresh(),self.repeat()); cv=next(x for x in r if x["package_id"]=="ZT-CV-001"); self.assertEqual("PARTIALLY_ACCEPTED",cv["assessment_state"])
     def test_capability_results_are_non_authoritative(self):
         r=capability_acceptance_results(load(PATHS["capabilities"]),self.history,self.fresh(),self.repeat()); self.assertTrue(all(x["authoritative_update_performed"] is False for x in r))
     def test_maturity_is_retained(self):

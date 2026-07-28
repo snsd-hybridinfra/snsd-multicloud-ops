@@ -258,10 +258,13 @@ def validate_execution_plan(root: Path, result: Result, dependencies_only: bool 
     completed = {item["action_id"] for item in data["actions"] if item["current_status"] == "COMPLETED"}
     expected_completed = {
         "ZT-SCN-RETIRE-001", "ZT-GOV-MAP-001", "P0-ACC-001",
-        "P1-ID-ENF-001-RETRY", "P1-NET-CLOSE", "P1-VIS-CLOSE",
+        "P1-ID-ENF-001-RETRY", "P1-NET-CLOSE", "P1-VIS-CLOSE", "P1-CV-001",
     }
     if completed != expected_completed:
         result.fail("execution.current-state", f"Evidence-backed completed actions must be {sorted(expected_completed)}, got {sorted(completed)}")
+    in_progress = {item["action_id"] for item in data["actions"] if item["current_status"] == "IN_PROGRESS"}
+    if in_progress != {"P1-RV-001"}:
+        result.fail("execution.current-state", f"The only in-progress action must be P1-RV-001, got {sorted(in_progress)}")
     plan_ids = [item["action_id"] for item in data["actions"]]
     roadmap = load(root / AUTHORITIES["roadmap"][0])
     roadmap_ids = [action for phase in roadmap["phases"] for action in phase["actions"]]

@@ -7,7 +7,7 @@
   "index": "docs/runbooks/RUNBOOK_INDEX.md",
   "template": "docs/runbooks/RUNBOOK_TEMPLATE.md",
   "validation_status": "VALIDATED_LOCAL",
-  "last_reviewed": "2026-07-27",
+  "last_reviewed": "2026-07-28",
   "runtime_execution_performed": true,
   "package_status_promoted": true,
   "phase_state": {
@@ -27,8 +27,8 @@
   ],
   "package_flow_authority": "docs/zero-trust/package-flow.yaml",
   "unresolved_gaps": [
-    {"gap_id":"CROSS_CAPABILITY_VALIDATION_NOT_ACCEPTED","owner":"ZT-CV-001","status":"BLOCKED"},
-    {"gap_id":"REPEATABILITY_NOT_IMPLEMENTED","owner":"ZT-RV-001","status":"OPEN"},
+    {"gap_id":"CROSS_CAPABILITY_BOUNDED_GAPS","owner":"ZT-CV-001","status":"PARTIALLY_ACCEPTED"},
+    {"gap_id":"REPEATABILITY_REQUIRES_TWO_MORE_ELIGIBLE_RUNS","owner":"ZT-RV-001","status":"IN_PROGRESS"},
     {"gap_id":"SCHEDULED_VALIDATION_NOT_IMPLEMENTED","owner":"ZT-SCH-001","status":"OPEN"}
   ]
 }

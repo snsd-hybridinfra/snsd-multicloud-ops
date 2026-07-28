@@ -22,7 +22,9 @@ def parse_time(value:str)->datetime:
     return result.astimezone(timezone.utc)
 def utcnow()->datetime: return datetime.now(timezone.utc)
 def iso(value:datetime)->str: return value.astimezone(timezone.utc).isoformat().replace("+00:00","Z")
-def sha(path:Path)->str: return hashlib.sha256(path.read_bytes()).hexdigest()
+def sha(path:Path)->str:
+ data=path.read_bytes().replace(b"\r\n",b"\n").replace(b"\r",b"\n")
+ return hashlib.sha256(data).hexdigest()
 def canonical_hash(value:Any)->str: return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(",",":"),ensure_ascii=False).encode()).hexdigest()
 
 def expected_plan(campaign:dict[str,Any])->dict[str,Any]:

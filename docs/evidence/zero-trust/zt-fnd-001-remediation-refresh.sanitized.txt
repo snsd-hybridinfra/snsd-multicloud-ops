@@ -1,0 +1,32 @@
+ZT-FND-001 BOUNDED REMEDIATION AND FRESHNESS REFRESH
+execution_id: ZTFND-20260728T075027Z-10d7a74e
+execution_date: 2026-07-28T07:50:27.7262791Z
+execution_authority: CODEX_EXECUTED_LIVE_RUNTIME
+execution_mode: MANUAL_LIVE_READ_ONLY_VALIDATION_AFTER_APPROVED_REMEDIATION
+validator_id: ZTCV-VAL-FND
+validator_version: 1.1.0
+execution_scope: ZT_FND_001_BOUNDED_RESTRICTED_ENDPOINTS
+result: PASS
+validator_pass: 3
+validator_warn: 0
+validator_fail: 0
+openstack: PASS_50_PASS_0_WARN_0_FAIL
+eve: PASS_42_PASS_0_WARN_0_FAIL
+router: PASS_39_PASS_0_WARN_0_FAIL
+interactive_arbitrary_sensitive_read_denials: 6_OF_6
+security_boundary: VERIFIED_SEPARATELY
+sanitization_status: PASS
+secret_values: 0
+raw_runtime_committed: false
+validation_configuration_modified: false
+automatic_remediation_performed_by_validator: false
+scheduled_trigger: false
+maturity_assigned: false
+phase_1_complete: false
+remediation: the original one-shot test instance was preserved and a bounded replacement validation instance was created with a reviewed boot-persistent read-only network-evidence service and a dedicated recovery key outside Git.
+positive_test: all three fixed validators completed with zero warnings and zero failures.
+negative_test: interactive, arbitrary, and sensitive-read requests were denied by both restricted host endpoints.
+bypass_test: forced-command dispatchers rejected every non-registered request; no alternate command path was accepted.
+persistence_test: a soft reboot produced a fresh console evidence set with tenant-gateway and public-IPv4 replies and all required markers.
+rollback_protection: the original stopped instance, original validator copy, original floating-IP association identifiers, and operator channels were preserved for exact rollback; no rollback was required after the candidate passed.
+limitations: this clean bounded refresh resolves the current FND warning budget only; it does not establish repeatability, scheduling, continuous operation, automatic remediation, maturity, compliance, certification, or Phase 1 completion.

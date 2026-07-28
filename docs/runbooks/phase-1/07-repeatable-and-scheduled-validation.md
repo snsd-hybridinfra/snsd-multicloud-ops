@@ -11,13 +11,13 @@ the separate predecessor gates for repeatable and scheduled validation.
 
 ## Current boundary
 
-ZT-CV-001 tooling is `IMPLEMENTED / PARTIALLY_RUNTIME_VALIDATED`, but its
-2026-07-27 normalized-flow execution is `BLOCKED`. The final cycle completed
-8 PASS / 2 WARN / 0 FAIL with no regression, but the current FND record has
-one warning against an allowed-warning budget of zero. ZT-RV-001 and
-ZT-SCH-001 remain `NOT_IMPLEMENTED / NOT_VALIDATED`. No scheduler, job, CI
-workflow, automatic retry, notification integration, or accepted
-repeatability evidence exists.
+ZT-CV-001 is `IMPLEMENTED / PARTIALLY_RUNTIME_VALIDATED /
+PARTIALLY_ACCEPTED` at EC3. Its 2026-07-28 cycle completed 8 PASS / 2 WARN /
+0 FAIL with zero blocked gates. ZT-RV-001 is implemented and in progress with
+one of three eligible independent successes; the next run is not eligible
+before 2026-07-29T08:28:25.829099Z. ZT-SCH-001 remains `NOT_IMPLEMENTED /
+NOT_VALIDATED`. No scheduler, job, CI workflow, automatic retry, or
+notification integration exists.
 
 ## Required sequence
 
@@ -29,7 +29,6 @@ repeatability evidence exists.
 ## Pass criteria
 
 CV passes only when every mandatory predecessor gate is accepted in the same
-assessment. A `REVIEW_REQUIRED`, `BLOCKED`, stale, failed, or inconsistent
-predecessor decision blocks CV and therefore RV. The current decision is
-blocked by `ZTCV-GATE-FND / WARNING_BUDGET_EXCEEDED`; no schedule exists and
-Phase 1 remains NOT_COMPLETE.
+assessment. RV accepts only unique, sanitized, fingerprint-consistent runs
+with zero blocking failures and at least 24 hours of separation. The current
+RV state is 1/3 at EC3. No schedule exists and Phase 1 remains NOT_COMPLETE.

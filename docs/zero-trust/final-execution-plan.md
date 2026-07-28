@@ -33,11 +33,11 @@ The plan does not promote implementation or maturity by itself.
 reviewed Git and action evidence. ZT-ID-001, ZT-NET-001, and ZT-VIS-001 remain
 accepted only within their recorded bounded scopes.
 
-P1-CV-001 is `BLOCKED`, not completed. Its final 2026-07-27 read-only cycle
-completed 8 PASS / 2 WARN / 0 FAIL, but the refreshed ZT-FND-001 result carries
-one warning against an allowed-warning budget of zero. Exactly one active next
-action remains P1-CV-001 after separate resolution of that blocker; P1-RV-001
-has not begun.
+P1-CV-001 is completed with a bounded `PASS_WITH_OPEN_GAPS` decision. Its
+2026-07-28 read-only cycle completed 8 PASS / 2 WARN / 0 FAIL with no blocked
+gate. P1-RV-001 is the active action and has one of three required eligible
+successes. The second execution is not eligible before
+2026-07-29T08:28:25.829099Z; P1-SCH-001 has not begun.
 
 Phase 1 remains `PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE`. Persistent NTP
 synchronization, central visibility, broader central identity, scheduling,

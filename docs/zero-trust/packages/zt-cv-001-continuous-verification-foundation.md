@@ -5,8 +5,8 @@
 `ZT-CV-001` implements a default-deny, fixed-handler framework for evidence
 freshness, repeatability, package and capability acceptance, regression
 detection, exception governance, and proposal-only maturity reassessment. The
-tooling and fixed plan are implemented, but package acceptance is currently
-blocked.
+tooling and fixed plan are implemented, and the bounded package is partially
+accepted at EC3 with explicit gaps.
 
 The runtime evidence level is `EC3_ONE_TIME_RUNTIME`. It is not continuous
 verification in the operational `EC6` sense. It does not install a schedule,
@@ -38,25 +38,23 @@ does not override the current normalized-flow gate.
 
 ## Current normalized-flow decision
 
-Execution `ZTA-20260727T125822Z-519fe693` used the same fixed plan hash and
+Execution `ZTA-20260728T082622Z-594aed64` used the same fixed plan hash and
 completed `PARTIAL` with 8 PASS, 2 WARN, and 0 FAIL. Freshness assessment found
-9 fresh records, 1 aging record, 1 preserved superseded stale record, and no
-current regression. Package acceptance nevertheless returned
-`ZT-FND-001 = REVIEW_REQUIRED / WARNING_BUDGET_EXCEEDED`: the refreshed FND
-validator retained one package-level warning while its configured budget is
-zero. P1-CV-001 therefore stops as `BLOCKED`; the transient 503 attempt and
-the earlier stale-FND attempt receive no acceptance or continuity credit.
+10 fresh records, 1 aging record, 1 preserved superseded stale record, and no
+current regression. All ten package gates returned accepted or partially
+accepted with zero blocked or review-required result. P1-CV-001 therefore
+completes as `PASS_WITH_OPEN_GAPS` at EC3. Failed and superseded attempts
+receive no acceptance or continuity credit.
 
-Both OpenStack instances and all EVE node processes were returned to their
+All three OpenStack instances and all EVE node processes were returned to their
 original stopped state. No target configuration, ACL, identity policy,
 logging configuration, authority file, or schedule was changed by the live
 workflow.
 
 ## Successor gate
 
-`ZT-RV-001` cannot begin until P1-CV-001 is accepted. The exact FND blocker
-must be remediated under separate authority and the same bounded CV plan must
-be rerun without bypassing the zero-warning gate. A copied record, immediate
-retry, failed run, changed plan, blocked run, or unsanitized result does not
-count. `ZT-SCH-001` remains blocked until EC4 and separate installation
-approval.
+`ZT-RV-001` is active with one accepted independent execution. A copied record,
+immediate retry, failed run, changed plan, blocked run, or unsanitized result
+does not count. Two additional eligible consecutive successes separated by at
+least 24 hours are required for EC4. `ZT-SCH-001` remains blocked until EC4
+and separate installation approval.
