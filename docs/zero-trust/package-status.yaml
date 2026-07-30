@@ -6,7 +6,7 @@
     "status_promoted": true,
     "maturity_assessed": false,
     "compliance_assessed": false,
-    "source_rule": "Package metadata and accepted package evidence remain authoritative; ZT-ID-001, ZT-NET-001, and ZT-VIS-001 retain their bounded runtime states, ZT-CV-001 is partially accepted at EC3, and ZT-RV-001 is in progress with one of three eligible executions."
+    "source_rule": "Package metadata and accepted package evidence remain authoritative; ZT-ID-001, ZT-NET-001, and ZT-VIS-001 retain their bounded runtime states, ZT-CV-001 is partially accepted at EC3, and ZT-RV-001 is provisional with two of three eligible executions."
   },
   "dimensions": [
     "planning_status", "architecture_status", "mapping_status", "implementation_status",

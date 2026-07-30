@@ -28,7 +28,7 @@
   "package_flow_authority": "docs/zero-trust/package-flow.yaml",
   "unresolved_gaps": [
     {"gap_id":"CROSS_CAPABILITY_BOUNDED_GAPS","owner":"ZT-CV-001","status":"PARTIALLY_ACCEPTED"},
-    {"gap_id":"REPEATABILITY_REQUIRES_TWO_MORE_ELIGIBLE_RUNS","owner":"ZT-RV-001","status":"IN_PROGRESS"},
+    {"gap_id":"REPEATABILITY_REQUIRES_ONE_MORE_ELIGIBLE_RUN","owner":"ZT-RV-001","status":"REPEATABILITY_PROVISIONAL"},
     {"gap_id":"SCHEDULED_VALIDATION_NOT_IMPLEMENTED","owner":"ZT-SCH-001","status":"OPEN"}
   ]
 }

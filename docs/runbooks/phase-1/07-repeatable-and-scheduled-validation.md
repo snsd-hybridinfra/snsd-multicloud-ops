@@ -13,9 +13,9 @@ the separate predecessor gates for repeatable and scheduled validation.
 
 ZT-CV-001 is `IMPLEMENTED / PARTIALLY_RUNTIME_VALIDATED /
 PARTIALLY_ACCEPTED` at EC3. Its 2026-07-28 cycle completed 8 PASS / 2 WARN /
-0 FAIL with zero blocked gates. ZT-RV-001 is implemented and in progress with
-one of three eligible independent successes; the next run is not eligible
-before 2026-07-29T08:28:25.829099Z. ZT-SCH-001 remains `NOT_IMPLEMENTED /
+0 FAIL with zero blocked gates. ZT-RV-001 is implemented and provisional with
+two of three eligible independent successes; the final run is not eligible
+before 2026-07-31T00:28:34.120022Z. ZT-SCH-001 remains `NOT_IMPLEMENTED /
 NOT_VALIDATED`. No scheduler, job, CI workflow, automatic retry, or
 notification integration exists.
 
@@ -31,4 +31,5 @@ notification integration exists.
 CV passes only when every mandatory predecessor gate is accepted in the same
 assessment. RV accepts only unique, sanitized, fingerprint-consistent runs
 with zero blocking failures and at least 24 hours of separation. The current
-RV state is 1/3 at EC3. No schedule exists and Phase 1 remains NOT_COMPLETE.
+RV state is provisional at 2/3 while continuity remains EC3. No schedule exists
+and Phase 1 remains NOT_COMPLETE.

@@ -41,9 +41,9 @@ is not itself an implementation package result.
 `ZT-AUTO-001` and `ZT-CV-001` are implemented and partially runtime validated
 at one-time EC3 boundaries. ZT-CV-001 is bounded `PARTIALLY_ACCEPTED` after the
 clean FND remediation and the 8/2/0 integrated cycle. `ZT-RV-001` is
-implemented and in progress with one accepted independent execution; EC4
-still requires two additional consecutive successes separated by at least 24
-hours. `ZT-SCH-001` remains unimplemented and blocked by RV acceptance, so
+implemented and provisional with two accepted independent executions; EC4
+still requires one additional consecutive success after at least 24 hours.
+`ZT-SCH-001` remains unimplemented and blocked by RV acceptance, so
 Phase 1 remains not complete.
 
 ## Phase 2 - Centralized Identity and Visibility

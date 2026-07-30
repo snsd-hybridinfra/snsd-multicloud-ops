@@ -23,7 +23,7 @@ from validate_verification_configuration import validate  # noqa: E402
 
 class ZtCv001Tests(unittest.TestCase):
     def setUp(self) -> None:
-        self.now = datetime(2026, 7, 28, 8, 31, tzinfo=timezone.utc)
+        self.now = datetime(2026, 7, 30, 0, 45, tzinfo=timezone.utc)
         self.history = load(PATHS["history"])
         self.freshness_policy = load(PATHS["freshness"])
 
@@ -40,11 +40,11 @@ class ZtCv001Tests(unittest.TestCase):
     def test_timezone_required(self): self.assertRaises(ValueError, parse_time, "2026-07-22T00:00:00")
     def test_current_history_retains_truthful_freshness_counts(self):
         states=[x["freshness_status"] for x in self.fresh()]
-        self.assertEqual({"FRESH":12,"AGING":1,"STALE":1},{state:states.count(state) for state in {"FRESH","AGING","STALE"}})
+        self.assertEqual({"FRESH":6,"AGING":8,"STALE":2},{state:states.count(state) for state in {"FRESH","AGING","STALE"}})
     def test_future_timestamp_unknown(self):
         h={"executions":[self.record()]}; h["executions"][0]["execution_date"]="2099-01-01T00:00:00Z"; self.assertEqual("UNKNOWN",self.fresh(h)[0]["freshness_status"])
     def test_aging_classification(self):
-        h={"executions":[self.record()]}; h["executions"][0]["execution_date"]="2026-07-19T00:00:00Z"; self.assertEqual("AGING",self.fresh(h)[0]["freshness_status"])
+        h={"executions":[self.record()]}; h["executions"][0]["execution_date"]="2026-07-22T00:00:00Z"; self.assertEqual("AGING",self.fresh(h)[0]["freshness_status"])
     def test_stale_classification(self):
         h={"executions":[self.record()]}; h["executions"][0]["execution_date"]="2026-07-10T00:00:00Z"; self.assertEqual("STALE",self.fresh(h)[0]["freshness_status"])
     def test_expired_classification(self):

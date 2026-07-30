@@ -590,6 +590,148 @@
       "freshness_status": "FRESH",
       "scheduled_trigger": false,
       "approval_reference": "USER_AUTHORIZED_LIVE_CV_RV_2026-07-28"
+    },
+    {
+      "campaign_id": "ZT-RV-001",
+      "execution_id": "ZTRV-20260730T002834Z-ac20f30a",
+      "execution_timestamp": "2026-07-30T00:28:34.120022Z",
+      "execution_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+      "execution_mode": "EXECUTE_READ_ONLY",
+      "capability_id": "ZT-4.1.1",
+      "package_id": "ZT-RV-001",
+      "validator_id": "ZTCV-VAL-SYS",
+      "workflow_id": "ZT-CV-WF-001",
+      "validator_version": "1.0.0+sha256:9425c3891c6260a614706f9b5f873007fef8303f70f91ce7a905753bdd4b99cc",
+      "action_catalog_version": "1.1.0",
+      "workflow_catalog_version": "1.1.0",
+      "policy_version": "1.0.0",
+      "plan_hash": "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624",
+      "target_scope_fingerprint": "55240517637e6dfeb0506a2c98c26a9a55856d4ff4617de874a610815e026d89",
+      "raw_evidence_reference": ".runtime/zero-trust/repeatable-validation/raw/ZTRV-20260730T002834Z-ac20f30a.txt",
+      "sanitized_evidence_reference": "docs/evidence/zero-trust/zt-rv-001-run-02.sanitized.txt",
+      "raw_evidence_hash": "269087a6ee25c6a06358d2311d2f40c5f570e2ceb1c917d694d26d704904fbc5",
+      "sanitized_evidence_hash": "2f269c920e3e5403b72bdeb4a716c1dde4b3f18135fd73c4b0be31f2da3959ff",
+      "sanitization_status": "PASS",
+      "pass": 6,
+      "warn": 4,
+      "fail": 0,
+      "exit_code": 0,
+      "warning_categories": [
+        "ENDPOINT_SCANNER_GAP",
+        "CONFIGURATION_ONLY_RECORDS",
+        "SERVICE_DEGRADED"
+      ],
+      "security_boundary": {
+        "status": "PASS",
+        "batch_mode_allowed_command": "VALIDATED_BY_FIXED_WORKFLOW",
+        "negative_checks": [
+          {
+            "alias": "eve-validator",
+            "check": "INTERACTIVE_SHELL_BLOCKED",
+            "blocked": true
+          },
+          {
+            "alias": "eve-validator",
+            "check": "ARBITRARY_COMMAND_BLOCKED",
+            "blocked": true
+          },
+          {
+            "alias": "eve-validator",
+            "check": "PROTECTED_FILE_READ_BLOCKED",
+            "blocked": true
+          },
+          {
+            "alias": "openstack-validator",
+            "check": "INTERACTIVE_SHELL_BLOCKED",
+            "blocked": true
+          },
+          {
+            "alias": "openstack-validator",
+            "check": "ARBITRARY_COMMAND_BLOCKED",
+            "blocked": true
+          },
+          {
+            "alias": "openstack-validator",
+            "check": "PROTECTED_FILE_READ_BLOCKED",
+            "blocked": true
+          },
+          {
+            "alias": "snsd-r1-validator",
+            "check": "INTERACTIVE_SHELL_BLOCKED",
+            "blocked": true
+          },
+          {
+            "alias": "snsd-r1-validator",
+            "check": "ARBITRARY_COMMAND_BLOCKED",
+            "blocked": true
+          },
+          {
+            "alias": "snsd-r1-validator",
+            "check": "PROTECTED_FILE_READ_BLOCKED",
+            "blocked": true
+          }
+        ],
+        "limitations": [
+          "Only harmless denied requests were used; no protected content was captured."
+        ]
+      },
+      "limitations": [
+        "Manual campaign run; no schedule or authoritative update."
+      ],
+      "source_automation_execution_id": "ZTA-20260730T002838Z-14706cc8",
+      "execution_fingerprint": "9f7afdaba3d7cd0538f06804041446192c1eeb5a2aba597c4813b822b14d0d50",
+      "capability_ids": [
+        "ZT-4.1.1"
+      ],
+      "execution_scope": "ZT_SYS_001_SEVEN_SYSTEMS_FIXED_VALIDATORS",
+      "execution_date": "2026-07-30T00:28:34.120022Z",
+      "result": "WARN",
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-rv-001-run-02.sanitized.txt"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-rv-001-run-02.sanitized.txt": "2f269c920e3e5403b72bdeb4a716c1dde4b3f18135fd73c4b0be31f2da3959ff"
+      },
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "approval_reference": "USER_AUTHORIZED_2026-07-30_ZT-RV-001_RUN-02"
+    },
+    {
+      "execution_id": "ZTID-20260730T004343Z-REVALIDATION",
+      "package_id": "ZT-ID-001",
+      "capability_ids": [
+        "ZT-1.1.1",
+        "ZT-1.1.2",
+        "ZT-1.2.1",
+        "ZT-1.4.1",
+        "ZT-1.4.2"
+      ],
+      "validator_id": "ZTCV-VAL-ID",
+      "validator_version": "1.1.0",
+      "workflow_id": "ZT-CV-WF-001",
+      "execution_scope": "ZT_ID_001_BOUNDED_NONPRODUCTION_ENDPOINT",
+      "execution_date": "2026-07-30T00:44:01.088566Z",
+      "execution_authority": "USER_APPROVED_CODEX_EXECUTION",
+      "execution_mode": "MANUAL_BOUNDED_READ_ONLY_REVALIDATION",
+      "plan_hash": "NOT_RECORDED",
+      "result": "PASS",
+      "pass": 62,
+      "warn": 0,
+      "fail": 0,
+      "evidence_files": [
+        "docs/evidence/zero-trust/zt-id-001-runtime-revalidation-20260730.sanitized.txt"
+      ],
+      "evidence_hashes": {
+        "docs/evidence/zero-trust/zt-id-001-runtime-revalidation-20260730.sanitized.txt": "15caf4f73a77be5521737ed5a5fbcd24742d569d098ee1161db8173d2facb1fa"
+      },
+      "sanitization_status": "PASS",
+      "freshness_policy_id": "ZTCV-FRESH-LIVE",
+      "freshness_status": "FRESH",
+      "scheduled_trigger": false,
+      "limitations": [
+        "This read-only revalidation refreshes only the accepted bounded identity endpoint and receives no RV, schedule, continuous-operation, maturity, compliance, certification, or Phase 1 completion credit."
+      ]
     }
   ]
 }

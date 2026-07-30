@@ -7,12 +7,12 @@ from pathlib import Path
 from rv_common import CAMPAIGN,HISTORY,POLICY,ROOT,RUNTIME,assess,expected_plan,execution_fingerprint,iso,load,parse_time,sha,utcnow,validate_configuration,write,campaign_records
 from verify_sanitized_evidence import findings as sanitizer_findings
 
-def latest_candidates()->list[dict]:
- records=[]
- for path in (RUNTIME/"executions").glob("*/execution-record.json") if (RUNTIME/"executions").exists() else []:
-  try: records.append(load(path))
-  except (OSError,ValueError,json.JSONDecodeError): pass
- return records
+def next_execution_not_before(campaign:dict,history:dict)->datetime:
+ not_before=parse_time(campaign["execution_policy"]["not_before"])
+ prior=campaign_records(history)
+ if prior:
+  not_before=max(not_before,max(parse_time(x["execution_timestamp"]) for x in prior)+timedelta(hours=24))
+ return not_before
 
 def verify_security_boundary(campaign:dict)->dict:
  ssh=shutil.which("ssh") or "ssh"; aliases=campaign["target_scope_definition"]["approved_ssh_aliases"]; checks=[]
@@ -39,9 +39,7 @@ def observed_warning_categories(execution_root:Path)->list[str]:
  return observed
 
 def execute(campaign:dict,verbose:bool)->int:
- now=utcnow(); not_before=parse_time(campaign["execution_policy"]["not_before"]); prior=latest_candidates()
- if prior:
-  not_before=max(not_before,max(parse_time(x["execution_timestamp"]) for x in prior)+timedelta(hours=24))
+ now=utcnow(); not_before=next_execution_not_before(campaign,load(HISTORY))
  if now<not_before: print(f"[FAIL] MINIMUM_SEPARATION: next execution not before {iso(not_before)}"); return 2
  lock=RUNTIME/"locks/ZT-RV-001.lock"; lock.parent.mkdir(parents=True,exist_ok=True)
  if lock.exists(): print("[FAIL] campaign lock exists; no silent deletion performed"); return 2

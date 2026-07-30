@@ -10,7 +10,7 @@ Machine-readable authority: `docs/zero-trust/package-flow.yaml` and the correspo
 | ZT-VIS-001 | IMPLEMENTED | LOCAL_VALIDATED | VALIDATED | ACCEPTED | UNASSESSED | Four sanitized summary sources and one single-node local stack; central visibility remains open |
 | ZT-ID-001 | IMPLEMENTED | LOCAL_VALIDATED | VALIDATED | ACCEPTED | UNASSESSED | One bounded non-production endpoint; centralized identity remains open |
 | ZT-CV-001 | IMPLEMENTED | LOCAL_VALIDATED | PARTIALLY_VALIDATED | PARTIALLY_ACCEPTED | UNASSESSED | Bounded EC3 only; explicit package gaps remain |
-| ZT-RV-001 | IMPLEMENTED | LOCAL_VALIDATED | PARTIALLY_VALIDATED | IN_PROGRESS | UNASSESSED | One of three eligible executions accepted; next run requires PT24H separation |
+| ZT-RV-001 | IMPLEMENTED | LOCAL_VALIDATED | PARTIALLY_VALIDATED | REPEATABILITY_PROVISIONAL | UNASSESSED | Two of three eligible executions accepted; final run requires PT24H separation |
 | ZT-SCH-001 | NOT_IMPLEMENTED | NOT_VALIDATED | NOT_VALIDATED | PENDING | UNASSESSED | RV repeatability acceptance required |
 
 ## Phase 1
@@ -23,6 +23,8 @@ Machine-readable authority: `docs/zero-trust/package-flow.yaml` and the correspo
 Progress is not calculated from a scenario count or a repository-wide percentage.
 
 The 2026-07-28 remediated CV execution completed 8 PASS / 2 WARN / 0 FAIL with
-zero blocked or review-required gates. The first RV campaign execution is
-accepted at EC3; two additional eligible consecutive successes separated by
-at least 24 hours are still required for EC4.
+zero blocked or review-required gates. Two RV campaign executions are accepted
+at EC3 with a provisional repeatability result; one additional eligible
+consecutive success after at least 24 hours is still required for EC4. The
+bounded ZT-ID-001 evidence was revalidated on 2026-07-30 with 20/20 positive,
+42/42 denied, and zero current freshness regressions without changing its scope.

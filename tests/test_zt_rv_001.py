@@ -5,7 +5,7 @@ from datetime import datetime,timedelta,timezone
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]; RV=ROOT/"tools/continuous_verification"; sys.path.insert(0,str(RV))
 from rv_common import CAMPAIGN,POLICY,assess,canonical_hash,execution_fingerprint,expected_plan,load,sha,validate_configuration  # noqa:E402
-from run_repeatability_campaign import observed_warning_categories  # noqa:E402
+from run_repeatability_campaign import next_execution_not_before,observed_warning_categories  # noqa:E402
 from verify_sanitized_evidence import findings  # noqa:E402
 
 class ZtRv001Tests(unittest.TestCase):
@@ -38,6 +38,9 @@ class ZtRv001Tests(unittest.TestCase):
   a=self.record(0); b=self.record(1); b["execution_fingerprint"]=a["execution_fingerprint"]; self.assertGreater(self.result([a,b])["execution_history"]["rejected"],0)
  def test_insufficient_separation_rejected(self):
   a=self.record(0); b=self.record(1); b["execution_timestamp"]=(datetime.fromisoformat(a["execution_timestamp"])+timedelta(hours=1)).isoformat(); b["execution_fingerprint"]=execution_fingerprint(b); self.assertTrue(self.result([a,b])["separation"]["violations"])
+ def test_next_execution_uses_reviewed_history_only(self):
+  accepted=self.record(0); expected=datetime.fromisoformat(accepted["execution_timestamp"])+timedelta(hours=24)
+  self.assertEqual(expected,next_execution_not_before(self.c,{"executions":[accepted]}))
  def test_future_timestamp_rejected(self):
   a=self.record(); a["execution_timestamp"]=(self.now+timedelta(days=1)).isoformat(); a["execution_fingerprint"]=execution_fingerprint(a); self.assertGreater(self.result([a])["execution_history"]["rejected"],0)
  def test_plan_drift_rejected(self):

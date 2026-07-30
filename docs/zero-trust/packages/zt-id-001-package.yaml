@@ -22,6 +22,8 @@
   "action_runtime_executed": true,
   "action_live_identity_changed": true,
   "execution_record": "docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml",
+  "latest_revalidation_record": "docs/evidence/zero-trust/zt-id-001-runtime-revalidation-20260730.sanitized.txt",
+  "latest_revalidation_timestamp": "2026-07-30T00:44:01.088566Z",
   "limitations": [
     "Runtime acceptance is limited to one bounded non-production EVE-NG validator endpoint.",
     "Centralized identity, MFA, federation, PAM, and application RBAC remain outside the accepted boundary.",

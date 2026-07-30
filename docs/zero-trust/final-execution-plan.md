@@ -35,9 +35,9 @@ accepted only within their recorded bounded scopes.
 
 P1-CV-001 is completed with a bounded `PASS_WITH_OPEN_GAPS` decision. Its
 2026-07-28 read-only cycle completed 8 PASS / 2 WARN / 0 FAIL with no blocked
-gate. P1-RV-001 is the active action and has one of three required eligible
-successes. The second execution is not eligible before
-2026-07-29T08:28:25.829099Z; P1-SCH-001 has not begun.
+gate. P1-RV-001 is the active action and has two of three required eligible
+successes. The third execution is not eligible before
+2026-07-31T00:28:34.120022Z; P1-SCH-001 has not begun.
 
 Phase 1 remains `PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE`. Persistent NTP
 synchronization, central visibility, broader central identity, scheduling,
