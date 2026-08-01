@@ -2245,6 +2245,7 @@ def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], 
         REPEATABILITY_ACCEPTANCE_POLICY_PATH,
         Path("docs/evidence/zero-trust/zt-rv-001-run-01.sanitized.txt"),
         Path("docs/evidence/zero-trust/zt-rv-001-run-02.sanitized.txt"),
+        Path("docs/evidence/zero-trust/zt-rv-001-run-03.sanitized.txt"),
         Path("docs/zero-trust/verification-history.yaml"),
         Path("tools/continuous_verification/run_repeatability_campaign.py"),
     )
@@ -2263,41 +2264,41 @@ def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], 
     expected = {
         "package_id": "ZT-RV-001",
         "implementation_status": "IMPLEMENTED",
-        "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+        "validation_status": "RUNTIME_VALIDATED",
         "local_validation_status": "LOCAL_VALIDATED",
-        "runtime_validation_status": "PARTIALLY_VALIDATED",
-        "runtime_acceptance_status": "PENDING",
-        "acceptance_state": "REPEATABILITY_PROVISIONAL",
-        "current_continuity": "EC3_ONE_TIME_RUNTIME",
+        "runtime_validation_status": "VALIDATED",
+        "runtime_acceptance_status": "ACCEPTED",
+        "acceptance_state": "REPEATABILITY_ACCEPTED",
+        "current_continuity": "EC4_REPEATABLE_RUNTIME",
         "target_continuity": "EC4_REPEATABLE_RUNTIME",
-        "accepted_campaign_executions": 2,
+        "accepted_campaign_executions": 3,
         "required_campaign_executions": 3,
-        "consecutive_successes": 2,
+        "consecutive_successes": 3,
         "minimum_execution_separation": "PT24H",
-        "latest_execution_id": "ZTRV-20260730T002834Z-ac20f30a",
-        "next_eligible_execution": "2026-07-31T00:28:34.120022Z",
+        "latest_execution_id": "ZTRV-20260801T230020Z-daebf8ef",
+        "next_eligible_execution": None,
         "maturity_status": "UNASSESSED",
     }
     mismatches = {key: (value, package.get(key)) for key, value in expected.items() if package.get(key) != value}
     if mismatches:
-        result.fail(category, f"ZT-RV-001 in-progress package state differs: {mismatches}")
+        result.fail(category, f"ZT-RV-001 accepted package state differs: {mismatches}")
 
     acceptance = campaign.get("acceptance", {})
     if (
-        acceptance.get("current_state") != "IN_PROGRESS"
-        or acceptance.get("current_continuity") != "EC3_ONE_TIME_RUNTIME"
-        or acceptance.get("successful_independent_executions") != 2
-        or acceptance.get("consecutive_successes") != 2
+        acceptance.get("current_state") != "COMPLETED"
+        or acceptance.get("current_continuity") != "EC4_REPEATABLE_RUNTIME"
+        or acceptance.get("successful_independent_executions") != 3
+        or acceptance.get("consecutive_successes") != 3
         or acceptance.get("blocking_regressions") != 0
-        or acceptance.get("acceptance_decision") != "REPEATABILITY_PROVISIONAL"
+        or acceptance.get("acceptance_decision") != "REPEATABILITY_ACCEPTED"
     ):
-        result.fail(f"{category}.campaign", "RV campaign authority must retain exactly two accepted executions and remain provisional at EC3.")
+        result.fail(f"{category}.campaign", "RV campaign authority must retain exactly three accepted executions at bounded EC4.")
 
     records = [item for item in history.get("executions", []) if item.get("campaign_id") == "ZT-RV-001"]
-    if len(records) != 2:
-        result.fail(f"{category}.history", "Exactly two ZT-RV-001 campaign executions must be recorded before the third eligible run.")
+    if len(records) != 3:
+        result.fail(f"{category}.history", "Exactly three ZT-RV-001 campaign executions must be recorded for bounded EC4 acceptance.")
     else:
-        first, second = records
+        first, second, third = records
         if (
             first.get("execution_id") != "ZTRV-20260728T082825Z-f22b1052"
             or first.get("execution_date") != "2026-07-28T08:28:25.829099Z"
@@ -2326,16 +2327,31 @@ def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], 
         second_evidence = "docs/evidence/zero-trust/zt-rv-001-run-02.sanitized.txt"
         if second.get("evidence_hashes", {}).get(second_evidence) != "2f269c920e3e5403b72bdeb4a716c1dde4b3f18135fd73c4b0be31f2da3959ff":
             result.fail(f"{category}.history", "The second RV sanitized evidence hash differs.")
+        if (
+            third.get("execution_id") != "ZTRV-20260801T230020Z-daebf8ef"
+            or third.get("execution_date") != "2026-08-01T23:00:20.110724Z"
+            or (third.get("pass"), third.get("warn"), third.get("fail")) != (5, 5, 0)
+            or third.get("plan_hash") != "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624"
+            or third.get("sanitization_status") != "PASS"
+            or third.get("scheduled_trigger") is not False
+            or third.get("security_boundary", {}).get("status") != "PASS"
+            or third.get("warning_categories") != ["ENDPOINT_SCANNER_GAP", "CONFIGURATION_ONLY_RECORDS", "SERVICE_DEGRADED"]
+            or third.get("execution_fingerprint") != "27116fd7675f47f6fbfaa5bbe2f529381f7e568b50de907668fc54a15e395135"
+        ):
+            result.fail(f"{category}.history", "The third RV execution authority differs from the reviewed 5/5/0 candidate.")
+        third_evidence = "docs/evidence/zero-trust/zt-rv-001-run-03.sanitized.txt"
+        if third.get("evidence_hashes", {}).get(third_evidence) != "1b655b7077401fb0bb60fbfc28a162417e91dd225f8d27a77d8fa8e8a6bbc884":
+            result.fail(f"{category}.history", "The third RV sanitized evidence hash differs.")
 
     for field in ("automatic_schedule", "automatic_retry", "automatic_remediation", "mutation_allowed", "history_auto_append", "authoritative_auto_update_performed", "maturity_assigned", "scheduled_operation", "continuous_operation", "phase_1_complete"):
         if package.get(field) is not False:
-            result.fail(f"{category}.claims", f"{field} must remain false while RV is in progress.")
+            result.fail(f"{category}.claims", f"{field} must remain false after bounded RV acceptance.")
     runner = (root / "tools/continuous_verification/run_repeatability_campaign.py").read_text(encoding="utf-8", errors="replace")
     for token in ("observed_warning_categories", "MINIMUM_SEPARATION", "next_execution_not_before", "verify_security_boundary"):
         if token not in runner:
             result.fail(f"{category}.runner", f"RV runner is missing required reviewed behavior: {token}.")
     if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
-        result.passed(category, "ZT-RV-001 is implemented and provisional with two eligible independent executions; EC4, schedule, maturity, and Phase 1 completion remain unclaimed.")
+        result.passed(category, "ZT-RV-001 is implemented, runtime validated, and accepted with three eligible independent executions at bounded EC4; schedule, EC5, maturity, and Phase 1 completion remain unclaimed.")
     return
     required = (
         REPEATABLE_VALIDATION_CAMPAIGN_PATH, REPEATABILITY_ACCEPTANCE_POLICY_PATH,

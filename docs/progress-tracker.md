@@ -10,7 +10,7 @@ Machine-readable authority: `docs/zero-trust/package-flow.yaml` and the correspo
 | ZT-VIS-001 | IMPLEMENTED | LOCAL_VALIDATED | VALIDATED | ACCEPTED | UNASSESSED | Four sanitized summary sources and one single-node local stack; central visibility remains open |
 | ZT-ID-001 | IMPLEMENTED | LOCAL_VALIDATED | VALIDATED | ACCEPTED | UNASSESSED | One bounded non-production endpoint; centralized identity remains open |
 | ZT-CV-001 | IMPLEMENTED | LOCAL_VALIDATED | PARTIALLY_VALIDATED | PARTIALLY_ACCEPTED | UNASSESSED | Bounded EC3 only; explicit package gaps remain |
-| ZT-RV-001 | IMPLEMENTED | LOCAL_VALIDATED | PARTIALLY_VALIDATED | REPEATABILITY_PROVISIONAL | UNASSESSED | Two of three eligible executions accepted; final run requires PT24H separation |
+| ZT-RV-001 | IMPLEMENTED | LOCAL_VALIDATED | VALIDATED | ACCEPTED | UNASSESSED | Bounded EC4 for the selected three-run campaign; no schedule or EC5 |
 | ZT-SCH-001 | NOT_IMPLEMENTED | NOT_VALIDATED | NOT_VALIDATED | PENDING | UNASSESSED | RV repeatability acceptance required |
 
 ## Phase 1
@@ -23,8 +23,9 @@ Machine-readable authority: `docs/zero-trust/package-flow.yaml` and the correspo
 Progress is not calculated from a scenario count or a repository-wide percentage.
 
 The 2026-07-28 remediated CV execution completed 8 PASS / 2 WARN / 0 FAIL with
-zero blocked or review-required gates. Two RV campaign executions are accepted
-at EC3 with a provisional repeatability result; one additional eligible
-consecutive success after at least 24 hours is still required for EC4. The
-bounded ZT-ID-001 evidence was revalidated on 2026-07-30 with 20/20 positive,
-42/42 denied, and zero current freshness regressions without changing its scope.
+zero blocked or review-required gates. Three RV campaign executions are now
+accepted at bounded EC4 with stable fingerprints, 24-hour separation, and no
+blocking failure. The bounded ZT-ID-001 evidence was revalidated on 2026-07-30
+with 20/20 positive and 42/42 denied checks. Seven other current evidence
+streams are now stale review findings; no acceptance, maturity, or Phase 1
+completion is inferred from the RV result. ZT-SCH-001 remains the boundary.

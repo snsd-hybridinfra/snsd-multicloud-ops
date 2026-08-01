@@ -5,8 +5,9 @@ faster than once per 24 hours and an expected execution duration below ten
 minutes. Windows Task Scheduler, GitHub Actions, cron, and systemd timers all
 remain `NOT_IMPLEMENTED`.
 
-The bounded workstation mechanism may be evaluated by `ZT-SCH-001` only after
-three independent consecutive successes establish EC4. A future mechanism
-must use the fixed campaign, preserve the lock, timeout, sanitized evidence,
-manual history-review boundary, and missed-run reporting. It must not perform
-an automatic catch-up, remediation, maturity update, commit, or push.
+Three independent consecutive successes now establish bounded EC4, satisfying
+the RV predecessor condition. This proposal still does not authorize
+installation: `ZT-SCH-001` requires separate scheduler approval. A future
+mechanism must use the fixed campaign, preserve the lock, timeout, sanitized
+evidence, manual history-review boundary, and missed-run reporting. It must not
+perform an automatic catch-up, remediation, maturity update, commit, or push.

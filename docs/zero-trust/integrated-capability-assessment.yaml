@@ -1,8 +1,8 @@
 {
-  "metadata": {"package_id":"ZT-CV-001","assessment_version":"1.3.0","environment":"BOUNDED_NON_PRODUCTION_LAB","authority":"REVIEWED_ZT_CV_001_RESULT","assessment_time":"2026-07-30T00:31:00Z","limitations":["The bounded CV chain is partially accepted at EC3 and authorizes only the governed RV campaign.","Two RV executions do not assign EC4, maturity, scheduled operation, or Phase 1 completion."]},
-  "summary": {"history_records":16,"fresh_records":6,"aging_records":8,"preserved_superseded_stale_records":2,"regression_findings":0,"capabilities_assessed":12,"maturity_upgrades":0,"maturity_downgrades":0,"current_continuity":"EC3_ONE_TIME_RUNTIME","current_decision":"PARTIALLY_ACCEPTED","blocking_gate":null,"blocking_finding":null},
+  "metadata": {"package_id":"ZT-CV-001","assessment_version":"1.4.0","environment":"BOUNDED_NON_PRODUCTION_LAB","authority":"REVIEWED_ZT_CV_001_RESULT","assessment_time":"2026-08-01T23:05:00Z","limitations":["The bounded CV chain remains partially accepted at EC3 while the selected governed RV campaign is separately accepted at bounded EC4.","Seven current non-RV evidence streams are stale and remain review findings; RV acceptance does not assign maturity, scheduled operation, or Phase 1 completion."]},
+  "summary": {"history_records":17,"fresh_records":7,"aging_records":0,"stale_records":10,"preserved_superseded_stale_records":2,"regression_findings":7,"capabilities_assessed":12,"maturity_upgrades":0,"maturity_downgrades":0,"current_continuity":"EC4_REPEATABLE_RUNTIME","current_decision":"PARTIALLY_ACCEPTED","blocking_gate":null,"blocking_finding":null},
   "repeatability_recommendation": {
-    "decision": "REPEATABILITY_PROVISIONAL_TWO_OF_THREE",
+    "decision": "REPEATABILITY_ACCEPTED_THREE_OF_THREE",
     "capability_id": "ZT-4.1.1",
     "canonical_name": "접근통제",
     "source_package_id": "ZT-SYS-001",
@@ -11,17 +11,17 @@
     "validator_version": "1.0.0",
     "workflow_id": "ZT-CV-WF-001",
     "target_scope": "ZT_SYS_001_SEVEN_SYSTEMS_FIXED_VALIDATORS",
-    "current_evidence_continuity": "EC3_ONE_TIME_RUNTIME",
-    "current_execution_id": "ZTRV-20260730T002834Z-ac20f30a",
+    "current_evidence_continuity": "EC4_REPEATABLE_RUNTIME",
+    "current_execution_id": "ZTRV-20260801T230020Z-daebf8ef",
     "selection_rationale": [
       "ZT-4.1.1 is the highest-ranked dependency-ready capability among the bounded EC3 candidates in the current queue overlay.",
       "The capability acceptance catalog already binds it to ZTCV-VAL-SYS and ZT-CV-WF-001.",
       "The validator is a fixed read-only implementation with a stable seven-system scope, sanitized output, and no unresolved critical security-boundary failure.",
       "Current runtime validators produced OpenStack 50/0/0, EVE 42/0/0, and router 39/0/0 while remaining read-only.",
-      "Two eligible RV executions passed sanitization and all nine negative security-boundary checks with unchanged validator, plan, and target fingerprints."
+      "Three eligible RV executions passed sanitization and all nine negative security-boundary checks with unchanged validator, plan, and target fingerprints and at least 24 hours of separation."
     ],
     "campaign_requirements": {"minimum_successful_independent_executions":3,"minimum_consecutive_successes":3,"minimum_execution_separation":"PT24H","maximum_evidence_age":"P7D","maximum_blocking_failures":0,"allowed_warnings":5,"target_continuity":"EC4_REPEATABLE_RUNTIME"},
-    "next_package": "P1-RV-001"
+    "next_package": "P1-SCH-001"
   },
   "rejected_candidates": [
     {"capability_id":"ZT-8.1","validator_id":"ZTCV-VAL-AUTO","reason":"Lower queue position and broader automation-policy scope than the selected access-control candidate."},
@@ -29,5 +29,5 @@
     {"capability_id":"ZT-7.1","validator_id":"ZTCV-VAL-VIS","reason":"Persistent telemetry is useful but EC6 freshness and failure history would blur the bounded EC4 pilot objective."},
     {"capability_id":"ZT-3.1.1","validator_id":"ZTCV-VAL-NET","reason":"The directional ACL scope is narrower but ranked below the selected access-control dependency in the current overlay."}
   ],
-  "governance": {"authoritative_update_performed":false,"maturity_assigned":false,"repeatability_assigned":false,"schedule_installed":false,"continuous_claimed":false}
+  "governance": {"authoritative_update_performed":true,"maturity_assigned":false,"repeatability_assigned":true,"schedule_installed":false,"continuous_claimed":false}
 }

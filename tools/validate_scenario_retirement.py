@@ -29,7 +29,7 @@ EXPECTED_PACKAGE_STATES = {
     "ZT-VIS-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
     "ZT-ID-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
     "ZT-CV-001": ("IMPLEMENTED", "PARTIALLY_RUNTIME_VALIDATED"),
-    "ZT-RV-001": ("IMPLEMENTED", "PARTIALLY_RUNTIME_VALIDATED"),
+    "ZT-RV-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
     "ZT-SCH-001": ("NOT_IMPLEMENTED", "NOT_VALIDATED"),
     "ZT-ARC-001": ("DESIGN_ONLY", "LOCAL_VALIDATED"),
 }
@@ -155,6 +155,18 @@ def validate_package_truth(root: Path, result: Result) -> None:
                     or evidence.get("maturity_status") != "UNASSESSED"
                 ):
                     errors.append("ZT-ID-001: accepted state lacks matching sanitized runtime evidence")
+        if package_id == "ZT-RV-001":
+            if (
+                record.get("runtime_validation_status") != "VALIDATED"
+                or record.get("runtime_acceptance_status") != "ACCEPTED"
+                or record.get("acceptance_state") != "REPEATABILITY_ACCEPTED"
+                or record.get("current_continuity") != "EC4_REPEATABLE_RUNTIME"
+                or record.get("accepted_campaign_executions") != 3
+                or record.get("consecutive_successes") != 3
+                or record.get("scheduled_operation") is not False
+                or record.get("maturity_status") != "UNASSESSED"
+            ):
+                errors.append("ZT-RV-001: bounded EC4 acceptance, schedule, or maturity boundary changed")
         if package_id == "ZT-NET-001":
             if (
                 record.get("runtime_validation_status") != "VALIDATED"

@@ -53,8 +53,7 @@ workflow.
 
 ## Successor gate
 
-`ZT-RV-001` is active with two accepted independent executions. A copied record,
-immediate retry, failed run, changed plan, blocked run, or unsanitized result
-does not count. One additional eligible consecutive success after at least 24
-hours is required for EC4. `ZT-SCH-001` remains blocked until EC4
-and separate installation approval.
+`ZT-RV-001` is accepted at bounded EC4 with three eligible independent
+executions. A copied record, immediate retry, failed run, changed plan, blocked
+run, or unsanitized result does not count. `ZT-SCH-001` is now the next package,
+but remains unimplemented until separate scheduler installation approval.

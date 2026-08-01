@@ -22,6 +22,8 @@ class ZtRv001Tests(unittest.TestCase):
  def test_remediation_disabled(self): self.assertFalse(self.c["execution_policy"]["automatic_remediation"])
  def test_mutation_disabled(self): self.assertFalse(self.c["execution_policy"]["mutation_allowed"])
  def test_history_auto_append_disabled(self): self.assertFalse(self.c["execution_policy"]["history_auto_append"])
+ def test_current_authority_is_accepted_at_ec4(self):
+  self.assertEqual("COMPLETED",self.c["acceptance"]["current_state"]); self.assertEqual("REPEATABILITY_ACCEPTED",self.c["acceptance"]["acceptance_decision"]); self.assertEqual(3,self.c["acceptance"]["successful_independent_executions"]); self.assertEqual("EC4_REPEATABLE_RUNTIME",self.c["acceptance"]["current_continuity"])
  def test_plan_hash_stable(self): self.assertEqual(expected_plan(self.c)["plan_hash"],expected_plan(self.c)["plan_hash"])
  def test_plan_hash_matches_campaign(self): self.assertEqual(self.c["fingerprints"]["expected_plan_hash"],expected_plan(self.c)["plan_hash"])
  def test_scope_hash_matches(self): self.assertEqual(self.c["fingerprints"]["target_scope_fingerprint"],canonical_hash(self.c["target_scope_definition"]))

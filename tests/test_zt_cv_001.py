@@ -23,7 +23,7 @@ from validate_verification_configuration import validate  # noqa: E402
 
 class ZtCv001Tests(unittest.TestCase):
     def setUp(self) -> None:
-        self.now = datetime(2026, 7, 30, 0, 45, tzinfo=timezone.utc)
+        self.now = datetime(2026, 8, 1, 23, 5, tzinfo=timezone.utc)
         self.history = load(PATHS["history"])
         self.freshness_policy = load(PATHS["freshness"])
 
@@ -40,11 +40,11 @@ class ZtCv001Tests(unittest.TestCase):
     def test_timezone_required(self): self.assertRaises(ValueError, parse_time, "2026-07-22T00:00:00")
     def test_current_history_retains_truthful_freshness_counts(self):
         states=[x["freshness_status"] for x in self.fresh()]
-        self.assertEqual({"FRESH":6,"AGING":8,"STALE":2},{state:states.count(state) for state in {"FRESH","AGING","STALE"}})
+        self.assertEqual({"FRESH":7,"AGING":0,"STALE":10},{state:states.count(state) for state in {"FRESH","AGING","STALE"}})
     def test_future_timestamp_unknown(self):
         h={"executions":[self.record()]}; h["executions"][0]["execution_date"]="2099-01-01T00:00:00Z"; self.assertEqual("UNKNOWN",self.fresh(h)[0]["freshness_status"])
     def test_aging_classification(self):
-        h={"executions":[self.record()]}; h["executions"][0]["execution_date"]="2026-07-22T00:00:00Z"; self.assertEqual("AGING",self.fresh(h)[0]["freshness_status"])
+        h={"executions":[self.record()]}; h["executions"][0]["execution_date"]="2026-07-23T00:00:00Z"; self.assertEqual("AGING",self.fresh(h)[0]["freshness_status"])
     def test_stale_classification(self):
         h={"executions":[self.record()]}; h["executions"][0]["execution_date"]="2026-07-10T00:00:00Z"; self.assertEqual("STALE",self.fresh(h)[0]["freshness_status"])
     def test_expired_classification(self):
@@ -55,7 +55,8 @@ class ZtCv001Tests(unittest.TestCase):
         r=self.record(); r["fail"]=1; self.assertFalse(execution_success(r))
     def test_unsanitized_is_not_success(self):
         r=self.record(); r["sanitization_status"]="FAIL"; self.assertFalse(execution_success(r))
-    def test_current_history_is_ec3_only(self): self.assertTrue(all(x["evidence_continuity"] == "EC3_ONE_TIME_RUNTIME" for x in self.repeat()))
+    def test_current_history_has_one_bounded_ec4_group(self):
+        states=[x["evidence_continuity"] for x in self.repeat()]; self.assertEqual(1,states.count("EC4_REPEATABLE_RUNTIME")); self.assertEqual(12,states.count("EC3_ONE_TIME_RUNTIME"))
     def test_one_run_never_ec4(self): self.assertEqual("EC3_ONE_TIME_RUNTIME",self.repeat({"executions":[self.record()]})[0]["evidence_continuity"])
     def test_three_unrecorded_plan_hashes_not_ec4(self):
         base=self.record(); records=[]
@@ -94,7 +95,8 @@ class ZtCv001Tests(unittest.TestCase):
         c=capability_acceptance_results(load(PATHS["capabilities"]),self.history,self.fresh(),self.repeat()); self.assertTrue(all(x["decision"]=="RETAIN" for x in maturity_results(c)))
     def test_no_maturity_upgrade(self):
         c=capability_acceptance_results(load(PATHS["capabilities"]),self.history,self.fresh(),self.repeat()); self.assertTrue(all(x["source_maturity"]==x["candidate_maturity"] for x in maturity_results(c)))
-    def test_current_hashes_have_no_regression(self): self.assertEqual([],regression_results(self.history,self.fresh()))
+    def test_current_regressions_are_seven_non_rv_freshness_findings(self):
+        findings=regression_results(self.history,self.fresh()); self.assertEqual(7,len(findings)); self.assertTrue(all(x["type"]=="EVIDENCE_FRESHNESS_REGRESSION" and not str(x["execution_id"]).startswith("ZTRV-") for x in findings),findings)
     def test_text_evidence_hash_is_checkout_eol_independent(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory); lf = root / "lf.yaml"; crlf = root / "crlf.yaml"
@@ -104,7 +106,7 @@ class ZtCv001Tests(unittest.TestCase):
         h={"executions":[self.record()]}; key=next(iter(h["executions"][0]["evidence_hashes"])); h["executions"][0]["evidence_hashes"][key]="0"*64; self.assertTrue(regression_results(h,self.fresh(h)))
     def test_superseded_stale_record_is_not_a_current_freshness_regression(self):
         old=self.record(); old["execution_date"]="2026-07-01T00:00:00Z"
-        current=copy.deepcopy(old); current["execution_id"]="CURRENT"; current["execution_date"]="2026-07-22T04:00:00Z"
+        current=copy.deepcopy(old); current["execution_id"]="CURRENT"; current["execution_date"]="2026-07-30T04:00:00Z"
         h={"executions":[old,current]}
         findings=regression_results(h,self.fresh(h))
         self.assertFalse(any(item["type"]=="EVIDENCE_FRESHNESS_REGRESSION" for item in findings),findings)

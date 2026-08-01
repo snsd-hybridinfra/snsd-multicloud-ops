@@ -66,11 +66,16 @@ flowchart LR
   R1["Accepted run 1: EC3"] --> R2["Accepted run 2: provisional"]
   R2 --> R3["Accepted run 3"]
   R3 --> G{"All consistency and separation gates"}
-  G -->|pass| E["EC4 proposal"]
+  G -->|pass| E["EC4 accepted after explicit review"]
   G -->|fail| H["Remain below EC4"]
 ```
 
+The campaign completed three reviewed successes at
+`2026-07-28T08:28:25.829099Z`, `2026-07-30T00:28:34.120022Z`, and
+`2026-08-01T23:00:20.110724Z`. The accepted result is bounded EC4 for the
+selected fixed campaign.
+
 No schedule is installed. EC5, EC6, EC7, maturity promotion, automatic retry,
-remediation, mutation, commit, and push remain outside this package. The first
-campaign execution is blocked until `2026-07-23T04:57:52.159854Z` to preserve
-24-hour separation from the accepted CV baseline run.
+remediation, mutation, commit, and push remain outside this package. The
+historical first-run gate at `2026-07-23T04:57:52.159854Z` preserved separation
+from the accepted CV baseline; later intervals also exceeded 24 hours.
