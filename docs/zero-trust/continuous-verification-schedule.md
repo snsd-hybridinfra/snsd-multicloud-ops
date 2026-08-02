@@ -11,7 +11,10 @@ earliest campaign shape is therefore run 1 at T0, run 2 no earlier than T0+24h,
 and run 3 no earlier than T0+48h. Actual dates are recorded only after each run
 occurs.
 
-`ZT-SCH-001` preparation may begin only after EC4 is accepted. Installation of
-a scheduled task remains a separate explicit approval. EC5 requires at least
-three valid scheduled-trigger executions on distinct scheduled dates. A daily
-job is neither EC6 continuous observation nor EC7 continuous enforcement.
+`ZT-SCH-001` preparation began after EC4 acceptance. Following explicit
+approval, the bounded Windows Task Scheduler job was installed on 2026-08-02
+with its first run due at 2026-08-03 09:00 KST. The local runner, lock, timeout,
+missed-run assessment, and disable/removal controls are configuration-validated;
+no scheduled runtime has occurred. EC5 requires at least three valid correlated
+scheduled-trigger executions on distinct scheduled dates. A daily job is
+neither EC6 continuous observation nor EC7 continuous enforcement.

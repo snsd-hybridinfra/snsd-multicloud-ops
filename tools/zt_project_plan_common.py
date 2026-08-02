@@ -263,8 +263,8 @@ def validate_execution_plan(root: Path, result: Result, dependencies_only: bool 
     if completed != expected_completed:
         result.fail("execution.current-state", f"Evidence-backed completed actions must be {sorted(expected_completed)}, got {sorted(completed)}")
     in_progress = {item["action_id"] for item in data["actions"] if item["current_status"] == "IN_PROGRESS"}
-    if in_progress:
-        result.fail("execution.current-state", f"No action may be in progress before separately approved P1-SCH-001 work begins, got {sorted(in_progress)}")
+    if in_progress != {"P1-SCH-001"}:
+        result.fail("execution.current-state", f"Only separately approved P1-SCH-001 may be in progress, got {sorted(in_progress)}")
     plan_ids = [item["action_id"] for item in data["actions"]]
     roadmap = load(root / AUTHORITIES["roadmap"][0])
     roadmap_ids = [action for phase in roadmap["phases"] for action in phase["actions"]]

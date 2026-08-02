@@ -38,7 +38,7 @@ def observed_warning_categories(execution_root:Path)->list[str]:
   if any(marker.lower() in text.lower() for marker in markers): observed.append(category)
  return observed
 
-def execute(campaign:dict,verbose:bool)->int:
+def execute(campaign:dict,verbose:bool,scheduled_trigger:bool=False)->int:
  now=utcnow(); not_before=next_execution_not_before(campaign,load(HISTORY))
  if now<not_before: print(f"[FAIL] MINIMUM_SEPARATION: next execution not before {iso(not_before)}"); return 2
  lock=RUNTIME/"locks/ZT-RV-001.lock"; lock.parent.mkdir(parents=True,exist_ok=True)
@@ -55,21 +55,24 @@ def execute(campaign:dict,verbose:bool)->int:
   counts={state:sum(x.get("outcome")==state for x in auto.get("steps",[])) for state in ("PASS","WARN","FAIL")}
   security=verify_security_boundary(campaign)
   if completed.returncode!=0 or counts["FAIL"]: security["status"]="FAIL"
-  f=campaign["fingerprints"]; record={"campaign_id":"ZT-RV-001","execution_id":execution_id,"execution_timestamp":iso(now),"execution_authority":"CODEX_EXECUTED_LIVE_RUNTIME","execution_mode":"EXECUTE_READ_ONLY","capability_id":"ZT-4.1.1","package_id":"ZT-RV-001","validator_id":"ZTCV-VAL-SYS","workflow_id":"ZT-CV-WF-001","validator_version":f["validator_version"],"action_catalog_version":f["action_catalog_version"],"workflow_catalog_version":f["workflow_catalog_version"],"policy_version":f["policy_version"],"plan_hash":f["expected_plan_hash"],"target_scope_fingerprint":f["target_scope_fingerprint"],"raw_evidence_reference":str(raw.relative_to(ROOT)).replace('\\','/'),"sanitized_evidence_reference":str(safe.relative_to(ROOT)).replace('\\','/'),"raw_evidence_hash":sha(raw),"sanitized_evidence_hash":sha(safe),"sanitization_status":"FAIL" if bad else "PASS","pass":counts["PASS"],"warn":counts["WARN"],"fail":counts["FAIL"],"exit_code":completed.returncode,"warning_categories":observed_warning_categories(source.parent) if counts["WARN"] else [],"security_boundary":security,"limitations":["Manual campaign run; no schedule or authoritative update."],"source_automation_execution_id":automation_id}
+  authority="WINDOWS_TASK_SCHEDULER_EXECUTED_LIVE_RUNTIME" if scheduled_trigger else "CODEX_EXECUTED_LIVE_RUNTIME"
+  limitation="Scheduled-trigger candidate; scheduler correlation and explicit review are required before history credit." if scheduled_trigger else "Manual campaign run; no schedule or authoritative update."
+  f=campaign["fingerprints"]; record={"campaign_id":"ZT-RV-001","execution_id":execution_id,"execution_timestamp":iso(now),"execution_authority":authority,"execution_mode":"EXECUTE_READ_ONLY","capability_id":"ZT-4.1.1","package_id":"ZT-RV-001","validator_id":"ZTCV-VAL-SYS","workflow_id":"ZT-CV-WF-001","validator_version":f["validator_version"],"action_catalog_version":f["action_catalog_version"],"workflow_catalog_version":f["workflow_catalog_version"],"policy_version":f["policy_version"],"plan_hash":f["expected_plan_hash"],"target_scope_fingerprint":f["target_scope_fingerprint"],"raw_evidence_reference":str(raw.relative_to(ROOT)).replace('\\','/'),"sanitized_evidence_reference":str(safe.relative_to(ROOT)).replace('\\','/'),"raw_evidence_hash":sha(raw),"sanitized_evidence_hash":sha(safe),"sanitization_status":"FAIL" if bad else "PASS","pass":counts["PASS"],"warn":counts["WARN"],"fail":counts["FAIL"],"exit_code":completed.returncode,"warning_categories":observed_warning_categories(source.parent) if counts["WARN"] else [],"security_boundary":security,"limitations":[limitation],"source_automation_execution_id":automation_id,"scheduled_trigger_claim":scheduled_trigger}
   record["execution_fingerprint"]=execution_fingerprint(record); write(root/"execution-record.json",record); print(f"[{'PASS' if completed.returncode==0 and not bad else 'FAIL'}] execution_id={execution_id} pass={counts['PASS']} warn={counts['WARN']} fail={counts['FAIL']} candidate={root/'execution-record.json'}")
   return 0 if completed.returncode==0 and not bad else 1
  finally:
   if lock.exists(): lock.unlink()
 
 def main()->int:
- p=argparse.ArgumentParser(description=__doc__); modes=p.add_mutually_exclusive_group(); modes.add_argument("--check",action="store_true"); modes.add_argument("--plan",action="store_true"); modes.add_argument("--execute-read-only",action="store_true"); modes.add_argument("--assess",action="store_true"); p.add_argument("--assessment-time"); p.add_argument("--verbose",action="store_true"); a=p.parse_args();
+ p=argparse.ArgumentParser(description=__doc__); modes=p.add_mutually_exclusive_group(); modes.add_argument("--check",action="store_true"); modes.add_argument("--plan",action="store_true"); modes.add_argument("--execute-read-only",action="store_true"); modes.add_argument("--assess",action="store_true"); p.add_argument("--assessment-time"); p.add_argument("--scheduled-trigger",action="store_true"); p.add_argument("--verbose",action="store_true"); a=p.parse_args();
  if not any((a.check,a.plan,a.execute_read_only,a.assess)): a.check=True
  c=load(CAMPAIGN); errors=validate_configuration(c,load(POLICY))
  for item in errors: print(f"[FAIL] {item}")
  if errors: return 1
+ if a.scheduled_trigger and not a.execute_read_only: print("[FAIL] --scheduled-trigger requires --execute-read-only"); return 2
  if a.check: print("[PASS] ZT-RV-001 campaign configuration is valid; no live execution or history update performed."); return 0
  plan=expected_plan(c)
  if a.plan: print(json.dumps(plan,indent=2)); print("[PASS] deterministic plan generated; no live execution or history update performed."); return 0
- if a.execute_read_only: return execute(c,a.verbose)
+ if a.execute_read_only: return execute(c,a.verbose,a.scheduled_trigger)
  now=parse_time(a.assessment_time) if a.assessment_time else utcnow(); records=campaign_records(load(HISTORY)); result=assess(records,c,now); output=RUNTIME/"assessments/ZT-RV-001-assessment.yaml"; write(output,result); print(f"[PASS] assessment={result['acceptance']['result']} accepted={result['execution_history']['accepted']} continuity={result['current_continuity']} output={output}"); return 0
 if __name__=="__main__": raise SystemExit(main())

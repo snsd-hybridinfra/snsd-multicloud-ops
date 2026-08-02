@@ -75,7 +75,9 @@ The campaign completed three reviewed successes at
 `2026-08-01T23:00:20.110724Z`. The accepted result is bounded EC4 for the
 selected fixed campaign.
 
-No schedule is installed. EC5, EC6, EC7, maturity promotion, automatic retry,
-remediation, mutation, commit, and push remain outside this package. The
+The separate ZT-SCH-001 task is installed, but has no scheduled-runtime result;
+the RV campaign's own automatic schedule remains disabled. EC5, EC6, EC7,
+maturity promotion, automatic retry, remediation, mutation, commit, and push
+remain outside this package. The
 historical first-run gate at `2026-07-23T04:57:52.159854Z` preserved separation
 from the accepted CV baseline; later intervals also exceeded 24 hours.

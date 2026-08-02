@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "package_id": "ZT-SCH-001",
+    "schedule_id": "ZTSCH-DAILY-001",
+    "policy_version": "1.0.0",
+    "environment": "BOUNDED_NON_PRODUCTION_LAB",
+    "authority": "ZT-SCH-001",
+    "predecessor": "ZT-RV-001",
+    "preparation_status": "INSTALLED",
+    "limitations": [
+      "The approved Windows task was installed on 2026-08-02; this policy does not install or replace it by itself.",
+      "The laboratory must be made available outside the scheduled validator; infrastructure start, stop, and repair are prohibited.",
+      "Scheduled candidates require scheduler correlation and explicit review before any tracked history update.",
+      "Three successful executions on distinct scheduled dates are required before EC5 may be proposed."
+    ]
+  },
+  "selection": {
+    "campaign_id": "ZT-RV-001",
+    "capability_id": "ZT-4.1.1",
+    "validator_id": "ZTCV-VAL-SYS",
+    "workflow_id": "ZT-CV-WF-001",
+    "execution_mode": "EXECUTE_READ_ONLY"
+  },
+  "scheduler": {
+    "platform": "WINDOWS_TASK_SCHEDULER",
+    "task_path": "\\SNSD Zero Trust\\",
+    "task_name": "SNSD-ZT-SCH-001-Daily",
+    "logon_type": "INTERACTIVE_TOKEN",
+    "run_level": "LIMITED",
+    "credential_storage": false,
+    "installation_requires_explicit_approval": true
+  },
+  "trigger": {
+    "type": "DAILY",
+    "interval_days": 1,
+    "daily_start_time_local": "09:00:00",
+    "iana_time_zone": "Asia/Seoul",
+    "windows_time_zone": "Korea Standard Time",
+    "start_when_available": false,
+    "catch_up": false,
+    "random_delay": "PT0S"
+  },
+  "runtime_controls": {
+    "timeout_seconds": 1200,
+    "child_timeout_seconds": 900,
+    "multiple_instances": "IGNORE_NEW",
+    "exclusive_lock": true,
+    "one_attempt_per_local_date": true,
+    "automatic_retry": false,
+    "restart_count": 0,
+    "automatic_remediation": false,
+    "infrastructure_mutation": false,
+    "repository_mutation": false,
+    "history_auto_append": false,
+    "maturity_auto_update": false,
+    "phase_auto_completion": false
+  },
+  "evidence": {
+    "runtime_root": ".runtime/zero-trust/scheduled-validation",
+    "raw_output_tracked": false,
+    "sanitization_required": true,
+    "scheduler_correlation_required": true,
+    "explicit_review_required": true,
+    "freshness_window": "P7D",
+    "missed_run_grace": "PT2H"
+  },
+  "retention": {
+    "review_window": "P30D",
+    "automatic_deletion": false,
+    "preserve_reviewed_evidence": true
+  },
+  "artifacts": [
+    {"path": "tools/continuous_verification/sch_common.py", "sha256": "561c5623c5af1f0624479dd96e3a11d9107345699b4c5202bf3265fdf10e4d15"},
+    {"path": "tools/continuous_verification/run_scheduled_validation.py", "sha256": "d777a49c6ada4d834881d5b225e17b559ecfaaa8e61d8c312e0d1cd5bd142d15"},
+    {"path": "tools/continuous_verification/run_repeatability_campaign.py", "sha256": "54f4c200a8e0abb9b6f1f9a394d3079bb7f0d6fb53ddcf9e70985f1e03fbd979"},
+    {"path": "tools/live-validation/run-scheduled-validation.ps1", "sha256": "55bdf720dde68c6ff81254c6cd27ee835dcea811dd8ace1e95c594ec6c31f822"},
+    {"path": "tools/live-validation/sanitize-live-evidence.py", "sha256": "97f883b4c1d08079e9fe988097c9cd23421ca99cdfb4563a260a17a32af2701b"}
+  ],
+  "acceptance": {
+    "target_continuity": "EC5_SCHEDULED_RUNTIME",
+    "minimum_successful_scheduled_executions": 3,
+    "minimum_distinct_scheduled_dates": 3,
+    "current_continuity": "EC4_REPEATABLE_RUNTIME",
+    "current_state": "INSTALLED_AWAITING_SCHEDULED_EXECUTIONS",
+    "authoritative_update_performed": false
+  }
+}

@@ -90,8 +90,9 @@ The following are deliberately not implementation-queue items: ZT-1.3.1, ZT-1.3.
 After bounded ZT-CV-001 acceptance, the active cohesive Phase 1 package is
 ZT-RV-001. It selects exactly ZT-4.1.1 / ZTCV-VAL-SYS / ZT-CV-WF-001 and
 requires three independent consecutive successes separated by PT24H. ZT-SCH-001
-is the next package only after REPEATABILITY_ACCEPTED / EC4; this queue statement
-authorizes no schedule preparation, installation, maturity, or EC5 promotion.
+became the next package only after REPEATABILITY_ACCEPTED / EC4. Its separately
+approved installation is now recorded; queue position alone still authorizes no
+maturity or EC5 promotion.
 
 ## Queue use
 

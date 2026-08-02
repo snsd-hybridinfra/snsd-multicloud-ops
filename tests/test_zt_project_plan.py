@@ -69,11 +69,11 @@ class ProjectPlanTests(unittest.TestCase):
         result = plan.run("roadmap", ROOT, strict=True)
         self.assertEqual(0, result.failed, [vars(item) for item in result.findings])
 
-    def test_rv_complete_and_scheduler_not_started(self) -> None:
+    def test_rv_complete_and_scheduler_in_progress(self) -> None:
         states = {item["action_id"]: item["current_status"] for item in self.execution["actions"]}
         self.assertEqual("COMPLETED", states["P1-RV-001"])
-        self.assertEqual("NOT_STARTED", states["P1-SCH-001"])
-        self.assertNotIn("IN_PROGRESS", states.values())
+        self.assertEqual("IN_PROGRESS", states["P1-SCH-001"])
+        self.assertEqual(1, list(states.values()).count("IN_PROGRESS"))
 
     def test_invalid_phase_order(self) -> None:
         paths = [plan.AUTHORITIES["roadmap"][0], plan.AUTHORITIES["roadmap"][1], Path("docs/zero-trust/final-roadmap.md")]

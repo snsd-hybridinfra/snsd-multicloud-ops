@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Zero Trust scheduled validation policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata", "selection", "scheduler", "trigger", "runtime_controls", "evidence", "retention", "artifacts", "acceptance"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["package_id", "schedule_id", "policy_version", "environment", "authority", "predecessor", "preparation_status", "limitations"],
+      "properties": {
+        "package_id": {"const": "ZT-SCH-001"},
+        "schedule_id": {"const": "ZTSCH-DAILY-001"},
+        "predecessor": {"const": "ZT-RV-001"},
+        "preparation_status": {"enum": ["PREPARED_NOT_INSTALLED", "INSTALLED"]}
+      }
+    },
+    "selection": {
+      "type": "object",
+      "required": ["campaign_id", "capability_id", "validator_id", "workflow_id", "execution_mode"],
+      "properties": {
+        "campaign_id": {"const": "ZT-RV-001"},
+        "capability_id": {"const": "ZT-4.1.1"},
+        "validator_id": {"const": "ZTCV-VAL-SYS"},
+        "workflow_id": {"const": "ZT-CV-WF-001"},
+        "execution_mode": {"const": "EXECUTE_READ_ONLY"}
+      }
+    },
+    "scheduler": {
+      "type": "object",
+      "required": ["platform", "task_path", "task_name", "logon_type", "run_level", "credential_storage", "installation_requires_explicit_approval"],
+      "properties": {
+        "platform": {"const": "WINDOWS_TASK_SCHEDULER"},
+        "logon_type": {"const": "INTERACTIVE_TOKEN"},
+        "run_level": {"const": "LIMITED"},
+        "credential_storage": {"const": false},
+        "installation_requires_explicit_approval": {"const": true}
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "required": ["type", "interval_days", "daily_start_time_local", "iana_time_zone", "windows_time_zone", "start_when_available", "catch_up", "random_delay"],
+      "properties": {
+        "type": {"const": "DAILY"},
+        "interval_days": {"const": 1},
+        "start_when_available": {"const": false},
+        "catch_up": {"const": false}
+      }
+    },
+    "runtime_controls": {
+      "type": "object",
+      "required": ["timeout_seconds", "child_timeout_seconds", "multiple_instances", "exclusive_lock", "one_attempt_per_local_date", "automatic_retry", "restart_count", "automatic_remediation", "infrastructure_mutation", "repository_mutation", "history_auto_append", "maturity_auto_update", "phase_auto_completion"],
+      "properties": {
+        "timeout_seconds": {"type": "integer", "minimum": 60, "maximum": 1200},
+        "child_timeout_seconds": {"type": "integer", "minimum": 60, "maximum": 900},
+        "multiple_instances": {"const": "IGNORE_NEW"},
+        "exclusive_lock": {"const": true},
+        "one_attempt_per_local_date": {"const": true},
+        "automatic_retry": {"const": false},
+        "restart_count": {"const": 0},
+        "automatic_remediation": {"const": false},
+        "infrastructure_mutation": {"const": false},
+        "repository_mutation": {"const": false},
+        "history_auto_append": {"const": false},
+        "maturity_auto_update": {"const": false},
+        "phase_auto_completion": {"const": false}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["runtime_root", "raw_output_tracked", "sanitization_required", "scheduler_correlation_required", "explicit_review_required", "freshness_window", "missed_run_grace"],
+      "properties": {
+        "runtime_root": {"const": ".runtime/zero-trust/scheduled-validation"},
+        "raw_output_tracked": {"const": false},
+        "sanitization_required": {"const": true},
+        "scheduler_correlation_required": {"const": true},
+        "explicit_review_required": {"const": true}
+      }
+    },
+    "retention": {"type": "object", "required": ["review_window", "automatic_deletion", "preserve_reviewed_evidence"]},
+    "artifacts": {"type":"array","minItems":5,"maxItems":5,"items":{"type":"object","additionalProperties":false,"required":["path","sha256"],"properties":{"path":{"type":"string","minLength":1},"sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"}}}},
+    "acceptance": {
+      "type": "object",
+      "required": ["target_continuity", "minimum_successful_scheduled_executions", "minimum_distinct_scheduled_dates", "current_continuity", "current_state", "authoritative_update_performed"],
+      "properties": {
+        "target_continuity": {"const": "EC5_SCHEDULED_RUNTIME"},
+        "minimum_successful_scheduled_executions": {"const": 3},
+        "minimum_distinct_scheduled_dates": {"const": 3},
+        "current_continuity": {"enum": ["EC4_REPEATABLE_RUNTIME", "EC5_SCHEDULED_RUNTIME"]},
+        "authoritative_update_performed": {"type": "boolean"}
+      }
+    }
+  }
+}

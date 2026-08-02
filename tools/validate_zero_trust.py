@@ -250,6 +250,20 @@ REPEATABLE_VALIDATION_REQUIRED_PATHS = (
     Path("tests/fixtures/zt-rv-001/fixture-catalog.yaml"),
     Path("tests/test_zt_rv_001.py"),
 )
+SCHEDULED_VALIDATION_POLICY_PATH = Path("docs/zero-trust/scheduled-validation-policy.yaml")
+SCHEDULED_VALIDATION_SCHEMA_PATH = Path("schemas/zero-trust-scheduled-validation-policy.schema.json")
+SCHEDULED_VALIDATION_INSTALLATION_PATH = Path("docs/evidence/zero-trust/zt-sch-001-installation.sanitized.json")
+SCHEDULED_VALIDATION_INSTALLATION_SCHEMA_PATH = Path("schemas/zero-trust-scheduled-validation-installation.schema.json")
+SCHEDULED_VALIDATION_PACKAGE_PATH = Path("docs/zero-trust/packages/zt-sch-001-package.yaml")
+SCHEDULED_VALIDATION_REQUIRED_PATHS = (
+    Path("docs/zero-trust/packages/zt-sch-001-scheduled-validation.md"),
+    Path("tools/continuous_verification/sch_common.py"),
+    Path("tools/continuous_verification/run_scheduled_validation.py"),
+    Path("tools/continuous_verification/correlate_scheduled_execution.py"),
+    Path("tools/live-validation/run-scheduled-validation.ps1"),
+    Path("tools/live-validation/manage-scheduled-validation.ps1"),
+    Path("tests/test_zt_sch_001.py"),
+)
 FOUNDATION_REQUIRED_PATHS = (
     Path("docs/zero-trust/packages/zt-fnd-001-restricted-validation-foundation.md"),
     Path("docs/zero-trust/packages/zt-fnd-001-rollback.md"),
@@ -2420,6 +2434,60 @@ def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], 
         result.passed(category, "ZT-RV-001 single-candidate campaign, EC4 criteria, deterministic fingerprints, explicit history-review boundary, and enforced not-before time are valid; no live campaign execution is claimed.")
 
 
+def validate_scheduled_validation_preparation(root: Path, result: ValidationResult) -> None:
+    category = "package.zt-sch-001"
+    required = (SCHEDULED_VALIDATION_POLICY_PATH, SCHEDULED_VALIDATION_SCHEMA_PATH, SCHEDULED_VALIDATION_INSTALLATION_PATH, SCHEDULED_VALIDATION_INSTALLATION_SCHEMA_PATH, SCHEDULED_VALIDATION_PACKAGE_PATH, *SCHEDULED_VALIDATION_REQUIRED_PATHS)
+    missing = [str(path) for path in required if not (root / path).is_file()]
+    if missing:
+        for path in missing: result.fail(f"{category}.files", f"Required scheduled-validation preparation file is missing: {path}.")
+        return
+    try:
+        policy = load_json_yaml(root / SCHEDULED_VALIDATION_POLICY_PATH)
+        schema = load_schema(root / SCHEDULED_VALIDATION_SCHEMA_PATH)
+        installation = load_json_yaml(root / SCHEDULED_VALIDATION_INSTALLATION_PATH)
+        installation_schema = load_schema(root / SCHEDULED_VALIDATION_INSTALLATION_SCHEMA_PATH)
+        package = load_json_yaml(root / SCHEDULED_VALIDATION_PACKAGE_PATH)
+    except ValueError as exc:
+        result.fail(f"{category}.configuration", str(exc))
+        return
+    for error in validate_schema_instance(policy, schema): result.fail(f"{category}.schema", error)
+    for error in validate_schema_instance(installation, installation_schema): result.fail(f"{category}.installation-schema", error)
+    metadata, scheduler = policy.get("metadata", {}), policy.get("scheduler", {})
+    trigger, controls, evidence = policy.get("trigger", {}), policy.get("runtime_controls", {}), policy.get("evidence", {})
+    acceptance = policy.get("acceptance", {})
+    if metadata.get("preparation_status") != "INSTALLED" or package.get("implementation_status") != "IMPLEMENTED" or package.get("local_validation_status") != "LOCAL_VALIDATED" or package.get("schedule_installed") is not True or package.get("automated_execution") is not True:
+        result.fail(f"{category}.status", "Approved schedule installation and local configuration validation must remain synchronized.")
+    if package.get("runtime_validation_status") != "NOT_VALIDATED" or package.get("runtime_acceptance_status") != "PENDING" or package.get("successful_scheduled_executions") != 0 or package.get("successful_distinct_scheduled_dates") != 0:
+        result.fail(f"{category}.runtime", "Installation alone must retain zero scheduled executions and no runtime acceptance.")
+    if scheduler.get("credential_storage") is not False or scheduler.get("installation_requires_explicit_approval") is not True or scheduler.get("logon_type") != "INTERACTIVE_TOKEN" or scheduler.get("run_level") != "LIMITED":
+        result.fail(f"{category}.principal", "The prepared task must store no credential and require explicit installation approval under a limited interactive token.")
+    if trigger.get("type") != "DAILY" or trigger.get("interval_days") != 1 or trigger.get("start_when_available") is not False or trigger.get("catch_up") is not False:
+        result.fail(f"{category}.trigger", "The fixed daily trigger must disable catch-up and start-when-available behavior.")
+    for field in ("automatic_retry", "automatic_remediation", "infrastructure_mutation", "repository_mutation", "history_auto_append", "maturity_auto_update", "phase_auto_completion"):
+        if controls.get(field) is not False: result.fail(f"{category}.claims", f"{field} must remain false before schedule installation.")
+    if controls.get("multiple_instances") != "IGNORE_NEW" or controls.get("exclusive_lock") is not True or controls.get("one_attempt_per_local_date") is not True or controls.get("timeout_seconds") != 1200:
+        result.fail(f"{category}.safety", "Timeout, overlap, lock, or one-attempt controls differ from the reviewed bounded design.")
+    if evidence.get("sanitization_required") is not True or evidence.get("scheduler_correlation_required") is not True or evidence.get("explicit_review_required") is not True:
+        result.fail(f"{category}.evidence", "Sanitization, scheduler correlation, and explicit evidence review must remain mandatory.")
+    if acceptance.get("target_continuity") != "EC5_SCHEDULED_RUNTIME" or acceptance.get("minimum_distinct_scheduled_dates") != 3 or acceptance.get("current_continuity") != "EC4_REPEATABLE_RUNTIME" or acceptance.get("authoritative_update_performed") is not False:
+        result.fail(f"{category}.acceptance", "Installed schedule must retain EC4 and require three distinct reviewed scheduled dates for EC5.")
+    if installation.get("result") != "PASS_CONFIGURATION" or installation.get("runtime_execution_performed") is not False or installation.get("current_continuity") != "EC4_REPEATABLE_RUNTIME" or installation.get("schedule_fingerprint") != package.get("schedule_fingerprint"):
+        result.fail(f"{category}.installation", "Sanitized installation evidence must prove configuration only and match the package fingerprint.")
+    principal, installed_controls = installation.get("principal", {}), installation.get("runtime_controls", {})
+    if principal.get("credential_stored") is not False or principal.get("account_value_recorded") is not False or installation.get("secret_findings") != 0 or installation.get("privacy_findings") != 0:
+        result.fail(f"{category}.privacy", "Installation evidence contains a credential, account value, secret, or privacy finding.")
+    if installed_controls.get("automatic_retry") is not False or installed_controls.get("automatic_remediation") is not False or installed_controls.get("infrastructure_mutation") is not False or installed_controls.get("repository_mutation") is not False or installed_controls.get("history_auto_append") is not False:
+        result.fail(f"{category}.installation-controls", "Installed controls exceed the bounded read-only schedule authority.")
+    manager = (root / "tools/live-validation/manage-scheduled-validation.ps1").read_text(encoding="utf-8", errors="replace")
+    runner = (root / "tools/continuous_verification/run_scheduled_validation.py").read_text(encoding="utf-8", errors="replace")
+    for token in ("USER_APPROVED_ZT_SCH_001_${Operation}", "LogonType Interactive", "RunLevel Limited", "StartWhenAvailable:$false", "Unregister-ScheduledTask"):
+        if token not in manager: result.fail(f"{category}.manager", f"Schedule manager is missing required behavior: {token}.")
+    for token in ("ONE_ATTEMPT_PER_LOCAL_DATE", "DUPLICATE_EXECUTION_BLOCKED", "terminate_tree", "PENDING_SCHEDULER_CORRELATION"):
+        if token not in runner: result.fail(f"{category}.runner", f"Schedule runner is missing required behavior: {token}.")
+    if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
+        result.passed(category, "ZT-SCH-001 bounded daily task is installed and locally configuration-validated; no scheduled runtime, EC5, maturity, or Phase 1 completion is claimed.")
+
+
 def run_validation(root: Path, strict: bool = False) -> ValidationResult:
     result = ValidationResult()
     try:
@@ -2447,6 +2515,7 @@ def run_validation(root: Path, strict: bool = False) -> ValidationResult:
     validate_automation_package(root, catalog, result)
     validate_continuous_verification_package(root, catalog, result)
     validate_repeatable_validation_package(root, catalog, result)
+    validate_scheduled_validation_preparation(root, result)
     if not any(item.level == "FAIL" and item.category.startswith("schema.") for item in result.findings):
         validate_catalog_baseline_sync(catalog, baseline, result)
         validate_maturity(catalog["capabilities"], result, "catalog")
