@@ -11,24 +11,29 @@ removal paths.
 The approved Windows Task Scheduler definition is installed and runs daily at 09:00 local time
 (`Asia/Seoul` / `Korea Standard Time`) as the current user with a limited
 interactive token. It stores no credential. The user session and lab targets
-must already be available. The job never starts, stops, repairs, or reconfigures
-infrastructure.
+must be available by the end of the bounded 09:00-11:00 catch-up window. The
+job never starts, stops, repairs, or reconfigures infrastructure.
 
 ## Execution boundary
 
 ```mermaid
 flowchart LR
-  A["Daily trigger"] --> B{"Date marker and exclusive lock"}
-  B -->|open| C["Fixed RV read-only workflow"]
-  B -->|occupied| D["Block overlap or retry"]
-  C --> E["Sanitize output"]
-  E --> F["Ignored schedule candidate"]
-  F --> G["Scheduler correlation and explicit review"]
+  A["Daily 09:00 trigger"] --> B{"Interactive session available?"}
+  B -->|late, before 11:00| C["Bounded StartWhenAvailable queue"]
+  B -->|available| D{"Date marker and exclusive lock"}
+  C --> D
+  D -->|open| E["Fixed RV read-only workflow"]
+  D -->|occupied| F["Block overlap or retry"]
+  E --> G["Sanitize output"]
+  G --> H["Ignored schedule candidate"]
+  H --> I["Scheduler correlation and explicit review"]
 ```
 
-`StartWhenAvailable`, catch-up, automatic retry, remediation, infrastructure
-mutation, repository mutation, history append, maturity update, and Phase 1
-completion are disabled. A failed or unavailable target creates a failed
+`StartWhenAvailable` is enabled only for the same local date's two-hour window.
+The runner rejects execution before 09:00 or after 11:00 without consuming an
+attempt. Automatic retry, remediation, infrastructure mutation, repository
+mutation, history append, maturity update, and Phase 1 completion remain
+disabled. A failed or unavailable target within the window creates a failed
 candidate and consumes that local date's single attempt.
 
 ## Evidence and acceptance
@@ -37,14 +42,16 @@ Runtime output remains under `.runtime/zero-trust/scheduled-validation/`.
 Scheduler provenance is not trusted from a command-line flag alone. A candidate
 must be correlated with the registered task's last-run metadata and reviewed
 before sanitized evidence or verification history can become authoritative.
-The correlation tool first performs a read-only five-minute time-window,
+The correlation tool first performs a read-only bounded-window,
 exit-code, definition-fingerprint, and post-run status check. Writing an ignored
 correlation record requires a separate bounded review reference and still does
 not update tracked verification history.
 
-EC5 requires three successful correlated executions on three distinct scheduled
-dates. Installation or a manually started scheduler test does not meet that
-threshold. Until the threshold and explicit review are complete, Phase 1
+EC5 requires successful correlated executions on the latest three due scheduled
+dates. Historical failure and missed-date findings remain visible but are
+recoverable after a new three-date accepted window. Installation or a manually
+started scheduler test does not meet that threshold. Until the threshold and
+explicit review are complete, Phase 1
 remains `PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE` at `ZT-SCH-001`.
 
 ## Installation and rollback boundary
@@ -52,6 +59,8 @@ remains `PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE` at `ZT-SCH-001`.
 `manage-scheduled-validation.ps1 -Mode Install` used an explicit bounded
 installation approval reference and did not replace a divergent task. Repeated
 install finalization is allowed only when the existing definition matches
-exactly. Status is read-only. Disable and uninstall each require their own
+exactly. `-Mode Update` permits only the reviewed disabled-to-bounded-catch-up
+migration and requires its own explicit approval reference. Status is read-only.
+Disable and uninstall each require their own
 explicit approval reference. Both rollback paths preserve ignored runtime
 evidence; neither changes Git or other infrastructure.

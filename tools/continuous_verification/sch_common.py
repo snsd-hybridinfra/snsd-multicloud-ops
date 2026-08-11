@@ -65,6 +65,19 @@ def schedule_fingerprint(policy: dict[str, Any]) -> str:
     return canonical_hash({key: policy[key] for key in ("selection", "scheduler", "trigger", "runtime_controls", "evidence", "retention", "artifacts")})
 
 
+def execution_window_status(policy: dict[str, Any], local_now: datetime) -> tuple[str, datetime, datetime]:
+    if local_now.tzinfo is None:
+        raise ValueError("local execution time must include a timezone")
+    hour, minute, second = (int(part) for part in str(policy["trigger"]["daily_start_time_local"]).split(":"))
+    scheduled = local_now.replace(hour=hour, minute=minute, second=second, microsecond=0)
+    deadline = scheduled + parse_duration(str(policy["trigger"]["catch_up_window"]))
+    if local_now < scheduled:
+        return "BEFORE_DAILY_WINDOW", scheduled, deadline
+    if local_now > deadline:
+        return "CATCH_UP_WINDOW_EXPIRED", scheduled, deadline
+    return "OPEN", scheduled, deadline
+
+
 def validate_configuration(policy: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     metadata, selection = policy.get("metadata", {}), policy.get("selection", {})
@@ -77,7 +90,7 @@ def validate_configuration(policy: dict[str, Any]) -> list[str]:
     if scheduler.get("platform") != "WINDOWS_TASK_SCHEDULER" or scheduler.get("credential_storage") is not False: errors.append("scheduler must be Windows Task Scheduler without stored credentials")
     if scheduler.get("logon_type") != "INTERACTIVE_TOKEN" or scheduler.get("run_level") != "LIMITED": errors.append("scheduler principal must be limited interactive-token")
     if trigger.get("type") != "DAILY" or trigger.get("interval_days") != 1: errors.append("trigger must be daily")
-    if trigger.get("start_when_available") is not False or trigger.get("catch_up") is not False: errors.append("catch-up behavior must remain disabled")
+    if trigger.get("start_when_available") is not True or trigger.get("catch_up") is not True or trigger.get("catch_up_window") != "PT2H": errors.append("bounded two-hour catch-up behavior must remain enabled")
     if controls.get("timeout_seconds") != 1200 or controls.get("child_timeout_seconds") != 900: errors.append("reviewed timeout boundary mismatch")
     if controls.get("multiple_instances") != "IGNORE_NEW" or controls.get("exclusive_lock") is not True or controls.get("one_attempt_per_local_date") is not True: errors.append("overlap controls mismatch")
     for field in ("automatic_retry", "automatic_remediation", "infrastructure_mutation", "repository_mutation", "history_auto_append", "maturity_auto_update", "phase_auto_completion"):
@@ -124,8 +137,12 @@ def assess(records: list[dict[str, Any]], registration: dict[str, Any] | None, p
     missed = sorted(set(due) - observed)
     latest = max((parse_time(str(item["started_at"])) for item in successful), default=None)
     freshness = "NOT_APPLICABLE" if latest is None else "FRESH" if now.astimezone(timezone.utc) - latest.astimezone(timezone.utc) <= parse_duration(policy["evidence"]["freshness_window"]) else "STALE"
-    eligible = len(verified_dates) >= policy["acceptance"]["minimum_distinct_scheduled_dates"] and not missed and freshness == "FRESH"
-    candidate = len(successful_dates) >= policy["acceptance"]["minimum_distinct_scheduled_dates"] and not missed and freshness == "FRESH"
+    required = int(policy["acceptance"]["minimum_distinct_scheduled_dates"])
+    acceptance_window = due[-required:] if len(due) >= required else due
+    window_complete = len(acceptance_window) == required
+    window_missed = sorted(set(acceptance_window) - observed)
+    eligible = window_complete and all(day in verified_dates for day in acceptance_window) and freshness == "FRESH"
+    candidate = window_complete and all(day in successful_dates for day in acceptance_window) and freshness == "FRESH"
     return {
         "package_id": "ZT-SCH-001", "schedule_id": policy["metadata"]["schedule_id"],
         "assessment_time": iso(now), "installed": registration is not None,
@@ -133,6 +150,7 @@ def assess(records: list[dict[str, Any]], registration: dict[str, Any] | None, p
         "successful_distinct_scheduled_dates": len(successful_dates), "successful_dates": successful_dates,
         "verified_successful_count": len(verified), "verified_distinct_scheduled_dates": len(verified_dates), "verified_dates": verified_dates,
         "failed_execution_ids": failures, "missed_scheduled_dates": missed,
+        "acceptance_window_dates": acceptance_window, "acceptance_window_missed_dates": window_missed,
         "freshness": freshness, "current_continuity": "EC5_SCHEDULED_RUNTIME" if eligible else "EC4_REPEATABLE_RUNTIME",
         "acceptance_candidate": "ELIGIBLE_FOR_EXPLICIT_REVIEW" if eligible else "ELIGIBLE_FOR_CORRELATION_REVIEW" if candidate else "NOT_ELIGIBLE",
         "authoritative_update_performed": False,

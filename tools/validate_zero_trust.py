@@ -2461,8 +2461,8 @@ def validate_scheduled_validation_preparation(root: Path, result: ValidationResu
         result.fail(f"{category}.runtime", "Installation alone must retain zero scheduled executions and no runtime acceptance.")
     if scheduler.get("credential_storage") is not False or scheduler.get("installation_requires_explicit_approval") is not True or scheduler.get("logon_type") != "INTERACTIVE_TOKEN" or scheduler.get("run_level") != "LIMITED":
         result.fail(f"{category}.principal", "The prepared task must store no credential and require explicit installation approval under a limited interactive token.")
-    if trigger.get("type") != "DAILY" or trigger.get("interval_days") != 1 or trigger.get("start_when_available") is not False or trigger.get("catch_up") is not False:
-        result.fail(f"{category}.trigger", "The fixed daily trigger must disable catch-up and start-when-available behavior.")
+    if trigger.get("type") != "DAILY" or trigger.get("interval_days") != 1 or trigger.get("start_when_available") is not True or trigger.get("catch_up") is not True or trigger.get("catch_up_window") != "PT2H":
+        result.fail(f"{category}.trigger", "The fixed daily trigger must enable only the bounded two-hour catch-up window.")
     for field in ("automatic_retry", "automatic_remediation", "infrastructure_mutation", "repository_mutation", "history_auto_append", "maturity_auto_update", "phase_auto_completion"):
         if controls.get(field) is not False: result.fail(f"{category}.claims", f"{field} must remain false before schedule installation.")
     if controls.get("multiple_instances") != "IGNORE_NEW" or controls.get("exclusive_lock") is not True or controls.get("one_attempt_per_local_date") is not True or controls.get("timeout_seconds") != 1200:
@@ -2480,7 +2480,7 @@ def validate_scheduled_validation_preparation(root: Path, result: ValidationResu
         result.fail(f"{category}.installation-controls", "Installed controls exceed the bounded read-only schedule authority.")
     manager = (root / "tools/live-validation/manage-scheduled-validation.ps1").read_text(encoding="utf-8", errors="replace")
     runner = (root / "tools/continuous_verification/run_scheduled_validation.py").read_text(encoding="utf-8", errors="replace")
-    for token in ("USER_APPROVED_ZT_SCH_001_${Operation}", "LogonType Interactive", "RunLevel Limited", "StartWhenAvailable:$false", "Unregister-ScheduledTask"):
+    for token in ("USER_APPROVED_ZT_SCH_001_${Operation}", "'Update'", "LogonType Interactive", "RunLevel Limited", "StartWhenAvailable:$([bool]$policy.trigger.start_when_available)", "Unregister-ScheduledTask"):
         if token not in manager: result.fail(f"{category}.manager", f"Schedule manager is missing required behavior: {token}.")
     for token in ("ONE_ATTEMPT_PER_LOCAL_DATE", "DUPLICATE_EXECUTION_BLOCKED", "terminate_tree", "PENDING_SCHEDULER_CORRELATION"):
         if token not in runner: result.fail(f"{category}.runner", f"Schedule runner is missing required behavior: {token}.")

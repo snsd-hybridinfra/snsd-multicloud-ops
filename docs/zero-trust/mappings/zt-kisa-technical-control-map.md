@@ -10,7 +10,7 @@
 | ZT-ID-001 | MAPPED | U-01, U-05, U-06, U-07, U-08, U-10, U-11, U-12, U-16, U-18, U-23, U-63, W-06, HV-04, CA-03 | - | 런타임 수용, 중앙 ID/MFA |
 | ZT-CV-001 | MAPPED | - | MAP-ZT-CV-001-GOVERNANCE | 교차검증 구현 및 부분 실행, FND 경고 예산으로 BLOCKED; KISA 기술항목 수용 주장은 없음 |
 | ZT-RV-001 | MAPPED | - | MAP-ZT-RV-001-GOVERNANCE | 3회 반복 실행 없음 |
-| ZT-SCH-001 | MAPPED | - | MAP-ZT-SCH-001-GOVERNANCE | scheduler 설치 없음 |
+| ZT-SCH-001 | MAPPED | - | MAP-ZT-SCH-001-GOVERNANCE | scheduler installed; 0 accepted scheduled dates |
 | ZT-DEV-001 | UNMAPPED | - | - | 제품·OS별 적용성 검토 필요 |
 | ZT-APP-001 | PARTIALLY_MAPPED | WEB-06, CI, IA | - | 현재 pilot이 항목 수용을 증명하지 않음 |
 | ZT-DATA-001 | PARTIALLY_MAPPED | D-04, D-10 | - | 승인된 DBMS 대상 없음 |

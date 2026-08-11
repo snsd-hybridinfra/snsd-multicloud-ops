@@ -7,7 +7,7 @@ import json
 from datetime import datetime, time, timezone
 from pathlib import Path
 
-from sch_common import POLICY, REGISTRATION, ROOT, RUNTIME, STATUS, file_hash, iso, load, parse_time, schedule_fingerprint, utcnow, validate_configuration, write
+from sch_common import POLICY, REGISTRATION, ROOT, RUNTIME, STATUS, execution_window_status, file_hash, iso, load, parse_time, schedule_fingerprint, utcnow, validate_configuration, write
 
 
 def correlation_errors(record: dict, status: dict, registration: dict, policy: dict) -> list[str]:
@@ -22,9 +22,8 @@ def correlation_errors(record: dict, status: dict, registration: dict, policy: d
         if abs((last_run - started).total_seconds()) > 300: errors.append("scheduler last-run time does not correlate within five minutes")
         first = parse_time(str(registration["first_scheduled_run"]))
         local_started = started.astimezone(first.tzinfo)
-        expected_time = time.fromisoformat(policy["trigger"]["daily_start_time_local"])
-        expected = datetime.combine(local_started.date(), expected_time, tzinfo=first.tzinfo)
-        if abs((local_started - expected).total_seconds()) > 300: errors.append("execution is outside the fixed scheduled-time window")
+        window_status, _, _ = execution_window_status(policy, local_started)
+        if window_status != "OPEN": errors.append("execution is outside the bounded scheduled catch-up window")
     if int(status.get("last_task_result", -1)) != int(record.get("exit_code", -2)): errors.append("task result and candidate exit code differ")
     if parse_time(str(status.get("captured_at"))) < parse_time(str(record.get("ended_at"))): errors.append("scheduler status predates candidate completion")
     if record.get("trigger_claim") != "WINDOWS_TASK_SCHEDULER" or record.get("trigger_verification") != "PENDING_SCHEDULER_CORRELATION": errors.append("candidate trigger claim is not pending correlation")

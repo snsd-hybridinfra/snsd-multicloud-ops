@@ -9,7 +9,7 @@ phase nor a queue position promotes current state or maturity.
 
 ## Phase 1 - Foundation and Verification Operations
 
-Boundary: `ZT-SCH-001` (`DESIGN_ONLY`).
+Boundary: `ZT-SCH-001` (`IMPLEMENTED / LOCAL_VALIDATED / RUNTIME_NOT_VALIDATED`).
 
 Phase state: `PARTIAL` implementation / `PARTIALLY_VALIDATED` validation /
 `NOT_COMPLETE` completion. `ZT-ID-001` is `PRESENT`, `IMPLEMENTED`, and
@@ -43,8 +43,8 @@ at one-time EC3 boundaries. ZT-CV-001 is bounded `PARTIALLY_ACCEPTED` after the
 clean FND remediation and the 8/2/0 integrated cycle. `ZT-RV-001` is
 implemented, runtime validated, and accepted at bounded EC4 after three
 eligible independent executions with stable fingerprints and PT24H separation.
-`ZT-SCH-001` remains unimplemented and requires separate scheduler approval, so
-Phase 1 remains not complete.
+`ZT-SCH-001` is installed with bounded catch-up and zero successful correlated
+scheduled dates, so Phase 1 remains not complete.
 
 ## Phase 2 - Centralized Identity and Visibility
 

@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SCH = ROOT / "tools/continuous_verification"
 sys.path.insert(0, str(SCH))
-from sch_common import POLICY, assess, canonical_hash, expected_due_dates, load, schedule_fingerprint, validate_configuration  # noqa: E402
+from sch_common import POLICY, assess, canonical_hash, execution_window_status, expected_due_dates, load, schedule_fingerprint, validate_configuration  # noqa: E402
 from run_scheduled_validation import acquire_lock  # noqa: E402
 
 
@@ -33,7 +33,14 @@ class ZtSch001Tests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/"receipt.json"; path.write_bytes(b"\xef\xbb\xbf{\"state\":\"READY\"}\n")
             self.assertEqual("READY",load(path)["state"])
-    def test_daily_trigger_has_no_catch_up(self): self.assertFalse(self.policy["trigger"]["start_when_available"]); self.assertFalse(self.policy["trigger"]["catch_up"])
+    def test_daily_trigger_has_bounded_catch_up(self): self.assertTrue(self.policy["trigger"]["start_when_available"]); self.assertTrue(self.policy["trigger"]["catch_up"]); self.assertEqual("PT2H",self.policy["trigger"]["catch_up_window"])
+    def test_execution_window_is_bounded(self):
+        before=datetime(2026,8,3,8,59,tzinfo=timezone(timedelta(hours=9)))
+        during=datetime(2026,8,3,10,30,tzinfo=timezone(timedelta(hours=9)))
+        after=datetime(2026,8,3,11,1,tzinfo=timezone(timedelta(hours=9)))
+        self.assertEqual("BEFORE_DAILY_WINDOW",execution_window_status(self.policy,before)[0])
+        self.assertEqual("OPEN",execution_window_status(self.policy,during)[0])
+        self.assertEqual("CATCH_UP_WINDOW_EXPIRED",execution_window_status(self.policy,after)[0])
     def test_no_retry_or_remediation(self): self.assertFalse(self.policy["runtime_controls"]["automatic_retry"]); self.assertFalse(self.policy["runtime_controls"]["automatic_remediation"])
     def test_no_infrastructure_or_repository_mutation(self): self.assertFalse(self.policy["runtime_controls"]["infrastructure_mutation"]); self.assertFalse(self.policy["runtime_controls"]["repository_mutation"])
     def test_no_automatic_authority_updates(self): self.assertFalse(self.policy["runtime_controls"]["history_auto_append"]); self.assertFalse(self.policy["runtime_controls"]["maturity_auto_update"]); self.assertFalse(self.policy["runtime_controls"]["phase_auto_completion"])
@@ -52,6 +59,12 @@ class ZtSch001Tests(unittest.TestCase):
     def test_missed_date_is_detected(self):
         result=assess([self.record(0),self.record(2)],self.registration(),self.policy,datetime(2026,8,6,tzinfo=timezone.utc))
         self.assertIn("2026-08-04",result["missed_scheduled_dates"]); self.assertEqual("NOT_ELIGIBLE",result["acceptance_candidate"])
+    def test_three_recent_successes_recover_after_historical_miss(self):
+        records=[self.record(0),self.record(2),self.record(3),self.record(4),self.record(5)]
+        result=assess(records,self.registration(),self.policy,datetime(2026,8,9,tzinfo=timezone.utc))
+        self.assertIn("2026-08-04",result["missed_scheduled_dates"])
+        self.assertEqual(["2026-08-06","2026-08-07","2026-08-08"],result["acceptance_window_dates"])
+        self.assertEqual("EC5_SCHEDULED_RUNTIME",result["current_continuity"])
     def test_lock_rejects_overlap_without_deleting(self):
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/"schedule.lock"; descriptor=acquire_lock(path,datetime.now(timezone.utc))
@@ -66,7 +79,7 @@ class ZtSch001Tests(unittest.TestCase):
         self.assertEqual(0,result.returncode)
     def test_management_requires_explicit_install_approval(self):
         text=(ROOT/"tools/live-validation/manage-scheduled-validation.ps1").read_text(encoding="utf-8")
-        self.assertIn("USER_APPROVED_ZT_SCH_001_${Operation}",text); self.assertIn("LogonType Interactive",text); self.assertIn("RunLevel Limited",text)
+        self.assertIn("USER_APPROVED_ZT_SCH_001_${Operation}",text); self.assertIn("'Update'",text); self.assertIn("LogonType Interactive",text); self.assertIn("RunLevel Limited",text)
     def test_schedule_wrapper_cannot_install_task(self):
         text=(ROOT/"tools/live-validation/run-scheduled-validation.ps1").read_text(encoding="utf-8")
         self.assertNotIn("Register-ScheduledTask",text); self.assertNotIn("Unregister-ScheduledTask",text)

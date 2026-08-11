@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('Check','Install','Status','Disable','Uninstall')]
+    [ValidateSet('Check','Install','Update','Status','Disable','Uninstall')]
     [string]$Mode = 'Check',
     [string]$ApprovalReference
 )
@@ -35,7 +35,11 @@ function Get-ScheduleFingerprint {
     $match.Groups[1].Value
 }
 
-function Assert-TaskDefinition($Task) {
+function New-FixedTaskSettings {
+    New-ScheduledTaskSettingsSet -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Seconds ([int]$policy.runtime_controls.timeout_seconds)) -RestartCount 0 -StartWhenAvailable:$([bool]$policy.trigger.start_when_available) -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
+}
+
+function Assert-TaskDefinition($Task, [switch]$AllowDisabledCatchUp) {
     if (-not $Task) { throw 'The scheduled task is not installed.' }
     if ($Task.Actions.Count -ne 1 -or $Task.Triggers.Count -ne 1) { throw 'Task action/trigger count differs from the fixed definition.' }
     $action = $Task.Actions[0]
@@ -45,7 +49,10 @@ function Assert-TaskDefinition($Task) {
     if ([int]$trigger.DaysInterval -ne 1) { throw 'Task trigger is not daily.' }
     $start = [datetimeoffset]::Parse([string]$trigger.StartBoundary)
     if ($start.TimeOfDay.ToString('hh\:mm\:ss') -ne [string]$policy.trigger.daily_start_time_local) { throw 'Task start time differs from the fixed policy.' }
-    if ([string]$Task.Settings.MultipleInstances -notin @('IgnoreNew','2') -or [bool]$Task.Settings.StartWhenAvailable) { throw 'Task overlap/catch-up settings differ from policy.' }
+    $actualCatchUp = [bool]$Task.Settings.StartWhenAvailable
+    $expectedCatchUp = [bool]$policy.trigger.start_when_available
+    $legacyCatchUp = $AllowDisabledCatchUp -and $expectedCatchUp -and -not $actualCatchUp
+    if ([string]$Task.Settings.MultipleInstances -notin @('IgnoreNew','2') -or ($actualCatchUp -ne $expectedCatchUp -and -not $legacyCatchUp)) { throw 'Task overlap/catch-up settings differ from policy.' }
     if ([string]$Task.Principal.LogonType -notin @('Interactive','InteractiveToken','3') -or [string]$Task.Principal.RunLevel -notin @('Limited','0')) { throw 'Task principal is not limited interactive-token.' }
 }
 
@@ -93,7 +100,7 @@ switch ($Mode) {
             $arguments = "-NoProfile -NonInteractive -ExecutionPolicy Bypass -File `"$wrapper`" -Mode ExecuteReadOnly"
             $action = New-ScheduledTaskAction -Execute (Get-Command powershell).Source -Argument $arguments -WorkingDirectory $repoRoot
             $trigger = New-ScheduledTaskTrigger -Daily -DaysInterval 1 -At $startAt
-            $settings = New-ScheduledTaskSettingsSet -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Seconds ([int]$policy.runtime_controls.timeout_seconds)) -RestartCount 0 -StartWhenAvailable:$false -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
+            $settings = New-FixedTaskSettings
             $principalId = [Security.Principal.WindowsIdentity]::GetCurrent().Name
             $principal = New-ScheduledTaskPrincipal -UserId $principalId -LogonType Interactive -RunLevel Limited
             $definition = New-ScheduledTask -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Description 'ZT-SCH-001 bounded daily read-only validation; no retry, remediation, or infrastructure mutation.'
@@ -120,6 +127,39 @@ switch ($Mode) {
         $registration | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $runtimeRoot 'registration.json') -Encoding utf8
         Write-Status $task | Out-Null
         Write-Output '[PASS] ZT-SCH-001 daily task installed with the fixed limited interactive-token definition.'
+    }
+    'Update' {
+        Assert-Approval 'UPDATE'
+        & $python $runner --check
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        $task = Get-ConfiguredTask
+        Assert-TaskDefinition $task -AllowDisabledCatchUp
+        if ([bool]$task.Settings.StartWhenAvailable -ne [bool]$policy.trigger.start_when_available) {
+            Set-ScheduledTask -TaskName $taskName -TaskPath $taskPath -Settings (New-FixedTaskSettings) | Out-Null
+        }
+        $task = Get-ConfiguredTask
+        Assert-TaskDefinition $task
+        $status = Write-Status $task
+        $update = [ordered]@{
+            package_id = 'ZT-SCH-001'
+            schedule_id = [string]$policy.metadata.schedule_id
+            updated_at = [datetime]::UtcNow.ToString('o')
+            operation = 'BOUNDED_CATCH_UP_UPDATE'
+            approval_reference = $ApprovalReference
+            definition_status = 'MATCHED'
+            schedule_fingerprint = Get-ScheduleFingerprint
+            start_when_available = [bool]$task.Settings.StartWhenAvailable
+            catch_up_window = [string]$policy.trigger.catch_up_window
+            next_run_time = $status.next_run_time
+            credential_stored = $false
+            live_validator_started = $false
+            authoritative_update_performed = $false
+        }
+        $updateRoot = Join-Path $runtimeRoot 'updates'
+        New-Item -ItemType Directory -Path $updateRoot -Force | Out-Null
+        $updateName = 'update-{0}.json' -f [datetime]::UtcNow.ToString('yyyyMMddTHHmmssZ')
+        $update | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $updateRoot $updateName) -Encoding utf8
+        Write-Output '[PASS] ZT-SCH-001 task updated to the bounded two-hour catch-up definition; no live validator was started.'
     }
     'Status' {
         $task = Get-ConfiguredTask

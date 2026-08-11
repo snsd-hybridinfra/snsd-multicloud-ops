@@ -2,14 +2,15 @@
   "metadata": {
     "package_id": "ZT-SCH-001",
     "schedule_id": "ZTSCH-DAILY-001",
-    "policy_version": "1.0.0",
+    "policy_version": "1.1.0",
     "environment": "BOUNDED_NON_PRODUCTION_LAB",
     "authority": "ZT-SCH-001",
     "predecessor": "ZT-RV-001",
     "preparation_status": "INSTALLED",
     "limitations": [
-      "The approved Windows task was installed on 2026-08-02; this policy does not install or replace it by itself.",
+      "The approved Windows task was installed on 2026-08-02 and bounded catch-up was approved on 2026-08-11; this policy does not install or replace it by itself.",
       "The laboratory must be made available outside the scheduled validator; infrastructure start, stop, and repair are prohibited.",
+      "A missed 09:00 trigger may start only within the same local date's 09:00-11:00 window after the limited interactive session becomes available.",
       "Scheduled candidates require scheduler correlation and explicit review before any tracked history update.",
       "Three successful executions on distinct scheduled dates are required before EC5 may be proposed."
     ]
@@ -36,8 +37,9 @@
     "daily_start_time_local": "09:00:00",
     "iana_time_zone": "Asia/Seoul",
     "windows_time_zone": "Korea Standard Time",
-    "start_when_available": false,
-    "catch_up": false,
+    "start_when_available": true,
+    "catch_up": true,
+    "catch_up_window": "PT2H",
     "random_delay": "PT0S"
   },
   "runtime_controls": {
@@ -70,8 +72,8 @@
     "preserve_reviewed_evidence": true
   },
   "artifacts": [
-    {"path": "tools/continuous_verification/sch_common.py", "sha256": "561c5623c5af1f0624479dd96e3a11d9107345699b4c5202bf3265fdf10e4d15"},
-    {"path": "tools/continuous_verification/run_scheduled_validation.py", "sha256": "d777a49c6ada4d834881d5b225e17b559ecfaaa8e61d8c312e0d1cd5bd142d15"},
+    {"path": "tools/continuous_verification/sch_common.py", "sha256": "77c15f2a800dcaf0e305e2adbc02ea988328171d7f1aec8f3bb85b345ce0e032"},
+    {"path": "tools/continuous_verification/run_scheduled_validation.py", "sha256": "56abe1297a1771ec828d176cd420ef355019e71c8db377d18ccdfaa4716156c5"},
     {"path": "tools/continuous_verification/run_repeatability_campaign.py", "sha256": "54f4c200a8e0abb9b6f1f9a394d3079bb7f0d6fb53ddcf9e70985f1e03fbd979"},
     {"path": "tools/live-validation/run-scheduled-validation.ps1", "sha256": "55bdf720dde68c6ff81254c6cd27ee835dcea811dd8ace1e95c594ec6c31f822"},
     {"path": "tools/live-validation/sanitize-live-evidence.py", "sha256": "97f883b4c1d08079e9fe988097c9cd23421ca99cdfb4563a260a17a32af2701b"}
@@ -81,7 +83,7 @@
     "minimum_successful_scheduled_executions": 3,
     "minimum_distinct_scheduled_dates": 3,
     "current_continuity": "EC4_REPEATABLE_RUNTIME",
-    "current_state": "INSTALLED_AWAITING_SCHEDULED_EXECUTIONS",
+    "current_state": "INSTALLED_BOUNDED_CATCH_UP_ENABLED",
     "authoritative_update_performed": false
   }
 }

@@ -10,7 +10,7 @@
     "evidence_type": {"const": "SCHEDULE_CONFIGURATION"},
     "evidence_authority": {"const": "USER_APPROVED_CODEX_EXECUTION"},
     "captured_at": {"type": "string", "format": "date-time"},
-    "approval_reference": {"type": "string", "pattern": "^USER_APPROVED_ZT_SCH_001_INSTALL_[A-Za-z0-9._-]+$"},
+    "approval_reference": {"type": "string", "pattern": "^USER_APPROVED_ZT_SCH_001_(INSTALL|UPDATE)_[A-Za-z0-9._-]+$"},
     "platform": {"const": "WINDOWS_TASK_SCHEDULER"},
     "definition": {"type": "object", "required": ["task_path", "task_name", "state", "enabled", "trigger", "interval_days", "daily_start_time_local", "time_zone", "next_run_time", "definition_status"]},
     "principal": {
@@ -18,7 +18,7 @@
       "properties": {"logon_type":{"const":"INTERACTIVE_TOKEN"},"run_level":{"const":"LIMITED"},"credential_stored":{"const":false},"account_value_recorded":{"const":false}}
     },
     "runtime_controls": {
-      "type": "object", "required": ["multiple_instances", "exclusive_lock", "one_attempt_per_local_date", "execution_time_limit", "child_time_limit", "start_when_available", "catch_up", "restart_count", "automatic_retry", "automatic_remediation", "infrastructure_mutation", "repository_mutation", "history_auto_append"]
+      "type": "object", "required": ["multiple_instances", "exclusive_lock", "one_attempt_per_local_date", "execution_time_limit", "child_time_limit", "start_when_available", "catch_up", "catch_up_window", "restart_count", "automatic_retry", "automatic_remediation", "infrastructure_mutation", "repository_mutation", "history_auto_append"]
     },
     "schedule_fingerprint": {"type":"string","pattern":"^[0-9a-f]{64}$"},
     "runtime_execution_performed": {"const": false},

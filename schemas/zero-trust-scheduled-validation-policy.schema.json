@@ -39,12 +39,13 @@
     },
     "trigger": {
       "type": "object",
-      "required": ["type", "interval_days", "daily_start_time_local", "iana_time_zone", "windows_time_zone", "start_when_available", "catch_up", "random_delay"],
+      "required": ["type", "interval_days", "daily_start_time_local", "iana_time_zone", "windows_time_zone", "start_when_available", "catch_up", "catch_up_window", "random_delay"],
       "properties": {
         "type": {"const": "DAILY"},
         "interval_days": {"const": 1},
-        "start_when_available": {"const": false},
-        "catch_up": {"const": false}
+        "start_when_available": {"const": true},
+        "catch_up": {"const": true},
+        "catch_up_window": {"const": "PT2H"}
       }
     },
     "runtime_controls": {

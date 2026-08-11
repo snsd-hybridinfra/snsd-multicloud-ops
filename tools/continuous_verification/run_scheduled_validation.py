@@ -15,7 +15,7 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-from sch_common import POLICY, REGISTRATION, ROOT, RUNTIME, assess, file_hash, iso, load, schedule_fingerprint, utcnow, validate_configuration, write
+from sch_common import POLICY, REGISTRATION, ROOT, RUNTIME, assess, execution_window_status, file_hash, iso, load, schedule_fingerprint, utcnow, validate_configuration, write
 
 sys.path.insert(0, str(ROOT / "tools/continuous_verification"))
 from verify_sanitized_evidence import findings as sanitizer_findings  # noqa: E402
@@ -71,10 +71,14 @@ def execution_records() -> list[dict]:
 def execute(policy: dict, verbose: bool) -> int:
     now = utcnow()
     local_now = datetime.now().astimezone()
+    window_status, scheduled_start, catch_up_deadline = execution_window_status(policy, local_now)
+    if window_status != "OPEN":
+        print(f"[FAIL] {window_status}: allowed={scheduled_start.isoformat()}..{catch_up_deadline.isoformat()}; no attempt marker was written.")
+        return 2
     scheduled_date = local_now.date().isoformat()
     marker = RUNTIME / "attempted-dates" / f"{scheduled_date}.json"
     if marker.exists():
-        print(f"[FAIL] ONE_ATTEMPT_PER_LOCAL_DATE: {scheduled_date} already has an attempt; retry and catch-up are disabled.")
+        print(f"[FAIL] ONE_ATTEMPT_PER_LOCAL_DATE: {scheduled_date} already has an attempt; automatic retry remains disabled.")
         return 2
     lock = RUNTIME / "locks/ZT-SCH-001.lock"
     descriptor: int | None = None
@@ -103,6 +107,8 @@ def execute(policy: dict, verbose: bool) -> int:
             "package_id": "ZT-SCH-001", "schedule_id": policy["metadata"]["schedule_id"],
             "execution_id": execution_id, "started_at": iso(now), "ended_at": iso(utcnow()),
             "scheduled_date_local": scheduled_date, "local_utc_offset": local_now.strftime("%z"),
+            "execution_window_status": window_status, "scheduled_start_local": scheduled_start.isoformat(),
+            "catch_up_deadline_local": catch_up_deadline.isoformat(), "delayed_start": local_now > scheduled_start,
             "trigger_claim": "WINDOWS_TASK_SCHEDULER", "trigger_verification": "PENDING_SCHEDULER_CORRELATION",
             "schedule_fingerprint": schedule_fingerprint(policy), "source_rv_execution_id": source_id,
             "source_rv_record": str(source.relative_to(ROOT)).replace("\\", "/") if source_exists else None,
@@ -113,7 +119,7 @@ def execute(policy: dict, verbose: bool) -> int:
             "timeout_enforced": timed_out, "exclusive_lock_enforced": True, "one_attempt_per_local_date_enforced": True,
             "automatic_retry_performed": False, "infrastructure_mutation_performed": False,
             "repository_mutation_performed": False, "authoritative_update_performed": False,
-            "limitations": ["Scheduler provenance is a candidate claim until correlated with the registered task status and explicitly reviewed."]
+            "limitations": ["A bounded delayed start remains a candidate claim until correlated with the registered task status and explicitly reviewed."]
         }
         write(root / "schedule-record.json", record)
         write(marker, {"scheduled_date_local": scheduled_date, "execution_id": execution_id, "result": result})

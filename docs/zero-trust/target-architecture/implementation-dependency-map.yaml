@@ -5,12 +5,15 @@
       "id": "PHASE_1",
       "name": "Foundation and Verification Operations",
       "boundary": "ZT-SCH-001",
-      "boundary_status": "DESIGN_ONLY",
+      "boundary_status": "IMPLEMENTED_LOCAL_VALIDATED",
       "actual_packages": [
         "ZT-FND-001",
         "ZT-NET-001",
         "ZT-VIS-001",
         "ZT-ID-001",
+        "ZT-CV-001",
+        "ZT-RV-001",
+        "ZT-SCH-001",
         "ZT-DEV-001",
         "ZT-APP-001",
         "ZT-DATA-001",
@@ -169,11 +172,15 @@
   ],
   "package_status": {
     "ZT-SCH-001": {
-      "package_state": "DESIGN_ONLY",
-      "phase": "PHASE_1_BOUNDARY",
-      "implementation_status": "NOT_IMPLEMENTED",
-      "validation_status": "NOT_VALIDATED",
-      "roadmap_status": "DESIGN_ONLY"
+      "package_state": "PRESENT",
+      "phase": "PHASE_1_CURRENT",
+      "implementation_status": "IMPLEMENTED",
+      "validation_status": "LOCAL_VALIDATED",
+      "runtime_validation_status": "NOT_VALIDATED",
+      "runtime_acceptance_status": "PENDING",
+      "runtime_scope": "BOUNDED_DAILY_SCHEDULE_0_OF_3",
+      "maturity_status": "UNASSESSED",
+      "roadmap_status": "BOUNDED_CONFIGURATION_PACKAGE"
     },
     "ZT-USE-001": {
       "implementation_status": "NOT_STARTED",
@@ -440,6 +447,7 @@
     "ZT-DATA-001 is implemented and partially runtime validated for seven metadata-only assets, manual labels, detection-only DLP, and one synthetic restore; it does not establish enterprise governance, dynamic access, platform encryption, live backup/restore, blocking DLP, maturity, or Phase 1 completion.",
     "ZT-SYS-001 is implemented and partially runtime validated for seven bounded systems, five safe matched configuration authorities, and existing fixed read-only validators; OpenStack remains CURRENT_DEGRADED and the package does not establish complete PAM, credential lifecycle, continuous FIM, broad hardening, full system recovery, maturity, or Phase 1 completion.",
     "ZT-AUTO-001 is implemented and partially runtime validated for fixed R0-R3 handlers, default-deny policy, deterministic planning, proposal-only governance, and one partial cross-domain read-only execution; it does not establish arbitrary execution, mutation authority, external notification, autonomous response, SOAR, repeatability, scheduling, maturity, or Phase 1 completion.",
+    "ZT-SCH-001 is implemented and locally validated for one limited interactive-token daily task with bounded catch-up; six failed candidates and zero accepted scheduled dates do not establish runtime validation, EC5, maturity, or Phase 1 completion.",
     "ZT-VIS-002 runtime work is protected Phase 2 enabling preparation, remains untracked, and does not inherit authority from the separately accepted bounded ZT-VIS-001 runtime package."
   ]
 }

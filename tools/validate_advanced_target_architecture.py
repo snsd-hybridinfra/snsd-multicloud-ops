@@ -275,6 +275,24 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
         if not phase.get("entry_criteria") or not phase.get("exit_criteria"):
             result.fail("roadmap.gates", f"{phase.get('id')}: entry and exit criteria are required")
     for package_id, status in dependency.get("package_status", {}).items():
+        if package_id == "ZT-SCH-001":
+            expected_schedule_status = {
+                "package_state": "PRESENT",
+                "phase": "PHASE_1_CURRENT",
+                "implementation_status": "IMPLEMENTED",
+                "validation_status": "LOCAL_VALIDATED",
+                "runtime_validation_status": "NOT_VALIDATED",
+                "runtime_acceptance_status": "PENDING",
+                "runtime_scope": "BOUNDED_DAILY_SCHEDULE_0_OF_3",
+                "maturity_status": "UNASSESSED",
+                "roadmap_status": "BOUNDED_CONFIGURATION_PACKAGE",
+            }
+            if status != expected_schedule_status:
+                result.fail(
+                    "roadmap.package-status",
+                    "ZT-SCH-001 must remain a bounded local schedule without runtime, EC5, maturity, or Phase 1 promotion",
+                )
+            continue
         if package_id == "ZT-ID-001":
             expected_identity_status = {
                 "package_state": "PRESENT",
@@ -386,7 +404,7 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
             if status != {"implementation_status": "NOT_STARTED", "validation_status": "UNASSESSED", "roadmap_status": "ROADMAP_ONLY"}:
                 result.fail("roadmap.optimal", f"{package_id}: invalid future Optimal status")
     if not _has_failures(result, "roadmap."):
-        result.passed("roadmap", "All phases have gates; ZT-ID-001, ZT-DEV-001, ZT-APP-001, ZT-DATA-001, ZT-SYS-001, and ZT-AUTO-001 remain bounded runtime packages and roadmap packages remain unimplemented.")
+        result.passed("roadmap", "All phases have gates; ZT-SCH-001 remains a bounded local schedule, current runtime packages retain their accepted scopes, and future roadmap packages remain unimplemented.")
 
 
 def validate_package_data(package: dict[str, Any], result: ValidationResult) -> None:

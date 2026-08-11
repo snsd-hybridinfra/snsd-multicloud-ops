@@ -13,8 +13,9 @@ occurs.
 
 `ZT-SCH-001` preparation began after EC4 acceptance. Following explicit
 approval, the bounded Windows Task Scheduler job was installed on 2026-08-02
-with its first run due at 2026-08-03 09:00 KST. The local runner, lock, timeout,
-missed-run assessment, and disable/removal controls are configuration-validated;
-no scheduled runtime has occurred. EC5 requires at least three valid correlated
-scheduled-trigger executions on distinct scheduled dates. A daily job is
+with its first run due at 2026-08-03 09:00 KST. Six sanitized scheduled
+candidates through 2026-08-08 failed, and no scheduled success is accepted.
+The local runner, lock, timeout, bounded 09:00-11:00 catch-up, missed-run
+assessment, and disable/removal controls are configuration-validated. EC5
+requires valid correlated successes on the latest three due scheduled dates. A daily job is
 neither EC6 continuous observation nor EC7 continuous enforcement.

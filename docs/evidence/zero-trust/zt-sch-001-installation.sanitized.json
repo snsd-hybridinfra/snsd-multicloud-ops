@@ -3,8 +3,8 @@
   "schedule_id": "ZTSCH-DAILY-001",
   "evidence_type": "SCHEDULE_CONFIGURATION",
   "evidence_authority": "USER_APPROVED_CODEX_EXECUTION",
-  "captured_at": "2026-08-02T00:51:11.2693834Z",
-  "approval_reference": "USER_APPROVED_ZT_SCH_001_INSTALL_2026-08-02_NEXT_TASK",
+  "captured_at": "2026-08-11T12:09:48.6005045Z",
+  "approval_reference": "USER_APPROVED_ZT_SCH_001_UPDATE_2026-08-11_FIX_REQUEST",
   "platform": "WINDOWS_TASK_SCHEDULER",
   "definition": {
     "task_path": "\\SNSD Zero Trust\\",
@@ -15,7 +15,7 @@
     "interval_days": 1,
     "daily_start_time_local": "09:00:00",
     "time_zone": "Asia/Seoul",
-    "next_run_time": "2026-08-03T00:00:00Z",
+    "next_run_time": "2026-08-12T00:00:00Z",
     "definition_status": "MATCHED"
   },
   "principal": {
@@ -30,8 +30,9 @@
     "one_attempt_per_local_date": true,
     "execution_time_limit": "PT20M",
     "child_time_limit": "PT15M",
-    "start_when_available": false,
-    "catch_up": false,
+    "start_when_available": true,
+    "catch_up": true,
+    "catch_up_window": "PT2H",
     "restart_count": 0,
     "automatic_retry": false,
     "automatic_remediation": false,
@@ -39,7 +40,7 @@
     "repository_mutation": false,
     "history_auto_append": false
   },
-  "schedule_fingerprint": "428a204a8ff46f6e775e5f78151fba01ad86220a1f174652f8cd9d3f38efb671",
+  "schedule_fingerprint": "15fc9daf36b5667d1a11b2175b438455e99ed70ee7f6b42a242904e7a3bfa283",
   "runtime_execution_performed": false,
   "successful_scheduled_executions": 0,
   "successful_distinct_scheduled_dates": 0,
@@ -49,8 +50,9 @@
   "secret_findings": 0,
   "privacy_findings": 0,
   "limitations": [
-    "The task has not executed; installation evidence is not scheduled-runtime evidence.",
-    "The task runs only while the approved current-user interactive session and lab targets are available.",
+    "This bounded configuration update did not execute the live validator and is not scheduled-runtime evidence.",
+    "Six prior sanitized scheduled candidates failed; zero successful correlated dates are accepted.",
+    "The task runs only when the approved current-user interactive session and lab targets become available by 11:00 local time.",
     "No EC5, continuous observation, maturity, compliance, certification, or Phase 1 completion is claimed."
   ]
 }
