@@ -95,7 +95,7 @@ UNIT
 
 cat >/etc/squid/squid.conf <<'SQUID'
 http_port 0.0.0.0:3128
-acl local_runner src 127.0.0.1/32 172.17.0.0/16
+acl local_runner src 127.0.0.1/32 172.17.0.0/16 172.18.0.0/16
 acl ssl_ports port 443
 acl connect method CONNECT
 acl approved_domains dstdomain .github.com .githubusercontent.com .actions.githubusercontent.com .ghcr.io .sigstore.dev .docker.io .docker.com .pypi.org .pythonhosted.org mirror.gcr.io

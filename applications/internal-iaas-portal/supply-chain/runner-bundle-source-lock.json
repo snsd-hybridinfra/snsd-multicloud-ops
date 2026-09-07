@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0.0",
-  "bundle_version": "1.0.1",
+  "bundle_version": "1.0.2",
   "platform": "linux-x86_64",
-  "release_tag": "idp-runner-bundle-v1.0.1",
-  "release_asset": "idp-runner-bundle-1.0.1-linux-x86_64.tar.gz",
+  "release_tag": "idp-runner-bundle-v1.0.2",
+  "release_asset": "idp-runner-bundle-1.0.2-linux-x86_64.tar.gz",
   "sources": [
     {
       "id": "actions-runner",

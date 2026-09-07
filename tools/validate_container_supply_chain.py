@@ -165,6 +165,7 @@ def validate(root: Path = ROOT) -> list[str]:
         "squid.service",
         "usermod -a -G docker idprunner",
         "actions-runner.tar.gz",
+        "172.18.0.0/16",
         ".pypi.org",
         ".pythonhosted.org",
         "mirror.gcr.io",
