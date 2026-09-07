@@ -25,7 +25,9 @@ It must also install these root-owned commands:
 
 The policy must deny default egress and allow only the GitHub Actions control
 plane, reviewed source fetches, the approved private registry, Sigstore and the
-approved vulnerability database. It must deny Kubernetes API egress. The
+approved vulnerability database. The reviewed source-fetch class is limited to
+PyPI metadata and wheel delivery; the vulnerability-database class includes the
+Trivy mirror and its GHCR fallback. It must deny Kubernetes API egress. The
 provisioner verifies every declared executable, Docker daemon health, Buildx,
 the strict egress check and kubeconfig absence before writing its local ready
 marker.

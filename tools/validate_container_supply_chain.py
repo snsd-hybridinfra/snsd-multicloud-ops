@@ -160,7 +160,15 @@ def validate(root: Path = ROOT) -> list[str]:
             if not isinstance(item.get("sha256"), str) or not re.fullmatch(r"[0-9a-f]{64}", item["sha256"]):
                 failures.append(f"runner source digest is invalid: {item.get('id')}")
     installer = (root / RUNNER_BUNDLE_INSTALLER.relative_to(ROOT)).read_text(encoding="utf-8")
-    for token in ("no-new-privileges", "squid.service", "usermod -a -G docker idprunner", "actions-runner.tar.gz"):
+    for token in (
+        "no-new-privileges",
+        "squid.service",
+        "usermod -a -G docker idprunner",
+        "actions-runner.tar.gz",
+        ".pypi.org",
+        ".pythonhosted.org",
+        "mirror.gcr.io",
+    ):
         if token not in installer:
             failures.append(f"runner bundle installer gate is missing: {token}")
     egress_apply = (root / RUNNER_EGRESS_APPLY.relative_to(ROOT)).read_text(encoding="utf-8")
