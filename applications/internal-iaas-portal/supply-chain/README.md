@@ -47,10 +47,16 @@ tools/local-vm/New-IdpSupplyChainRunnerVm.ps1 `
 ```
 
 The SSH key is forced to `idp-runner-dispatch`; it cannot request a shell,
-forward an agent or run a remote command. A fresh GitHub JIT configuration is
+forward an agent or run an arbitrary remote command. A fresh GitHub JIT configuration is
 sent only on standard input. The GitHub registration is ephemeral and accepts
 one job; the workspace is deleted after that job. Never store a registration
 token or JIT configuration in Git, the VMX, the manifest or evidence.
+
+The same forced key accepts only the exact `proxy-denials` diagnostic command.
+It emits the client address, Squid decision, HTTP method and CONNECT target for
+recent denied requests to the local operator; it does not emit URL paths,
+headers, credentials or response bodies. All other remote commands remain
+denied.
 
 The VM JSON response deliberately reports `runtime_validated: false`. Promote
 runtime readiness only after independent GitHub runner, tool digest, egress,

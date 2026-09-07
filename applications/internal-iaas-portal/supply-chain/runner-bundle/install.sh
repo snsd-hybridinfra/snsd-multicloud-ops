@@ -26,7 +26,7 @@ find /opt/actions-runner -type f -exec chmod go-w {} +
 chmod 0755 /opt/actions-runner/run.sh /opt/actions-runner/config.sh /opt/actions-runner/bin/Runner.Listener
 
 getent group docker >/dev/null || groupadd --system docker
-usermod -a -G docker idprunner
+usermod -a -G docker,proxy idprunner
 install -d -o idprunner -g idprunner -m 0700 /home/idprunner/.docker
 cat >/home/idprunner/.docker/config.json <<'JSON'
 {

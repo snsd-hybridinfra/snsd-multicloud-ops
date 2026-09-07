@@ -145,6 +145,7 @@ def validate(root: Path = ROOT) -> list[str]:
         "kubeconfig must not exist",
         "New-RunnerBundleIso",
         'deviceType = "cdrom-image"',
+        'SSH_ORIGINAL_COMMAND:-}" == "proxy-denials"',
     ):
         if token not in provisioner:
             failures.append(f"runner provisioner gate is missing: {token}")
@@ -163,7 +164,7 @@ def validate(root: Path = ROOT) -> list[str]:
     for token in (
         "no-new-privileges",
         "squid.service",
-        "usermod -a -G docker idprunner",
+        "usermod -a -G docker,proxy idprunner",
         "actions-runner.tar.gz",
         "172.18.0.0/16",
         ".pypi.org",

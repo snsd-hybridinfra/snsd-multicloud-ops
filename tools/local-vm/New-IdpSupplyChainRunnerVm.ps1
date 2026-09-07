@@ -190,6 +190,11 @@ write_files:
     content: |
       #!/usr/bin/env bash
       set -euo pipefail
+      if [[ "${SSH_ORIGINAL_COMMAND:-}" == "proxy-denials" ]]; then
+        tail -n 200 /var/log/squid/access.log |
+          awk '$4 ~ /DENIED/ {print "client=" $3 " result=" $4 " method=" $6 " target=" $7}'
+        exit 0
+      fi
       if [[ -n "${SSH_ORIGINAL_COMMAND:-}" ]]; then
         echo "remote commands are denied" >&2
         exit 64
