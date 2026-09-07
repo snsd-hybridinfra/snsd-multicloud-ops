@@ -37,10 +37,10 @@ jobs:
           persist-credentials: false
       - name: Validate container supply-chain authority
         run: |
-          python tools/validate_container_supply_chain.py --strict
-          python tools/validate_container_runtime_readiness.py --strict
+          python3 tools/validate_container_supply_chain.py --strict
+          python3 tools/validate_container_runtime_readiness.py --strict
       - name: Run supply-chain policy tests
-        run: python -m unittest tests.test_container_supply_chain -v
+        run: python3 -m unittest tests.test_container_supply_chain -v
 
   publish-and-promote:
     if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
@@ -75,20 +75,20 @@ jobs:
           ref: ${{ github.sha }}
           persist-credentials: true
       - name: Validate protected runner authority
-        run: python tools/validate_container_supply_chain.py --strict
+        run: python3 tools/validate_container_supply_chain.py --strict
       - name: Authenticate to GHCR with the job-scoped token
         env:
           GHCR_TOKEN: ${{ github.token }}
         run: printf '%s' "$GHCR_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
       - name: Build scan publish sign verify and resolve
         run: >-
-          python applications/internal-iaas-portal/supply-chain/container_pipeline.py
+          python3 applications/internal-iaas-portal/supply-chain/container_pipeline.py
           build-release
           --release-id "${{ inputs.release_id }}"
           --registry "${{ inputs.approved_registry }}"
       - name: Render reviewed GitOps promotion
         run: >-
-          python applications/internal-iaas-portal/supply-chain/container_pipeline.py
+          python3 applications/internal-iaas-portal/supply-chain/container_pipeline.py
           promote
           --release ".runtime/container-supply-chain/${{ inputs.release_id }}/release-attestation.json"
           --registry "${{ inputs.approved_registry }}"
