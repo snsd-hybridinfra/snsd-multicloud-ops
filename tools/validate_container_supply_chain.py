@@ -166,10 +166,13 @@ def validate(root: Path = ROOT) -> list[str]:
         "squid.service",
         "usermod -a -G docker,proxy idprunner",
         "actions-runner.tar.gz",
+        "172.17.0.0/16",
         "172.18.0.0/16",
         ".pypi.org",
         ".pythonhosted.org",
         "mirror.gcr.io",
+        "squid -k parse",
+        "systemctl restart squid.service",
     ):
         if token not in installer:
             failures.append(f"runner bundle installer gate is missing: {token}")

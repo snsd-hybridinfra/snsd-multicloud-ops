@@ -110,4 +110,7 @@ via off
 SQUID
 
 systemctl daemon-reload
-systemctl enable --now squid.service containerd.service docker.service
+squid -k parse
+systemctl enable squid.service containerd.service docker.service
+systemctl restart squid.service
+systemctl restart containerd.service docker.service
