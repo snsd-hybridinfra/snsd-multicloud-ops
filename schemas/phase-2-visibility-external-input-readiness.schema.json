@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "P2-VIS-001 sanitized external input readiness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["assessment_id", "package_id", "action_id", "assessed_at", "assessment_mode", "sanitization_status", "authorization", "cloud_profile", "terraform_inputs", "proxy_trust_material", "execution_boundary", "cleanup", "decision", "remaining_gates", "excluded_data"],
+  "properties": {
+    "assessment_id": {"const": "P2-VIS-001-EXTERNAL-INPUT-READINESS-001"},
+    "package_id": {"const": "ZT-VIS-002"},
+    "action_id": {"const": "P2-VIS-001"},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "assessment_mode": {"const": "EXPLICITLY_AUTHORIZED_EXTERNAL_INPUT_PREPARATION"},
+    "sanitization_status": {"const": "PASS"},
+    "authorization": {
+      "type": "object", "additionalProperties": false,
+      "required": ["administrator_profile_transfer", "destination", "live_deployment_authorized", "live_validator_authorized"],
+      "properties": {
+        "administrator_profile_transfer": {"const": "EXPLICIT_USER_APPROVAL"},
+        "destination": {"const": "DEDICATED_CONTROL_NODE_EXTERNAL_PROTECTED_PATH"},
+        "live_deployment_authorized": {"const": false},
+        "live_validator_authorized": {"const": false}
+      }
+    },
+    "cloud_profile": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_class", "destination_class", "transport", "source_target_sha256_match", "regular_file", "file_mode", "structurally_validated", "authentication_attempted_from_control_node", "credential_value_recorded"],
+      "properties": {
+        "source_class": {"const": "OPENSTACK_AIO_KOLLA_ADMIN_PROFILE"},
+        "destination_class": {"const": "DEDICATED_CONTROL_NODE_EXTERNAL_PROTECTED_PATH"},
+        "transport": {"const": "SSH_DIRECT_STREAM_NO_LOCAL_INTERMEDIATE_FILE"},
+        "source_target_sha256_match": {"const": true},
+        "regular_file": {"const": true},
+        "file_mode": {"const": "0600"},
+        "structurally_validated": {"const": true},
+        "authentication_attempted_from_control_node": {"const": false},
+        "credential_value_recorded": {"const": false}
+      }
+    },
+    "terraform_inputs": {
+      "type": "object", "additionalProperties": false,
+      "required": ["selection_source", "selected_classes", "target_name", "volume_size_gib", "approval_reference", "rendered_hash_matches_selection", "placeholder_count", "credential_field_count", "regular_file", "file_mode"],
+      "properties": {
+        "selection_source": {"const": "EXISTING_DEDICATED_MONITORING_VM_READ_ONLY_PROPERTIES"},
+        "selected_classes": {"type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": {"enum": ["REGION", "PRIVATE_NETWORK", "SECURITY_GROUP", "IMAGE", "FLAVOR", "RECOVERY_KEYPAIR", "CINDER_VOLUME_TYPE", "AVAILABILITY_ZONE"]}},
+        "target_name": {"const": "ZT_VIS_002_DEDICATED_MONITORING_VM"},
+        "volume_size_gib": {"const": 100},
+        "approval_reference": {"const": "P2-VIS-001-READINESS-001"},
+        "rendered_hash_matches_selection": {"const": true},
+        "placeholder_count": {"const": 0},
+        "credential_field_count": {"const": 0},
+        "regular_file": {"const": true},
+        "file_mode": {"const": "0600"}
+      }
+    },
+    "proxy_trust_material": {
+      "type": "object", "additionalProperties": false,
+      "required": ["storage_class", "ca_certificate_and_key", "server_certificate_and_key", "authorized_client_certificate_and_key", "server_dns_name", "certificate_chain_verification", "server_name_verification", "private_key_file_mode", "grafana_administrator_secret", "proxy_runtime_verified"],
+      "properties": {
+        "storage_class": {"const": "DEDICATED_CONTROL_NODE_EXTERNAL_PROTECTED_PATH"},
+        "ca_certificate_and_key": {"const": "PRESENT"},
+        "server_certificate_and_key": {"const": "PRESENT"},
+        "authorized_client_certificate_and_key": {"const": "PRESENT"},
+        "server_dns_name": {"const": "zt-vis-002-monitoring.lab.internal"},
+        "certificate_chain_verification": {"const": "PASS"},
+        "server_name_verification": {"const": "PASS"},
+        "private_key_file_mode": {"const": "0600"},
+        "grafana_administrator_secret": {"const": "PRESENT_EXTERNAL_VALUE_NOT_RECORDED"},
+        "proxy_runtime_verified": {"const": false}
+      }
+    },
+    "execution_boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["openstack_read_only_input_discovery_executed", "control_node_external_state_changed", "protected_openstack_target_changed", "terraform_plan_created", "terraform_apply_executed", "ansible_playbook_executed", "image_pull_executed", "central_monitoring_completed", "package_runtime_promoted", "maturity_assessed", "compliance_assessed"],
+      "properties": {
+        "openstack_read_only_input_discovery_executed": {"const": true},
+        "control_node_external_state_changed": {"const": true},
+        "protected_openstack_target_changed": {"const": false},
+        "terraform_plan_created": {"const": false},
+        "terraform_apply_executed": {"const": false},
+        "ansible_playbook_executed": {"const": false},
+        "image_pull_executed": {"const": false},
+        "central_monitoring_completed": {"const": false},
+        "package_runtime_promoted": {"const": false},
+        "maturity_assessed": {"const": false},
+        "compliance_assessed": {"const": false}
+      }
+    },
+    "cleanup": {
+      "type": "object", "additionalProperties": false,
+      "required": ["local_intermediate_credential_file_created", "temporary_control_script_present", "repository_secret_material_created", "tracked_runtime_created"],
+      "properties": {
+        "local_intermediate_credential_file_created": {"const": false},
+        "temporary_control_script_present": {"const": false},
+        "repository_secret_material_created": {"const": false},
+        "tracked_runtime_created": {"const": false}
+      }
+    },
+    "decision": {"const": "EXTERNAL_INPUTS_AND_LOCAL_TRUST_MATERIAL_READY_LIVE_DEPLOYMENT_NO_GO"},
+    "remaining_gates": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": {"enum": ["VERIFY_PROXY_TRUST_MATERIAL_ON_DEPLOYED_TARGET", "AUTHORIZE_LIVE_DEPLOYMENT", "AUTHORIZE_LIVE_VALIDATOR"]}},
+    "excluded_data": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}

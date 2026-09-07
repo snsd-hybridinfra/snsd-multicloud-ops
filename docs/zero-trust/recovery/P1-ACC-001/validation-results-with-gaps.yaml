@@ -1,0 +1,20 @@
+{
+  "action_id": "P1-ACC-001",
+  "validation_date": "2026-08-20",
+  "validation_status": "PASS_ACCEPTED_WITH_GAPS",
+  "superseded_result": "docs/zero-trust/recovery/P1-ACC-001/validation-results.yaml",
+  "results": [
+    {"check": "historical default deny", "result": "PASS", "detail": "The original STALE / 0 accepted / EC3 / NOT_STARTED assessment remains reproducible."},
+    {"check": "superseding decision", "result": "PASS", "detail": "P1-ACC-001 is ACCEPTED_WITH_GAPS under P1-RV-FRESHNESS-001."},
+    {"check": "freshness non-reclassification", "result": "PASS", "detail": "Historical RV evidence remains STALE and is not represented as current EC4 freshness."},
+    {"check": "freshness refresh progress", "result": "PASS", "detail": "One new eligible manual execution is recorded separately as 1/3 at STALE / EC3 / IN_PROGRESS; two PT24H-separated runs remain."},
+    {"check": "Phase 2 entry boundary", "result": "PASS", "detail": "Only P2-VIS-001 local preparation is in progress; live deployment and live validation remain unauthorized."},
+    {"check": "final gate", "result": "PASS", "detail": "Fresh RV evidence and deferred ZT-SCH-001 validation remain mandatory before P5-ACC-001."},
+    {"check": "status non-claims", "result": "PASS", "detail": "No runtime, EC5, maturity, compliance, certification or production status is promoted."}
+  ],
+  "runtime_executed": false,
+  "subsequent_manual_refresh_executed": true,
+  "live_target_changed": false,
+  "scheduler_changed": false,
+  "runtime_acceptance_promoted": false
+}

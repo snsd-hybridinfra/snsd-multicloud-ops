@@ -28,6 +28,6 @@
     "Runtime acceptance is limited to one bounded non-production EVE-NG validator endpoint.",
     "Centralized identity, MFA, federation, PAM, and application RBAC remain outside the accepted boundary.",
     "The current EVE base validator has no failures and two non-blocking warnings because no Dynamips or QEMU node process is running.",
-    "Phase 1 remains PARTIAL, PARTIALLY_VALIDATED, and NOT_COMPLETE at ZT-SCH-001."
+    "Phase 1 is PARTIAL, PARTIALLY_VALIDATED, and COMPLETED_WITH_GAPS under P1-RV-FRESHNESS-001; stale RV evidence remains mandatory final-gate work and ZT-SCH-001 is deferred to Phase 5."
   ]
 }

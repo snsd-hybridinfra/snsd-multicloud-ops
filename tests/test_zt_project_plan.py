@@ -69,11 +69,16 @@ class ProjectPlanTests(unittest.TestCase):
         result = plan.run("roadmap", ROOT, strict=True)
         self.assertEqual(0, result.failed, [vars(item) for item in result.findings])
 
-    def test_rv_complete_and_scheduler_in_progress(self) -> None:
+    def test_phase2_entry_and_scheduler_deferred(self) -> None:
         states = {item["action_id"]: item["current_status"] for item in self.execution["actions"]}
         self.assertEqual("COMPLETED", states["P1-RV-001"])
-        self.assertEqual("IN_PROGRESS", states["P1-SCH-001"])
+        self.assertEqual("COMPLETED", states["P1-ACC-001"])
+        self.assertEqual("IN_PROGRESS", states["P2-VIS-001"])
+        self.assertEqual("NOT_STARTED", states["P1-SCH-001"])
         self.assertEqual(1, list(states.values()).count("IN_PROGRESS"))
+        action = next(item for item in self.execution["actions"] if item["action_id"] == "P1-SCH-001")
+        self.assertEqual("PHASE_5", action["phase"])
+        self.assertEqual(["P5-DEMO-001"], action["dependencies"])
 
     def test_invalid_phase_order(self) -> None:
         paths = [plan.AUTHORITIES["roadmap"][0], plan.AUTHORITIES["roadmap"][1], Path("docs/zero-trust/final-roadmap.md")]
@@ -105,10 +110,10 @@ class ProjectPlanTests(unittest.TestCase):
         plan.validate_dependency_data(data, result)
         self.assertTrue(failures(result, "dependency.cv"))
 
-    def test_sch_before_rv_rejected(self) -> None:
+    def test_sch_before_final_demo_rejected(self) -> None:
         data = copy.deepcopy(self.execution)
         action = next(item for item in data["actions"] if item["action_id"] == "P1-SCH-001")
-        action["dependencies"] = ["P1-CV-001"]
+        action["dependencies"] = ["P1-RV-001"]
         result = plan.Result()
         plan.validate_dependency_data(data, result)
         self.assertTrue(failures(result, "dependency.rule"))
@@ -215,7 +220,7 @@ class ProjectPlanTests(unittest.TestCase):
 
     def _status_root(self):
         paths = [plan.AUTHORITIES["package_status"][0], plan.AUTHORITIES["package_status"][1], Path("docs/zero-trust/package-flow.yaml")]
-        paths.extend(Path("docs/zero-trust/packages") / f"{package.lower()}-package.yaml" for package in ("ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001"))
+        paths.extend(Path("docs/zero-trust/packages") / f"{package.lower()}-package.yaml" for package in ("ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001", "ZT-VIS-002"))
         return copied_root(paths)
 
     def test_runtime_status_divergence_rejected(self) -> None:
@@ -237,6 +242,16 @@ class ProjectPlanTests(unittest.TestCase):
             result = plan.Result()
             plan.validate_status_truth(root, result)
             self.assertTrue(failures(result, "status.claim"))
+
+    def test_phase2_visibility_full_acceptance_overclaim_rejected(self) -> None:
+        with self._status_root() as root:
+            data = plan.load(root / plan.AUTHORITIES["package_status"][0])
+            next(item for item in data["packages"] if item["package_id"] == "ZT-VIS-002")["runtime_acceptance_status"] = "ACCEPTED"
+            write_json(root / plan.AUTHORITIES["package_status"][0], data)
+            subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+            result = plan.Result()
+            plan.validate_status_truth(root, result)
+            self.assertTrue(failures(result, "status.phase2_visibility"))
 
     def test_tracked_runtime_rejected(self) -> None:
         with self._status_root() as root:

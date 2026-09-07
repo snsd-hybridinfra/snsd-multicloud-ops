@@ -1,0 +1,42 @@
+deploymentMode: job
+
+job:
+  parallelism: 1
+  nodeSelectorExpressions: []
+  cleanup:
+    nodeSelectorExpressions:
+      - key: katacontainers.io/kata-runtime
+        operator: Exists
+  dispatcherImage:
+    reference: quay.io/kata-containers/kata-deploy-job-dispatcher@sha256:ceee369efe1a4796a93c3d013e513fa61b0904f5cbc4cbdaa69e32396efd7c42
+    tag: ""
+
+imagePullPolicy: IfNotPresent
+
+image:
+  reference: quay.io/kata-containers/kata-deploy@sha256:460128eea49aee30fd023f1eabd94dc75fd694dff9a09ed82daeba5c126b2b0e
+  tag: ""
+
+kubectlImage:
+  reference: quay.io/kata-containers/kubectl@sha256:7f3b773c4761a1e31d19e11f4af0779e489a0972b0da181506f4da7e7b5c5ab7
+  tag: ""
+
+k8sDistribution: k3s
+
+snapshotter:
+  setup: []
+
+shims:
+  disableAll: true
+  qemu-runtime-rs:
+    enabled: true
+
+runtimeClasses:
+  enabled: true
+  createDefault: false
+
+node-feature-discovery:
+  enabled: false
+
+verification:
+  pod: ""

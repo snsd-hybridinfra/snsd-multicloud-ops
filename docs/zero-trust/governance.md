@@ -1,5 +1,7 @@
 # Zero Trust Governance
 
+Zero Trust is the cross-cutting security and validation plane of the Financial Hybrid-Ready Internal Developer Platform. Platform delivery status and Zero Trust package status are independent; neither may promote the other without matching implementation and evidence authority.
+
 ## Source hierarchy
 
 1. Local **제로트러스트 가이드라인 2.0** PDF
@@ -24,7 +26,14 @@ A future authenticated KISA 2026 mapping is a secondary technical inspection and
 - ZT-ARC-001 surrounds the Phase 1 flow and is not a sequential package.
 - `package-flow.yaml` owns sequence and Phase 1 boundary.
 - Package YAML owns package state; evidence must resolve and support the claim.
-- CV, RV, and SCH enforce integration, repeatability, and scheduling gates.
+- CV and RV enforce the Phase 1 integration and repeatability gates. SCH remains
+  a separate installed, disabled scheduling package deferred to the final Phase
+  5 gate.
+- The historical P1-ACC-001 default-deny record remains authoritative for the
+  stale assessment. ADR 0014 and `P1-RV-FRESHNESS-001` supersede only the entry
+  decision: Phase 1 is `COMPLETED_WITH_GAPS` and Phase 2 local preparation may
+  proceed. Current EC4 freshness is not claimed, and fresh manual RV evidence
+  remains mandatory before final scheduling or P5-ACC-001.
 - Package validators must be deterministic, read-only by default, and mutation-detecting where relevant.
 
 ## Evidence

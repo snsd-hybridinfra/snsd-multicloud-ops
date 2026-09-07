@@ -274,23 +274,54 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
     for phase in phases:
         if not phase.get("entry_criteria") or not phase.get("exit_criteria"):
             result.fail("roadmap.gates", f"{phase.get('id')}: entry and exit criteria are required")
+    phase1 = next((phase for phase in phases if phase.get("id") == "PHASE_1"), {})
+    if (
+        phase1.get("completion_status") != "COMPLETED_WITH_GAPS"
+        or phase1.get("acceptance_decision_status") != "ACCEPTED_WITH_GAPS"
+        or phase1.get("accepted_exception") != "P1-RV-FRESHNESS-001"
+        or phase1.get("deferred_final_risk") != "STALE_RV_EVIDENCE"
+        or phase1.get("current_state") != "COMPLETED_WITH_GAPS"
+    ):
+        result.fail("roadmap.phase1-acceptance", "Phase 1 must retain the scoped accepted-with-gaps decision and deferred stale-evidence risk.")
+    phase2 = next((phase for phase in phases if phase.get("id") == "PHASE_2"), {})
+    if phase2.get("current_state") != "IN_PROGRESS_PARTIAL_RUNTIME":
+        result.fail("roadmap.phase2-entry", "Phase 2 must be limited to in-progress local preparation.")
     for package_id, status in dependency.get("package_status", {}).items():
+        if package_id == "ZT-VIS-002":
+            expected_visibility_status = {
+                "package_state": "PRESENT",
+                "phase": "PHASE_2_CURRENT",
+                "implementation_status": "PARTIALLY_IMPLEMENTED",
+                "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+                "runtime_validation_status": "PARTIALLY_VALIDATED",
+                "runtime_acceptance_status": "PARTIALLY_ACCEPTED",
+                "evidence_status": "PARTIAL_RUNTIME_RECORDED",
+                "maturity_status": "UNASSESSED",
+                "roadmap_status": "IN_PROGRESS_PARTIAL_RUNTIME",
+                "protected": True,
+            }
+            if status != expected_visibility_status:
+                result.fail(
+                    "roadmap.package-status",
+                    "ZT-VIS-002 must remain a bounded partial-runtime Phase 2 package without completion or maturity promotion",
+                )
+            continue
         if package_id == "ZT-SCH-001":
             expected_schedule_status = {
                 "package_state": "PRESENT",
-                "phase": "PHASE_1_CURRENT",
+                "phase": "FINAL_PROJECT_GATE",
                 "implementation_status": "IMPLEMENTED",
                 "validation_status": "LOCAL_VALIDATED",
                 "runtime_validation_status": "NOT_VALIDATED",
                 "runtime_acceptance_status": "PENDING",
-                "runtime_scope": "BOUNDED_DAILY_SCHEDULE_0_OF_3",
+                "runtime_scope": "INSTALLED_DISABLED_0_ACCEPTED_DATES",
                 "maturity_status": "UNASSESSED",
-                "roadmap_status": "BOUNDED_CONFIGURATION_PACKAGE",
+                "roadmap_status": "DEFERRED_FINAL_CONFIGURATION_PACKAGE",
             }
             if status != expected_schedule_status:
                 result.fail(
                     "roadmap.package-status",
-                    "ZT-SCH-001 must remain a bounded local schedule without runtime, EC5, maturity, or Phase 1 promotion",
+                    "ZT-SCH-001 must remain an installed disabled final-gate schedule without runtime, EC5, maturity, or Phase 1 promotion",
                 )
             continue
         if package_id == "ZT-ID-001":
@@ -404,7 +435,7 @@ def validate_dependency_data(dependency: dict[str, Any], result: ValidationResul
             if status != {"implementation_status": "NOT_STARTED", "validation_status": "UNASSESSED", "roadmap_status": "ROADMAP_ONLY"}:
                 result.fail("roadmap.optimal", f"{package_id}: invalid future Optimal status")
     if not _has_failures(result, "roadmap."):
-        result.passed("roadmap", "All phases have gates; ZT-SCH-001 remains a bounded local schedule, current runtime packages retain their accepted scopes, and future roadmap packages remain unimplemented.")
+        result.passed("roadmap", "All phases have gates; ZT-SCH-001 remains an installed disabled final-gate schedule, current runtime packages retain their accepted scopes, and future roadmap packages remain unimplemented.")
 
 
 def validate_package_data(package: dict[str, Any], result: ValidationResult) -> None:

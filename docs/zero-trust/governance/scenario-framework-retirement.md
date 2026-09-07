@@ -24,9 +24,11 @@ ZT-ARC-001 surrounds:
 
 ```text
 ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001
-           -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001
-           -> P1-ACC-001
+           -> ZT-CV-001 -> ZT-RV-001 -> P1-ACC-001
 ```
+
+`ZT-SCH-001` is preserved outside this sequence as the disabled final Phase 5
+project gate immediately before `P5-ACC-001`.
 
 ## 5. Package flow
 
@@ -63,3 +65,19 @@ ZT-GOV-MAP-001 is the next separately authorized action. It may complete and acc
 ## Subsequent closure
 
 `ZT-GOV-MAP-001` was later completed as a separate action. Its current authority is `docs/zero-trust/mappings/zt-kisa-technical-control-map.yaml`; `P0-ACC-001` is the next execution-plan action. This note does not rewrite the retirement action's historical scope or evidence.
+
+## Subsequent scheduled-validation rebaseline
+
+ADR 0013 later removed `ZT-SCH-001` from the sequential Phase 1 predecessor
+chain, retained it as a disabled final Phase 5 gate, and set `P1-ACC-001` as the
+current Phase 1 action. The historical RV campaign and integrated assessment
+snapshots remain unchanged; `docs/zero-trust/package-flow.yaml` is the current
+flow authority.
+
+## Subsequent Phase 1 acceptance preflight
+
+P1-ACC-001 first recorded `BLOCKED_STALE_EVIDENCE` because every reviewed RV
+record exceeded P7D at the acceptance assessment time. ADR 0014 later preserved
+that historical result and accepted the scoped `P1-RV-FRESHNESS-001` residual
+risk for Phase 2 local entry. The stale finding remains mandatory final-gate
+work and is not reclassified as fresh evidence.

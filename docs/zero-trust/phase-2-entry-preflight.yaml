@@ -1,0 +1,42 @@
+{
+  "assessment_id": "P2-ENTRY-PREFLIGHT-001",
+  "assessment_date": "2026-08-20",
+  "phase": "PHASE_2",
+  "first_action": "P2-VIS-001",
+  "package_id": "ZT-VIS-002",
+  "decision": "LOCAL_PREPARATION_READY_LIVE_DEPLOYMENT_NO_GO",
+  "phase_1_entry": {
+    "status": "COMPLETED_WITH_GAPS",
+    "decision": "ACCEPTED_WITH_GAPS",
+    "exception_id": "P1-RV-FRESHNESS-001",
+    "deferred_final_risk": "STALE_RV_EVIDENCE"
+  },
+  "read_only_checks": [
+    {"check": "Phase 1 superseding decision and exception are present", "result": "PASS"},
+    {"check": "P2-VIS-001 is the only in-progress execution action", "result": "PASS"},
+    {"check": "OpenStack portal catalog remains a local candidate with deployment unauthorized", "result": "PASS"},
+    {"check": "Grafana integration and Zero Trust protection contracts are present", "result": "PASS"},
+    {"check": "OpenStack visibility deployment contract is locally schema validated and remains deployment unauthorized", "result": "PASS"},
+    {"check": "Existing observability configuration assets are available for reviewed reuse", "result": "PASS"},
+    {"check": "No tracked .runtime authority exists", "result": "PASS"}
+  ],
+  "protected_local_state": {
+    "runtime_trace_policy": "OPTIONAL_LOCAL_PRESENT_NOT_AUTHORITATIVE",
+    "platform_tree_policy": "USER_OWNED_NOT_ADOPTED_BY_THIS_ACTION",
+    "raw_runtime_committed": false
+  },
+  "live_deployment_blockers": [
+    "OpenStack capacity and VM sizing approval is absent.",
+    "Reviewed private network, security group, image and flavor inputs are absent.",
+    "Component artifact digests and supply-chain approval are incomplete.",
+    "Persistent storage, retention, backup and restore approval is incomplete.",
+    "Authenticated proxy, administrator roles and recovery access are incomplete.",
+    "Separate live deployment and live validator authorization has not been granted."
+  ],
+  "runtime_executed": false,
+  "live_target_changed": false,
+  "package_runtime_promoted": false,
+  "maturity_assessed": false,
+  "compliance_assessed": false,
+  "next_action": "Obtain the remaining live-gate inputs and separate authorization before any external inventory, no-apply OpenStack plan, or playbook execution."
+}

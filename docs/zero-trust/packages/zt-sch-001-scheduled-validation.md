@@ -8,7 +8,8 @@ exclusive locks, a 20-minute outer timeout, failure and missed-run detection,
 freshness assessment, sanitized ignored evidence, and explicit disable and
 removal paths.
 
-The approved Windows Task Scheduler definition is installed and runs daily at 09:00 local time
+The approved Windows Task Scheduler definition remains installed but was
+disabled on 2026-08-20. Its preserved definition would run daily at 09:00 local time
 (`Asia/Seoul` / `Korea Standard Time`) as the current user with a limited
 interactive token. It stores no credential. The user session and lab targets
 must be available by the end of the bounded 09:00-11:00 catch-up window. The
@@ -48,11 +49,14 @@ correlation record requires a separate bounded review reference and still does
 not update tracked verification history.
 
 EC5 requires successful correlated executions on the latest three due scheduled
-dates. Historical failure and missed-date findings remain visible but are
+dates after the final-gate schedule is separately re-enabled. Historical failure and missed-date findings remain visible but are
 recoverable after a new three-date accepted window. Installation or a manually
 started scheduler test does not meet that threshold. Until the threshold and
-explicit review are complete, Phase 1
-remains `PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE` at `ZT-SCH-001`.
+explicit review are complete. Phase 1 is `PARTIAL /
+PARTIALLY_VALIDATED / COMPLETED_WITH_GAPS` under the scoped RV freshness
+exception, but ZT-SCH-001 is
+no longer a Phase 1 predecessor. It is the deferred final Phase 5 gate
+immediately before `P5-ACC-001`.
 
 ## Installation and rollback boundary
 
@@ -61,6 +65,6 @@ installation approval reference and did not replace a divergent task. Repeated
 install finalization is allowed only when the existing definition matches
 exactly. `-Mode Update` permits only the reviewed disabled-to-bounded-catch-up
 migration and requires its own explicit approval reference. Status is read-only.
-Disable and uninstall each require their own
+Disable, re-enable, and uninstall each require their own
 explicit approval reference. Both rollback paths preserve ignored runtime
 evidence; neither changes Git or other infrastructure.

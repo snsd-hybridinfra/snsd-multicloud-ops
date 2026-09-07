@@ -2,7 +2,8 @@
   "package_id": "ZT-SCH-001",
   "package_name": "Scheduled Validation and Evidence Freshness",
   "package_type": "SCHEDULED_VALIDATION",
-  "phase": "PHASE_1",
+  "phase": "FINAL_PROJECT_TASK",
+  "planning_status": "DEFERRED_FINAL",
   "authority_status": "AUTHORITATIVE",
   "implementation_status": "IMPLEMENTED",
   "validation_status": "LOCAL_VALIDATED",
@@ -13,19 +14,22 @@
   "predecessor": "ZT-RV-001",
   "purpose": "Schedule validation, detect failures, verify freshness and retention, and produce sanitized evidence automatically.",
   "schedule_installed": true,
-  "automated_execution": true,
+  "schedule_enabled": false,
+  "automated_execution": false,
   "schedule_id": "ZTSCH-DAILY-001",
   "schedule_fingerprint": "15fc9daf36b5667d1a11b2175b438455e99ed70ee7f6b42a242904e7a3bfa283",
   "installation_evidence": "docs/evidence/zero-trust/zt-sch-001-installation.sanitized.json",
-  "next_scheduled_run": "2026-08-12T00:00:00Z",
+  "next_scheduled_run": null,
+  "deferral_evidence": "docs/evidence/zero-trust/zt-sch-001-deferral.sanitized.json",
   "current_continuity": "EC4_REPEATABLE_RUNTIME",
   "target_continuity": "EC5_SCHEDULED_RUNTIME",
   "successful_scheduled_executions": 0,
   "successful_distinct_scheduled_dates": 0,
   "limitations": [
-    "Six sanitized scheduled candidates from 2026-08-03 through 2026-08-08 failed and no successful scheduled runtime has occurred.",
-    "Bounded catch-up is enabled only from 09:00 through 11:00 local time when the limited interactive session becomes available.",
+    "Eleven sanitized candidates are retained: two uncorrelated successes and nine failures; zero scheduled dates are accepted.",
+    "The matching installed task was disabled on 2026-08-20 and is deferred to the final Phase 5 gate before P5-ACC-001.",
+    "The bounded 09:00-11:00 catch-up design remains preserved but is not active while the task is disabled.",
     "EC5 requires three successful correlated executions on distinct scheduled dates; automatic retry and continuous operation remain disabled.",
-    "Phase 1 remains NOT_COMPLETE."
+    "Phase 1 is COMPLETED_WITH_GAPS under P1-RV-FRESHNESS-001; ZT-SCH-001 is not its predecessor and stale RV freshness remains a mandatory final-gate prerequisite."
   ]
 }

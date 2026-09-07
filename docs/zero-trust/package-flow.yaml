@@ -3,12 +3,13 @@
     "authority": "PHASE_1_PACKAGE_FLOW",
     "action_id": "ZT-PROJECT-PLAN-001",
     "model": "PACKAGE_CAPABILITY_VALIDATION",
-    "effective_date": "2026-07-28",
+    "effective_date": "2026-08-20",
     "scenario_authority": "NONE",
     "limitations": [
       "Package order does not prove implementation or acceptance.",
       "ZT-ARC-001 surrounds the flow and is not a sequential Phase 1 package.",
-      "No package or maturity state is promoted by scenario retirement."
+      "No package or maturity state is promoted by scenario retirement.",
+      "ZT-SCH-001 is preserved as a disabled deferred final project gate and is not a Phase 1 predecessor."
     ]
   },
   "architecture_context": {
@@ -26,7 +27,6 @@
     "ZT-ID-001",
     "ZT-CV-001",
     "ZT-RV-001",
-    "ZT-SCH-001",
     "P1-ACC-001"
   ],
   "packages": [
@@ -89,23 +89,29 @@
       "runtime_acceptance_status": "ACCEPTED",
       "maturity_status": "UNASSESSED",
       "predecessor": "ZT-CV-001"
-    },
-    {
-      "package_id": "ZT-SCH-001",
-      "purpose": "Scheduled execution, freshness, failure detection, and automated sanitized evidence production.",
-      "implementation_status": "IMPLEMENTED",
-      "local_validation_status": "LOCAL_VALIDATED",
-      "runtime_validation_status": "NOT_VALIDATED",
-      "runtime_acceptance_status": "PENDING",
-      "maturity_status": "UNASSESSED",
-      "predecessor": "ZT-RV-001"
     }
   ],
+  "deferred_final_work": {
+    "package_id": "ZT-SCH-001",
+    "action_id": "P1-SCH-001",
+    "planning_status": "DEFERRED_FINAL",
+    "schedule_state": "DISABLED",
+    "execution_phase": "PHASE_5",
+    "predecessor_action": "P5-DEMO-001",
+    "successor_action": "P5-ACC-001",
+    "runtime_validation_status": "NOT_VALIDATED",
+    "runtime_acceptance_status": "PENDING"
+  },
   "phase_1_acceptance": {
     "implementation_status": "PARTIAL",
     "validation_status": "PARTIALLY_VALIDATED",
-    "completion_status": "NOT_COMPLETE",
-    "scope_boundary": "ZT-SCH-001",
-    "requires_all_predecessors_accepted": true
+    "completion_status": "COMPLETED_WITH_GAPS",
+    "scope_boundary": "ZT-RV-001",
+    "requires_all_predecessors_accepted": true,
+    "decision_status": "ACCEPTED_WITH_GAPS",
+    "blocking_reason": null,
+    "accepted_exception": "P1-RV-FRESHNESS-001",
+    "deferred_final_risk": "STALE_RV_EVIDENCE",
+    "decision_record": "docs/zero-trust/recovery/P1-ACC-001/acceptance-decision-with-gaps.yaml"
   }
 }

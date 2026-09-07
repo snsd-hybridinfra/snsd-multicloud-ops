@@ -21,7 +21,7 @@ MIGRATION_DOC = Path("docs/zero-trust/governance/scenario-framework-retirement.m
 
 EXPECTED_SEQUENCE = [
     "ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001",
-    "ZT-CV-001", "ZT-RV-001", "ZT-SCH-001", "P1-ACC-001",
+    "ZT-CV-001", "ZT-RV-001", "P1-ACC-001",
 ]
 EXPECTED_PACKAGE_STATES = {
     "ZT-FND-001": ("IMPLEMENTED", "RUNTIME_VALIDATED"),
@@ -105,13 +105,21 @@ def validate_flow(root: Path, result: Result) -> None:
     acceptance = flow.get("phase_1_acceptance", {})
     expected_acceptance = {
         "implementation_status": "PARTIAL", "validation_status": "PARTIALLY_VALIDATED",
-        "completion_status": "NOT_COMPLETE", "scope_boundary": "ZT-SCH-001",
+        "completion_status": "COMPLETED_WITH_GAPS", "scope_boundary": "ZT-RV-001",
         "requires_all_predecessors_accepted": True,
+        "decision_status": "ACCEPTED_WITH_GAPS", "blocking_reason": None,
+        "accepted_exception": "P1-RV-FRESHNESS-001", "deferred_final_risk": "STALE_RV_EVIDENCE",
+        "decision_record": "docs/zero-trust/recovery/P1-ACC-001/acceptance-decision-with-gaps.yaml",
     }
     if acceptance == expected_acceptance:
-        result.passed("flow.acceptance", "Phase 1 remains NOT_COMPLETE at the scheduled-validation boundary.")
+        result.passed("flow.acceptance", "Phase 1 is COMPLETED_WITH_GAPS under the scoped RV freshness exception; stale evidence remains a final-gate risk.")
     else:
         result.fail("flow.acceptance", "Phase 1 acceptance state is overclaimed or inconsistent.")
+    deferred = flow.get("deferred_final_work", {})
+    if deferred.get("package_id") == "ZT-SCH-001" and deferred.get("planning_status") == "DEFERRED_FINAL" and deferred.get("schedule_state") == "DISABLED" and deferred.get("execution_phase") == "PHASE_5":
+        result.passed("flow.deferred", "ZT-SCH-001 is retained as the disabled deferred final project gate.")
+    else:
+        result.fail("flow.deferred", "ZT-SCH-001 deferral authority is missing or inconsistent.")
 
 
 def validate_package_truth(root: Path, result: Result) -> None:

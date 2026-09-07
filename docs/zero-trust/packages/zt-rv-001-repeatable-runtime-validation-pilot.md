@@ -75,9 +75,23 @@ The campaign completed three reviewed successes at
 `2026-08-01T23:00:20.110724Z`. The accepted result is bounded EC4 for the
 selected fixed campaign.
 
-The separate ZT-SCH-001 task is installed, but has no scheduled-runtime result;
-the RV campaign's own automatic schedule remains disabled. EC5, EC6, EC7,
+The separate ZT-SCH-001 task is installed and disabled, has zero accepted
+scheduled dates, and is deferred to the final Phase 5 gate. The RV campaign's
+own automatic schedule remains disabled. EC5, EC6, EC7,
 maturity promotion, automatic retry, remediation, mutation, commit, and push
 remain outside this package. The
 historical first-run gate at `2026-07-23T04:57:52.159854Z` preserved separation
 from the accepted CV baseline; later intervals also exceeded 24 hours.
+
+## Freshness refresh progress
+
+The historical three-run EC4 decision remains unchanged. Under the temporary
+`P1-RV-FRESHNESS-001` exception, a new manual freshness window is tracked
+separately in `recovery/P1-ACC-001/rv-refresh-progress.yaml`.
+
+The first refreshed execution, `ZTRV-20260820T115907Z-fd3d6d3c`, completed at
+`2026-08-20T11:59:07.686986Z` with 4 PASS / 6 WARN / 0 FAIL, sanitization PASS,
+and 9/9 negative security-boundary checks blocked. It was explicitly reviewed
+and appended. The refresh remains 1/3 at EC3 and cannot close the stale finding;
+the second execution is not eligible before `2026-08-21T11:59:07.686986Z`.
+No scheduler, automatic retry, target mutation, or package promotion was used.

@@ -1,78 +1,74 @@
-# 증적 기반 제로트러스트 멀티클라우드 보안 운영 플랫폼
+# SNSD Financial Hybrid-Ready Internal Developer Platform
 
-**공식 프로젝트명:** 제로트러스트 가이드라인 2.0 기반 멀티클라우드 보안통제 구현 및 기술적 취약점 자동 검증 체계 구축
-**English:** Implementation of Multi-Cloud Security Controls and Automated Technical Vulnerability Validation Based on Zero Trust Guideline 2.0
+**공식 프로젝트명:** 가상 증권사 Hybrid-Ready Private Cloud 기반 Internal Developer Platform 구축
+**English:** Financial Hybrid-Ready Private Cloud Internal Developer Platform
 
-이 저장소는 제로트러스트 가이드라인 2.0의 역량을 KISA 기술적 취약점 통제와 연결하고, 여러 인프라 환경에서 패키지 단위 보안통제를 구현·검증하며, 허용·거부·우회·지속성·롤백 행동과 정제된 증적을 반복 가능하게 관리하는 보안 엔지니어링 프로젝트다.
+이 저장소는 금융권 운영·개발 조직이 승인된 IaaS와 PaaS를 셀프서비스로 신청하고, 정책에 따라 자동 프로비저닝·운영·회수할 수 있는 비운영 플랫폼 랩이다. OpenStack을 프라이빗 IaaS, k3s를 PaaS 실행면, Terraform·Ansible·GitOps를 자동화 계층으로 사용한다. Nexus NX-OS/IOS-XE 기반 금융 네트워크를 목표 언더레이로 두고, Zero Trust는 플랫폼 전체를 보호하고 검증하는 횡단 보안 통제면이다.
 
-다음 주장을 하지 않는다.
+현재 외부 퍼블릭 클라우드는 연결하지 않았으므로 프로젝트를 `Hybrid-Ready`로 표현한다. AWS·Azure·KT Cloud 등 특정 공급자 연동은 공통 계약을 통과하는 어댑터로만 추가하며, 실제 연결과 검증 전에는 하이브리드 운영 완료를 주장하지 않는다.
 
-- 제품 설치 포트폴리오
-- 체크리스트만 수행하는 취약점 진단
-- 단순 클라우드 인프라 구축
-- 문서만 작성하는 제로트러스트 연구
-- KISA 또는 규정 준수 공식 인증
-- L3 달성 또는 L4 구현 완료
-
-## 목표와 권위
-
-- 실제 완료 목표: `L3_ADVANCED` - 구현·런타임 검증·수용 증거가 모두 충족된 뒤에만 평가한다.
-- 장기 로드맵: `L4_OPTIMAL` - `ROADMAP_ONLY`; 구현·검증·달성을 주장하지 않는다.
-- 1차 권위: 제로트러스트 가이드라인 2.0
-- 기술 참조: 2026 주요정보통신기반시설 기술적 취약점 분석·평가 방법 상세가이드
-- 구현 권위: ZT 패키지와 패키지 소유 구성
-- 행동 검증 권위: 패키지 수용 사례
-- 결과 권위: 정제된 런타임 증적과 동기화된 상태 기록
-
-매핑이나 문서의 주장은 실제 구현과 증적을 초과할 수 없다.
-
-## 패키지 아키텍처
+## 목표 구조
 
 ```text
-ZT-ARC-001 surrounds
-ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001
-           -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001
-           -> P1-ACC-001
+금융 업무·개발 조직
+        |
+        v
+Developer Portal / Approved Composite Blueprints / Request & Approval / Lifecycle
+        |
+        v
+Policy Gate / Terraform / Ansible / GitOps / Agent Job Orchestration
+        |
+        +---------------------+
+        |                     |
+        v                     v
+OpenStack Private IaaS     k3s PaaS
+        |                     |
+        +----------+----------+
+                   v
+ Nexus/IOS Underlay · Segmentation · Routing · Multicast
+
+횡단 통제: Zero Trust · Observability · Audit · Backup/Restore · FinOps
+미래 확장: Provider Adapter -> approved public cloud
 ```
 
-`ZT-ARC-001`은 순차 패키지가 아니라 전체 프로젝트를 둘러싼 아키텍처 권위다. 번호형 시나리오 프레임워크는 은퇴했고 후속 번호 체계는 없다.
+## 프로젝트 권위
+
+- 플랫폼 목표와 경계: [`docs/platform/README.md`](docs/platform/README.md)
+- 목표 아키텍처: [`docs/platform/target-architecture.md`](docs/platform/target-architecture.md)
+- 구현 로드맵: [`docs/platform/implementation-roadmap.md`](docs/platform/implementation-roadmap.md)
+- 기계 판독 기준선: [`docs/platform/architecture-baseline.yaml`](docs/platform/architecture-baseline.yaml)
+- 승인된 조합형 상품 카탈로그: [`docs/platform/composite-service-catalog.yaml`](docs/platform/composite-service-catalog.yaml)
+- Project Mini-Ona 샌드박스 계약: [`docs/platform/ai-agent-sandbox.yaml`](docs/platform/ai-agent-sandbox.yaml)
+- 아키텍처 결정: [`docs/adr/0018-financial-hybrid-ready-idp.md`](docs/adr/0018-financial-hybrid-ready-idp.md)
+- 현재 Zero Trust 상태: [`docs/zero-trust/package-status.yaml`](docs/zero-trust/package-status.yaml)
 
 ## 현재 진실
 
-- 실행 범위: 비운영 EVE-NG 및 OpenStack 실험실과 저장소
-- Phase 1: `PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE`
-- 현재 경계: `ZT-SCH-001`
-- 추적 `.runtime/**`: 금지
-- 문서 작업에 의한 구현·런타임·수용·성숙도·컴플라이언스 승격: 금지
+- 프로젝트 전환: `ACCEPTED / LOCAL_GOVERNANCE_VALIDATED`
+- OpenStack IaaS: 기존 비운영 랩 자산 보유; IDP 통합은 `PARTIAL`
+- k3s PaaS: 후보 자동화와 별도 `platform/` 자산 보유; 루트 권위 통합은 `PARTIAL`
+- Project Mini-Ona: 8개 상품 중 `AI_AGENT_SANDBOX`; 상태 머신, 비배포 Kubernetes 번들, Redis-ready DB outbox, credential lease, brokered-egress, 원자적 예산 예약과 정제 Trace 저장소는 `PARTIALLY_IMPLEMENTED_LOCAL`, 외부 서비스와 라이브 런타임은 `NOT_VALIDATED`
+- IDP 포털: 로컬 후보 구현; 배포는 `NOT_AUTHORIZED`
+- Nexus/IOS 금융 네트워크 언더레이: `DESIGN_ONLY`; 라이선스 이미지와 런타임 증적 없음
+- 퍼블릭 클라우드 어댑터: `DEFERRED / NOT_IMPLEMENTED`
+- Zero Trust: 기존 패키지 상태와 증적을 그대로 유지하며 자동 승격하지 않음
+- 추적 `.runtime/**`, 자격증명, Terraform state, kubeconfig, 장비 이미지는 금지
 
-## 권위 문서
+## 보안 프로그램
 
-- [프로젝트 정의](docs/project-definition.md)
-- [프로젝트 방법론](docs/project-methodology.md)
-- [통제 검증 생명주기](docs/control-validation-lifecycle.md)
-- [최종 로드맵](docs/zero-trust/final-roadmap.md)
-- [실행 계획](docs/zero-trust/final-execution-plan.md)
-- [마일스톤과 게이트](docs/zero-trust/milestones-and-gates.md)
-- [임계경로](docs/zero-trust/critical-path.md)
-- [증거 계획](docs/zero-trust/evidence-plan.md)
-- [성숙도 목표](docs/zero-trust/maturity-target.md)
-- [KISA 매핑](docs/zero-trust/mappings/README.md)
-- [번호형 시나리오 은퇴](docs/zero-trust/governance/scenario-framework-retirement.md)
+기존 **제로트러스트 가이드라인 2.0 기반 멀티클라우드 보안통제 구현 및 기술적 취약점 자동 검증 체계 구축**
+(**Implementation of Multi-Cloud Security Controls and Automated Technical Vulnerability Validation Based on Zero Trust Guideline 2.0**)과 포트폴리오명 **증적 기반 제로트러스트 멀티클라우드 보안 운영 플랫폼**은 삭제하지 않고 이 플랫폼의 보안·검증 프로그램으로 편입한다.
+
+`ZT-ARC-001`은 플랫폼을 둘러싼 Zero Trust 아키텍처 권위이며, 패키지·검증기·정제 증적·상태 결정의 독립성은 계속 유지한다. 번호형 시나리오 프레임워크는 은퇴 상태다.
 
 ## 읽기 전용 검증
 
 ```powershell
+python tools/validate_financial_idp_architecture.py --strict
+python tools/validate_composite_service_catalog.py --strict
+python tools/validate_ai_agent_sandbox.py --strict
+python tools/validate_private_iaas_golden_path.py --strict
 python tools/validate_zt_project_definition.py --strict
-python tools/validate_zt_roadmap.py --strict
-python tools/validate_zt_execution_plan.py --strict
-python tools/validate_zt_dependency_graph.py --strict
-python tools/validate_zt_milestones.py --strict
-python tools/validate_zt_risk_register.py --strict
-python tools/validate_zt_evidence_plan.py --strict
-python tools/validate_zt_maturity_target.py --strict
-python tools/validate_zt_kisa_mapping.py --strict
-python tools/validate_zt_package_acceptance_cases.py --strict
-python tools/validate_zt_status_truth.py --strict
 python tools/validate_scenario_retirement.py --strict
 python tools/validate_zero_trust.py --strict
 python tools/check_zero_trust_sync.py

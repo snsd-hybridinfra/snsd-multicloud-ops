@@ -1,0 +1,31 @@
+{
+  "exception_id": "P1-RV-FRESHNESS-001",
+  "status": "ACCEPTED_TEMPORARY",
+  "approved_at": "2026-08-20T11:30:00Z",
+  "owner_role": "REPOSITORY_OPERATOR",
+  "scope": "PHASE_2_ENTRY_ONLY",
+  "rationale": "The operator explicitly approved continuing Phase 2 without waiting for a new three-run Phase 1 RV freshness window.",
+  "evidence": [
+    "docs/zero-trust/recovery/P1-ACC-001/acceptance-decision.yaml",
+    "docs/zero-trust/recovery/P1-ACC-001/evidence-index.yaml",
+    "docs/zero-trust/repeatability-acceptance-policy.yaml",
+    "docs/zero-trust/verification-history.yaml",
+    "docs/zero-trust/recovery/P1-ACC-001/rv-refresh-progress.yaml",
+    "docs/evidence/zero-trust/zt-rv-001-refresh-01.sanitized.txt"
+  ],
+  "residual_risks": [
+    "Current bounded EC4 freshness is not established; the new window is 1/3.",
+    "Phase 2 changes may expose drift that the stale Phase 1 snapshot does not represent."
+  ],
+  "compensating_controls": [
+    "Do not represent historical EC4 as current freshness.",
+    "Keep Phase 2 live mutations and validators separately approval-gated.",
+    "Require a fresh accepted manual RV window before ZT-SCH-001 is re-enabled.",
+    "Block P5-ACC-001 while ZG-016 remains unresolved."
+  ],
+  "review_trigger": "BEFORE_ZT_SCH_001_REENABLE_OR_P5_ACC_001",
+  "expiry": "FINAL_PROJECT_GATE",
+  "scheduler_state_required": "DISABLED",
+  "maturity_impact": "NONE",
+  "compliance_impact": "NONE"
+}

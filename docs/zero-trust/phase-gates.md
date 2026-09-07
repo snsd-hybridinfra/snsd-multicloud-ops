@@ -20,8 +20,19 @@ Require an isolated approved target, explicit positive and negative outcomes, by
 
 Require observed results, resolved sanitized evidence, rollback or cleanup result, limitations, residual gaps, and a status decision that does not exceed evidence.
 
-## Gate 5 - Repeatable and scheduled operation
+## Gate 5 - Repeatable operation and deferred final scheduling
 
-Require deterministic repeatability before scheduling, failure visibility, freshness, retention, disable and rollback controls, and separately approved execution identity and target scope.
+Phase 1 requires deterministic repeatability through bounded EC4. Scheduled
+runtime is deferred to the final Phase 5 project gate, where it requires failure
+visibility, freshness, retention, disable and rollback controls, corrected
+scheduler correlation, and separately approved execution identity and target
+scope.
+
+The three historical RV executions exceed the P7D freshness limit. Historical
+EC4 evidence remains preserved but does not satisfy the current freshness gate.
+One new manual execution is accepted in the separate refresh window, leaving
+the current result at 1/3, `STALE / EC3 / IN_PROGRESS`.
+The reviewed `P1-RV-FRESHNESS-001` exception permits Phase 2 local preparation
+only; it cannot satisfy the final scheduling or P5-ACC-001 gates.
 
 No gate automatically promotes a capability, package, evidence-continuity level, compliance state, or maturity.

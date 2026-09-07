@@ -1,0 +1,98 @@
+{
+  "evidence_id": "ZT-VIS-002-ALERT-VALIDATION-20260825",
+  "package_id": "ZT-VIS-002",
+  "action_id": "P2-VIS-001",
+  "validation_id": "P2VISALT-20260825T001008Z",
+  "observed_at": "2026-08-25T00:10:08Z",
+  "environment": "NON_PRODUCTION_SINGLE_NODE_OPENSTACK_LAB",
+  "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+  "authorization": {
+    "alert_validation": true,
+    "rule_mutation": true,
+    "notification_delivery": true,
+    "cleanup": true,
+    "grafana_credential_reconciliation": true,
+    "package_status_promotion": false
+  },
+  "source_artifacts": [
+    {"path": "tools/live-validation/remote/validate-zt-vis-002-alert-delivery.py.example", "sha256": "ffc438f2345efd63f8e3f98a30d0a7ee6c5098119b43d7aabba2f6a76e1b6dba"},
+    {"path": "ansible/playbooks/zt-vis-002-alert-validation.yml", "sha256": "64cc1c23181bfdbdd5669c7359845180b19d79d83b100e0b2575022a0a789946"}
+  ],
+  "credential_reconciliation": {
+    "protected_file_used": true,
+    "password_stdin_only": true,
+    "credential_value_logged": false,
+    "authenticated_api_status": 200,
+    "result": "PASS"
+  },
+  "execution": {
+    "grafana_version": "13.1.0",
+    "webhook_integration_version": "v1",
+    "ansible_failed": 0,
+    "ansible_unreachable": 0,
+    "permanent_component_count": 5,
+    "permanent_receiver_added": false,
+    "public_listener_added": false,
+    "raw_log": {
+      "tracked": false,
+      "sha256": "5b4d666a18d66b3014a1128bac8859d325d1a2b7fbc2485666dfb8c33339cef9",
+      "size_bytes": 2361,
+      "secret_scan": "PASS",
+      "protected_value_matches": 0
+    },
+    "sanitized_log": {
+      "tracked": false,
+      "sha256": "0ba6a7d4d28e93560bfdc860365ab042702f236e50989f7e6f4e5995144537e3",
+      "verification": "PASS"
+    }
+  },
+  "acceptance_cases": [
+    {"case_type": "POSITIVE_RULE_LIFECYCLE", "result": "PASS"},
+    {"case_type": "POSITIVE_NOTIFICATION_DELIVERY", "result": "PASS"},
+    {"case_type": "NEGATIVE_AUTHENTICATION", "result": "PASS"},
+    {"case_type": "BYPASS", "result": "PASS"},
+    {"case_type": "PERSISTENCE_BOUNDARY", "result": "PASS"},
+    {"case_type": "ROLLBACK", "result": "PASS"}
+  ],
+  "cleanup": {
+    "temporary_rule_count": 0,
+    "temporary_folder_count": 0,
+    "temporary_listener_absent": true,
+    "target_validator_absent": true,
+    "target_recovery_key_rejected": true,
+    "aio_recovery_key_rejected": true,
+    "control_recovery_key_rejected": true,
+    "controller_transient_keys_removed": true,
+    "windows_recovery_artifacts_removed": true,
+    "protected_raw_log_preserved": true
+  },
+  "time_integrity": {
+    "control_to_host_delta_seconds_max": 1,
+    "target_clock_skew_seconds_observed": 5664,
+    "target_timesync_service": "ACTIVE_ENABLED",
+    "upstream_packet_count": 0,
+    "clock_correction_executed": false,
+    "status": "OPEN_REVIEW_REQUIRED"
+  },
+  "package_boundary": {
+    "alert_gap_closed": false,
+    "package_status_promoted": false,
+    "p2_vis_001_completed": false,
+    "central_visibility_fully_accepted": false,
+    "retention_validated": false,
+    "snapshot_restore_validated": false,
+    "scheduled_or_continuous_validation": false,
+    "maturity_assessed": false,
+    "compliance_assessed": false,
+    "production_readiness_claimed": false
+  },
+  "decision": "ALERT_VALIDATION_EXECUTED_STATUS_REVIEW_PENDING",
+  "explicitly_not_claimed": [
+    "authoritative closure of the alert-delivery gap",
+    "P2-VIS-001 completion or full central visibility acceptance",
+    "elapsed-retention validation or full Cinder snapshot restore",
+    "target clock synchronization remediation",
+    "scheduled or continuous validation",
+    "maturity, compliance, certification, or production readiness"
+  ]
+}

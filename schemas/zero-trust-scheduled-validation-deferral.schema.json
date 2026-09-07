@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Zero Trust scheduled validation deferral evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "package_id", "schedule_id", "evidence_type", "captured_at",
+    "approval_reference", "operation", "task_state", "enabled",
+    "definition_status", "schedule_fingerprint", "runtime_evidence_preserved",
+    "task_deleted", "live_validator_started", "repository_mutation_performed",
+    "account_value_recorded", "credential_stored", "secret_findings",
+    "privacy_findings", "result", "limitations"
+  ],
+  "properties": {
+    "package_id": {"const": "ZT-SCH-001"},
+    "schedule_id": {"const": "ZTSCH-DAILY-001"},
+    "evidence_type": {"const": "SCHEDULE_DEFERRAL"},
+    "captured_at": {"type": "string", "format": "date-time"},
+    "approval_reference": {"pattern": "^USER_APPROVED_ZT_SCH_001_DISABLE_[A-Za-z0-9._-]+$"},
+    "operation": {"const": "DISABLE_AND_DEFER_TO_FINAL_PROJECT_GATE"},
+    "task_state": {"const": "DISABLED"},
+    "enabled": {"const": false},
+    "definition_status": {"const": "MATCHED"},
+    "schedule_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_evidence_preserved": {"const": true},
+    "task_deleted": {"const": false},
+    "live_validator_started": {"const": false},
+    "repository_mutation_performed": {"const": false},
+    "account_value_recorded": {"const": false},
+    "credential_stored": {"const": false},
+    "secret_findings": {"const": 0},
+    "privacy_findings": {"const": 0},
+    "result": {"const": "PASS_DISABLED_PRESERVED"},
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  }
+}

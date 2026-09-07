@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ZT-VIS-002 partial runtime status promotion decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decision_id", "package_id", "action_id", "decided_at", "authority", "authorization_basis", "review_scope", "source_evidence", "gate_assessment", "promoted_status", "bounded_runtime_scope", "open_gaps", "claim_boundary", "decision", "next_action"],
+  "properties": {
+    "decision_id": {"const": "ZT-VIS-002-PARTIAL-PROMOTION-20260824"},
+    "package_id": {"const": "ZT-VIS-002"},
+    "action_id": {"const": "P2-VIS-001"},
+    "decided_at": {"type": "string", "format": "date-time"},
+    "authority": {"const": "USER_AUTHORIZED_REPOSITORY_STATUS_REVIEW"},
+    "authorization_basis": {"const": "EXPLICIT_USER_NEXT_ACTION_AFTER_LIVE_VALIDATION_REVIEW"},
+    "review_scope": {"const": "REPOSITORY_STATUS_AUTHORITIES_ONLY_NO_LIVE_MUTATION"},
+    "source_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "accepted_result", "evidence_continuity"],
+      "properties": {
+        "path": {"const": "docs/evidence/zero-trust/zt-vis-002-live-validation.sanitized.json"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "accepted_result": {"const": "PASS"},
+        "evidence_continuity": {"const": "EC3_ONE_TIME_RUNTIME"}
+      }
+    },
+    "gate_assessment": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["gate", "result"],
+        "properties": {
+          "gate": {"enum": ["BOUNDED_PRIVATE_OPENSTACK_DEPLOYMENT", "FIXED_FIVE_COMPONENT_RUNTIME", "POSITIVE_SANITIZED_INGESTION", "UNAUTHORIZED_ACCESS_DENIAL", "DIRECT_AND_ANONYMOUS_BYPASS_DENIAL", "RESTART_PERSISTENCE", "PACKAGE_ONLY_ROLLBACK", "PRESERVED_DATA_STACK_RECOVERY", "EVIDENCE_INTEGRITY", "TEMPORARY_ACCESS_CLEANUP"]},
+          "result": {"const": "PASS"}
+        }
+      }
+    },
+    "promoted_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["planning_status", "implementation_status", "local_validation_status", "runtime_validation_status", "runtime_acceptance_status", "evidence_status", "maturity_status", "compliance_status"],
+      "properties": {
+        "planning_status": {"const": "IN_PROGRESS"},
+        "implementation_status": {"const": "PARTIALLY_IMPLEMENTED"},
+        "local_validation_status": {"const": "LOCAL_VALIDATED"},
+        "runtime_validation_status": {"const": "PARTIALLY_VALIDATED"},
+        "runtime_acceptance_status": {"const": "PARTIALLY_ACCEPTED"},
+        "evidence_status": {"const": "PARTIAL_RUNTIME_RECORDED"},
+        "maturity_status": {"const": "UNASSESSED"},
+        "compliance_status": {"const": "NOT_ASSESSED"}
+      }
+    },
+    "bounded_runtime_scope": {"const": "ONE_PRIVATE_NON_PRODUCTION_OPENSTACK_MONITORING_VM_WITH_FIVE_COMPONENTS"},
+    "open_gaps": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {"enum": ["FULL_CINDER_SNAPSHOT_REBUILD_AND_REATTACH_RESTORE", "ALERT_RULE_AND_NOTIFICATION_DELIVERY_RUNTIME_VALIDATION", "RETENTION_WINDOW_ELAPSED_BEHAVIOR_VALIDATION"]}
+    },
+    "claim_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["p2_vis_001_completed", "central_visibility_fully_accepted", "phase_2_completed", "oidc_or_central_identity_implemented", "scheduled_or_continuous_validation", "maturity_assessed", "compliance_assessed", "production_readiness_claimed"],
+      "properties": {
+        "p2_vis_001_completed": {"const": false},
+        "central_visibility_fully_accepted": {"const": false},
+        "phase_2_completed": {"const": false},
+        "oidc_or_central_identity_implemented": {"const": false},
+        "scheduled_or_continuous_validation": {"const": false},
+        "maturity_assessed": {"const": false},
+        "compliance_assessed": {"const": false},
+        "production_readiness_claimed": {"const": false}
+      }
+    },
+    "decision": {"const": "PARTIAL_RUNTIME_STATUS_PROMOTED_WITH_OPEN_GAPS"},
+    "next_action": {"type": "string", "minLength": 1}
+  }
+}

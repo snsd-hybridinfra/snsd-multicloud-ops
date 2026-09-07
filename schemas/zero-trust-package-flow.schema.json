@@ -4,7 +4,7 @@
   "title": "Zero Trust Phase 1 package flow",
   "type": "object",
   "additionalProperties": false,
-  "required": ["metadata", "architecture_context", "phase_1_sequence", "packages", "phase_1_acceptance"],
+  "required": ["metadata", "architecture_context", "phase_1_sequence", "packages", "deferred_final_work", "phase_1_acceptance"],
   "properties": {
     "metadata": {
       "type": "object",
@@ -25,28 +25,49 @@
       "prefixItems": [
         {"const": "ZT-FND-001"}, {"const": "ZT-NET-001"}, {"const": "ZT-VIS-001"},
         {"const": "ZT-ID-001"}, {"const": "ZT-CV-001"}, {"const": "ZT-RV-001"},
-        {"const": "ZT-SCH-001"}, {"const": "P1-ACC-001"}
+        {"const": "P1-ACC-001"}
       ],
       "items": false,
-      "minItems": 8,
-      "maxItems": 8
+      "minItems": 7,
+      "maxItems": 7
     },
     "packages": {
       "type": "array",
-      "minItems": 7,
-      "maxItems": 7,
+      "minItems": 6,
+      "maxItems": 6,
       "items": {"$ref": "#/$defs/package"}
+    },
+    "deferred_final_work": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package_id", "action_id", "planning_status", "schedule_state", "execution_phase", "predecessor_action", "successor_action", "runtime_validation_status", "runtime_acceptance_status"],
+      "properties": {
+        "package_id": {"const": "ZT-SCH-001"},
+        "action_id": {"const": "P1-SCH-001"},
+        "planning_status": {"const": "DEFERRED_FINAL"},
+        "schedule_state": {"const": "DISABLED"},
+        "execution_phase": {"const": "PHASE_5"},
+        "predecessor_action": {"const": "P5-DEMO-001"},
+        "successor_action": {"const": "P5-ACC-001"},
+        "runtime_validation_status": {"const": "NOT_VALIDATED"},
+        "runtime_acceptance_status": {"const": "PENDING"}
+      }
     },
     "phase_1_acceptance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["implementation_status", "validation_status", "completion_status", "scope_boundary", "requires_all_predecessors_accepted"],
+      "required": ["implementation_status", "validation_status", "completion_status", "scope_boundary", "requires_all_predecessors_accepted", "decision_status", "blocking_reason", "accepted_exception", "deferred_final_risk", "decision_record"],
       "properties": {
         "implementation_status": {"const": "PARTIAL"},
         "validation_status": {"const": "PARTIALLY_VALIDATED"},
-        "completion_status": {"const": "NOT_COMPLETE"},
-        "scope_boundary": {"const": "ZT-SCH-001"},
-        "requires_all_predecessors_accepted": {"const": true}
+        "completion_status": {"const": "COMPLETED_WITH_GAPS"},
+        "scope_boundary": {"const": "ZT-RV-001"},
+        "requires_all_predecessors_accepted": {"const": true},
+        "decision_status": {"const": "ACCEPTED_WITH_GAPS"},
+        "blocking_reason": {"type": "null"},
+        "accepted_exception": {"const": "P1-RV-FRESHNESS-001"},
+        "deferred_final_risk": {"const": "STALE_RV_EVIDENCE"},
+        "decision_record": {"const": "docs/zero-trust/recovery/P1-ACC-001/acceptance-decision-with-gaps.yaml"}
       }
     }
   },

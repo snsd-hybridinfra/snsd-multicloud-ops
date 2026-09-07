@@ -1,0 +1,49 @@
+{
+  "action_id": "P1-ACC-001",
+  "decision_date": "2026-08-20",
+  "decision": "ACCEPTED_WITH_GAPS",
+  "decision_scope": "PHASE_1_COMPLETION_AND_PHASE_2_ENTRY",
+  "supersedes": "docs/zero-trust/recovery/P1-ACC-001/acceptance-decision.yaml",
+  "exception": "docs/zero-trust/exceptions/p1-rv-freshness-001.yaml",
+  "phase": {
+    "phase_id": "PHASE_1",
+    "prior_status": "NOT_COMPLETE",
+    "resulting_status": "COMPLETED_WITH_GAPS"
+  },
+  "historical_freshness_state": {
+    "status": "STALE",
+    "accepted_current_records": 0,
+    "current_continuity": "EC3_ONE_TIME_RUNTIME",
+    "reclassified_as_fresh": false
+  },
+  "phase_2_entry": {
+    "status": "AUTHORIZED_WITH_GAPS",
+    "first_action": "P2-VIS-001",
+    "live_mutation_authorized": false,
+    "live_validator_authorized": false
+  },
+  "accepted_statements": [
+    "Phase 1 governance and bounded historical package decisions through ZT-RV-001 are sufficient to begin Phase 2 local preparation under the accepted exception.",
+    "The stale RV finding remains an accepted residual risk and a mandatory final-gate prerequisite.",
+    "ZT-SCH-001 remains disabled and deferred to the final Phase 5 gate."
+  ],
+  "explicitly_not_accepted": [
+    "current EC4 freshness",
+    "EC5 scheduled runtime",
+    "Phase 2 runtime implementation or acceptance",
+    "live infrastructure or identity mutation",
+    "maturity, compliance, certification, production readiness, or full success"
+  ],
+  "required_final_gate_actions": [
+    "Close ZG-016 with a fresh accepted manual ZT-RV-001 window.",
+    "Re-enable and validate ZT-SCH-001 only after separate approval and corrected scheduler correlation.",
+    "Block P5-ACC-001 if either repeatability freshness or scheduled-runtime evidence remains open."
+  ],
+  "runtime_executed": false,
+  "live_target_changed": false,
+  "scheduler_changed": false,
+  "package_status_promoted": false,
+  "maturity_assessed": false,
+  "compliance_assessed": false,
+  "rollback_decision": "Withdraw this superseding decision, restore P1-ACC-001 BLOCKED_STALE_EVIDENCE, and return Phase 2 to NOT_STARTED if the exception boundary or final-gate compensating controls are violated."
+}

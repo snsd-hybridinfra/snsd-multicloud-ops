@@ -1,0 +1,127 @@
+{
+  "evidence_id": "ZT-VIS-002-LIVE-VALIDATION-20260824",
+  "package_id": "ZT-VIS-002",
+  "action_id": "P2-VIS-001",
+  "observed_started_at": "2026-08-24T11:42:52Z",
+  "observed_completed_at": "2026-08-24T12:06:10Z",
+  "environment": "NON_PRODUCTION_SINGLE_NODE_OPENSTACK_LAB",
+  "evidence_authority": "CODEX_EXECUTED_LIVE_RUNTIME",
+  "evidence_continuity": "EC3_ONE_TIME_RUNTIME",
+  "sanitization_status": "PASS",
+  "authorization": {
+    "live_validator_authorized": true,
+    "target_restart_authorized": true,
+    "stack_rollback_authorized": true,
+    "stack_recovery_authorized": true,
+    "package_status_promotion_authorized": false
+  },
+  "execution_attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "result": "FAILED_REBOOT_CONTROL_CHANNEL_REMEDIATED",
+      "findings": [
+        "PODMAN_UNLESS_STOPPED_NOT_RESTORED_BY_PODMAN_4_9",
+        "ANSIBLE_TTY_AND_MULTIPLEXED_REBOOT_CHANNEL_UNSUITABLE_FOR_RESTRICTED_KEY"
+      ]
+    },
+    {
+      "attempt": 2,
+      "accepted": true,
+      "result": "PASS",
+      "remediations": [
+        "FIXED_STACK_RESTART_POLICY_ALWAYS",
+        "ENABLED_PODMAN_RESTART_SERVICE",
+        "ENSURED_PACKAGE_COMPOSE_PROJECT_RUNNING",
+        "DISABLED_TTY_AND_SSH_MULTIPLEXING_FOR_RESTRICTED_REBOOT_PATH"
+      ]
+    }
+  ],
+  "source_artifacts": [
+    {
+      "path": "ansible/playbooks/zt-vis-002-live-validation.yml",
+      "sha256": "eb5e60b2fe3dd71ab89108edf530be21cb3a78b0bbd630eb8961146ca4823a63"
+    },
+    {
+      "path": "tools/live-validation/remote/validate-zt-vis-002-runtime.sh.example",
+      "sha256": "e8d2f194056a59ee71167c4ab8b32b07c0eace21c9aecd1db8a3563c98d962da"
+    },
+    {
+      "path": "tools/live-validation/validate_zt_vis_002_mtls.py",
+      "sha256": "d32bb65e1b5e5b191f4a4e1528c9ff89a71e75502a519815c374eba6604eecda"
+    },
+    {
+      "path": "ansible/roles/zt_vis_002/templates/compose.yaml.j2",
+      "sha256": "cc3ab5790fb110347bbeb3c0cf70c363b5a121ae945355e4d814811be78d938e"
+    },
+    {
+      "path": "ansible/roles/zt_vis_002/tasks/main.yml",
+      "sha256": "871f9d710bc3064b02b8bb6906ccacde6ee39e68c90dd19de2f49ea6d9c446a4"
+    }
+  ],
+  "external_raw_log": {
+    "tracked": false,
+    "sha256": "89b3e12f4c3f5c979adfd6dd0cb179fdbb1be99a3708fc51b227f190a9901f4f",
+    "size_bytes": 30357,
+    "secret_pattern_scan": "PASS"
+  },
+  "infrastructure": {
+    "terraform_resource_count": 4,
+    "instance_status": "ACTIVE",
+    "port_status": "ACTIVE",
+    "volume_status": "IN_USE",
+    "floating_ip_count": 0,
+    "running_component_count": 5,
+    "fixed_image_count": 5,
+    "dedicated_mount": "EXT4_NODEV_NOSUID_PASS",
+    "public_endpoint_created": false
+  },
+  "acceptance_cases": [
+    {"case_type": "POSITIVE", "result": "PASS"},
+    {"case_type": "NEGATIVE", "result": "PASS"},
+    {"case_type": "BYPASS", "result": "PASS"},
+    {"case_type": "PERSISTENCE", "result": "PASS"},
+    {"case_type": "ROLLBACK", "result": "PASS"},
+    {"case_type": "EVIDENCE_INTEGRITY", "result": "PASS"},
+    {"case_type": "RECOVERY", "result": "PASS"}
+  ],
+  "integrity": {
+    "configuration_sha256": "f15348263827bb5235c7b517ffdc88fe0b9be0a9ead8ccd5453cd573314eac06",
+    "baseline_positive_hash_match": "PASS",
+    "persistence_hash_match": "PASS",
+    "rollback_preservation_hash_match": "PASS",
+    "recovery_hash_match": "PASS",
+    "synthetic_record_count": 1,
+    "forbidden_field_scan": "PASS"
+  },
+  "cleanup": {
+    "target_temporary_key_removed": true,
+    "target_validator_removed": true,
+    "target_synthetic_input_removed": true,
+    "aio_forced_proxy_removed": true,
+    "aio_sudoers_rule_removed": true,
+    "controller_private_keys_removed": true,
+    "controller_temporary_inventory_removed": true,
+    "protected_state_preserved": true,
+    "protected_pki_preserved": true,
+    "protected_oci_archives_preserved": true,
+    "external_raw_log_preserved": true
+  },
+  "package_boundary": {
+    "package_runtime_promoted": false,
+    "central_monitoring_completed": false,
+    "full_cinder_snapshot_restore_executed": false,
+    "scheduled_or_continuous_validation": false,
+    "maturity_assessed": false,
+    "compliance_assessed": false,
+    "production_readiness_claimed": false
+  },
+  "decision": "LIVE_VALIDATOR_EXECUTED_STATUS_PROMOTION_PENDING",
+  "explicitly_not_claimed": [
+    "authoritative ZT-VIS-002 package status promotion",
+    "full Cinder snapshot rebuild and reattachment restore",
+    "central monitoring completion",
+    "scheduled or continuous validation",
+    "maturity, compliance, certification, or production readiness"
+  ]
+}

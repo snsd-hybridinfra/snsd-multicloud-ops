@@ -1,0 +1,26 @@
+{
+  "package_id": "ZT-SCH-001",
+  "schedule_id": "ZTSCH-DAILY-001",
+  "evidence_type": "SCHEDULE_DEFERRAL",
+  "captured_at": "2026-08-20T10:36:35.0041916Z",
+  "approval_reference": "USER_APPROVED_ZT_SCH_001_DISABLE_2026-08-20_DEFER_FINAL",
+  "operation": "DISABLE_AND_DEFER_TO_FINAL_PROJECT_GATE",
+  "task_state": "DISABLED",
+  "enabled": false,
+  "definition_status": "MATCHED",
+  "schedule_fingerprint": "15fc9daf36b5667d1a11b2175b438455e99ed70ee7f6b42a242904e7a3bfa283",
+  "runtime_evidence_preserved": true,
+  "task_deleted": false,
+  "live_validator_started": false,
+  "repository_mutation_performed": false,
+  "account_value_recorded": false,
+  "credential_stored": false,
+  "secret_findings": 0,
+  "privacy_findings": 0,
+  "result": "PASS_DISABLED_PRESERVED",
+  "limitations": [
+    "This record proves only that the matching task was disabled and preserved.",
+    "No scheduled runtime, EC5, maturity, compliance, certification, or Phase 1 completion is established.",
+    "Re-enabling or replacing the task requires separate explicit approval at the final project gate."
+  ]
+}

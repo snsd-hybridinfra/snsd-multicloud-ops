@@ -110,6 +110,12 @@ class ZtCv001Tests(unittest.TestCase):
         h={"executions":[old,current]}
         findings=regression_results(h,self.fresh(h))
         self.assertFalse(any(item["type"]=="EVIDENCE_FRESHNESS_REGRESSION" for item in findings),findings)
+    def test_future_record_is_not_current_at_historical_assessment(self):
+        current=self.record(); future=copy.deepcopy(current)
+        future["execution_id"]="FUTURE"; future["execution_date"]="2099-01-01T00:00:00Z"
+        h={"executions":[current,future]}
+        findings=regression_results(h,self.fresh(h))
+        self.assertFalse(any(item["execution_id"]=="FUTURE" and item["type"]=="EVIDENCE_FRESHNESS_REGRESSION" for item in findings),findings)
     def test_foundation_wrapper_preserves_known_openstack_degraded_as_warning(self):
         text=(ROOT/"tools/live-validation/run-foundation-validation.ps1").read_text(encoding="utf-8")
         self.assertIn("CURRENT_DEGRADED_46_PASS_0_WARN_4_FAIL",text)

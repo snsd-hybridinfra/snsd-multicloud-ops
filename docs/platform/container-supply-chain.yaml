@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "status": {
+    "design": "LOCAL_VALIDATED",
+    "implementation": "PARTIALLY_IMPLEMENTED_LOCAL",
+    "registry_publish": "NOT_VALIDATED",
+    "gitops_promotion": "NOT_VALIDATED",
+    "k3s_installation": "NOT_VALIDATED"
+  },
+  "authority": {
+    "decision": "docs/adr/0023-container-image-supply-chain-and-k3s-delivery.md",
+    "lock": "applications/internal-iaas-portal/supply-chain/container-supply-chain-lock.json",
+    "validator": "tools/validate_container_supply_chain.py",
+    "pipeline": "applications/internal-iaas-portal/supply-chain/container_pipeline.py",
+    "workflow": ".github/workflows/idp-container-supply-chain.yml",
+    "runner_requirements": "applications/internal-iaas-portal/supply-chain/runner-requirements.json",
+    "runner_provisioner": "tools/local-vm/New-IdpSupplyChainRunnerVm.ps1",
+    "runner_bundle_schema": "schemas/idp-runner-bundle-manifest.schema.json",
+    "runner_bundle_builder": "tools/supply-chain/Build-IdpSupplyChainRunnerBundle.ps1",
+    "runner_bundle_source_lock": "applications/internal-iaas-portal/supply-chain/runner-bundle-source-lock.json",
+    "runtime_readiness": "docs/platform/container-supply-chain-runtime-readiness.yaml"
+  },
+  "flow": [
+    "REVIEWED_SOURCE_COMMIT",
+    "TEST_AND_POLICY_GATE",
+    "DIGEST_PINNED_BASE_IMAGES",
+    "BUILDKIT_SBOM_AND_PROVENANCE",
+    "VULNERABILITY_GATE",
+    "IMMUTABLE_REGISTRY_PUSH",
+    "SIGNATURE_AND_ATTESTATION_VERIFY",
+    "IMMUTABLE_RESOLVED_RELEASE",
+    "PROTECTED_PUBLISH_APPROVAL",
+    "REVIEWED_GITOPS_PROMOTION_PR",
+    "ARGOCD_DIGEST_ONLY_RECONCILIATION",
+    "SYNC_HEALTH_VERIFY_OR_GIT_REVERT"
+  ],
+  "separation": {
+    "terraform_role": "PROVISION_OPENSTACK_AND_K3S_SERVICE_PLANE",
+    "container_role": "BUILD_VERIFY_PROMOTE_AND_INSTALL_IDP_WORKLOADS",
+    "ci_direct_cluster_mutation": false,
+    "ci_kubeconfig": false,
+    "promotion_requires_pull_request": true,
+    "mutable_tag_install": false,
+    "partial_release": false
+  },
+  "runtime_inputs": {
+    "base_images": "EXTERNAL_APPROVED_DIGEST_REFERENCES_REQUIRED",
+    "registry": "EXTERNAL_APPROVED_PRIVATE_REGISTRY_REQUIRED",
+    "workload_identity": "EXTERNAL_SHORT_LIVED_IDENTITY_REQUIRED",
+    "toolchain": "HARDENED_RUNNER_WITH_APPROVED_DIGESTS_REQUIRED",
+    "git_push_identity": "SHORT_LIVED_GITHUB_TOKEN_REQUIRED",
+    "argocd_destination": "EXTERNAL_PLATFORM_BOOTSTRAP_REQUIRED",
+    "promotion_merge": "SEPARATE_REVIEW_REQUIRED"
+  },
+  "prohibited": [
+    "LATEST_OR_MUTABLE_TAG",
+    "ZERO_DIGEST",
+    "UNPINNED_BASE_IMAGE",
+    "UNAPPROVED_REGISTRY",
+    "UNSIGNED_IMAGE",
+    "MISSING_SBOM_OR_PROVENANCE",
+    "HIGH_OR_CRITICAL_VULNERABILITY",
+    "CI_STORED_LONG_LIVED_CREDENTIAL",
+    "CI_DIRECT_KUBECTL_APPLY",
+    "DIRECT_USER_KUBERNETES_MANIFEST",
+    "RAW_SCAN_OR_CREDENTIAL_ARTIFACT_IN_GIT"
+  ]
+}

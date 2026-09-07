@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "observed_date": "2026-09-07",
+  "source": "READ_ONLY_LOCAL_AND_GITHUB_API_DISCOVERY",
+  "status": "BLOCKED_EXTERNAL_INPUTS",
+  "runtime_claim": "NOT_VALIDATED",
+  "authorities": {
+    "design": "docs/platform/container-supply-chain.yaml",
+    "runner_contract": "applications/internal-iaas-portal/supply-chain/runner-requirements.json",
+    "workflow": ".github/workflows/idp-container-supply-chain.yml"
+  },
+  "github": {
+    "self_hosted_runners_total": 0,
+    "matching_online_runner_count": 0,
+    "protected_environment": "ABSENT",
+    "required_action_variables_present": 0,
+    "required_action_variables_total": 13,
+    "workflow_published": false
+  },
+  "local_development_host": {
+    "role": "NON_TARGET_DISCOVERY_HOST",
+    "docker_cli": "PRESENT",
+    "buildx": "PRESENT",
+    "docker_engine": "UNAVAILABLE",
+    "trivy": "MISSING",
+    "syft": "MISSING",
+    "cosign": "MISSING",
+    "kubernetes_context": "UNSET"
+  },
+  "local_runner_preparation": {
+    "provisioner": "LOCAL_VALIDATED",
+    "bundle_manifest_schema": "LOCAL_VALIDATED",
+    "reviewed_ubuntu_image": "SHA256_VERIFIED_PRESENT",
+    "dedicated_vm_target": "ABSENT",
+    "reviewed_runner_bundle": "NOT_PREPARED",
+    "dedicated_dispatch_key": "NOT_PREPARED"
+  },
+  "external_blockers": [
+    "HARDENED_EPHEMERAL_LINUX_RUNNER",
+    "APPROVED_PRIVATE_REGISTRY_AND_WORKLOAD_IDENTITY",
+    "DIGEST_PINNED_BASE_IMAGES",
+    "DIGEST_APPROVED_BUILD_SCAN_SIGN_TOOLCHAIN",
+    "GITHUB_PROTECTED_PUBLISH_ENVIRONMENT",
+    "GITHUB_ACTION_VARIABLES",
+    "ARGOCD_BOOTSTRAP_ON_APPROVED_K3S"
+  ],
+  "next_runtime_sequence": [
+    "PREPARE_AND_REVIEW_PINNED_RUNNER_BUNDLE",
+    "PROVISION_RUNNER",
+    "VERIFY_TOOL_AND_BASE_IMAGE_DIGESTS",
+    "CONFIGURE_REGISTRY_WORKLOAD_IDENTITY",
+    "CREATE_PROTECTED_GITHUB_ENVIRONMENT_AND_VARIABLES",
+    "BOOTSTRAP_ARGOCD_APPLICATION",
+    "PUBLISH_SIGN_AND_CREATE_PROMOTION_PR",
+    "REVIEW_AND_MERGE_PROMOTION",
+    "COLLECT_SANITIZED_ARGO_SYNC_HEALTH_EVIDENCE"
+  ],
+  "status_credit": {
+    "registry_publish": false,
+    "gitops_promotion": false,
+    "k3s_installation": false,
+    "hybrid_cloud_operation": false,
+    "zero_trust_package_promotion": false
+  }
+}

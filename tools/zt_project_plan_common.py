@@ -20,8 +20,9 @@ PROJECT_TITLE_KO = "제로트러스트 가이드라인 2.0 기반 멀티클라�
 PROJECT_TITLE_EN = "Implementation of Multi-Cloud Security Controls and Automated Technical Vulnerability Validation Based on Zero Trust Guideline 2.0"
 PORTFOLIO_TITLE = "증적 기반 제로트러스트 멀티클라우드 보안 운영 플랫폼"
 PHASE_ORDER = [f"PHASE_{number}" for number in range(6)]
-PACKAGE_SEQUENCE = ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001", "ZT-CV-001", "ZT-RV-001", "ZT-SCH-001", "P1-ACC-001"]
-TECHNICAL_PACKAGE_IDS = PACKAGE_SEQUENCE[:-1] + ["ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001"]
+PACKAGE_SEQUENCE = ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001", "ZT-CV-001", "ZT-RV-001", "P1-ACC-001"]
+TECHNICAL_PACKAGE_IDS = PACKAGE_SEQUENCE[:-1] + ["ZT-SCH-001", "ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001"]
+ACCEPTANCE_PACKAGE_IDS = TECHNICAL_PACKAGE_IDS + ["ZT-VIS-002"]
 CASE_TYPES = ["positive", "negative", "bypass", "persistence", "rollback", "evidence_integrity"]
 KISA_SHA256 = "44fe393981b244147be6af7423d99dc15633c089fad0bcb296cbe2371dde812d"
 
@@ -186,10 +187,12 @@ def validate_roadmap(root: Path, result: Result) -> None:
     phase_states = {phase["id"]: phase["current_status"] for phase in phases}
     if phase_states.get("PHASE_0") != "COMPLETED":
         result.fail("roadmap.claim", "Phase 0 must be COMPLETED after P0-ACC-001 approval.")
-    if phase_states.get("PHASE_1") != "NOT_COMPLETE":
-        result.fail("roadmap.claim", "Phase 1 must remain NOT_COMPLETE until its independent acceptance decision.")
-    if any(phase["id"] in {"PHASE_2", "PHASE_3", "PHASE_4", "PHASE_5"} and phase["current_status"] != "NOT_STARTED" for phase in phases):
-        result.fail("roadmap.claim", "Future implementation phases must remain NOT_STARTED.")
+    if phase_states.get("PHASE_1") != "COMPLETED_WITH_GAPS":
+        result.fail("roadmap.claim", "Phase 1 must be COMPLETED_WITH_GAPS under the reviewed RV freshness exception.")
+    if phase_states.get("PHASE_2") != "IN_PROGRESS":
+        result.fail("roadmap.claim", "Phase 2 must remain IN_PROGRESS while bounded P2-VIS-001 partial runtime gaps are open.")
+    if any(phase["id"] in {"PHASE_3", "PHASE_4", "PHASE_5"} and phase["current_status"] != "NOT_STARTED" for phase in phases):
+        result.fail("roadmap.claim", "Phases 3 through 5 must remain NOT_STARTED.")
     markdown = (root / "docs/zero-trust/final-roadmap.md").read_text(encoding="utf-8")
     for token in ("Phase 0", "Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 5", "L4_OPTIMAL", "ROADMAP_ONLY"):
         if token not in markdown:
@@ -219,14 +222,15 @@ def validate_dependency_data(data: dict[str, Any], result: Result) -> None:
 
     required_dependencies = {
         "P1-RV-001": {"P1-CV-001"},
-        "P1-SCH-001": {"P1-RV-001"},
-        "P1-ACC-001": {"P1-SCH-001"},
+        "P1-ACC-001": {"P1-RV-001"},
         "P2-OIDC-001": {"P2-ID-001"},
         "P2-RBAC-001": {"P2-OIDC-001"},
         "P2-CV-001": {"P2-ID-001", "P2-VIS-001"},
         "P3-CV-001": {"P3-ASSET-001"},
         "P4-DRIFT-001": {"P4-PAC-001"},
         "P5-MAT-001": {"P5-METRIC-001"},
+        "P1-SCH-001": {"P5-DEMO-001"},
+        "P5-ACC-001": {"P1-SCH-001"},
     }
     for action_id, required in required_dependencies.items():
         missing = required - set(actions.get(action_id, {}).get("dependencies", []))
@@ -258,13 +262,16 @@ def validate_execution_plan(root: Path, result: Result, dependencies_only: bool 
     completed = {item["action_id"] for item in data["actions"] if item["current_status"] == "COMPLETED"}
     expected_completed = {
         "ZT-SCN-RETIRE-001", "ZT-GOV-MAP-001", "P0-ACC-001",
-        "P1-ID-ENF-001-RETRY", "P1-NET-CLOSE", "P1-VIS-CLOSE", "P1-CV-001", "P1-RV-001",
+        "P1-ID-ENF-001-RETRY", "P1-NET-CLOSE", "P1-VIS-CLOSE", "P1-CV-001", "P1-RV-001", "P1-ACC-001",
     }
     if completed != expected_completed:
         result.fail("execution.current-state", f"Evidence-backed completed actions must be {sorted(expected_completed)}, got {sorted(completed)}")
     in_progress = {item["action_id"] for item in data["actions"] if item["current_status"] == "IN_PROGRESS"}
-    if in_progress != {"P1-SCH-001"}:
-        result.fail("execution.current-state", f"Only separately approved P1-SCH-001 may be in progress, got {sorted(in_progress)}")
+    if in_progress != {"P2-VIS-001"}:
+        result.fail("execution.current-state", f"P2-VIS-001 must be the only in-progress Phase 2 action, got {sorted(in_progress)}")
+    blocked = {item["action_id"] for item in data["actions"] if item["current_status"] == "BLOCKED"}
+    if blocked:
+        result.fail("execution.current-state", f"No action may remain BLOCKED after the reviewed Phase 1 exception, got {sorted(blocked)}")
     plan_ids = [item["action_id"] for item in data["actions"]]
     roadmap = load(root / AUTHORITIES["roadmap"][0])
     roadmap_ids = [action for phase in roadmap["phases"] for action in phase["actions"]]
@@ -294,10 +301,10 @@ def validate_milestones(root: Path, result: Result) -> None:
         unknown = set(item["required_actions"]) - plan_ids
         if unknown:
             result.fail("milestones.actions", f"{item['milestone_id']}: unknown actions {sorted(unknown)}")
-        expected_decision = "APPROVED" if item["milestone_id"] in {"M0", "M1"} else "PENDING"
+        expected_decision = "APPROVED" if item["milestone_id"] in {"M0", "M1", "M2"} else "PENDING"
         if item["approval_decision"] != expected_decision:
             result.fail("milestones.claim", f"{item['milestone_id']} must be {expected_decision} at the accepted Phase 0 baseline")
-        if item["milestone_id"] in {"M0", "M1"} and item["blocking_gaps"]:
+        if item["milestone_id"] in {"M0", "M1", "M2"} and item["blocking_gaps"]:
             result.fail("milestones.claim", f"{item['milestone_id']} cannot retain blocking gaps after approval.")
     markdown = (root / "docs/zero-trust/milestones-and-gates.md").read_text(encoding="utf-8")
     for milestone_id in data["milestone_order"]:
@@ -307,8 +314,10 @@ def validate_milestones(root: Path, result: Result) -> None:
         result.fail("milestones.sync", "Markdown must show M0 as APPROVED.")
     if "| M1 | Core identity, network and local visibility validated | APPROVED |" not in markdown:
         result.fail("milestones.sync", "Markdown must show M1 as APPROVED.")
+    if "| M2 | CV and historical repeatability accepted with a scoped RV freshness exception | APPROVED |" not in markdown:
+        result.fail("milestones.sync", "Markdown must show M2 as APPROVED with the scoped freshness exception.")
     if not any(item.level == "FAIL" and item.category.startswith("milestones.") for item in result.findings):
-        result.passed("milestones", "M0 and bounded core-control M1 are approved; M2-M6 remain pending evidence-based approval.")
+        result.passed("milestones", "M0-M2 are approved, with M2 bounded by the RV freshness exception; M3-M6 remain pending evidence-based approval.")
 
 
 def validate_risk_register(root: Path, result: Result) -> None:
@@ -390,7 +399,7 @@ def validate_kisa_mapping(root: Path, result: Result) -> None:
     if actual_titles != expected_titles:
         result.fail("kisa.title", "Mapping project titles differ from the official project definition.")
     if data["package_flow"]["sequence"] != PACKAGE_SEQUENCE[:-1] or data["package_flow"]["terminal"] != "P1-ACC-001" or data["package_flow"]["architecture_authority"] != "ZT-ARC-001":
-        result.fail("kisa.flow", "Mapping package flow must be ZT-FND-001 through ZT-SCH-001 with surrounding ZT-ARC-001 and P1-ACC-001 terminal.")
+        result.fail("kisa.flow", "Mapping package flow must be ZT-FND-001 through ZT-RV-001 with surrounding ZT-ARC-001 and P1-ACC-001 terminal.")
     layer_ids = [item["layer_id"] for item in data["framework_layers"]]
     if layer_ids != ["LAYER_1_ZERO_TRUST", "LAYER_2_KISA_REFERENCE", "LAYER_3_IMPLEMENTATION_PACKAGE", "LAYER_4_AUTOMATED_VALIDATION"]:
         result.fail("kisa.layers", "Four-layer authority order is invalid.")
@@ -482,8 +491,8 @@ def validate_acceptance_cases(root: Path, result: Result) -> None:
     if data is None:
         return
     packages = [item["package_id"] for item in data["packages"]]
-    if packages != TECHNICAL_PACKAGE_IDS:
-        result.fail("acceptance.packages", "Acceptance package order must cover all twelve technical packages.")
+    if packages != ACCEPTANCE_PACKAGE_IDS:
+        result.fail("acceptance.packages", "Acceptance package order must cover the twelve preserved packages and ZT-VIS-002.")
     case_ids: list[str] = []
     for package in data["packages"]:
         for case_type in CASE_TYPES:
@@ -523,6 +532,9 @@ def validate_status_truth(root: Path, result: Result) -> None:
         for field in ("implementation_status", "local_validation_status", "runtime_validation_status", "runtime_acceptance_status", "maturity_status"):
             if status[field] != flow_record[field]:
                 result.fail("status.preservation", f"{package_id}: {field} differs from package flow")
+    schedule = records["ZT-SCH-001"]
+    if schedule["planning_status"] != "DEFERRED_FINAL" or schedule["implementation_status"] != "IMPLEMENTED" or schedule["local_validation_status"] != "LOCAL_VALIDATED" or schedule["runtime_validation_status"] != "NOT_VALIDATED" or schedule["runtime_acceptance_status"] != "PENDING":
+        result.fail("status.schedule", "ZT-SCH-001 must remain implemented, locally validated, runtime-pending, and deferred to the final gate.")
     expected_extended = {
         "ZT-DEV-001": ("IMPLEMENTED", "PARTIALLY_RUNTIME_VALIDATED"),
         "ZT-APP-001": ("IMPLEMENTED", "PARTIALLY_RUNTIME_VALIDATED"),
@@ -538,6 +550,22 @@ def validate_status_truth(root: Path, result: Result) -> None:
         snapshot = records[package_id]
         if (snapshot["implementation_status"], snapshot["runtime_validation_status"]) != (expected[0], "PARTIALLY_VALIDATED"):
             result.fail("status.extended", f"{package_id}: snapshot does not preserve partial runtime status")
+    phase2_visibility = load(root / "docs/zero-trust/packages/zt-vis-002-package.yaml")
+    phase2_visibility_snapshot = records.get("ZT-VIS-002", {})
+    expected_phase2_visibility = (
+        "PARTIALLY_IMPLEMENTED", "LOCAL_VALIDATED", "PARTIALLY_VALIDATED",
+        "PARTIALLY_ACCEPTED", "PARTIAL_RUNTIME_RECORDED", "UNASSESSED",
+    )
+    actual_phase2_visibility = tuple(phase2_visibility.get(field) for field in (
+        "implementation_status", "local_validation_status", "runtime_validation_status",
+        "runtime_acceptance_status", "evidence_status", "maturity_status",
+    ))
+    snapshot_phase2_visibility = tuple(phase2_visibility_snapshot.get(field) for field in (
+        "implementation_status", "local_validation_status", "runtime_validation_status",
+        "runtime_acceptance_status", "evidence_status", "maturity_status",
+    ))
+    if actual_phase2_visibility != expected_phase2_visibility or snapshot_phase2_visibility != expected_phase2_visibility:
+        result.fail("status.phase2_visibility", "ZT-VIS-002 package and status snapshot must preserve the bounded partial runtime promotion")
     if any(record["maturity_status"] != "UNASSESSED" or record["compliance_status"] != "NOT_ASSESSED" for record in records.values()):
         result.fail("status.claim", "Planning action must leave every package maturity UNASSESSED and compliance NOT_ASSESSED.")
     tracked = subprocess.run(["git", "ls-files", ".runtime"], cwd=root, capture_output=True, text=True, encoding="utf-8", errors="replace")

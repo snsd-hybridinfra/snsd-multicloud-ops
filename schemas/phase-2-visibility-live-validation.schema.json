@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ZT-VIS-002 sanitized live validation evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "package_id", "action_id", "observed_started_at", "observed_completed_at", "environment", "evidence_authority", "evidence_continuity", "sanitization_status", "authorization", "execution_attempts", "source_artifacts", "external_raw_log", "infrastructure", "acceptance_cases", "integrity", "cleanup", "package_boundary", "decision", "explicitly_not_claimed"],
+  "properties": {
+    "evidence_id": {"const": "ZT-VIS-002-LIVE-VALIDATION-20260824"},
+    "package_id": {"const": "ZT-VIS-002"},
+    "action_id": {"const": "P2-VIS-001"},
+    "observed_started_at": {"type": "string", "format": "date-time"},
+    "observed_completed_at": {"type": "string", "format": "date-time"},
+    "environment": {"const": "NON_PRODUCTION_SINGLE_NODE_OPENSTACK_LAB"},
+    "evidence_authority": {"const": "CODEX_EXECUTED_LIVE_RUNTIME"},
+    "evidence_continuity": {"const": "EC3_ONE_TIME_RUNTIME"},
+    "sanitization_status": {"const": "PASS"},
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["live_validator_authorized", "target_restart_authorized", "stack_rollback_authorized", "stack_recovery_authorized", "package_status_promotion_authorized"],
+      "properties": {
+        "live_validator_authorized": {"const": true},
+        "target_restart_authorized": {"const": true},
+        "stack_rollback_authorized": {"const": true},
+        "stack_recovery_authorized": {"const": true},
+        "package_status_promotion_authorized": {"const": false}
+      }
+    },
+    "execution_attempts": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["attempt", "accepted", "result", "findings"],
+          "properties": {
+            "attempt": {"const": 1},
+            "accepted": {"const": false},
+            "result": {"const": "FAILED_REBOOT_CONTROL_CHANNEL_REMEDIATED"},
+            "findings": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["attempt", "accepted", "result", "remediations"],
+          "properties": {
+            "attempt": {"const": 2},
+            "accepted": {"const": true},
+            "result": {"const": "PASS"},
+            "remediations": {"type": "array", "minItems": 4, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+          }
+        }
+      ],
+      "items": false
+    },
+    "source_artifacts": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "external_raw_log": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tracked", "sha256", "size_bytes", "secret_pattern_scan"],
+      "properties": {
+        "tracked": {"const": false},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "size_bytes": {"const": 30357},
+        "secret_pattern_scan": {"const": "PASS"}
+      }
+    },
+    "infrastructure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["terraform_resource_count", "instance_status", "port_status", "volume_status", "floating_ip_count", "running_component_count", "fixed_image_count", "dedicated_mount", "public_endpoint_created"],
+      "properties": {
+        "terraform_resource_count": {"const": 4},
+        "instance_status": {"const": "ACTIVE"},
+        "port_status": {"const": "ACTIVE"},
+        "volume_status": {"const": "IN_USE"},
+        "floating_ip_count": {"const": 0},
+        "running_component_count": {"const": 5},
+        "fixed_image_count": {"const": 5},
+        "dedicated_mount": {"const": "EXT4_NODEV_NOSUID_PASS"},
+        "public_endpoint_created": {"const": false}
+      }
+    },
+    "acceptance_cases": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case_type", "result"],
+        "properties": {
+          "case_type": {"enum": ["POSITIVE", "NEGATIVE", "BYPASS", "PERSISTENCE", "ROLLBACK", "EVIDENCE_INTEGRITY", "RECOVERY"]},
+          "result": {"const": "PASS"}
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["configuration_sha256", "baseline_positive_hash_match", "persistence_hash_match", "rollback_preservation_hash_match", "recovery_hash_match", "synthetic_record_count", "forbidden_field_scan"],
+      "properties": {
+        "configuration_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "baseline_positive_hash_match": {"const": "PASS"},
+        "persistence_hash_match": {"const": "PASS"},
+        "rollback_preservation_hash_match": {"const": "PASS"},
+        "recovery_hash_match": {"const": "PASS"},
+        "synthetic_record_count": {"const": 1},
+        "forbidden_field_scan": {"const": "PASS"}
+      }
+    },
+    "cleanup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_temporary_key_removed", "target_validator_removed", "target_synthetic_input_removed", "aio_forced_proxy_removed", "aio_sudoers_rule_removed", "controller_private_keys_removed", "controller_temporary_inventory_removed", "protected_state_preserved", "protected_pki_preserved", "protected_oci_archives_preserved", "external_raw_log_preserved"],
+      "properties": {
+        "target_temporary_key_removed": {"const": true},
+        "target_validator_removed": {"const": true},
+        "target_synthetic_input_removed": {"const": true},
+        "aio_forced_proxy_removed": {"const": true},
+        "aio_sudoers_rule_removed": {"const": true},
+        "controller_private_keys_removed": {"const": true},
+        "controller_temporary_inventory_removed": {"const": true},
+        "protected_state_preserved": {"const": true},
+        "protected_pki_preserved": {"const": true},
+        "protected_oci_archives_preserved": {"const": true},
+        "external_raw_log_preserved": {"const": true}
+      }
+    },
+    "package_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package_runtime_promoted", "central_monitoring_completed", "full_cinder_snapshot_restore_executed", "scheduled_or_continuous_validation", "maturity_assessed", "compliance_assessed", "production_readiness_claimed"],
+      "properties": {
+        "package_runtime_promoted": {"const": false},
+        "central_monitoring_completed": {"const": false},
+        "full_cinder_snapshot_restore_executed": {"const": false},
+        "scheduled_or_continuous_validation": {"const": false},
+        "maturity_assessed": {"const": false},
+        "compliance_assessed": {"const": false},
+        "production_readiness_claimed": {"const": false}
+      }
+    },
+    "decision": {"const": "LIVE_VALIDATOR_EXECUTED_STATUS_PROMOTION_PENDING"},
+    "explicitly_not_claimed": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}

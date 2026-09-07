@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "status": {
+    "design": "LOCAL_VALIDATED",
+    "implementation": "PARTIALLY_IMPLEMENTED_LOCAL",
+    "runtime": "NOT_VALIDATED"
+  },
+  "authority": {
+    "decision": "docs/adr/0022-managed-terraform-supply-chain.md",
+    "lock": "applications/internal-iaas-portal/terraform/supply-chain-lock.json",
+    "runner": "applications/internal-iaas-portal/services/terraform-runner/terraform_runner/executor.py",
+    "validator": "applications/internal-iaas-portal/services/terraform-runner/terraform_runner/supply_chain.py"
+  },
+  "origin": {
+    "source_archive": "F:/2차프로젝트.zip",
+    "source_archive_sha256": "3cda17c993e17465676f607410a03f16d7ff0648a62ed403abea133950b4edb3e8",
+    "role": "SANITIZED_EVOLUTION_PROVENANCE_ONLY",
+    "direct_deployment": false,
+    "credentials_or_runtime_adopted": false
+  },
+  "customization": {
+    "terraform_core_forked": false,
+    "mode": "POLICY_WRAPPER_APPROVED_MODULES_AND_PLAN_GATE",
+    "user_hcl": false,
+    "user_module_source": false,
+    "user_provider_identifier": false,
+    "user_plan_file": false
+  },
+  "supply_chain_gates": [
+    "CATALOG_DIGEST",
+    "MODULE_IDENTITY_AND_DIGEST",
+    "TERRAFORM_CLI_VERSION_AND_DIGEST",
+    "PROVIDER_SOURCE_VERSION_AND_PACKAGE_DIGEST",
+    "FILESYSTEM_MIRROR_ONLY",
+    "SAVED_PLAN_JSON_RESOURCE_AND_ACTION_POLICY",
+    "APPLY_INSPECTED_PLAN_ONLY",
+    "POST_APPLY_STATE_POLICY",
+    "SANITIZED_ATTESTATION",
+    "REVERSE_ROLLBACK"
+  ],
+  "runtime_inputs": {
+    "terraform_binary": "EXTERNAL_PATH_AND_SHA256_REQUIRED",
+    "provider_package": "EXTERNAL_MIRROR_PATH_AND_SHA256_REQUIRED",
+    "credentials": "EXTERNAL_CLOUDS_YAML_ONLY",
+    "state": "EXTERNAL_PROTECTED_ROOT_ONLY",
+    "runtime_authorization": "SEPARATE_EXPLICIT_DECISION_REQUIRED"
+  },
+  "prohibited": [
+    "DIRECT_PROVIDER_REGISTRY_EGRESS",
+    "UNLOCKED_PROVIDER",
+    "UNAPPROVED_MODULE",
+    "ARBITRARY_HCL",
+    "PLAN_REPLACEMENT_AFTER_INSPECTION",
+    "UNINSPECTED_DESTROY",
+    "STATE_OR_PLAN_IN_GIT",
+    "SECRET_IN_ATTESTATION"
+  ]
+}

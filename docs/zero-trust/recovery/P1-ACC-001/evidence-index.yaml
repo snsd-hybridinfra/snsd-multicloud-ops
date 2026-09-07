@@ -1,0 +1,54 @@
+{
+  "action_id": "P1-ACC-001",
+  "index_date": "2026-08-20",
+  "scope": "PHASE_1_THROUGH_ZT_RV_001",
+  "entries": [
+    {
+      "package_id": "ZT-FND-001",
+      "decision_authority": "docs/zero-trust/packages/zt-fnd-001-package.yaml",
+      "evidence_authorities": ["docs/evidence/zero-trust/zt-fnd-001-validation.yaml"],
+      "recorded_acceptance": "BOUNDED_ACCEPTED",
+      "current_gate_result": "PASS"
+    },
+    {
+      "package_id": "ZT-NET-001",
+      "decision_authority": "docs/zero-trust/packages/zt-net-001-package.yaml",
+      "evidence_authorities": ["docs/evidence/zero-trust/zt-net-001-validation.yaml", "docs/zero-trust/recovery/P1-NET-CLOSE/validation-results.yaml"],
+      "recorded_acceptance": "ACCEPTED",
+      "current_gate_result": "PASS"
+    },
+    {
+      "package_id": "ZT-VIS-001",
+      "decision_authority": "docs/zero-trust/packages/zt-vis-001-package.yaml",
+      "evidence_authorities": ["docs/evidence/zero-trust/zt-vis-001-validation.yaml", "docs/zero-trust/recovery/P1-VIS-CLOSE/validation-results.yaml"],
+      "recorded_acceptance": "ACCEPTED",
+      "current_gate_result": "PASS"
+    },
+    {
+      "package_id": "ZT-ID-001",
+      "decision_authority": "docs/zero-trust/packages/zt-id-001-package.yaml",
+      "evidence_authorities": ["docs/evidence/zero-trust/zt-id-001-runtime-validation.yaml", "docs/zero-trust/recovery/P1-ID-ENF-001-RETRY/validation-results.yaml"],
+      "recorded_acceptance": "ACCEPTED",
+      "current_gate_result": "PASS"
+    },
+    {
+      "package_id": "ZT-CV-001",
+      "decision_authority": "docs/zero-trust/packages/zt-cv-001-package.yaml",
+      "evidence_authorities": ["docs/evidence/zero-trust/zt-cv-001-p1-cv-001-remediated-validation.yaml", "docs/zero-trust/recovery/P1-CV-001-REMEDIATION/validation-results.yaml"],
+      "recorded_acceptance": "PARTIALLY_ACCEPTED",
+      "current_gate_result": "PASS_WITH_OPEN_GAPS"
+    },
+    {
+      "package_id": "ZT-RV-001",
+      "decision_authority": "docs/zero-trust/packages/zt-rv-001-package.yaml",
+      "evidence_authorities": ["docs/evidence/zero-trust/zt-rv-001-run-01.sanitized.txt", "docs/evidence/zero-trust/zt-rv-001-run-02.sanitized.txt", "docs/evidence/zero-trust/zt-rv-001-run-03.sanitized.txt", "docs/zero-trust/verification-history.yaml"],
+      "recorded_acceptance": "REPEATABILITY_ACCEPTED",
+      "current_gate_result": "BLOCKED_STALE_EVIDENCE"
+    }
+  ],
+  "gap_authority": "docs/zero-trust/gap-register.md#zg-016",
+  "sanitization_status": "PASS",
+  "raw_runtime_included": false,
+  "secret_findings": 0,
+  "privacy_findings": 0
+}

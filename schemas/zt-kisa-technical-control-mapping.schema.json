@@ -51,7 +51,7 @@
       "required": ["architecture_authority", "sequence", "terminal", "status_authority"],
       "properties": {
         "architecture_authority": {"const": "ZT-ARC-001"},
-        "sequence": {"const": ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001", "ZT-CV-001", "ZT-RV-001", "ZT-SCH-001"]},
+        "sequence": {"const": ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001", "ZT-CV-001", "ZT-RV-001"]},
         "terminal": {"const": "P1-ACC-001"},
         "status_authority": {"const": "docs/zero-trust/package-status.yaml"}
       }

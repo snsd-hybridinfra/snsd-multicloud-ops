@@ -2,7 +2,11 @@
 
 ## Approved package gate
 
-`ZT-FND-001`, `ZT-NET-001`, and `ZT-VIS-001` are `IMPLEMENTED` / `VALIDATED` for their bounded package scopes. NET has one persistent directional ACL with accepted allow/deny and startup evidence. VIS retains the 164-event deterministic pipeline and now has accepted single-node persistent Grafana/Loki/Alloy storage for approved sanitized JSONL. `ZT-ID-001` is `PRESENT`, `IMPLEMENTED`, and `RUNTIME_VALIDATED`; runtime validation is `VALIDATED` and acceptance is `ACCEPTED` for one bounded non-production validator endpoint, while maturity remains `UNASSESSED`. `ZT-DEV-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for six classified aliases and one mandatory live monitoring VM; its reboot, scanner, broad-assessment, endpoint-agent, automation, and enforcement gaps remain explicit. `ZT-APP-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for two applications, four workloads, a partial direct-image SBOM, and one unchanged Alloy pilot; digest, signing, transitive scan, authorization, deployment, and maturity gaps remain explicit. `ZT-DATA-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for seven bounded assets, manual labels, detection-only DLP, and one isolated synthetic restore; platform encryption, live backup/restore, blocking DLP, continuous analysis, and maturity gaps remain explicit. `ZT-SYS-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for seven bounded systems, five safe matched configuration authorities, and existing fixed read-only runtime validators; OpenStack remains `CURRENT_DEGRADED` at 46/0/4, while complete PAM, credential lifecycle, continuous FIM, broad hardening, system recovery, and maturity remain open. `ZT-AUTO-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for eleven integrations, thirteen fixed actions, six workflows, default-deny policy, and one partial cross-domain read-only execution; arbitrary execution, R4-R8 mutation, external notification, response automation, repeatability, scheduling, and maturity remain open. Active `ZT-VIS-002` preparation traces remain protected Phase 2 enabling work and do not gain authority from ZT-VIS-001 acceptance.
+`ZT-FND-001`, `ZT-NET-001`, and `ZT-VIS-001` are `IMPLEMENTED` / `VALIDATED` for their bounded package scopes. NET has one persistent directional ACL with accepted allow/deny and startup evidence. VIS retains the 164-event deterministic pipeline and accepted single-node persistent Grafana/Loki/Alloy storage for approved sanitized JSONL. `ZT-ID-001` is `PRESENT`, `IMPLEMENTED`, and `RUNTIME_VALIDATED`; runtime validation is `VALIDATED` and acceptance is `ACCEPTED` for one bounded non-production validator endpoint, while maturity remains `UNASSESSED`. `ZT-DEV-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for six classified aliases and one mandatory live monitoring VM; its reboot, scanner, broad-assessment, endpoint-agent, automation, and enforcement gaps remain explicit. `ZT-APP-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for two applications, four workloads, a partial direct-image SBOM, and one unchanged non-critical Alloy pilot; digest, signing, transitive scan, authorization, deployment, and maturity gaps remain explicit. `ZT-DATA-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for seven bounded assets, manual labels, detection-only DLP, and one isolated synthetic restore; platform encryption, live backup/restore, blocking DLP, continuous analysis, and maturity gaps remain explicit. `ZT-SYS-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for seven bounded systems, five safe matched configuration authorities, and existing fixed read-only runtime validators; OpenStack remains `CURRENT_DEGRADED` at 46/0/4, while complete PAM, credential lifecycle, continuous FIM, broad hardening, system recovery, and maturity remain open. `ZT-AUTO-001` is `IMPLEMENTED` / `PARTIALLY_RUNTIME_VALIDATED` for eleven integrations, thirteen fixed actions, six workflows, default-deny policy, and one partial cross-domain read-only execution; arbitrary execution, R4-R8 mutation, external notification, response automation, repeatability, scheduling, and maturity remain open. `ZT-VIS-002` is `PARTIALLY_IMPLEMENTED / PARTIALLY_VALIDATED / PARTIALLY_ACCEPTED` for one bounded private non-production OpenStack monitoring VM; protected runtime traces remain non-authoritative and no ZT-VIS-001 runtime acceptance is inherited.
+
+P2-VIS-001 now includes the runtime-validated Cinder LVM prerequisite and the
+bounded five-component visibility deployment. Completion remains blocked by
+alert delivery, elapsed-retention behavior, and full Cinder snapshot restore.
 
 The capability queue below remains the dependency-planning authority. Explicit package approval does not promote any capability status or maturity.
 
@@ -87,12 +91,13 @@ The queue orders the 44 applicable capabilities by dependency readiness first, t
 
 The following are deliberately not implementation-queue items: ZT-1.3.1, ZT-1.3.2, ZT-2.3.2, ZT-2.4.1, ZT-6.1.2, ZT-6.5.1, ZT-7.2, and ZT-7.5. They require architecture/reference review rather than a lab implementation target.
 
-After bounded ZT-CV-001 acceptance, the active cohesive Phase 1 package is
-ZT-RV-001. It selects exactly ZT-4.1.1 / ZTCV-VAL-SYS / ZT-CV-WF-001 and
-requires three independent consecutive successes separated by PT24H. ZT-SCH-001
-became the next package only after REPEATABILITY_ACCEPTED / EC4. Its separately
-approved installation is now recorded; queue position alone still authorizes no
-maturity or EC5 promotion.
+After bounded ZT-CV-001 acceptance, ZT-RV-001 completed three independent
+successes separated by PT24H and retains its historical bounded EC4 decision.
+P1-ACC-001 is `ACCEPTED_WITH_GAPS` under `P1-RV-FRESHNESS-001`; Phase 2
+continues with P2-VIS-001 partial runtime work while the manual RV refresh remains
+mandatory final-gate work. ZT-SCH-001 remains installed and locally validated, but
+the task is disabled and the package is deferred to the final Phase 5 gate;
+queue position alone authorizes no runtime, maturity, or EC5 promotion.
 
 ## Queue use
 

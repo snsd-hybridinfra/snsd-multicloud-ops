@@ -254,6 +254,8 @@ SCHEDULED_VALIDATION_POLICY_PATH = Path("docs/zero-trust/scheduled-validation-po
 SCHEDULED_VALIDATION_SCHEMA_PATH = Path("schemas/zero-trust-scheduled-validation-policy.schema.json")
 SCHEDULED_VALIDATION_INSTALLATION_PATH = Path("docs/evidence/zero-trust/zt-sch-001-installation.sanitized.json")
 SCHEDULED_VALIDATION_INSTALLATION_SCHEMA_PATH = Path("schemas/zero-trust-scheduled-validation-installation.schema.json")
+SCHEDULED_VALIDATION_DEFERRAL_PATH = Path("docs/evidence/zero-trust/zt-sch-001-deferral.sanitized.json")
+SCHEDULED_VALIDATION_DEFERRAL_SCHEMA_PATH = Path("schemas/zero-trust-scheduled-validation-deferral.schema.json")
 SCHEDULED_VALIDATION_PACKAGE_PATH = Path("docs/zero-trust/packages/zt-sch-001-package.yaml")
 SCHEDULED_VALIDATION_REQUIRED_PATHS = (
     Path("docs/zero-trust/packages/zt-sch-001-scheduled-validation.md"),
@@ -2309,10 +2311,15 @@ def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], 
         result.fail(f"{category}.campaign", "RV campaign authority must retain exactly three accepted executions at bounded EC4.")
 
     records = [item for item in history.get("executions", []) if item.get("campaign_id") == "ZT-RV-001"]
-    if len(records) != 3:
-        result.fail(f"{category}.history", "Exactly three ZT-RV-001 campaign executions must be recorded for bounded EC4 acceptance.")
+    historical_ids = [
+        "ZTRV-20260728T082825Z-f22b1052",
+        "ZTRV-20260730T002834Z-ac20f30a",
+        "ZTRV-20260801T230020Z-daebf8ef",
+    ]
+    if len(records) < 3 or [item.get("execution_id") for item in records[:3]] != historical_ids:
+        result.fail(f"{category}.history", "The original three ZT-RV-001 EC4 acceptance records must remain first and unchanged.")
     else:
-        first, second, third = records
+        first, second, third = records[:3]
         if (
             first.get("execution_id") != "ZTRV-20260728T082825Z-f22b1052"
             or first.get("execution_date") != "2026-07-28T08:28:25.829099Z"
@@ -2357,6 +2364,63 @@ def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], 
         if third.get("evidence_hashes", {}).get(third_evidence) != "1b655b7077401fb0bb60fbfc28a162417e91dd225f8d27a77d8fa8e8a6bbc884":
             result.fail(f"{category}.history", "The third RV sanitized evidence hash differs.")
 
+        refresh_records = records[3:]
+        if len(refresh_records) > 3:
+            result.fail(f"{category}.history", "The bounded freshness refresh window cannot contain more than three reviewed records.")
+        previous_timestamp: dt.datetime | None = None
+        seen_refresh_ids: set[str] = set()
+        seen_refresh_fingerprints: set[str] = set()
+        for index, record in enumerate(refresh_records, start=1):
+            execution_id = record.get("execution_id")
+            execution_fingerprint = record.get("execution_fingerprint")
+            try:
+                timestamp = dt.datetime.fromisoformat(str(record.get("execution_date")).replace("Z", "+00:00"))
+            except ValueError:
+                result.fail(f"{category}.history", f"RV freshness refresh record {index} has an invalid execution timestamp.")
+                continue
+            if (
+                not isinstance(execution_id, str)
+                or execution_id in seen_refresh_ids
+                or not isinstance(execution_fingerprint, str)
+                or execution_fingerprint in seen_refresh_fingerprints
+            ):
+                result.fail(f"{category}.history", f"RV freshness refresh record {index} is not independently identifiable.")
+            seen_refresh_ids.add(str(execution_id))
+            seen_refresh_fingerprints.add(str(execution_fingerprint))
+            if (
+                record.get("plan_hash") != "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624"
+                or record.get("fail") != 0
+                or record.get("exit_code") != 0
+                or record.get("sanitization_status") != "PASS"
+                or record.get("scheduled_trigger") is not False
+                or record.get("scheduled_trigger_claim") is not False
+                or record.get("security_boundary", {}).get("status") != "PASS"
+                or record.get("approval_reference") is None
+            ):
+                result.fail(f"{category}.history", f"RV freshness refresh record {index} violates the reviewed manual read-only boundary.")
+            if record.get("warning_categories") != ["ENDPOINT_SCANNER_GAP", "CONFIGURATION_ONLY_RECORDS", "SERVICE_DEGRADED"]:
+                result.fail(f"{category}.history", f"RV freshness refresh record {index} changes the reviewed warning-category boundary.")
+            evidence_files = record.get("evidence_files", [])
+            sanitized_reference = record.get("sanitized_evidence_reference")
+            if (
+                len(evidence_files) != 1
+                or evidence_files[0] != sanitized_reference
+                or not str(sanitized_reference).startswith("docs/evidence/zero-trust/")
+            ):
+                result.fail(f"{category}.history", f"RV freshness refresh record {index} must reference one reviewed tracked sanitized evidence file.")
+            else:
+                evidence_path = root / str(sanitized_reference)
+                expected_hash = record.get("evidence_hashes", {}).get(sanitized_reference)
+                actual_hash = None
+                if evidence_path.is_file():
+                    normalized = evidence_path.read_bytes().replace(b"\r\n", b"\n")
+                    actual_hash = hashlib.sha256(normalized).hexdigest()
+                if actual_hash != expected_hash or record.get("sanitized_evidence_hash") != expected_hash:
+                    result.fail(f"{category}.history", f"RV freshness refresh record {index} sanitized evidence hash differs.")
+            if previous_timestamp is not None and timestamp - previous_timestamp < dt.timedelta(hours=24):
+                result.fail(f"{category}.history", f"RV freshness refresh record {index} violates the PT24H separation gate.")
+            previous_timestamp = timestamp
+
     for field in ("automatic_schedule", "automatic_retry", "automatic_remediation", "mutation_allowed", "history_auto_append", "authoritative_auto_update_performed", "maturity_assigned", "scheduled_operation", "continuous_operation", "phase_1_complete"):
         if package.get(field) is not False:
             result.fail(f"{category}.claims", f"{field} must remain false after bounded RV acceptance.")
@@ -2365,7 +2429,7 @@ def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], 
         if token not in runner:
             result.fail(f"{category}.runner", f"RV runner is missing required reviewed behavior: {token}.")
     if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
-        result.passed(category, "ZT-RV-001 is implemented, runtime validated, and accepted with three eligible independent executions at bounded EC4; schedule, EC5, maturity, and Phase 1 completion remain unclaimed.")
+        result.passed(category, "ZT-RV-001 preserves its historical three-run bounded EC4 decision and permits a separately reviewed manual freshness window; schedule, EC5, maturity, and automatic Phase 1 promotion remain unclaimed.")
     return
     required = (
         REPEATABLE_VALIDATION_CAMPAIGN_PATH, REPEATABILITY_ACCEPTANCE_POLICY_PATH,
@@ -2436,7 +2500,7 @@ def validate_repeatable_validation_package(root: Path, catalog: dict[str, Any], 
 
 def validate_scheduled_validation_preparation(root: Path, result: ValidationResult) -> None:
     category = "package.zt-sch-001"
-    required = (SCHEDULED_VALIDATION_POLICY_PATH, SCHEDULED_VALIDATION_SCHEMA_PATH, SCHEDULED_VALIDATION_INSTALLATION_PATH, SCHEDULED_VALIDATION_INSTALLATION_SCHEMA_PATH, SCHEDULED_VALIDATION_PACKAGE_PATH, *SCHEDULED_VALIDATION_REQUIRED_PATHS)
+    required = (SCHEDULED_VALIDATION_POLICY_PATH, SCHEDULED_VALIDATION_SCHEMA_PATH, SCHEDULED_VALIDATION_INSTALLATION_PATH, SCHEDULED_VALIDATION_INSTALLATION_SCHEMA_PATH, SCHEDULED_VALIDATION_DEFERRAL_PATH, SCHEDULED_VALIDATION_DEFERRAL_SCHEMA_PATH, SCHEDULED_VALIDATION_PACKAGE_PATH, *SCHEDULED_VALIDATION_REQUIRED_PATHS)
     missing = [str(path) for path in required if not (root / path).is_file()]
     if missing:
         for path in missing: result.fail(f"{category}.files", f"Required scheduled-validation preparation file is missing: {path}.")
@@ -2446,17 +2510,22 @@ def validate_scheduled_validation_preparation(root: Path, result: ValidationResu
         schema = load_schema(root / SCHEDULED_VALIDATION_SCHEMA_PATH)
         installation = load_json_yaml(root / SCHEDULED_VALIDATION_INSTALLATION_PATH)
         installation_schema = load_schema(root / SCHEDULED_VALIDATION_INSTALLATION_SCHEMA_PATH)
+        deferral = load_json_yaml(root / SCHEDULED_VALIDATION_DEFERRAL_PATH)
+        deferral_schema = load_schema(root / SCHEDULED_VALIDATION_DEFERRAL_SCHEMA_PATH)
         package = load_json_yaml(root / SCHEDULED_VALIDATION_PACKAGE_PATH)
     except ValueError as exc:
         result.fail(f"{category}.configuration", str(exc))
         return
     for error in validate_schema_instance(policy, schema): result.fail(f"{category}.schema", error)
     for error in validate_schema_instance(installation, installation_schema): result.fail(f"{category}.installation-schema", error)
+    for error in validate_schema_instance(deferral, deferral_schema): result.fail(f"{category}.deferral-schema", error)
     metadata, scheduler = policy.get("metadata", {}), policy.get("scheduler", {})
     trigger, controls, evidence = policy.get("trigger", {}), policy.get("runtime_controls", {}), policy.get("evidence", {})
     acceptance = policy.get("acceptance", {})
-    if metadata.get("preparation_status") != "INSTALLED" or package.get("implementation_status") != "IMPLEMENTED" or package.get("local_validation_status") != "LOCAL_VALIDATED" or package.get("schedule_installed") is not True or package.get("automated_execution") is not True:
+    if metadata.get("preparation_status") != "INSTALLED" or package.get("implementation_status") != "IMPLEMENTED" or package.get("local_validation_status") != "LOCAL_VALIDATED" or package.get("schedule_installed") is not True:
         result.fail(f"{category}.status", "Approved schedule installation and local configuration validation must remain synchronized.")
+    if package.get("phase") != "FINAL_PROJECT_TASK" or package.get("planning_status") != "DEFERRED_FINAL" or package.get("schedule_enabled") is not False or package.get("automated_execution") is not False:
+        result.fail(f"{category}.deferral", "ZT-SCH-001 must remain installed, disabled, and deferred to the final project gate.")
     if package.get("runtime_validation_status") != "NOT_VALIDATED" or package.get("runtime_acceptance_status") != "PENDING" or package.get("successful_scheduled_executions") != 0 or package.get("successful_distinct_scheduled_dates") != 0:
         result.fail(f"{category}.runtime", "Installation alone must retain zero scheduled executions and no runtime acceptance.")
     if scheduler.get("credential_storage") is not False or scheduler.get("installation_requires_explicit_approval") is not True or scheduler.get("logon_type") != "INTERACTIVE_TOKEN" or scheduler.get("run_level") != "LIMITED":
@@ -2473,6 +2542,8 @@ def validate_scheduled_validation_preparation(root: Path, result: ValidationResu
         result.fail(f"{category}.acceptance", "Installed schedule must retain EC4 and require three distinct reviewed scheduled dates for EC5.")
     if installation.get("result") != "PASS_CONFIGURATION" or installation.get("runtime_execution_performed") is not False or installation.get("current_continuity") != "EC4_REPEATABLE_RUNTIME" or installation.get("schedule_fingerprint") != package.get("schedule_fingerprint"):
         result.fail(f"{category}.installation", "Sanitized installation evidence must prove configuration only and match the package fingerprint.")
+    if deferral.get("result") != "PASS_DISABLED_PRESERVED" or deferral.get("enabled") is not False or deferral.get("task_deleted") is not False or deferral.get("runtime_evidence_preserved") is not True or deferral.get("schedule_fingerprint") != package.get("schedule_fingerprint"):
+        result.fail(f"{category}.deferral-evidence", "Sanitized deferral evidence must prove the matching task was disabled without deletion or evidence loss.")
     principal, installed_controls = installation.get("principal", {}), installation.get("runtime_controls", {})
     if principal.get("credential_stored") is not False or principal.get("account_value_recorded") is not False or installation.get("secret_findings") != 0 or installation.get("privacy_findings") != 0:
         result.fail(f"{category}.privacy", "Installation evidence contains a credential, account value, secret, or privacy finding.")
@@ -2485,7 +2556,7 @@ def validate_scheduled_validation_preparation(root: Path, result: ValidationResu
     for token in ("ONE_ATTEMPT_PER_LOCAL_DATE", "DUPLICATE_EXECUTION_BLOCKED", "terminate_tree", "PENDING_SCHEDULER_CORRELATION"):
         if token not in runner: result.fail(f"{category}.runner", f"Schedule runner is missing required behavior: {token}.")
     if not any(item.level == "FAIL" and item.category.startswith(category) for item in result.findings):
-        result.passed(category, "ZT-SCH-001 bounded daily task is installed and locally configuration-validated; no scheduled runtime, EC5, maturity, or Phase 1 completion is claimed.")
+        result.passed(category, "ZT-SCH-001 is installed, disabled, locally configuration-validated, and deferred to the final project gate; no scheduled runtime, EC5, maturity, or Phase 1 completion is claimed.")
 
 
 def run_validation(root: Path, strict: bool = False) -> ValidationResult:

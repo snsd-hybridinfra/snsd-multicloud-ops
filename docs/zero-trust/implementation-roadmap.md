@@ -9,10 +9,12 @@ phase nor a queue position promotes current state or maturity.
 
 ## Phase 1 - Foundation and Verification Operations
 
-Boundary: `ZT-SCH-001` (`IMPLEMENTED / LOCAL_VALIDATED / RUNTIME_NOT_VALIDATED`).
+Boundary: `ZT-RV-001` (`IMPLEMENTED / RUNTIME_VALIDATED / ACCEPTED_AT_BOUNDED_EC4`).
+P1-ACC-001 decision: `ACCEPTED_WITH_GAPS` under `P1-RV-FRESHNESS-001`.
+Deferred final risk: `STALE_RV_EVIDENCE`.
 
 Phase state: `PARTIAL` implementation / `PARTIALLY_VALIDATED` validation /
-`NOT_COMPLETE` completion. `ZT-ID-001` is `PRESENT`, `IMPLEMENTED`, and
+`COMPLETED_WITH_GAPS` completion. `ZT-ID-001` is `PRESENT`, `IMPLEMENTED`, and
 `RUNTIME_VALIDATED`; runtime validation is `VALIDATED` and acceptance is
 `ACCEPTED` for one `BOUNDED_NON_PRODUCTION_TARGET`. Maturity is `UNASSESSED`,
 and the Phase 2 centralized-identity dependency remains open. `ZT-DEV-001` is
@@ -32,7 +34,7 @@ platform encryption, key management, live backup/restore, blocking DLP,
 continuous analysis, and maturity remain open.
 
 The boundary covers restricted validation, evidence governance, automation
-safety, repeatable validation, and a scheduled-validation foundation. Actual
+safety, and repeatable validation. Actual
 completion evidence is separate: `ZT-FND-001`, `ZT-NET-001`, and
 `ZT-VIS-001` are validated for their bounded package scopes; `ZT-DEV-001` and
 `ZT-APP-001`, and `ZT-DATA-001` are partially runtime validated. The boundary identifier
@@ -43,12 +45,16 @@ at one-time EC3 boundaries. ZT-CV-001 is bounded `PARTIALLY_ACCEPTED` after the
 clean FND remediation and the 8/2/0 integrated cycle. `ZT-RV-001` is
 implemented, runtime validated, and accepted at bounded EC4 after three
 eligible independent executions with stable fingerprints and PT24H separation.
-`ZT-SCH-001` is installed with bounded catch-up and zero successful correlated
-scheduled dates, so Phase 1 remains not complete.
+`ZT-SCH-001` is installed and disabled with zero accepted scheduled dates. It
+is deferred to the final Phase 5 gate before P5-ACC-001 and is not a Phase 1
+predecessor. Fresh RV evidence remains a mandatory final-gate prerequisite,
+not a current EC4 freshness claim.
 
 ## Phase 2 - Centralized Identity and Visibility
 
-Phase state: `DESIGN_ONLY`. No Phase 2 package is promoted by this roadmap.
+Phase state: `IN_PROGRESS_PARTIAL_RUNTIME`. `P2-VIS-001` has one bounded EC3
+private OpenStack monitoring deployment and remains incomplete pending alert
+delivery, elapsed-retention, and full Cinder snapshot-restore validation.
 
 Primary use case: protect Grafana through centralized identity, OIDC, MFA,
 role mapping, explicit allow/deny behavior, and access-decision telemetry.
@@ -57,8 +63,10 @@ Monitoring is an enabling platform.
 Candidates: `ZT-USE-001`, `ZT-ID-002`, `ZT-APP-002`, `ZT-ACC-001`,
 `ZT-PEP-001`, `ZT-VIS-002`, and `ZT-EFF-001`. The existing queue's
 `ZT-ID-001` remains the approved bounded Phase 1 identity predecessor; `ZT-ID-002` is a later
-candidate, not a rename. Active `ZT-VIS-002` work under `.runtime` remains an
-unaccepted dependency until sanitized package evidence passes review.
+candidate, not a rename. `ZT-VIS-002` is `PARTIALLY_IMPLEMENTED /
+PARTIALLY_VALIDATED / PARTIALLY_ACCEPTED`; accepted authority comes only from
+its sanitized evidence and promotion decision. `.runtime` traces and the
+user-owned `platform/` tree remain protected non-authorities.
 
 Exit requires runtime-validated monitoring and identity stacks, OIDC, MFA,
 role mapping, allow and deny behavior, access-decision telemetry, and sanitized

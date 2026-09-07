@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "P2-VIS-001 bounded deployment evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "package_id", "action_id", "observed_at", "sanitization_status", "authorization", "terraform", "ansible", "validation_boundary", "decision", "excluded_data"],
+  "properties": {
+    "evidence_id": {"const": "ZT-VIS-002-BOUNDED-DEPLOYMENT-20260821"},
+    "package_id": {"const": "ZT-VIS-002"},
+    "action_id": {"const": "P2-VIS-001"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "sanitization_status": {"const": "PASS"},
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["terraform_apply_authorized", "ansible_deployment_authorized", "bounded_deployment_checks_authorized", "live_validator_authorized", "rollback_authorized", "package_status_promotion_authorized"],
+      "properties": {
+        "terraform_apply_authorized": {"const": true},
+        "ansible_deployment_authorized": {"const": true},
+        "bounded_deployment_checks_authorized": {"const": true},
+        "live_validator_authorized": {"const": false},
+        "rollback_authorized": {"const": false},
+        "package_status_promotion_authorized": {"const": false}
+      }
+    },
+    "terraform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["initial_plan_sha256", "initial_apply_result", "recovery_plan_sha256", "recovery_plan_review", "apply_result", "final_resource_count", "resource_types", "instance_status", "volume_status", "port_status", "state_storage", "state_file_mode", "tracked_state_created", "floating_ip_created", "public_endpoint_created", "restore_checkpoint"],
+      "properties": {
+        "initial_plan_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "initial_apply_result": {"const": "PARTIAL_FAILURE_INVALID_FLAVOR_REFERENCE"},
+        "recovery_plan_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "recovery_plan_review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["prior_resource_count", "create_count", "no_op_count", "destructive_action_count", "policy_decision"],
+          "properties": {
+            "prior_resource_count": {"const": 2},
+            "create_count": {"const": 2},
+            "no_op_count": {"const": 2},
+            "destructive_action_count": {"const": 0},
+            "policy_decision": {"const": "PASS"}
+          }
+        },
+        "apply_result": {"const": "PASS"},
+        "final_resource_count": {"const": 4},
+        "resource_types": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"enum": ["openstack_networking_port_v2", "openstack_compute_instance_v2", "openstack_blockstorage_volume_v3", "openstack_compute_volume_attach_v2"]}},
+        "instance_status": {"const": "ACTIVE"},
+        "volume_status": {"const": "IN_USE"},
+        "port_status": {"const": "ACTIVE"},
+        "state_storage": {"const": "EXTERNAL_CONTROL_NODE_PROTECTED_PATH"},
+        "state_file_mode": {"const": "0600"},
+        "tracked_state_created": {"const": false},
+        "floating_ip_created": {"const": false},
+        "public_endpoint_created": {"const": false},
+        "restore_checkpoint": {"const": "CREATED_BEFORE_ANSIBLE_DEPLOYMENT"}
+      }
+    },
+    "ansible": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["control_node", "host_bootstrap", "offline_host_packages", "offline_oci_archives_verified", "target_registry_access_used", "service_deployment", "components", "running_component_count", "component_health_endpoints", "dedicated_mount", "component_listener_scope", "proxy_listener_scope", "mtls_without_client", "mtls_with_approved_client", "temporary_access_cleanup", "repository_private_key_created", "raw_runtime_output_tracked"],
+      "properties": {
+        "control_node": {"const": "VMWARE_WORKSTATION_UBUNTU_24_04"},
+        "host_bootstrap": {"const": "PASS"},
+        "offline_host_packages": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": {"enum": ["podman", "podman-compose", "nginx"]}},
+        "offline_oci_archives_verified": {"const": 5},
+        "target_registry_access_used": {"const": false},
+        "service_deployment": {"const": "PASS"},
+        "components": {"type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true, "items": {"enum": ["Grafana", "Loki", "Alloy", "Prometheus", "Blackbox Exporter"]}},
+        "running_component_count": {"const": 5},
+        "component_health_endpoints": {"const": "PASS"},
+        "dedicated_mount": {"const": "EXT4_NODEV_NOSUID_PASS"},
+        "component_listener_scope": {"const": "LOOPBACK_ONLY_PASS"},
+        "proxy_listener_scope": {"const": "PRIVATE_ADDRESS_ONLY_PASS"},
+        "mtls_without_client": {"const": "REJECTED"},
+        "mtls_with_approved_client": {"const": "PASS"},
+        "temporary_access_cleanup": {"const": "PASS"},
+        "repository_private_key_created": {"const": false},
+        "raw_runtime_output_tracked": {"const": false}
+      }
+    },
+    "validation_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_scope", "runtime_executed", "protected_openstack_target_changed", "full_live_validator_executed", "positive_acceptance_case", "negative_acceptance_case", "bypass_acceptance_case", "persistence_acceptance_case", "rollback_acceptance_case", "central_monitoring_completed", "package_runtime_promoted", "maturity_assessed", "compliance_assessed"],
+      "properties": {
+        "evidence_scope": {"const": "BOUNDED_DEPLOYMENT_OBSERVATION_ONLY"},
+        "runtime_executed": {"const": true},
+        "protected_openstack_target_changed": {"const": true},
+        "full_live_validator_executed": {"const": false},
+        "positive_acceptance_case": {"const": "NOT_RUN"},
+        "negative_acceptance_case": {"const": "NOT_RUN"},
+        "bypass_acceptance_case": {"const": "NOT_RUN"},
+        "persistence_acceptance_case": {"const": "NOT_RUN"},
+        "rollback_acceptance_case": {"const": "NOT_RUN"},
+        "central_monitoring_completed": {"const": false},
+        "package_runtime_promoted": {"const": false},
+        "maturity_assessed": {"const": false},
+        "compliance_assessed": {"const": false}
+      }
+    },
+    "decision": {"const": "DEPLOYMENT_EXECUTED_LIVE_VALIDATOR_AND_STATUS_PROMOTION_PENDING"},
+    "excluded_data": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}

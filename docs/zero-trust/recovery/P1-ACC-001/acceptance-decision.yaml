@@ -1,0 +1,65 @@
+{
+  "action_id": "P1-ACC-001",
+  "decision_date": "2026-08-20",
+  "assessed_at": "2026-08-20T11:08:50.558164Z",
+  "decision": "BLOCKED_STALE_EVIDENCE",
+  "decision_scope": "PHASE_1_THROUGH_ZT_RV_001",
+  "phase": {
+    "phase_id": "PHASE_1",
+    "prior_status": "NOT_COMPLETE",
+    "resulting_status": "NOT_COMPLETE"
+  },
+  "predecessor_decisions": [
+    {"package_id": "ZT-FND-001", "recorded_acceptance": "BOUNDED_ACCEPTED", "current_gate_result": "PASS"},
+    {"package_id": "ZT-NET-001", "recorded_acceptance": "ACCEPTED", "current_gate_result": "PASS"},
+    {"package_id": "ZT-VIS-001", "recorded_acceptance": "ACCEPTED", "current_gate_result": "PASS"},
+    {"package_id": "ZT-ID-001", "recorded_acceptance": "ACCEPTED", "current_gate_result": "PASS"},
+    {"package_id": "ZT-CV-001", "recorded_acceptance": "PARTIALLY_ACCEPTED", "current_gate_result": "PASS_WITH_OPEN_GAPS"},
+    {"package_id": "ZT-RV-001", "recorded_acceptance": "REPEATABILITY_ACCEPTED", "current_gate_result": "BLOCKED_STALE_EVIDENCE"}
+  ],
+  "evidence_index": "docs/zero-trust/recovery/P1-ACC-001/evidence-index.yaml",
+  "freshness_gate": {
+    "policy_id": "ZTRV-ACCEPT-001",
+    "maximum_evidence_age": "P7D",
+    "maximum_age_seconds": 604800,
+    "newest_execution_id": "ZTRV-20260801T230020Z-daebf8ef",
+    "newest_execution_timestamp": "2026-08-01T23:00:20.110724Z",
+    "newest_evidence_age_seconds": 1598910.44744,
+    "current_freshness": "STALE",
+    "accepted_current_records": 0,
+    "current_continuity": "EC3_ONE_TIME_RUNTIME",
+    "assessment_result": "NOT_STARTED"
+  },
+  "blocking_findings": [
+    {"finding_id": "RV_EVIDENCE_EXPIRED", "status": "OPEN", "detail": "All three reviewed ZT-RV-001 executions exceed the P7D acceptance freshness limit at the recorded assessment time."},
+    {"finding_id": "CURRENT_EC4_FRESHNESS_NOT_ESTABLISHED", "status": "OPEN", "detail": "The read-only reassessment accepts zero current records and cannot support current bounded EC4 continuity for P1-ACC-001."}
+  ],
+  "accepted_statements": [
+    "The historical package decisions through ZT-RV-001 remain preserved and are not rewritten by this freshness decision.",
+    "The P1-CV-001 remediation result remains PASS_WITH_OPEN_GAPS and the historical ZT-RV-001 campaign remains a reviewed three-run result at its original assessment time.",
+    "ZT-SCH-001 remains disabled and deferred to the final Phase 5 gate; it is not required to refresh the manual RV campaign."
+  ],
+  "explicitly_not_accepted": [
+    "Phase 1 completion",
+    "current EC4 freshness",
+    "EC5 scheduled runtime",
+    "Phase 2 start",
+    "maturity, compliance, certification, production readiness, or full scenario success"
+  ],
+  "next_action": {
+    "package_id": "ZT-RV-001",
+    "operation": "REFRESH_BOUNDED_MANUAL_READ_ONLY_CAMPAIGN",
+    "separate_live_authorization_required": true,
+    "minimum_new_eligible_executions": 3,
+    "minimum_separation": "PT24H",
+    "scheduler_required": false,
+    "executed_by_this_decision": false
+  },
+  "runtime_executed": false,
+  "live_target_changed": false,
+  "scheduler_changed": false,
+  "package_status_promoted": false,
+  "maturity_assessed": false,
+  "compliance_assessed": false,
+  "rollback_decision": "Withdraw only this blocked decision if its recorded assessment is proven incorrect; preserve predecessor evidence, ignored runtime history, and the disabled SCH task."
+}

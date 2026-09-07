@@ -18,8 +18,9 @@
 flowchart LR
   subgraph ARC["ZT-ARC-001: architecture authority"]
     FND["ZT-FND-001"] --> NET["ZT-NET-001"] --> VIS["ZT-VIS-001"] --> ID["ZT-ID-001"]
-    ID --> CV["ZT-CV-001"] --> RV["ZT-RV-001"] --> SCH["ZT-SCH-001"] --> ACC["P1-ACC-001"]
+    ID --> CV["ZT-CV-001"] --> RV["ZT-RV-001"] --> ACC["P1-ACC-001"]
   end
+  ACC -. "later final gate" .-> SCH["ZT-SCH-001"]
   CAP["Zero Trust capability"] --> KISA["KISA technical control"] --> TARGET["Target implementation"]
   TARGET --> TEST["Runtime tests"] --> EVID["Sanitized evidence"] --> DECIDE["Separated status decision"]
 ```

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ZT-VIS-002 Phase 2 partial runtime package",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["package_id", "package_name", "action_id", "phase", "authority_status", "planning_status", "implementation_status", "local_validation_status", "runtime_validation_status", "runtime_acceptance_status", "evidence_status", "maturity_status", "provider", "environment", "protected_system", "architecture", "source_authorities", "protected_non_authorities", "live_gates", "explicitly_not_claimed"],
+  "properties": {
+    "package_id": {"const": "ZT-VIS-002"},
+    "package_name": {"type": "string", "minLength": 1},
+    "action_id": {"const": "P2-VIS-001"},
+    "phase": {"const": "PHASE_2"},
+    "authority_status": {"const": "AUTHORITATIVE_STATUS_ONLY"},
+    "planning_status": {"const": "IN_PROGRESS"},
+    "implementation_status": {"const": "PARTIALLY_IMPLEMENTED"},
+    "local_validation_status": {"const": "LOCAL_VALIDATED"},
+    "runtime_validation_status": {"const": "PARTIALLY_VALIDATED"},
+    "runtime_acceptance_status": {"const": "PARTIALLY_ACCEPTED"},
+    "evidence_status": {"const": "PARTIAL_RUNTIME_RECORDED"},
+    "maturity_status": {"const": "UNASSESSED"},
+    "provider": {"const": "OPENSTACK"},
+    "environment": {"const": "NON_PRODUCTION_LAB"},
+    "protected_system": {"const": "internal-iaas-portal"},
+    "architecture": {
+      "type": "object", "additionalProperties": false,
+      "required": ["placement", "components", "network_boundary", "access_boundary", "initial_source_scope", "retention_candidate", "durability_state"],
+      "properties": {
+        "placement": {"const": "DEDICATED_PRIVATE_OPENSTACK_MONITORING_VM"},
+        "components": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"enum": ["Grafana", "Loki", "Alloy", "Prometheus", "Blackbox Exporter"]}},
+        "network_boundary": {"const": "EXISTING_APPROVED_PRIVATE_NETWORK_NO_FLOATING_IP"},
+        "access_boundary": {"const": "AUTHENTICATED_REVERSE_PROXY_NO_ANONYMOUS_GRAFANA"},
+        "initial_source_scope": {"const": "SANITIZED_PORTAL_DECISION_LIFECYCLE_AND_SERVICE_HEALTH_ONLY"},
+        "retention_candidate": {"const": "PT336H"},
+        "durability_state": {"const": "CINDER_ACTIVE_RESTART_PERSISTENCE_AND_STACK_RECOVERY_VALIDATED_SNAPSHOT_RESTORE_PENDING"}
+      }
+    },
+    "source_authorities": {"type": "array", "minItems": 15, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "protected_non_authorities": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "live_gates": {
+      "type": "array", "minItems": 6,
+      "items": {"type": "object", "additionalProperties": false, "required": ["gate", "status"], "properties": {"gate": {"type": "string", "minLength": 1}, "status": {"enum": ["BOUNDED_DEPLOYMENT_EXECUTED", "RUNTIME_ARTIFACT_LOAD_VERIFIED", "RUNTIME_RESTART_PERSISTENCE_AND_STACK_RECOVERY_VALIDATED_SNAPSHOT_RESTORE_PENDING", "RUNTIME_MTLS_AND_AUTHENTICATION_VALIDATED", "LIVE_VALIDATOR_PARTIAL_STATUS_PROMOTED"]}}}
+    },
+    "explicitly_not_claimed": {"type": "array", "minItems": 5, "items": {"type": "string", "minLength": 1}}
+  }
+}

@@ -226,7 +226,7 @@ evidence nor a prerequisite modified by this action.
 - Application RBAC and centralized identity lifecycle remain absent.
 - Production identity enforcement is not validated.
 - Capability maturity remains `UNASSESSED`.
-- Phase 1 remains `PARTIAL`, `PARTIALLY_VALIDATED`, and `NOT_COMPLETE`.
+- Phase 1 is `PARTIAL`, `PARTIALLY_VALIDATED`, and `COMPLETED_WITH_GAPS` under the scoped RV freshness exception; this package does not close that residual risk.
 
 ## Package Acceptance
 

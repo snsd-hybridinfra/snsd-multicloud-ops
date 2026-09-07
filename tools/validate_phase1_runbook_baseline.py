@@ -48,7 +48,7 @@ def run_validation(root: Path = ROOT, strict: bool = False) -> list[Finding]:
         return [Finding("FAIL", "parse", str(exc))]
     expected_phase = {
         "implementation_status": "PARTIAL", "validation_status": "PARTIALLY_VALIDATED",
-        "completion_status": "NOT_COMPLETE", "boundary": "ZT-SCH-001",
+        "completion_status": "NOT_COMPLETE", "boundary": "ZT-RV-001",
     }
     findings.append(Finding(
         "PASS" if manifest.get("phase_state") == expected_phase else "FAIL", "phase",
@@ -62,6 +62,7 @@ def run_validation(root: Path = ROOT, strict: bool = False) -> list[Finding]:
     findings.append(Finding("PASS" if manifest_ok else "FAIL", "manifest",
                             "Seven unique package runbooks are registered." if manifest_ok else f"Unexpected registration: {paths}"))
     package_ids = {row.get("package_id") for row in flow.get("packages", [])}
+    package_ids.add(flow.get("deferred_final_work", {}).get("package_id"))
     for row in rows:
         relative = row.get("path", "")
         path = root / relative

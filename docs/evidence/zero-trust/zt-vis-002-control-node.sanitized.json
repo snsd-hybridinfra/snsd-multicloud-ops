@@ -1,0 +1,68 @@
+{
+  "evidence_id": "ZT-VIS-002-CONTROL-NODE-20260820",
+  "package_id": "ZT-VIS-002",
+  "action_id": "P2-VIS-001",
+  "recorded_at": "2026-08-20T14:06:18Z",
+  "sanitization_status": "PASS",
+  "control_node": {
+    "platform": "VMWARE_WORKSTATION_17_6_4",
+    "guest": "UBUNTU_24_04_RELEASED_CLOUD_IMAGE",
+    "image_sha256": "b9dc4dea4bdb09c1e08e40cce34fbd3d8fe252ff71bd9be979ef8b15256d80e8",
+    "processors": 2,
+    "memory_mb": 4096,
+    "disk_gb": 30,
+    "disk_allocation": "THIN",
+    "network_classes": ["VMNET8_NAT", "VMNET1_HOST_ONLY"],
+    "bridged_network": false,
+    "shared_folders": false,
+    "windows_hypervisor_present": false,
+    "wsl_control_node_used": false
+  },
+  "identity_boundary": {
+    "control_user_class": "NON_ADMINISTRATIVE_LOCAL",
+    "public_key_authentication": true,
+    "password_authentication": false,
+    "root_ssh": false,
+    "generic_sudo": false,
+    "bounded_local_sudo": true,
+    "private_key_stored_in_repository": false
+  },
+  "validation": {
+    "cloud_init": "PASS",
+    "cloud_init_datasource": "VMWARE_GUESTINFO",
+    "ansible_core_version": "2.16.3",
+    "ansible_local_ping": "PASS",
+    "deploy_syntax_check": "PASS",
+    "rollback_syntax_check": "PASS",
+    "nat_nic": "PASS",
+    "host_only_nic": "PASS",
+    "firewall_default_inbound": "DENY",
+    "ssh_private_subnets_only": "PASS",
+    "root_ssh_denial": "PASS",
+    "keyless_login_denial": "PASS",
+    "generic_sudo_denial": "PASS",
+    "unexpected_listener_check": "PASS",
+    "restart_persistence": "PASS",
+    "failed_candidate_rollback": "PASS",
+    "final_vm_removal_rollback": "NOT_RUN_REQUIRED_CONTROL_NODE_RETAINED"
+  },
+  "excluded_data": [
+    "private SSH key",
+    "DHCP addresses",
+    "MAC addresses",
+    "VMX guestinfo payload",
+    "virtual disk contents",
+    "raw terminal output"
+  ],
+  "package_runtime": {
+    "openstack_inventory_created": false,
+    "openstack_credentials_loaded": false,
+    "terraform_plan_created": false,
+    "terraform_apply_executed": false,
+    "ansible_deploy_playbook_executed": false,
+    "ansible_rollback_playbook_executed": false,
+    "protected_openstack_target_changed": false,
+    "central_monitoring_completed": false,
+    "package_runtime_promoted": false
+  }
+}

@@ -139,6 +139,17 @@
         "rollback":{"applicable":true,"rationale":"Every approved mutating handler requires a tested inverse or independent recovery.","cases":[{"case_id":"ZT-AUTO-001-VERIFY-ACTION-ROLLBACK","expected":"The approved action is safely reversed or independently recovered."}]},
         "evidence_integrity":{"applicable":true,"rationale":"Proposal, approval, action, result and status must agree.","cases":[{"case_id":"ZT-AUTO-001-VERIFY-AUTOMATION-EVIDENCE","expected":"Approval and actual action evidence agree."}]}
       }
+    },
+    {
+      "package_id":"ZT-VIS-002",
+      "acceptance_cases":{
+        "positive":{"applicable":true,"rationale":"The bounded private visibility platform must ingest one authorized sanitized signal.","cases":[{"case_id":"ZT-VIS-002-INGEST-SANITIZED-SIGNAL","expected":"One authorized sanitized signal is ingested and reviewable."}]},
+        "negative":{"applicable":true,"rationale":"Clients without approved authentication must be denied.","cases":[{"case_id":"ZT-VIS-002-DENY-UNAUTHORIZED-CLIENT","expected":"A client without approved mTLS or Grafana authentication is denied."}]},
+        "bypass":{"applicable":true,"rationale":"Direct, anonymous, and false-credential paths must not bypass the private proxy boundary.","cases":[{"case_id":"ZT-VIS-002-DENY-DIRECT-ANONYMOUS-BYPASS","expected":"Direct, anonymous, and false-credential access cannot reach protected visibility functions."}]},
+        "persistence":{"applicable":true,"rationale":"Configuration and ingested data must survive the approved target restart.","cases":[{"case_id":"ZT-VIS-002-VERIFY-RESTART-PERSISTENCE","expected":"Configuration hashes and the sanitized record remain valid after restart."}]},
+        "rollback":{"applicable":true,"rationale":"Package-only removal must preserve reviewed data and support deterministic stack recovery.","cases":[{"case_id":"ZT-VIS-002-VERIFY-PACKAGE-ROLLBACK-RECOVERY","expected":"Only the package stack is removed and restored from preserved data and fixed offline images."}]},
+        "evidence_integrity":{"applicable":true,"rationale":"Sanitized evidence, source hashes, cleanup, and status boundaries must agree.","cases":[{"case_id":"ZT-VIS-002-VERIFY-SANITIZED-EVIDENCE","expected":"Evidence contains no runtime identifiers or secrets and cannot support a completion overclaim."}]}
+      }
     }
   ]
 }

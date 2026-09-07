@@ -1,0 +1,55 @@
+{
+  "decision_id": "ZT-VIS-002-PARTIAL-PROMOTION-20260824",
+  "package_id": "ZT-VIS-002",
+  "action_id": "P2-VIS-001",
+  "decided_at": "2026-08-24T14:12:07Z",
+  "authority": "USER_AUTHORIZED_REPOSITORY_STATUS_REVIEW",
+  "authorization_basis": "EXPLICIT_USER_NEXT_ACTION_AFTER_LIVE_VALIDATION_REVIEW",
+  "review_scope": "REPOSITORY_STATUS_AUTHORITIES_ONLY_NO_LIVE_MUTATION",
+  "source_evidence": {
+    "path": "docs/evidence/zero-trust/zt-vis-002-live-validation.sanitized.json",
+    "sha256": "e32ea92c8d7493f4a3ac56e3de7322017b10b05dfd56ff29f14fd2b4a666d8d9",
+    "accepted_result": "PASS",
+    "evidence_continuity": "EC3_ONE_TIME_RUNTIME"
+  },
+  "gate_assessment": [
+    {"gate": "BOUNDED_PRIVATE_OPENSTACK_DEPLOYMENT", "result": "PASS"},
+    {"gate": "FIXED_FIVE_COMPONENT_RUNTIME", "result": "PASS"},
+    {"gate": "POSITIVE_SANITIZED_INGESTION", "result": "PASS"},
+    {"gate": "UNAUTHORIZED_ACCESS_DENIAL", "result": "PASS"},
+    {"gate": "DIRECT_AND_ANONYMOUS_BYPASS_DENIAL", "result": "PASS"},
+    {"gate": "RESTART_PERSISTENCE", "result": "PASS"},
+    {"gate": "PACKAGE_ONLY_ROLLBACK", "result": "PASS"},
+    {"gate": "PRESERVED_DATA_STACK_RECOVERY", "result": "PASS"},
+    {"gate": "EVIDENCE_INTEGRITY", "result": "PASS"},
+    {"gate": "TEMPORARY_ACCESS_CLEANUP", "result": "PASS"}
+  ],
+  "promoted_status": {
+    "planning_status": "IN_PROGRESS",
+    "implementation_status": "PARTIALLY_IMPLEMENTED",
+    "local_validation_status": "LOCAL_VALIDATED",
+    "runtime_validation_status": "PARTIALLY_VALIDATED",
+    "runtime_acceptance_status": "PARTIALLY_ACCEPTED",
+    "evidence_status": "PARTIAL_RUNTIME_RECORDED",
+    "maturity_status": "UNASSESSED",
+    "compliance_status": "NOT_ASSESSED"
+  },
+  "bounded_runtime_scope": "ONE_PRIVATE_NON_PRODUCTION_OPENSTACK_MONITORING_VM_WITH_FIVE_COMPONENTS",
+  "open_gaps": [
+    "FULL_CINDER_SNAPSHOT_REBUILD_AND_REATTACH_RESTORE",
+    "ALERT_RULE_AND_NOTIFICATION_DELIVERY_RUNTIME_VALIDATION",
+    "RETENTION_WINDOW_ELAPSED_BEHAVIOR_VALIDATION"
+  ],
+  "claim_boundary": {
+    "p2_vis_001_completed": false,
+    "central_visibility_fully_accepted": false,
+    "phase_2_completed": false,
+    "oidc_or_central_identity_implemented": false,
+    "scheduled_or_continuous_validation": false,
+    "maturity_assessed": false,
+    "compliance_assessed": false,
+    "production_readiness_claimed": false
+  },
+  "decision": "PARTIAL_RUNTIME_STATUS_PROMOTED_WITH_OPEN_GAPS",
+  "next_action": "Close the alert-delivery, elapsed-retention, and full Cinder snapshot restore gaps under separately reviewed runtime authorization before P2-VIS-001 completion."
+}

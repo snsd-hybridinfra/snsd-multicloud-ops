@@ -1,0 +1,72 @@
+{
+  "assessment_id": "P2-VIS-001-CINDER-PREREQUISITE-001",
+  "package_id": "ZT-VIS-002",
+  "action_id": "P2-VIS-001",
+  "assessed_at": "2026-08-20T15:52:39.002490Z",
+  "assessment_mode": "APPROVED_LIVE_INFRASTRUCTURE_PREREQUISITE",
+  "authorization_reference": "USER_APPROVED_2026-08-21_CINDER_LVM_PREREQUISITE",
+  "sanitization_status": "PASS",
+  "raw_output_committed": false,
+  "credential_material_exposed": false,
+  "change_scope": {
+    "provider": "OPENSTACK_KOLLA_ANSIBLE",
+    "environment": "NON_PRODUCTION_SINGLE_NODE_AIO",
+    "dedicated_virtual_disk_created": true,
+    "dedicated_virtual_disk_size_gb": 100,
+    "dedicated_virtual_disk_allocation": "VMWARE_THIN",
+    "reviewed_scsi_slot": "SCSI_0_2",
+    "existing_nova_instance_storage_preserved": true,
+    "root_volume_group_preserved": true,
+    "cinder_volume_group": "cinder-volumes",
+    "cinder_thin_pool_size_gb": 95,
+    "cinder_configuration_enabled": true,
+    "cinder_lvm_backend_enabled": true,
+    "cinder_backup_enabled": false,
+    "kolla_release_line": "2026.1",
+    "kolla_prechange_backup_preserved": true
+  },
+  "validation": {
+    "kolla_prechecks": "PASS",
+    "loadbalancer_database_routes": "PASS",
+    "tagged_cinder_iscsi_deploy": "PASS",
+    "block_storage_service_present": true,
+    "volume_v3_endpoint_count": 2,
+    "enabled_up_volume_service_count": 2,
+    "intentionally_disabled_backup_service_count": 1,
+    "running_cinder_iscsi_container_count": 5,
+    "unhealthy_container_count": 0,
+    "exited_container_count": 0,
+    "positive": "TEMPORARY_1_GIB_VOLUME_AVAILABLE_WITH_BACKEND_LV_PASS",
+    "negative": "UNAUTHENTICATED_API_REQUEST_DENIED_401_PASS",
+    "bypass": "INVALID_TOKEN_API_REQUEST_DENIED_401_PASS",
+    "persistence": "AIO_REBOOT_DEVICE_VG_SERVICES_VOLUME_AND_BACKEND_LV_PASS",
+    "rollback": "TEMPORARY_VOLUME_REMOVED_OPENSTACK_ZERO_BACKEND_LV_ZERO_PASS",
+    "original_instance_states_restored": "ACTIVE_ACTIVE_SHUTOFF_PASS"
+  },
+  "package_boundary": {
+    "cinder_prerequisite_status": "RUNTIME_VALIDATED",
+    "package_runtime_executed": false,
+    "terraform_plan_created": false,
+    "terraform_apply_executed": false,
+    "ansible_visibility_playbook_executed": false,
+    "central_monitoring_completed": false,
+    "package_runtime_promoted": false,
+    "runtime_acceptance_status": "PENDING",
+    "maturity_assessed": false,
+    "compliance_assessed": false
+  },
+  "decision": "CINDER_PREREQUISITE_ACCEPTED_CENTRAL_DEPLOYMENT_NO_GO",
+  "remaining_blockers": [
+    "The Terraform controller still has no reviewed external cloud profile.",
+    "Immutable component digests remain unapproved.",
+    "Authenticated proxy, administrator role and recovery-access decisions remain pending.",
+    "Retention and restore approval plus separate visibility deployment and validator authorization remain pending."
+  ],
+  "explicitly_not_claimed": [
+    "central visibility stack deployment or ingestion",
+    "P2-VIS-001 package runtime validation or acceptance",
+    "Cinder backup and restore validation",
+    "full Cinder infrastructure removal rollback",
+    "maturity, compliance, certification or production readiness"
+  ]
+}

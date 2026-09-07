@@ -37,8 +37,14 @@ class RepositoryValidationHygieneTests(unittest.TestCase):
         flow = json.loads((ROOT / "docs/zero-trust/package-flow.yaml").read_text(encoding="utf-8"))
         package_ids = [item["package_id"] for item in flow["packages"]]
         self.assertEqual(len(package_ids), len(set(package_ids)))
-        self.assertEqual("ZT-SCH-001", flow["phase_1_acceptance"]["scope_boundary"])
-        self.assertEqual("NOT_COMPLETE", flow["phase_1_acceptance"]["completion_status"])
+        self.assertEqual("ZT-RV-001", flow["phase_1_acceptance"]["scope_boundary"])
+        self.assertEqual("ZT-SCH-001", flow["deferred_final_work"]["package_id"])
+        self.assertEqual("DISABLED", flow["deferred_final_work"]["schedule_state"])
+        self.assertEqual("COMPLETED_WITH_GAPS", flow["phase_1_acceptance"]["completion_status"])
+        self.assertEqual("ACCEPTED_WITH_GAPS", flow["phase_1_acceptance"]["decision_status"])
+        self.assertIsNone(flow["phase_1_acceptance"]["blocking_reason"])
+        self.assertEqual("P1-RV-FRESHNESS-001", flow["phase_1_acceptance"]["accepted_exception"])
+        self.assertEqual("STALE_RV_EVIDENCE", flow["phase_1_acceptance"]["deferred_final_risk"])
 
 
 if __name__ == "__main__":

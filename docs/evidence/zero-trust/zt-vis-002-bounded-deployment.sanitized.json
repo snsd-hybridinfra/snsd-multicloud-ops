@@ -1,0 +1,87 @@
+{
+  "evidence_id": "ZT-VIS-002-BOUNDED-DEPLOYMENT-20260821",
+  "package_id": "ZT-VIS-002",
+  "action_id": "P2-VIS-001",
+  "observed_at": "2026-08-21T01:44:53Z",
+  "sanitization_status": "PASS",
+  "authorization": {
+    "terraform_apply_authorized": true,
+    "ansible_deployment_authorized": true,
+    "bounded_deployment_checks_authorized": true,
+    "live_validator_authorized": false,
+    "rollback_authorized": false,
+    "package_status_promotion_authorized": false
+  },
+  "terraform": {
+    "initial_plan_sha256": "d404918cad64856d09aed8151b6478445f8d17566dd8a1a4dae76c5af5e17078",
+    "initial_apply_result": "PARTIAL_FAILURE_INVALID_FLAVOR_REFERENCE",
+    "recovery_plan_sha256": "7a7b8a28a818cd91386bd985949b5dbdb8199efff0f2c4128584470da7a6b908",
+    "recovery_plan_review": {
+      "prior_resource_count": 2,
+      "create_count": 2,
+      "no_op_count": 2,
+      "destructive_action_count": 0,
+      "policy_decision": "PASS"
+    },
+    "apply_result": "PASS",
+    "final_resource_count": 4,
+    "resource_types": [
+      "openstack_networking_port_v2",
+      "openstack_compute_instance_v2",
+      "openstack_blockstorage_volume_v3",
+      "openstack_compute_volume_attach_v2"
+    ],
+    "instance_status": "ACTIVE",
+    "volume_status": "IN_USE",
+    "port_status": "ACTIVE",
+    "state_storage": "EXTERNAL_CONTROL_NODE_PROTECTED_PATH",
+    "state_file_mode": "0600",
+    "tracked_state_created": false,
+    "floating_ip_created": false,
+    "public_endpoint_created": false,
+    "restore_checkpoint": "CREATED_BEFORE_ANSIBLE_DEPLOYMENT"
+  },
+  "ansible": {
+    "control_node": "VMWARE_WORKSTATION_UBUNTU_24_04",
+    "host_bootstrap": "PASS",
+    "offline_host_packages": ["podman", "podman-compose", "nginx"],
+    "offline_oci_archives_verified": 5,
+    "target_registry_access_used": false,
+    "service_deployment": "PASS",
+    "components": ["Grafana", "Loki", "Alloy", "Prometheus", "Blackbox Exporter"],
+    "running_component_count": 5,
+    "component_health_endpoints": "PASS",
+    "dedicated_mount": "EXT4_NODEV_NOSUID_PASS",
+    "component_listener_scope": "LOOPBACK_ONLY_PASS",
+    "proxy_listener_scope": "PRIVATE_ADDRESS_ONLY_PASS",
+    "mtls_without_client": "REJECTED",
+    "mtls_with_approved_client": "PASS",
+    "temporary_access_cleanup": "PASS",
+    "repository_private_key_created": false,
+    "raw_runtime_output_tracked": false
+  },
+  "validation_boundary": {
+    "evidence_scope": "BOUNDED_DEPLOYMENT_OBSERVATION_ONLY",
+    "runtime_executed": true,
+    "protected_openstack_target_changed": true,
+    "full_live_validator_executed": false,
+    "positive_acceptance_case": "NOT_RUN",
+    "negative_acceptance_case": "NOT_RUN",
+    "bypass_acceptance_case": "NOT_RUN",
+    "persistence_acceptance_case": "NOT_RUN",
+    "rollback_acceptance_case": "NOT_RUN",
+    "central_monitoring_completed": false,
+    "package_runtime_promoted": false,
+    "maturity_assessed": false,
+    "compliance_assessed": false
+  },
+  "decision": "DEPLOYMENT_EXECUTED_LIVE_VALIDATOR_AND_STATUS_PROMOTION_PENDING",
+  "excluded_data": [
+    "cloud credentials and account values",
+    "resource identifiers and addresses",
+    "host keys and authorized-key material",
+    "private keys certificates and administrator secrets",
+    "raw Terraform state plan JSON and logs",
+    "raw Ansible and container runtime output"
+  ]
+}

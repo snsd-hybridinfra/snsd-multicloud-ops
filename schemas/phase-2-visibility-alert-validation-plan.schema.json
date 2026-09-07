@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "P2-VIS-001 bounded alert validation execution record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["plan_id", "package_id", "action_id", "status", "environment", "target", "api_contract", "authorization_gates", "validation_cases", "receiver_boundary", "cleanup_contract", "execution", "evidence_record", "claim_boundary", "next_action"],
+  "properties": {
+    "plan_id": {"const": "P2-VIS-001-ALERT-VALIDATION-PREP"},
+    "package_id": {"const": "ZT-VIS-002"},
+    "action_id": {"const": "P2-VIS-001"},
+    "status": {"const": "EXECUTED_STATUS_REVIEW_PENDING"},
+    "environment": {"const": "NON_PRODUCTION_LAB"},
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grafana_version", "deployment", "permanent_component_count", "permanent_receiver_added", "public_listener_added"],
+      "properties": {
+        "grafana_version": {"const": "13.1.0"},
+        "deployment": {"const": "EXISTING_PRIVATE_OPENSTACK_MONITORING_VM"},
+        "permanent_component_count": {"const": 5},
+        "permanent_receiver_added": {"const": false},
+        "public_listener_added": {"const": false}
+      }
+    },
+    "api_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alert_rule_lifecycle", "notification_delivery_test", "webhook_integration_version", "legacy_receiver_test_used", "temporary_rule_paused", "reason"],
+      "properties": {
+        "alert_rule_lifecycle": {"const": "/api/v1/provisioning/alert-rules"},
+        "notification_delivery_test": {"const": "/apis/notifications.alerting.grafana.app/v1beta1/namespaces/default/receivers/-/test"},
+        "webhook_integration_version": {"const": "v1"},
+        "legacy_receiver_test_used": {"const": false},
+        "temporary_rule_paused": {"const": true},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "authorization_gates": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "default"],
+        "properties": {
+          "name": {"enum": ["zt_vis_002_alert_validation_authorized", "zt_vis_002_alert_rule_mutation_authorized", "zt_vis_002_notification_delivery_authorized", "zt_vis_002_alert_cleanup_authorized"]},
+          "default": {"const": false}
+        }
+      }
+    },
+    "validation_cases": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case", "expected"],
+        "properties": {
+          "case": {"enum": ["POSITIVE_RULE_LIFECYCLE", "POSITIVE_NOTIFICATION_DELIVERY", "NEGATIVE_AUTHENTICATION", "BYPASS", "PERSISTENCE_BOUNDARY", "ROLLBACK"]},
+          "expected": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "receiver_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "bind", "path", "payload_recording", "tracked_runtime_allowed"],
+      "properties": {
+        "type": {"const": "EPHEMERAL_PYTHON_STDLIB_HTTP_RECEIVER"},
+        "bind": {"const": "EXACT_PACKAGE_PODMAN_BRIDGE_GATEWAY_ONLY"},
+        "path": {"const": "RANDOM_ONE_TIME_UNTRACKED"},
+        "payload_recording": {"const": "SANITIZED_BOOLEAN_AND_EXPECTED_LABEL_MATCH_ONLY"},
+        "tracked_runtime_allowed": {"const": false}
+      }
+    },
+    "cleanup_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["always_run", "delete_exact_temporary_rule", "delete_exact_temporary_folder", "stop_ephemeral_receiver", "remove_target_validator", "verify_absence"],
+      "properties": {
+        "always_run": {"const": true},
+        "delete_exact_temporary_rule": {"const": true},
+        "delete_exact_temporary_folder": {"const": true},
+        "stop_ephemeral_receiver": {"const": true},
+        "remove_target_validator": {"const": true},
+        "verify_absence": {"const": true}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["live_validator_executed", "alert_rule_mutated", "notification_sent", "target_changed", "runtime_evidence_recorded"],
+      "properties": {
+        "live_validator_executed": {"const": true},
+        "alert_rule_mutated": {"const": true},
+        "notification_sent": {"const": true},
+        "target_changed": {"const": true},
+        "runtime_evidence_recorded": {"const": true}
+      }
+    },
+    "evidence_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "validation_id"],
+      "properties": {
+        "path": {"const": "docs/evidence/zero-trust/zt-vis-002-alert-validation.sanitized.json"},
+        "validation_id": {"pattern": "^P2VISALT-[0-9]{8}T[0-9]{6}Z$"}
+      }
+    },
+    "claim_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alert_gap_closed", "p2_vis_001_completed", "central_visibility_fully_accepted", "phase_2_completed", "scheduled_or_continuous_validation", "maturity_assessed", "compliance_assessed", "production_readiness_claimed"],
+      "properties": {
+        "alert_gap_closed": {"const": false},
+        "p2_vis_001_completed": {"const": false},
+        "central_visibility_fully_accepted": {"const": false},
+        "phase_2_completed": {"const": false},
+        "scheduled_or_continuous_validation": {"const": false},
+        "maturity_assessed": {"const": false},
+        "compliance_assessed": {"const": false},
+        "production_readiness_claimed": {"const": false}
+      }
+    },
+    "next_action": {"type": "string", "minLength": 1}
+  }
+}

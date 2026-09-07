@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Phase 1 accepted-with-gaps superseding decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "action_id", "decision_date", "decision", "decision_scope",
+    "supersedes", "exception", "phase", "historical_freshness_state",
+    "phase_2_entry", "accepted_statements", "explicitly_not_accepted",
+    "required_final_gate_actions", "runtime_executed", "live_target_changed",
+    "scheduler_changed", "package_status_promoted", "maturity_assessed",
+    "compliance_assessed", "rollback_decision"
+  ],
+  "properties": {
+    "action_id": {"const": "P1-ACC-001"},
+    "decision_date": {"const": "2026-08-20"},
+    "decision": {"const": "ACCEPTED_WITH_GAPS"},
+    "decision_scope": {"const": "PHASE_1_COMPLETION_AND_PHASE_2_ENTRY"},
+    "supersedes": {"const": "docs/zero-trust/recovery/P1-ACC-001/acceptance-decision.yaml"},
+    "exception": {"const": "docs/zero-trust/exceptions/p1-rv-freshness-001.yaml"},
+    "phase": {
+      "type": "object", "additionalProperties": false,
+      "required": ["phase_id", "prior_status", "resulting_status"],
+      "properties": {
+        "phase_id": {"const": "PHASE_1"},
+        "prior_status": {"const": "NOT_COMPLETE"},
+        "resulting_status": {"const": "COMPLETED_WITH_GAPS"}
+      }
+    },
+    "historical_freshness_state": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "accepted_current_records", "current_continuity", "reclassified_as_fresh"],
+      "properties": {
+        "status": {"const": "STALE"},
+        "accepted_current_records": {"const": 0},
+        "current_continuity": {"const": "EC3_ONE_TIME_RUNTIME"},
+        "reclassified_as_fresh": {"const": false}
+      }
+    },
+    "phase_2_entry": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "first_action", "live_mutation_authorized", "live_validator_authorized"],
+      "properties": {
+        "status": {"const": "AUTHORIZED_WITH_GAPS"},
+        "first_action": {"const": "P2-VIS-001"},
+        "live_mutation_authorized": {"const": false},
+        "live_validator_authorized": {"const": false}
+      }
+    },
+    "accepted_statements": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "explicitly_not_accepted": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "required_final_gate_actions": {"type": "array", "minItems": 2, "items": {"type": "string", "minLength": 1}},
+    "runtime_executed": {"const": false},
+    "live_target_changed": {"const": false},
+    "scheduler_changed": {"const": false},
+    "package_status_promoted": {"const": false},
+    "maturity_assessed": {"const": false},
+    "compliance_assessed": {"const": false},
+    "rollback_decision": {"type": "string", "minLength": 1}
+  }
+}

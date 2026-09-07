@@ -259,11 +259,14 @@ def capability_acceptance_results(catalog: dict[str, Any], history: dict[str, An
 
 def regression_results(history: dict[str, Any], freshness: list[dict[str, Any]]) -> list[dict[str, Any]]:
     freshness_map = {item["execution_id"]: item["freshness_status"] for item in freshness}
+    freshness_reason = {item["execution_id"]: item.get("reason") for item in freshness}
     findings: list[dict[str, Any]] = []
     seen: set[str] = set()
     records = history.get("executions", [])
     latest_by_stream: dict[tuple[str, str, str], dict[str, Any]] = {}
     for record in records:
+        if freshness_reason.get(record.get("execution_id")) == "FUTURE_TIMESTAMP":
+            continue
         key = (
             str(record.get("package_id")),
             str(record.get("validator_id")),

@@ -4,7 +4,10 @@ This file defines working rules for Codex and repository automation.
 
 ## Operating model
 
-- Use the hierarchy Zero Trust architecture -> package -> capability -> control -> validator -> sanitized evidence -> status decision.
+- The primary product is the Financial Hybrid-Ready Internal Developer Platform. Use the platform hierarchy user experience -> approved composite blueprint -> policy and approval -> immutable resolved manifest -> automation -> OpenStack/k3s service plane -> financial network underlay.
+- Use the catalog hierarchy internal component -> approved composite blueprint -> limited user input -> immutable resolved manifest. Do not expose internal components, raw execution profiles, free-form graphs, provider identifiers, or user-supplied HCL as products.
+- Zero Trust is the cross-cutting security and validation plane. Within it, use the hierarchy Zero Trust architecture -> package -> capability -> control -> validator -> sanitized evidence -> status decision.
+- Keep platform delivery status independent from Zero Trust package, capability, evidence, acceptance, maturity, and compliance status.
 - The numbered scenario framework has been retired from the active tree. Do not create a successor scenario series.
 - Treat package metadata, capability authorities, validators, and evidence records as independent authorities.
 - Keep changes bounded, reviewable, deterministic, and evidence-based.
@@ -16,14 +19,20 @@ This file defines working rules for Codex and repository automation.
 3. Run positive, negative, bypass, persistence, and rollback checks when appropriate to the package.
 4. Store only sanitized evidence under reviewed package evidence authorities.
 5. Use `docs/adr/` for architecture or scope decisions.
+6. Read `docs/platform/architecture-baseline.yaml` and `docs/platform/implementation-roadmap.md` before changing the platform boundary.
+7. Until a public-cloud adapter is implemented and runtime validated, use `Hybrid-Ready`; do not claim active hybrid-cloud operation.
 
 ## Phase 1 authority
 
 `ZT-ARC-001` surrounds, but is not a sequential member of, this flow:
 
-`ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001 -> ZT-CV-001 -> ZT-RV-001 -> ZT-SCH-001 -> P1-ACC-001`
+`ZT-FND-001 -> ZT-NET-001 -> ZT-VIS-001 -> ZT-ID-001 -> ZT-CV-001 -> ZT-RV-001 -> P1-ACC-001`
 
-Package removal or status promotion requires matching implementation and evidence authority. Phase 1 remains PARTIAL / PARTIALLY_VALIDATED / NOT_COMPLETE until all accepted prerequisites pass.
+`ZT-SCH-001` is retained as the disabled, deferred final project gate immediately
+before `P5-ACC-001`; it is not a Phase 1 predecessor. Re-enabling it requires
+separate explicit approval.
+
+Package removal or status promotion requires matching implementation and evidence authority. Phase 1 is `PARTIAL / PARTIALLY_VALIDATED / COMPLETED_WITH_GAPS` under `P1-RV-FRESHNESS-001`; the stale RV finding remains open and must close before final scheduling or P5-ACC-001. Phase 2 is limited to bounded local preparation until live work is separately authorized.
 
 ## Source governance
 

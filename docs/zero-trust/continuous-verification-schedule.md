@@ -13,9 +13,12 @@ occurs.
 
 `ZT-SCH-001` preparation began after EC4 acceptance. Following explicit
 approval, the bounded Windows Task Scheduler job was installed on 2026-08-02
-with its first run due at 2026-08-03 09:00 KST. Six sanitized scheduled
-candidates through 2026-08-08 failed, and no scheduled success is accepted.
+with its first run due at 2026-08-03 09:00 KST. Eleven sanitized candidates
+are retained: two uncorrelated successes and nine failures, and no scheduled
+date is accepted. The task was disabled on 2026-08-20 and deferred to the final
+Phase 5 gate before P5-ACC-001.
 The local runner, lock, timeout, bounded 09:00-11:00 catch-up, missed-run
 assessment, and disable/removal controls are configuration-validated. EC5
-requires valid correlated successes on the latest three due scheduled dates. A daily job is
+requires valid correlated successes on the latest three due scheduled dates
+after a separately approved final-gate re-enable. A daily job is
 neither EC6 continuous observation nor EC7 continuous enforcement.

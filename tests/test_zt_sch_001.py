@@ -27,6 +27,17 @@ class ZtSch001Tests(unittest.TestCase):
         return {"execution_id":f"TEST-{day}","started_at":started.isoformat(),"scheduled_date_local":(started+timedelta(hours=9)).date().isoformat(),"result":result,"exit_code":0 if result=="PASS" else 1,"sanitization_status":"PASS","trigger_verification":"VERIFIED_SCHEDULER_CORRELATION" if verified else "PENDING_SCHEDULER_CORRELATION"}
 
     def test_configuration_is_bounded(self): self.assertEqual([], validate_configuration(self.policy))
+    def test_schedule_is_disabled_and_deferred(self):
+        package = load(ROOT / "docs/zero-trust/packages/zt-sch-001-package.yaml")
+        deferral = load(ROOT / "docs/evidence/zero-trust/zt-sch-001-deferral.sanitized.json")
+        self.assertEqual("FINAL_PROJECT_TASK", package["phase"])
+        self.assertEqual("DEFERRED_FINAL", package["planning_status"])
+        self.assertFalse(package["schedule_enabled"])
+        self.assertFalse(package["automated_execution"])
+        self.assertEqual("PASS_DISABLED_PRESERVED", deferral["result"])
+        self.assertFalse(deferral["enabled"])
+        self.assertFalse(deferral["task_deleted"])
+        self.assertTrue(deferral["runtime_evidence_preserved"])
     def test_fingerprint_is_deterministic(self): self.assertEqual(schedule_fingerprint(self.policy), schedule_fingerprint(json.loads(json.dumps(self.policy))))
     def test_canonical_hash_ignores_key_order(self): self.assertEqual(canonical_hash({"a":1,"b":2}), canonical_hash({"b":2,"a":1}))
     def test_runtime_loader_accepts_powershell_utf8_bom(self):

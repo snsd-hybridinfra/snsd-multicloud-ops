@@ -1,0 +1,206 @@
+[PASS] Automation integration inventory, action catalog, workflow graph, approval policy, and fixed-handler boundary are consistent.
+Summary: 1 PASS / 0 WARN / 0 FAIL
+[PASS] decision=ALLOW_EXECUTE_READ_ONLY workflow=ZT-CV-WF-001 mode=EXECUTE_READ_ONLY risk=R3_REMOTE_READ_ONLY plan_hash=72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624
+[PASS] Policy evaluation performed no action.
+{
+  "plan_version": "1.0.0",
+  "workflow_id": "ZT-CV-WF-001",
+  "workflow_catalog_version": "1.1.0",
+  "action_catalog_version": "1.1.0",
+  "execution_mode": "EXECUTE_READ_ONLY",
+  "effective_risk": "R3_REMOTE_READ_ONLY",
+  "required_approval": "APPROVAL_POLICY",
+  "timeout_seconds": 1200,
+  "concurrency_policy": "SINGLE_WORKFLOW_LOCK",
+  "steps": [
+    {
+      "step_id": "validate-governance",
+      "action_id": "ZTA-ACT-VAL-001",
+      "handler_id": "validate_zero_trust",
+      "depends_on": [],
+      "condition": "ALWAYS",
+      "risk_level": "R0_READ_ONLY",
+      "approval_level": "APPROVAL_POLICY",
+      "timeout_seconds": 180,
+      "retry_policy": "NONE",
+      "working_directory": "REPOSITORY_ROOT",
+      "evidence_required": true,
+      "rollback_type": "NONE_REQUIRED"
+    },
+    {
+      "step_id": "validate-cv-configuration",
+      "action_id": "ZTA-ACT-CV-001",
+      "handler_id": "validate_cv_configuration",
+      "depends_on": [
+        "validate-governance"
+      ],
+      "condition": "ALL_DEPENDENCIES_PASS",
+      "risk_level": "R0_READ_ONLY",
+      "approval_level": "APPROVAL_POLICY",
+      "timeout_seconds": 180,
+      "retry_policy": "NONE",
+      "working_directory": "REPOSITORY_ROOT",
+      "evidence_required": true,
+      "rollback_type": "NONE_REQUIRED"
+    },
+    {
+      "step_id": "evaluate-freshness",
+      "action_id": "ZTA-ACT-CV-002",
+      "handler_id": "evaluate_evidence_freshness",
+      "depends_on": [
+        "validate-cv-configuration"
+      ],
+      "condition": "PREVIOUS_PASS_OR_WARN",
+      "risk_level": "R1_LOCAL_ARTIFACT_WRITE",
+      "approval_level": "APPROVAL_POLICY",
+      "timeout_seconds": 120,
+      "retry_policy": "NONE",
+      "working_directory": "REPOSITORY_ROOT",
+      "evidence_required": true,
+      "rollback_type": "DELETE_GENERATED_ARTIFACT"
+    },
+    {
+      "step_id": "validate-live-systems",
+      "action_id": "ZTA-ACT-VAL-006",
+      "handler_id": "validate_systems_live",
+      "depends_on": [
+        "validate-cv-configuration"
+      ],
+      "condition": "PREVIOUS_PASS_OR_WARN",
+      "risk_level": "R3_REMOTE_READ_ONLY",
+      "approval_level": "APPROVAL_POLICY",
+      "timeout_seconds": 600,
+      "retry_policy": "NONE",
+      "working_directory": "REPOSITORY_ROOT",
+      "evidence_required": true,
+      "rollback_type": "NONE_REQUIRED"
+    },
+    {
+      "step_id": "assess-repeatability",
+      "action_id": "ZTA-ACT-CV-003",
+      "handler_id": "assess_repeatability",
+      "depends_on": [
+        "evaluate-freshness"
+      ],
+      "condition": "PREVIOUS_PASS_OR_WARN",
+      "risk_level": "R1_LOCAL_ARTIFACT_WRITE",
+      "approval_level": "APPROVAL_POLICY",
+      "timeout_seconds": 120,
+      "retry_policy": "NONE",
+      "working_directory": "REPOSITORY_ROOT",
+      "evidence_required": true,
+      "rollback_type": "DELETE_GENERATED_ARTIFACT"
+    },
+    {
+      "step_id": "detect-regressions",
+      "action_id": "ZTA-ACT-CV-006",
+      "handler_id": "detect_regressions",
+      "depends_on": [
+        "evaluate-freshness"
+      ],
+      "condition": "PREVIOUS_PASS_OR_WARN",
+      "risk_level": "R1_LOCAL_ARTIFACT_WRITE",
+      "approval_level": "APPROVAL_POLICY",
+      "timeout_seconds": 120,
+      "retry_policy": "NONE",
+      "working_directory": "REPOSITORY_ROOT",
+      "evidence_required": true,
+      "rollback_type": "DELETE_GENERATED_ARTIFACT"
+    },
+    {
+      "step_id": "assess-capability-acceptance",
+      "action_id": "ZTA-ACT-CV-005",
+      "handler_id": "assess_capability_acceptance",
+      "depends_on": [
+        "assess-repeatability"
+      ],
+      "condition": "PREVIOUS_PASS_OR_WARN",
+      "risk_level": "R1_LOCAL_ARTIFACT_WRITE",
+      "approval_level": "APPROVAL_POLICY",
+      "timeout_seconds": 120,
+      "retry_policy": "NONE",
+      "working_directory": "REPOSITORY_ROOT",
+      "evidence_required": true,
+      "rollback_type": "DELETE_GENERATED_ARTIFACT"
+    },
+    {
+      "step_id": "assess-package-acceptance",
+      "action_id": "ZTA-ACT-CV-004",
+      "handler_id": "assess_package_acceptance",
+      "depends_on": [
+        "assess-repeatability",
+        "validate-live-systems"
+      ],
+      "condition": "PREVIOUS_PASS_OR_WARN",
+      "risk_level": "R1_LOCAL_ARTIFACT_WRITE",
+      "approval_level": "APPROVAL_POLICY",
+      "timeout_seconds": 120,
+      "retry_policy": "NONE",
+      "working_directory": "REPOSITORY_ROOT",
+      "evidence_required": true,
+      "rollback_type": "DELETE_GENERATED_ARTIFACT"
+    },
+    {
+      "step_id": "reassess-maturity",
+      "action_id": "ZTA-ACT-CV-007",
+      "handler_id": "reassess_maturity",
+      "depends_on": [
+        "assess-capability-acceptance",
+        "detect-regressions"
+      ],
+      "condition": "PREVIOUS_PASS_OR_WARN",
+      "risk_level": "R1_LOCAL_ARTIFACT_WRITE",
+      "approval_level": "APPROVAL_POLICY",
+      "timeout_seconds": 120,
+      "retry_policy": "NONE",
+      "working_directory": "REPOSITORY_ROOT",
+      "evidence_required": true,
+      "rollback_type": "DELETE_GENERATED_ARTIFACT"
+    },
+    {
+      "step_id": "write-summary",
+      "action_id": "ZTA-ACT-EVD-001",
+      "handler_id": "write_automation_summary",
+      "depends_on": [
+        "assess-package-acceptance",
+        "reassess-maturity"
+      ],
+      "condition": "PREVIOUS_PASS_OR_WARN",
+      "risk_level": "R1_LOCAL_ARTIFACT_WRITE",
+      "approval_level": "APPROVAL_POLICY",
+      "timeout_seconds": 30,
+      "retry_policy": "NONE",
+      "working_directory": "AUTOMATION_RUNTIME_ROOT",
+      "evidence_required": true,
+      "rollback_type": "DELETE_GENERATED_ARTIFACT"
+    }
+  ],
+  "expected_evidence": [
+    "CAPABILITY_ACCEPTANCE_RESULT",
+    "EXECUTION_RECORD",
+    "FRESHNESS_RESULT",
+    "MATURITY_REASSESSMENT_PROPOSAL",
+    "PACKAGE_ACCEPTANCE_RESULT",
+    "REGRESSION_RESULT",
+    "REPEATABILITY_RESULT",
+    "SANITIZED_SUMMARY"
+  ],
+  "rollback": {
+    "type": "DELETE_GENERATED_IGNORED_ARTIFACTS_ONLY",
+    "automatic": false,
+    "authoritative_files": "UNCHANGED"
+  },
+  "plan_hash": "72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624"
+}
+[WARN] workflow=ZT-CV-WF-001 mode=EXECUTE_READ_ONLY result=PARTIAL execution_id=ZTA-20260820T115911Z-5da5827c plan_hash=72c0aa52f20b12fb67d7b149e7c1ed980c2cfcbcdafea9cfc344cac2f4912624
+[PASS] validate-governance exit_code=0
+[WARN] validate-cv-configuration exit_code=0
+[WARN] evaluate-freshness exit_code=0
+[WARN] validate-live-systems exit_code=0
+[PASS] assess-repeatability exit_code=0
+[WARN] detect-regressions exit_code=0
+[WARN] assess-capability-acceptance exit_code=0
+[WARN] assess-package-acceptance exit_code=0
+[PASS] reassess-maturity exit_code=0
+[PASS] write-summary exit_code=0
+[PASS] ZT-AUTO-001 ExecuteReadOnly completed through the fixed-handler, no-mutation boundary.

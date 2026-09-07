@@ -20,14 +20,14 @@
     {
       "id": "PHASE_1",
       "title": "Core control validation",
-      "current_status": "NOT_COMPLETE",
-      "actions": ["P1-ID-ENF-001-RETRY", "P1-NET-CLOSE", "P1-VIS-CLOSE", "P1-CV-001", "P1-RV-001", "P1-SCH-001", "P1-ACC-001"],
-      "completion_condition": "Core identity, network, visibility, cross-validation, repeatability, scheduling, and evidence gates are accepted in the bounded non-production environment."
+      "current_status": "COMPLETED_WITH_GAPS",
+      "actions": ["P1-ID-ENF-001-RETRY", "P1-NET-CLOSE", "P1-VIS-CLOSE", "P1-CV-001", "P1-RV-001", "P1-ACC-001"],
+      "completion_condition": "Core identity, network, visibility, cross-validation, repeatability, and evidence gates through bounded EC4 are explicitly accepted in the non-production environment."
     },
     {
       "id": "PHASE_2",
       "title": "Central identity and visibility",
-      "current_status": "NOT_STARTED",
+      "current_status": "IN_PROGRESS",
       "actions": ["P2-VIS-001", "P2-ID-001", "P2-OIDC-001", "P2-MFA-001", "P2-RBAC-001", "P2-CV-001", "P2-ACC-001"],
       "completion_condition": "Central identity, MFA, federation, RBAC, central logging, and correlated audit decisions are runtime accepted."
     },
@@ -49,8 +49,8 @@
       "id": "PHASE_5",
       "title": "L3 assessment and portfolio completion",
       "current_status": "NOT_STARTED",
-      "actions": ["P5-METRIC-001", "P5-MAT-001", "P5-PORT-001", "P5-DEMO-001", "P5-ACC-001"],
-      "completion_condition": "Independent evidence assessment returns either L3_ADVANCED_SUPPORTED_BY_EVIDENCE or L3_NOT_YET_ACHIEVED without forcing success."
+      "actions": ["P5-METRIC-001", "P5-MAT-001", "P5-PORT-001", "P5-DEMO-001", "P1-SCH-001", "P5-ACC-001"],
+      "completion_condition": "Independent evidence assessment and final scheduled validation return either L3_ADVANCED_SUPPORTED_BY_EVIDENCE or L3_NOT_YET_ACHIEVED without forcing success."
     }
   ],
   "l4_roadmap": {

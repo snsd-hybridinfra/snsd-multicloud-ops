@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "P2-VIS-001 sanitized Terraform no-apply preflight evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "package_id", "action_id", "assessed_at", "sanitization_status", "authorization", "terraform_cli", "provider_lock", "preflight", "plan_review", "execution_boundary", "decision", "remaining_gates", "excluded_data"],
+  "properties": {
+    "evidence_id": {"const": "ZT-VIS-002-TERRAFORM-PREFLIGHT-20260821"},
+    "package_id": {"const": "ZT-VIS-002"},
+    "action_id": {"const": "P2-VIS-001"},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "sanitization_status": {"const": "PASS"},
+    "authorization": {
+      "type": "object", "additionalProperties": false,
+      "required": ["instruction", "authorized_scope", "terraform_apply_authorized", "ansible_deployment_authorized", "live_validator_authorized"],
+      "properties": {
+        "instruction": {"const": "EXPLICIT_NEXT_TASK_APPROVAL_AFTER_SCOPE_DISCLOSURE"},
+        "authorized_scope": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"enum": ["CONTROL_NODE_TERRAFORM_INSTALL", "OPENSTACK_PROVIDER_AUTHENTICATION", "TERRAFORM_INIT_VALIDATE_NO_APPLY_PLAN", "SANITIZED_PLAN_POLICY_REVIEW"]}},
+        "terraform_apply_authorized": {"const": false},
+        "ansible_deployment_authorized": {"const": false},
+        "live_validator_authorized": {"const": false}
+      }
+    },
+    "terraform_cli": {
+      "type": "object", "additionalProperties": false,
+      "required": ["version", "source", "signature_key_fingerprint", "signature_verification", "archive_sha256_verification", "installation_scope", "system_package_state_changed"],
+      "properties": {
+        "version": {"const": "1.15.8"},
+        "source": {"const": "HASHICORP_OFFICIAL_RELEASE"},
+        "signature_key_fingerprint": {"const": "C874011F0AB405110D02105534365D9472D7468F"},
+        "signature_verification": {"const": "PASS"},
+        "archive_sha256_verification": {"const": "PASS"},
+        "installation_scope": {"const": "CONTROL_USER_LOCAL_BIN"},
+        "system_package_state_changed": {"const": false}
+      }
+    },
+    "provider_lock": {
+      "type": "object", "additionalProperties": false,
+      "required": ["provider", "version", "registry_lock_verification", "linux_amd64_hash_added", "windows_amd64_hash_preserved", "provider_version_changed"],
+      "properties": {
+        "provider": {"const": "terraform-provider-openstack/openstack"},
+        "version": {"const": "3.4.0"},
+        "registry_lock_verification": {"const": "PASS"},
+        "linux_amd64_hash_added": {"const": true},
+        "windows_amd64_hash_preserved": {"const": true},
+        "provider_version_changed": {"const": false}
+      }
+    },
+    "preflight": {
+      "type": "object", "additionalProperties": false,
+      "required": ["external_cloud_profile_mode", "external_tfvars_mode", "backend_initialization", "terraform_init", "terraform_validate", "openstack_authentication_via_provider", "terraform_plan", "terraform_show_json", "refresh_enabled", "state_lock_enabled", "raw_plan_storage", "raw_plan_file_mode", "raw_plan_transferred_to_repository"],
+      "properties": {
+        "external_cloud_profile_mode": {"const": "0600"},
+        "external_tfvars_mode": {"const": "0600"},
+        "backend_initialization": {"const": "DISABLED"},
+        "terraform_init": {"const": "PASS"},
+        "terraform_validate": {"const": "PASS"},
+        "openstack_authentication_via_provider": {"const": "PASS"},
+        "terraform_plan": {"const": "PASS"},
+        "terraform_show_json": {"const": "PASS"},
+        "refresh_enabled": {"const": false},
+        "state_lock_enabled": {"const": false},
+        "raw_plan_storage": {"const": "EXTERNAL_CONTROL_NODE_PROTECTED_PATH"},
+        "raw_plan_file_mode": {"const": "0600"},
+        "raw_plan_transferred_to_repository": {"const": false}
+      }
+    },
+    "plan_review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["plan_sha256", "prior_resource_count", "resource_change_count", "destructive_action_count", "expected_changes", "policy_checks", "policy_decision", "raw_values_recorded"],
+      "properties": {
+        "plan_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "prior_resource_count": {"const": 0},
+        "resource_change_count": {"const": 4},
+        "destructive_action_count": {"const": 0},
+        "expected_changes": {
+          "type": "array", "minItems": 4, "maxItems": 4,
+          "items": {"type": "object", "additionalProperties": false, "required": ["resource_type", "action", "count"], "properties": {"resource_type": {"enum": ["openstack_networking_port_v2", "openstack_compute_instance_v2", "openstack_blockstorage_volume_v3", "openstack_compute_volume_attach_v2"]}, "action": {"const": "create"}, "count": {"const": 1}}}
+        },
+        "policy_checks": {
+          "type": "object", "additionalProperties": false,
+          "required": ["port_security_enabled", "security_group_present", "config_drive_enabled", "private_exposure_metadata", "package_metadata", "floating_ip_resource_absent"],
+          "properties": {
+            "port_security_enabled": {"const": "PASS"},
+            "security_group_present": {"const": "PASS"},
+            "config_drive_enabled": {"const": "PASS"},
+            "private_exposure_metadata": {"const": "PASS"},
+            "package_metadata": {"const": "PASS"},
+            "floating_ip_resource_absent": {"const": "PASS"}
+          }
+        },
+        "policy_decision": {"const": "PASS"},
+        "raw_values_recorded": {"const": false}
+      }
+    },
+    "execution_boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["openstack_read_only_provider_calls_executed", "terraform_plan_created", "terraform_state_file_count", "terraform_apply_executed", "ansible_playbook_executed", "image_pull_executed", "protected_openstack_target_changed", "central_monitoring_completed", "package_runtime_promoted", "maturity_assessed", "compliance_assessed"],
+      "properties": {
+        "openstack_read_only_provider_calls_executed": {"const": true},
+        "terraform_plan_created": {"const": true},
+        "terraform_state_file_count": {"const": 0},
+        "terraform_apply_executed": {"const": false},
+        "ansible_playbook_executed": {"const": false},
+        "image_pull_executed": {"const": false},
+        "protected_openstack_target_changed": {"const": false},
+        "central_monitoring_completed": {"const": false},
+        "package_runtime_promoted": {"const": false},
+        "maturity_assessed": {"const": false},
+        "compliance_assessed": {"const": false}
+      }
+    },
+    "decision": {"const": "NO_APPLY_PLAN_ACCEPTED_LIVE_DEPLOYMENT_STILL_NO_GO"},
+    "remaining_gates": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": {"enum": ["VERIFY_PROXY_TRUST_MATERIAL_ON_DEPLOYED_TARGET", "AUTHORIZE_LIVE_DEPLOYMENT", "AUTHORIZE_LIVE_VALIDATOR"]}},
+    "excluded_data": {"type": "array", "minItems": 8, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "P2-VIS-001 sanitized live-gate discovery",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "assessment_id", "package_id", "action_id", "assessed_at",
+    "assessment_mode", "sanitization_status", "raw_output_committed",
+    "credential_material_exposed", "live_target_changed",
+    "terraform_plan_created", "terraform_apply_executed",
+    "ansible_playbook_executed", "findings", "gate_assessment",
+    "decision", "blocking_reasons", "required_decisions",
+    "explicitly_not_claimed"
+  ],
+  "properties": {
+    "assessment_id": {"const": "P2-VIS-001-LIVE-GATE-DISCOVERY-001"},
+    "package_id": {"const": "ZT-VIS-002"},
+    "action_id": {"const": "P2-VIS-001"},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "assessment_mode": {"const": "LIVE_READ_ONLY_DISCOVERY"},
+    "sanitization_status": {"const": "PASS"},
+    "raw_output_committed": {"const": false},
+    "credential_material_exposed": {"const": false},
+    "live_target_changed": {"const": false},
+    "terraform_plan_created": {"const": false},
+    "terraform_apply_executed": {"const": false},
+    "ansible_playbook_executed": {"const": false},
+    "findings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["openstack_access", "service_catalog", "capacity", "resource_candidates", "terraform_controller", "storage_preflight"],
+      "properties": {
+        "openstack_access": {"const": "PASS_EXISTING_BOUNDED_OPERATOR_PATH"},
+        "service_catalog": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["identity", "image", "compute", "network", "placement", "block_storage", "volume_v3_endpoint"],
+          "properties": {
+            "identity": {"const": true},
+            "image": {"const": true},
+            "compute": {"const": true},
+            "network": {"const": true},
+            "placement": {"const": true},
+            "block_storage": {"const": false},
+            "volume_v3_endpoint": {"const": false}
+          }
+        },
+        "capacity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["candidate_vcpus", "candidate_memory_mb", "candidate_root_disk_gb", "core_headroom", "instance_headroom", "memory_headroom_mb", "status"],
+          "properties": {
+            "candidate_vcpus": {"const": 2},
+            "candidate_memory_mb": {"const": 4096},
+            "candidate_root_disk_gb": {"const": 40},
+            "core_headroom": {"type": "integer", "minimum": 2},
+            "instance_headroom": {"type": "integer", "minimum": 1},
+            "memory_headroom_mb": {"type": "integer", "minimum": 4096},
+            "status": {"const": "PASS_PENDING_OPERATOR_APPROVAL"}
+          }
+        },
+        "resource_candidates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["private_monitoring_network", "ubuntu_image", "bounded_monitoring_flavor", "bounded_monitoring_security_group", "operator_recovery_keypair", "existing_dedicated_monitoring_vm"],
+          "properties": {
+            "private_monitoring_network": {"const": "PRESENT_ACTIVE_NON_EXTERNAL"},
+            "ubuntu_image": {"const": "PRESENT_ACTIVE"},
+            "bounded_monitoring_flavor": {"const": "PRESENT"},
+            "bounded_monitoring_security_group": {"const": "PRESENT"},
+            "operator_recovery_keypair": {"const": "PRESENT"},
+            "existing_dedicated_monitoring_vm": {"const": "PRESENT_ACTIVE"}
+          }
+        },
+        "terraform_controller": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["external_cloud_profile", "status"],
+          "properties": {
+            "external_cloud_profile": {"const": "ABSENT"},
+            "status": {"const": "BLOCKED_NO_EXTERNAL_CLOUD_PROFILE"}
+          }
+        },
+        "storage_preflight": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["cinder_configuration", "cinder_containers", "dedicated_cinder_device", "root_volume_group_free_gb", "existing_secondary_disk_purpose", "recommended_new_disk_gb", "recommended_new_disk_allocation"],
+          "properties": {
+            "cinder_configuration": {"const": "DISABLED"},
+            "cinder_containers": {"const": "ABSENT"},
+            "dedicated_cinder_device": {"const": "ABSENT"},
+            "root_volume_group_free_gb": {"type": "integer", "minimum": 1},
+            "existing_secondary_disk_purpose": {"const": "PROTECTED_NOVA_INSTANCE_STORAGE"},
+            "recommended_new_disk_gb": {"const": 100},
+            "recommended_new_disk_allocation": {"const": "THIN_DEDICATED_CINDER_LVM"}
+          }
+        }
+      }
+    },
+    "gate_assessment": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["gate", "status"],
+        "properties": {
+          "gate": {"type": "string", "minLength": 1},
+          "status": {"enum": ["DISCOVERED_PENDING_APPROVAL", "PENDING", "BLOCKED_CINDER_SERVICE_ABSENT"]}
+        }
+      }
+    },
+    "decision": {"const": "NO_GO_LIVE_DEPLOYMENT"},
+    "blocking_reasons": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "required_decisions": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "explicitly_not_claimed": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}

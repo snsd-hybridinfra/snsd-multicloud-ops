@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "P2-VIS-001 deployment readiness contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["readiness_id", "package_id", "action_id", "decision_date", "status", "target_platform", "artifact_policy", "access_policy", "retention_restore_policy", "external_input_contract", "remaining_gates", "runtime_executed", "central_monitoring_completed", "package_runtime_promoted", "maturity_assessed", "compliance_assessed"],
+  "properties": {
+    "readiness_id": {"const": "P2-VIS-001-READINESS-001"},
+    "package_id": {"const": "ZT-VIS-002"},
+    "action_id": {"const": "P2-VIS-001"},
+    "decision_date": {"type": "string", "format": "date"},
+    "status": {"const": "NO_APPLY_PLAN_VALIDATED_LIVE_DEPLOYMENT_PENDING"},
+    "target_platform": {
+      "type": "object", "additionalProperties": false,
+      "required": ["os", "architecture", "container_runtime", "network_boundary"],
+      "properties": {
+        "os": {"const": "LINUX"},
+        "architecture": {"const": "AMD64"},
+        "container_runtime": {"const": "PODMAN"},
+        "network_boundary": {"const": "PRIVATE_OPENSTACK_NETWORK_NO_FLOATING_IP"}
+      }
+    },
+    "artifact_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["decision", "registry_verification", "verified_at", "images", "tag_only_allowed", "mutable_fallback_allowed", "pre_deploy_registry_revalidation_required", "signature_verified", "vulnerability_assessed"],
+      "properties": {
+        "decision": {"const": "LOCAL_SELECTION_VALIDATED"},
+        "registry_verification": {"const": "READ_ONLY_DISTRIBUTION_MANIFEST_RESOLVED"},
+        "verified_at": {"type": "string", "format": "date"},
+        "images": {
+          "type": "array", "minItems": 5, "maxItems": 5,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["component", "version", "tag_reference", "runtime_reference"],
+            "properties": {
+              "component": {"enum": ["Grafana", "Loki", "Alloy", "Prometheus", "Blackbox Exporter"]},
+              "version": {"type": "string", "minLength": 1},
+              "tag_reference": {"type": "string", "pattern": "^docker\\.io/[a-z0-9./_-]+:[A-Za-z0-9._-]+$"},
+              "runtime_reference": {"type": "string", "pattern": "^docker\\.io/[a-z0-9./_-]+@sha256:[0-9a-f]{64}$"}
+            }
+          }
+        },
+        "tag_only_allowed": {"const": false},
+        "mutable_fallback_allowed": {"const": false},
+        "pre_deploy_registry_revalidation_required": {"const": true},
+        "signature_verified": {"const": false},
+        "vulnerability_assessed": {"const": false}
+      }
+    },
+    "access_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["design_status", "ingress", "authentication", "anonymous_access_allowed", "direct_service_access_allowed", "roles", "oidc_status", "external_material_required"],
+      "properties": {
+        "design_status": {"const": "LOCAL_VALIDATED_RUNTIME_PENDING"},
+        "ingress": {"const": "PRIVATE_TLS_REVERSE_PROXY_ONLY"},
+        "authentication": {"const": "MUTUAL_TLS_AT_PROXY_PLUS_GRAFANA_LOGIN"},
+        "anonymous_access_allowed": {"const": false},
+        "direct_service_access_allowed": {"const": false},
+        "roles": {
+          "type": "array", "minItems": 3, "maxItems": 3,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["role", "access", "host_recovery_allowed"],
+            "properties": {
+              "role": {"enum": ["VISIBILITY_VIEWER", "VISIBILITY_ADMINISTRATOR", "RECOVERY_OPERATOR"]},
+              "access": {"type": "string", "minLength": 1},
+              "host_recovery_allowed": {"type": "boolean"}
+            }
+          }
+        },
+        "oidc_status": {"const": "DEFERRED_TO_P2_OIDC_001"},
+        "external_material_required": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "retention_restore_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["design_status", "retention", "primary_storage", "recovery_method", "rollback_checkpoint", "independent_backup_backend", "retention_runtime_accepted", "restore_runtime_accepted", "rpo", "rto"],
+      "properties": {
+        "design_status": {"const": "LOCAL_VALIDATED_RUNTIME_PENDING"},
+        "retention": {"const": "PT336H"},
+        "primary_storage": {"const": "DEDICATED_CINDER_VOLUME"},
+        "recovery_method": {"const": "REATTACH_PRESERVED_VOLUME_TO_REBUILT_MONITORING_VM"},
+        "rollback_checkpoint": {"const": "CINDER_SNAPSHOT_BEFORE_BOUNDED_DEPLOYMENT_TEST"},
+        "independent_backup_backend": {"const": "NONE_APPROVED"},
+        "retention_runtime_accepted": {"const": false},
+        "restore_runtime_accepted": {"const": false},
+        "rpo": {"const": "NOT_CLAIMED"},
+        "rto": {"const": "NOT_CLAIMED"}
+      }
+    },
+    "external_input_contract": {
+      "type": "object", "additionalProperties": false,
+      "required": ["cloud_profile", "terraform_values", "ansible_inventory", "ansible_values", "repository_secret_material_allowed", "repository_runtime_state_allowed", "review_status"],
+      "properties": {
+        "cloud_profile": {"const": "EXTERNAL_CLOUDS_YAML_OUTSIDE_GIT"},
+        "terraform_values": {"const": "EXTERNAL_TFVARS_OUTSIDE_GIT"},
+        "ansible_inventory": {"const": "EXTERNAL_INVENTORY_OUTSIDE_GIT"},
+        "ansible_values": {"const": "EXTERNAL_VARS_OUTSIDE_GIT"},
+        "repository_secret_material_allowed": {"const": false},
+        "repository_runtime_state_allowed": {"const": false},
+        "review_status": {"const": "AUTHENTICATED_NO_APPLY_PLAN_POLICY_VALIDATED"}
+      }
+    },
+    "remaining_gates": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": {"enum": ["VERIFY_PROXY_TRUST_MATERIAL_ON_DEPLOYED_TARGET", "AUTHORIZE_LIVE_DEPLOYMENT", "AUTHORIZE_LIVE_VALIDATOR"]}},
+    "runtime_executed": {"const": false},
+    "central_monitoring_completed": {"const": false},
+    "package_runtime_promoted": {"const": false},
+    "maturity_assessed": {"const": false},
+    "compliance_assessed": {"const": false}
+  }
+}

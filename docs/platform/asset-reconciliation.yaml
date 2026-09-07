@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_at": "2026-08-27",
+  "status": "LOCAL_INVENTORY_COMPLETE",
+  "rules": {
+    "file_presence_is_implementation": false,
+    "historical_runtime_claims_are_inherited": false,
+    "provider_specific_assets_are_active": false,
+    "destructive_reorganization_authorized": false
+  },
+  "assets": [
+    {
+      "path": "applications/internal-iaas-portal/",
+      "disposition": "ADOPT_AS_FOUNDATION",
+      "owner": "IDP_EXPERIENCE_AND_CONTROL_PLANE",
+      "reason": "Existing fixed OpenStack VM and k3s execution-profile catalog, approval lifecycle, runner and local tests align with the target product foundation.",
+      "required_work": ["reconcile identity contract", "externalize state backend", "integrate GitOps handoff", "prove one private VM lifecycle"]
+    },
+    {
+      "path": "terraform/modules/openstack-network/",
+      "disposition": "ADAPT",
+      "owner": "PRIVATE_IAAS",
+      "reason": "Useful OpenStack network intent exists but must be reconciled with portal-owned private-only product boundaries.",
+      "required_work": ["define ownership versus existing network registration", "add plan policy gate", "avoid duplicate network creation"]
+    },
+    {
+      "path": "terraform/envs/zt-vis-002-openstack/",
+      "disposition": "KEEP_SEPARATE_AUTHORITY",
+      "owner": "ZERO_TRUST_VISIBILITY",
+      "reason": "This environment is package-owned monitoring infrastructure, not the generic IDP catalog.",
+      "required_work": ["retain package evidence boundary", "expose read-only health through an adapter later"]
+    },
+    {
+      "path": "ansible/roles/zt_vis_002*/",
+      "disposition": "KEEP_SEPARATE_AUTHORITY",
+      "owner": "ZERO_TRUST_VISIBILITY",
+      "reason": "Package-specific configuration and rollback must not become a generic platform role by implication.",
+      "required_work": ["retain fixed package scope"]
+    },
+    {
+      "path": "platform/gitops/",
+      "disposition": "ADAPT_SELECTIVELY",
+      "owner": "PAAS_GITOPS",
+      "reason": "Contains substantial reusable k3s application, security, identity and observability declarations with environment-specific assumptions.",
+      "required_work": ["inventory kustomizations", "remove environment coupling", "classify bootstrap versus tenant apps", "validate version and secret contracts"]
+    },
+    {
+      "path": "platform/policies/",
+      "disposition": "ADAPT_SELECTIVELY",
+      "owner": "POLICY_PLANE",
+      "reason": "Policy candidates are reusable only after target namespace, exception and enforcement-mode review.",
+      "required_work": ["start audit-only where appropriate", "bind exceptions to owner and expiry", "test bypass and rollback"]
+    },
+    {
+      "path": "platform/infra/ansible/",
+      "disposition": "ADAPT_SELECTIVELY",
+      "owner": "PAAS_CONFIGURATION",
+      "reason": "Existing single-node k3s and platform roles may accelerate the PaaS golden path but were built for a different lab topology.",
+      "required_work": ["map to OpenStack-provisioned host contract", "remove Proxmox and site assumptions", "pin artifacts"]
+    },
+    {
+      "path": "platform/infra/proxmox/",
+      "disposition": "KEEP_AS_REFERENCE",
+      "owner": "LEGACY_LAB_REFERENCE",
+      "reason": "Proxmox is a separate lab implementation and is not the selected private-IaaS product plane.",
+      "required_work": ["do not merge into OpenStack catalog"]
+    },
+    {
+      "path": "platform/infra/opnsense/",
+      "disposition": "KEEP_AS_REFERENCE",
+      "owner": "LEGACY_LAB_REFERENCE",
+      "reason": "OPNsense procedures may inform edge controls but do not own the Nexus/IOS financial underlay.",
+      "required_work": ["extract provider-neutral control intent only"]
+    },
+    {
+      "path": "platform/infra/aws/",
+      "disposition": "DEFER_PROVIDER_SPECIFIC",
+      "owner": "PUBLIC_CLOUD_ADAPTER_FUTURE",
+      "reason": "Existing AWS assets and historical claims are not the selected root provider authority.",
+      "required_work": ["select provider explicitly", "review credentials and state boundaries", "map to common provider contract", "revalidate from zero"]
+    },
+    {
+      "path": "eve-ng/",
+      "disposition": "ADAPT",
+      "owner": "FINANCIAL_NETWORK",
+      "reason": "The emulator is the correct non-production execution surface for Nexus/IOS routing, multicast and segmentation design.",
+      "required_work": ["define single-site topology", "supply licensed images outside Git", "add sanitized configuration templates", "validate failure and rollback"]
+    },
+    {
+      "path": "observability/",
+      "disposition": "ADAPT",
+      "owner": "INTEGRATED_OPERATIONS",
+      "reason": "Platform-wide health and lifecycle correlation require a provider-neutral observability contract.",
+      "required_work": ["separate service health from Zero Trust evidence", "define correlation identifiers", "expose portal read model"]
+    },
+    {
+      "path": "docs/zero-trust/",
+      "disposition": "KEEP_AUTHORITATIVE",
+      "owner": "ZERO_TRUST_SECURITY_PLANE",
+      "reason": "Existing package, capability, evidence and status authorities remain valid for their bounded scopes.",
+      "required_work": ["map platform assets without status inheritance"]
+    }
+  ],
+  "domain_owners": {
+    "catalog": "IDP_EXPERIENCE_AND_CONTROL_PLANE",
+    "identity": "ZERO_TRUST_IDENTITY_AND_IDP_CONTROL_PLANE",
+    "network": "FINANCIAL_NETWORK",
+    "terraform_state": "AUTOMATION_PLANE",
+    "telemetry": "INTEGRATED_OPERATIONS",
+    "backup_restore": "INTEGRATED_OPERATIONS",
+    "cost_allocation": "INTEGRATED_OPERATIONS",
+    "security_status": "ZERO_TRUST_SECURITY_PLANE"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Phase 1 RV freshness refresh progress",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["progress_id", "exception_id", "campaign_id", "assessment_time", "window_state", "required_eligible_executions", "accepted_current_executions", "rejected_expired_executions", "consecutive_current_successes", "current_continuity", "assessment_result", "assessment_freshness_status", "latest_execution", "next_execution_not_before", "remaining_eligible_executions", "scheduler_used", "automatic_retry_used", "live_target_changed", "history_appended", "package_status_promoted", "phase_2_continues", "next_action"],
+  "properties": {
+    "progress_id": {"const": "P1-RV-FRESHNESS-REFRESH-001"},
+    "exception_id": {"const": "P1-RV-FRESHNESS-001"},
+    "campaign_id": {"const": "ZT-RV-001"},
+    "assessment_time": {"type": "string", "format": "date-time"},
+    "window_state": {"const": "FRESH_RUN_1_OF_3"},
+    "required_eligible_executions": {"const": 3},
+    "accepted_current_executions": {"const": 1},
+    "rejected_expired_executions": {"const": 3},
+    "consecutive_current_successes": {"const": 1},
+    "current_continuity": {"const": "EC3_ONE_TIME_RUNTIME"},
+    "assessment_result": {"const": "IN_PROGRESS"},
+    "assessment_freshness_status": {"const": "STALE"},
+    "latest_execution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["execution_id", "execution_timestamp", "execution_authority", "execution_mode", "pass", "warn", "fail", "exit_code", "sanitization_status", "security_boundary_status", "warning_categories", "approval_reference", "evidence_reference"],
+      "properties": {
+        "execution_id": {"const": "ZTRV-20260820T115907Z-fd3d6d3c"},
+        "execution_timestamp": {"const": "2026-08-20T11:59:07.686986Z"},
+        "execution_authority": {"const": "CODEX_EXECUTED_LIVE_RUNTIME"},
+        "execution_mode": {"const": "EXECUTE_READ_ONLY"},
+        "pass": {"const": 4},
+        "warn": {"const": 6},
+        "fail": {"const": 0},
+        "exit_code": {"const": 0},
+        "sanitization_status": {"const": "PASS"},
+        "security_boundary_status": {"const": "PASS"},
+        "warning_categories": {"type": "array", "prefixItems": [{"const": "ENDPOINT_SCANNER_GAP"}, {"const": "CONFIGURATION_ONLY_RECORDS"}, {"const": "SERVICE_DEGRADED"}], "items": false, "minItems": 3, "maxItems": 3},
+        "approval_reference": {"const": "USER_APPROVED_2026-08-20_RV_PHASE2_PARALLEL"},
+        "evidence_reference": {"const": "docs/evidence/zero-trust/zt-rv-001-refresh-01.sanitized.txt"}
+      }
+    },
+    "next_execution_not_before": {"const": "2026-08-21T11:59:07.686986Z"},
+    "remaining_eligible_executions": {"const": 2},
+    "scheduler_used": {"const": false},
+    "automatic_retry_used": {"const": false},
+    "live_target_changed": {"const": false},
+    "history_appended": {"const": true},
+    "package_status_promoted": {"const": false},
+    "phase_2_continues": {"const": true},
+    "next_action": {"type": "string", "minLength": 1}
+  }
+}

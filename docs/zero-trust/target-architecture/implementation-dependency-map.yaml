@@ -4,8 +4,8 @@
     {
       "id": "PHASE_1",
       "name": "Foundation and Verification Operations",
-      "boundary": "ZT-SCH-001",
-      "boundary_status": "IMPLEMENTED_LOCAL_VALIDATED",
+      "boundary": "ZT-RV-001",
+      "boundary_status": "BOUNDED_EC4_ACCEPTED",
       "actual_packages": [
         "ZT-FND-001",
         "ZT-NET-001",
@@ -13,7 +13,6 @@
         "ZT-ID-001",
         "ZT-CV-001",
         "ZT-RV-001",
-        "ZT-SCH-001",
         "ZT-DEV-001",
         "ZT-APP-001",
         "ZT-DATA-001",
@@ -24,15 +23,20 @@
       "packages": [],
       "implementation_status": "PARTIAL",
       "validation_status": "PARTIALLY_VALIDATED",
-      "completion_status": "NOT_COMPLETE",
+      "completion_status": "COMPLETED_WITH_GAPS",
+      "acceptance_decision_status": "ACCEPTED_WITH_GAPS",
+      "accepted_exception": "P1-RV-FRESHNESS-001",
+      "deferred_final_risk": "STALE_RV_EVIDENCE",
+      "acceptance_decision_record": "docs/zero-trust/recovery/P1-ACC-001/acceptance-decision-with-gaps.yaml",
       "entry_criteria": [
         "locked scenario model exists"
       ],
       "exit_criteria": [
         "restricted validation and evidence governance are runtime evidenced",
-        "scheduled-validation foundation is separately validated"
+        "Phase 1 acceptance decision is recorded with the scoped freshness exception without EC5",
+        "Fresh RV evidence is mandatory before the final scheduling and acceptance gate"
       ],
-      "current_state": "PARTIALLY_VALIDATED"
+      "current_state": "COMPLETED_WITH_GAPS"
     },
     {
       "id": "PHASE_2",
@@ -63,7 +67,7 @@
         "access-decision telemetry validated",
         "evidence sanitized"
       ],
-      "current_state": "DESIGN_ONLY"
+      "current_state": "IN_PROGRESS_PARTIAL_RUNTIME"
     },
     {
       "id": "PHASE_3",
@@ -132,7 +136,8 @@
         "ZT-RUN-001",
         "ZT-HOF-001",
         "ZT-MAT-001",
-        "ZT-PLT-001"
+        "ZT-PLT-001",
+        "ZT-SCH-001"
       ],
       "entry_criteria": [
         "Phase 4 exit gate passes"
@@ -144,6 +149,7 @@
         "operator handoff validated",
         "runbooks validated",
         "selected capability maturity reassessed",
+        "deferred scheduled validation accepted or explicitly blocks the final decision",
         "no unsupported maturity claim remains"
       ],
       "current_state": "NOT_STARTED"
@@ -173,14 +179,14 @@
   "package_status": {
     "ZT-SCH-001": {
       "package_state": "PRESENT",
-      "phase": "PHASE_1_CURRENT",
+      "phase": "FINAL_PROJECT_GATE",
       "implementation_status": "IMPLEMENTED",
       "validation_status": "LOCAL_VALIDATED",
       "runtime_validation_status": "NOT_VALIDATED",
       "runtime_acceptance_status": "PENDING",
-      "runtime_scope": "BOUNDED_DAILY_SCHEDULE_0_OF_3",
+      "runtime_scope": "INSTALLED_DISABLED_0_ACCEPTED_DATES",
       "maturity_status": "UNASSESSED",
-      "roadmap_status": "BOUNDED_CONFIGURATION_PACKAGE"
+      "roadmap_status": "DEFERRED_FINAL_CONFIGURATION_PACKAGE"
     },
     "ZT-USE-001": {
       "implementation_status": "NOT_STARTED",
@@ -265,11 +271,15 @@
       "roadmap_status": "PLANNED"
     },
     "ZT-VIS-002": {
-      "package_state": "NOT_AUTHORITATIVE",
-      "phase": "PHASE_2_ENABLING_WORK",
-      "implementation_status": "PREPARATION_TRACES_ONLY",
-      "validation_status": "NOT_VALIDATED",
-      "roadmap_status": "DESIGN_ONLY",
+      "package_state": "PRESENT",
+      "phase": "PHASE_2_CURRENT",
+      "implementation_status": "PARTIALLY_IMPLEMENTED",
+      "validation_status": "PARTIALLY_RUNTIME_VALIDATED",
+      "runtime_validation_status": "PARTIALLY_VALIDATED",
+      "runtime_acceptance_status": "PARTIALLY_ACCEPTED",
+      "evidence_status": "PARTIAL_RUNTIME_RECORDED",
+      "maturity_status": "UNASSESSED",
+      "roadmap_status": "IN_PROGRESS_PARTIAL_RUNTIME",
       "protected": true
     },
     "ZT-EFF-001": {
@@ -447,7 +457,7 @@
     "ZT-DATA-001 is implemented and partially runtime validated for seven metadata-only assets, manual labels, detection-only DLP, and one synthetic restore; it does not establish enterprise governance, dynamic access, platform encryption, live backup/restore, blocking DLP, maturity, or Phase 1 completion.",
     "ZT-SYS-001 is implemented and partially runtime validated for seven bounded systems, five safe matched configuration authorities, and existing fixed read-only validators; OpenStack remains CURRENT_DEGRADED and the package does not establish complete PAM, credential lifecycle, continuous FIM, broad hardening, full system recovery, maturity, or Phase 1 completion.",
     "ZT-AUTO-001 is implemented and partially runtime validated for fixed R0-R3 handlers, default-deny policy, deterministic planning, proposal-only governance, and one partial cross-domain read-only execution; it does not establish arbitrary execution, mutation authority, external notification, autonomous response, SOAR, repeatability, scheduling, maturity, or Phase 1 completion.",
-    "ZT-SCH-001 is implemented and locally validated for one limited interactive-token daily task with bounded catch-up; six failed candidates and zero accepted scheduled dates do not establish runtime validation, EC5, maturity, or Phase 1 completion.",
-    "ZT-VIS-002 runtime work is protected Phase 2 enabling preparation, remains untracked, and does not inherit authority from the separately accepted bounded ZT-VIS-001 runtime package."
+    "ZT-SCH-001 is implemented and locally validated for one installed disabled limited interactive-token task; eleven retained candidates and zero accepted scheduled dates do not establish runtime validation, EC5, maturity, or Phase 1 completion, and the package is deferred to the final Phase 5 gate.",
+    "ZT-VIS-002 is partially implemented, partially runtime validated, and partially accepted for one bounded private non-production OpenStack monitoring VM; protected runtime traces remain untracked non-authorities, no ZT-VIS-001 runtime acceptance is inherited, and completion remains blocked by alert-delivery, elapsed-retention, and full Cinder snapshot-restore gaps."
   ]
 }

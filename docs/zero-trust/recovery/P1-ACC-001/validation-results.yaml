@@ -1,0 +1,23 @@
+{
+  "action_id": "P1-ACC-001",
+  "validation_date": "2026-08-20",
+  "validation_status": "PASS_BLOCKED_DECISION",
+  "results": [
+    {"check": "predecessor decisions", "result": "PASS", "detail": "FND, NET, VIS, ID, CV and historical RV decisions are present."},
+    {"check": "current RV freshness", "result": "BLOCKED", "detail": "All three RV records exceed P7D at 2026-08-20T11:08:50.558164Z."},
+    {"check": "acceptance default deny", "result": "PASS", "detail": "P1-ACC-001 remains NOT_COMPLETE and is recorded as BLOCKED_STALE_EVIDENCE."},
+    {"check": "scheduler boundary", "result": "PASS", "detail": "ZT-SCH-001 remains disabled and deferred to final Phase 5."},
+    {"check": "status promotion", "result": "PASS", "detail": "No package, EC5, maturity, compliance, certification, production or Phase 2 state was promoted."},
+    {"check": "runtime mutation", "result": "PASS", "detail": "Only a local read-only reassessment was performed; no live validator or target change occurred."},
+    {"check": "Phase 1 acceptance validator", "result": "PASS", "detail": "1 passed check, 0 failures; the recorded timestamp reproduces STALE / 0 accepted / EC3 / NOT_STARTED."},
+    {"check": "integrated Zero Trust validators", "result": "PASS", "detail": "Project, roadmap, execution, dependencies, milestones, status, synchronization, retirement, architecture, runbook and governance stages passed."},
+    {"check": "repository structure", "result": "PASS", "detail": "Required authorities are present; no retired active scenario root or tracked runtime exists."},
+    {"check": "full Python regression suite", "result": "PASS", "detail": "386 tests passed."},
+    {"check": "OpenStack and k3s candidate regression", "result": "PASS", "detail": "22 checks passed and deployment remains fail closed."},
+    {"check": "git diff check", "result": "PASS", "detail": "No whitespace error was reported."}
+  ],
+  "runtime_executed": false,
+  "live_target_changed": false,
+  "scheduler_changed": false,
+  "authoritative_acceptance_granted": false
+}

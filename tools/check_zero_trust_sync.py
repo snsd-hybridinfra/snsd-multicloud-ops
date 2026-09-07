@@ -28,7 +28,7 @@ PROJECT_AUTHORITIES = {
 }
 EXPECTED_FLOW = [
     "ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001",
-    "ZT-CV-001", "ZT-RV-001", "ZT-SCH-001", "P1-ACC-001",
+    "ZT-CV-001", "ZT-RV-001", "P1-ACC-001",
 ]
 
 
@@ -85,6 +85,19 @@ def run_sync(root: Path) -> tuple[list[str], list[str]]:
     else:
         failures.append(f"Invalid Phase 1 package flow: sequence={sequence}, packages={package_ids}")
 
+    deferred = flow.get("deferred_final_work", {})
+    expected_deferred = {
+        "package_id": "ZT-SCH-001", "action_id": "P1-SCH-001",
+        "planning_status": "DEFERRED_FINAL", "schedule_state": "DISABLED",
+        "execution_phase": "PHASE_5", "predecessor_action": "P5-DEMO-001",
+        "successor_action": "P5-ACC-001", "runtime_validation_status": "NOT_VALIDATED",
+        "runtime_acceptance_status": "PENDING",
+    }
+    if deferred == expected_deferred:
+        passes.append("ZT-SCH-001 is preserved as the disabled deferred final project gate.")
+    else:
+        failures.append("Deferred final scheduled-validation authority differs.")
+
     predecessor_errors: list[str] = []
     for index, row in enumerate(package_rows):
         expected = None if index == 0 else package_ids[index - 1]
@@ -103,12 +116,17 @@ def run_sync(root: Path) -> tuple[list[str], list[str]]:
     expected_acceptance = {
         "implementation_status": "PARTIAL",
         "validation_status": "PARTIALLY_VALIDATED",
-        "completion_status": "NOT_COMPLETE",
-        "scope_boundary": "ZT-SCH-001",
+        "completion_status": "COMPLETED_WITH_GAPS",
+        "scope_boundary": "ZT-RV-001",
         "requires_all_predecessors_accepted": True,
+        "decision_status": "ACCEPTED_WITH_GAPS",
+        "blocking_reason": None,
+        "accepted_exception": "P1-RV-FRESHNESS-001",
+        "deferred_final_risk": "STALE_RV_EVIDENCE",
+        "decision_record": "docs/zero-trust/recovery/P1-ACC-001/acceptance-decision-with-gaps.yaml",
     }
     if acceptance == expected_acceptance:
-        passes.append("Phase 1 remains partial, partially validated, and not complete at ZT-SCH-001.")
+        passes.append("Phase 1 is completed with gaps under the scoped RV freshness exception; stale evidence remains a deferred final-gate risk at the ZT-RV-001 boundary.")
     else:
         failures.append("Phase 1 acceptance state differs from the conservative authority.")
 
@@ -130,7 +148,7 @@ def run_sync(root: Path) -> tuple[list[str], list[str]]:
 
     status_ids = {item.get("package_id") for item in project["package_status"].get("packages", [])}
     case_ids = {item.get("package_id") for item in project["acceptance_cases"].get("packages", [])}
-    expected_status_ids = set(package_ids) | {"ZT-ARC-001", "ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001"}
+    expected_status_ids = set(package_ids) | {"ZT-ARC-001", "ZT-SCH-001", "ZT-DEV-001", "ZT-APP-001", "ZT-DATA-001", "ZT-SYS-001", "ZT-AUTO-001", "ZT-VIS-002"}
     if case_ids == expected_status_ids - {"ZT-ARC-001"} and status_ids == expected_status_ids:
         passes.append("Package status and all technical-package acceptance-case coverage are synchronized.")
     else:

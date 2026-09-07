@@ -1,0 +1,102 @@
+{
+  "assessment_id": "P2-VIS-001-LIVE-GATE-DISCOVERY-001",
+  "package_id": "ZT-VIS-002",
+  "action_id": "P2-VIS-001",
+  "assessed_at": "2026-08-20T14:46:46Z",
+  "assessment_mode": "LIVE_READ_ONLY_DISCOVERY",
+  "sanitization_status": "PASS",
+  "raw_output_committed": false,
+  "credential_material_exposed": false,
+  "live_target_changed": false,
+  "terraform_plan_created": false,
+  "terraform_apply_executed": false,
+  "ansible_playbook_executed": false,
+  "findings": {
+    "openstack_access": "PASS_EXISTING_BOUNDED_OPERATOR_PATH",
+    "service_catalog": {
+      "identity": true,
+      "image": true,
+      "compute": true,
+      "network": true,
+      "placement": true,
+      "block_storage": false,
+      "volume_v3_endpoint": false
+    },
+    "capacity": {
+      "candidate_vcpus": 2,
+      "candidate_memory_mb": 4096,
+      "candidate_root_disk_gb": 40,
+      "core_headroom": 16,
+      "instance_headroom": 7,
+      "memory_headroom_mb": 43008,
+      "status": "PASS_PENDING_OPERATOR_APPROVAL"
+    },
+    "resource_candidates": {
+      "private_monitoring_network": "PRESENT_ACTIVE_NON_EXTERNAL",
+      "ubuntu_image": "PRESENT_ACTIVE",
+      "bounded_monitoring_flavor": "PRESENT",
+      "bounded_monitoring_security_group": "PRESENT",
+      "operator_recovery_keypair": "PRESENT",
+      "existing_dedicated_monitoring_vm": "PRESENT_ACTIVE"
+    },
+    "terraform_controller": {
+      "external_cloud_profile": "ABSENT",
+      "status": "BLOCKED_NO_EXTERNAL_CLOUD_PROFILE"
+    },
+    "storage_preflight": {
+      "cinder_configuration": "DISABLED",
+      "cinder_containers": "ABSENT",
+      "dedicated_cinder_device": "ABSENT",
+      "root_volume_group_free_gb": 59,
+      "existing_secondary_disk_purpose": "PROTECTED_NOVA_INSTANCE_STORAGE",
+      "recommended_new_disk_gb": 100,
+      "recommended_new_disk_allocation": "THIN_DEDICATED_CINDER_LVM"
+    }
+  },
+  "gate_assessment": [
+    {
+      "gate": "OpenStack quota and monitoring VM sizing",
+      "status": "DISCOVERED_PENDING_APPROVAL"
+    },
+    {
+      "gate": "Private network, security groups, image and flavor inputs",
+      "status": "DISCOVERED_PENDING_APPROVAL"
+    },
+    {
+      "gate": "Digest-pinned component artifacts",
+      "status": "PENDING"
+    },
+    {
+      "gate": "Persistent storage, retention and restore design",
+      "status": "BLOCKED_CINDER_SERVICE_ABSENT"
+    },
+    {
+      "gate": "Authenticated proxy and administrator role design",
+      "status": "PENDING"
+    },
+    {
+      "gate": "Separate live deployment and validator authorization",
+      "status": "PENDING"
+    }
+  ],
+  "decision": "NO_GO_LIVE_DEPLOYMENT",
+  "blocking_reasons": [
+    "The OpenStack service catalog has no block-storage service or volume-v3 endpoint.",
+    "The Terraform controller has no reviewed external cloud profile.",
+    "Immutable component digests are not approved.",
+    "Authenticated proxy, administrator role, retention and restore decisions remain pending.",
+    "Live deployment and live validator authorization remain pending."
+  ],
+  "required_decisions": [
+    "Approve either a dedicated 100 GiB thin VMware disk plus Kolla Cinder LVM enablement or adoption of the existing dedicated monitoring VM without a Terraform-managed volume under a new architecture decision.",
+    "Approve exact private resource inputs after the storage route is selected.",
+    "Provide a reviewed external cloud profile outside Git before any Terraform plan."
+  ],
+  "explicitly_not_claimed": [
+    "OpenStack deployment authorization",
+    "Terraform plan or apply",
+    "Ansible inventory or playbook execution",
+    "central monitoring runtime validation",
+    "package acceptance, maturity, compliance or production readiness"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Phase 2 entry preflight",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["assessment_id", "assessment_date", "phase", "first_action", "package_id", "decision", "phase_1_entry", "read_only_checks", "protected_local_state", "live_deployment_blockers", "runtime_executed", "live_target_changed", "package_runtime_promoted", "maturity_assessed", "compliance_assessed", "next_action"],
+  "properties": {
+    "assessment_id": {"const": "P2-ENTRY-PREFLIGHT-001"},
+    "assessment_date": {"const": "2026-08-20"},
+    "phase": {"const": "PHASE_2"},
+    "first_action": {"const": "P2-VIS-001"},
+    "package_id": {"const": "ZT-VIS-002"},
+    "decision": {"const": "LOCAL_PREPARATION_READY_LIVE_DEPLOYMENT_NO_GO"},
+    "phase_1_entry": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "decision", "exception_id", "deferred_final_risk"],
+      "properties": {
+        "status": {"const": "COMPLETED_WITH_GAPS"},
+        "decision": {"const": "ACCEPTED_WITH_GAPS"},
+        "exception_id": {"const": "P1-RV-FRESHNESS-001"},
+        "deferred_final_risk": {"const": "STALE_RV_EVIDENCE"}
+      }
+    },
+    "read_only_checks": {"type": "array", "minItems": 6, "items": {"type": "object", "additionalProperties": false, "required": ["check", "result"], "properties": {"check": {"type": "string", "minLength": 1}, "result": {"const": "PASS"}}}},
+    "protected_local_state": {
+      "type": "object", "additionalProperties": false,
+      "required": ["runtime_trace_policy", "platform_tree_policy", "raw_runtime_committed"],
+      "properties": {
+        "runtime_trace_policy": {"const": "OPTIONAL_LOCAL_PRESENT_NOT_AUTHORITATIVE"},
+        "platform_tree_policy": {"const": "USER_OWNED_NOT_ADOPTED_BY_THIS_ACTION"},
+        "raw_runtime_committed": {"const": false}
+      }
+    },
+    "live_deployment_blockers": {"type": "array", "minItems": 6, "items": {"type": "string", "minLength": 1}},
+    "runtime_executed": {"const": false},
+    "live_target_changed": {"const": false},
+    "package_runtime_promoted": {"const": false},
+    "maturity_assessed": {"const": false},
+    "compliance_assessed": {"const": false},
+    "next_action": {"type": "string", "minLength": 1}
+  }
+}

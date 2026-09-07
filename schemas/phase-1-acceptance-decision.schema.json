@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Phase 1 bounded acceptance decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "action_id", "decision_date", "assessed_at", "decision", "decision_scope",
+    "phase", "predecessor_decisions", "evidence_index", "freshness_gate", "blocking_findings",
+    "accepted_statements", "explicitly_not_accepted", "next_action",
+    "runtime_executed", "live_target_changed", "scheduler_changed",
+    "package_status_promoted", "maturity_assessed", "compliance_assessed",
+    "rollback_decision"
+  ],
+  "properties": {
+    "action_id": {"const": "P1-ACC-001"},
+    "decision_date": {"const": "2026-08-20"},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "decision": {"const": "BLOCKED_STALE_EVIDENCE"},
+    "decision_scope": {"const": "PHASE_1_THROUGH_ZT_RV_001"},
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phase_id", "prior_status", "resulting_status"],
+      "properties": {
+        "phase_id": {"const": "PHASE_1"},
+        "prior_status": {"const": "NOT_COMPLETE"},
+        "resulting_status": {"const": "NOT_COMPLETE"}
+      }
+    },
+    "predecessor_decisions": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["package_id", "recorded_acceptance", "current_gate_result"],
+        "properties": {
+          "package_id": {"enum": ["ZT-FND-001", "ZT-NET-001", "ZT-VIS-001", "ZT-ID-001", "ZT-CV-001", "ZT-RV-001"]},
+          "recorded_acceptance": {"type": "string", "minLength": 1},
+          "current_gate_result": {"enum": ["PASS", "PASS_WITH_OPEN_GAPS", "BLOCKED_STALE_EVIDENCE"]}
+        }
+      }
+    },
+    "evidence_index": {"const": "docs/zero-trust/recovery/P1-ACC-001/evidence-index.yaml"},
+    "freshness_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy_id", "maximum_evidence_age", "maximum_age_seconds",
+        "newest_execution_id", "newest_execution_timestamp",
+        "newest_evidence_age_seconds", "current_freshness", "accepted_current_records",
+        "current_continuity", "assessment_result"
+      ],
+      "properties": {
+        "policy_id": {"const": "ZTRV-ACCEPT-001"},
+        "maximum_evidence_age": {"const": "P7D"},
+        "maximum_age_seconds": {"const": 604800},
+        "newest_execution_id": {"const": "ZTRV-20260801T230020Z-daebf8ef"},
+        "newest_execution_timestamp": {"const": "2026-08-01T23:00:20.110724Z"},
+        "newest_evidence_age_seconds": {"type": "number", "exclusiveMinimum": 604800},
+        "current_freshness": {"const": "STALE"},
+        "accepted_current_records": {"const": 0},
+        "current_continuity": {"const": "EC3_ONE_TIME_RUNTIME"},
+        "assessment_result": {"const": "NOT_STARTED"}
+      }
+    },
+    "blocking_findings": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["finding_id", "status", "detail"],
+        "properties": {
+          "finding_id": {"enum": ["RV_EVIDENCE_EXPIRED", "CURRENT_EC4_FRESHNESS_NOT_ESTABLISHED"]},
+          "status": {"const": "OPEN"},
+          "detail": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "accepted_statements": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "explicitly_not_accepted": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "next_action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package_id", "operation", "separate_live_authorization_required", "minimum_new_eligible_executions", "minimum_separation", "scheduler_required", "executed_by_this_decision"],
+      "properties": {
+        "package_id": {"const": "ZT-RV-001"},
+        "operation": {"const": "REFRESH_BOUNDED_MANUAL_READ_ONLY_CAMPAIGN"},
+        "separate_live_authorization_required": {"const": true},
+        "minimum_new_eligible_executions": {"const": 3},
+        "minimum_separation": {"const": "PT24H"},
+        "scheduler_required": {"const": false},
+        "executed_by_this_decision": {"const": false}
+      }
+    },
+    "runtime_executed": {"const": false},
+    "live_target_changed": {"const": false},
+    "scheduler_changed": {"const": false},
+    "package_status_promoted": {"const": false},
+    "maturity_assessed": {"const": false},
+    "compliance_assessed": {"const": false},
+    "rollback_decision": {"type": "string", "minLength": 1}
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "assessment_id": "P2-VIS-001-EXTERNAL-INPUT-READINESS-001",
+  "package_id": "ZT-VIS-002",
+  "action_id": "P2-VIS-001",
+  "assessed_at": "2026-08-20T23:31:57Z",
+  "assessment_mode": "EXPLICITLY_AUTHORIZED_EXTERNAL_INPUT_PREPARATION",
+  "sanitization_status": "PASS",
+  "authorization": {
+    "administrator_profile_transfer": "EXPLICIT_USER_APPROVAL",
+    "destination": "DEDICATED_CONTROL_NODE_EXTERNAL_PROTECTED_PATH",
+    "live_deployment_authorized": false,
+    "live_validator_authorized": false
+  },
+  "cloud_profile": {
+    "source_class": "OPENSTACK_AIO_KOLLA_ADMIN_PROFILE",
+    "destination_class": "DEDICATED_CONTROL_NODE_EXTERNAL_PROTECTED_PATH",
+    "transport": "SSH_DIRECT_STREAM_NO_LOCAL_INTERMEDIATE_FILE",
+    "source_target_sha256_match": true,
+    "regular_file": true,
+    "file_mode": "0600",
+    "structurally_validated": true,
+    "authentication_attempted_from_control_node": false,
+    "credential_value_recorded": false
+  },
+  "terraform_inputs": {
+    "selection_source": "EXISTING_DEDICATED_MONITORING_VM_READ_ONLY_PROPERTIES",
+    "selected_classes": [
+      "REGION",
+      "PRIVATE_NETWORK",
+      "SECURITY_GROUP",
+      "IMAGE",
+      "FLAVOR",
+      "RECOVERY_KEYPAIR",
+      "CINDER_VOLUME_TYPE",
+      "AVAILABILITY_ZONE"
+    ],
+    "target_name": "ZT_VIS_002_DEDICATED_MONITORING_VM",
+    "volume_size_gib": 100,
+    "approval_reference": "P2-VIS-001-READINESS-001",
+    "rendered_hash_matches_selection": true,
+    "placeholder_count": 0,
+    "credential_field_count": 0,
+    "regular_file": true,
+    "file_mode": "0600"
+  },
+  "proxy_trust_material": {
+    "storage_class": "DEDICATED_CONTROL_NODE_EXTERNAL_PROTECTED_PATH",
+    "ca_certificate_and_key": "PRESENT",
+    "server_certificate_and_key": "PRESENT",
+    "authorized_client_certificate_and_key": "PRESENT",
+    "server_dns_name": "zt-vis-002-monitoring.lab.internal",
+    "certificate_chain_verification": "PASS",
+    "server_name_verification": "PASS",
+    "private_key_file_mode": "0600",
+    "grafana_administrator_secret": "PRESENT_EXTERNAL_VALUE_NOT_RECORDED",
+    "proxy_runtime_verified": false
+  },
+  "execution_boundary": {
+    "openstack_read_only_input_discovery_executed": true,
+    "control_node_external_state_changed": true,
+    "protected_openstack_target_changed": false,
+    "terraform_plan_created": false,
+    "terraform_apply_executed": false,
+    "ansible_playbook_executed": false,
+    "image_pull_executed": false,
+    "central_monitoring_completed": false,
+    "package_runtime_promoted": false,
+    "maturity_assessed": false,
+    "compliance_assessed": false
+  },
+  "cleanup": {
+    "local_intermediate_credential_file_created": false,
+    "temporary_control_script_present": false,
+    "repository_secret_material_created": false,
+    "tracked_runtime_created": false
+  },
+  "decision": "EXTERNAL_INPUTS_AND_LOCAL_TRUST_MATERIAL_READY_LIVE_DEPLOYMENT_NO_GO",
+  "remaining_gates": [
+    "VERIFY_PROXY_TRUST_MATERIAL_ON_DEPLOYED_TARGET",
+    "AUTHORIZE_LIVE_DEPLOYMENT",
+    "AUTHORIZE_LIVE_VALIDATOR"
+  ],
+  "excluded_data": [
+    "cloud credentials",
+    "resource identifiers",
+    "network addresses",
+    "certificate private keys",
+    "Grafana administrator secret",
+    "raw terminal output"
+  ]
+}

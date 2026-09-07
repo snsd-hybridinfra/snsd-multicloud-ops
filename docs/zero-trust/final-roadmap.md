@@ -28,11 +28,20 @@ flowchart LR
 
 ## Phase 1
 
-`P1-ID-ENF-001-RETRY -> P1-NET-CLOSE -> P1-VIS-CLOSE -> P1-CV-001 -> P1-RV-001 -> P1-SCH-001 -> P1-ACC-001` 순서를 지킨다.
+`P1-ID-ENF-001-RETRY -> P1-NET-CLOSE -> P1-VIS-CLOSE -> P1-CV-001 -> P1-RV-001 -> P1-ACC-001` 순서를 지킨다. SCH는 Phase 1 선행조건이 아니다.
+
+P1-ACC-001은 `P1-RV-FRESHNESS-001` 예외를 명시적으로 수용하여
+`ACCEPTED_WITH_GAPS`로 완료되었다. 세 RV 실행의 역사적 EC4 결정은
+보존하지만 모두 P7D를 초과하며 현재 EC4 freshness로 재분류하지 않는다.
+새 수동 RV 창은 최종 SCH 재활성화 및 P5-ACC-001 전에 반드시 닫아야 한다.
 
 ## Phase 2
 
-중앙 모니터링, Keycloak, OIDC, MFA, 중앙 RBAC와 교차검증을 구축하고 런타임 증거가 생기기 전에는 구현으로 표시하지 않는다.
+현재 `IN_PROGRESS_PARTIAL_RUNTIME`이다. `P2-VIS-001`은 한 개의 사설 비운영
+OpenStack 모니터링 VM에서 `PARTIALLY_IMPLEMENTED / PARTIALLY_VALIDATED /
+PARTIALLY_ACCEPTED`이며, 경보 전달·보존기간 경과·전체 Cinder 스냅샷 복원이
+완료되기 전에는 P2-VIS-001 완료로 표시하지 않는다. Keycloak, OIDC, MFA,
+중앙 RBAC와 교차검증은 아직 후속 작업이다.
 
 ## Phase 3
 
@@ -44,6 +53,6 @@ flowchart LR
 
 ## Phase 5
 
-지표, 도메인별 성숙도, 포트폴리오와 재현 가능한 시연을 평가한다. 최종 결정은 성공을 강제하지 않고 `L3_ADVANCED_SUPPORTED_BY_EVIDENCE` 또는 `L3_NOT_YET_ACHIEVED`다.
+지표, 도메인별 성숙도, 포트폴리오와 재현 가능한 시연을 평가한다. 비활성화된 `ZT-SCH-001`은 시연 이후 최종 예약 검증 게이트로 수행한다. 최종 결정은 성공을 강제하지 않고 `L3_ADVANCED_SUPPORTED_BY_EVIDENCE` 또는 `L3_NOT_YET_ACHIEVED`다.
 
 세부 행동·의존성·증거·위험·중단 조건은 `final-execution-plan.yaml`이 권위다.
