@@ -446,7 +446,19 @@ def build_release(lock: dict[str, Any], *, release_id: str, approved_registry: s
         reference = f"{repository}@{digest}"
 
         scan_path = image_root / "trivy.json"
-        _run([trivy, "image", "--format", "json", "--output", str(scan_path), reference])
+        _run(
+            [
+                trivy,
+                "image",
+                "--skip-version-check",
+                "--disable-telemetry",
+                "--format",
+                "json",
+                "--output",
+                str(scan_path),
+                reference,
+            ]
+        )
         high, critical = _scan_counts(_load_json(scan_path))
         if high or critical:
             raise SupplyChainError(f"vulnerability gate failed for {image_id}: HIGH={high}, CRITICAL={critical}")

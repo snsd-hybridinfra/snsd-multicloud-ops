@@ -171,11 +171,15 @@ def validate(root: Path = ROOT) -> list[str]:
         ".pypi.org",
         ".pythonhosted.org",
         "mirror.gcr.io",
+        "productionresultssa11.blob.core.windows.net",
         "squid -k parse",
         "systemctl restart squid.service",
     ):
         if token not in installer:
             failures.append(f"runner bundle installer gate is missing: {token}")
+    for token in ("--skip-version-check", "--disable-telemetry"):
+        if token not in pipeline:
+            failures.append(f"Trivy network-minimization gate is missing: {token}")
     egress_apply = (root / RUNNER_EGRESS_APPLY.relative_to(ROOT)).read_text(encoding="utf-8")
     egress_check = (root / RUNNER_EGRESS_CHECK.relative_to(ROOT)).read_text(encoding="utf-8")
     for token in ("-P OUTPUT DROP", "DOCKER-USER", "--dports 443,6443", "--uid-owner"):
