@@ -171,7 +171,8 @@ def validate(root: Path = ROOT) -> list[str]:
         ".pypi.org",
         ".pythonhosted.org",
         "mirror.gcr.io",
-        "productionresultssa11.blob.core.windows.net",
+        "github_results dstdom_regex -i ^productionresultssa[0-9]+[.]blob[.]core[.]windows[.]net$",
+        "http_access allow local_runner connect ssl_ports github_results",
         "squid -k parse",
         "systemctl restart squid.service",
     ):
@@ -180,6 +181,8 @@ def validate(root: Path = ROOT) -> list[str]:
     for token in ("--skip-version-check", "--disable-telemetry"):
         if token not in pipeline:
             failures.append(f"Trivy network-minimization gate is missing: {token}")
+    if "dstdomain .blob.core.windows.net" in installer:
+        failures.append("generic Azure Blob egress must remain denied")
     egress_apply = (root / RUNNER_EGRESS_APPLY.relative_to(ROOT)).read_text(encoding="utf-8")
     egress_check = (root / RUNNER_EGRESS_CHECK.relative_to(ROOT)).read_text(encoding="utf-8")
     for token in ("-P OUTPUT DROP", "DOCKER-USER", "--dports 443,6443", "--uid-owner"):
