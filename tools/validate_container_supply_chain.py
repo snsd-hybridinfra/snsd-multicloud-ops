@@ -29,6 +29,8 @@ RUNNER_BUNDLE_SOURCE_LOCK = ROOT / "applications/internal-iaas-portal/supply-cha
 RUNNER_BUNDLE_INSTALLER = ROOT / "applications/internal-iaas-portal/supply-chain/runner-bundle/install.sh"
 RUNNER_EGRESS_APPLY = ROOT / "applications/internal-iaas-portal/supply-chain/runner-bundle/idp-egress-policy-apply"
 RUNNER_EGRESS_CHECK = ROOT / "applications/internal-iaas-portal/supply-chain/runner-bundle/idp-egress-policy-check"
+RUNTIME_REQUIREMENTS = ROOT / "applications/internal-iaas-portal/requirements-runtime.txt"
+TERRAFORM_RUNNER_DOCKERFILE = ROOT / "applications/internal-iaas-portal/services/terraform-runner/Dockerfile"
 
 
 def _module():
@@ -60,6 +62,8 @@ def validate(root: Path = ROOT) -> list[str]:
         root / RUNNER_BUNDLE_INSTALLER.relative_to(ROOT),
         root / RUNNER_EGRESS_APPLY.relative_to(ROOT),
         root / RUNNER_EGRESS_CHECK.relative_to(ROOT),
+        root / RUNTIME_REQUIREMENTS.relative_to(ROOT),
+        root / TERRAFORM_RUNNER_DOCKERFILE.relative_to(ROOT),
     ]
     for path in paths:
         if not path.is_file():
@@ -186,6 +190,15 @@ def validate(root: Path = ROOT) -> list[str]:
             failures.append(f"sanitized vulnerability diagnostic is missing: {token}")
     if "dstdomain .blob.core.windows.net" in installer:
         failures.append("generic Azure Blob egress must remain denied")
+    runtime_requirements = (root / RUNTIME_REQUIREMENTS.relative_to(ROOT)).read_text(encoding="utf-8")
+    for token in ("kubernetes>=36.0.3,<37", "urllib3>=2.7.0,<3"):
+        if token not in runtime_requirements:
+            failures.append(f"remediated runtime dependency is missing: {token}")
+    terraform_runner_dockerfile = (root / TERRAFORM_RUNNER_DOCKERFILE.relative_to(ROOT)).read_text(
+        encoding="utf-8"
+    )
+    if "apk add --no-cache ca-certificates openssh-client" not in terraform_runner_dockerfile:
+        failures.append("Alpine-compatible Terraform runner dependency installation is missing")
     egress_apply = (root / RUNNER_EGRESS_APPLY.relative_to(ROOT)).read_text(encoding="utf-8")
     egress_check = (root / RUNNER_EGRESS_CHECK.relative_to(ROOT)).read_text(encoding="utf-8")
     for token in ("-P OUTPUT DROP", "DOCKER-USER", "--dports 443,6443", "--uid-owner"):

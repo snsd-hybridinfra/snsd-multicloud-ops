@@ -5,9 +5,13 @@ ARG PYTHON_IMAGE=python:3.12-slim
 FROM ${PYTHON_IMAGE}
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /app
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates openssh-client \
-    && rm -rf /var/lib/apt/lists/*
+RUN if command -v apk >/dev/null 2>&1; then \
+        apk add --no-cache ca-certificates openssh-client; \
+    else \
+        apt-get update \
+        && apt-get install -y --no-install-recommends ca-certificates openssh-client \
+        && rm -rf /var/lib/apt/lists/*; \
+    fi
 COPY --from=terraform /bin/terraform /usr/local/bin/terraform
 COPY services/terraform-runner/requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
