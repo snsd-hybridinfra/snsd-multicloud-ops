@@ -5,6 +5,13 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
 WORKDIR /app
+RUN if command -v apk >/dev/null 2>&1; then \
+        apk upgrade --no-cache; \
+    else \
+        apt-get update \
+        && apt-get upgrade -y \
+        && rm -rf /var/lib/apt/lists/*; \
+    fi
 COPY requirements-runtime.txt /tmp/requirements-runtime.txt
 RUN pip install --no-cache-dir -r /tmp/requirements-runtime.txt
 COPY services/request-api/request_api /app/request_api

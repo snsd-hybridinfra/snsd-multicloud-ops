@@ -6,9 +6,11 @@ FROM ${PYTHON_IMAGE}
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /app
 RUN if command -v apk >/dev/null 2>&1; then \
-        apk add --no-cache ca-certificates openssh-client; \
+        apk upgrade --no-cache \
+        && apk add --no-cache ca-certificates openssh-client; \
     else \
         apt-get update \
+        && apt-get upgrade -y \
         && apt-get install -y --no-install-recommends ca-certificates openssh-client \
         && rm -rf /var/lib/apt/lists/*; \
     fi

@@ -31,6 +31,12 @@ RUNNER_EGRESS_APPLY = ROOT / "applications/internal-iaas-portal/supply-chain/run
 RUNNER_EGRESS_CHECK = ROOT / "applications/internal-iaas-portal/supply-chain/runner-bundle/idp-egress-policy-check"
 RUNTIME_REQUIREMENTS = ROOT / "applications/internal-iaas-portal/requirements-runtime.txt"
 TERRAFORM_RUNNER_DOCKERFILE = ROOT / "applications/internal-iaas-portal/services/terraform-runner/Dockerfile"
+PYTHON_SERVICE_DOCKERFILES = (
+    ROOT / "applications/internal-iaas-portal/services/request-api/Dockerfile",
+    ROOT / "applications/internal-iaas-portal/services/approval-api/Dockerfile",
+    ROOT / "applications/internal-iaas-portal/services/grant-api/Dockerfile",
+    TERRAFORM_RUNNER_DOCKERFILE,
+)
 
 
 def _module():
@@ -63,7 +69,7 @@ def validate(root: Path = ROOT) -> list[str]:
         root / RUNNER_EGRESS_APPLY.relative_to(ROOT),
         root / RUNNER_EGRESS_CHECK.relative_to(ROOT),
         root / RUNTIME_REQUIREMENTS.relative_to(ROOT),
-        root / TERRAFORM_RUNNER_DOCKERFILE.relative_to(ROOT),
+        *(root / path.relative_to(ROOT) for path in PYTHON_SERVICE_DOCKERFILES),
     ]
     for path in paths:
         if not path.is_file():
@@ -194,9 +200,15 @@ def validate(root: Path = ROOT) -> list[str]:
     for token in ("kubernetes>=36.0.3,<37", "urllib3>=2.7.0,<3"):
         if token not in runtime_requirements:
             failures.append(f"remediated runtime dependency is missing: {token}")
-    terraform_runner_dockerfile = (root / TERRAFORM_RUNNER_DOCKERFILE.relative_to(ROOT)).read_text(
-        encoding="utf-8"
-    )
+    for dockerfile_path in PYTHON_SERVICE_DOCKERFILES:
+        dockerfile = (root / dockerfile_path.relative_to(ROOT)).read_text(encoding="utf-8")
+        if "apk upgrade --no-cache" not in dockerfile or "apt-get upgrade -y" not in dockerfile:
+            failures.append(
+                f"base OS security update is missing: {dockerfile_path.relative_to(ROOT)}"
+            )
+    terraform_runner_dockerfile = (
+        root / TERRAFORM_RUNNER_DOCKERFILE.relative_to(ROOT)
+    ).read_text(encoding="utf-8")
     if "apk add --no-cache ca-certificates openssh-client" not in terraform_runner_dockerfile:
         failures.append("Alpine-compatible Terraform runner dependency installation is missing")
     egress_apply = (root / RUNNER_EGRESS_APPLY.relative_to(ROOT)).read_text(encoding="utf-8")
