@@ -111,6 +111,39 @@ class ContainerSupplyChainTests(unittest.TestCase):
         with self.assertRaisesRegex(self.pipeline.SupplyChainError, "vulnerability"):
             self.pipeline.validate_release(release, self.lock, approved_registry=self.registry)
 
+    def test_blocking_findings_are_sanitized_and_filtered(self) -> None:
+        report = {
+            "Results": [
+                {
+                    "Target": "private-target",
+                    "Vulnerabilities": [
+                        {
+                            "VulnerabilityID": "CVE-TEST-0001",
+                            "PkgName": "example-package",
+                            "InstalledVersion": "1.0",
+                            "FixedVersion": "1.1",
+                            "Severity": "CRITICAL",
+                            "Title": "must not be emitted",
+                            "Description": "must not be emitted",
+                            "PrimaryURL": "https://example.invalid/private",
+                        },
+                        {
+                            "VulnerabilityID": "CVE-TEST-0002",
+                            "PkgName": "low-package",
+                            "Severity": "LOW",
+                        },
+                    ],
+                }
+            ]
+        }
+        findings = self.pipeline._sanitized_blocking_findings(report)
+        self.assertEqual(len(findings), 1)
+        self.assertEqual(
+            set(findings[0]),
+            {"fixed_version", "id", "installed_version", "package", "severity"},
+        )
+        self.assertEqual(findings[0]["id"], "CVE-TEST-0001")
+
     def test_unsigned_or_unattested_image_is_denied(self) -> None:
         for field in ("signature", "sbom_attestation", "provenance_attestation"):
             release = self.release()

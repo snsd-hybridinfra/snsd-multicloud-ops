@@ -181,6 +181,9 @@ def validate(root: Path = ROOT) -> list[str]:
     for token in ("--skip-version-check", "--disable-telemetry"):
         if token not in pipeline:
             failures.append(f"Trivy network-minimization gate is missing: {token}")
+    for token in ("_sanitized_blocking_findings", "sanitized_vulnerability_gate_denied"):
+        if token not in pipeline:
+            failures.append(f"sanitized vulnerability diagnostic is missing: {token}")
     if "dstdomain .blob.core.windows.net" in installer:
         failures.append("generic Azure Blob egress must remain denied")
     egress_apply = (root / RUNNER_EGRESS_APPLY.relative_to(ROOT)).read_text(encoding="utf-8")

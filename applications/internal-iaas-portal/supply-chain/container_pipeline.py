@@ -380,6 +380,33 @@ def _scan_counts(report: dict[str, Any]) -> tuple[int, int]:
     return high, critical
 
 
+def _sanitized_blocking_findings(report: dict[str, Any]) -> list[dict[str, str]]:
+    findings: list[dict[str, str]] = []
+    for result in report.get("Results") or []:
+        for finding in result.get("Vulnerabilities") or []:
+            severity = str(finding.get("Severity", "")).upper()
+            if severity not in {"HIGH", "CRITICAL"}:
+                continue
+            findings.append(
+                {
+                    "fixed_version": str(finding.get("FixedVersion", "")),
+                    "id": str(finding.get("VulnerabilityID", "")),
+                    "installed_version": str(finding.get("InstalledVersion", "")),
+                    "package": str(finding.get("PkgName", "")),
+                    "severity": severity,
+                }
+            )
+    return sorted(
+        findings,
+        key=lambda item: (
+            item["severity"],
+            item["id"],
+            item["package"],
+            item["installed_version"],
+        ),
+    )
+
+
 def build_release(lock: dict[str, Any], *, release_id: str, approved_registry: str) -> Path:
     """Build, scan, publish, sign and render an immutable release on a trusted runner."""
 
@@ -459,8 +486,19 @@ def build_release(lock: dict[str, Any], *, release_id: str, approved_registry: s
                 reference,
             ]
         )
-        high, critical = _scan_counts(_load_json(scan_path))
+        scan_report = _load_json(scan_path)
+        high, critical = _scan_counts(scan_report)
         if high or critical:
+            print(
+                json.dumps(
+                    {
+                        "event": "sanitized_vulnerability_gate_denied",
+                        "findings": _sanitized_blocking_findings(scan_report),
+                        "image_id": image_id,
+                    },
+                    sort_keys=True,
+                )
+            )
             raise SupplyChainError(f"vulnerability gate failed for {image_id}: HIGH={high}, CRITICAL={critical}")
 
         sbom_path = image_root / "sbom.cdx.json"
