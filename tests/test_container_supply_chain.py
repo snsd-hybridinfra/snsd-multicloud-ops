@@ -4,6 +4,7 @@ import copy
 import importlib.util
 import json
 import os
+import shutil
 import tempfile
 import unittest
 from unittest import mock
@@ -160,6 +161,26 @@ class ContainerSupplyChainTests(unittest.TestCase):
         lock["images"][0]["dockerfile"] = "services/request-api/unknown.Dockerfile"
         with self.assertRaisesRegex(self.pipeline.SupplyChainError, "Dockerfile"):
             self.pipeline.validate_lock(lock)
+
+    def test_stage_scoped_base_argument_is_denied_before_live_build(self) -> None:
+        with tempfile.TemporaryDirectory(dir=TEST_RUNTIME) as temporary:
+            app_root = Path(temporary) / "internal-iaas-portal"
+            shutil.copytree(ROOT / "applications/internal-iaas-portal", app_root)
+            dockerfile = app_root / "services/terraform-runner/Dockerfile"
+            text = dockerfile.read_text(encoding="utf-8")
+            text = text.replace(
+                "ARG TERRAFORM_IMAGE=hashicorp/terraform:1.9.8\n"
+                "ARG PYTHON_IMAGE=python:3.12-slim\n\n"
+                "FROM ${TERRAFORM_IMAGE} AS terraform\n",
+                "ARG TERRAFORM_IMAGE=hashicorp/terraform:1.9.8\n"
+                "FROM ${TERRAFORM_IMAGE} AS terraform\n\n"
+                "ARG PYTHON_IMAGE=python:3.12-slim\n",
+            )
+            dockerfile.write_text(text, encoding="utf-8")
+            with self.assertRaisesRegex(
+                self.pipeline.SupplyChainError, "before the first FROM"
+            ):
+                self.pipeline.validate_lock(self.lock, app_root=app_root)
 
     def test_unapproved_buildx_digest_is_denied(self) -> None:
         with tempfile.TemporaryDirectory(dir=TEST_RUNTIME) as temporary:

@@ -117,9 +117,19 @@ def validate_lock(lock: dict[str, Any], app_root: Path = APP_ROOT) -> dict[str, 
         base_args = image.get("required_base_args")
         if not isinstance(base_args, list) or not base_args:
             raise SupplyChainError(f"base-image argument set is missing: {image_id}")
+        first_from = re.search(r"^\s*FROM\s+", text, re.M | re.I)
+        if first_from is None:
+            raise SupplyChainError(f"Dockerfile has no build stage: {image_id}")
         for arg in base_args:
-            if not re.search(rf"^\s*ARG\s+{re.escape(str(arg))}(?:=|\s*$)", text, re.M):
+            declaration = re.search(
+                rf"^\s*ARG\s+{re.escape(str(arg))}(?:=|\s*$)", text, re.M
+            )
+            if declaration is None:
                 raise SupplyChainError(f"Dockerfile does not declare {arg}: {image_id}")
+            if declaration.start() > first_from.start():
+                raise SupplyChainError(
+                    f"Dockerfile does not globally declare {arg} before the first FROM: {image_id}"
+                )
             if not re.search(rf"^\s*FROM\s+\$\{{{re.escape(str(arg))}\}}", text, re.M):
                 raise SupplyChainError(f"Dockerfile does not consume {arg} in FROM: {image_id}")
 
