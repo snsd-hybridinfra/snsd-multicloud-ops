@@ -66,8 +66,8 @@ jobs:
       IDP_TOOL_COSIGN_SHA256: ${{ vars.IDP_TOOL_COSIGN_SHA256 }}
       IDP_TOOL_GIT_SHA256: ${{ vars.IDP_TOOL_GIT_SHA256 }}
       IDP_TOOL_GH_SHA256: ${{ vars.IDP_TOOL_GH_SHA256 }}
-      COSIGN_CERTIFICATE_IDENTITY: ${{ vars.COSIGN_CERTIFICATE_IDENTITY }}
-      COSIGN_OIDC_ISSUER: ${{ vars.COSIGN_OIDC_ISSUER }}
+      IDP_COSIGN_CERTIFICATE_IDENTITY: ${{ vars.COSIGN_CERTIFICATE_IDENTITY }}
+      IDP_COSIGN_CERTIFICATE_OIDC_ISSUER: ${{ vars.COSIGN_OIDC_ISSUER }}
     steps:
       - name: Checkout exact main commit with short-lived promotion credential
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683

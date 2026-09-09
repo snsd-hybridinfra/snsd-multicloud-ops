@@ -237,7 +237,7 @@ def validate(root: Path) -> Result:
         "delete_namespace",
     ):
         result.require(token in runtime_text, f"runtime adapter gate is implemented: {token}")
-    for token in ("redis>=6.4,<7", "kubernetes>=34.1,<35", "opentelemetry-sdk>=1.44,<2", "opentelemetry-exporter-otlp-proto-grpc>=1.44,<2"):
+    for token in ("redis>=6.4,<7", "kubernetes>=36.0.3,<37", "opentelemetry-sdk>=1.44,<2", "opentelemetry-exporter-otlp-proto-grpc>=1.44,<2"):
         result.require(token in requirements_text, f"approved runtime dependency is pinned: {token}")
     for token in ("activation_requires_digest_decision_expiry_image_and_runtime_class", "redis_stream_adapter_publishes_claims_and_acknowledges", "kubernetes_controller_applies_in_order_and_rolls_back_namespace_on_failure"):
         result.require(token in runtime_test_text, f"runtime adapter regression coverage exists: {token}")

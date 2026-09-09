@@ -315,10 +315,20 @@ def promote_release(
     return target
 
 
-def _run(command: list[str], *, cwd: Path | None = None, capture: bool = False) -> str:
+def _run(
+    command: list[str],
+    *,
+    cwd: Path | None = None,
+    capture: bool = False,
+    environment: dict[str, str] | None = None,
+) -> str:
+    run_environment = os.environ.copy()
+    if environment:
+        run_environment.update(environment)
     result = subprocess.run(
         command,
         cwd=cwd,
+        env=run_environment,
         check=False,
         text=True,
         stdout=subprocess.PIPE if capture else None,
@@ -434,8 +444,8 @@ def build_release(lock: dict[str, Any], *, release_id: str, approved_registry: s
     trivy = _approved_tool("trivy")
     syft = _approved_tool("syft")
     cosign = _approved_tool("cosign")
-    identity = os.getenv("COSIGN_CERTIFICATE_IDENTITY", "")
-    issuer = os.getenv("COSIGN_OIDC_ISSUER", "")
+    identity = os.getenv("IDP_COSIGN_CERTIFICATE_IDENTITY", "")
+    issuer = os.getenv("IDP_COSIGN_CERTIFICATE_OIDC_ISSUER", "")
     if not identity or not issuer:
         raise SupplyChainError("keyless signature identity policy is unavailable")
 
@@ -502,7 +512,10 @@ def build_release(lock: dict[str, Any], *, release_id: str, approved_registry: s
             raise SupplyChainError(f"vulnerability gate failed for {image_id}: HIGH={high}, CRITICAL={critical}")
 
         sbom_path = image_root / "sbom.cdx.json"
-        _run([syft, reference, "-o", f"cyclonedx-json={sbom_path}"])
+        _run(
+            [syft, reference, "-o", f"cyclonedx-json={sbom_path}"],
+            environment={"SYFT_CHECK_FOR_APP_UPDATE": "false"},
+        )
         provenance_path = image_root / "provenance.json"
         provenance_path.write_text(
             json.dumps(

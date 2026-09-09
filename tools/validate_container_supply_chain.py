@@ -140,11 +140,16 @@ def validate(root: Path = ROOT) -> list[str]:
         "promote_release",
         "GITOPS_PROMOTION_PR_THEN_ARGOCD_RECONCILE",
         "IDP_TOOL_DOCKER_BUILDX_SHA256",
+        "IDP_COSIGN_CERTIFICATE_IDENTITY",
+        "IDP_COSIGN_CERTIFICATE_OIDC_ISSUER",
+        "SYFT_CHECK_FOR_APP_UPDATE",
     ):
         if token not in pipeline:
             failures.append(f"pipeline enforcement is missing: {token}")
     if "kubectl" in pipeline or "install_release" in pipeline:
         failures.append("pipeline contains a forbidden direct cluster install path")
+    if re.search(r"^\s+COSIGN_(?:CERTIFICATE_IDENTITY|OIDC_ISSUER):", workflow, re.MULTILINE):
+        failures.append("Cosign verification policy must not override signing service environment")
     provisioner = (root / RUNNER_PROVISIONER.relative_to(ROOT)).read_text(encoding="utf-8")
     for token in (
         "expectedImageSha256",

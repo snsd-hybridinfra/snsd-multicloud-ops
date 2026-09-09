@@ -13,6 +13,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PIPELINE = ROOT / "applications/internal-iaas-portal/supply-chain/container_pipeline.py"
 LOCK = ROOT / "applications/internal-iaas-portal/supply-chain/container-supply-chain-lock.json"
+TEST_RUNTIME = ROOT / ".runtime/unit-tests/container-supply-chain"
+EXTERNAL_TEST_RUNTIME = ROOT.parent / ".runtime-tests/snsd-multicloud-ops/container-supply-chain"
 
 
 def load_pipeline():
@@ -26,6 +28,8 @@ def load_pipeline():
 class ContainerSupplyChainTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
+        TEST_RUNTIME.mkdir(parents=True, exist_ok=True)
+        EXTERNAL_TEST_RUNTIME.mkdir(parents=True, exist_ok=True)
         cls.pipeline = load_pipeline()
         cls.lock = json.loads(LOCK.read_text(encoding="utf-8"))
         cls.registry = "registry.internal.example"
@@ -64,7 +68,7 @@ class ContainerSupplyChainTests(unittest.TestCase):
 
     def test_valid_release_renders_digest_only_component_overlays(self) -> None:
         release = self.release()
-        with tempfile.TemporaryDirectory() as temporary:
+        with tempfile.TemporaryDirectory(dir=TEST_RUNTIME) as temporary:
             output = Path(temporary) / "resolved"
             self.pipeline.render_release(release, self.lock, output, approved_registry=self.registry)
             files = list(output.glob("*/kustomization.yaml"))
@@ -77,7 +81,7 @@ class ContainerSupplyChainTests(unittest.TestCase):
 
     def test_promotion_updates_only_reviewed_gitops_pointer(self) -> None:
         release = self.release()
-        with tempfile.TemporaryDirectory() as temporary:
+        with tempfile.TemporaryDirectory(dir=EXTERNAL_TEST_RUNTIME) as temporary:
             root = Path(temporary) / "releases"
             target = self.pipeline.promote_release(
                 release, self.lock, root, approved_registry=self.registry
@@ -158,7 +162,7 @@ class ContainerSupplyChainTests(unittest.TestCase):
             self.pipeline.validate_lock(lock)
 
     def test_unapproved_buildx_digest_is_denied(self) -> None:
-        with tempfile.TemporaryDirectory() as temporary:
+        with tempfile.TemporaryDirectory(dir=TEST_RUNTIME) as temporary:
             plugin = Path(temporary) / "docker-buildx"
             plugin.write_bytes(b"reviewed-buildx")
             environment = {
@@ -170,6 +174,18 @@ class ContainerSupplyChainTests(unittest.TestCase):
                     self.pipeline.SupplyChainError, "digest mismatch: docker-buildx"
                 ):
                     self.pipeline._approved_docker_buildx("docker")
+
+    def test_run_applies_bounded_environment_override(self) -> None:
+        completed = mock.Mock(returncode=0, stdout="", stderr="")
+        with mock.patch.object(self.pipeline.subprocess, "run", return_value=completed) as run:
+            with mock.patch.dict(os.environ, {"PRESERVED_TEST_VALUE": "present"}, clear=False):
+                self.pipeline._run(
+                    ["reviewed-tool", "scan"],
+                    environment={"SYFT_CHECK_FOR_APP_UPDATE": "false"},
+                )
+        invoked_environment = run.call_args.kwargs["env"]
+        self.assertEqual(invoked_environment["PRESERVED_TEST_VALUE"], "present")
+        self.assertEqual(invoked_environment["SYFT_CHECK_FOR_APP_UPDATE"], "false")
 
 
 if __name__ == "__main__":
