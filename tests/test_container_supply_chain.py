@@ -169,10 +169,10 @@ class ContainerSupplyChainTests(unittest.TestCase):
             dockerfile = app_root / "services/terraform-runner/Dockerfile"
             text = dockerfile.read_text(encoding="utf-8")
             text = text.replace(
-                "ARG TERRAFORM_IMAGE=hashicorp/terraform:1.9.8\n"
+                "ARG TERRAFORM_IMAGE=hashicorp/terraform:1.16.1\n"
                 "ARG PYTHON_IMAGE=python:3.12-slim\n\n"
                 "FROM ${TERRAFORM_IMAGE} AS terraform\n",
-                "ARG TERRAFORM_IMAGE=hashicorp/terraform:1.9.8\n"
+                "ARG TERRAFORM_IMAGE=hashicorp/terraform:1.16.1\n"
                 "FROM ${TERRAFORM_IMAGE} AS terraform\n\n"
                 "ARG PYTHON_IMAGE=python:3.12-slim\n",
             )

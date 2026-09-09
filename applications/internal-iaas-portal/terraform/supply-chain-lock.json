@@ -13,7 +13,7 @@
   },
   "engine": {
     "distribution": "HASHICORP_TERRAFORM_CLI",
-    "version": "1.9.8",
+    "version": "1.16.1",
     "binary_sha256_runtime_required": true,
     "core_forked": false,
     "customization": "SNSD_POLICY_WRAPPER"

@@ -22,6 +22,6 @@ Nova/Neutron resource lifecycle; the digest-pinned Ansible authority owns the
 k3s operating-system and PaaS baseline.
 
 `supply-chain-lock.json` independently binds the catalog, the five module
-digests, upstream Terraform 1.9.8, OpenStack provider `~> 3.4.0`, exact resource
+digests, upstream Terraform 1.16.1, OpenStack provider `~> 3.4.0`, exact resource
 counts and saved-plan action policy. Customization is implemented in the
 repository-owned runner policy layer; Terraform core is not forked.

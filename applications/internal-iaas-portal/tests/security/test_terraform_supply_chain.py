@@ -96,7 +96,7 @@ def test_attestation_is_sanitized_and_contains_no_runtime_inputs() -> None:
     attestation = sanitized_attestation(
         module_validation={"module": "openstack-dev-vm-small", "module_digest": policy["artifact_digest"]},
         plan_validation=validate_plan_json(plan(), policy, "APPLY"),
-        terraform_version="1.9.8",
+        terraform_version="1.16.1",
         terraform_sha256="sha256:" + "a" * 64,
         provider_sha256="sha256:" + "b" * 64,
     )

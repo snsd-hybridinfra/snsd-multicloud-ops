@@ -46,7 +46,7 @@ def load_supply_chain(lock_path: Path, catalog_path: Path) -> dict[str, Any]:
     engine = lock.get("engine", {})
     if (
         engine.get("distribution") != "HASHICORP_TERRAFORM_CLI"
-        or engine.get("version") != "1.9.8"
+        or engine.get("version") != "1.16.1"
         or engine.get("core_forked") is not False
         or engine.get("customization") != "SNSD_POLICY_WRAPPER"
     ):

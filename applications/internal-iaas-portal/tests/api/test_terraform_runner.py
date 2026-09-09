@@ -278,7 +278,7 @@ def test_approved_k3s_runs_terraform_then_ansible(monkeypatch, tmp_path: Path) -
         if command[0] == "ansible-playbook":
             return "PLAY RECAP approved-k3s-target ok=20 changed=8 failed=0"
         if command[1:] == ["version", "-json"]:
-            return json.dumps({"terraform_version": "1.9.8"})
+            return json.dumps({"terraform_version": "1.16.1"})
         if "output" in command:
             return _terraform_output()
         if "show" in command and "tfplan" in command:
@@ -313,7 +313,7 @@ def test_ansible_failure_triggers_automatic_terraform_destroy(
         if command[0] == "ansible-playbook":
             raise TerraformExecutionError("bounded configuration failure", failure_code)
         if command[1:] == ["version", "-json"]:
-            return json.dumps({"terraform_version": "1.9.8"})
+            return json.dumps({"terraform_version": "1.16.1"})
         if "output" in command:
             return _terraform_output()
         if "show" in command and "tfplan" in command:

@@ -1,4 +1,4 @@
-ARG TERRAFORM_IMAGE=hashicorp/terraform:1.9.8
+ARG TERRAFORM_IMAGE=hashicorp/terraform:1.16.1
 ARG PYTHON_IMAGE=python:3.12-slim
 
 FROM ${TERRAFORM_IMAGE} AS terraform
