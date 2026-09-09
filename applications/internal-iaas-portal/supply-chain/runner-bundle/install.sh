@@ -99,7 +99,7 @@ acl local_runner src 127.0.0.1/32 172.17.0.0/16 172.18.0.0/16
 acl ssl_ports port 443
 acl connect method CONNECT
 acl github_results dstdom_regex -i ^productionresultssa[0-9]+[.]blob[.]core[.]windows[.]net$
-acl approved_domains dstdomain .github.com .githubusercontent.com .actions.githubusercontent.com .ghcr.io .sigstore.dev .docker.io .docker.com .pypi.org .pythonhosted.org mirror.gcr.io
+acl approved_domains dstdomain .github.com .githubusercontent.com .actions.githubusercontent.com .ghcr.io .sigstore.dev .docker.io .docker.com .pypi.org .pythonhosted.org mirror.gcr.io dl-cdn.alpinelinux.org
 http_access allow local_runner connect ssl_ports github_results
 http_access allow local_runner connect ssl_ports approved_domains
 http_access deny all

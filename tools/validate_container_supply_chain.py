@@ -181,6 +181,7 @@ def validate(root: Path = ROOT) -> list[str]:
         ".pypi.org",
         ".pythonhosted.org",
         "mirror.gcr.io",
+        "dl-cdn.alpinelinux.org",
         "github_results dstdom_regex -i ^productionresultssa[0-9]+[.]blob[.]core[.]windows[.]net$",
         "http_access allow local_runner connect ssl_ports github_results",
         "squid -k parse",
