@@ -60,8 +60,15 @@ class FinancialIdpArchitectureTests(unittest.TestCase):
                 shutil.copy2(ROOT / relative, destination)
             inventory_path = target / architecture.INVENTORY
             inventory = json.loads(inventory_path.read_text(encoding="utf-8"))
-            aws = next(item for item in inventory["assets"] if item["path"] == "platform/infra/aws/")
-            aws["disposition"] = "ACTIVE"
+            inventory["assets"].append(
+                {
+                    "path": "platform/infra/aws/",
+                    "disposition": "ACTIVE",
+                    "owner": "UNOWNED",
+                    "reason": "test mutation",
+                    "required_work": [],
+                }
+            )
             inventory_path.write_text(json.dumps(inventory, indent=2) + "\n", encoding="utf-8")
             result = architecture.validate(target)
             self.assertTrue(any("platform/infra/aws/" in item for item in result.failures))

@@ -141,7 +141,6 @@ def validate(root: Path) -> Result:
     required_assets = {
         "applications/internal-iaas-portal/": "ADOPT_AS_FOUNDATION",
         "platform/gitops/": "ADAPT_SELECTIVELY",
-        "platform/infra/aws/": "DEFER_PROVIDER_SPECIFIC",
         "eve-ng/": "ADAPT",
         "docs/zero-trust/": "KEEP_AUTHORITATIVE",
     }
@@ -149,6 +148,11 @@ def validate(root: Path) -> Result:
         item = assets.get(path, {})
         result.require(item.get("disposition") == disposition, f"asset disposition preserved: {path}={disposition}")
         result.require(bool(item.get("owner")) and bool(item.get("required_work")), f"asset ownership and required work defined: {path}")
+    aws_asset = assets.get("platform/infra/aws/")
+    result.require(
+        aws_asset is None or aws_asset.get("disposition") == "DEFER_PROVIDER_SPECIFIC",
+        "provider-specific asset remains inactive: platform/infra/aws/",
+    )
     required_owners = {"catalog", "identity", "network", "terraform_state", "telemetry", "backup_restore", "cost_allocation", "security_status"}
     result.require(set(inventory.get("domain_owners", {})) == required_owners, "platform domain owners are complete")
 

@@ -59,27 +59,6 @@
       "required_work": ["map to OpenStack-provisioned host contract", "remove Proxmox and site assumptions", "pin artifacts"]
     },
     {
-      "path": "platform/infra/proxmox/",
-      "disposition": "KEEP_AS_REFERENCE",
-      "owner": "LEGACY_LAB_REFERENCE",
-      "reason": "Proxmox is a separate lab implementation and is not the selected private-IaaS product plane.",
-      "required_work": ["do not merge into OpenStack catalog"]
-    },
-    {
-      "path": "platform/infra/opnsense/",
-      "disposition": "KEEP_AS_REFERENCE",
-      "owner": "LEGACY_LAB_REFERENCE",
-      "reason": "OPNsense procedures may inform edge controls but do not own the Nexus/IOS financial underlay.",
-      "required_work": ["extract provider-neutral control intent only"]
-    },
-    {
-      "path": "platform/infra/aws/",
-      "disposition": "DEFER_PROVIDER_SPECIFIC",
-      "owner": "PUBLIC_CLOUD_ADAPTER_FUTURE",
-      "reason": "Existing AWS assets and historical claims are not the selected root provider authority.",
-      "required_work": ["select provider explicitly", "review credentials and state boundaries", "map to common provider contract", "revalidate from zero"]
-    },
-    {
       "path": "eve-ng/",
       "disposition": "ADAPT",
       "owner": "FINANCIAL_NETWORK",
