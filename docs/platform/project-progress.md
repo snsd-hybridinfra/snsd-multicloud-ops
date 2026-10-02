@@ -138,7 +138,9 @@
 - 기존 차단 요인: `P2VisibilityArtifactTests.test_current_artifacts_pass`의 alert-validation 소스 해시 불일치와 `ZtSys001Tests.test_current_safe_configuration_checksums_match`의 `.gitignore` 승인 체크섬 불일치는 동일하게 남아 있다. 해당 증거·승인 해시는 이번 범위에서 재고정하지 않았다.
 - 런타임 증거: `NOT_VALIDATED`. OpenAI 외부 호출, NAS 실장비·스캐너, DNS 레코드 변경, TLS 발급, OIDC 배포, OpenStack/k3s live apply를 수행하지 않았다.
 - 외부 입력: OpenAI Platform 전용 서비스 주체 또는 승인된 workload identity와 모델, DNS 레코드 대상, exact-name TLS 인증서, Keycloak hostname·redirect URI, 승인 NAS·망 인터페이스·스캐너·복구 대상이 필요하다. 비밀 값은 Git이나 대화에 제출하지 않는다.
-- 다음 작업: 검증된 통합 변경을 커밋·푸시하고 중복 클론을 fast-forward한다. 이후 NAS 상태기계·스캐너 어댑터의 안전한 로컬 시뮬레이션과 실제 도메인 배포 준비를 진행한다.
+- 커밋·푸시: 구현 커밋 `3e2b362583908f61671fa63b0217d7a5fea5331e`를 `origin/main`에 반영하고 동일 SHA를 재확인했다. GitHub 이전 안내에 따라 두 클론의 origin을 `https://github.com/snsd-hybridinfra/snsd-multicloud-ops.git`로 정규화했다.
+- 저장소 통합: 이전 클론의 미추적 로드맵이 권위 저장소에 내용 보존·확장되어 있음을 diff로 확인하고 중복 파일만 제거했다. `F:/github/snsd-multicloud-ops`는 `3e2b362583908f61671fa63b0217d7a5fea5331e`로 fast-forward했으며 작업 트리는 깨끗하다.
+- 다음 작업: NAS 상태기계·스캐너 어댑터의 안전한 로컬 시뮬레이션과 실제 도메인 배포 준비를 진행한다. 외부 서비스 주체와 DNS·TLS·OIDC 입력 전에는 런타임 상태를 승격하지 않는다.
 
 ### 2026-10-02 — ECL 원본 보존·SNSD 프론트 사본과 백엔드 연동
 

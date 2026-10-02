@@ -37,7 +37,7 @@ Developer Portal
 
 ### R0 저장소와 권위 기준선 통합
 
-현재 상태: `IN_PROGRESS / IMMEDIATE`
+현재 상태: `COMPLETE`
 
 - `F:/2차프로젝트/repos/snsd-multicloud-ops`를 최신 권위 저장소로 사용한다.
 - `F:/github/snsd-multicloud-ops`의 유일한 추가 권위 후보였던 본 로드맵을 흡수한다.
@@ -144,11 +144,10 @@ NAS 자료교환은 새 상품이 아니라 `API_DEVELOPMENT_STACK`과 `DATA_PRO
 
 ## 다음 작업 큐
 
-1. `R0`: 통합 변경을 검증하고 현재 권위 저장소에 커밋·푸시한 뒤 중복 클론을 fast-forward 한다.
-2. `R1`: Private IaaS 골든패스의 런타임 미검증 전이를 보강한다.
-3. `R2`: 공급망 외부 차단 요인을 재확인하고 GitOps·정책 검증을 마무리한다.
-4. `R3`: NAS 어댑터의 상태기계와 스캐너 계약을 안전한 로컬 시뮬레이션으로 구현한다.
-5. `R5`: OpenAI Platform 서비스 주체와 OIDC 스코프가 준비되면 외부 모니터링 보조 호출을 검증한다.
+1. `R1`: Private IaaS 골든패스의 런타임 미검증 전이를 보강한다.
+2. `R2`: 공급망 외부 차단 요인을 재확인하고 GitOps·정책 검증을 마무리한다.
+3. `R3`: NAS 어댑터의 상태기계와 스캐너 계약을 안전한 로컬 시뮬레이션으로 구현한다.
+4. `R5`: OpenAI Platform 서비스 주체와 OIDC 스코프가 준비되면 외부 모니터링 보조 호출을 검증한다.
 
 ## 진행 기록
 
