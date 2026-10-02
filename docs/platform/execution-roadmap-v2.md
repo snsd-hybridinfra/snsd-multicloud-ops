@@ -59,7 +59,7 @@ Developer Portal
 
 ### R2 k3s PaaS와 컨테이너 공급망
 
-현재 상태: `PARTIAL`
+현재 상태: `PARTIAL / REQUEST_API_PACKAGING_LOCAL_VALIDATED`
 
 - CI에서 승인 베이스 이미지, SBOM, 스캔, 서명과 불변 digest를 생성한다.
 - GHCR/GitHub Release, GitOps 승격 PR, Argo CD 설치 경계를 연결한다.
@@ -144,8 +144,8 @@ NAS 자료교환은 새 상품이 아니라 `API_DEVELOPMENT_STACK`과 `DATA_PRO
 
 ## 다음 작업 큐
 
-1. `R2`: 공급망 외부 차단 요인을 재확인하고 GitOps·정책 검증을 마무리한다.
-2. `R3`: NAS 어댑터의 상태기계와 스캐너 계약을 안전한 로컬 시뮬레이션으로 구현한다.
+1. `R3`: NAS 어댑터의 상태기계와 스캐너 계약을 안전한 로컬 시뮬레이션으로 구현한다.
+2. `R2`: 승인 digest 베이스 이미지와 GHCR 입력이 준비되면 이미지 build·scan·sign·publish를 검증한다.
 3. `R1`: 승인된 OpenStack 입력과 실행 창이 준비되면 골든패스 live 검증을 수행한다.
 4. `R5`: OpenAI Platform 서비스 주체와 OIDC 스코프가 준비되면 외부 모니터링 보조 호출을 검증한다.
 

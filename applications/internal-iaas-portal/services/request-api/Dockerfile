@@ -15,6 +15,8 @@ RUN if command -v apk >/dev/null 2>&1; then \
 COPY requirements-runtime.txt /tmp/requirements-runtime.txt
 RUN pip install --no-cache-dir -r /tmp/requirements-runtime.txt
 COPY services/request-api/request_api /app/request_api
+COPY --from=idp-platform-authorities composite-service-catalog.yaml /app/request_api/authorities/composite-service-catalog.yaml
+COPY terraform/catalog.json /app/request_api/authorities/catalog.json
 COPY database/migrations/request-db /app/migrations
 
 USER 65532:65532

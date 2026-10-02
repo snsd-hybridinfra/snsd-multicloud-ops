@@ -21,6 +21,7 @@ from .agent_integrations import (
 from .agent_jobs import AgentJobError, build_sandbox_bundle, compute_is_allocated, transition_target
 from .blueprints import (
     BlueprintResolutionError,
+    load_authorities,
     public_blueprints,
     public_resolution,
     resolve_blueprint,
@@ -271,6 +272,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     raise RuntimeError("database revision mismatch")
         except Exception as exc:
             raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, "database is not ready") from exc
+        try:
+            load_authorities()
+        except BlueprintResolutionError as exc:
+            raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, "catalog authority is not ready") from exc
         return HealthView(status="ready")
 
     @app.get("/metrics", include_in_schema=False)

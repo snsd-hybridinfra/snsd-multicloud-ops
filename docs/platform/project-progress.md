@@ -198,3 +198,16 @@
 - 차단 요인: R1 완료에는 승인된 비운영 OpenStack 대상, 외부 clouds.yaml·state root, 승인 네트워크·보안그룹·이미지·키페어·flavor, pinned Terraform/provider와 별도 실행 창 승인이 필요하다.
 - 동시 변경 보호: 실행 중 별도로 나타난 request-api 패키징·카탈로그 build-context·공급망 변경은 보존했으며 이번 R1 변경과 분리해 검증·커밋한다.
 - 다음 작업: R1 live 입력 전에는 상태를 승격하지 않는다. 로드맵상 다음 안전 작업인 R2 공급망 패키징·GitOps 검증으로 이동한다.
+
+### 2026-10-02 — R2 request-api 권위 카탈로그 이미지 패키징
+
+- 실행 시각: `2026-10-02`, R1 구현 커밋 이후 연속 실행. WSL은 사용하지 않았다.
+- 소스 커밋: `dd31dfca0fac5ae7b647b492f0e21090ba67b90c`, `main`.
+- 선택 항목: 소스 체크아웃에서는 정상인 request-api가 컨테이너의 얕은 `/app/request_api` 경로에서 조합형·실행 프로파일 카탈로그를 찾지 못하던 배포 차단을 해결했다.
+- 구현: BuildKit named context `idp-platform-authorities`로 canonical `docs/platform`을 명시적으로 전달하고, request-api 이미지에 `composite-service-catalog.yaml`과 `catalog.json`을 package-local read-only authority로 포함한다. 소스 실행은 기존 canonical 경로를 사용하며 이미지 실행은 package-local 경로만 사용한다. 누락·변조 시 readiness 및 포털 catalog가 503으로 fail closed한다.
+- 공급망: 오직 request-api 이미지에만 추가 build context를 전달한다. 카탈로그 context가 없거나 symlink이면 빌드 전에 거부한다. lock·provenance 저장소 주소를 현재 권위 `snsd-hybridinfra/snsd-multicloud-ops`로 정규화했다.
+- DB 배포 준비: 로컬에 이미 설치된 공식 `postgres:16-alpine@sha256:721873c3...` 이미지를 사용해 네트워크·공개 포트 없는 일회용 컨테이너에서 request-db 0001→0006 upgrade, application DML, 중복 키·DDL 거부, 0006→0005 downgrade, 기존 request 보존 및 0006 재적용을 검증했다. 테스트는 명시적 digest 입력이 없으면 skip하며 이미지를 pull하지 않는다.
+- 검증: packaged filesystem 회귀 `4 PASS`, 컨테이너 공급망 회귀 `15 PASS`, PostgreSQL 16.15 migration 회귀 `1 PASS`, 공급망 정적 검증 PASS. 직전 전체 포털 회귀 `183 PASS`와 포털 정적 검증 `22 PASS / 0 FAIL`도 유지된다.
+- 런타임 증거: `NOT_VALIDATED`. 로컬 Docker Server `29.6.2`와 Buildx `0.35.0`은 확인했으나 `IDP_BASE_PYTHON_IMAGE` 승인 digest 입력이 없어 이미지 build·SBOM·scan·sign·GHCR publish는 수행하지 않았다.
+- 차단 요인: 승인된 `python@sha256:...` 베이스 이미지, GHCR 대상·OIDC/단기 토큰, 승인된 Syft·Trivy·Cosign tool digest 및 publish 환경 승인이 필요하다.
+- 다음 작업: 외부 공급망 입력 전에는 publish/install 상태를 승격하지 않는다. 로드맵상 다음 안전 작업인 R3 NAS 상태기계·스캐너 로컬 시뮬레이션으로 이동한다.

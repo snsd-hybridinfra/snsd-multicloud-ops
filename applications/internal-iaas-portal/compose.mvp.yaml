@@ -51,6 +51,8 @@ services:
     build:
       context: .
       dockerfile: services/request-api/Dockerfile
+      additional_contexts:
+        idp-platform-authorities: ../../docs/platform
     environment:
       DATABASE_URL: postgresql+psycopg://request_app:${MVP_DB_PASSWORD}@request-db:5432/request_db
       AUTO_CREATE_SCHEMA: "true"

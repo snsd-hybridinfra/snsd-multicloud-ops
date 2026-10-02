@@ -7,11 +7,21 @@ from pathlib import Path
 from typing import Any
 
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[5]
-COMPOSITE_CATALOG_PATH = REPOSITORY_ROOT / "docs/platform/composite-service-catalog.yaml"
-EXECUTION_PROFILE_PATH = (
-    REPOSITORY_ROOT / "applications/internal-iaas-portal/terraform/catalog.json"
-)
+def _authority_paths(module_file: Path) -> tuple[Path, Path]:
+    # Source runs read the canonical repository files. Images carry exact copies
+    # alongside the package; never assume that /app has five parent directories.
+    parents = module_file.parents
+    if len(parents) > 5:
+        root = parents[5]
+        source = root / "applications/internal-iaas-portal/services/request-api/request_api/blueprints.py"
+        if module_file == source:
+            return (root / "docs/platform/composite-service-catalog.yaml",
+                    root / "applications/internal-iaas-portal/terraform/catalog.json")
+    packaged = module_file.parent / "authorities"
+    return packaged / "composite-service-catalog.yaml", packaged / "catalog.json"
+
+
+COMPOSITE_CATALOG_PATH, EXECUTION_PROFILE_PATH = _authority_paths(Path(__file__).resolve())
 
 EXPECTED_EXECUTION_PROFILES = {
     "DEV-OS-VM-S",

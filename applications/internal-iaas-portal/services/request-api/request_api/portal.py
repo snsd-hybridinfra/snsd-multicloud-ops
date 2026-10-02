@@ -198,7 +198,7 @@ def install_portal_routes(app, submit_request, cancel_request) -> None:
         except (httpx.HTTPError, ValueError, OSError) as exc:
             raise HTTPException(503, "Approval API is unavailable") from exc
 
-    def catalog():
+    def catalog_items():
         result = []
         for product in public_blueprints():
             resolution = resolve_blueprint(blueprint_id=product["blueprint_id"],
@@ -208,6 +208,12 @@ def install_portal_routes(app, submit_request, cancel_request) -> None:
                 "requestable": resolution["resolution_status"] == "RESOLVED_LOCAL",
                 "runtime_authorized": False, "runtime_evidence": "NOT_VALIDATED"})
         return result
+
+    def catalog():
+        try:
+            return catalog_items()
+        except BlueprintResolutionError as exc:
+            raise HTTPException(503, "catalog authority unavailable") from exc
 
     @app.get("/api/{domain:portal_domain}/catalog")
     def domain_catalog(domain: str, principal: Principal = Depends(current_principal)):

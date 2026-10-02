@@ -17,6 +17,7 @@ LOCK = ROOT / "applications/internal-iaas-portal/supply-chain/container-supply-c
 AUTHORITY = ROOT / "docs/platform/container-supply-chain.yaml"
 DECISION = ROOT / "docs/adr/0023-container-image-supply-chain-and-k3s-delivery.md"
 WORKFLOW = ROOT / ".github/workflows/idp-container-supply-chain.yml"
+COMPOSE = ROOT / "applications/internal-iaas-portal/compose.mvp.yaml"
 GITOPS_APPLICATION = ROOT / "applications/internal-iaas-portal/kubernetes/gitops/idp-container-release-application.yaml"
 GITOPS_ROOT = ROOT / "applications/internal-iaas-portal/kubernetes/releases/kustomization.yaml"
 RUNNER_REQUIREMENTS = ROOT / "applications/internal-iaas-portal/supply-chain/runner-requirements.json"
@@ -56,6 +57,7 @@ def validate(root: Path = ROOT) -> list[str]:
         root / LOCK.relative_to(ROOT),
         root / PIPELINE.relative_to(ROOT),
         root / WORKFLOW.relative_to(ROOT),
+        root / COMPOSE.relative_to(ROOT),
         root / GITOPS_APPLICATION.relative_to(ROOT),
         root / GITOPS_ROOT.relative_to(ROOT),
         root / RUNNER_REQUIREMENTS.relative_to(ROOT),
@@ -103,6 +105,18 @@ def validate(root: Path = ROOT) -> list[str]:
         failures.append("unvalidated publish/install status was promoted")
     if authority.get("separation", {}).get("terraform_role") != "PROVISION_OPENSTACK_AND_K3S_SERVICE_PLANE":
         failures.append("Terraform/container responsibility separation is missing")
+    expected_catalog_packaging = {
+        "build_context": "idp-platform-authorities",
+        "packaged_authorities": ["composite-service-catalog.yaml", "catalog.json"],
+        "source_checkout_authority": "CANONICAL_REPOSITORY_PATH",
+        "image_authority": "PACKAGE_LOCAL_READ_ONLY_COPY",
+        "missing_or_tampered_behavior": "READINESS_AND_PORTAL_FAIL_CLOSED_503",
+        "runtime_validation_status": "NOT_VALIDATED",
+    }
+    if authority.get("request_api_catalog_packaging") != expected_catalog_packaging:
+        failures.append("request-api catalog packaging contract is not exact")
+    if lock.get("source", {}).get("repository") != "snsd-hybridinfra/snsd-multicloud-ops":
+        failures.append("container source repository does not match the canonical GitHub location")
 
     try:
         module = _module()
@@ -148,6 +162,18 @@ def validate(root: Path = ROOT) -> list[str]:
             failures.append(f"pipeline enforcement is missing: {token}")
     if "kubectl" in pipeline or "install_release" in pipeline:
         failures.append("pipeline contains a forbidden direct cluster install path")
+    for token in (
+        "_catalog_context_args",
+        "--build-context",
+        "idp-platform-authorities",
+        "git+https://github.com/snsd-hybridinfra/snsd-multicloud-ops",
+    ):
+        if token not in pipeline:
+            failures.append(f"request-api catalog packaging enforcement is missing: {token}")
+    compose = (root / COMPOSE.relative_to(ROOT)).read_text(encoding="utf-8")
+    for token in ("additional_contexts:", "idp-platform-authorities: ../../docs/platform"):
+        if token not in compose:
+            failures.append(f"compose catalog build context is missing: {token}")
     if re.search(r"^\s+COSIGN_(?:CERTIFICATE_IDENTITY|OIDC_ISSUER):", workflow, re.MULTILINE):
         failures.append("Cosign verification policy must not override signing service environment")
     provisioner = (root / RUNNER_PROVISIONER.relative_to(ROOT)).read_text(encoding="utf-8")
@@ -212,6 +238,15 @@ def validate(root: Path = ROOT) -> list[str]:
             failures.append(
                 f"base OS security update is missing: {dockerfile_path.relative_to(ROOT)}"
             )
+    request_dockerfile = (
+        root / "applications/internal-iaas-portal/services/request-api/Dockerfile"
+    ).read_text(encoding="utf-8")
+    for token in (
+        "COPY --from=idp-platform-authorities composite-service-catalog.yaml",
+        "COPY terraform/catalog.json /app/request_api/authorities/catalog.json",
+    ):
+        if token not in request_dockerfile:
+            failures.append(f"request-api packaged authority is missing: {token}")
     terraform_runner_dockerfile = (
         root / TERRAFORM_RUNNER_DOCKERFILE.relative_to(ROOT)
     ).read_text(encoding="utf-8")

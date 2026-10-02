@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "status": "LOCAL_POLICY_AUTHORITY",
   "source": {
-    "repository": "snsd-hybirdinfra/snsd-multicloud-ops",
+    "repository": "snsd-hybridinfra/snsd-multicloud-ops",
     "required_branch_for_release": "main",
     "dirty_source_allowed": false
   },

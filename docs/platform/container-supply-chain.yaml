@@ -3,6 +3,7 @@
   "status": {
     "design": "LOCAL_VALIDATED",
     "implementation": "PARTIALLY_IMPLEMENTED_LOCAL",
+    "request_api_catalog_packaging": "LOCAL_VALIDATED",
     "registry_publish": "NOT_VALIDATED",
     "gitops_promotion": "NOT_VALIDATED",
     "k3s_installation": "NOT_VALIDATED"
@@ -51,6 +52,17 @@
     "git_push_identity": "SHORT_LIVED_GITHUB_TOKEN_REQUIRED",
     "argocd_destination": "EXTERNAL_PLATFORM_BOOTSTRAP_REQUIRED",
     "promotion_merge": "SEPARATE_REVIEW_REQUIRED"
+  },
+  "request_api_catalog_packaging": {
+    "build_context": "idp-platform-authorities",
+    "packaged_authorities": [
+      "composite-service-catalog.yaml",
+      "catalog.json"
+    ],
+    "source_checkout_authority": "CANONICAL_REPOSITORY_PATH",
+    "image_authority": "PACKAGE_LOCAL_READ_ONLY_COPY",
+    "missing_or_tampered_behavior": "READINESS_AND_PORTAL_FAIL_CLOSED_503",
+    "runtime_validation_status": "NOT_VALIDATED"
   },
   "prohibited": [
     "LATEST_OR_MUTABLE_TAG",

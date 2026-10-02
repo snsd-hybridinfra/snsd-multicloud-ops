@@ -67,6 +67,18 @@ class ContainerSupplyChainTests(unittest.TestCase):
         self.assertEqual(result["images"], 7)
         self.assertEqual(result["consumers"], 10)
 
+    def test_only_request_image_receives_canonical_catalog_context(self) -> None:
+        self.assertEqual(self.pipeline._catalog_context_args("request-api", ROOT),
+                         ["--build-context", f"idp-platform-authorities={ROOT / 'docs/platform'}"])
+        for image in self.lock["images"]:
+            if image["id"] != "request-api":
+                self.assertEqual(self.pipeline._catalog_context_args(image["id"], ROOT), [])
+
+    def test_missing_catalog_context_denies_request_build(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            with self.assertRaisesRegex(self.pipeline.SupplyChainError, "catalog build context"):
+                self.pipeline._catalog_context_args("request-api", Path(temporary))
+
     def test_valid_release_renders_digest_only_component_overlays(self) -> None:
         release = self.release()
         with tempfile.TemporaryDirectory(dir=TEST_RUNTIME) as temporary:

@@ -63,6 +63,12 @@ domain isolation, scope denial, idempotency, rejection/cancellation, approval,
 mock-runner callbacks, grant issuance, revocation/recovery and simulator meters.
 They provide local application proof only. OpenStack/k3s, OIDC/MFA/PEP, image
 build/signature/installation and external metering remain `NOT_VALIDATED`.
-The interface contract records existing authority-file image packaging and
-exact Grant/callback/recovery network blockers; local success does not override
-those deployment gates. Production bindings remain fail-closed.
+The request-api image recipe now packages exact canonical catalogs through the
+existing application context and a fixed repository-local named context. The
+protected pipeline supplies that input without adding a workflow or image;
+source runs continue to read the original authorities. Isolated image-layout
+API tests cover valid, missing and tampered catalogs. Readiness rejects an
+unavailable catalog. Local PostgreSQL 16 migration, app DML/DDL boundaries and
+last-revision rollback preserve the request row. Actual image build/release and
+exact Grant/callback/recovery network paths remain unvalidated; local success
+does not override those deployment gates. Production bindings remain fail-closed.

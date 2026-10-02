@@ -390,6 +390,17 @@ def _base_args(policy: dict[str, Any]) -> list[str]:
     return result
 
 
+def _catalog_context_args(image_id: str, repo_root: Path) -> list[str]:
+    if image_id != "request-api":
+        return []
+    context = repo_root / "docs/platform"
+    authority = context / "composite-service-catalog.yaml"
+    if (not authority.is_file() or authority.is_symlink()
+            or not context.resolve().is_relative_to(repo_root.resolve())):
+        raise SupplyChainError("canonical composite catalog build context is unavailable")
+    return ["--build-context", f"idp-platform-authorities={context}"]
+
+
 def _scan_counts(report: dict[str, Any]) -> tuple[int, int]:
     high = critical = 0
     for result in report.get("Results") or []:
@@ -485,6 +496,7 @@ def build_release(lock: dict[str, Any], *, release_id: str, approved_registry: s
             "--tag",
             tagged,
             *_base_args(policy),
+            *_catalog_context_args(image_id, REPO_ROOT),
             str(APP_ROOT),
         ]
         _run(command, cwd=REPO_ROOT)
@@ -534,7 +546,7 @@ def build_release(lock: dict[str, Any], *, release_id: str, approved_registry: s
                     "builder": {"id": "idp-hardened-buildx-runner"},
                     "invocation": {
                         "configSource": {
-                            "uri": "git+https://github.com/snsd-hybirdinfra/snsd-multicloud-ops",
+                            "uri": "git+https://github.com/snsd-hybridinfra/snsd-multicloud-ops",
                             "digest": {"sha1": source_commit},
                             "entryPoint": policy["dockerfile"],
                         }

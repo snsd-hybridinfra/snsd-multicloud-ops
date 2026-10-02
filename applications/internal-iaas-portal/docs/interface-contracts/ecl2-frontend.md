@@ -85,14 +85,39 @@ meter record; it is not a real model generation. Actual charges remain null.
 
 ## Deployment blockers
 
-The loopback launcher is the validated local entry point. No Docker build,
-PostgreSQL migration, registry release or cluster installation was executed.
-The existing request-api image copies the Python package and migrations but
-does not package the repository-level catalog authorities. Its current
-`blueprints.py` root lookup also assumes the source checkout depth. These must
-be corrected and checked against the canonical catalog before claiming that
-image can serve the new facade. Do not replace the authorities with a permissive
-embedded catalog or silently change the seven-image build policy.
+The loopback launcher is the validated local entry point. The request-api
+Dockerfile now copies the canonical composite catalog through the fixed named
+build context `idp-platform-authorities`, and the execution-profile catalog
+through the existing application context. Both are packaged under
+`/app/request_api/authorities/`. Source runs still read the original repository
+files. The loader handles the shallow image path without an environment override
+or permissive embedded catalog. Missing/invalid catalog policy returns 503 from
+the workspace and readiness checks; liveness remains independent.
+
+The existing protected build pipeline supplies only the request-api image with
+`--build-context idp-platform-authorities=<repo>/docs/platform`. The dev compose
+supplies the same directory through `additional_contexts`; the seven-image
+lock, base-image gates and CI workflow remain unchanged. This uses the documented
+[Docker named-context contract](https://docs.docker.com/build/concepts/context/)
+and [Compose build contract](https://docs.docker.com/reference/compose-file/build/).
+Isolated package-layout API tests pass. No actual request-api image build,
+registry release or cluster installation is claimed.
+
+The six request-db migrations have also been applied as `request_migrator` in a
+disposable PostgreSQL 16.15 container, using the existing role/grant scripts.
+The numeric meter's unique-key denial, app DML, app DDL denial, last-revision
+downgrade, preservation of the existing request and re-upgrade were verified.
+SQL stdin uses explicit UTF-8 so Korean defaults survive Windows invocation.
+Only the new numeric meter table is removed by this downgrade; it does not
+restore deleted usage rows. This is local database proof, not production DB,
+TLS, backup/restore or the full OpenStack lifecycle proof.
+
+To repeat that opt-in test, supply an already-installed immutable official
+PostgreSQL 16 reference in `IDP_TEST_POSTGRES_IMAGE=postgres@sha256:<digest>` and
+run `python -m pytest tests/integration/test_request_db_migrations.py` from the
+application root. The test never pulls an image. It creates a uniquely named
+container with `--network none`, no published ports and ephemeral data, then
+removes only that container. Normal test runs skip it when the variable is unset.
 
 The production request-api ConfigMap deliberately has no `GRANT_API_URL`; the
 existing request-api egress policy does not permit port 8002. The new grant
@@ -104,7 +129,6 @@ Do not widen cluster policies or enable dev auth as a deployment shortcut.
 
 No credential values are needed for local use. The old two source-integrity
 failures remain documented in `docs/platform/source-integrity-review.md`;
-this integration does not alter those evidence authorities. At final validation,
-the separately added `monitoring_assistant.py` also triggered secret-assignment
-findings in three root tests and the retirement/architecture/Zero Trust scans.
-Those concurrent changes were preserved; validators were not weakened.
+this integration does not alter those evidence authorities. The previous run's
+concurrent monitoring-file scan findings have since been corrected in the
+updated repository baseline; the current Zero Trust scan passes 40/40.
