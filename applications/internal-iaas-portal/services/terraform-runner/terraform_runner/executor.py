@@ -62,9 +62,16 @@ ALLOWED_MODULES = {
 
 
 class TerraformExecutionError(RuntimeError):
-    def __init__(self, message: str, code: str = "APPLY_FAILED"):
+    def __init__(
+        self,
+        message: str,
+        code: str = "APPLY_FAILED",
+        *,
+        details: dict[str, str | int | bool] | None = None,
+    ):
         super().__init__(message)
         self.code = code
+        self.details = details or {}
 
 
 def _private_endpoint(endpoint: str) -> bool:
@@ -449,6 +456,7 @@ class Executor:
                     job,
                     error=str(exc)[:4000],
                     failure_code=failure_code,
+                    details=getattr(exc, "details", {}),
                 )
             )
             return
@@ -764,55 +772,75 @@ class Executor:
                 ),
             }
 
-        plan_validation = self._saved_plan_apply(
-            terraform_bin,
-            workspace,
-            environment,
-            locked_policy,
-            "APPLY",
-            failure_code="PLAN_FAILED",
-            apply_failure_code="APPLY_FAILED",
-            before_apply=lambda: self._report_progress(job, report),
-        )
-        raw_outputs = self._command(
-            [terraform_bin, "output", "-json"],
-            workspace,
-            environment,
-            failure_code="APPLY_FAILED",
-        )
-        raw_state = self._command(
-            [terraform_bin, "show", "-json"],
-            workspace,
-            environment,
-            failure_code="APPLY_FAILED",
-        )
-        parsed = json.loads(raw_outputs)
-        result = {name: item.get("value") for name, item in parsed.items()}
-        self._validate_openstack_state(
-            job, json.loads(raw_state), result, flavor_name, image_name
-        )
-        if policy.get("service_profile") == "K3S_SINGLE_NODE":
-            try:
+        apply_attempted = False
+
+        def mark_apply_started() -> None:
+            nonlocal apply_attempted
+            apply_attempted = True
+            self._report_progress(job, report)
+
+        try:
+            plan_validation = self._saved_plan_apply(
+                terraform_bin,
+                workspace,
+                environment,
+                locked_policy,
+                "APPLY",
+                failure_code="PLAN_FAILED",
+                apply_failure_code="APPLY_FAILED",
+                before_apply=mark_apply_started,
+            )
+            raw_outputs = self._command(
+                [terraform_bin, "output", "-json"],
+                workspace,
+                environment,
+                failure_code="APPLY_FAILED",
+            )
+            raw_state = self._command(
+                [terraform_bin, "show", "-json"],
+                workspace,
+                environment,
+                failure_code="APPLY_FAILED",
+            )
+            parsed = json.loads(raw_outputs)
+            result = {name: item.get("value") for name, item in parsed.items()}
+            self._validate_openstack_state(
+                job, json.loads(raw_state), result, flavor_name, image_name
+            )
+            if policy.get("service_profile") == "K3S_SINGLE_NODE":
                 result.update(self._run_ansible_k3s(job, result, workspace))
-            except TerraformExecutionError as configuration_error:
-                try:
-                    self._saved_plan_apply(
-                        terraform_bin,
-                        workspace,
-                        environment,
-                        locked_policy,
-                        "DESTROY",
-                        failure_code="ROLLBACK_FAILED",
-                    )
-                except TerraformExecutionError as rollback_error:
-                    raise TerraformExecutionError(
-                        f"k3s configuration failed and automatic Terraform rollback failed: {rollback_error}",
-                        "ROLLBACK_FAILED",
-                    ) from configuration_error
+        except Exception as apply_error:
+            if not apply_attempted:
+                raise
+            original_code = str(getattr(apply_error, "code", "APPLY_FAILED"))
+            try:
+                self._saved_plan_apply(
+                    terraform_bin,
+                    workspace,
+                    environment,
+                    locked_policy,
+                    "DESTROY",
+                    failure_code="ROLLBACK_FAILED",
+                )
+            except Exception as rollback_error:
                 raise TerraformExecutionError(
-                    "k3s configuration failed; the Nova instance and port were automatically destroyed",
-                    "CONFIGURATION_FAILED",
-                ) from configuration_error
+                    "apply or post-apply validation failed and automatic rollback could not be proven",
+                    "ROLLBACK_FAILED",
+                    details={
+                        "recovery_status": "ROLLBACK_FAILED",
+                        "recovery_verification": "NOT_PROVEN",
+                        "original_failure_code": original_code,
+                    },
+                ) from rollback_error
+            raise TerraformExecutionError(
+                "apply or post-apply validation failed; the Nova instance and port were automatically destroyed",
+                original_code,
+                details={
+                    "recovery_status": "ROLLED_BACK",
+                    "recovery_verification": "TERRAFORM_STATE_EMPTY",
+                    "original_failure_code": original_code,
+                },
+            ) from apply_error
         result["supply_chain_attestation"] = sanitized_attestation(
             module_validation=module_validation,
             plan_validation=plan_validation,
@@ -1016,6 +1044,7 @@ class Executor:
             or not port.get("port_security_enabled")
             or set(port.get("security_group_ids") or []) != set(self.settings.security_group_ids)
             or any(metadata.get(key) != value for key, value in required_tags.items())
+            or not str(result.get("primary_resource_id", ""))
             or result.get("floating_ip") is not False
             or not _private_endpoint(str(result.get("endpoint", "")))
         ):

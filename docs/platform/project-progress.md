@@ -185,3 +185,16 @@
 - 필요한 외부 입력: B단계에서 이미 정의한 비운영 OpenStack 범위의 별도 승인 및 외부 참조, 승인 OIDC/PEP issuer/audience/JWKS 및 service-token 교환 계약, 승인 이미지·레지스트리·k3s 어댑터, 관측·청구·디렉터리·모델 게이트웨이의 연결 계약. 자격증명 값 제출은 필요 없고 Git 외부 파일 참조만 사용한다. 산업/PartnerHub 및 일곱 미구현 상품의 runtime은 미연결이다.
 - 커밋·푸시: `NOT_ATTEMPTED`. HEAD는 소스 커밋 그대로이며 기존·동시 변경을 섞어 main에 커밋하지 않았다.
 - 다음 작업: ECL 원본은 계속 읽기 전용으로 유지한다. SNSD에서 canonical catalog의 이미지 포장·기동 검사와 PostgreSQL migration 검증부터 수행하고, 정제된 서비스 신원·네트워크 계약에 따라 Grant 경로를 준비한다. 두 권위 불일치와 동시 모니터링 파일의 보안 검사 원인을 각각 검토한다. 그 후 별도 승인된 B단계 합성 VM 런타임 캠페인을 진행하며 미연결 경로를 증거 없이 승격하지 않는다.
+
+### 2026-10-02 — R1 post-apply 자동 복구와 감사 경계 보강
+
+- 실행 시각: `2026-10-02T14:24:41+09:00`. WSL은 사용하지 않았으며 Windows PowerShell과 Windows용 Git·Python·uv만 사용했다. 실제 OpenStack VM, Terraform live apply·destroy, k3s 설치는 수행하지 않았다.
+- 소스 커밋: `30cbb14e1ec7de7a249e2f9d1fe33a7b49356021`, `main`.
+- 선택 항목: R1 Private IaaS 골든패스에서 apply 시작 후 검증 실패가 고아 자원을 남길 수 있는 전이와 runner/API failure-code 불일치를 보강했다.
+- 구현: apply가 시작된 뒤 명령 실패, 출력 파싱 실패, OpenStack state·태그·사설 주소 정책 실패 또는 k3s 구성 실패가 발생하면 검증된 destroy plan을 자동 실행한다. post-destroy state가 비어야만 `ROLLED_BACK / TERRAFORM_STATE_EMPTY`를 보고한다. 잔여 자원, 읽기 실패 또는 지원하지 않는 state는 `ROLLBACK_FAILED / NOT_PROVEN`으로 닫고 Grant를 발급하지 않는다.
+- API·감사: 승인 API가 `BOOTSTRAP_VALIDATION_REQUIRED`, `CONFIGURATION_FAILED`, `ROLLBACK_FAILED`를 수용하고 운영자 재시도를 허용한다. 복구 상태·검증·원 실패 코드는 `provisioning-job` 감사 스트림에 정제 필드로 기록하며 auditor가 aggregate 유형을 명시해 조회할 수 있다.
+- 검증: runner·approval 집중 회귀 `68 PASS`, 포털 전체 회귀 `183 PASS`, 내부 포털 정적 검증 `22 PASS / 0 FAIL`, 금융 IDP 아키텍처 `87 PASS / 0 FAIL`, 계약 JSON 및 `git diff --check` 통과. 경고는 기존 Starlette/httpx 및 HTTP 422 deprecation 9건이다.
+- 런타임 증거: `NOT_VALIDATED`. fake Terraform 명령, 합성 state, SQLite와 로컬 API만 사용했다. 독립적인 OpenStack 자원 부재 증거는 확보하지 않았다.
+- 차단 요인: R1 완료에는 승인된 비운영 OpenStack 대상, 외부 clouds.yaml·state root, 승인 네트워크·보안그룹·이미지·키페어·flavor, pinned Terraform/provider와 별도 실행 창 승인이 필요하다.
+- 동시 변경 보호: 실행 중 별도로 나타난 request-api 패키징·카탈로그 build-context·공급망 변경은 보존했으며 이번 R1 변경과 분리해 검증·커밋한다.
+- 다음 작업: R1 live 입력 전에는 상태를 승격하지 않는다. 로드맵상 다음 안전 작업인 R2 공급망 패키징·GitOps 검증으로 이동한다.

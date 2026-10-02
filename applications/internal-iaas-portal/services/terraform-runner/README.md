@@ -57,6 +57,10 @@ After apply, it rejects any state other than one Neutron port and one Nova VM,
 checks private addressing, port security, exact security groups, image, flavor,
 key pair, metadata, and the absence of a Floating IP. For k3s, the runner then
 executes the digest-pinned Ansible playbook, validates API readiness and the
-declared platform components, and returns `READY`. If configuration fails, the
-runner automatically destroys the newly created Nova instance and port. A
-failed or unvalidated configuration cannot authorize a Grant.
+declared platform components, and returns `READY`. Once apply has started, an
+apply-command failure, malformed output, state-policy failure, or k3s
+configuration failure triggers an inspected destroy plan. The runner reports
+`ROLLED_BACK` only after the post-destroy Terraform state is proven empty; an
+unreadable or non-empty state reports `ROLLBACK_FAILED` and never authorizes a
+Grant. Recovery reports contain only bounded status and failure-code fields,
+and the approval API records those fields in the provisioning-job audit stream.

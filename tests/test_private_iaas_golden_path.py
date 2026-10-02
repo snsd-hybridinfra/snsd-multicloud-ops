@@ -61,6 +61,17 @@ class PrivateIaasGoldenPathTests(unittest.TestCase):
             result = golden.validate(target)
             self.assertTrue(any("source digest" in item or "defaults live deployment" in item for item in result.failures))
 
+    def test_rollback_success_without_empty_state_proof_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory)
+            copy_authorities(target)
+            path = target / golden.CONTRACT
+            data = json.loads(path.read_text(encoding="utf-8"))
+            data["failure_recovery"]["success_claim_requires"] = "COMMAND_EXIT_ZERO"
+            path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+            result = golden.validate(target)
+            self.assertTrue(any("recovery remains fail-closed" in item for item in result.failures))
+
 
 if __name__ == "__main__":
     unittest.main()

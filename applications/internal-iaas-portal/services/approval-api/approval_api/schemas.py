@@ -116,6 +116,9 @@ class ProvisioningResult(BaseModel):
         "POLICY_DENIED",
         "APPLY_FAILED",
         "BOOTSTRAP_FAILED",
+        "BOOTSTRAP_VALIDATION_REQUIRED",
+        "CONFIGURATION_FAILED",
+        "ROLLBACK_FAILED",
         "DESTROY_FAILED",
     ] | None = None
     error: str | None = Field(default=None, max_length=4000)

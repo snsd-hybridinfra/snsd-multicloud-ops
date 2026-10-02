@@ -49,7 +49,7 @@ Developer Portal
 
 ### R1 Private IaaS 골든패스
 
-현재 상태: `IN_PROGRESS_LOCAL`
+현재 상태: `LOCAL_RECOVERY_VALIDATED / LIVE_BLOCKED`
 
 - 포털 신청 → 정책 → 승인 → 불변 매니페스트 → Terraform → 자원 등록 → 만료·회수 흐름을 고정한다.
 - OpenStack 자격증명과 state는 저장소 밖에서만 주입한다.
@@ -144,9 +144,9 @@ NAS 자료교환은 새 상품이 아니라 `API_DEVELOPMENT_STACK`과 `DATA_PRO
 
 ## 다음 작업 큐
 
-1. `R1`: Private IaaS 골든패스의 런타임 미검증 전이를 보강한다.
-2. `R2`: 공급망 외부 차단 요인을 재확인하고 GitOps·정책 검증을 마무리한다.
-3. `R3`: NAS 어댑터의 상태기계와 스캐너 계약을 안전한 로컬 시뮬레이션으로 구현한다.
+1. `R2`: 공급망 외부 차단 요인을 재확인하고 GitOps·정책 검증을 마무리한다.
+2. `R3`: NAS 어댑터의 상태기계와 스캐너 계약을 안전한 로컬 시뮬레이션으로 구현한다.
+3. `R1`: 승인된 OpenStack 입력과 실행 창이 준비되면 골든패스 live 검증을 수행한다.
 4. `R5`: OpenAI Platform 서비스 주체와 OIDC 스코프가 준비되면 외부 모니터링 보조 호출을 검증한다.
 
 ## 진행 기록

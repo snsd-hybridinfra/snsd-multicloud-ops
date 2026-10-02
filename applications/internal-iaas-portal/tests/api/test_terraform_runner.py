@@ -340,11 +340,73 @@ def test_ansible_failure_triggers_automatic_terraform_destroy(
         "ROLLBACK_FAILED" if residual_resource else "CONFIGURATION_FAILED"
     )
     assert reports[-1]["validation_passed"] is False
+    assert reports[-1]["details"]["recovery_status"] == (
+        "ROLLBACK_FAILED" if residual_resource else "ROLLED_BACK"
+    )
+    assert reports[-1]["details"]["recovery_verification"] == (
+        "NOT_PROVEN" if residual_resource else "TERRAFORM_STATE_EMPTY"
+    )
     ansible_index = next(
         index for index, value in enumerate(commands) if value[0] == "ansible-playbook"
     )
     destroy_index = next(index for index, value in enumerate(commands) if "-destroy" in value)
     assert ansible_index < destroy_index
+
+
+@pytest.mark.parametrize("rollback_succeeds", [True, False])
+def test_post_apply_policy_failure_triggers_verified_automatic_rollback(
+    monkeypatch, tmp_path: Path, rollback_succeeds: bool
+) -> None:
+    item = job()
+    commands: list[list[str]] = []
+
+    def fake_command(command, cwd, environment, *, failure_code):
+        commands.append(command)
+        destroy_started = any("-destroy" in value for value in commands)
+        if command[1:] == ["version", "-json"]:
+            return json.dumps({"terraform_version": "1.16.1"})
+        if "output" in command:
+            return _terraform_output()
+        if "show" in command and "tfplan" in command:
+            return _terraform_plan("DESTROY" if destroy_started else "APPLY")
+        if command[1:] == ["show", "-json"] and destroy_started:
+            return (
+                json.dumps({"format_version": "1.0"})
+                if rollback_succeeds
+                else _terraform_state(item)
+            )
+        if command[1:] == ["show", "-json"]:
+            state = json.loads(_terraform_state(item))
+            resources = state["values"]["root_module"]["resources"]
+            instance = next(
+                value for value in resources if value["type"] == "openstack_compute_instance_v2"
+            )
+            instance["values"]["metadata"]["OwnerId"] = "unapproved-owner"
+            return json.dumps(state)
+        return ""
+
+    monkeypatch.setattr(Executor, "_command", staticmethod(fake_command))
+    settings = replace(
+        _real_k3s_settings(tmp_path),
+        approved_image_name="approved-base-image",
+        flavor_small="approved-medium",
+    )
+    reports: list[dict] = []
+    Executor(settings).run(item, reports.append)
+
+    assert [value["status"] for value in reports] == ["PROVISIONING", "PROVISION_FAILED"]
+    assert reports[-1]["failure_code"] == (
+        "POLICY_DENIED" if rollback_succeeds else "ROLLBACK_FAILED"
+    )
+    assert reports[-1]["details"]["recovery_status"] == (
+        "ROLLED_BACK" if rollback_succeeds else "ROLLBACK_FAILED"
+    )
+    assert reports[-1]["details"]["recovery_verification"] == (
+        "TERRAFORM_STATE_EMPTY" if rollback_succeeds else "NOT_PROVEN"
+    )
+    apply_index = next(index for index, value in enumerate(commands) if "apply" in value)
+    destroy_index = next(index for index, value in enumerate(commands) if "-destroy" in value)
+    assert apply_index < destroy_index
 
 
 @pytest.mark.parametrize(

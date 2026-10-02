@@ -316,6 +316,73 @@ def test_terraform_job_defers_grant_until_validated_apply_and_queues_destroy(
 
 
 @pytest.mark.parametrize(
+    "failure_code",
+    ["BOOTSTRAP_VALIDATION_REQUIRED", "CONFIGURATION_FAILED", "ROLLBACK_FAILED"],
+)
+def test_runner_recovery_failures_are_recorded_and_retryable(
+    tmp_path, failure_code: str
+) -> None:
+    app = create_app(
+        Settings(
+            database_url=f"sqlite+pysqlite:///{(tmp_path / f'recovery-{failure_code}.db').as_posix()}",
+            auto_create_schema=True,
+            auth_mode="dev",
+            enable_provisioning_jobs=True,
+        )
+    )
+    request_id = f"recovery-{failure_code.lower().replace('_', '-')}"
+
+    with TestClient(app) as client:
+        assert client.post(
+            "/internal/v1/requests", headers=SERVICE, json=ingest_payload(request_id)
+        ).status_code == 200
+        assert client.post(
+            f"/admin-api/v1/requests/{request_id}/approve",
+            headers=APPROVER,
+            json={"reason": "복구 경계 검증"},
+        ).status_code == 200
+        claimed = client.post(
+            "/internal/v1/provisioning/jobs/claim",
+            headers=RUNNER,
+            json={"runner_id": "terraform-runner"},
+        ).json()
+        failed = client.post(
+            f"/internal/v1/provisioning/jobs/{claimed['job_id']}/result",
+            headers=RUNNER,
+            json={
+                "status": "PROVISION_FAILED",
+                "resource_id": claimed["resource_id"],
+                "failure_code": failure_code,
+                "details": {
+                    "recovery_status": "ROLLBACK_FAILED",
+                    "recovery_verification": "NOT_PROVEN",
+                    "original_failure_code": "CONFIGURATION_FAILED",
+                },
+                "error": "sanitized recovery failure",
+            },
+        )
+        assert failed.status_code == 200
+        assert failed.json()["job"]["status"] == failure_code
+
+        retry = client.post(
+            f"/admin-api/v1/provisioning/jobs/{claimed['job_id']}/retry",
+            headers=APPROVER,
+        )
+        assert retry.status_code == 200
+        assert retry.json()["status"] == "QUEUED"
+
+        audits = client.get(
+            "/admin-api/v1/audit-events?aggregate_type=provisioning-job",
+            headers=AUDITOR,
+        ).json()
+        result_event = next(
+            value for value in audits if value["event_type"] == "TERRAFORM_APPLY_PROVISION_FAILED"
+        )
+        assert result_event["details"]["recovery_status"] == "ROLLBACK_FAILED"
+        assert result_event["details"]["recovery_verification"] == "NOT_PROVEN"
+
+
+@pytest.mark.parametrize(
     ("product_code", "parameters", "expected_scopes"),
     [
         (

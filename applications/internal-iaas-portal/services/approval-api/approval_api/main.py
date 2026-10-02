@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
-from typing import Annotated
+from typing import Annotated, Literal
 from urllib.parse import urlsplit
 from uuid import uuid4
 
@@ -535,6 +535,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     "grant_status": grant_status,
                     "validation_passed": payload.validation_passed,
                     "failure_code": payload.failure_code,
+                    "recovery_status": payload.details.get("recovery_status"),
+                    "recovery_verification": payload.details.get("recovery_verification"),
+                    "original_failure_code": payload.details.get("original_failure_code"),
                 },
             )
         )
@@ -566,6 +569,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "POLICY_DENIED",
             "APPLY_FAILED",
             "BOOTSTRAP_FAILED",
+            "BOOTSTRAP_VALIDATION_REQUIRED",
+            "CONFIGURATION_FAILED",
+            "ROLLBACK_FAILED",
             "DESTROY_FAILED",
             "CALLBACK_FAILED",
             "GRANT_FAILED",
@@ -626,11 +632,12 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def list_audit_events(
         _: Annotated[Principal, Depends(audit_principal)],
         db: Annotated[Session, Depends(get_db)],
+        aggregate_type: Literal["request", "provisioning-job"] = "request",
         limit: Annotated[int, Query(ge=1, le=500)] = 100,
     ) -> list[AuditEvent]:
         stmt = (
             select(AuditEvent)
-            .where(AuditEvent.aggregate_type == "request")
+            .where(AuditEvent.aggregate_type == aggregate_type)
             .order_by(AuditEvent.created_at.desc())
             .limit(limit)
         )

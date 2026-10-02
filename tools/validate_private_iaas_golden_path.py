@@ -44,6 +44,26 @@ EXPECTED_RESOURCE = {
     "TERMINATING": {"TERMINATED", "TERMINATION_FAILED"},
     "TERMINATION_FAILED": {"TERMINATING"},
 }
+EXPECTED_LOCAL_SCOPE = {
+    "positive",
+    "negative",
+    "bypass",
+    "persistence",
+    "post_apply_policy_failure",
+    "verified_rollback",
+    "rollback_failure",
+    "operator_retry",
+    "recovery_audit",
+}
+EXPECTED_FAILURE_RECOVERY = {
+    "post_apply_failure_action": "AUTOMATIC_DESTROY",
+    "success_claim_requires": "TERRAFORM_STATE_EMPTY",
+    "rollback_failure_status": "ROLLBACK_FAILED",
+    "retry_requires_operator_action": True,
+    "grant_allowed_after_failure": False,
+    "audit_stream": "provisioning-job",
+    "runtime_validation_status": "NOT_VALIDATED",
+}
 
 
 @dataclass
@@ -139,9 +159,14 @@ def validate(root: Path) -> Result:
 
     local = contract.get("local_acceptance", {})
     result.require(local.get("portal_validator") == "22_PASS_0_FAIL", "portal static validator result is recorded")
-    result.require(local.get("portal_test_suite") == "69_PASS_5_DEPENDENCY_DEPRECATION_WARNINGS", "portal full local test result is recorded")
-    result.require(set(local.get("test_scope", [])) == {"positive", "negative", "bypass", "persistence", "rollback"}, "local acceptance covers five required behavior classes")
+    result.require(local.get("portal_test_suite") == "183_PASS_9_DEPENDENCY_DEPRECATION_WARNINGS", "portal full local test result is recorded")
+    result.require(local.get("recovery_focused_suite") == "68_PASS_2_DEPENDENCY_DEPRECATION_WARNINGS", "focused recovery test result is recorded")
+    result.require(set(local.get("test_scope", [])) == EXPECTED_LOCAL_SCOPE, "local acceptance covers the required recovery behavior classes")
     result.require(local.get("runtime_credit") == "NONE", "local tests receive no runtime credit")
+    result.require(
+        contract.get("failure_recovery") == EXPECTED_FAILURE_RECOVERY,
+        "post-apply recovery remains fail-closed and non-runtime-validated",
+    )
     result.require(len(contract.get("live_gates", [])) >= 7, "live execution has explicit gates")
     result.require(len(contract.get("stop_conditions", [])) >= 7, "live execution has explicit stop conditions")
 
