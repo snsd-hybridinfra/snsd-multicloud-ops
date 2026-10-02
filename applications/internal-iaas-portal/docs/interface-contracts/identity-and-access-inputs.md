@@ -12,3 +12,15 @@ The current Compose demo uses development headers and is loopback-only. It is
 not an identity implementation or runtime evidence. The Kubernetes candidate
 uses OIDC mode but contains placeholder image and endpoint values and is not
 authorized for deployment.
+
+The target browser origins are `https://gg-snsdinfra.cloud` for users and
+`https://admin.gg-snsdinfra.cloud` for restricted administrators. The target
+issuer is `https://id.gg-snsdinfra.cloud/realms/iaas`. DNS records, exact-name
+TLS certificates, Keycloak hostname configuration and exact redirect URIs must
+be validated together before enabling production authentication.
+
+The monitoring assistant uses the human OIDC session only for portal role and
+scope enforcement. External model calls use a separate server-side OpenAI
+Platform service credential in the optional `monitoring-assistant-provider`
+secret. Browser cookies, personal ChatGPT sessions and user-supplied API keys
+must never be forwarded to the provider.

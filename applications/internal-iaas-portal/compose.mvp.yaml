@@ -56,6 +56,7 @@ services:
       AUTO_CREATE_SCHEMA: "true"
       AUTH_MODE: dev
       APPROVAL_API_URL: http://approval-api:8001
+      GRANT_API_URL: http://grant-api:8002
       ENABLE_MOCK_PROVISIONER: "false"
       ENABLE_DEMO_RESET: "true"
       MOCK_PROVISION_DELAY_SECONDS: "2"
@@ -137,6 +138,8 @@ services:
     build:
       context: .
       dockerfile: services/user-portal/Dockerfile
+      args:
+        PORTAL_EDITION: local
     depends_on:
       - request-api
     ports:

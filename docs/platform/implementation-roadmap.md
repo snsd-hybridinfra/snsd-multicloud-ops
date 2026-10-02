@@ -2,6 +2,8 @@
 
 This roadmap orders product work without introducing new Zero Trust package IDs. Status promotion requires matching implementation and accepted evidence.
 
+Current stage progress and the bounded securities-domain track are recorded in [project-progress.md](project-progress.md). The dashboard never supersedes the exit gates below.
+
 ## Stage A — Authority and inventory
 
 Status: `COMPLETED_LOCAL`
@@ -32,6 +34,37 @@ manifest path with independent digest verification. The other seven blueprints
 remain fail-closed where component adapters are absent. The five OpenStack
 entries are service-only execution profiles. This establishes no OpenStack
 runtime credit.
+
+Destroy and automatic k3s rollback now require a post-destroy state read with
+no resources in the root or nested modules before reporting completion. Local
+fake-command regressions cover residual resources, malformed or unsupported
+state and unavailable inspection. This closes a local completion-reporting gap;
+independent OpenStack absence and recovery evidence remain `NOT_VALIDATED`.
+
+The runner also binds the state key and ownership tags to the approved request,
+rejects unsupported operations, checks absolute/disjoint external runtime
+paths and protects pre-existing workspaces. Workspace creation is exclusive;
+cleanup applies only to the current invocation's workspace. Local rejection
+tests cover cross-request state, metadata tampering, Git-contained credentials,
+overlapping roots and recovery-material preservation.
+
+Frontend checkpoint (2026-10-02): use the read-only `ecl2-portal` frontend at
+`e8c4c1d26b9177929a0e04b7b9db1d6885ac5215`, imported into the existing
+SNSD user-portal image. Changes apply only to this downstream copy and SNSD
+APIs; the upstream checkout and its `.deploy/` remain untouched. Developer,
+Manufacturing, Finance and Public views now use persistent tenant/domain/owner
+requests, the eight-blueprint catalog, existing approval decisions, mock runner
+callbacks, bound grant revocation and recovery. MSP and LLM views have sanitized
+operational projections and opt-in numeric-only local simulation. Session
+caches are invalidated at logout, identity changes and stale-response boundaries.
+The final portal working-tree suite passes 174 tests; the browser demonstrates
+one saved request, independent MSP approval and a mock RUNNING resource.
+See `applications/internal-iaas-portal/docs/interface-contracts/ecl2-frontend.md`.
+The seven other products, identity directory, monitoring, real billing/model
+providers and industry adapters remain unavailable. Production authority-file
+image packaging, database migration, OIDC/PEP/service audiences and the exact
+Grant/callback/recovery network paths still require validation before deployment.
+No live platform or Zero Trust status is promoted.
 
 Exit: one synthetic VM product completes positive, negative, bypass, persistence and rollback checks with sanitized evidence.
 
@@ -111,6 +144,15 @@ Status: `PARTIAL`
 
 - Join observability, audit, backup/restore, FinOps and lifecycle telemetry.
 - Expose resource status, alerts, cost attribution and expiry in the portal.
+- Add the metric-only monitoring assistant after deterministic alerting. Keep
+  model output advisory, require `monitoring:assist`, persist no signal body,
+  and validate an external provider only with a separate service principal.
+- Add the dual-stage NAS file-exchange adapter for the approved financial SaaS
+  and data-processing blueprints. Validate SMB 3.1.1 enforcement, scan reject,
+  digest-bound approval, zone bypass denial, expiry and restore before runtime
+  promotion.
+- Publish the user frontend at `gg-snsdinfra.cloud` only after DNS, exact-name
+  TLS SANs, OIDC redirect origins and default-host rejection are validated.
 - Run an end-to-end synthetic service recovery exercise.
 
 Exit: portal, automation, service planes and network share correlated sanitized evidence.

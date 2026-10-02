@@ -249,6 +249,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         actor: Principal,
         db: Session,
     ) -> DecisionResult:
+        if item.requester_id == actor.subject:
+            raise HTTPException(status.HTTP_403_FORBIDDEN, "self approval is forbidden")
         if item.status != "PENDING":
             raise HTTPException(status.HTTP_409_CONFLICT, "request is not PENDING")
         item.status = decision

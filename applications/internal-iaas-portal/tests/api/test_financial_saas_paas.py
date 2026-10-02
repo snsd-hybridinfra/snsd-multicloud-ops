@@ -5,7 +5,7 @@ import copy
 import pytest
 from fastapi.testclient import TestClient
 
-from request_api.blueprints import resolve_blueprint
+from request_api.blueprints import canonical_manifest_digest, resolve_blueprint
 from request_api.config import Settings
 from request_api.main import create_app
 from request_api.saas_paas import (
@@ -142,3 +142,15 @@ def test_service_only_endpoint_returns_inert_bundle_and_denies_user(tmp_path) ->
         assert allowed.status_code == 200
         assert allowed.json()["bundle"]["deployable"] is False
         assert allowed.json()["bundle_digest"].startswith("sha256:")
+
+
+@pytest.mark.parametrize(
+    "profiles", [[], ["REAL_SECURITIES_ORDERS"], ["SECURITIES_PORTFOLIO_RISK_SIMULATION"]]
+)
+def test_rehashed_unapproved_business_domain_profiles_fail_closed(profiles) -> None:
+    source = resolution()
+    source.pop("manifest_digest")
+    source["business_domain_profiles"] = profiles
+    source["manifest_digest"] = canonical_manifest_digest(source)
+    with pytest.raises(FinancialSaaSBundleError, match="business domain profiles mismatch"):
+        build_financial_saas_tenant_bundle(source)

@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+from dataclasses import replace
 from pathlib import Path
+
+import pytest
 
 from terraform_runner.config import Settings
 from terraform_runner.executor import (
@@ -302,8 +305,9 @@ def test_approved_k3s_runs_terraform_then_ansible(monkeypatch, tmp_path: Path) -
     assert reports[-1]["outputs"]["supply_chain_attestation"]["decision"] == "PASSED"
 
 
+@pytest.mark.parametrize("residual_resource", [False, True])
 def test_ansible_failure_triggers_automatic_terraform_destroy(
-    monkeypatch, tmp_path: Path
+    monkeypatch, tmp_path: Path, residual_resource: bool
 ) -> None:
     item = job(module="openstack-dev-k3s-small")
     commands: list[list[str]] = []
@@ -320,6 +324,11 @@ def test_ansible_failure_triggers_automatic_terraform_destroy(
             operation = "DESTROY" if any("-destroy" in value for value in commands) else "APPLY"
             return _terraform_plan(operation)
         if "show" in command:
+            if any("-destroy" in value for value in commands):
+                return (
+                    _terraform_state(item) if residual_resource
+                    else json.dumps({"format_version": "1.0"})
+                )
             return _terraform_state(item)
         return ""
 
@@ -327,9 +336,206 @@ def test_ansible_failure_triggers_automatic_terraform_destroy(
     reports: list[dict] = []
     Executor(_real_k3s_settings(tmp_path)).run(item, reports.append)
     assert [value["status"] for value in reports] == ["PROVISIONING", "PROVISION_FAILED"]
-    assert reports[-1]["failure_code"] == "CONFIGURATION_FAILED"
+    assert reports[-1]["failure_code"] == (
+        "ROLLBACK_FAILED" if residual_resource else "CONFIGURATION_FAILED"
+    )
+    assert reports[-1]["validation_passed"] is False
     ansible_index = next(
         index for index, value in enumerate(commands) if value[0] == "ansible-playbook"
     )
     destroy_index = next(index for index, value in enumerate(commands) if "-destroy" in value)
     assert ansible_index < destroy_index
+
+
+@pytest.mark.parametrize(
+    ("post_destroy_state", "succeeds"),
+    [
+        ('{"format_version":"1.0"}', True),
+        ('{"format_version":"1.0","values":{"root_module":{}}}', True),
+        ('{"format_version":"1.0","values":{"root_module":{"resources":[],"child_modules":[{"resources":[]}]}}}', True),
+        ('{"format_version":"1.0","values":{"root_module":{"resources":[{"type":"openstack_compute_instance_v2"}]}}}', False),
+        ('{"format_version":"1.0","values":{"root_module":{"child_modules":[{"child_modules":[{"resources":[{"type":"openstack_networking_port_v2"}]}]}]}}}', False),
+        ('{"format_version":"1.0","values":null}', False),
+        ('{"format_version":"1.0","values":{"root_module":{"resources":null}}}', False),
+        ('{"format_version":"1.0","values":{"root_module":{"child_modules":{}}}}', False),
+        ('{"format_version":"1.0","values":{"root_module":{"child_modules":[null]}}}', False),
+        ('{"format_version":"2.0"}', False),
+        ('{}', False),
+        ('[]', False),
+        ('not-json-sensitive-runtime-value', False),
+        (None, False),
+    ],
+    ids=[
+        "empty-state", "empty-root", "empty-child", "residual-vm",
+        "nested-residual-port", "null-values", "null-resources",
+        "invalid-children", "null-child", "unsupported-format",
+        "missing-format", "invalid-top-level", "invalid-json", "read-failure",
+    ],
+)
+def test_real_destroy_requires_verified_empty_state(
+    monkeypatch, tmp_path: Path, post_destroy_state: str | None, succeeds: bool
+) -> None:
+    commands: list[list[str]] = []
+
+    def fake_command(command, cwd, environment, *, failure_code):
+        commands.append(command)
+        if command[1:] == ["version", "-json"]:
+            return json.dumps({"terraform_version": "1.16.1"})
+        if "show" in command and "tfplan" in command:
+            return _terraform_plan("DESTROY")
+        if command[1:] == ["show", "-json"]:
+            if post_destroy_state is None:
+                raise TerraformExecutionError("sensitive-runtime-value", failure_code)
+            return post_destroy_state
+        return ""
+
+    monkeypatch.setattr(Executor, "_command", staticmethod(fake_command))
+    settings = replace(
+        _real_k3s_settings(tmp_path),
+        approved_image_name="approved-base-image",
+        flavor_small="approved-small",
+    )
+    state_file = Path(settings.state_root) / job()["state_key"]
+    state_file.parent.mkdir(parents=True)
+    state_file.write_bytes(b"synthetic-external-state-for-reviewed-recovery")
+    reports: list[dict] = []
+    Executor(settings).run(job(operation="DESTROY"), reports.append)
+    assert [value["status"] for value in reports] == [
+        "TERMINATING", "TERMINATED" if succeeds else "TERMINATION_FAILED"
+    ]
+    assert reports[-1]["validation_passed"] is succeeds
+    if succeeds:
+        assert reports[-1]["outputs"]["destroyed"] is True
+    else:
+        assert reports[-1]["failure_code"] == "DESTROY_FAILED"
+        assert reports[-1]["outputs"] == {}
+    assert "sensitive-runtime-value" not in json.dumps(reports)
+    assert not (Path(settings.work_root) / "job-1").exists()
+    assert state_file.read_bytes() == b"synthetic-external-state-for-reviewed-recovery"
+    destroy_apply = next(index for index, value in enumerate(commands) if "apply" in value)
+    state_read = next(index for index, value in enumerate(commands) if value[1:] == ["show", "-json"])
+    assert destroy_apply < state_read
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    [
+        lambda value: value.update(operation="IMPORT"),
+        lambda value: value.update(job_id="../job-1"),
+        lambda value: value.pop("job_id"),
+        lambda value: value.update(state_key="requests/request-2/terraform.tfstate"),
+        lambda value: value.update(state_key="../terraform.tfstate"),
+        lambda value: value["input_values"].update(request_id="request-2"),
+        lambda value: value["input_values"].update(product_id="DEV-OS-VM-L"),
+        lambda value: value["input_values"].update(product_version=2),
+        lambda value: value["input_values"]["required_tags"].update(OwnerId="user-2"),
+        lambda value: value["input_values"]["required_tags"].update(ProductId="DEV-OS-VM-L"),
+        lambda value: value["input_values"]["required_tags"].update(ExpiresAt="different-expiry"),
+        lambda value: value.update(input_values=[]),
+        lambda value: value["input_values"].update(required_tags=[]),
+    ],
+    ids=[
+        "operation", "job-path", "missing-job", "other-request-state",
+        "state-traversal", "request-binding", "product-binding", "version-binding",
+        "owner-tag", "product-tag", "expiry-tag", "input-type", "tag-type",
+    ],
+)
+def test_job_boundary_tampering_is_denied_before_execution(monkeypatch, mutation) -> None:
+    item = job()
+    mutation(item)
+    executions: list[dict] = []
+    monkeypatch.setattr(Executor, "_run_mock", lambda _, value: executions.append(value))
+    reports: list[dict] = []
+    Executor(Settings(runner_mode="mock", mock_delay_seconds=0)).run(item, reports.append)
+    assert not executions
+    assert len(reports) == 1
+    assert reports[0]["failure_code"] == "POLICY_DENIED"
+    assert reports[0]["validation_passed"] is False
+
+
+def test_unauthorized_run_preserves_existing_workspace(tmp_path: Path) -> None:
+    workspace = tmp_path / "work" / "job-1"
+    workspace.mkdir(parents=True)
+    marker = workspace / "preserve.txt"
+    marker.write_bytes(b"existing-workspace-not-owned-by-this-run")
+    reports: list[dict] = []
+    Executor(Settings(runner_mode="terraform", work_root=str(workspace.parent))).run(
+        job(), reports.append
+    )
+    assert reports[0]["failure_code"] == "POLICY_DENIED"
+    assert marker.read_bytes() == b"existing-workspace-not-owned-by-this-run"
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "git-state", "git-work", "git-credentials", "state-in-work",
+        "work-in-state", "shared-root", "credentials-in-work",
+        "relative-state", "relative-work", "existing-workspace",
+        "git-key", "key-in-work",
+    ],
+)
+def test_unsafe_runtime_paths_are_denied_without_commands_or_deletion(
+    monkeypatch, tmp_path: Path, case: str
+) -> None:
+    settings = replace(
+        _real_k3s_settings(tmp_path),
+        approved_image_name="approved-base-image",
+        flavor_small="approved-small",
+    )
+    fake_repo = tmp_path / "fake-repo"
+    fake_repo.mkdir()
+    (fake_repo / ".git").write_text("gitdir: external-test-only", encoding="utf-8")
+    work = Path(settings.work_root)
+    state = Path(settings.state_root)
+    clouds = Path(settings.clouds_config_file)
+    if case == "git-state":
+        state = fake_repo / "state"
+    elif case == "git-work":
+        work = fake_repo / "work"
+    elif case == "git-credentials":
+        clouds = fake_repo / "clouds.yaml"
+    elif case == "state-in-work":
+        state = work / "protected-state"
+    elif case == "work-in-state":
+        work = state / "work"
+    elif case == "shared-root":
+        state = work
+    elif case == "credentials-in-work":
+        clouds = work / "clouds.yaml"
+    elif case in {"git-key", "key-in-work"}:
+        key = (fake_repo if case == "git-key" else work) / "runner-key"
+        key.parent.mkdir(parents=True, exist_ok=True)
+        key.write_bytes(b"synthetic-key-preserve")
+        settings = replace(settings, ansible_private_key_file=str(key))
+    clouds.parent.mkdir(parents=True, exist_ok=True)
+    clouds.write_bytes(b"synthetic-credential-reference-preserve")
+    state_file = state / job()["state_key"]
+    state_file.parent.mkdir(parents=True, exist_ok=True)
+    state_file.write_bytes(b"synthetic-state-preserve")
+    marker = work / "job-1" / "preserve.txt"
+    if case == "existing-workspace":
+        marker.parent.mkdir(parents=True)
+        marker.write_bytes(b"existing-workspace-preserve")
+    settings = replace(
+        settings,
+        state_root="relative-state" if case == "relative-state" else str(state),
+        work_root="relative-work" if case == "relative-work" else str(work),
+        clouds_config_file=str(clouds),
+    )
+    commands: list[list[str]] = []
+    monkeypatch.setattr(
+        Executor, "_command", staticmethod(lambda command, *args, **kwargs: commands.append(command))
+    )
+    reports: list[dict] = []
+    Executor(settings).run(job(), reports.append)
+    assert not commands
+    assert len(reports) == 1
+    assert reports[0]["failure_code"] == "POLICY_DENIED"
+    assert state_file.read_bytes() == b"synthetic-state-preserve"
+    assert clouds.read_bytes() == b"synthetic-credential-reference-preserve"
+    if case == "existing-workspace":
+        assert marker.read_bytes() == b"existing-workspace-preserve"
+    if case in {"git-key", "key-in-work"}:
+        assert Path(settings.ansible_private_key_file).read_bytes() == b"synthetic-key-preserve"
+    assert "synthetic-credential" not in json.dumps(reports)

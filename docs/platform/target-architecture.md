@@ -40,6 +40,37 @@ Cross-cutting: Zero Trust | observability | audit | backup/restore | FinOps
 Extension: provider adapter -> approved public cloud (deferred)
 ```
 
+The canonical user portal target is `https://gg-snsdinfra.cloud`; restricted
+administration and identity use `admin.gg-snsdinfra.cloud` and
+`id.gg-snsdinfra.cloud`. These are configured targets, not runtime-validated
+DNS, TLS or OIDC evidence.
+
+## NAS file exchange
+
+The NAS capability reuses the supplied legacy report's SMB3 encryption,
+inspection, extension/content policy, folder authorization, source-network
+restriction and protected management objectives. It modernizes them as two
+separate shares with a controlled gateway: external write-only drop,
+immutable quarantine and scanning, digest-bound approval, then an internal
+read-only delivery share. The same writable NAS path is never mounted in both
+trust zones. Only SMB 3.1.1 with encryption and signing is allowed; SMB is
+never published through the frontend domain.
+
+`NAS_FILE_EXCHANGE` is a hidden component in existing financial SaaS and data
+processing blueprints, not a ninth user-selectable product. It remains blocked
+until an approved NAS target, separate zone interfaces, external secrets,
+scanner, OIDC mapping and restore target exist.
+
+## Monitoring ML assistant
+
+Deterministic collection and anomaly policy remain authoritative. A bounded
+assistant may receive only sanitized numeric metric signals and return a
+human-review summary or checklist. It receives no raw logs, file names or file
+contents from the NAS exchange and cannot approve, block or remediate. Portal
+identity uses OIDC roles and scopes; the model adapter uses a separate
+server-side service principal. The default external provider state is
+`NOT_CONNECTED`.
+
 ## Flagship PaaS blueprint: Project Mini-Ona
 
 `AI_AGENT_SANDBOX` accepts a bounded asynchronous engineering task and retains
@@ -85,10 +116,16 @@ live k3s, Istio, queue, model, GitHub or storage integration is claimed.
 - Keep out-of-band management and break-glass access independent from the IDP and identity provider.
 - Use vendor images only when separately licensed and supplied outside Git. Configuration templates may be version controlled after sanitization.
 
+## Securities business profile
+
+The virtual-securities lab maps four bounded business capabilities onto the existing catalog: synthetic order/API and post-trade flows use `API_DEVELOPMENT_STACK`, portfolio/risk batch analysis uses `DATA_PROCESSING_LAB`, and synthetic feed handling uses `SYNTHETIC_MARKET_DATA_LAB`. These are immutable blueprint metadata, not additional user-selectable components.
+
+Only synthetic or sanitized non-production data is allowed. Real customer or account data, real orders, exchange/broker connectivity, live market-data redistribution and production clearing or settlement remain prohibited. The profile is locally designed and catalog-bound; no integrated securities runtime is validated.
+
 ## Service catalog boundary
 
-The authoritative product model is `composite-service-catalog.yaml`. Eight
-internal components are assembled only into eight operator-approved composite
+The authoritative product model is `composite-service-catalog.yaml`. Internal
+components are assembled only into eight operator-approved composite
 blueprints. Users select a blueprint and the bounded environment, size,
 duration and purpose inputs; they cannot select components, submit an arbitrary
 dependency graph, supply HCL or choose provider identifiers.

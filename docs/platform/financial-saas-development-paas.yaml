@@ -23,6 +23,10 @@
     "resolved_manifest_immutable": true,
     "deployment_transaction": "ALL_OR_NOTHING"
   },
+  "business_domain_profiles": [
+    "SECURITIES_ORDER_API_SIMULATION",
+    "SECURITIES_POST_TRADE_SIMULATION"
+  ],
   "internal_components": [
     "K3S_RUNTIME",
     "APPLICATION_RUNTIME",
@@ -30,6 +34,7 @@
     "CACHE",
     "MESSAGE_QUEUE",
     "OBJECT_STORAGE",
+    "NAS_FILE_EXCHANGE",
     "LOAD_BALANCER",
     "NETWORK_POLICY",
     "OPERATIONS_PROFILE"
@@ -109,11 +114,15 @@
     "REDIS_ADAPTER",
     "MESSAGE_QUEUE_ADAPTER",
     "OBJECT_STORAGE_ADAPTER",
+    "NAS_FILE_EXCHANGE_ADAPTER",
     "PRIVATE_INGRESS_ADAPTER",
     "OTEL_PIPELINE"
   ],
   "prohibited_scope": [
     "PRODUCTION_FINANCIAL_DATA",
+    "REAL_SECURITIES_ORDERS",
+    "REAL_EXCHANGE_OR_BROKER_CONNECTIVITY",
+    "REAL_CUSTOMER_OR_ACCOUNT_DATA",
     "DIRECT_COMPONENT_SELECTION",
     "DIRECT_MAIN_PUSH",
     "PUBLIC_INTERNET_EXPOSURE",

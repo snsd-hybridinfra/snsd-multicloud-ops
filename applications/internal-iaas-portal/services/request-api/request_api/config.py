@@ -19,6 +19,7 @@ class Settings:
     oidc_audience: str = "request-api"
     oidc_jwks_url: str = ""
     approval_api_url: str = ""
+    grant_api_url: str = ""
     service_token: str = ""
     service_token_url: str = ""
     service_client_id: str = ""
@@ -27,6 +28,11 @@ class Settings:
     callback_timeout_seconds: float = 3.0
     enable_provisioning_states: bool = False
     enable_legacy_execution_profile_requests: bool = False
+    enable_local_llm_simulator: bool = False
+    monitoring_assistant_provider: str = "disabled"
+    monitoring_assistant_model: str = ""
+    monitoring_assistant_token_file: str = ""
+    monitoring_assistant_timeout_seconds: float = 10.0
     enable_mock_provisioner: bool = False
     enable_demo_reset: bool = False
     mock_provision_delay_seconds: float = 2.0
@@ -42,6 +48,7 @@ class Settings:
             oidc_audience=os.getenv("OIDC_AUDIENCE", "request-api"),
             oidc_jwks_url=os.getenv("OIDC_JWKS_URL", ""),
             approval_api_url=os.getenv("APPROVAL_API_URL", "").rstrip("/"),
+            grant_api_url=os.getenv("GRANT_API_URL", "").rstrip("/"),
             service_token=os.getenv("SERVICE_TOKEN", ""),
             service_token_url=os.getenv("SERVICE_TOKEN_URL", ""),
             service_client_id=os.getenv("SERVICE_CLIENT_ID", ""),
@@ -52,6 +59,11 @@ class Settings:
             enable_legacy_execution_profile_requests=_as_bool(
                 os.getenv("ENABLE_LEGACY_EXECUTION_PROFILE_REQUESTS")
             ),
+            enable_local_llm_simulator=_as_bool(os.getenv("ENABLE_LOCAL_LLM_SIMULATOR")),
+            monitoring_assistant_provider=os.getenv("MONITORING_ASSISTANT_PROVIDER", "disabled").lower(),
+            monitoring_assistant_model=os.getenv("MONITORING_ASSISTANT_MODEL", ""),
+            monitoring_assistant_token_file=os.getenv("MONITORING_ASSISTANT_TOKEN_FILE", ""),
+            monitoring_assistant_timeout_seconds=float(os.getenv("MONITORING_ASSISTANT_TIMEOUT_SECONDS", "10")),
             enable_mock_provisioner=_as_bool(os.getenv("ENABLE_MOCK_PROVISIONER")),
             enable_demo_reset=_as_bool(os.getenv("ENABLE_DEMO_RESET")),
             mock_provision_delay_seconds=float(os.getenv("MOCK_PROVISION_DELAY_SECONDS", "2")),

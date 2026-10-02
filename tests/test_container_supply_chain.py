@@ -165,7 +165,11 @@ class ContainerSupplyChainTests(unittest.TestCase):
     def test_stage_scoped_base_argument_is_denied_before_live_build(self) -> None:
         with tempfile.TemporaryDirectory(dir=TEST_RUNTIME) as temporary:
             app_root = Path(temporary) / "internal-iaas-portal"
-            shutil.copytree(ROOT / "applications/internal-iaas-portal", app_root)
+            shutil.copytree(
+                ROOT / "applications/internal-iaas-portal",
+                app_root,
+                ignore=shutil.ignore_patterns(".pytest_cache", "__pycache__"),
+            )
             dockerfile = app_root / "services/terraform-runner/Dockerfile"
             text = dockerfile.read_text(encoding="utf-8")
             text = text.replace(

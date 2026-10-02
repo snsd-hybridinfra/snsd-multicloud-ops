@@ -14,6 +14,7 @@ class Principal:
     subject: str
     roles: frozenset[str]
     scopes: frozenset[str]
+    tenant_id: str = ""
 
 
 def _claim_roles(claims: dict[str, Any], audience: str) -> frozenset[str]:
@@ -51,6 +52,7 @@ def current_principal(
     x_dev_user: Annotated[str | None, Header()] = None,
     x_dev_roles: Annotated[str | None, Header()] = None,
     x_dev_scopes: Annotated[str | None, Header()] = None,
+    x_dev_tenant: Annotated[str | None, Header()] = None,
 ) -> Principal:
     settings = request.app.state.settings
     if settings.auth_mode == "dev":
@@ -58,6 +60,7 @@ def current_principal(
             raise HTTPException(status.HTTP_401_UNAUTHORIZED, "X-Dev-User is required in dev mode")
         return Principal(
             subject=x_dev_user,
+            tenant_id=x_dev_tenant or "",
             roles=frozenset(item.strip() for item in (x_dev_roles or "").split(",") if item.strip()),
             scopes=frozenset(item for item in (x_dev_scopes or "").split() if item),
         )
@@ -68,6 +71,7 @@ def current_principal(
     claims = _decode_oidc_token(authorization.split(" ", 1)[1], request)
     return Principal(
         subject=str(claims["sub"]),
+        tenant_id=str(claims.get("tenant_id") or claims.get("tenant") or ""),
         roles=_claim_roles(claims, settings.oidc_audience),
         scopes=frozenset(str(claims.get("scope", "")).split()),
     )

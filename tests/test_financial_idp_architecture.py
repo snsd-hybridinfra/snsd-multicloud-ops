@@ -51,6 +51,20 @@ class FinancialIdpArchitectureTests(unittest.TestCase):
             result = architecture.validate(target)
             self.assertTrue(any("FINANCIAL_NETWORK" in item for item in result.failures))
 
+    def test_real_securities_connectivity_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory)
+            for relative in architecture.REQUIRED_FILES:
+                destination = target / relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(ROOT / relative, destination)
+            baseline_path = target / architecture.BASELINE
+            baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+            baseline["truth_boundaries"]["real_market_connectivity"] = True
+            baseline_path.write_text(json.dumps(baseline, indent=2) + "\n", encoding="utf-8")
+            result = architecture.validate(target)
+            self.assertTrue(any("real_market_connectivity" in item for item in result.failures))
+
     def test_aws_activation_by_file_presence_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory)

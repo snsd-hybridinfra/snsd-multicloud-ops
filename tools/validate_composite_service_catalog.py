@@ -15,6 +15,7 @@ CATALOG = Path("docs/platform/composite-service-catalog.yaml")
 EXECUTION_CATALOG = Path("applications/internal-iaas-portal/terraform/catalog.json")
 ADR = Path("docs/adr/0019-approved-composite-service-catalog.md")
 SAAS_PAAS = Path("docs/platform/financial-saas-development-paas.yaml")
+SECURITIES_PROFILE = Path("docs/platform/securities-domain-profile.yaml")
 SAAS_PAAS_ADR = Path("docs/adr/0021-financial-saas-development-paas.md")
 RESOLVER = Path("applications/internal-iaas-portal/services/request-api/request_api/blueprints.py")
 SAAS_RESOLVER = Path("applications/internal-iaas-portal/services/request-api/request_api/saas_paas.py")
@@ -29,6 +30,7 @@ REQUIRED_FILES = (
     EXECUTION_CATALOG,
     ADR,
     SAAS_PAAS,
+    SECURITIES_PROFILE,
     SAAS_PAAS_ADR,
     RESOLVER,
     SAAS_RESOLVER,
@@ -48,6 +50,7 @@ EXPECTED_COMPONENTS = {
     "CACHE",
     "MESSAGE_QUEUE",
     "OBJECT_STORAGE",
+    "NAS_FILE_EXCHANGE",
     "LOAD_BALANCER",
     "NETWORK_POLICY",
     "OPERATIONS_PROFILE",
@@ -124,7 +127,7 @@ def validate(root: Path) -> Result:
 
     components = catalog.get("components", [])
     component_map = {item.get("component_id"): item for item in components if isinstance(item, dict)}
-    result.require(len(components) == 11 and set(component_map) == EXPECTED_COMPONENTS, "exactly eleven hidden internal service components are fixed")
+    result.require(len(components) == 12 and set(component_map) == EXPECTED_COMPONENTS, "exactly twelve hidden internal service components are fixed")
     result.require(all(item.get("user_visible") is False for item in component_map.values()), "internal components are not directly user visible")
     result.require(all(item.get("owner") and item.get("provider_binding") for item in component_map.values()), "every component has an owner and provider binding")
 
@@ -164,9 +167,22 @@ def validate(root: Path) -> Result:
     saas = blueprint_map.get("API_DEVELOPMENT_STACK", {})
     result.require(saas.get("display_name") == "Financial SaaS Development PaaS", "financial SaaS PaaS is the approved API development product")
     result.require(saas.get("network_profile") == "PRIVATE_SAAS_INGRESS", "financial SaaS PaaS uses private ingress")
+    expected_domain_profiles = {
+        "API_DEVELOPMENT_STACK": [
+            "SECURITIES_ORDER_API_SIMULATION",
+            "SECURITIES_POST_TRADE_SIMULATION",
+        ],
+        "DATA_PROCESSING_LAB": ["SECURITIES_PORTFOLIO_RISK_SIMULATION"],
+        "SYNTHETIC_MARKET_DATA_LAB": ["SECURITIES_MARKET_DATA_SIMULATION"],
+    }
+    for blueprint_id, profiles in expected_domain_profiles.items():
+        result.require(
+            blueprint_map.get(blueprint_id, {}).get("business_domain_profiles") == profiles,
+            f"{blueprint_id} has the approved securities business-domain profiles",
+        )
     result.require(
         saas.get("components")
-        == ["K3S_RUNTIME", "APPLICATION_RUNTIME", "POSTGRESQL", "CACHE", "MESSAGE_QUEUE", "OBJECT_STORAGE", "LOAD_BALANCER", "NETWORK_POLICY", "OPERATIONS_PROFILE"],
+        == ["K3S_RUNTIME", "APPLICATION_RUNTIME", "POSTGRESQL", "CACHE", "MESSAGE_QUEUE", "OBJECT_STORAGE", "NAS_FILE_EXCHANGE", "LOAD_BALANCER", "NETWORK_POLICY", "OPERATIONS_PROFILE"],
         "financial SaaS PaaS composition is fixed",
     )
     try:
@@ -175,6 +191,30 @@ def validate(root: Path) -> Result:
         result.failures.append(f"financial SaaS PaaS authority cannot be loaded: {exc}")
         return result
     result.require(saas_authority.get("blueprint_id") == "API_DEVELOPMENT_STACK", "financial SaaS authority is bound to the catalog product")
+    result.require(
+        saas_authority.get("business_domain_profiles")
+        == expected_domain_profiles["API_DEVELOPMENT_STACK"],
+        "financial SaaS authority includes the bounded securities profiles",
+    )
+    try:
+        securities_authority = load(root / SECURITIES_PROFILE)
+    except (OSError, json.JSONDecodeError) as exc:
+        result.failures.append(f"securities authority cannot be loaded: {exc}")
+        return result
+    mapped_profiles = {
+        item.get("capability_id"): item.get("blueprint_id")
+        for item in securities_authority.get("capabilities", [])
+        if isinstance(item, dict)
+    }
+    result.require(
+        mapped_profiles
+        == {
+            profile: blueprint_id
+            for blueprint_id, profiles in expected_domain_profiles.items()
+            for profile in profiles
+        },
+        "securities capabilities map only to approved composite blueprints",
+    )
     result.require(saas_authority.get("mini_ona_relationship") == {
         "role": "INTERNAL_AUTOMATION_SERVICE",
         "paas_runtime_dependency": False,
@@ -204,6 +244,10 @@ def validate(root: Path) -> Result:
     prohibited = set(catalog.get("prohibited_scope", []))
     required_prohibited = {
         "PRODUCTION_FINANCIAL_DATA",
+        "REAL_SECURITIES_ORDERS",
+        "REAL_MARKET_CONNECTIVITY",
+        "REAL_CUSTOMER_OR_ACCOUNT_DATA",
+        "PRODUCTION_CLEARING_OR_SETTLEMENT",
         "USER_DEFINED_COMPONENT_GRAPH",
         "USER_SUPPLIED_PROVIDER_ID",
         "USER_SUPPLIED_HCL",
@@ -233,6 +277,7 @@ def validate(root: Path) -> Result:
         "FQDN_EGRESS_BROKER",
         "AGENT_BUDGET_ENFORCER",
         "manifest_digest",
+        "business_domain_profiles",
         '"runtime_authorized": False',
     ):
         result.require(token in resolver_text, f"resolver preserves fail-closed contract: {token}")

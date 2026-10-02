@@ -15,6 +15,7 @@ from .config import Settings
 from .db import Base, get_db, make_engine, make_session_factory
 from .models import AuditEvent, Grant
 from .schemas import (
+    BoundGrantRevoke,
     DemoResetResult,
     GrantActionResult,
     GrantCreate,
@@ -309,6 +310,26 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             callback_status=callback_status,
             deprovision_status=deprovision_status,
         )
+
+    @app.post("/internal/v1/grants/{grant_id}/revoke")
+    def revoke_bound_grant(
+        grant_id: str, payload: BoundGrantRevoke,
+        principal: Annotated[Principal, Depends(service_principal)],
+        db: Annotated[Session, Depends(get_db)],
+    ) -> dict:
+        grant = db.get(Grant, grant_id)
+        if not grant or grant.request_id != payload.request_id or grant.subject_id != payload.owner_id:
+            raise HTTPException(status.HTTP_404_NOT_FOUND, "bound grant not found")
+        if grant.status == "REVOKED":
+            callback_status, error = send_request_status(app_settings, grant)
+            deprovision_status, destroy_error = request_destroy(app_settings, grant, reason=payload.reason)
+            grant.callback_status = callback_status
+            grant.last_error = " | ".join(v for v in (error, destroy_error) if v) or None
+            grant.retry_count += int(bool(grant.last_error))
+            db.commit()
+            return {"grant_id": grant_id, "callback_status": callback_status, "deprovision_status": deprovision_status}
+        result = revoke_grant(grant_id, principal, db)
+        return {"grant_id": grant_id, "callback_status": result.callback_status, "deprovision_status": result.deprovision_status}
 
     @app.post("/admin-api/v1/grants/{grant_id}/expire-now", response_model=GrantActionResult)
     def expire_grant_now(

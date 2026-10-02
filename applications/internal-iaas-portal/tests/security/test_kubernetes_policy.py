@@ -43,7 +43,7 @@ def test_workloads_use_restricted_container_settings_and_digest() -> None:
 @pytest.mark.kubernetes
 def test_production_config_disables_dev_auth_and_auto_schema() -> None:
     expected_revisions = {
-        ROOT / "kubernetes/request-api/configmap.yaml": "0002_request_products",
+        ROOT / "kubernetes/request-api/configmap.yaml": "0006_portal_usage",
         ROOT / "kubernetes/approval-api/configmap.yaml": "0003_provisioning_jobs",
         ROOT / "kubernetes/grant-api/configmap.yaml": "0003_provisioning_jobs",
     }

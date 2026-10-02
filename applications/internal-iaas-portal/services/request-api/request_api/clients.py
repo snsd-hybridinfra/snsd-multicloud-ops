@@ -30,7 +30,7 @@ def send_to_approval(settings: Settings, item: AccessRequest) -> tuple[str, str 
             "storage_gib": item.storage_gib,
             "duration_hours": item.duration_hours,
             "purpose": item.purpose,
-            "parameters": item.parameters,
+            "parameters": {k: v for k, v in item.parameters.items() if not k.startswith("_portal_")},
             "status": item.status,
             "event_version": item.event_version,
             "retry_count": item.retry_count,

@@ -52,4 +52,17 @@ CREATE TABLE IF NOT EXISTS resource_projections (
 
 CREATE INDEX IF NOT EXISTS ix_resource_projections_owner_id ON resource_projections (owner_id);
 
+CREATE TABLE IF NOT EXISTS portal_usage (
+    usage_id varchar(36) PRIMARY KEY,
+    idempotency_key varchar(64) NOT NULL UNIQUE,
+    tenant_id varchar(128) NOT NULL,
+    owner_id varchar(255) NOT NULL,
+    model varchar(64) NOT NULL,
+    input_units integer NOT NULL,
+    output_units integer NOT NULL,
+    created_at timestamptz NOT NULL
+);
+CREATE INDEX IF NOT EXISTS ix_portal_usage_tenant_id ON portal_usage (tenant_id);
+CREATE INDEX IF NOT EXISTS ix_portal_usage_owner_id ON portal_usage (owner_id);
+
 COMMIT;

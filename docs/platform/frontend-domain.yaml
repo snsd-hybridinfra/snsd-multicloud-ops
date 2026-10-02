@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "status": "TARGET_CONFIGURED_LOCAL",
+  "runtime_validation_status": "NOT_VALIDATED",
+  "decision": "docs/adr/0026-final-frontend-domain.md",
+  "ownership": {"parent_domain": "gg-snsdinfra.cloud", "basis": "USER_ASSERTED_PERSONAL_OWNERSHIP", "dns_proof_collected": false},
+  "observed_dns": {
+    "checked_at": "2026-10-02",
+    "apex": "ZONE_SOA_ONLY_NO_ADDRESS_RECORD_OBSERVED",
+    "admin": "NOT_RESOLVED",
+    "identity": "NOT_RESOLVED"
+  },
+  "origins": {
+    "user_portal": "https://gg-snsdinfra.cloud",
+    "admin_portal": "https://admin.gg-snsdinfra.cloud",
+    "identity": "https://id.gg-snsdinfra.cloud"
+  },
+  "required_dns": ["A_OR_AAAA_OR_CNAME_FOR_APEX", "A_OR_AAAA_OR_CNAME_FOR_ADMIN", "A_OR_AAAA_OR_CNAME_FOR_ID"],
+  "required_tls_sans": ["gg-snsdinfra.cloud", "admin.gg-snsdinfra.cloud", "id.gg-snsdinfra.cloud"],
+  "oidc": {
+    "issuer": "https://id.gg-snsdinfra.cloud/realms/iaas",
+    "user_redirect_origin": "https://gg-snsdinfra.cloud",
+    "admin_redirect_origin": "https://admin.gg-snsdinfra.cloud"
+  },
+  "prohibited": ["HTTP_PRODUCTION_ORIGIN", "WILDCARD_DNS_DEFAULT_BACKEND", "DIRECT_API_PUBLIC_EXPOSURE", "UNREGISTERED_REDIRECT_URI"]
+}

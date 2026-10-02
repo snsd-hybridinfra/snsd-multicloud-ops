@@ -58,9 +58,9 @@ spec:
           image: registry.example.com/iaas/edge-gateway@sha256:0000000000000000000000000000000000000000000000000000000000000000
           imagePullPolicy: IfNotPresent
           env:
-            - {name: USER_HOST, value: user.example.com}
-            - {name: ADMIN_HOST, value: admin.example.com}
-            - {name: IDENTITY_HOST, value: id.example.com}
+            - {name: USER_HOST, value: gg-snsdinfra.cloud}
+            - {name: ADMIN_HOST, value: admin.gg-snsdinfra.cloud}
+            - {name: IDENTITY_HOST, value: id.gg-snsdinfra.cloud}
             - {name: USER_PORTAL_UPSTREAM, value: "http://user-portal.user-service.svc.cluster.local:8080"}
             - {name: ADMIN_PORTAL_UPSTREAM, value: "http://admin-portal.admin-service.svc.cluster.local:8081"}
             - {name: REQUEST_API_UPSTREAM, value: "http://request-api.user-service.svc.cluster.local:8000"}

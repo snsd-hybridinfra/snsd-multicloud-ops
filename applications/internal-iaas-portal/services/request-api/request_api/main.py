@@ -6,7 +6,7 @@ from typing import Annotated
 from uuid import uuid4
 
 from fastapi import BackgroundTasks, Depends, FastAPI, Header, HTTPException, Query, Request, Response, status
-from sqlalchemy import delete, func, select, text, update
+from sqlalchemy import delete, func, or_, select, text, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -851,7 +851,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 .where(
                     AccessRequest.owner_id == principal.subject,
                     AccessRequest.product_code == payload.product_code,
-                    AccessRequest.status.notin_({"REJECTED", "CANCELLED", "REVOKED", "EXPIRED"}),
+                    AccessRequest.status.notin_({"REJECTED", "CANCELLED", "REVOKED", "EXPIRED", "TERMINATED"}),
                 )
             )
             or 0
@@ -890,16 +890,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         db.refresh(item)
         return item
 
-    @app.post(
-        "/api/v1/blueprint-requests",
-        response_model=BlueprintRequestView,
-        status_code=status.HTTP_201_CREATED,
-    )
-    def create_blueprint_request(
-        payload: BlueprintResolveRequest,
-        principal: Annotated[Principal, Depends(user_principal)],
-        db: Annotated[Session, Depends(get_db)],
-        idempotency_key: Annotated[str, Header(alias="Idempotency-Key", min_length=1, max_length=128)],
+    def submit_blueprint_request(
+        payload: BlueprintResolveRequest, principal: Principal, db: Session,
+        idempotency_key: str, portal_context: dict[str, str] | None = None,
     ) -> dict:
         try:
             resolution = resolve_blueprint(**payload.model_dump())
@@ -919,6 +912,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             select(AccessRequest).where(AccessRequest.idempotency_key == idempotency_key)
         )
         if existing:
+            expected_context = portal_context or {}
+            actual_context = {k: v for k, v in existing.parameters.items() if k.startswith("_portal_")}
+            if actual_context != expected_context:
+                raise HTTPException(status.HTTP_409_CONFLICT, "idempotency key context differs")
             if existing.owner_id != principal.subject:
                 raise HTTPException(status.HTTP_409_CONFLICT, "idempotency key belongs to another owner")
             if existing.parameters.get("_manifest_digest") != resolution["manifest_digest"]:
@@ -941,7 +938,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     AccessRequest.owner_id == principal.subject,
                     AccessRequest.parameters["_blueprint_id"].as_string()
                     == payload.blueprint_id,
-                    AccessRequest.status.notin_({"REJECTED", "CANCELLED", "REVOKED", "EXPIRED"}),
+                    AccessRequest.status.notin_({"REJECTED", "CANCELLED", "REVOKED", "EXPIRED", "TERMINATED"}),
                 )
             )
             or 0
@@ -963,6 +960,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "_blueprint_size": payload.size,
             "_manifest_digest": resolution["manifest_digest"],
         }
+        parameters.update(portal_context or {})
         runtime_spec = PRODUCT_RUNTIME_SPECS[product_code]
         item = AccessRequest(
             request_id=str(uuid4()),
@@ -992,13 +990,28 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         db.refresh(item)
         return _blueprint_request_view(item)
 
+    @app.post(
+        "/api/v1/blueprint-requests",
+        response_model=BlueprintRequestView,
+        status_code=status.HTTP_201_CREATED,
+    )
+    def create_blueprint_request(
+        payload: BlueprintResolveRequest,
+        principal: Annotated[Principal, Depends(user_principal)],
+        db: Annotated[Session, Depends(get_db)],
+        idempotency_key: Annotated[str, Header(alias="Idempotency-Key", min_length=1, max_length=128)],
+    ) -> dict:
+        return submit_blueprint_request(payload, principal, db, idempotency_key)
+
     @app.get("/api/v1/requests", response_model=list[RequestView])
     def list_requests(
         principal: Annotated[Principal, Depends(user_principal)],
         db: Annotated[Session, Depends(get_db)],
         request_status: Annotated[str | None, Query(alias="status")] = None,
     ) -> list[AccessRequest]:
-        stmt = select(AccessRequest).where(AccessRequest.owner_id == principal.subject)
+        stmt = select(AccessRequest).where(AccessRequest.owner_id == principal.subject,
+            or_(AccessRequest.parameters["_portal_tenant"].as_string().is_(None),
+                AccessRequest.parameters["_portal_tenant"].as_string() == (principal.tenant_id or "")))
         if request_status:
             stmt = stmt.where(AccessRequest.status == request_status.upper())
         return list(db.scalars(stmt.order_by(AccessRequest.created_at.desc())))
@@ -1010,7 +1023,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         db: Annotated[Session, Depends(get_db)],
     ) -> AccessRequest:
         item = db.get(AccessRequest, request_id)
-        if not item or item.owner_id != principal.subject:
+        if (not item or item.owner_id != principal.subject
+                or (item.parameters.get("_portal_tenant") and item.parameters["_portal_tenant"] != principal.tenant_id)):
             raise HTTPException(status.HTTP_404_NOT_FOUND, "request not found")
         return item
 
@@ -1021,7 +1035,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         db: Annotated[Session, Depends(get_db)],
     ) -> AccessRequest:
         item = db.get(AccessRequest, request_id)
-        if not item or item.owner_id != principal.subject:
+        if (not item or item.owner_id != principal.subject
+                or (item.parameters.get("_portal_tenant") and item.parameters["_portal_tenant"] != principal.tenant_id)):
             raise HTTPException(status.HTTP_404_NOT_FOUND, "request not found")
         if item.status != "PENDING":
             raise HTTPException(status.HTTP_409_CONFLICT, "only a PENDING request can be cancelled")
@@ -1175,7 +1190,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         principal: Annotated[Principal, Depends(user_principal)],
         db: Annotated[Session, Depends(get_db)],
     ) -> list[ResourceProjection]:
-        stmt = select(ResourceProjection).where(ResourceProjection.owner_id == principal.subject)
+        stmt = select(ResourceProjection).join(AccessRequest, ResourceProjection.request_id == AccessRequest.request_id).where(
+            ResourceProjection.owner_id == principal.subject,
+            or_(AccessRequest.parameters["_portal_tenant"].as_string().is_(None),
+                AccessRequest.parameters["_portal_tenant"].as_string() == (principal.tenant_id or "")))
         return list(db.scalars(stmt.order_by(ResourceProjection.updated_at.desc())))
 
     @app.get("/api/v1/resources/{resource_id}", response_model=ResourceView)
@@ -1186,6 +1204,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     ) -> ResourceProjection:
         item = db.get(ResourceProjection, resource_id)
         if not item or item.owner_id != principal.subject:
+            raise HTTPException(status.HTTP_404_NOT_FOUND, "resource not found")
+        owner = db.get(AccessRequest, item.request_id)
+        if owner and owner.parameters.get("_portal_tenant") and owner.parameters["_portal_tenant"] != principal.tenant_id:
             raise HTTPException(status.HTTP_404_NOT_FOUND, "resource not found")
         return item
 
@@ -1259,6 +1280,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             delivery_status=delivery_status,
         )
 
+    from .portal import install_portal_routes
+
+    install_portal_routes(app, submit_blueprint_request, cancel_request)
     return app
 
 

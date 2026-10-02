@@ -47,6 +47,12 @@ class GrantActionResult(BaseModel):
     deprovision_status: str = "NOT_REQUESTED"
 
 
+class BoundGrantRevoke(BaseModel):
+    request_id: str = Field(min_length=1, max_length=36)
+    owner_id: str = Field(min_length=1, max_length=255)
+    reason: str = Field(min_length=5, max_length=500)
+
+
 class GrantValidation(BaseModel):
     active: bool
     grant_id: str

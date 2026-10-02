@@ -4,7 +4,7 @@ import copy
 import re
 from typing import Any
 
-from .blueprints import canonical_manifest_digest
+from .blueprints import canonical_manifest_digest, load_authorities
 
 
 BLUEPRINT_ID = "API_DEVELOPMENT_STACK"
@@ -16,6 +16,7 @@ EXPECTED_COMPONENT_ORDER = [
     "CACHE",
     "MESSAGE_QUEUE",
     "OBJECT_STORAGE",
+    "NAS_FILE_EXCHANGE",
     "LOAD_BALANCER",
     "NETWORK_POLICY",
     "OPERATIONS_PROFILE",
@@ -29,6 +30,7 @@ EXPECTED_RUNTIME_GATES = [
     "REDIS_ADAPTER",
     "MESSAGE_QUEUE_ADAPTER",
     "OBJECT_STORAGE_ADAPTER",
+    "NAS_FILE_EXCHANGE_ADAPTER",
     "PRIVATE_INGRESS_ADAPTER",
     "OTEL_PIPELINE",
 ]
@@ -66,6 +68,7 @@ def _verify_resolution(resolution: dict[str, Any]) -> None:
         "size",
         "duration_hours",
         "purpose",
+        "business_domain_profiles",
         "network_profile",
         "component_plan",
         "selected_execution_profile",
@@ -85,6 +88,10 @@ def _verify_resolution(resolution: dict[str, Any]) -> None:
         raise FinancialSaaSBundleError("resolution manifest digest mismatch")
     if resolution.get("blueprint_id") != BLUEPRINT_ID:
         raise FinancialSaaSBundleError("resolution is not the financial SaaS PaaS blueprint")
+    catalog, _ = load_authorities()
+    approved = next(item for item in catalog["blueprints"] if item["blueprint_id"] == BLUEPRINT_ID)
+    if resolution.get("business_domain_profiles") != approved.get("business_domain_profiles", []):
+        raise FinancialSaaSBundleError("financial SaaS PaaS business domain profiles mismatch")
     if resolution.get("environment") not in {"DEV", "TEST", "STG"}:
         raise FinancialSaaSBundleError("financial SaaS PaaS is non-production only")
     if resolution.get("size") not in SIZE_LIMITS:

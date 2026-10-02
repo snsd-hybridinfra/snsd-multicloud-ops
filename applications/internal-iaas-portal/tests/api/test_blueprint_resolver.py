@@ -50,6 +50,17 @@ def test_public_catalog_contains_only_eight_blueprints(tmp_path) -> None:
         assert all("provider_binding" not in item for item in items)
         assert all("components" not in item for item in items)
         assert all(item["summary"] for item in items)
+        profiles = {item["blueprint_id"]: item["business_domain_profiles"] for item in items}
+        assert profiles["API_DEVELOPMENT_STACK"] == [
+            "SECURITIES_ORDER_API_SIMULATION",
+            "SECURITIES_POST_TRADE_SIMULATION",
+        ]
+        assert profiles["DATA_PROCESSING_LAB"] == [
+            "SECURITIES_PORTFOLIO_RISK_SIMULATION"
+        ]
+        assert profiles["SYNTHETIC_MARKET_DATA_LAB"] == [
+            "SECURITIES_MARKET_DATA_SIMULATION"
+        ]
 
 
 def test_direct_execution_profile_request_is_disabled_by_default(tmp_path) -> None:
@@ -84,6 +95,29 @@ def test_public_resolution_is_deterministic_and_hides_internal_profile(tmp_path)
         assert first.json()["runtime_authorized"] is False
         assert first.json()["manifest_digest"].startswith("sha256:")
         assert "selected_execution_profile" not in first.json()
+
+
+def test_securities_profile_is_digest_bound_and_not_user_selectable(tmp_path) -> None:
+    payload = {
+        "blueprint_id": "API_DEVELOPMENT_STACK",
+        "environment": "DEV",
+        "size": "SMALL",
+        "duration_hours": 24,
+        "purpose": "synthetic securities order API development",
+    }
+    with TestClient(app_for(tmp_path)) as client:
+        response = client.post("/api/v1/blueprints/resolve", headers=USER, json=payload)
+        assert response.status_code == 200
+        assert response.json()["business_domain_profiles"] == [
+            "SECURITIES_ORDER_API_SIMULATION",
+            "SECURITIES_POST_TRADE_SIMULATION",
+        ]
+        attempted_override = client.post(
+            "/api/v1/blueprints/resolve",
+            headers=USER,
+            json={**payload, "business_domain_profiles": ["REAL_SECURITIES_ORDERS"]},
+        )
+        assert attempted_override.status_code == 422
 
 
 def test_internal_resolution_pins_profile_and_reverse_rollback(tmp_path) -> None:

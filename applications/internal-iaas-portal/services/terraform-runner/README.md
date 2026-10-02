@@ -11,6 +11,20 @@ Required real-mode inputs are `OS_CLIENT_CONFIG_FILE`, `OS_CLOUD`,
 three approved flavor names. The credentials file and Terraform state are
 runtime-only and must be protected outside Git.
 
+Jobs accept only `APPLY` or `DESTROY`, bounded job/request identifiers and the
+exact state key `requests/<request_id>/terraform.tfstate`. Approved input
+request/product/version values and ownership/expiry tags must agree with the
+job. This prevents a job from selecting another request's state.
+
+`TERRAFORM_WORK_ROOT` and `TERRAFORM_STATE_ROOT` must be absolute, disjoint
+external paths. Credentials and SSH trust/key references must be absolute and
+outside Git and the disposable work root. Resolved workspace/state paths must
+not redirect through a symlink. All checks happen before file creation or
+Terraform commands. A pre-existing job workspace requires reviewed recovery;
+the runner never replaces it automatically. Cleanup removes only the workspace
+exclusively created by the current invocation, leaving external state and
+credential material intact on rejection or failure.
+
 The customized supply-chain wrapper also requires
 `TF_TERRAFORM_BINARY_SHA256`, `TF_SUPPLY_CHAIN_LOCK`,
 `TF_TERRAFORM_CATALOG`, `TF_PROVIDER_MIRROR_ROOT`,
@@ -33,6 +47,12 @@ source/version/package digest, and the saved plan JSON. Only exact `create` or
 rollback use an inspected saved destroy plan with only `delete` or `no-op`;
 replacement, update, import, provider substitution and uninspected destroy are
 denied.
+After every destroy, including automatic k3s rollback, the runner reads the
+Terraform state again and requires no resources in the root or any nested
+module. Invalid, unsupported or unreadable state fails closed as
+`DESTROY_FAILED` or `ROLLBACK_FAILED`; a successful command alone cannot produce
+`TERMINATED` or a rollback-success claim. This is a local state check, not
+independent OpenStack resource-absence evidence.
 After apply, it rejects any state other than one Neutron port and one Nova VM,
 checks private addressing, port security, exact security groups, image, flavor,
 key pair, metadata, and the absence of a Floating IP. For k3s, the runner then

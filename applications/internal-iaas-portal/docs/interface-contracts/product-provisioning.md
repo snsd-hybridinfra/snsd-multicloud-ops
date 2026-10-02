@@ -45,3 +45,20 @@ then runs the approved Ansible configuration and requires
 Terraform destroy inside the runner; rollback failure remains explicit. Revoke
 or expiry blocks the Grant before queuing ordinary destroy. Failure states do
 not issue a Grant.
+
+Ordinary destroy and automatic rollback require a post-destroy Terraform state
+read with no resources in the root or nested modules. Residual resources,
+invalid state or an unavailable state read keep failure explicit:
+`TERMINATION_FAILED / DESTROY_FAILED` for ordinary destroy and
+`PROVISION_FAILED / ROLLBACK_FAILED` for automatic rollback. The runner cleans
+its temporary workspace but retains the external state for reviewed recovery.
+Local fake-command tests do not establish OpenStack resource-absence evidence.
+
+Runner job identity, approved request/product/version inputs and all ownership
+tags must agree. The state key is fixed to the same request; only `APPLY` and
+`DESTROY` are executable. Absolute work and state roots must be disjoint and
+outside Git, with credentials and SSH trust/key material outside the work
+root. Path redirection and existing workspaces fail closed before commands or
+file writes. Rejected jobs cannot clean another invocation's workspace. A
+previous workspace remains an operator recovery item; only the current run's
+exclusively created workspace is cleaned automatically.

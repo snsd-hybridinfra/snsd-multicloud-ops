@@ -164,6 +164,7 @@ class BlueprintCatalogItem(BaseModel):
     blueprint_id: str
     display_name: str
     summary: str
+    business_domain_profiles: list[str]
     network_profile: str
     allowed_environments: list[str]
     allowed_sizes: list[str]
@@ -186,6 +187,7 @@ class BlueprintResolutionView(BaseModel):
     size: str
     duration_hours: int
     purpose: str
+    business_domain_profiles: list[str]
     network_profile: str
     resolution_status: Literal["RESOLVED_LOCAL", "BLOCKED_UNIMPLEMENTED_COMPONENTS"]
     manifest_digest: str
@@ -217,6 +219,7 @@ class InternalBlueprintResolutionView(BaseModel):
     size: str
     duration_hours: int
     purpose: str
+    business_domain_profiles: list[str]
     network_profile: str
     component_plan: list[dict[str, str]]
     selected_execution_profile: str | None

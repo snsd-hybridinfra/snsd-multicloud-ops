@@ -5,15 +5,25 @@
     "decision": "docs/adr/0018-financial-hybrid-ready-idp.md",
     "asset_inventory": "docs/platform/asset-reconciliation.yaml",
     "composite_service_catalog": "docs/platform/composite-service-catalog.yaml",
+    "securities_domain_profile": "docs/platform/securities-domain-profile.yaml",
     "ai_agent_sandbox": "docs/platform/ai-agent-sandbox.yaml",
     "private_iaas_contract": "docs/platform/private-iaas-golden-path.yaml",
     "terraform_supply_chain": "docs/platform/terraform-supply-chain.yaml",
     "container_supply_chain": "docs/platform/container-supply-chain.yaml",
+    "monitoring_ml_assistant": "docs/platform/monitoring-ml-assistant.yaml",
+    "nas_file_exchange": "docs/platform/nas-file-exchange.yaml",
+    "frontend_domain": "docs/platform/frontend-domain.yaml",
     "status": "LOCAL_GOVERNANCE_VALIDATED"
   },
   "project": {
     "name": "Financial Hybrid-Ready Private Cloud Internal Developer Platform",
     "industry_context": "VIRTUAL_SECURITIES_COMPANY_NON_PRODUCTION_LAB",
+    "business_domains": [
+      "SECURITIES_ORDER_API_SIMULATION",
+      "SECURITIES_POST_TRADE_SIMULATION",
+      "SECURITIES_PORTFOLIO_RISK_SIMULATION",
+      "SECURITIES_MARKET_DATA_SIMULATION"
+    ],
     "operating_claim": "HYBRID_READY",
     "integrated_runtime_validation": "NOT_VALIDATED"
   },
@@ -22,15 +32,18 @@
     {"name": "CONTROL_PLANE", "components": ["identity", "policy", "quota_budget", "approval", "audit"], "status": "PARTIAL"},
     {"name": "AUTOMATION", "components": ["terraform_supply_chain", "container_supply_chain", "ci_cd", "ansible", "gitops", "agent_job_orchestrator", "state_backend"], "status": "PARTIAL"},
     {"name": "PRIVATE_IAAS", "components": ["openstack_nova", "openstack_neutron", "openstack_cinder", "openstack_glance"], "status": "PARTIAL"},
-    {"name": "PAAS", "components": ["k3s", "namespace_baseline", "ingress", "registry", "platform_addons", "financial_saas_development_paas", "isolated_agent_sandbox"], "status": "PARTIAL"},
+    {"name": "PAAS", "components": ["k3s", "namespace_baseline", "ingress", "registry", "platform_addons", "financial_saas_development_paas", "isolated_agent_sandbox", "nas_file_exchange_gateway"], "status": "PARTIAL"},
     {"name": "FINANCIAL_NETWORK", "components": ["nexus_nxos", "ios_xe", "dynamic_routing", "multicast", "segmentation", "management_plane"], "status": "DESIGN_ONLY"},
-    {"name": "INTEGRATED_OPERATIONS", "components": ["zero_trust", "observability", "security_audit", "backup_restore", "finops"], "status": "PARTIAL"},
+    {"name": "INTEGRATED_OPERATIONS", "components": ["zero_trust", "observability", "monitoring_ml_assistant", "security_audit", "backup_restore", "finops"], "status": "PARTIAL"},
     {"name": "PUBLIC_CLOUD_ADAPTER", "components": ["provider_contract", "private_connectivity", "provider_landing_zone"], "status": "DEFERRED"}
   ],
   "truth_boundaries": {
     "public_cloud_provider": "UNSELECTED",
     "active_hybrid_cloud": false,
     "production_financial_workload": false,
+    "real_securities_orders": false,
+    "real_market_connectivity": false,
+    "regulated_customer_data": false,
     "multi_site_dr": false,
     "licensed_network_images_in_git": false,
     "platform_status_promotes_zero_trust_status": false,

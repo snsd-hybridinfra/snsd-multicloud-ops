@@ -23,6 +23,7 @@
     {"component_id": "CACHE", "owner": "DATA_SERVICES", "provider_binding": "REDIS_K3S_OR_MANAGED_ADAPTER", "user_visible": false},
     {"component_id": "MESSAGE_QUEUE", "owner": "DATA_SERVICES", "provider_binding": "PRIVATE_MESSAGE_QUEUE_ADAPTER", "user_visible": false},
     {"component_id": "OBJECT_STORAGE", "owner": "DATA_SERVICES", "provider_binding": "PRIVATE_S3_ADAPTER", "user_visible": false},
+    {"component_id": "NAS_FILE_EXCHANGE", "owner": "DATA_SERVICES", "provider_binding": "SMB_3_1_1_DUAL_STAGE_TRANSFER_GATEWAY", "user_visible": false},
     {"component_id": "LOAD_BALANCER", "owner": "PRIVATE_IAAS", "provider_binding": "OPENSTACK_OR_K3S_INGRESS_ADAPTER", "user_visible": false},
     {"component_id": "NETWORK_POLICY", "owner": "FINANCIAL_NETWORK", "provider_binding": "NEUTRON_AND_K3S_POLICY", "user_visible": false},
     {"component_id": "OPERATIONS_PROFILE", "owner": "INTEGRATED_OPERATIONS", "provider_binding": "OBSERVABILITY_BACKUP_AUDIT_COST", "user_visible": false}
@@ -61,8 +62,9 @@
     {
       "blueprint_id": "API_DEVELOPMENT_STACK",
       "display_name": "Financial SaaS Development PaaS",
-      "user_summary": "금융 SaaS의 DEV·TEST·STG 개발을 위한 표준 PaaS",
-      "components": ["K3S_RUNTIME", "APPLICATION_RUNTIME", "POSTGRESQL", "CACHE", "MESSAGE_QUEUE", "OBJECT_STORAGE", "LOAD_BALANCER", "NETWORK_POLICY", "OPERATIONS_PROFILE"],
+      "user_summary": "증권 주문 API·사후처리를 포함한 금융 SaaS의 DEV·TEST·STG 표준 PaaS",
+      "business_domain_profiles": ["SECURITIES_ORDER_API_SIMULATION", "SECURITIES_POST_TRADE_SIMULATION"],
+      "components": ["K3S_RUNTIME", "APPLICATION_RUNTIME", "POSTGRESQL", "CACHE", "MESSAGE_QUEUE", "OBJECT_STORAGE", "NAS_FILE_EXCHANGE", "LOAD_BALANCER", "NETWORK_POLICY", "OPERATIONS_PROFILE"],
       "network_profile": "PRIVATE_SAAS_INGRESS",
       "allowed_environments": ["DEV", "TEST", "STG"],
       "allowed_sizes": ["SMALL", "STANDARD"],
@@ -91,8 +93,9 @@
     {
       "blueprint_id": "DATA_PROCESSING_LAB",
       "display_name": "Data Processing Lab",
-      "user_summary": "합성 데이터 처리와 저장소 연동을 위한 격리 랩",
-      "components": ["COMPUTE_VM", "POSTGRESQL", "OBJECT_STORAGE", "NETWORK_POLICY", "OPERATIONS_PROFILE"],
+      "user_summary": "합성 포지션 기반 증권 포트폴리오·리스크 분석과 저장소 연동 격리 랩",
+      "business_domain_profiles": ["SECURITIES_PORTFOLIO_RISK_SIMULATION"],
+      "components": ["COMPUTE_VM", "POSTGRESQL", "OBJECT_STORAGE", "NAS_FILE_EXCHANGE", "NETWORK_POLICY", "OPERATIONS_PROFILE"],
       "network_profile": "PRIVATE_DATA_ISOLATED",
       "allowed_environments": ["DEV", "TEST"],
       "allowed_sizes": ["STANDARD", "LARGE"],
@@ -101,7 +104,8 @@
     {
       "blueprint_id": "SYNTHETIC_MARKET_DATA_LAB",
       "display_name": "Synthetic Market Data Lab",
-      "user_summary": "합성 시세 데이터와 제한된 멀티캐스트 검증 랩",
+      "user_summary": "증권 합성 시세 데이터와 제한된 멀티캐스트 검증 랩",
+      "business_domain_profiles": ["SECURITIES_MARKET_DATA_SIMULATION"],
       "components": ["K3S_RUNTIME", "OBJECT_STORAGE", "NETWORK_POLICY", "OPERATIONS_PROFILE"],
       "network_profile": "SYNTHETIC_MULTICAST_BOUNDED",
       "allowed_environments": ["TEST"],
@@ -118,6 +122,10 @@
   },
   "prohibited_scope": [
     "PRODUCTION_FINANCIAL_DATA",
+    "REAL_SECURITIES_ORDERS",
+    "REAL_MARKET_CONNECTIVITY",
+    "REAL_CUSTOMER_OR_ACCOUNT_DATA",
+    "PRODUCTION_CLEARING_OR_SETTLEMENT",
     "USER_DEFINED_COMPONENT_GRAPH",
     "USER_SUPPLIED_PROVIDER_ID",
     "USER_SUPPLIED_HCL",

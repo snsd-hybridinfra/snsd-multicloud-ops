@@ -116,3 +116,14 @@ rollback/destroy flow, and fail-closed real execution.
   historical evidence, former provider Terraform modules, and obsolete plans.
 - Archive pre-adoption tests: 62 passed with four deprecation warnings.
 - Adopted OpenStack/PaaS tests: see the current validation record.
+# ecl2 frontend integration
+
+The current UI source is `Project-Team-Eclipse/ecl2-portal` at
+`e8c4c1d26b9177929a0e04b7b9db1d6885ac5215`, imported under
+`services/user-portal/eclipse`. See
+[the frontend/backend contract](docs/interface-contracts/ecl2-frontend.md) for
+the loopback launcher, production/local entry points, domain scopes, persistent
+request and recovery APIs, simulator limits and external integration blockers.
+The local browser path is `http://127.0.0.1:18080/eclipse/local.html`; dev compose
+serves the same entry at the configured user-portal port. The existing legacy UI
+is retained. Live OpenStack/k3s and OIDC/PEP integration remain `NOT_VALIDATED`.

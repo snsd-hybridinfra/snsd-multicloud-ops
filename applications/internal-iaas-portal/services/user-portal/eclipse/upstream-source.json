@@ -1,0 +1,33 @@
+{
+  "repository": "https://github.com/Project-Team-Eclipse/ecl2-portal.git",
+  "commit": "e8c4c1d26b9177929a0e04b7b9db1d6885ac5215",
+  "imported_sha256": {
+    "demo.html": "25a079ad30c42f67dea8d7a6f35c9e516c50705d3fedb903b662ecf34e04f98e",
+    "index.html": "ecfb8497293ba7f847a38c4c55973b0a300e116aef4b17ba7204039433199d09",
+    "admin/module.js": "4b398816ff49ea7654f05ef3579e7a3a1d13a8339fa3a044f825c01903c3ec14",
+    "assets/eclipse-theme.png": "fef5d7fe09cc98ee6b91778db606e1266370a01aabf9a7c45996f02ba8e9d547",
+    "css/admin.css": "31ea36a158f949b41367666c7ea871c7c285735fcec7d7fa7aa3b3b3d621e2b2",
+    "css/app.css": "44f88c733f70f597ace22d3652885c469f18d5f4871c7e774469e1a3c8fb5bf9",
+    "css/domains.css": "3f5d8f6bf28c73c79b7a5da2367fd4b4c7df3b690e06ca906b5e58c319586c9d",
+    "css/eclipse-theme.css": "ef7c1a85ab89ff136b03a542c1490ede649ff9fa16d7573a11ddaf2634e6c9cc",
+    "developer/module.js": "3064c982acb87bba29f8ea9651e9fc25574a19740371b6aea4b954f803d10429",
+    "finance/module.js": "3d84ef11d70a7e8bc5ea914ff52717b4f2b10c062fc294f57ba847dd08471d88",
+    "js/api.js": "085e3bb25761428d25877dbd439ffcfb7f1d92a5efa3f9a94d043156b99c9638",
+    "js/app.js": "33b78cf8414841c0cdb19837e15c55af88dab08d3ee5da25154540716eb841ad",
+    "js/auth.js": "a6bb526d1d4d5bde36f3b2ae5e5af5831642e02e2c9317b1e6556146a32076f1",
+    "js/catalog.js": "910927f666b1d394372e28efa3ef866b55202f9c0de22b5e21b89989e24290cb",
+    "js/domain-api.js": "d57b50c05ccaa8df0de6968857bc5ffe500b0fa4b123bcc19b8050db99bcb462",
+    "js/identity.js": "8bbbc75108f7ead5f216403740d6f96cec2a66f95487a092fc258a3f46f2df4f",
+    "js/lifecycle-api.js": "0cfdc9d68186655f9a181aeeefcba63ae430d351bdb9ceca4c380faf8f998dd7",
+    "js/rbac.js": "211de4c108a9c1a628412be5e883960006ea531bb7823b7dc5aa2945f663b565",
+    "js/router.js": "efa6bedee8ae0737bffd5b637c579ed3e015dd0ccccb47ee64cf0df35792f9c1",
+    "js/runtime-config.demo.js": "48e16f0152b1dfde3be3dbb35004f05c1d1eab489efd01febc7060f42b29b504",
+    "js/runtime-config.js": "086de1d25dcd7af56657fccb8009e4e3105cb74e2472c36dcc05047e5c429475",
+    "js/runtime-config.production.js": "7b03d3e1f6526423653dfc43a27d8d59ed26686263442064f95412197fc8547f",
+    "llm/module.js": "deae8045e49056789b930095e2d787860f31506c106ca9701d729e1fbb810de9",
+    "manufacturing/module.js": "ee80cd95cd57363899d4a2c2d131e9c0f5d1818ce75f103b9eace9fd6fdaa216",
+    "public/module.js": "3ebf00fc242758663cf4127c89d0c3ee845dcb83538ff650b29fc73370cb5ca1"
+  },
+  "integration": "js/idp-integration.js; local.html; local runtime config; shell refresh/logout fixes",
+  "source_policy": "READ_ONLY_IMPORT"
+}

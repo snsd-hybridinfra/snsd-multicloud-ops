@@ -79,6 +79,22 @@ class CompositeServiceCatalogTests(unittest.TestCase):
         finally:
             temporary.cleanup()
 
+    def test_securities_profile_removal_is_rejected(self) -> None:
+        temporary, root = copied_root()
+        try:
+            path = root / composite.CATALOG
+            data = json.loads(path.read_text(encoding="utf-8"))
+            api = next(
+                item for item in data["blueprints"]
+                if item["blueprint_id"] == "API_DEVELOPMENT_STACK"
+            )
+            api["business_domain_profiles"] = []
+            path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+            result = composite.validate(root)
+            self.assertTrue(any("securities business-domain" in item for item in result.failures))
+        finally:
+            temporary.cleanup()
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -98,6 +98,7 @@ def file_sha256(path: Path) -> str:
 class Executor:
     def __init__(self, settings: Settings):
         self.settings = settings
+        self._owned_workspace: Path | None = None
 
     def _terraform_artifact_authority(
         self, module_name: str, source: Path
@@ -209,16 +210,82 @@ class Executor:
             environment,
             failure_code=apply_failure_code or failure_code,
         )
+        if operation == "DESTROY":
+            self._verify_destroyed_state(
+                terraform_bin, workspace, environment, failure_code=failure_code
+            )
         return validation
 
+    def _verify_destroyed_state(
+        self,
+        terraform_bin: str,
+        workspace: Path,
+        environment: dict[str, str],
+        *,
+        failure_code: str,
+    ) -> None:
+        """Require an empty state tree before claiming destroy or rollback success."""
+
+        try:
+            raw_state = self._command(
+                [terraform_bin, "show", "-json"],
+                workspace,
+                environment,
+                failure_code=failure_code,
+            )
+        except (TerraformExecutionError, subprocess.SubprocessError, OSError) as exc:
+            raise TerraformExecutionError(
+                "post-destroy state inspection is unavailable", failure_code
+            ) from exc
+        try:
+            state = json.loads(raw_state)
+            if not isinstance(state, dict) or not re.fullmatch(
+                r"1\.[0-9]+", str(state.get("format_version", ""))
+            ):
+                raise ValueError("unsupported state format")
+            # Terraform 1.x emits only format_version for a fully empty state.
+            if "values" not in state:
+                return
+            values = state["values"]
+            if not isinstance(values, dict) or "root_module" not in values:
+                raise ValueError("invalid state values")
+            modules = [values["root_module"]]
+            while modules:
+                module = modules.pop()
+                if not isinstance(module, dict):
+                    raise ValueError("invalid state module")
+                resources = module.get("resources", [])
+                children = module.get("child_modules", [])
+                if not isinstance(resources, list) or not isinstance(children, list):
+                    raise ValueError("invalid state resource or module list")
+                if resources:
+                    raise TerraformExecutionError(
+                        "post-destroy state still contains resources", failure_code
+                    )
+                modules.extend(children)
+        except (ValueError, TypeError) as exc:
+            raise TerraformExecutionError(
+                "post-destroy state is invalid or unsupported", failure_code
+            ) from exc
+
     def _validate_job(self, job: dict[str, Any]) -> None:
+        if job.get("operation") not in ("APPLY", "DESTROY"):
+            raise TerraformExecutionError("job operation is not approved", "POLICY_DENIED")
+        for field in ("job_id", "request_id"):
+            value = job.get(field)
+            if not isinstance(value, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}", value):
+                raise TerraformExecutionError("job identity is invalid", "POLICY_DENIED")
+        if job.get("state_key") != f"requests/{job['request_id']}/terraform.tfstate":
+            raise TerraformExecutionError("state key is not bound to the request", "POLICY_DENIED")
         module_name = str(job.get("module_name", ""))
         policy = ALLOWED_MODULES.get(module_name)
         if policy is None:
             raise TerraformExecutionError(
                 "job requested a module outside the allow-list", "POLICY_DENIED"
             )
-        values = job.get("input_values") or {}
+        values = job.get("input_values")
+        if not isinstance(values, dict):
+            raise TerraformExecutionError("approved inputs must be an object", "POLICY_DENIED")
         required = {
             "request_id",
             "owner_id",
@@ -236,6 +303,11 @@ class Executor:
             job.get("product_code") != policy["product_id"]
             or job.get("module_version") != policy["module_version"]
             or job.get("artifact_digest") != policy["artifact_digest"]
+            or values.get("request_id") != job["request_id"]
+            or values.get("product_id") != policy["product_id"]
+            or type(job.get("product_version")) is not int
+            or type(values.get("product_version")) is not int
+            or values.get("product_version") != job.get("product_version")
         ):
             raise TerraformExecutionError(
                 "job does not match the signed product catalog", "POLICY_DENIED"
@@ -247,8 +319,9 @@ class Executor:
                 "job does not match the approved Ansible configuration",
                 "POLICY_DENIED",
             )
-        self._validate_blueprint_manifest(job, values, policy)
-        tags = values.get("required_tags") or {}
+        tags = values.get("required_tags")
+        if not isinstance(tags, dict):
+            raise TerraformExecutionError("ownership tags must be an object", "POLICY_DENIED")
         required_tags = {
             "RequestId",
             "OwnerId",
@@ -260,10 +333,14 @@ class Executor:
         if (
             not required_tags.issubset(tags)
             or tags.get("RequestId") != job.get("request_id")
+            or tags.get("OwnerId") != values.get("owner_id")
+            or tags.get("ProductId") != values.get("product_id")
+            or tags.get("ExpiresAt") != values.get("expires_at")
             or tags.get("ManagedBy") != "terraform-runner"
             or tags.get("Exposure") != "private-only"
         ):
             raise TerraformExecutionError("mandatory ownership tags are invalid", "POLICY_DENIED")
+        self._validate_blueprint_manifest(job, values, policy)
 
     def _validate_blueprint_manifest(
         self,
@@ -346,6 +423,7 @@ class Executor:
         return payload
 
     def run(self, job: dict[str, Any], report: Callable[[dict[str, Any]], Any]) -> None:
+        self._owned_workspace = None
         operation = str(job.get("operation", "APPLY"))
         try:
             self._validate_job(job)
@@ -448,10 +526,50 @@ class Executor:
         )
 
     def _cleanup_workspace(self, job: dict[str, Any]) -> None:
+        workspace = self._owned_workspace
+        self._owned_workspace = None
+        if workspace is None:
+            return
         work_root = Path(self.settings.work_root).resolve()
-        workspace = (work_root / str(job["job_id"])).resolve()
-        if workspace.parent == work_root and workspace.exists():
+        if (
+            workspace.parent == work_root
+            and workspace.resolve() == workspace
+            and not workspace.is_symlink()
+            and workspace.exists()
+        ):
             shutil.rmtree(workspace)
+
+    def _runtime_paths(self, job: dict[str, Any]) -> tuple[Path, Path, Path, Path]:
+        """Check external runtime isolation before creating or removing any files."""
+
+        configured = (
+            self.settings.work_root, self.settings.state_root, self.settings.clouds_config_file,
+            *(value for value in (
+                self.settings.ansible_private_key_file, self.settings.ansible_known_hosts_file
+            ) if value),
+        )
+        if any(not Path(value).is_absolute() for value in configured):
+            raise TerraformExecutionError("runtime paths must be absolute", "POLICY_DENIED")
+        work_root, state_root, clouds_file, *extra_protected = (
+            Path(value).resolve() for value in configured
+        )
+        for path in (work_root, state_root, clouds_file, *extra_protected):
+            if any((parent / ".git").exists() for parent in (path, *path.parents)):
+                raise TerraformExecutionError("runtime paths must be outside Git", "POLICY_DENIED")
+        if (
+            work_root == state_root
+            or work_root in state_root.parents
+            or state_root in work_root.parents
+            or any(path == work_root or work_root in path.parents for path in (clouds_file, *extra_protected))
+        ):
+            raise TerraformExecutionError("runtime paths overlap protected material", "POLICY_DENIED")
+        workspace = work_root / job["job_id"]
+        state_file = state_root / job["state_key"]
+        if workspace.resolve() != workspace or state_file.resolve() != state_file:
+            raise TerraformExecutionError("runtime path redirection is denied", "POLICY_DENIED")
+        if workspace.exists() or workspace.is_symlink():
+            raise TerraformExecutionError("existing workspace requires reviewed recovery", "POLICY_DENIED")
+        return work_root, workspace, state_file, clouds_file
 
     def _run_mock(self, job: dict[str, Any]) -> dict[str, Any]:
         time.sleep(max(0.0, self.settings.mock_delay_seconds))
@@ -528,7 +646,7 @@ class Executor:
             raise TerraformExecutionError(
                 "runner environment is incomplete: " + ", ".join(missing), "POLICY_DENIED"
             )
-        clouds_file = Path(self.settings.clouds_config_file).resolve()
+        work_root, workspace, state_file, clouds_file = self._runtime_paths(job)
         if not clouds_file.is_file():
             raise TerraformExecutionError("OpenStack clouds.yaml is unavailable", "POLICY_DENIED")
         if (
@@ -551,18 +669,13 @@ class Executor:
         )
         locked_policy = lock["modules"][module_name]
 
-        work_root = Path(self.settings.work_root).resolve()
-        workspace = (work_root / str(job["job_id"])).resolve()
-        if workspace.parent != work_root:
-            raise TerraformExecutionError("invalid job workspace", "POLICY_DENIED")
-        if workspace.exists():
-            shutil.rmtree(workspace)
-        shutil.copytree(source, workspace)
-
-        state_root = Path(self.settings.state_root).resolve()
-        state_file = (state_root / str(job["state_key"])).resolve()
-        if state_root not in state_file.parents:
-            raise TerraformExecutionError("invalid Terraform state key", "POLICY_DENIED")
+        work_root.mkdir(parents=True, exist_ok=True)
+        try:
+            workspace.mkdir()
+        except FileExistsError as exc:
+            raise TerraformExecutionError("existing workspace requires reviewed recovery", "POLICY_DENIED") from exc
+        self._owned_workspace = workspace
+        shutil.copytree(source, workspace, dirs_exist_ok=True)
         state_file.parent.mkdir(parents=True, exist_ok=True)
 
         values = dict(job["input_values"])

@@ -6,7 +6,7 @@ metadata:
 data:
   AUTH_MODE: oidc
   AUTO_CREATE_SCHEMA: "false"
-  OIDC_ISSUER: https://id.example.com/realms/iaas
+  OIDC_ISSUER: https://id.gg-snsdinfra.cloud/realms/iaas
   OIDC_AUDIENCE: approval-api
   OIDC_JWKS_URL: https://keycloak.control.internal/realms/iaas/protocol/openid-connect/certs
   REQUEST_API_URL: http://request-api.user-service.svc.cluster.local:8000
