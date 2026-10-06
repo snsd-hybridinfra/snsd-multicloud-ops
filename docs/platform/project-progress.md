@@ -220,4 +220,5 @@
 - 관측: 기존 계약의 일곱 지표만 숫자로 집계한다. LLM 모니터링 보조에는 이 집계 수치만 연결할 수 있고 파일 digest·audit·본문은 전달하지 않는다.
 - 검증: NAS 집중 회귀 `15 PASS`; 포털 전체 회귀 `198 PASS / 1 의도적 SKIP`; 포털 정적 검증 `22 PASS / 0 FAIL`; 금융 IDP·NAS 계약 회귀 `8 PASS`. 승인·거부·malware·digest·archive·content·type mismatch·크기·합성자료·MFA·자가승인·만료·불변 입력과 잘못된 최초 시각의 원자적 재시도 경계를 포함한다. SKIP은 기본 실행에서 외부 PostgreSQL 입력을 요구하지 않도록 닫아 둔 컨테이너 마이그레이션 검사이며, 로컬 digest 고정 PostgreSQL 16 이미지로 별도 `1 PASS`를 확인했다.
 - 런타임 증거: `NOT_VALIDATED`. Synology/NAS, SMB 3.1.1, 네트워크 존, 외부 scanner, OIDC reviewer, 영속 audit와 secure delete는 연결하지 않았다.
+- 커밋·푸시: 구현 커밋 `5758e9a76d8e86ebb676647776dc760d7fa26d97`을 `origin/main`에 정상 푸시했고 `F:/2차프로젝트/repos/snsd-multicloud-ops`와 `F:/github/snsd-multicloud-ops`의 기준 SHA를 동일하게 맞췄다. 별도로 진행 중인 request-api 실제 이미지 로컬 증거 변경은 이 커밋에 포함하지 않았다.
 - 다음 작업: 실제 어댑터 전에는 영속 API 이벤트 모델, scanner service identity, digest-bound callback 및 reviewer OIDC 계약을 fail-closed 설계한다.
