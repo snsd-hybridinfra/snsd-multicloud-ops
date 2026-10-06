@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "status": "DESIGN_ONLY",
+  "status": "IMPLEMENTED_LOCAL_SIMULATION",
   "runtime_validation_status": "NOT_VALIDATED",
   "decision": "docs/adr/0025-nas-file-exchange-gateway.md",
   "reference_source": {
@@ -24,6 +24,34 @@
     "public_internet_exposure": false
   },
   "state_machine": ["RECEIVED", "QUARANTINED", "SCANNING", "PENDING_APPROVAL", "RELEASED", "REJECTED", "EXPIRED"],
+  "state_transitions": {
+    "RECEIVED": ["QUARANTINED"],
+    "QUARANTINED": ["SCANNING"],
+    "SCANNING": ["PENDING_APPROVAL", "REJECTED"],
+    "PENDING_APPROVAL": ["RELEASED", "REJECTED"],
+    "RELEASED": ["EXPIRED"],
+    "REJECTED": ["EXPIRED"],
+    "EXPIRED": []
+  },
+  "local_simulation": {
+    "module": "applications/internal-iaas-portal/services/request-api/request_api/nas_exchange.py",
+    "tests": "applications/internal-iaas-portal/tests/api/test_nas_exchange.py",
+    "persistence": "MEMORY_ONLY",
+    "file_bytes_accessed": false,
+    "nas_mount_performed": false,
+    "scanner_invoked": false,
+    "runtime_credit": "NONE"
+  },
+  "scanner_contract": {
+    "allowed_inputs": ["DETECTED_EXTENSION", "DETECTED_MEDIA_TYPE", "DIGEST_VERIFIED", "MALWARE_DETECTED", "CONTENT_POLICY_PASSED", "ARCHIVE_DEPTH", "SCAN_LATENCY_SECONDS", "OBSERVED_AT"],
+    "prohibited_inputs": ["FILENAME", "FILE_CONTENT", "RAW_SCANNER_OUTPUT", "USER_NAME", "IP_ADDRESS", "SECRET"],
+    "allowed_file_types": ["CSV", "JSON", "PDF", "TEXT"],
+    "policy_max_bytes": 104857600,
+    "maximum_archive_depth": 3,
+    "self_approval_allowed": false,
+    "reviewer_mfa_required": true,
+    "approval_digest_binding_required": true
+  },
   "required_controls": ["OIDC_MFA_REVIEWER", "SHORT_LIVED_SHARE_GRANT", "SOURCE_NETWORK_ALLOWLIST", "MALWARE_SCAN", "FILE_TYPE_AND_EXTENSION_POLICY", "ARCHIVE_DEPTH_AND_SIZE_LIMIT", "CONTENT_POLICY", "SHA256_DIGEST_BINDING", "IMMUTABLE_AUDIT", "RETENTION_AND_SECURE_DELETE", "ISOLATED_MANAGEMENT_INTERFACE"],
   "monitoring": {
     "allowed_metrics": ["FILES_RECEIVED", "FILES_RELEASED", "FILES_REJECTED", "SCAN_LATENCY_SECONDS", "QUEUE_DEPTH", "CAPACITY_PERCENT", "AUTH_FAILURES"],

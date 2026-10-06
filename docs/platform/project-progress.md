@@ -211,3 +211,13 @@
 - 런타임 증거: `NOT_VALIDATED`. 로컬 Docker Server `29.6.2`와 Buildx `0.35.0`은 확인했으나 `IDP_BASE_PYTHON_IMAGE` 승인 digest 입력이 없어 이미지 build·SBOM·scan·sign·GHCR publish는 수행하지 않았다.
 - 차단 요인: 승인된 `python@sha256:...` 베이스 이미지, GHCR 대상·OIDC/단기 토큰, 승인된 Syft·Trivy·Cosign tool digest 및 publish 환경 승인이 필요하다.
 - 다음 작업: 외부 공급망 입력 전에는 publish/install 상태를 승격하지 않는다. 로드맵상 다음 안전 작업인 R3 NAS 상태기계·스캐너 로컬 시뮬레이션으로 이동한다.
+
+### 2026-10-02 — R3 NAS 자료교환 메타데이터 상태기계
+
+- 소스 커밋: `2ff0de6adf309e5b4c2214a616961cebc5b1f6c0`, `main`.
+- 구현: `RECEIVED → QUARANTINED → SCANNING → PENDING_APPROVAL → RELEASED/REJECTED → EXPIRED` 결정형 상태기계를 추가했다. 승인 유형·100 MiB 정책·archive depth 3·digest·malware·content policy를 검사하고, MFA 없는 검토·자가 승인·digest 불일치를 거부한다.
+- 데이터 경계: 파일명, 파일 본문, 원시 스캐너 출력, 사용자명, IP와 비밀은 입력 스키마에 존재하지 않는다. actor는 opaque reference만 허용하고 외부 view에서 제거한다. 구현은 메모리 상태와 합성 메타데이터만 사용하며 파일 접근·NAS mount·스캐너 호출을 수행하지 않는다.
+- 관측: 기존 계약의 일곱 지표만 숫자로 집계한다. LLM 모니터링 보조에는 이 집계 수치만 연결할 수 있고 파일 digest·audit·본문은 전달하지 않는다.
+- 검증: NAS 집중 회귀 `15 PASS`; 포털 전체 회귀 `198 PASS / 1 의도적 SKIP`; 포털 정적 검증 `22 PASS / 0 FAIL`; 금융 IDP·NAS 계약 회귀 `8 PASS`. 승인·거부·malware·digest·archive·content·type mismatch·크기·합성자료·MFA·자가승인·만료·불변 입력과 잘못된 최초 시각의 원자적 재시도 경계를 포함한다. SKIP은 기본 실행에서 외부 PostgreSQL 입력을 요구하지 않도록 닫아 둔 컨테이너 마이그레이션 검사이며, 로컬 digest 고정 PostgreSQL 16 이미지로 별도 `1 PASS`를 확인했다.
+- 런타임 증거: `NOT_VALIDATED`. Synology/NAS, SMB 3.1.1, 네트워크 존, 외부 scanner, OIDC reviewer, 영속 audit와 secure delete는 연결하지 않았다.
+- 다음 작업: 실제 어댑터 전에는 영속 API 이벤트 모델, scanner service identity, digest-bound callback 및 reviewer OIDC 계약을 fail-closed 설계한다.

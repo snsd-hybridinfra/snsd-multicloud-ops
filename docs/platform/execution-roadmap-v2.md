@@ -70,7 +70,7 @@ Developer Portal
 
 ### R3 증권 업무 상품화
 
-현재 상태: `IMPLEMENTED_LOCAL / RUNTIME_NOT_VALIDATED`
+현재 상태: `IMPLEMENTED_LOCAL / NAS_SIMULATION_VALIDATED / RUNTIME_NOT_VALIDATED`
 
 | 업무 | 조합형 상품 | 다음 구현·검증 |
 | --- | --- | --- |
@@ -144,7 +144,7 @@ NAS 자료교환은 새 상품이 아니라 `API_DEVELOPMENT_STACK`과 `DATA_PRO
 
 ## 다음 작업 큐
 
-1. `R3`: NAS 어댑터의 상태기계와 스캐너 계약을 안전한 로컬 시뮬레이션으로 구현한다.
+1. `R3`: NAS simulator를 영속 API·OIDC reviewer·scanner adapter에 연결할 준비 계약을 설계한다.
 2. `R2`: 승인 digest 베이스 이미지와 GHCR 입력이 준비되면 이미지 build·scan·sign·publish를 검증한다.
 3. `R1`: 승인된 OpenStack 입력과 실행 창이 준비되면 골든패스 live 검증을 수행한다.
 4. `R5`: OpenAI Platform 서비스 주체와 OIDC 스코프가 준비되면 외부 모니터링 보조 호출을 검증한다.

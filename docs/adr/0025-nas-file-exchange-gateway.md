@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted as a design and local governance contract. Runtime validation remains `NOT_VALIDATED`.
+Accepted with a metadata-only local state-machine simulation. Runtime NAS,
+scanner, SMB and identity validation remains `NOT_VALIDATED`.
 
 ## Context
 
@@ -21,6 +22,13 @@ Reuse the report's security objectives through a dual-stage NAS exchange gateway
 5. Every transition is linked by exchange ID, digest, policy decision, actor, timestamps and final expiry. Credentials and file contents are never committed to Git or exported to the LLM monitoring assistant.
 
 The NAS capability is an internal component of existing approved composite blueprints. It is not a ninth user-selectable product and does not permit free-form shares or protocols.
+
+The local simulator accepts only digest, byte count, declared/detected bounded
+types, boolean scan verdicts, archive depth, scan latency, opaque actor
+references and timezone-qualified timestamps. It never receives a filename,
+file body or raw scanner output and never mounts or copies a file. It proves
+transition, rejection, separation-of-duty, MFA, digest binding, expiry and
+numeric metric contracts only; it is not runtime evidence for a NAS appliance.
 
 ## Constraints
 

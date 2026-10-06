@@ -28,7 +28,16 @@ def test_monitoring_assistant_is_bounded_and_non_authoritative() -> None:
 def test_nas_exchange_reuses_existing_products_without_cross_zone_write() -> None:
     exchange = load_json("docs/platform/nas-file-exchange.yaml")
     catalog = load_json("docs/platform/composite-service-catalog.yaml")
-    assert exchange["status"] == "DESIGN_ONLY"
+    assert exchange["status"] == "IMPLEMENTED_LOCAL_SIMULATION"
+    assert exchange["runtime_validation_status"] == "NOT_VALIDATED"
+    assert exchange["local_simulation"]["file_bytes_accessed"] is False
+    assert exchange["local_simulation"]["nas_mount_performed"] is False
+    assert exchange["local_simulation"]["runtime_credit"] == "NONE"
+    assert exchange["scanner_contract"]["prohibited_inputs"] == [
+        "FILENAME", "FILE_CONTENT", "RAW_SCANNER_OUTPUT", "USER_NAME", "IP_ADDRESS", "SECRET"
+    ]
+    assert exchange["scanner_contract"]["self_approval_allowed"] is False
+    assert exchange["scanner_contract"]["reviewer_mfa_required"] is True
     assert exchange["topology"]["shared_writable_mount_across_zones"] is False
     assert exchange["protocol"] == {
         "allowed": ["SMB_3_1_1"],
